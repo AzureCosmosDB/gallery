@@ -1,0 +1,17 @@
+/**
+* Copyright (c) Microsoft Corporation. All rights reserved.
+* Licensed under the MIT License.
+ */
+
+.toolTip {
+  padding: 0px !important;
+  min-width: 32px !important;
+  color: #424242 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+}
+
+[data-theme="dark"] .toolTip {
+  color: #D6D6D6 !important;
+}

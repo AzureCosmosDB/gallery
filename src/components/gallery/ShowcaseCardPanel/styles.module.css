@@ -1,0 +1,199 @@
+/**
+* Copyright (c) Microsoft Corporation. All rights reserved.
+* Licensed under the MIT License.
+ */
+
+/* Keep for future change on light vs dark theme */
+.padding {
+  padding-top: 8px;
+  padding-bottom: 20px;
+}
+
+.githubUrl {
+  cursor: pointer;
+  color: #115ea3;
+  font-size: 12px;
+  line-height: 16px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+[data-theme="dark"] .githubUrl {
+  color: #479ef5;
+}
+
+.title {
+  color: var(--ifm-color-text-ai-site);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  padding-bottom: 4px;
+}
+
+.gitHubData {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  flex-wrap: wrap;
+  color: #707070;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .gitHubData {
+  color: #999999;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cardTag {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 20px;
+}
+
+.subTitle {
+  padding: 12px 0;
+  color: var(--ifm-color-text-ai-site);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.subTitle2 {
+  padding-top: 12px;
+  color: var(--ifm-color-text-ai-site);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.text {
+  padding-bottom: 12px;
+  color: var(--ifm-color-text-ai-site);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.video {
+  padding-bottom: 8px;
+  height: 340px;
+  max-width: 596px;
+}
+
+.iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.color {
+  color: #115ea3;
+}
+
+[data-theme="dark"] .color {
+  color: #479ef5;
+}
+
+.cardPanelTag {
+  display: flex;
+  padding-top: 8px;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+}
+
+[data-theme="dark"] .icon {
+  border: 1px solid #666666;
+  background: #292929;
+}
+
+
+.iconText {
+  color: var(--ifm-color-text-ai-site);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.iconTextGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.iconLearnMoreGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #616161;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+[data-theme="dark"] .iconLearnMoreGroup {
+  color: #adadad;
+}
+
+.iconLink {
+  color: #0f6cbd;
+}
+
+[data-theme="dark"] .iconLink {
+  color: #479ef5;
+}
+
+.buttonSection {
+  padding-top: 100px;
+  padding-bottom: 0px;
+}
+
+.button {
+  border-radius: 4px;
+  background: #0f6cbd;
+}
+
+.button:hover {
+  background: #115ea3;
+}
+
+[data-theme="dark"] .button {
+  background: #115ea3;
+}
+
+[data-theme="dark"] .button:hover {
+  background: #0f6cbd;
+}
+
+.buttonText {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  padding-left: 6px;
+}
+
+.divider {
+  border-top: 1px solid #e0e0e0;
+  padding-bottom: 16px;
+  margin-left: -100%;
+  margin-right: -4%;
+}
+
+[data-theme="dark"] .divider {
+  border-top: 1px solid #525252;
+}
