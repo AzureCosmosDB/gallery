@@ -28,7 +28,7 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "Language"
   );
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
-  const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === "Intelligent Solution");
+  const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === "GenerativeAI");
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
   const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
   const tagsByTypeSorted = [
