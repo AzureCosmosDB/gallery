@@ -3,10 +3,12 @@
     "title": "Build a Copilot sample app: Azure Cosmos DB for NoSQL (C#)",
     "description": "This sample application shows how to build a Generative-AI application using Azure Cosmos DB for NoSQL using its new vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.",
     "preview": "coming soon",
-    "website": "https://github.com/markjbrown",
-    "author": "Mark Brown",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
     "source": "https://github.com/AzureCosmosDB/cosmosdb-nosql-copilot",
+    "date": "2024-09-25",
     "tags": [
+      "generativeai",
       "csharp",
       "gpt4",
       "embedding-text-3",
@@ -17,17 +19,20 @@
       "appservice",
       "openai",
       "microsoft",
-      "vectorcosmosnosql"
+      "vectorcosmosnosql",
+      "sample"
     ]
   },
   {
     "title": "Build a Copilot sample app - Azure Cosmos DB for MongoDB (C#)",
     "description": "This sample application shows how to build a Generative-AI application using Azure Cosmos DB for MongoDB using its vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.",
     "preview": "coming soon",
-    "website": "https://github.com/markjbrown",
-    "author": "Mark Brown",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
     "source": "https://github.com/AzureCosmosDB/cosmosdb-mongo-copilot",
+    "date": "2024-07-01",
     "tags": [
+      "generativeai",
       "csharp",
       "gpt4",
       "embedding-text-3",
@@ -37,7 +42,8 @@
       "appservice",
       "openai",
       "microsoft",
-      "vectorcosmosmongo"
+      "vectorcosmosmongo",
+      "sample"
     ]
   },
   {
@@ -47,7 +53,9 @@
     "website": "https://github.com/AzureCosmosDB",
     "author":"Azure Cosmos DB Team",
     "source": "https://github.com/AzureCosmosDB/Fabric-Conf-2024-Build-AI-Apps",
+    "date": "2024-07-01",
     "tags":[
+      "generativeai",
       "python",
       "featured",
       "gpt4",
@@ -56,7 +64,8 @@
       "openai",
       "ragPattern",
       "vectorcosmosmongo",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -66,7 +75,9 @@
     "website": "https://github.com/solliancenet/",
     "author": "Solliance",
     "source": "https://github.com/Azure/BuildYourOwnCopilot",
+    "date": "2024-09-01",
     "tags": [
+      "generativeai",
       "csharp",
       "gpt4",
       "embedding-text-3",
@@ -80,7 +91,8 @@
       "keyvault",
       "openai",
       "vectorcosmosnosql",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -90,14 +102,17 @@
     "website": "https://github.com/aayush3011",
     "author":"Aayush Kataria",
     "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-NoSQL-Integrations/LangChain-CosmosDBNoSQL-AzureOpenAI.ipynb",
+    "date": "2024-07-01",
     "tags":[
+      "generativeai",
       "python",
       "gpt4",
       "openai",
       "jupyternotebook",
       "langchain",
       "vectorcosmosnosql",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -107,7 +122,9 @@
     "website": "https://github.com/sinedied",
     "author":"Yohan Lasorsa",
     "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-NoSQL-Integrations/LangChain-CosmosDBNoSQL-AzureOpenAI.ipynb",
+    "date": "2024-07-01",
     "tags":[
+      "generativeai",
       "typescript",
       "gpt4",
       "openai",
@@ -115,7 +132,8 @@
       "chat",
       "langchain",
       "vectorcosmosmongo",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -125,13 +143,16 @@
     "website": "https://github.com/TheovanKraay",
     "author":"Theo van Kraay",
     "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/tree/main/Java/CosmosDB-NoSQL-VectorSearch",
+    "date": "2024-05-01",
     "tags":[
+      "generativeai",
       "java",
       "gpt35",
       "openai",
       "langchain",
       "vectorcosmosnosql",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -141,24 +162,29 @@
     "website": "https://github.com/TheovanKraay",
     "author":"Theo van Kraay",
     "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/tree/main/Java/CosmosDB-NoSQL-RAG-Chatbot",
+    "date": "2024-07-01",
     "tags":[
+      "generativeai",
       "java",
       "gpt35",
       "openai",
       "langchain",
       "vectorcosmosnosql",
       "azurespringapps",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
     "title": "Cosmic RAG Food app with Langchain, Azure OpenAI and Azure Cosmos DB for MongoDB",
-    "description": "A Demo application for a streamlined ordering system tailored for various food categories. It allows users to request customized meals, such as "high protein dishes," with recommendations provided from our database. Users can further customize their choices before sending their orders from the app to the restaurant, including delivery details.",
+    "description": "A Demo application for a streamlined ordering system tailored for various food categories. It allows users to request customized meals, such as high protein dishes, with recommendations provided from our database. Users can further customize their choices before sending their orders from the app to the restaurant, including delivery details.",
     "preview": "coming soon",
     "website": "https://github.com/john0isaac",
     "author":"John Aziz",
     "source": "https://github.com/Azure-Samples/Cosmic-Food-RAG-app",
+    "date": "2024-09-15",
     "tags":[
+      "generativeai",
       "python",
       "typescript",
       "gpt35",
@@ -166,7 +192,8 @@
       "openai",
       "appservice",
       "vectorcosmosmongo",
-      "community"
+      "community",
+      "microsoft"
     ]
   },
   {
@@ -176,7 +203,9 @@
     "website": "https://github.com/aayush3011",
     "author":"Aayush Kataria",
     "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-MongoDB-vCore-Integrations/LangChain-CosmosDBMongovCoreVectorSearch-AzureOpenAI.ipynb",
+    "date": "2024-07-01",
     "tags":[
+      "generativeai",
       "python",
       "jupyternotebook",
       "gpt35",
@@ -184,7 +213,8 @@
       "openai",
       "langchain",
       "vectorcosmosmongo",
-      "microsoft"
+      "microsoft",
+      "sample"
     ]
   },
   {
@@ -193,8 +223,10 @@
     "preview": "coming soon",
     "website": "https://github.com/cjoakim",
     "author":"Chris Joakim",
-    "source": "https://github.com/cjoakim/CosmosAIGraph",
+    "source": "https://github.com/AzureCosmosDB/CosmosAIGraph",
+    "date": "2024-09-15",
     "tags":[
+      "generativeai",
       "python",
       "gpt4",
       "embedding-ada",
@@ -203,69 +235,865 @@
       "aks",
       "vectorcosmosmongo",
       "vectorcosmosnosql",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Microsoft Mechanics: What is the database behind ChatGPT?",
+    "description": "Take advantage of Azure Cosmos DB for your AI-driven applications. With its built-in vector search engine, scale-out architecture and extreme low latency, Azure Cosmos DB optimizes lets you build cutting-edge solutions at any scale.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MSFTMechanics",
+    "author":"Microsoft Mechanics",
+    "source": "https://www.youtube.com/watch?v=6IIUtEFKJec",
+    "date": "2024-03-01",
+    "tags":[
+      "generativeai",
+      "microsoft",
+      "openai",
+      "ragPattern",
+      "vectorcosmosnosql",
+      "video"
+    ]
+  },
+  {
+    "title": "Microsoft Mechanics: Build AI Semantic Search for your website with Azure Cosmos DB",
+    "description": "Build low-latency recommendation engines with Azure Cosmos DB and Azure OpenAI Service. Elevate user experience with vector-based semantic search, going beyond traditional keyword limitations to deliver personalized recommendations in real-time. With pre-trained models stored in Azure Cosmos DB, tailor product predictions based on user interactions and preferences. Explore the power of augmented vector search for optimized results prioritized by relevance.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MSFTMechanics",
+    "author":"Microsoft Mechanics",
+    "source": "https://www.youtube.com/watch?v=3T0K61VbnFw",
+    "date": "2024-05-01",
+    "tags":[
+      "generativeai",
+      "microsoft",
+      "openai",
+      "ragPattern",
+      "vectorcosmosnosql",
+      "video"
+    ]
+  },
+  {
+    "title": "Microsoft Mechanics: Vector Search using 95% Less Compute with DiskANN",
+    "description": "Ensure high-accuracy, efficient vector search at massive scale with Azure Cosmos DB. Leveraging Microsoft’s DiskANN, more IO traffic moves to disk to maximize storage capacity and enable high-speed similarity searches across all data, reducing memory dependency. This technology, powering global services like Microsoft 365, is now integrated into Azure Cosmos DB, enabling developers to build scalable, high-performance applications with built-in vector search, real-time fraud detection, and robust multi-tenancy support.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MSFTMechanics",
+    "author":"Microsoft Mechanics",
+    "source": "https://www.youtube.com/watch?v=MlMPIYONvfQ",
+    "date": "2024-06-01",
+    "tags":[
+      "generativeai",
+      "microsoft",
+      "openai",
+      "ragPattern",
+      "vectorcosmosnosql",
+      "video"
+    ]
+  },
+  {
+    "title": "Microsoft Reactor: Scalable RAG apps with Azure Cosmos DB for NoSQL",
+    "description": "Join us to learn about building scalable RAG applications using Azure Cosmos DB for NoSQL! Learn foundational concepts, generate embeddings with Azure OpenAI, process, store, and search over document data in Azure Cosmos DB leveraging vector similarity search using DiskANN, a vector indexing method that enable fast and cost-efficient vector search at any scale!",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=YZvNaYc_BLM&t",
+    "date": "2024-09-04",
+    "tags":[
+      "generativeai",
+      "microsoft",
+      "ragPattern",
+      "vectorcosmosnosql",
+      "openai",
+      "video"
+    ]
+  },
+  {
+    "title": "BUILD 2024: Scalable RAG with Azure Cosmos DB and DiskANN | Studio15",
+    "description": "Build low-latency recommendation engines with Azure Cosmos DB and Azure OpenAI Service. Elevate user experience with vector-based semantic search, going beyond traditional keyword limitations to deliver personalized recommendations in real-time. With pre-trained models stored in Azure Cosmos DB, tailor product predictions based on user interactions and preferences. Explore the power of augmented vector search for optimized results prioritized by relevance. ",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MicrosoftDeveloper",
+    "author":"Microsoft Developer Team",
+    "source": "https://www.youtube.com/watch?v=3T0K61VbnFw",
+    "date": "2024-05-21",
+    "tags":[
+      "generativeai",
+      "video",
+      "chat",
+      "ragPattern",
+      "vectorcosmosnosql",
+      "openai",
+      "microsoft"
+    ]
+  },
+    {
+    "title": "Build Scalable Chat History and Conversational Memory into LLM Apps",
+    "description": "OpenAI is building highly-scalable chat history for ChatGPT using Azure Cosmos DB - and you can too! In this code-heavy demo, we'll show you how to implement highly scalable chat history and conversational memory using the popular Microsoft Semantic Kernel framework with the new DiskANN-based vector database in Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=-m2ymy1Zyq8",
+    "date": "2024-07-21",
+    "tags":[
+      "generativeai",
+      "openai",
+      "ragPattern",
+      "semantickernel",
+      "vectorcosmosnosql",
+      "chat",
+      "video",
       "microsoft"
     ]
   },
   {
-    "title": "What is the database behind ChatGPT?",
-    "description": "Take advantage of Azure Cosmos DB for your AI-driven applications. Seamlessly integrate with large language models like ChatGPT, for real-time operational efficiency and limitless scalability. With its built-in vector search engine and multi-model support, Azure Cosmos DB for MongoDB vCore optimizes for just-in-time data retrieval, so you can build cutting-edge solutions at any scale. ",
+    "title": "Azure Cosmos DB: The database for your AI apps | Azure Friday",
+    "description": "Join Scott Hanselman, Kirill Gavrylyuk, and James Codella to learn about Azure Cosmos DB's built-in vector search capabilities, how customers are using it in their AI apps, and how you can easily get started today.",
     "preview": "coming soon",
-    "website": "https://github.com/Azure-Samples",
-    "author":"Azure Content Team",
-    "source": "https://www.youtube.com/watch?v=6IIUtEFKJec",
+    "website": "https://www.youtube.com/@MicrosoftAzure",
+    "author":"Microsoft Azure",
+    "source": "https://www.youtube.com/watch?v=YYYrz0i2-Ao",
+    "date": "2024-03-01",
     "tags":[
-      "videos",
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Quick Demo: Azure Cosmos DB with DiskANN",
+    "description": "Watch this 3 minute video on how you can build a scalable RAG application in Python using Azure Cosmos DB with DiskANN for vector search.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=u0ulNfZAxgc",
+    "date": "2024-04-01",
+    "tags":[
+      "video",
+      "python",
+      "openai",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to design and build AI applications with vector search using Azure OpenAI & Azure Cosmos DB | SQLBits",
+    "description": "Watch this session at SQLBits 2024 to learn about LLMs and how they work and how to use them with Azure Cosmos DB to build Generative AI applications.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@SQLBits",
+    "author":"SQLBits Team",
+    "source": "https://www.youtube.com/watch?v=KuslX-Aw5sQ",
+    "date": "2024-07-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "java",
+      "azurespringapps",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to design and build AI applications with vector search using Azure OpenAI & Azure Cosmos DB | SQLBits",
+    "description": "In this session, we'll demonstrate how to leverage a vector capabilities within a NoSQL database to store, index, and query embeddings alongside their corresponding original data. This integration offers a streamlined solution, eliminating the need for a separate pure vector database and reducing extra costs associated with data replication. By keeping the vector embeddings and original data together, we not only enhance data consistency but also enable seamless multi-modal data operations. This approach ensures superior scale and performance, allowing your applications to harness the full potential of both structured and unstructured data.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=E3okcKvpvHo",
+    "date": "2024-07-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Vector Search with Azure Cosmos DB: Next-generation applications made easy | Coffee 26",
+    "description": "In this session, we will analyze the requirements of intelligent applications and explain how Cosmos DB meets them along with Azure Open AI thanks to vector search. We will also showcase a couple of simple demos to illustrate the value Cosmos DB brings to next gen applications.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@coffeewithazurecosmosdb",
+    "author": "Coffee with Azure Cosmos DB",
+    "source": "https://www.youtube.com/watch?v=pAt6flNRabk",
+    "date": "2024-02-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Building Generative AI Apps with Azure Cosmos DB | Azure Cosmos DB Conf 2024",
+    "description": "In this demo-focused session, we'll see how Azure Cosmos DB can support your Generative AI applications! From using vector search for Retrieval Augmented Generation (RAG), to managing chat histories, semantic caching, and more, all from your favorite orchestration tools like Semantic Kernel and LangChain! Learn why Azure Cosmos DB is the best database for your AI-powered applications!",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MicrosoftDeveloper",
+    "author": "Microsoft Developer Team",
+    "source": "https://www.youtube.com/watch?v=eAbYC7B-NPo",
+    "date": "2024-04-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Empower AI applications with Vector Search using Azure Cosmos DB for MongoDB",
+    "description": "In this video, we dive deep into the world of Vector Search and unveil how it empowers an AI application’s potential. From finding similar content to delivering personalized recommendations and answering complex questions, Vector Search is a game-changer for AI applications. But what exactly is Vector Search, and how does it work? We break it down for you, explaining how vector embeddings and semantic search play a vital role. Moreover, we'll illustrate how Azure Cosmos DB for MongoDB vCore's built-in Vector Search seamlessly streamlines the centralization of your data while maintaining cost-efficiency.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=1YRvqzxXu68",
+    "date": "2024-02-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "LLM App Development Using PromptFlow and Azure Cosmos DB for MongoDB | Azure Cosmos DB Conf 2024",
+    "description": "In this informative talk, we will present the integration of Azure Cosmos DB MongoDB vCore and Postgres in PromptFlow via the pf-azuredata package. This light-weight library streamlines the integration of MongoDB vCore and PostgreSQL’s vector search with PromptFlow, accelerating the development of LLM applications using PromptFlow and Azure AI Studio. These Microsoft tools are essential for building deployment-ready LLM applications. We will demonstrate the integration through a practical sample.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MicrosoftDeveloper",
+    "author": "Microsoft Developer Team",
+    "source": "https://www.youtube.com/watch?v=PF-rwMLKbHM",
+    "date": "2024-04-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Connecting a RAG chat app to Azure Cosmos DB for MongoDB | Microsoft Reactor",
+    "description": "Join us to learn about Retrieval-Augmented Generation (RAG) with Azure Cosmos DB for MongoDB vCore, a powerful pattern for building advanced AI chat applications. We'll cover the essentials of vector search, embeddings, and indexes, and demonstrate how to efficiently store and retrieve transactional and vector data together in Azure Cosmos DB. This session will guide you through creating a low-code RAG application in Azure OpenAI Studio with just a database, coding the retrieval component in Python, and understanding when to choose Azure Cosmos DB for MongoDB vCore for your RAG implementations. Whether you're new to these technologies or seeking to enhance your skills, this session promises to be a valuable learning experience!",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@MicrosoftReactor",
+    "author": "Microsoft Reactor Team",
+    "source": "https://www.youtube.com/watch?v=cpbzQ-PfC4Y",
+    "date": "2024-02-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Build AI-powered apps with Azure Cosmos DB for MongoDB vector search | Azure Cosmos DB TV - Ep. 93",
+    "description": "This session will show some of the exciting new features of Azure Cosmos DB for MongoDB, and how you can leverage vector search in your AI apps. With vector search built-in, developers can execute similarity searches over huge amounts of data. In this demo we will explore how Azure OpenAI Service can be used to convert text into vector representations. We will also look at how Azure Cosmos DB for MongoDB vCore stores those vectors and enables you to query them along with the text data itself.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=MLY5Pc_tSXw",
+    "date": "2024-03-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "CosmosAIGraph - AI-powered Graphs and Knowledge Graphs with Azure Cosmos DB | Azure Cosmos DB TV - Ep. 95",
+    "description": "Join us on this exciting episode of Azure Cosmos DB TV as we dive into the innovative realm of AI-powered Graphs and Knowledge Graphs with our host, Mark Brown, and guests, Chris Joakim and Aleksey Savateyev. Discover how Azure Cosmos DB is revolutionizing customer workloads by providing cost-effective and high-performance solutions for AI-driven knowledge graphs and chat apps. Learn how Cosmos DB simplifies complex architectures by eliminating the need for standalone vector databases like Pinecone and graph databases like Neo4j, offering a seamless, integrated solution.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=0alvRmEgIpQ",
+    "date": "2024-06-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "graphrag",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Unlock the Power of Azure Cosmos DB for MongoDB vCore: An Interactive Session for Startups. | Microsoft Reactor",
+    "description": "Join us for an engaging session as we delve into the versatile vector database capabilities of Azure Cosmos DB for MongoDB vCore. Discover the seamless integration of your operational and transactional data with native vector indexing and search functionalities, specifically tailored for AI applications. Learn how to swiftly build RAG solutions by seamlessly connecting with Azure AI Studio to create chatbots using your own data. Explore the power of Azure Cosmos DB's Copilot in simplifying complex query writing, enhancing accuracy, and improving performance. Additionally, we'll showcase our seamless integrations with Semantic Kernel, Langchain, and LlamaIndex. Gain valuable insights into KPMG's success story, where Azure Cosmos DB played a pivotal role in the creation of a generative AI assistant for business operations.",
+    "preview": "coming soon",
+    "website": "https://www.youtube.com/@AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://www.youtube.com/watch?v=ehzz0Uhuvc4",
+    "date": "2024-01-01",
+    "tags":[
+      "video",
+      "openai",
+      "generativeai",
+      "ragPattern",
+      "semantickernel",
+      "langchain",
+      "llamaindex",
+      "vectorcosmosmongo",
       "microsoft"
     ]
   },
 
   {
-    "title": "AI Semantic Search for Your Website with Azure Cosmos DB | E-commerce",
-    "description": "Build low-latency recommendation engines with Azure Cosmos DB and Azure OpenAI Service. Elevate user experience with vector-based semantic search, going beyond traditional keyword limitations to deliver personalized recommendations in real-time. With pre-trained models stored in Azure Cosmos DB, tailor product predictions based on user interactions and preferences. Explore the power of augmented vector search for optimized results prioritized by relevance. ",
+    "title": "What is a vector database?",
+    "description": "Learn what a vector database is and how it can be used to build AI applications.",
     "preview": "coming soon",
-    "website": "https://github.com/Azure-Samples",
-    "author":"Azure Content Team",
-    "source": "https://www.youtube.com/watch?v=3T0K61VbnFw",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/vector-database",
+    "date": "2024-08-14",
     "tags":[
-      "videos",
+      "documentation",
+      "generativeai",
+      "vectorcosmosmongo",
+      "vectorcosmosnosql",
       "microsoft"
     ]
   },
   {
-    "title": "Scalable RAG with Azure Cosmos DB and DiskANN | Studio15",
-    "description": "Build low-latency recommendation engines with Azure Cosmos DB and Azure OpenAI Service. Elevate user experience with vector-based semantic search, going beyond traditional keyword limitations to deliver personalized recommendations in real-time. With pre-trained models stored in Azure Cosmos DB, tailor product predictions based on user interactions and preferences. Explore the power of augmented vector search for optimized results prioritized by relevance. ",
+    "title": "What is vector search?",
+    "description": "Learn how vector search works and how to use it to build AI applications.",
     "preview": "coming soon",
-    "website": "https://github.com/Azure-Samples",
-    "author":"Azure Content Team",
-    "source": "https://www.youtube.com/watch?v=3T0K61VbnFw",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/gen-ai/vector-search-overview",
+    "date": "2024-08-14",
     "tags":[
-      "videos",
+      "documentation",
+      "generativeai",
+      "vectorcosmosmongo",
+      "vectorcosmosnosql",
       "microsoft"
     ]
   },
   {
-    "title": "Vector Search using 95% Less Compute | DiskANN with Azure Cosmos DB",
-    "description": "Ensure high-accuracy, efficient vector search at massive scale with Azure Cosmos DB. Leveraging Microsoft’s DiskANN, more IO traffic moves to disk to maximize storage capacity and enable high-speed similarity searches across all data, reducing memory dependency. This technology, powering global services like Microsoft 365, is now integrated into Azure Cosmos DB, enabling developers to build scalable, high-performance applications with built-in vector search, real-time fraud detection, and robust multi-tenancy support. ",
+    "title": "Vector Search in Azure Cosmos DB for NoSQL",
+    "description": "Learn the basics for how vector search works and how to use vector search in Azure Cosmos DB for NoSQL to build AI applications.",
     "preview": "coming soon",
-    "website": "https://github.com/Azure-Samples",
-    "author":"Azure Content Team",
-    "source": "https://www.youtube.com/watch?v=MlMPIYONvfQ",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/vector-search",
+    "date": "2024-08-14",
     "tags":[
-      "videos",
+      "documentation",
+      "generativeai",
+      "vectorcosmosnosql",
       "microsoft"
     ]
   },
   {
-    "title": "Introducing vector database capabilities in Azure Cosmos DB for NoSQL (Public Preview)",
+    "title": "Vector index types in Azure Cosmos DB for NoSQL",
+    "description": "Learn what vector index types are available in Azure Cosmos DB and get started using them to build AI applications.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/index-policy#vector-indexes",
+    "date": "2024-01-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Vector index policy examples in Azure Cosmos DB for NoSQL",
+    "description": "Learn how to define vector index policies on containers in Azure Cosmos DB and get started using them.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/how-to-manage-indexing-policy?tabs=dotnetv3%2Cpythonv3#vector-indexing-policy-examples",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to index and query vectors in Azure Cosmos DB for NoSQL in .NET",
+    "description": "Learn how to define vector index policies on containers and do vector search queries in Azure Cosmos DB using .NET and C#.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/how-to-dotnet-vector-index-query",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "csharp",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to index and query vectors in Azure Cosmos DB for NoSQL in Python",
+    "description": "Learn how to define vector index policies on containers and do vector search queries in Azure Cosmos DB using Python",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/how-to-python-vector-index-query",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "python",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to index and query vectors in Azure Cosmos DB for NoSQL in JavaScript",
+    "description": "Learn how to define vector index policies on containers and do vector search queries in Azure Cosmos DB using JavaScript",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/how-to-javascript-vector-index-query",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "javascript",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "How to index and query vectors in Azure Cosmos DB for NoSQL in Java",
+    "description": "Learn how to define vector index policies on containers and do vector search queries in Azure Cosmos DB using Java",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/how-to-java-vector-index-query",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "java",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Understanding Vector Store capabilities in Azure Cosmos DB for MongoDB",
+    "description": "Learn what a vector store is and how to configure vector indexing and search in Azure Cosmos DB for MongoDB",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Build RAG applications with Azure Cosmos DB for MongoDB and Langchain",
+    "description": "This tutorial explores how to use Azure Cosmos DB for MongoDB (vCore), LangChain, and OpenAI to implement Retrieval-Augmented Generation (RAG) applications.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/rag",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Semantic Kernel Connector for Azure Cosmos DB for NoSQL (.NET)",
+    "description": "Documentation and samples in C# for the Semantic Kernel Connector with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/semantic-kernel/",
+    "author":"Semantic Kernel Team",
+    "source": "https://learn.microsoft.com/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector&pivots=programming-language-csharp",
+    "date": "2024-09-25",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "csharp",
+      "vectorcosmosnosql",
+      "semantickernel",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Semantic Kernel Connector for Azure Cosmos DB for NoSQL (Python)",
+    "description": "Documentation and samples in Python for the Semantic Kernel Connector with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/semantic-kernel/",
+    "author":"Semantic Kernel Team",
+    "source": "https://learn.microsoft.com/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/azure-cosmosdb-nosql-connector&pivots=programming-language-python",
+    "date": "2024-09-25",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "python",
+      "vectorcosmosnosql",
+      "semantickernel",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Langchain Vector Store integration for Azure Cosmos DB for NoSQL for Python",
+    "description": "Documentation and samples in Python for the Langchain Vector Store integration with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://python.langchain.com/docs/introduction/",
+    "author":"Langchain Python Team",
+    "source": "https://python.langchain.com/docs/integrations/vectorstores/azure_cosmos_db_no_sql/",
+    "date": "2024-09-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "python",
+      "vectorcosmosnosql",
+      "langchain",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Langchain Vector Store integration for Azure Cosmos DB for NoSQL for JavaScript",
+    "description": "Documentation and samples in JavaScript for the Langchain Vector Store integration with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://js.langchain.com/docs/introduction/",
+    "author":"Langchain JS Team",
+    "source": "https://js.langchain.com/docs/integrations/vectorstores/azure_cosmosdb_nosql/",
+    "date": "2024-09-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "javascript",
+      "vectorcosmosnosql",
+      "langchain",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Langchain Vector Store integration for Azure Cosmos DB for NoSQL for Java",
+    "description": "Documentation and samples in Java for the Langchain Vector Store integration with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://docs.langchain4j.dev/",
+    "author":"Langchain 4j Team",
+    "source": "https://docs.langchain4j.dev/integrations/embedding-stores/azure-cosmos-nosql/",
+    "date": "2024-09-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "java",
+      "vectorcosmosnosql",
+      "langchain",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "LlamaIndex Vector Store integration for Azure Cosmos DB for NoSQL for Python",
+    "description": "Documentation and samples in Python for the LlamaIndex Vector Store integration with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://docs.llamaindex.ai/",
+    "author":"LlamaIndex Team",
+    "source": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/AzureCosmosDBNoSqlDemo/",
+    "date": "2024-09-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "python",
+      "vectorcosmosnosql",
+      "llamaindex",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Promptflow RAG Project template for Azure Databases",
+    "description": "An end-to-end sample of RAG showcasing development, evaluation, experimentation, and deployment using Promptflow, search products like CosmosDB, PostgresSQL, and Azure AI Search.",
+    "preview": "coming soon",
+    "website": "https://microsoft.github.io/promptflow/index.html",
+    "author":"Promotflow Team",
+    "source": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/AzureCosmosDBNoSqlDemo/",
+    "date": "2024-09-01",
+    "tags":[
+      "documentation",
+      "generativeai",
+      "python",
+      "jupyternotebook",
+      "vectorcosmosnosql",
+      "promptflow",
+      "microsoft"
+    ]
+  },
+
+  {
+    "title": "Introducing vector database capabilities in Azure Cosmos DB for NoSQL",
     "description": "We are excited to announce that native vector indexing and search in Azure Cosmos DB for NoSQL is now available in preview!",
     "preview": "coming soon",
-    "website": "https://github.com/Azure-Samples",
-    "author":"Azure Content Team",
+    "website": "https://devblogs.microsoft.com/cosmosdb/",
+    "author":"Azure Cosmos DB Team",
     "source": "https://devblogs.microsoft.com/cosmosdb/introducing-vector-database-capabilities-in-azure-cosmos-db-for-nosql/",
+    "date": "2024-05-21",
     "tags":[
-      "blogs",
+      "blog",
+      "vectorcosmosnosql",
       "microsoft"
     ]
+  },
+  {
+    "title": "DiskANN for Azure Cosmos DB Now in Open Public Preview!",
+    "description": "DiskANN is a powerful set of algorithms developed at Microsoft Research for low-latency, cost-effective, and highly accurate vector search at scale. It’s an ideal solution for applications requiring fast and efficient search capabilities without compromising on accuracy.",
+    "preview": "coming soon",
+    "website": "https://devblogs.microsoft.com/cosmosdb/",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://devblogs.microsoft.com/cosmosdb/diskann-for-azure-cosmos-db-now-in-open-public-preview/",
+    "date": "2024-09-12",
+    "tags":[
+      "blog",
+      "vectorcosmosnosql",
+      "diskann",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Vector Search with DiskANN Part 1: Full Space Search",
+    "description": "In this multi-part series, we dive into several aspects of vector indexing, vector similarity search performance, and highlight best practices with Azure Cosmos DB for NoSQL.",
+    "preview": "coming soon",
+    "website": "https://devblogs.microsoft.com/cosmosdb/",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-vector-search-with-diskann-part-1-full-space-search/",
+    "date": "2024-09-05",
+    "tags":[
+      "blog",
+      "vectorcosmosnosql",
+      "diskann",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Introducing Integrated Vector Database in Azure Cosmos DB for MongoDB",
+    "description": "We are thrilled to announce the release of Integrated Vector Database in Azure Cosmos DB for MongoDB vCore, which will be showcased at Microsoft Build. This innovative feature opens a world of new opportunities for building intelligent AI-powered applications and makes Azure Cosmos DB for MongoDB vCore the first among MongoDB-compatible offerings to feature an integrated vector database!",
+    "preview": "coming soon",
+    "website": "https://devblogs.microsoft.com/cosmosdb/",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://devblogs.microsoft.com/cosmosdb/introducing-vector-search-in-azure-cosmos-db-for-mongodb-vcore/",
+    "date": "2023-05-23",
+    "tags":[
+      "blog",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Integrated Vector Database in vCore-based Azure Cosmos DB for MongoDB is Generally Available!",
+    "description": "We’re thrilled to share the exciting news that the integrated vector database is now officially available to all users of Azure Cosmos DB for MongoDB vCore. This groundbreaking feature paves the way for a multitude of fresh opportunities in the realm of secure and resilient AI-driven applications while making Azure Cosmos DB for MongoDB vCore your go-to data source.",
+    "preview": "coming soon",
+    "website": "https://devblogs.microsoft.com/cosmosdb/",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://devblogs.microsoft.com/cosmosdb/mongodb-vcore-vector-search/",
+    "date": "2023-11-15",
+    "tags":[
+      "blog",
+      "vectorcosmosmongo",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB NoSQL API & Azure OpenAI Service - Payment & Transaction Processing",
+    "description": "This repository provides a code sample in .NET on how you might use a combination of Azure Functions, Azure Cosmos DB, Azure OpenAI Service and Azure Event Hubs to implement a payment tracking process.",
+    "preview": "coming soon",
+    "website": "https://github.com/fonsecamar",
+    "author": "Marcelo Fonseca",
+    "source": "https://github.com/Azure/Real-time-Payment-Transaction-Processing-at-Scale",
+    "date": "2023-09-25",
+    "tags": [
+      "generativeai",
+      "csharp",
+      "gpt35",
+      "embedding-ada",
+      "chat",
+      "ragPattern",
+      "aks",
+      "eventhub",
+      "frontdoor",
+      "swa",
+      "openai",
+      "microsoft",
+      "appinsights",
+      "vectorcosmosnosql",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB & Azure OpenAI Service - Medical Claims Handling",
+    "description": "This repository provides a code sample in .NET on how you might use a combination of Azure Functions, Azure Cosmos DB, Azure OpenAI Service and Azure Event Hubs to implement an event-driven medical insurance claims process. With minimal changes this could be modified to work for other insurance processes.",
+    "preview": "coming soon",
+    "website": "https://github.com/luticm",
+    "author": "Luciano Moreira",
+    "source": "https://github.com/Azure/Medical-Claims-Transaction-Processing-at-scale",
+    "date": "2023-09-25",
+    "tags": [
+      "generativeai",
+      "csharp",
+      "gpt35",
+      "embedding-ada",
+      "chat",
+      "ragPattern",
+      "aks",
+      "aca",
+      "eventhub",
+      "frontdoor",
+      "appinsights",
+      "swa",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Terraform Module and Samples",
+    "description": "This repository provides Azure Cosmos DB Terraform samples to provide configurable baseline service capabilities to help simplify infrastructure as code deployment and accelerate workload enablement.",
+    "preview": "coming soon",
+    "website": "https://github.com/markjbrown",
+    "author": "Mark Brown",
+    "source": "https://github.com/Azure/terraform-azurerm-cosmosdb",
+    "date": "2022-09-25",
+    "tags": [
+      "terraform",
+      "infrastructure",
+      "aks",
+      "vnets",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Document to Vector ingestion pipeline Proof of Concept",
+    "description": "This repository contains a proof of concept for Pipeline of ingesting documents (like pdfs and docx) into a searchable Azure Cosmos DB container for vector and hybrid searching.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/Azure/document-vector-pipeline",
+    "date": "2023-09-25",
+    "tags": [
+      "generativeai",
+      "embedding-text-3",
+      "appservice",
+      "appinsights",
+      "documentintelligence",
+      "diskann",
+      "openai",
+      "csharp",
+      "microsoft",
+      "vectorcosmosnosql",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Document to Vector ingestion pipeline Proof of Concept",
+    "description": "This repository demonstrates how to model and partition data for Azure Cosmos DB for NoSQL starting with the Adventure Works database.",
+    "preview": "coming soon",
+    "website": "https://github.com/markjbrown",
+    "author": "Mark Brown",
+    "source": "https://github.com/AzureCosmosDB/cosmicworks",
+    "date": "2023-02-25",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Cosmic Works: How to for Azure Cosmos DB Data Modeling and Partitioning (C#)",
+    "description": "This repository demonstrates how to model and partition data for Azure Cosmos DB for NoSQL starting with the Adventure Works database.",
+    "preview": "coming soon",
+    "website": "https://github.com/markjbrown",
+    "author": "Mark Brown",
+    "source": "https://github.com/AzureCosmosDB/cosmicworks",
+    "date": "2023-02-25",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Cosmic Works: How to for Azure Cosmos DB Data Modeling and Partitioning (Java)",
+    "description": "This repository demonstrates how to model and partition data for Azure Cosmos DB for NoSQL starting with the Adventure Works database.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author": "Theo van Kraay",
+    "source": "https://github.com/AzureCosmosDB/cosmicworksjava",
+    "date": "2023-02-25",
+    "tags": [
+      "architecturedesign",
+      "java",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Desktop Data Migration Tool",
+    "description": "The Azure Cosmos DB Desktop Data Migration Tool is an open-source project containing a command-line application that provides import and export functionality for Azure Cosmos DB.",
+    "preview": "coming soon",
+    "website": "https://github.com/markjbrown",
+    "author": "Mark Brown",
+    "source": "https://github.com/AzureCosmosDB/data-migration-desktop-tool",
+    "date": "2024-09-01",
+    "tags": [
+      "tools",
+      "migration",
+      "csharp",
+      "community",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB + Azure OpenAI Python Developer Guide",
+    "description": "This guide will walks through the creating intelligent solutions that combines vCore-based Azure Cosmos DB for MongoDB vector search and document retrieval with Azure OpenAI services to build a chat bot experience. The guide includes labs that build and deploy a sample chat app using these technologies, with a focus on vCore-based Azure Cosmos DB for MongoDB, Vector Search, and Azure OpenAI using the Python programming language. For those new to using Azure OpenAI and Vector Search technologies, the guide includes explanations of the core concepts and techniques used when implementing these technologies.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/Azure-OpenAI-Python-Developer-Guide",
+    "date": "2024-04-01",
+    "tags": [
+      "generativeai",
+      "vectorcosmosmongo",
+      "python",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB + Azure OpenAI JavaScript Developer Guide",
+    "description": "This guide will walks through the creating intelligent solutions that combines vCore-based Azure Cosmos DB for MongoDB vector search and document retrieval with Azure OpenAI services to build a chat bot experience. The guide includes labs that build and deploy a sample chat app using these technologies, with a focus on vCore-based Azure Cosmos DB for MongoDB, Vector Search, and Azure OpenAI using the Node.js runtime and the JavaScript programming language. For those new to using Azure OpenAI and Vector Search technologies, the guide includes explanations of the core concepts and techniques used when implementing these technologies.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/Azure-OpenAI-Node.js-Developer-Guide",
+    "date": "2024-04-01",
+    "tags": [
+      "generativeai",
+      "vectorcosmosmongo",
+      "javascript",
+      "microsoft",
+      "sample"
+    ]
   }
+
   
 ]

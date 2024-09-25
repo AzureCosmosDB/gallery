@@ -11,6 +11,8 @@ export type Tag = {
   url?: string;
   type?: string;
   subType?: SubType;
+  buttonText?: string;
+  date?: string; // ISO 8601 format ("2024-09-23")
 };
 
 export type User = {
@@ -58,16 +60,16 @@ export type TagType =
   | "featured"
   | "microsoft"
   | "community"
-  | "decks"
-  | "samples"
-  | "blogs"
-  | "videos"
-  | "docs"
-  | "generativeAI"
-  | "eventSouring"
-  | "IoT"
-  | "migrations"
-  | "healthcare"
+  | "deck"
+  | "sample"
+  | "blog"
+  | "video"
+  | "documentation"
+  | "generativeai"
+  | "architecturedesign"
+  | "tools"
+  | "infrastructure"
+  | "migration"
   | "analytics"
   | "agent"
   | "ragPattern"
@@ -75,6 +77,7 @@ export type TagType =
   | "search"
   | "llmops"
   | "summarization"
+  | "graphrag"
   | "javascript"
   | "csharp"
   | "java"
@@ -87,9 +90,12 @@ export type TagType =
   | "gpt4"
   | "embedding-ada"
   | "embedding-text-3"
+  | "embedding-cohere"
   | "llama"
   | "llama2"
+  | "promptflow"
   | "pinecone"
+  | "diskann"
   | "vectorcosmosnosql"
   | "vectorcosmosmongo"
   | "vectorpostrgresql"
@@ -108,6 +114,7 @@ export type TagType =
   | "appinsights"
   | "loganalytics"
   | "appservice"
+  | "documentintelligence"
   | "monitor"
   | "keyvault"
   | "aca"
@@ -322,36 +329,68 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   // ResourceType Tags
-  "decks": {
-    label: "Decks",
-    description: "Presentation decks, PPT, PDF, etc.",
+  deck: {
+    label: "Presentation",
+    description: "Presentation, PPT, PDF, etc.",
     icon: "./img/decks.svg", //need icons for this
-    type: "ResourceType"
+    type: "ResourceType",
+    buttonText: "View Deck",
   },
-  "videos" : {
-    label: "Videos",
-    description: "Videos on YouTube, Vimeo, etc.",
+  video : {
+    label: "Video",
+    description: "Video on YouTube, Vimeo, etc.",
     icon: "./img/videos.svg", //need icons for this
     type: "ResourceType",
+    buttonText: "Watch Video",
   },
-  blogs : {
-    label: "Blogs",
-    description: "Blog posts",
+  blog : {
+    label: "Blog",
+    description: "Blog post",
     icon: "./img/blogs.svg", //need icons for this
     type: "ResourceType",
+    buttonText: "Read Blog",
   },
-  samples : {
-    label: "Samples",
-    description: "Code samples",
+  sample : {
+    label: "Sample",
+    description: "Code sample",
     icon: "./img/github-mark.svg",
     type: "ResourceType",
+    buttonText: "Go to GitHub repo",
   },
-  docs : {
-    label: "Docs",
+  documentation : {
+    label: "Documentation",
     description: "Documentation",
     icon: "./img/docs",
     type: "ResourceType",
-  } 
+    buttonText: "Read Article",
+  }, 
 
+  // Content Category for filtering content
+  generativeai: {
+    label: "Generative AI",
+    description: "Generative AI and Vector Database content",
+    icon: "",
+    type: "ContentType"
+  },
+  architecturedesign : {
+    label: "Architecture",
+    description: "Architecture and design patterns",
+    type: "ContentType"
+  },
+  tools : {
+    label: "Tools",
+    description: "Tools and utilities for development",
+    type: "ContentType"
+  },
+  migration : {
+    label: "Data Migration",
+    description: "Migrating data between services",
+    type: "ContentType"
+  },
+  analytics : {
+    label: "Analytics",
+    description: "Data Analytics and visualization",
+    type: "ContentType"
+  }
  
 };

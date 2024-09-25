@@ -35,7 +35,8 @@ export default function ShowcaseCardPanel({
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
   const vectorDatabaseTags = tagObjectsSorted.filter((tag) => tag.type === "VectorDatabase");
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
-
+  const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
+  console.log("resourceTypeTags", resourceTypeTags);
 
   return (
     <>
@@ -103,7 +104,8 @@ export default function ShowcaseCardPanel({
           }}
         >
           <img src={useBaseUrl("/img/redirect.svg")} height={24} alt="Redirect" />
-          <div className={styles.buttonText}>Go to GitHub repo</div>
+            {/* <div className={styles.buttonText}>Go to GitHub repo</div> */}
+          <div className={styles.buttonText}>{resourceTypeTags[0].buttonText}</div>
         </PrimaryButton>
       </div>
 
