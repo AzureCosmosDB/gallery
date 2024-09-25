@@ -1032,6 +1032,22 @@
     ]
   },
   {
+    "title": "CosmicWorks command-line tool and libraries for .NET",
+    "description": "This repository is an open source set of tools and libraries to generate data quickly for your proof of concept or sample applications.",
+    "preview": "coming soon",
+    "website": "https://github.com/seesharprun",
+    "author": "Sidney Andrews",
+    "source": "https://github.com/azure-samples/cosmicworks",
+    "date": "2024-03-01",
+    "tags": [
+      "architecturedesign",
+      "tools",
+      "csharp",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
     "title": "Cosmic Works: How to for Azure Cosmos DB Data Modeling and Partitioning (Java)",
     "description": "This repository demonstrates how to model and partition data for Azure Cosmos DB for NoSQL starting with the Adventure Works database.",
     "preview": "coming soon",
@@ -1090,6 +1106,171 @@
       "generativeai",
       "vectorcosmosmongo",
       "javascript",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Customer Managed Keys (CMK) Migration Scanner",
+    "description": "Azure Cosmos DB allows a second layer of encryption with keys managed by customers, called Customer-Managed Keys (CMK). In order to allow an existing Cosmos DB account to use to CMK, a scan needs to be done to ensure the account doesn't have documents with /id values exceeding 990 characters in length. This scan is mandatory for the CMK migration and it is done by Microsoft automatically. However, customers can replicate the scan result with this project.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/Cosmos-DB-Non-CMK-to-CMK-Migration-Scanner",
+    "date": "2024-08-01",
+    "tags": [
+      "tools",
+      "migration",
+      "csharp",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Retail Product Predictions using ALS in pyspark",
+    "description": "This sample demonstrates how to use Azure Cosmos DB for NoSQL (and Azure Cosmos DB for MongoDB) and their vector indexing and query capabilities to build a purchasing prediction feature for an Ecommerce retail workload using collaborative filtering with the Alternative Least Squares model. Collaborative Filtering is the most implemented and mature recommendation system and the Alternative Least Squares (ALS) model is one of the most popular method in collaborative filtering.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/Cosmos-DB-Non-CMK-to-CMK-Migration-Scanner",
+    "date": "2024-09-15",
+    "tags": [
+      "generativeai",
+      "vectorcosmosnosql",
+      "vectorcosmosmongo",
+      "python",
+      "jupyternotebook",
+      "openai",
+      "embedding-text-3",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "MongoDB Migration Data Assessment Tool",
+    "description": "Data Assessment Console Application is a CLI tool that helps evaluate the suitability and readiness of your data and queries for migrating from MongoDB to Azure Cosmos DB for MongoDB. You can use this tool to examine your data and find out the steps that you may need to take to smoothly run your workloads on Azure Cosmos DB.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/MongoMigrationDataAssessment",
+    "date": "2024-09-01",
+    "tags": [
+      "tools",
+      "migration",
+      "vectorcosmosmongo",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Autoscale AKS and Cosmos DB using KEDA",
+    "description": "This repository shows how to use AKS, Azure Cosmos DB & KEDA to build event-driven microservices. This repo is a demo for Microsoft BUILD 2023.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/Azure-Samples/cosmos-aks-keda",
+    "date": "2024-09-01",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "bicep",
+      "grafana",
+      "vnets",
+      "infrastructure",
+      "acr",
+      "aks",
+      "migration",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Cosmos DB sample ToDo App on AKS Cluster",
+    "description": "A Web reference ASP.NET Core MVC application that demonstrates how to use the Microsoft Azure Cosmos DB service to store and access data. The application is designed to be deployed on Azure Kubernetes Services(AKS) using Bicep, Terraform, and Azure Service Operators(ASO).",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/Azure-Samples/cosmos-aks-samples",
+    "date": "2024-09-01",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "bicep",
+      "managedidentity",
+      "keyvault",
+      "vnets",
+      "infrastructure",
+      "terraform",
+      "acr",
+      "aks",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Samples for using REST calls against CosmosDB",
+    "description": "REST API samples for Azure Cosmos DB for NoSQL. Samples cover most database, container and item examples including example of how to generate a master key authorization signature.",
+    "preview": "coming soon",
+    "website": "https://github.com/alexdrenea",
+    "author": "Alex Drenea",
+    "source": "https://github.com/Azure-Samples/cosmos-db-rest-samples",
+    "date": "2023-09-01",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "community",
+      "sample"
+    ]
+  },
+  {
+    "title": "Wonders App With Data API Builder",
+    "description": "A sample JAMstack application of Static Web Apps with Database Connections backed by Data API Builder for an Angular Application with Azure Cosmos DB (NOSQL API) as a database.",
+    "preview": "coming soon",
+    "website": "https://github.com/sajeetharan",
+    "author": "Sajeetharan",
+    "source": "https://github.com/Azure-Samples/cosmos-db-rest-samples",
+    "date": "2023-09-01",
+    "tags": [
+      "architecturedesign",
+      "typescript",
+      "community",
+      "sample"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Architecture & Design Pattern Samples",
+    "description": "A collection of design pattern samples for building applications and services with Azure Cosmos DB for NoSQL. If you are new to Cosmos DB THIS is the samples repo for you!",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/azure-samples/cosmos-db-design-patterns",
+    "date": "2024-09-01",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "microsoft",
+      "sample"
+    ]
+  },
+  {
+    "title": "Cosmic Food with Azure OpenAI and Azure Cosmos DB for MongoDB",
+    "description": "A Demo application for a streamlined ordering system tailored for various food categories. It allows users to request customized meals, such as high protein dishes, with recommendations provided from our database. Users can further customize their choices before sending their orders from the app to the restaurant, including delivery details. A unique feature of our system is its ability to remember user preferences for future orders, using vCore to store that data. With the help of Langchain, this setup can be easily adapted by ISVs with minimal modifications needed for other food chains.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/azure-samples/cosmic-food-rag-app",
+    "date": "2024-07-01",
+    "tags": [
+      "generativeai",
+      "python",
+      "jupyternotebook",
+      "vectorcosmosmongo",
+      "openai",
+      "keyvault",
+      "appservice",
+      "gpt35",
+      "embedding-ada",
+      "typescript",
       "microsoft",
       "sample"
     ]
