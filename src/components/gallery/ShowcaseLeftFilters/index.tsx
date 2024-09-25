@@ -190,7 +190,7 @@ export default function ShowcaseLeftFilters({
   
   const intelligentSolutionTag = sortTagList.filter((tag) => {
     const tagObject = Tags[tag];
-    return tagObject.type === "Intelligent Solution";
+    return tagObject.type === "GenerativeAI";
   });
   const resourceTypeTag = sortTagList.filter((tag) => {
     const tagObject = Tags[tag];
@@ -309,7 +309,7 @@ export default function ShowcaseLeftFilters({
       </AccordionItem>
       <AccordionItem value="4">
         <AccordionHeader expandIconPosition="end" className={styles.tagCatalogBackground}>
-          <div className={styles.tagCatalog} data-m='{\"id\":\"Intelligent Solution\",\"cN\":\"Tags Category\"}'>Intelligent Solution</div>
+          <div className={styles.tagCatalog} data-m='{\"id\":\"GenerativeAI\",\"cN\":\"Tags Category\"}'>GenerativeAI</div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll

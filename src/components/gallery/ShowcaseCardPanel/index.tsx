@@ -33,8 +33,10 @@ export default function ShowcaseCardPanel({
   );
   const languageTags = tagObjectsSorted.filter((tag) => tag.type === "Language");
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
+  const vectorDatabaseTags = tagObjectsSorted.filter((tag) => tag.type === "VectorDatabase");
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
-
+  const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
+  console.log("resourceTypeTags", resourceTypeTags);
 
   return (
     <>
@@ -78,7 +80,7 @@ export default function ShowcaseCardPanel({
       </div> : null}
       <div className={styles.subTitle}>Included in this template</div>
       <div className={styles.text}>The languages & services used in this template are subject to their normal
-        usage fees. Learn more about the cost of services by using the <Link href="https://azure.microsoft.com/en-us/pricing/calculator/"
+        usage fees. Learn more about the cost of services by using the <Link href="https://azure.microsoft.com/pricing/calculator/"
           target="_blank"
           className={styles.color}>Azure Pricing Calculator</Link>.</div>
       {languageTags.length > 0 ? <><div className={styles.subTitle2}>Languages</div>
@@ -86,6 +88,9 @@ export default function ShowcaseCardPanel({
       }
       {modelTags.length > 0 ? <><div className={styles.subTitle2}>Models</div>
         <CardPanelTag tags={modelTags} /> </> : null
+      }
+      {vectorDatabaseTags.length > 0 ? <><div className={styles.subTitle2}>Vector Database</div>
+        <CardPanelTag tags={vectorDatabaseTags} /> </> : null
       }
       {azureTags.length > 0 ? <><div className={styles.subTitle2}>Services</div>
         <CardPanelTag tags={azureTags} /> </> : null
@@ -99,7 +104,8 @@ export default function ShowcaseCardPanel({
           }}
         >
           <img src={useBaseUrl("/img/redirect.svg")} height={24} alt="Redirect" />
-          <div className={styles.buttonText}>Go to GitHub repo</div>
+            {/* <div className={styles.buttonText}>Go to GitHub repo</div> */}
+          <div className={styles.buttonText}>{resourceTypeTags[0].buttonText}</div>
         </PrimaryButton>
       </div>
 

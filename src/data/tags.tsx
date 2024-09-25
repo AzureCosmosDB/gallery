@@ -11,6 +11,8 @@ export type Tag = {
   url?: string;
   type?: string;
   subType?: SubType;
+  buttonText?: string;
+  date?: string; // ISO 8601 format ("2024-09-23")
 };
 
 export type User = {
@@ -42,70 +44,89 @@ export const meta: SubType = {
   icon: "./img/meta.svg",
 }
 
-// TODO add icon
 export const microsoft: SubType = {
   label: "Microsoft",
-  icon: "",
+  icon: "./img/Microsoft.svg"
 };
+
 
 export const mistralai: SubType = {
   label: "Mistral AI",
-  icon: "",
+  icon: "", // "./img/mistralai.svg",
 };
 
 // NN: Updated TagType to suit Static Web Apps
 export type TagType =
   | "featured"
-  | "javascript"
-  | "dotnetCsharp"
-  | "java"
-  | "python"
-  | "typescript"
-  | "dalle"
-  | "gpt35turbo"
-  | "gpt4turbo"
-  | "decks"
-  | "code"
-  | "blogs"
+  | "microsoft"
+  | "community"
+  | "deck"
+  | "sample"
   | "blog"
-  | "Videos"
-  | "Docs"
-  | "gpt4"
-  | "llama"
-  | "llama2"
+  | "video"
+  | "documentation"
+  | "generativeai"
+  | "architecturedesign"
+  | "tools"
+  | "infrastructure"
+  | "migration"
+  | "analytics"
   | "agent"
+  | "ragPattern"
   | "chat"
   | "search"
   | "llmops"
   | "summarization"
+  | "graphrag"
+  | "javascript"
+  | "csharp"
+  | "java"
+  | "python"
+  | "typescript"
+  | "jupyternotebook"
+  | "openai"
+  | "dalle"
+  | "gpt35"
+  | "gpt4"
+  | "embedding-ada"
+  | "embedding-text-3"
+  | "embedding-cohere"
+  | "llama"
+  | "llama2"
+  | "promptflow"
   | "pinecone"
-  | "azuresql"
-  | "azurecosmosdb"
+  | "diskann"
+  | "vectorcosmosnosql"
+  | "vectorcosmosmongo"
+  | "vectorpostrgresql"
+  | "vectoraisearch"
+  | "semantickernel"
+  | "langchain"
+  | "llamaindex"
   | "phi2"
   | "orca2"
   | "mistral7b"
   | "mistral8*7b"
-  | "embedding-ada"
   | "bicep"
   | "terraform"
   | "prometheus"
-  | "pinecone"
+  | "cosmosdb"
   | "appinsights"
   | "loganalytics"
   | "appservice"
+  | "documentintelligence"
   | "monitor"
   | "keyvault"
   | "aca"
-  | "cosmosdb"
   | "functions"
   | "blobstorage"
   | "azuresql"
-  | "azuredb-mySQL"
+  | "azurepostrgres"
+  | "azuredbmysql"
   | "swa"
   | "servicebus"
   | "vnets"
   | "aisearch"
-  | "openai"
   | "azureai"
   | "apim"
   | "aks"
@@ -117,6 +138,7 @@ export type TagType =
   | "agw"
   | "azurebot"
   | "ade"
+  | "acr"
   | "eventhub"
   | "azurestorage"
   | "azureappconfig"
@@ -147,15 +169,15 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "This tag is used for featured templates.",
   },
 
-  // Language Tags
 
+  // Language Tags
   javascript: {
     label: "JavaScript",
     description: "Template contains JavaScript app code",
     type: "Language",
     icon: "./img/js.svg",
   },
-  dotnetCsharp: {
+  csharp: {
     label: ".NET/C#",
     description: "Template contains .NET and/or C# app code",
     type: "Language",
@@ -180,6 +202,32 @@ export const Tags: { [type in TagType]: Tag } = {
     icon: "./img/typescript.svg",
   },
 
+  // Vector Database Tags
+  vectorcosmosnosql: {
+    label: "Azure Cosmos DB for NoSQL",
+    description: "Template uses Azure Cosmos DB for NoSQL",
+    type: "VectorDatabase",
+    icon: "./img/logo.png",
+  },
+  vectorcosmosmongo: {
+    label: "Azure Cosmos DB for MongoDB",
+    description: "Template uses Azure Cosmos DB for MongoDB",
+    type: "VectorDatabase",
+    icon: "./img/logo.png",
+  },
+  vectorpostrgresql: {
+    label: "PostgreSQL",
+    description: "Template uses Azure PostgreSQL",
+    type: "VectorDatabase",
+    icon: "./img/postgresql.svg",
+  },
+  vectoraisearch: {
+    label: "Azure AI Search",
+    description: "Template uses Azure AI Search",
+    type: "VectorDatabase",
+    icon: "./img/aisearch.svg"
+  },
+
   // Model Tags
   dalle: {
     label: "Dalle",
@@ -188,30 +236,29 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: openai,
     url: "https://platform.openai.com/docs/models/dall-e",
   },
-  gpt35turbo: {
-    label: "GPT 3.5 Turbo",
-    description: "Template use OpenAI GPT 3.5 Turbo model",
+  gpt35: {
+    label: "GPT 3.5/Turbo",
+    description: "Template use OpenAI GPT 3.5 and 3.5 Turbo model",
     type: "Model",
     subType: openai,
     url: "https://platform.openai.com/docs/models/gpt-3-5-turbo",
   },
-  gpt4turbo: {
-    label: "GPT 4 Turbo",
-    description: "Template use OpenAI GPT 4 Turbo model",
-    type: "Model",
-    subType: openai,
-    url: "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
-  },
   gpt4: {
-    label: "GPT 4",
-    description: "Template use OpenAI GPT 4 model",
+    label: "GPT 4/4o",
+    description: "Template use OpenAI GPT 4 and GPT 4o model",
     type: "Model",
     subType: openai,
     url: "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
   },
   "embedding-ada": {
-    label: "Embedding-ada",
+    label: "Embedding ADA",
     description: "Template use OpenAI Embedding-ada model",
+    type: "Model",
+    subType: openai,
+  },
+  "embedding-text-3": {
+    label: "Embedding Text 3",
+    description: "Template use OpenAI Embedding-text-3 models",
     type: "Model",
     subType: openai,
   },
@@ -254,61 +301,96 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: mistralai,
   },
 
-  // Intelligent Solution Tags
+  // GenerativeAI Tags
   agent: {
     label: "Agent",
     description: "Template implements copilot that uses agent(s)",
-    type: "Intelligent Solution",
+    type: "GenerativeAI",
   },
   chat: {
     label: "Interactive Chat",
     description: "Template implements interactive chat",
-    type: "Intelligent Solution",
+    type: "GenerativeAI",
   },
-  search: {
-    label: "Guided Search",
-    description: "Template implements guided search",
-    type: "Intelligent Solution",
+  ragPattern: {
+    label: "RAG Pattern",
+    description: "Template implements RAG Pattern",
+    type: "GenerativeAI",
   },
   llmops: {
     label: "LLM Ops",
     description: "Template involves LLM Operations",
-    type: "Intelligent Solution",
+    type: "GenerativeAI",
   },
   summarization: {
     label: "Summarization",
     description: "Template involves summarization and / or augmentation",
-    type: "Intelligent Solution",
+    type: "GenerativeAI",
   },
 
   // ResourceType Tags
-  "decks": {
-    label: "Decks",
-    description: "Template architecture uses Azure PostgreSQL Database",
-    icon: "./img/Azure-PostgreSQL.svg",
-    url: "https://azure.microsoft.com/products/postgresql",
+  deck: {
+    label: "Presentation",
+    description: "Presentation, PPT, PDF, etc.",
+    icon: "./img/decks.svg", //need icons for this
     type: "ResourceType",
+    buttonText: "View Deck",
   },
-  videos : {
-    label: "Videos",
-    description: "Template architecture uses MongoDB Database",
+  video : {
+    label: "Video",
+    description: "Video on YouTube, Vimeo, etc.",
+    icon: "./img/videos.svg", //need icons for this
     type: "ResourceType",
+    buttonText: "Watch Video",
   },
-  blogs : {
-    label: "Blogs",
-    description: "Template architecture uses MongoDB Database",
+  blog : {
+    label: "Blog",
+    description: "Blog post",
+    icon: "./img/blogs.svg", //need icons for this
     type: "ResourceType",
+    buttonText: "Read Blog",
   },
-  code : {
-    label: "Code",
-    description: "Template architecture uses MongoDB Database",
+  sample : {
+    label: "Sample",
+    description: "Code sample",
+    icon: "./img/github-mark.svg",
     type: "ResourceType",
+    buttonText: "Go to GitHub repo",
   },
-  Docs : {
-    label: "Docs",
-    description: "Template architecture uses Pinecone Database",
+  documentation : {
+    label: "Documentation",
+    description: "Documentation",
+    icon: "./img/docs",
     type: "ResourceType",
-  } 
+    buttonText: "Read Article",
+  }, 
 
+  // Content Category for filtering content
+  generativeai: {
+    label: "Generative AI",
+    description: "Generative AI and Vector Database content",
+    icon: "",
+    type: "ContentType"
+  },
+  architecturedesign : {
+    label: "Architecture",
+    description: "Architecture and design patterns",
+    type: "ContentType"
+  },
+  tools : {
+    label: "Tools",
+    description: "Tools and utilities for development",
+    type: "ContentType"
+  },
+  migration : {
+    label: "Data Migration",
+    description: "Migrating data between services",
+    type: "ContentType"
+  },
+  analytics : {
+    label: "Analytics",
+    description: "Data Analytics and visualization",
+    type: "ContentType"
+  }
  
 };

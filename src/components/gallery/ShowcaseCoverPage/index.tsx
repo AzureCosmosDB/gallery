@@ -15,10 +15,10 @@ import { featuredUsers } from "../../../data/users";
 import ShowcaseCards from "../../../pages/ShowcaseCards";
 import { useColorMode } from "@docusaurus/theme-common";
 
-const title = "Azure Cosmos DB AI Samples";
+const title = "Azure Cosmos DB Samples Gallery";
 const description =
-  "Get started with AI application patterns with Azure Cosmos DB";
-const subtitle = "Featured AI Resources";
+  "Your best source for patterns and content for Azure Cosmos DB";
+const subtitle = "Featured Resources";
 
 export default function ShowcaseCoverPage() {
   const { colorMode } = useColorMode();
