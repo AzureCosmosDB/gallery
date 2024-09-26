@@ -22,6 +22,8 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   );
   const languageTags = tagObjectsSorted.filter((tag) =>
     tag.type == "Language");
+  const resourceTypeTags = tagObjectsSorted.filter((tag) => 
+    tag.type == "ResourceType").slice(0, 1);
   const uniqueOpenAITag = tagObjectsSorted.filter((tag) =>
     tag.type == "Model" && tag.subType === openai).slice(0, 1);
   const uniqueMetaTag = tagObjectsSorted.filter((tag) =>
@@ -30,10 +32,12 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
     tag.type == "Model" && tag.subType === microsoft).slice(0, 1);
   const uniqueMistralAITag = tagObjectsSorted.filter((tag) =>
     tag.type == "Model" && tag.subType === mistralai).slice(0, 1);
-  const totalTags = [...languageTags, ...uniqueOpenAITag, ...uniqueMetaTag, ...uniqueMicrosoftTag, ...uniqueMistralAITag];
+  const totalTags = [...languageTags, ...uniqueOpenAITag, ...uniqueMetaTag, ...uniqueMicrosoftTag, ...uniqueMistralAITag, ...resourceTypeTags];
   const length = totalTags.length;
   let number = 3;
   const rest = length - number;
+
+  console.log("Content Type = ", resourceTypeTags);
 
   const cardPanelDetailList = totalTags
     .slice(number, length)

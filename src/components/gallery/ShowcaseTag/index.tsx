@@ -31,12 +31,14 @@ export default function ShowcaseCardTag({
   const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === "GenerativeAI");
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
   const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
+  const contentTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ContentType");
   const tagsByTypeSorted = [
     ...languageTags,
     ...modelTags,
     ...intelligentSolutionTags,
     ...azureTags,
     ...resourceTypeTags,
+    ...contentTypeTags,
   ];
   const length = tagObjectsSorted.length;
   let number = 0;
