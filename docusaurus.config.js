@@ -12,6 +12,7 @@ const config = {
   // CONFIG: Add Custom Fields - globally reference them from siteConfig
   //    See: https://docusaurus.io/docs/deployment#using-environment-variables
   customFields: {
+    env: process.env.REACT_APP_GITHUB_TOKEN,
     description:
       "Your one-stop for everything Azure Cosmos DB. Code samples, docs, videos, decks, etc. Everything in one location. Community contributions are welcome.",
   },

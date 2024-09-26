@@ -25,6 +25,7 @@ import ShowcaseCardIcon from "../ShowcaseIcon/index";
 import { useEffect, useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
+import siteConfig from "@generated/docusaurus.config";
 
 type GitHubRepoInfo = {
   forks: number;
@@ -74,13 +75,17 @@ function ShowcaseCard({
     const slugParts = repoSlug.split("/");
     const owner = slugParts[0];
     const repo = slugParts[1];
-    fetch(`https://cacheddkci2rpqggas.blob.core.windows.net/${owner}/${repo}`)
+    var token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
+    fetch(`https://api.github.com/repos/${owner}/${repo}`,{headers: token ? {
+			Authorization: `Bearer ${token}`,
+		} : undefined,})
       .then((response) => response.json())
-      .then((data: { forks: number; stars: number; updatedOn: Date }) => {
+      .then((data: { forks: number; stargazers_count: number; updated_at: Date }) => {
+        console.log(JSON.stringify(data));
         setGithubData({
           forks: data.forks,
-          stars: data.stars,
-          updatedOn: data.updatedOn,
+          stars: data.stargazers_count,
+          updatedOn: data.updated_at,
         });
       })
       .catch((error) => console.error("Error:", error));
