@@ -49,7 +49,6 @@ export const microsoft: SubType = {
   icon: "./img/Microsoft.svg"
 };
 
-
 export const mistralai: SubType = {
   label: "Mistral AI",
   icon: "", // "./img/mistralai.svg",
@@ -353,7 +352,8 @@ export const Tags: { [type in TagType]: Tag } = {
   sample : {
     label: "Sample",
     description: "Code sample",
-    icon: "./img/github-mark.svg",
+    icon: "./img/github.svg",
+    darkIcon: "./img/githubDark.svg",
     type: "ResourceType",
     buttonText: "Go to GitHub repo",
   },
