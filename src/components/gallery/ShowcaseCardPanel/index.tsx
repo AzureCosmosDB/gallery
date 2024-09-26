@@ -78,11 +78,7 @@ export default function ShowcaseCardPanel({
           allowFullScreen
         />
       </div> : null}
-      <div className={styles.subTitle}>Included in this template</div>
-      <div className={styles.text}>The languages & services used in this template are subject to their normal
-        usage fees. Learn more about the cost of services by using the <Link href="https://azure.microsoft.com/pricing/calculator/"
-          target="_blank"
-          className={styles.color}>Azure Pricing Calculator</Link>.</div>
+
       {languageTags.length > 0 ? <><div className={styles.subTitle2}>Languages</div>
         <CardPanelTag tags={languageTags} /> </> : null
       }
@@ -95,6 +91,11 @@ export default function ShowcaseCardPanel({
       {azureTags.length > 0 ? <><div className={styles.subTitle2}>Services</div>
         <CardPanelTag tags={azureTags} /> </> : null
       }
+
+      <div className={styles.text}>The languages & services used in this template are subject to their normal
+        usage fees. Learn more about the cost of services by using the <Link href="https://azure.microsoft.com/pricing/calculator/"
+          target="_blank"
+          className={styles.color}>Azure Pricing Calculator</Link>.</div>
       <div className={styles.buttonSection}>
         <div className={styles.divider} />
         <PrimaryButton
@@ -104,7 +105,7 @@ export default function ShowcaseCardPanel({
           }}
         >
           <img src={useBaseUrl("/img/redirect.svg")} height={24} alt="Redirect" />
-            {/* <div className={styles.buttonText}>Go to GitHub repo</div> */}
+          {/* <div className={styles.buttonText}>Go to GitHub repo</div> */}
           <div className={styles.buttonText}>{resourceTypeTags[0].buttonText}</div>
         </PrimaryButton>
       </div>

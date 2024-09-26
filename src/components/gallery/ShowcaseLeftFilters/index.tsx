@@ -196,6 +196,10 @@ export default function ShowcaseLeftFilters({
     const tagObject = Tags[tag];
     return tagObject.type === "ResourceType";
   });
+  const contentTypeTag = sortTagList.filter((tag) => {
+    const tagObject = Tags[tag];
+    return tagObject.type === "ContentType";
+  });
   const [openItems, setOpenItems] = React.useState([
     "1",
     "2",
@@ -216,6 +220,23 @@ export default function ShowcaseLeftFilters({
       <div className={styles.filterBy}>
         <Title3>Filter by</Title3>
       </div>
+      <AccordionItem value="1">
+        <AccordionHeader expandIconPosition="end" className={styles.tagCatalogBackground}>
+          <div className={styles.tagCatalog} data-m='{\"id\":\"ContentType\",\"cN\":\"Tags Category\"}'>Content Type</div>
+        </AccordionHeader>
+        <AccordionPanel>
+          <ShowcaseFilterViewAll
+            tags={contentTypeTag}
+            number={"4"}
+            activeTags={activeTags}
+            selectedCheckbox={selectedCheckbox}
+            setSelectedCheckbox={setSelectedCheckbox}
+            location={location}
+            readSearchTags={readSearchTags}
+            replaceSearchTags={replaceSearchTags}
+          />
+        </AccordionPanel>
+      </AccordionItem>
       <AccordionItem value="1">
         <AccordionHeader expandIconPosition="end" className={styles.tagCatalogBackground}>
           <div className={styles.tagCatalog} data-m='{\"id\":\"ResourceType\",\"cN\":\"Tags Category\"}'>Resource Type</div>
@@ -250,64 +271,8 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
+      
       <AccordionItem value="3">
-        <AccordionHeader expandIconPosition="end" className={styles.tagCatalogBackground}>
-          <div className={styles.tagCatalog} data-m='{\"id\":\"Model\",\"cN\":\"Tags Category\"}'>Model</div>
-        </AccordionHeader>
-        <AccordionPanel>
-          <div className={styles.tagSubCatalog} data-m='{\"id\":\"OpenAI\",\"cN\":\"Tags Sub Category\"}'>OpenAI</div>
-          <ShowcaseFilterViewAll
-            tags={modelOpenAITag}
-            number={"21"}
-            activeTags={activeTags}
-            selectedCheckbox={selectedCheckbox}
-            setSelectedCheckbox={setSelectedCheckbox}
-            location={location}
-            readSearchTags={readSearchTags}
-            replaceSearchTags={replaceSearchTags}
-          />
-        </AccordionPanel>
-        <AccordionPanel>
-          <div className={styles.tagSubCatalog} data-m='{\"id\":\"Meta\",\"cN\":\"Tags Sub Category\"}'>Meta</div>
-          <ShowcaseFilterViewAll
-            tags={modelMetaTag}
-            number={"22"}
-            activeTags={activeTags}
-            selectedCheckbox={selectedCheckbox}
-            setSelectedCheckbox={setSelectedCheckbox}
-            location={location}
-            readSearchTags={readSearchTags}
-            replaceSearchTags={replaceSearchTags}
-          />
-        </AccordionPanel>
-        <AccordionPanel>
-          <div className={styles.tagSubCatalog} data-m='{\"id\":\"Microsoft\",\"cN\":\"Tags Sub Category\"}'>Microsoft</div>
-          <ShowcaseFilterViewAll
-            tags={modelMicrosoftTag}
-            number={"23"}
-            activeTags={activeTags}
-            selectedCheckbox={selectedCheckbox}
-            setSelectedCheckbox={setSelectedCheckbox}
-            location={location}
-            readSearchTags={readSearchTags}
-            replaceSearchTags={replaceSearchTags}
-          />
-        </AccordionPanel>
-        <AccordionPanel>
-          <div className={styles.tagSubCatalog} data-m='{\"id\":\"MistralAI\",\"cN\":\"Tags Sub Category\"}'>Mistral AI</div>
-          <ShowcaseFilterViewAll
-            tags={modelMistralAITag}
-            number={"24"}
-            activeTags={activeTags}
-            selectedCheckbox={selectedCheckbox}
-            setSelectedCheckbox={setSelectedCheckbox}
-            location={location}
-            readSearchTags={readSearchTags}
-            replaceSearchTags={replaceSearchTags}
-          />
-        </AccordionPanel>
-      </AccordionItem>
-      <AccordionItem value="4">
         <AccordionHeader expandIconPosition="end" className={styles.tagCatalogBackground}>
           <div className={styles.tagCatalog} data-m='{\"id\":\"GenerativeAI\",\"cN\":\"Tags Category\"}'>GenerativeAI</div>
         </AccordionHeader>
