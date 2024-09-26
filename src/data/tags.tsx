@@ -360,7 +360,7 @@ export const Tags: { [type in TagType]: Tag } = {
   documentation : {
     label: "Documentation",
     description: "Documentation",
-    icon: "./img/docs",
+    icon: "./img/docs.svg",
     type: "ResourceType",
     buttonText: "Read Article",
   }, 
