@@ -16,8 +16,7 @@ import ShowcaseCards from "../../../pages/ShowcaseCards";
 import { useColorMode } from "@docusaurus/theme-common";
 
 const title = "Azure Cosmos DB Samples Gallery";
-const description =
-  "Your best source for patterns and content for Azure Cosmos DB";
+const description = "Your best source for patterns and content for Azure Cosmos DB";
 const subtitle = "Featured Resources";
 
 export default function ShowcaseCoverPage() {
@@ -25,7 +24,7 @@ export default function ShowcaseCoverPage() {
   return (
     <div className={styles.coverPageContainer}>
       <img
-        src={colorMode == "dark" ? useBaseUrl("/img/coverBackgroundDark.png") : useBaseUrl("/img/coverBackground.png")}
+        src={colorMode == "dark" ? useBaseUrl("/img/backgroundDark.png") : useBaseUrl("/img/backgroundLight.png")}
         className={styles.cover}
         onError={({ currentTarget }) => {
           currentTarget.style.display = "none";
