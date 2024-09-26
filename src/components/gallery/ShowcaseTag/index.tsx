@@ -49,9 +49,9 @@ export default function ShowcaseCardTag({
     number = index + 1;
   });
   const rest = length - number;
-  const moreTagDetailList = tagsByTypeSorted
-    .slice(number, length)
-    .map((tagObject) => tagObject.label)
+
+ const moreTagDetailList = tagsByTypeSorted
+    .map((tagObject) => tagObject.tag)
     .join("\n");
 
   if (!cardPanel) {
