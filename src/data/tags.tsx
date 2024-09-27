@@ -206,13 +206,13 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Azure Cosmos DB for NoSQL",
     description: "Template uses Azure Cosmos DB for NoSQL",
     type: "VectorDatabase",
-    icon: "./img/logo.png",
+    icon: "./img/cosmos.png",
   },
   vectorcosmosmongo: {
     label: "Azure Cosmos DB for MongoDB",
     description: "Template uses Azure Cosmos DB for MongoDB",
     type: "VectorDatabase",
-    icon: "./img/logo.png",
+    icon: "./img/cosmos.png",
   },
   vectorpostrgresql: {
     label: "PostgreSQL",
@@ -234,6 +234,8 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "Model",
     subType: openai,
     url: "https://platform.openai.com/docs/models/dall-e",
+    icon: "./img/openAI.svg",
+    darkIcon: "./img/openAIDark.svg",
   },
   gpt35: {
     label: "GPT 3.5/Turbo",
@@ -241,6 +243,8 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "Model",
     subType: openai,
     url: "https://platform.openai.com/docs/models/gpt-3-5-turbo",
+    icon: "./img/openAI.svg",
+    darkIcon: "./img/openAIDark.svg",
   },
   gpt4: {
     label: "GPT 4/4o",
@@ -248,18 +252,24 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "Model",
     subType: openai,
     url: "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
+    icon: "./img/openAI.svg",
+    darkIcon: "./img/openAIDark.svg",
   },
   "embedding-ada": {
     label: "Embedding ADA",
     description: "Template use OpenAI Embedding-ada model",
     type: "Model",
     subType: openai,
+    icon: "./img/openAI.svg",
+    darkIcon: "./img/openAIDark.svg",
   },
   "embedding-text-3": {
     label: "Embedding Text 3",
     description: "Template use OpenAI Embedding-text-3 models",
     type: "Model",
     subType: openai,
+    icon: "./img/openAI.svg",
+    darkIcon: "./img/openAIDark.svg",
   },
   llama: {
     label: "Code Llama",

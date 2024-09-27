@@ -60,14 +60,14 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
               key={key}
             >
               <Button
-                icon={
-                  <Image
-                    alt={tagObject.type == "Model" ? tagObject.subType.label : tagObject.label}
-                    src={useBaseUrl(tagObject.type == "Model" ? colorMode == "dark" && tagObject.subType.darkIcon ? tagObject.subType.darkIcon : tagObject.subType.icon : tagObject.icon)}
-                    height={16}
-                    width={16}
-                  />
-                }
+              icon={
+                <Image
+                alt={tagObject.label}
+                src={useBaseUrl(colorMode == "dark" && tagObject.darkIcon ? tagObject.darkIcon : tagObject.icon)}
+                height={16}
+                width={16}
+                />
+              }
               />
             </Tooltip>
           );
@@ -102,14 +102,14 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
               key={key}
             >
               <Button
-                icon={
-                  <Image
-                    alt={tagObject.type == "Model" ? tagObject.subType.label : tagObject.label}
-                    src={useBaseUrl(tagObject.type == "Model" ? colorMode == "dark" && tagObject.subType.darkIcon ? tagObject.subType.darkIcon : tagObject.subType.icon : tagObject.icon)}
-                    height={16}
-                    width={16}
-                  />
-                }
+              icon={
+                <Image
+                alt={tagObject.label}
+                src={useBaseUrl(colorMode == "dark" && tagObject.darkIcon ? tagObject.darkIcon : tagObject.icon)}
+                height={16}
+                width={16}
+                />
+              }
               />
             </Tooltip>
           );
