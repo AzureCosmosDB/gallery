@@ -1,5 +1,44 @@
 [
   {
+    "title": " Vector Search in Azure Cosmos DB for NoSQL",
+    "description": "Learn the basics for how vector search works and how to use vector search in Azure Cosmos DB for NoSQL to build AI applications.",
+    "preview": "coming soon",
+    "website": "https://learn.microsoft.com/azure/cosmos-db",
+    "author":"Azure Cosmos DB Team",
+    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/vector-search",
+    "date": "2024-08-14",
+    "tags":[
+      "documentation",
+      "featured",
+      "generativeai",
+      "vectorcosmosnosql",
+      "microsoft"
+    ]
+  },
+  {
+    "title": "Build a Copilot App in Python with Azure Cosmos DB for NoSQL",
+    "description": "In this sample, we'll demonstrate how to build a RAG Pattern application using a subset of the Movie Lens dataset. This sample will leverage the Python SDK for Azure Cosmos DB for NoSQL to perform vector search for RAG, store and retrieve chat history, and store the vectors of the chat history to use as a semantic cache. Azure OpenAI to generate embeddings and LLM completions.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author": "Theo van Kraay",
+    "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/blob/main/Python/CosmosDB-NoSQL_VectorSearch/CosmosDB-NoSQL-Quickstart-RAG-Chatbot.ipynb",
+    "date": "2024-09-27",
+    "tags": [
+      "generativeai",
+      "python",
+      "featured",
+      "gpt4",
+      "embedding-text-3",
+      "chat",
+      "ragPattern",
+      "managedidentity",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "sample"
+    ]
+  },
+  {
     "title": "Build a Copilot sample app: Azure Cosmos DB for NoSQL (C#)",
     "description": "This sample application shows how to build a Generative-AI application using Azure Cosmos DB for NoSQL using its new vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.",
     "preview": "coming soon",
@@ -38,7 +77,6 @@
       "embedding-text-3",
       "chat",
       "ragPattern",
-      "featured",
       "appservice",
       "openai",
       "microsoft",
@@ -57,7 +95,6 @@
     "tags":[
       "generativeai",
       "python",
-      "featured",
       "gpt4",
       "chat",
       "managedidentity",
@@ -574,21 +611,6 @@
       "documentation",
       "generativeai",
       "vectorcosmosmongo",
-      "vectorcosmosnosql",
-      "microsoft"
-    ]
-  },
-  {
-    "title": "Vector Search in Azure Cosmos DB for NoSQL",
-    "description": "Learn the basics for how vector search works and how to use vector search in Azure Cosmos DB for NoSQL to build AI applications.",
-    "preview": "coming soon",
-    "website": "https://learn.microsoft.com/azure/cosmos-db",
-    "author":"Azure Cosmos DB Team",
-    "source": "https://learn.microsoft.com/azure/cosmos-db/nosql/vector-search",
-    "date": "2024-08-14",
-    "tags":[
-      "documentation",
-      "generativeai",
       "vectorcosmosnosql",
       "microsoft"
     ]
