@@ -29,7 +29,7 @@ const submitFeedbackButton = () => {
       className={style.button}
       onClick={() => {
         window.open(
-          "https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6",",
+          "https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6",
           "_blank"
         );
       }}
