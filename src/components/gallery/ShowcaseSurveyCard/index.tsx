@@ -64,7 +64,7 @@ export default function ShowcaseSurveyCard(): React.ReactElement {
           appearance="primary"
           onClick={() => {
             window.open(
-              "https://microsoft.qualtrics.com/jfe/form/SV_enBCM8eIU5PVvh4",
+              "https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6",
               "_blank"
             );
           }}
