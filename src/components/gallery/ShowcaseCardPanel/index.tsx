@@ -92,11 +92,11 @@ export default function ShowcaseCardPanel({
         <CardPanelTag tags={azureTags} /> </> : null
       }
 
+      <div className={styles.buttonSection}>
       <div className={styles.text}>The languages & services used in this template are subject to their normal
         usage fees. Learn more about the cost of services by using the <Link href="https://azure.microsoft.com/pricing/calculator/"
           target="_blank"
           className={styles.color}>Azure Pricing Calculator</Link>.</div>
-      <div className={styles.buttonSection}>
         <div className={styles.divider} />
         <PrimaryButton
           className={styles.button}
