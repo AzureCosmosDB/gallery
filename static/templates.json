@@ -1297,6 +1297,60 @@
       "microsoft",
       "sample"
     ]
+  },
+  {
+    "title": "Build and Modernize Intelligent Apps Prsentation - Level 100",
+    "description": "A 100 level pitch deck on building and modernizing intelligent applications with Azure Cosmos DB for NoSQL and Azure OpenAI services.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/files/blob/main/BuildandModernizeAIApps-PitchDeckL100.pptx",
+    "date": "2024-09-30",
+    "tags": [
+      "generativeai",
+      "architecturedesign",
+      "vectorcosmosnosql",
+      "vectorcosmosmongo",
+      "openai",
+      "appservice",
+      "keyvault",
+      "aca",
+      "functions",
+      "aks",
+      "analytics",
+      "ragPattern",
+      "chat",
+      "agent",
+      "microsoft",
+      "deck"
+    ]
+  },
+  {
+    "title": "Build and Modernize Intelligent Apps Prsentation - Level 200 Technical Deck",
+    "description": "A 200 level deck for technical teams and decision makers on building and modernizing intelligent applications with Azure Cosmos DB for NoSQL and Azure OpenAI services.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/files/blob/main/BuildandModernizeAIApps-TechnicalDeckL200.PPTX",
+    "date": "2024-09-30",
+    "tags": [
+      "generativeai",
+      "architecturedesign",
+      "vectorcosmosnosql",
+      "vectorcosmosmongo",
+      "openai",
+      "appservice",
+      "keyvault",
+      "aca",
+      "functions",
+      "aks",
+      "analytics",
+      "ragPattern",
+      "chat",
+      "agent",
+      "microsoft",
+      "deck"
+    ]
   }
 
   
