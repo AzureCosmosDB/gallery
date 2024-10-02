@@ -35,7 +35,7 @@
       "openai",
       "microsoft",
       "vectorcosmosnosql",
-      "sample"
+      "example"
     ]
   },
   {
@@ -59,7 +59,7 @@
       "openai",
       "microsoft",
       "vectorcosmosnosql",
-      "sample"
+      "example"
     ]
   },
   {
@@ -81,7 +81,7 @@
       "openai",
       "microsoft",
       "vectorcosmosmongo",
-      "sample"
+      "example"
     ]
   },
   {
@@ -102,7 +102,7 @@
       "ragPattern",
       "vectorcosmosmongo",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -129,7 +129,7 @@
       "openai",
       "vectorcosmosnosql",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -149,7 +149,7 @@
       "langchain",
       "vectorcosmosnosql",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -170,7 +170,7 @@
       "langchain",
       "vectorcosmosmongo",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -189,7 +189,7 @@
       "langchain",
       "vectorcosmosnosql",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -209,7 +209,7 @@
       "vectorcosmosnosql",
       "azurespringapps",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -222,8 +222,7 @@
     "date": "2024-09-15",
     "tags":[
       "generativeai",
-      "python",
-      "sample",
+      "python",      
       "typescript",
       "gpt35",
       "embedding-ada",
@@ -231,7 +230,8 @@
       "appservice",
       "vectorcosmosmongo",
       "community",
-      "microsoft"
+      "microsoft",
+      "example"
     ]
   },
   {
@@ -252,7 +252,7 @@
       "langchain",
       "vectorcosmosmongo",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -274,7 +274,7 @@
       "vectorcosmosmongo",
       "vectorcosmosnosql",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -955,7 +955,7 @@
       "microsoft",
       "appinsights",
       "vectorcosmosnosql",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1130,7 +1130,7 @@
       "vectorcosmosmongo",
       "javascript",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1146,7 +1146,7 @@
       "migration",
       "csharp",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1166,7 +1166,7 @@
       "openai",
       "embedding-text-3",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1182,7 +1182,7 @@
       "migration",
       "vectorcosmosmongo",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1204,7 +1204,7 @@
       "aks",
       "migration",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1227,7 +1227,7 @@
       "acr",
       "aks",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1242,7 +1242,7 @@
       "architecturedesign",
       "csharp",
       "community",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1257,7 +1257,7 @@
       "architecturedesign",
       "typescript",
       "community",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1272,7 +1272,7 @@
       "architecturedesign",
       "csharp",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1295,7 +1295,7 @@
       "embedding-ada",
       "typescript",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {

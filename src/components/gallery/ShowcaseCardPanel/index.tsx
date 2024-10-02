@@ -132,7 +132,7 @@ const GitHubInfoCardPanel = ({ githubData }) => {
 
   return (
     <>
-      {formatDate(githubData.updatedOn) != "" ? (
+      {formatDate(githubData.updatedOn) != "" &&  formatDate(githubData.updatedOn) !="NaN" ? (
         <>
           <div className={styles.info}>•</div>
           <div className={styles.info}>

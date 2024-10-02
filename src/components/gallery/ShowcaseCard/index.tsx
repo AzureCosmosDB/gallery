@@ -1,9 +1,4 @@
-/**
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License.
- */
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styleCSS from "./styles.module.css";
 import { type User } from "../../../data/tags";
 import {
@@ -13,16 +8,10 @@ import {
   Image,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
-import {
-  Panel,
-  PanelType,
-  ThemeProvider,
-  PartialTheme,
-} from "@fluentui/react";
+import { Panel, PanelType, ThemeProvider, PartialTheme } from "@fluentui/react";
 import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import ShowcaseCardIcon from "../ShowcaseIcon/index";
-import { useEffect, useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 import siteConfig from "@generated/docusaurus.config";
@@ -40,20 +29,11 @@ function ShowcaseCard({
   user: User;
   coverPage: Boolean;
 }): JSX.Element {
+  console.log("###print user",user)
   const tags = user.tags;
   const title = user.title;
-
-  // Adobe Analytics Content
-  const contentForAdobeAnalytics = `{\"id\":\"${title}\",\"cN\":\"Templates\"}`;
-
-  // Panel
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
-    useBoolean(false);
-
-  const initialGitHubData: GitHubRepoInfo = null;
-  const [githubData, setGithubData] = useState(initialGitHubData);
-
   const { colorMode } = useColorMode();
+
   const lightTheme: PartialTheme = {
     semanticColors: {
       bodyBackground: "#ffffff",
@@ -64,32 +44,61 @@ function ShowcaseCard({
   const darkTheme: PartialTheme = {
     semanticColors: {
       bodyBackground: "#292929",
-      bodyText: "ffffff",
+      bodyText: "#ffffff",
     },
   };
 
+  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
+    useBoolean(false);
+  const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
+
+  const fetchGitHubData = async (owner: string, repo: string) => {
+    const token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
+    try {
+      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+        headers: token
+          ? {
+              Authorization: `Bearer ${token}`,
+            }
+          : undefined,
+      });
+
+      if (response.status === 429) {
+        console.error("Rate limit exceeded. Please try again later.");
+        return;
+      }
+
+      const data = await response.json();
+      if (response.ok) {
+        const repoData: GitHubRepoInfo = {
+          forks: data.forks,
+          stars: data.stargazers_count,
+          updatedOn: new Date(data.updated_at),
+        };
+        setGithubData(repoData);
+        localStorage.setItem(`${owner}/${repo}`, JSON.stringify(repoData));
+      } else {
+        console.error("Failed to fetch data:", data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   useEffect(() => {
-    const repoSlug = user.source
-      .toLowerCase()
-      .replace("https://github.com/", "");
+    const repoSlug = user.source.toLowerCase().replace("https://github.com/", "");
     const slugParts = repoSlug.split("/");
     const owner = slugParts[0];
     const repo = slugParts[1];
-    var token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
-    fetch(`https://api.github.com/repos/${owner}/${repo}`,{headers: token ? {
-			Authorization: `Bearer ${token}`,
-		} : undefined,})
-      .then((response) => response.json())
-      .then((data: { forks: number; stargazers_count: number; updated_at: Date }) => {
-        console.log(JSON.stringify(data));
-        setGithubData({
-          forks: data.forks,
-          stars: data.stargazers_count,
-          updatedOn: data.updated_at,
-        });
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
+
+    // Check if data is already in local storage
+    const cachedData = localStorage.getItem(`${owner}/${repo}`);
+    if (cachedData) {
+      setGithubData(JSON.parse(cachedData));
+    } else {
+      fetchGitHubData(owner, repo);
+    }
+  }, [user.source]);
 
   return (
     <Card
@@ -97,11 +106,9 @@ function ShowcaseCard({
       className={styleCSS.card}
       appearance="filled"
       onClick={openPanel}
-      data-m={contentForAdobeAnalytics}
     >
       <div>
-        {/* Panel is Fluent UI 8. Must use ThemeProvider */}
-        <ThemeProvider theme={colorMode != "dark" ? lightTheme : darkTheme}>
+        <ThemeProvider theme={colorMode !== "dark" ? lightTheme : darkTheme}>
           <Panel
             isLightDismiss
             isOpen={isOpen}
@@ -112,16 +119,17 @@ function ShowcaseCard({
             <ShowcaseCardPanel user={user} githubData={githubData} />
           </Panel>
         </ThemeProvider>
-        {coverPage ?
+        {coverPage ? (
           <>
             <div className={styleCSS.cardTitleCoverPage}>{title}</div>
             <div className={styleCSS.cardDescriptionCoverPage}>{user.description}</div>
-          </> :
+          </>
+        ) : (
           <>
             <div className={styleCSS.cardTitle}>{title}</div>
             <div className={styleCSS.cardDescription}>{user.description}</div>
           </>
-        }
+        )}
         <div className={styleCSS.cardTags}>
           <ShowcaseCardTag key={title} tags={tags} cardPanel={false} />
         </div>
@@ -143,16 +151,18 @@ const GitHubInfo = ({ githubData }) => {
       maximumFractionDigits: 1,
     }).format(number);
   };
-  if (!githubData) return githubData;
+
+  if (!githubData) return null;
+
   const { colorMode } = useColorMode();
 
   return (
     <div className={styleCSS.gitHubData}>
-      {formatNumber(githubData.forks) == "NaN" ? null : (
+      {formatNumber(githubData.forks) === "NaN" ? null : (
         <>
           <Image
             alt="fork"
-            src={colorMode == "dark" ? useBaseUrl("/img/forkDark.svg") : useBaseUrl("/img/fork.svg")}
+            src={colorMode === "dark" ? useBaseUrl("/img/forkDark.svg") : useBaseUrl("/img/fork.svg")}
             height={16}
             width={16}
           />
@@ -161,11 +171,11 @@ const GitHubInfo = ({ githubData }) => {
           </Caption1Strong>
         </>
       )}
-      {formatNumber(githubData.stars) == "NaN" ? null : (
+      {formatNumber(githubData.stars) === "NaN" ? null : (
         <>
           <Image
             alt="star"
-            src={colorMode == "dark" ? useBaseUrl("/img/starDark.svg") : useBaseUrl("/img/star.svg")}
+            src={colorMode === "dark" ? useBaseUrl("/img/starDark.svg") : useBaseUrl("/img/star.svg")}
             height={16}
             width={16}
           />
