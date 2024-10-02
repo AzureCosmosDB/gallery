@@ -37,8 +37,6 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   let number = 3;
   const rest = length - number;
 
-  console.log("Content Type = ", resourceTypeTags);
-
   const cardPanelDetailList = totalTags
     .slice(number, length)
     .map((tagObject) => tagObject.label)

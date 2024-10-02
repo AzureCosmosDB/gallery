@@ -60,7 +60,7 @@ export type TagType =
   | "microsoft"
   | "community"
   | "deck"
-  | "sample"
+  | "example"
   | "blog"
   | "video"
   | "documentation"
@@ -359,7 +359,7 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "Read Blog",
   },
-  sample : {
+  example : {
     label: "Sample",
     description: "Code sample",
     icon: "./img/github.svg",

@@ -20,6 +20,7 @@ import styles from "./styles.module.css";
 import { type TagType } from "@site/src/data/tags";
 import { TagList } from "@site/src/data/users";
 import { useLocation } from "@docusaurus/router";
+import { Helmet } from "react-helmet";
 
 initializeIcons();
 
@@ -44,25 +45,31 @@ const replaceSearchTags = (search: string, newTags: TagType[]) => {
   newTags.forEach((tag) => searchParams.append(TagQueryStringKey, tag));
   return searchParams.toString();
 };
-
 const App = () => {
+  const location = useLocation<UserState>();
   const { colorMode } = useColorMode();
   const [loading, setLoading] = useState(true);
   const [selectedCheckbox, setSelectedCheckbox] = useState<TagType[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
-  const location = useLocation<UserState>();
   const [activeTags, setActiveTags] = useState<TagType[]>(TagList);
 
   useEffect(() => {
-    setSelectedTags(readSearchTags(location.search));
-    setSelectedCheckbox(readSearchTags(location.search));
     setTimeout(() => {
       setLoading(false);
     }, 500);
+    
+    // Read tags from location search regardless of loading state
+    const tags = readSearchTags(location.search);
+    setSelectedCheckbox(tags);
+    setSelectedTags(tags);
   }, [location]);
 
+  // You can still render null for loading state, but hooks should always run
+  if (loading) {
+    return null; // This will not affect hook calls as all hooks are already called
+  }
 
-  return !loading ? (
+  return (
     <FluentProvider
       theme={colorMode == "dark" ? webDarkTheme : webLightTheme}
       className={styles.container}
@@ -96,13 +103,31 @@ const App = () => {
         </div>
       </div>
     </FluentProvider>
-  ) : null;
+  );
 };
+
 
 export default function Showcase(): JSX.Element {
   return (
+    <>
+      <Helmet>
+        <title>Azure Cosmos DB Gallery</title>
+        <meta name="description" content="Your best source for patterns and content for Azure Cosmos DB" />
+        <meta name="keywords" content="Azure Cosmos DB, samples, Gen-AI, Azure OpenAI, GitHub, OSS, content" />
+        <meta name="author" content="Azure Cosmos DB Team" />
+        <meta property="og:title" content="Azure Cosmos DB Gallery" />
+        <meta property="og:description" content="Your best source for patterns and content for Azure Cosmos DB" />
+        <meta property="og:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
+        <meta property="og:url" content="https://azurecosmosdb.github.io/gallery" />
+        <meta name="twitter:card" content="Azure Cosmos DB Gallery Home Page" />
+        <meta name="twitter:title" content="Azure Cosmos DB Gallery" />
+        <meta name="twitter:description" content="Your best source for patterns and content for Azure Cosmos DB" />
+        <meta name="twitter:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
+        <meta name="twitter:url" content="https://azurecosmosdb.github.io/gallery"/>
+      </Helmet>
     <Layout>
       <App />
     </Layout>
+  </>
   );
 }
