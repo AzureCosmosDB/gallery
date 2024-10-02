@@ -261,7 +261,7 @@
     "preview": "coming soon",
     "website": "https://github.com/cjoakim",
     "author":"Chris Joakim",
-    "source": "https://aka.ms/caig",
+    "source": "https://github.com/AzureCosmosDB/CosmosAIGraph",
     "date": "2024-09-15",
     "tags":[
       "generativeai",
@@ -273,7 +273,7 @@
       "aks",
       "vectorcosmosmongo",
       "vectorcosmosnosql",
-      "microsoft",
+      "community",
       "example"
     ]
   },
@@ -982,7 +982,7 @@
       "openai",
       "microsoft",
       "vectorcosmosnosql",
-      "sample"
+      "example"
     ]
   },
   {
@@ -999,7 +999,7 @@
       "aks",
       "vnets",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1021,7 +1021,7 @@
       "csharp",
       "microsoft",
       "vectorcosmosnosql",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1036,7 +1036,7 @@
       "architecturedesign",
       "csharp",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1051,7 +1051,7 @@
       "architecturedesign",
       "csharp",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1067,7 +1067,7 @@
       "tools",
       "csharp",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1082,7 +1082,7 @@
       "architecturedesign",
       "java",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1098,7 +1098,7 @@
       "migration",
       "csharp",
       "community",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1114,7 +1114,7 @@
       "vectorcosmosmongo",
       "python",
       "microsoft",
-      "sample"
+      "example"
     ]
   },
   {
@@ -1345,6 +1345,53 @@
       "functions",
       "aks",
       "analytics",
+      "ragPattern",
+      "chat",
+      "agent",
+      "microsoft",
+      "deck"
+    ]
+  },
+  {
+    "title": "Durable Multi-Agents using Semantic Kernel with Azure Durable Functions",
+    "description": "This sample, demonstrates Durable Multi Agents using Azure Durable Functions with Semantic Kernel to build Multi-Agents workflows. This is a fully functional end-to-end sample with an ASP.NET Blazor travel website as the front end.",
+    "preview": "coming soon",
+    "website": "https://github.com/Divakar-kumar",
+    "author": "Divakar Kumar",
+    "source": "https://github.com/Cloud-Jas/DurableMultiAgents/",
+    "date": "2024-10-01",
+    "tags": [
+      "generativeai",
+      "javascript",
+      "csharp",
+      "functions",
+      "monitor",
+      "gpt4",
+      "embedding-text-3",
+      "chat",
+      "agent",
+      "ragPattern",
+      "managedidentity",
+      "openai",
+      "community",
+      "vectorcosmosnosql",
+      "sample"
+    ]
+  },
+  {
+    "title": "Architectural Strategies for Large-Scale RAG Pattern Applications",
+    "description": "This presentation covers Azure Cosmos DB's vector indexing and search support. It highlights some customers using it, covers basics on vector search, use-cases for Cosmos DB vector search, technical details on how DiskANN works, includes performance and pricing benchmarks and how to get started.",
+    "preview": "coming soon",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/files/blob/main/ArchitecturalStrategiesForLarge-ScaleRAGPatternApplications.pptx",
+    "date": "2024-10-01",
+    "tags": [
+      "generativeai",
+      "architecturedesign",
+      "vectorcosmosnosql",
+      "vectorcosmosmongo",
+      "openai",
       "ragPattern",
       "chat",
       "agent",
