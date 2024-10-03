@@ -1155,8 +1155,8 @@
     "preview": "coming soon",
     "website": "https://github.com/AzureCosmosDB",
     "author": "Azure Cosmos DB Team",
-    "source": "https://github.com/AzureCosmosDB/Cosmos-DB-Non-CMK-to-CMK-Migration-Scanner",
-    "date": "2024-09-15",
+    "source": "https://github.com/AzureCosmosDB/Retail-Product-Predictions",
+    "date": "2024-10-02",
     "tags": [
       "generativeai",
       "vectorcosmosnosql",
