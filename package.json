@@ -46,11 +46,12 @@
     "node": ">=18.0"
   },
   "dependencies": {
+    "@docusaurus/plugin-google-analytics": "^3.5.2",
+    "@docusaurus/plugin-google-gtag": "^2.4.3",
     "@fluentui/react-search": "^9.0.8",
     "@popperjs/core": "^2.11.8",
     "react-helmet": "^6.1.0",
     "scheduler": "^0.20.2",
-    "@docusaurus/plugin-google-gtag": "^2.4.3",
     "search-insights": "^2.11.0"
   }
 }

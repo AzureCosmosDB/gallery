@@ -144,15 +144,17 @@ const config = {
   // CONFIG: Set presets for chosen theme
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
-        gtag: {
-          trackingID: "G-CNSKHL41CT",
+        googleAnalytics: {
+          trackingID: 'UA-141789564-1',
+          anonymizeIP: true,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
-        },
-       },
+        }
+      }
+       
     ],
   ],
 };
