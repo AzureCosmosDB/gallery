@@ -1003,7 +1003,7 @@
     ]
   },
   {
-    "title": "Azure Cosmos DB Document to Vector ingestion pipeline Proof of Concept",
+    "title": "Azure Cosmos DB document ingestion pipeline for vector search",
     "description": "This repository contains a proof of concept for Pipeline of ingesting documents (like pdfs and docx) into a searchable Azure Cosmos DB container for vector and hybrid searching.",
     "preview": "coming soon",
     "website": "https://github.com/AzureCosmosDB",
