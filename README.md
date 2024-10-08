@@ -1,9 +1,5 @@
 # Website
 
-[![Deploy to GitHub Pages](https://github.com/Azure/ai-apps/actions/workflows/deploy-docusaurus.yml/badge.svg)](https://github.com/Azure/ai-apps/actions/workflows/deploy-docusaurus.yml)
-
-[![pages-build-deployment](https://github.com/Azure/ai-apps/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Azure/ai-apps/actions/workflows/pages/pages-build-deployment)
-
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
 ### Installation
