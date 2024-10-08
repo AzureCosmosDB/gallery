@@ -144,27 +144,15 @@ const config = {
   // CONFIG: Set presets for chosen theme
   presets: [
     [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        // CONFIG: docs = collections of pages, tutorials, documentation
-        //    See: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs
-        // FIXME: TEMPORARILY DISABLE DOCS
-        // docs: { sidebarPath: require.resolve("./sidebars.js"), },
-        // docs: false,
-        docs: false,
-
-        // CONFIG: blog = timestamped pages, tags, site feed
-        //    See: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog
-        // FIXME: TEMPORARILY DISABLE BLOG
-        blog: false,
-
-        // CONFIG: theme = currently using `classic`
-        //    See: https://docusaurus.io/docs/api/themes/@docusaurus/theme-classic
+      "@docusaurus/preset-classic",
+      {
+        gtag: {
+          trackingID: "G-CNSKHL41CT",
+        },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+       },
     ],
   ],
 };

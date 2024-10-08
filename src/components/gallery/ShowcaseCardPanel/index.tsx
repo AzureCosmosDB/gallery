@@ -36,7 +36,7 @@ export default function ShowcaseCardPanel({
   const vectorDatabaseTags = tagObjectsSorted.filter((tag) => tag.type === "VectorDatabase");
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
   const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
-  //console.log("resourceTypeTags", resourceTypeTags);
+
 
   return (
     <>
