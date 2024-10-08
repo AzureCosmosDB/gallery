@@ -29,7 +29,7 @@ function ShowcaseCard({
   user: User;
   coverPage: Boolean;
 }): JSX.Element {
-  console.log("###print user",user)
+
   const tags = user.tags;
   const title = user.title;
   const { colorMode } = useColorMode();
