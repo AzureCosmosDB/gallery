@@ -2416,6 +2416,17 @@
     "@types/gtag.js" "^0.0.12"
     tslib "^2.6.0"
 
+"@docusaurus/plugin-google-gtag@^3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-3.5.2.tgz#60b5a9e1888c4fa16933f7c5cb5f2f2c31caad3a"
+  integrity sha512-lm8XL3xLkTPHFKKjLjEEAHUrW0SZBSHBE1I+i/tmYMBsjCcUB5UJ52geS5PSiOCFVR74tbPGcPHEV/gaaxFeSA==
+  dependencies:
+    "@docusaurus/core" "3.5.2"
+    "@docusaurus/types" "3.5.2"
+    "@docusaurus/utils-validation" "3.5.2"
+    "@types/gtag.js" "^0.0.12"
+    tslib "^2.6.0"
+
 "@docusaurus/plugin-google-tag-manager@3.0.1":
   version "3.0.1"
   resolved "https://registry.npmjs.org/@docusaurus/plugin-google-tag-manager/-/plugin-google-tag-manager-3.0.1.tgz"
