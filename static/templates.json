@@ -183,6 +183,7 @@
     "date": "2024-05-01",
     "tags":[
       "generativeai",
+      "ragPattern",
       "java",
       "gpt35",
       "openai",
@@ -202,6 +203,7 @@
     "date": "2024-07-01",
     "tags":[
       "generativeai",
+      "ragPattern",
       "java",
       "gpt35",
       "openai",
@@ -1409,7 +1411,6 @@
     "date": "2024-10-02",
     "tags": [
       "architecturedesign",
-      "generativeai",
       "tools",
       "documentation",
       "csharp",
@@ -1482,6 +1483,47 @@
       "openai",
       "Microsoft",
       "vectorcosmosnosql",
+      "example"
+    ]
+  },
+  {
+    "title": "Spring ChatGPT Sample with Azure Cosmos DB for MongoDB vCore",
+    "description": "This sample shows how to build a ChatGPT like application in Spring and run on Azure Spring Apps with Azure Cosmos DB. The vector store in Azure Cosmos DB enables ChatGPT to use your private data to answer the questions.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author":"Theo van Kraay",
+    "source": "https://github.com/Azure-Samples/spring-chatgpt-cosmosdb-mongo-vcore",
+    "date": "2024-02-15",
+    "tags":[
+      "generativeai",
+      "ragPattern",
+      "java",
+      "azurespringapps",
+      "gpt35",
+      "embedding-ada",
+      "openai",
+      "vectorcosmosmongo",
+      "microsoft",
+      "example"
+    ]
+  },
+  {
+    "title": "Use Azure Cosmos DB NoSQL API with Langchain in Java",
+    "description": "This sample provides a demo showcasing the usage of the RAG pattern for integrating Azure Open AI services with custom data in Azure Cosmos NoSQL API with vector search using DiskANN index and langchain framework for Java.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author":"Theo van Kraay",
+    "source": "https://github.com/microsoft/AzureDataRetrievalAugmentedGenerationSamples/tree/main/Java/CosmosDB-NoSQL-Langchain",
+    "date": "2024-08-07",
+    "tags":[
+      "generativeai",
+      "ragPattern",
+      "java",
+      "gpt35",
+      "embedding-ada",
+      "openai",
+      "vectorcosmosnosql",
+      "microsoft",
       "example"
     ]
   }
