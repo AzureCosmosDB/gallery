@@ -141,22 +141,22 @@ const config = {
     ],
   ],
 
-  // CONFIG: Set presets for chosen theme
-  presets: [
-    [
-      '@docusaurus/preset-classic',
-      {
-        gtag: {
-          trackingID: 'UA-141789564-1',
-          anonymizeIP: true,
-        },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+    // CONFIG: Set presets for chosen theme
+    presets: [
+      [
+        '@docusaurus/preset-classic',
+        {
+          gtag: {
+            trackingID: 'UA-141789564-1',
+            anonymizeIP: true,
+          },
+          theme: {
+            customCss: require.resolve("./src/css/custom.css"),
+          }
         }
-      }
-       
+      ],
     ],
-  ],
+ 
 };
 
 module.exports = config;

@@ -21,7 +21,7 @@ export default function ShowcaseCardPanel({
   user: User;
   githubData: { forks: number; stars: number; updatedOn: Date };
 }) {
-  const githubURL = user.source.toLowerCase();
+  const githubURL = user.source;
   const title = user.title;
   const description = user.description;
   const video = user.video;
