@@ -16,7 +16,7 @@
     ]
   },
   {
-    "title": "Build a Copilot App in Python with Azure Cosmos DB for NoSQL",
+    "title": "Build a copilot App in Python with Azure Cosmos DB for NoSQL",
     "description": "In this sample, we'll demonstrate how to build a RAG Pattern application using a subset of the Movie Lens dataset. This sample will leverage the Python SDK for Azure Cosmos DB for NoSQL to perform vector search for RAG, store and retrieve chat history, and store the vectors of the chat history to use as a semantic cache. Azure OpenAI to generate embeddings and LLM completions.",
     "preview": "coming soon",
     "website": "https://github.com/TheovanKraay",
@@ -39,7 +39,7 @@
     ]
   },
   {
-    "title": "Build a Copilot sample app: Azure Cosmos DB for NoSQL (C#)",
+    "title": "Build a copilot sample app: Azure Cosmos DB for NoSQL (C#)",
     "description": "This sample application shows how to build a Generative-AI application using Azure Cosmos DB for NoSQL using its new vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.",
     "preview": "coming soon",
     "website": "https://github.com/AzureCosmosDB",
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "title": "Build a Copilot sample app - Azure Cosmos DB for MongoDB (C#)",
+    "title": "Build a copilot sample app - Azure Cosmos DB for MongoDB (C#)",
     "description": "This sample application shows how to build a Generative-AI application using Azure Cosmos DB for MongoDB using its vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.",
     "preview": "coming soon",
     "website": "https://github.com/AzureCosmosDB",
@@ -106,7 +106,7 @@
     ]
   },
   {
-    "title": "Build your own Copilot End to End Solution Accelerator",
+    "title": "Build your own copilot End to End Solution Accelerator",
     "description": "Production Ready Reference Solution for how to build your own copilot using Azure services including: Azure Cosmos DB for NoSQL, Azure OpenAI Service, Azure Kubernetes Service or Azure Container Apps. Uses Semantic Kernel plugins for OpenAI, Cosmos DB connectors, and semantic cache.",
     "preview": "coming soon",
     "website": "https://github.com/solliancenet/",
@@ -566,7 +566,7 @@
   },
   {
     "title": "Unlock the Power of Azure Cosmos DB for MongoDB vCore: An Interactive Session for Startups. | Microsoft Reactor",
-    "description": "Join us for an engaging session as we delve into the versatile vector database capabilities of Azure Cosmos DB for MongoDB vCore. Discover the seamless integration of your operational and transactional data with native vector indexing and search functionalities, specifically tailored for AI applications. Learn how to swiftly build RAG solutions by seamlessly connecting with Azure AI Studio to create chatbots using your own data. Explore the power of Azure Cosmos DB's Copilot in simplifying complex query writing, enhancing accuracy, and improving performance. Additionally, we'll showcase our seamless integrations with Semantic Kernel, Langchain, and LlamaIndex. Gain valuable insights into KPMG's success story, where Azure Cosmos DB played a pivotal role in the creation of a generative AI assistant for business operations.",
+    "description": "Join us for an engaging session as we delve into the versatile vector database capabilities of Azure Cosmos DB for MongoDB vCore. Discover the seamless integration of your operational and transactional data with native vector indexing and search functionalities, specifically tailored for AI applications. Learn how to swiftly build RAG solutions by seamlessly connecting with Azure AI Studio to create chatbots using your own data. Explore the power of Azure Cosmos DB's copilot in simplifying complex query writing, enhancing accuracy, and improving performance. Additionally, we'll showcase our seamless integrations with Semantic Kernel, Langchain, and LlamaIndex. Gain valuable insights into KPMG's success story, where Azure Cosmos DB played a pivotal role in the creation of a generative AI assistant for business operations.",
     "preview": "coming soon",
     "website": "https://www.youtube.com/@AzureCosmosDB",
     "author": "Azure Cosmos DB Team",
