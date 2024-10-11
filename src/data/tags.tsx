@@ -87,6 +87,7 @@ export type TagType =
   | "dalle"
   | "gpt35"
   | "gpt4"
+  | "azure-vision"
   | "embedding-ada"
   | "embedding-text-3"
   | "embedding-cohere"

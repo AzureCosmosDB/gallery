@@ -1526,6 +1526,31 @@
       "microsoft",
       "example"
     ]
+  },
+  {
+    "title": "Serverless AI Chat and RAG Pattern with Langchain.js on Azure",
+    "description": "This sample shows how a Cosmos DB Vector Index can be used to improve the search functionality of a clothing store. The demo shows how a GPT-4o can be used for keyword extraction and translation, so users can search for products in any language and Cosmos DB vector indexes will match the best suited item in the store. Additionally, the Azure Computer Vision Florence model is used to create embeddings of the product images, so users can search using a photo from a magazine and the search will find the closest match in the database, based solely on the picture. Watch a demo of this samples from the Pycon India 2024 event on [You Tube](https://youtu.be/vRxh7irjhfU?t=3070).",
+    "preview": "coming soon",
+    "website": "https://github.com/tonybaloney",
+    "author": "Anthony Shaw",
+    "source": "https://github.com/tonybaloney/data-driven-workshop",
+    "date": "2024-10-10",
+    "tags": [
+      "generativeai",
+      "python",
+      "gpt4",
+      "embedding-text-3",
+      "chat",
+      "agent",
+      "ragPattern",
+      "managedidentity",
+      "openai",
+      "azurevision",
+      "functions",
+      "Microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
   }
 
   
