@@ -1551,6 +1551,31 @@
       "vectorcosmosnosql",
       "example"
     ]
+  },
+  {
+    "title": "RAG Pattern demos for multiple Azure Databases",
+    "description": "This C# sample shows how to implement RAG Pattern using different Azure databases. It highlights SQL Server 2022, Azure SQL Database, Azure Cosmos DB for NoSQL, and Azure Cosmos DB for MongoDB.",
+    "preview": "coming soon",
+    "website": "https://github.com/lennilobel",
+    "author": "Lenni Lobel",
+    "source": "https://github.com/lennilobel/ai-demos-public/tree/main/Rag",
+    "date": "2024-10-16",
+    "tags": [
+      "generativeai",
+      "csharp",
+      "gpt4",
+      "embedding-text-3",
+      "dalle",
+      "chat",
+      "ragPattern",
+      "openai",
+      "azurevision",
+      "functions",
+      "Microsoft",
+      "vectorcosmosnosql",
+      "vectorcosmosmongo",
+      "example"
+    ]
   }
 
   

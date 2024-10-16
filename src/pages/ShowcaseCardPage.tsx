@@ -142,7 +142,7 @@ function FilterBar(): React.JSX.Element {
         appearance="outline"
         size="large"
         value={readSearchName(location.search) != null ? value : ""}
-        placeholder="Search templates"
+        placeholder="Search content"
         onClear={(e) => {
           setValue(null);
           const newSearch = new URLSearchParams(location.search);
@@ -286,9 +286,9 @@ export default function ShowcaseCardPage({
             {templateNumber}
           </Text>
           {templateNumber != 1 ? (
-            <Text size={400}>templates</Text>
+            <Text size={400}>items</Text>
           ) : (
-            <Text size={400}>template</Text>
+            <Text size={400}>items</Text>
           )}
           {InputValue != null ? (
             <>

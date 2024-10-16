@@ -361,8 +361,8 @@ export const Tags: { [type in TagType]: Tag } = {
     buttonText: "Read Blog",
   },
   example : {
-    label: "Sample",
-    description: "Code sample",
+    label: "Example",
+    description: "Code example",
     icon: "./img/github.svg",
     darkIcon: "./img/githubDark.svg",
     type: "ResourceType",
