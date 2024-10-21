@@ -1576,6 +1576,22 @@
       "vectorcosmosmongo",
       "example"
     ]
+  },
+  {
+    "title": "Sekiban - Event Sourcing and CQRS Framework using C#",
+    "description": "Sekiban is an application development framework that leverages Event Sourcing and CQRS principles. Built with C# and .NET Core 7+, it allows developers to use a declarative API to create event sourcing applications. Sekiban supports various event stores such as Microsoft Azure Cosmos DB with multi-tenancy support using its hierarchical partition key feature for more efficient querying using Azure Cosmos DB by creating a Tenant (or Root Partition Key), Aggregate Type, and Partition Key.",
+    "preview": "coming soon",
+    "website": "https://github.com/J-Tech-Japan",
+    "author": "J-Tech Japan, Inc.",
+    "source": "https://github.com/J-Tech-Japan/Sekiban",
+    "date": "2024-10-21",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "CQRS",
+      "community",
+      "example"
+    ]
   }
 
   
