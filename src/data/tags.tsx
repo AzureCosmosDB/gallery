@@ -70,6 +70,7 @@ export type TagType =
   | "infrastructure"
   | "migration"
   | "analytics"
+  | "CQRS"
   | "agent"
   | "ragPattern"
   | "chat"
