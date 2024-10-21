@@ -1589,8 +1589,90 @@
       "architecturedesign",
       "csharp",
       "CQRS",
+      "event-driven",
       "community",
       "example"
+    ]
+  },
+  {
+    "title": "Transactional Outbox Pattern with Azure Functions and Cosmos DB",
+    "description": "This post will walk through an implementation of the transactional outbox pattern using Azure Functions and Cosmos DB. The source code can be found at https://aka.ms/event-driven-architecture",
+    "preview": "coming soon",
+    "website": "https://madeofstrings.com/author/dbarkol/",
+    "author":"David Barkol",
+    "source": "https://madeofstrings.com/2022/10/25/transactional-outbox-pattern-with-azure-functions-and-cosmos-db/",
+    "date": "2021-11-01",
+    "tags":[
+      "blog",
+      "architecturedesign",
+      "outbox-pattern",
+      "event-sourcing",
+      "functions",
+      "community"
+    ]
+  },
+  {
+    "title": "Business Continuity & Disaster Recovery in the Microservices world",
+    "description": "Learn how Walmart designed their microservices architecture to be resilient to failures and how they implemented business continuity and disaster recovery strategies using event sourcing pattern and Azure Cosmos DB for a near 'instant' RTO and RPO.",
+    "preview": "coming soon",
+    "website": "https://medium.com/walmartglobaltech",
+    "author":"Walmart Global Tech",
+    "source": "https://medium.com/walmartglobaltech/business-continuity-disaster-recovery-in-the-microservices-world-ef2adca363df",
+    "date": "2019-10-31",
+    "tags":[
+      "blog",
+      "architecturedesign",
+      "BCDR",
+      "event-sourcing",
+      "community"
+    ]
+  },
+  {
+    "title": "Design Inventory Availability System using Event Sourcing",
+    "description": "Learn how Walmart designed their inventory system to provide accurate inventory levels across billions of products using the event sourcing pattern and Azure Cosmos DB Change Feed.",
+    "preview": "coming soon",
+    "website": "https://medium.com/walmartglobaltech",
+    "author":"Walmart Global Tech",
+    "source": "https://medium.com/walmartglobaltech/design-inventory-availability-system-using-event-sourcing-1d0f022e399f",
+    "date": "2023-03-26",
+    "tags":[
+      "blog",
+      "architecturedesign",
+      "BCDR",
+      "event-sourcing",
+      "community"
+    ]
+  },
+  {
+    "title": "Data Modeling in NoSQL - When to split data into separate documents",
+    "description": "Knowing how to model or remodel data requires understanding access pattern for that data. In this blog post, learn how and when to split data into separate documents in Azure Cosmos DB for NoSQL based upon real-world examples for improved performance, scalability and efficiency.",
+    "preview": "coming soon",
+    "website": "https://deepubhatia.medium.com/",
+    "author":"Deepu Bhatia",
+    "source": "https://deepubhatia.medium.com/cosmos-db-lessons-from-the-field-3491cad09a69",
+    "date": "2021-06-30",
+    "tags":[
+      "blog",
+      "architecturedesign",
+      "data-modeling",
+      "community"
+    ]
+  },
+  {
+    "title": "A compendium of NoSQL Data Modeling and Partitioning resources for Azure Cosmos DB",
+    "description": "This Gist on GitHub provides a curated list of resources for data modeling and partitioning in Azure Cosmos DB. It includes links to blog posts, videos, and code samples that demonstrate best practices for designing scalable and efficient data models for NoSQL databases.",
+    "preview": "coming soon",
+    "website": "https://github.com/markjbrown",
+    "author":"Mark Brown",
+    "source": "https://gist.github.com/markjbrown/114179b3d530abe0eaa25fb9ac54b609",
+    "date": "2023-02-27",
+    "tags":[
+      "documentation",
+      "video",
+      "example",
+      "architecturedesign",
+      "data-modeling",
+      "community"
     ]
   }
 
