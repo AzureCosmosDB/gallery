@@ -1674,6 +1674,28 @@
       "data-modeling",
       "community"
     ]
+  },
+  {
+    "title": "VoiceRAG: RAG with Voice using Azure Cosmos DB for MongoDB & GPT-4o Realtime API",
+    "description": "This repository provides a comprehensive guide to implementing retrieval-augmented generation (RAG) in applications with voice interfaces, powered by the GPT-4o Realtime API for audio and Azure Cosmos DB for MongoDB as a storage solution for vector embeddings.",
+    "preview": "coming soon",
+    "website": "https://github.com/cazton",
+    "author": "Cazton",
+    "source": "https://github.com/cazton/CaztonVoiceRag",
+    "date": "2024-10-23",
+    "tags": [
+      "generativeai",
+      "python",
+      "typescript",
+      "gpt4",
+      "embedding-text-3",
+      "chat",
+      "ragPattern",
+      "openai",
+      "community",
+      "vectorcosmosmongo",
+      "example"
+    ]
   }
 
   
