@@ -1,6 +1,25 @@
 # Website
 
+This repository is your one-stop shop for Azure Cosmos DB resources, including:
+
+- GitHub Samples: Code in Python, JavaScript, and C#
+- Docs & Articles: In-depth guides and insights
+- Videos & Blogs: Engaging, informative content
+- Data Migration Tools: Smooth transition utilities
+
+And more!
+
+Explore all things Azure Cosmos DB in one place!
+
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+
+## How to Contribute
+
+Contributions to this project are more than welcome. Make sure you check out the following documents, to successfully contribute to the project:
+
+- [Contributing](./CONTRIBUTING.md)
+
+## Getting Started
 
 ### Installation
 

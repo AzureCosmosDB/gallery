@@ -147,7 +147,7 @@ const config = {
         '@docusaurus/preset-classic',
         {
           gtag: {
-            trackingID: 'UA-141789564-1',
+            trackingID: 'G-CNSKHL41CT',
             anonymizeIP: true,
           },
           theme: {

@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@docusaurus/plugin-google-analytics": "^3.0.1",
+    "@docusaurus/plugin-google-gtag": "^3.6.1",
     "@fluentui/react-search": "^9.0.8",
     "@popperjs/core": "^2.11.8",
     "react-helmet": "^6.1.0",
