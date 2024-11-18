@@ -84,7 +84,7 @@ function FilterAppliedBar({
     const tags = readSearchTags(location.search);
     const newTags = toggleListItem(tags, tag);
     const newSearch = replaceSearchTags(location.search, newTags);
-    window.gtag('event', 'page_view', {
+    window.gtag('set', 'user_properties', {
       page_location: window.location.href,
       page_path:  newTags
     });
