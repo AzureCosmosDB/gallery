@@ -108,6 +108,7 @@ export type TagType =
   | "semantickernel"
   | "langchain"
   | "llamaindex"
+  | "springai"
   | "phi2"
   | "orca2"
   | "mistral7b"

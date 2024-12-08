@@ -1696,6 +1696,27 @@
       "vectorcosmosmongo",
       "example"
     ]
+  },
+  {
+    "title": "Build your own AI Chat Bot with Retrieval-Augmented-Generation using Spring AI and Azure Cosmos DB",
+    "description": "This sample shows how to build a chat assistant with Spring AI using Azure Cosmos DB as a vector store for retrieval augmented generation (RAG), allowing you to use your private data to answer questions.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author":"Theo van Kraay",
+    "source": "https://github.com/Azure-Samples/cosmosdb-spring-ai-sample",
+    "date": "2024-12-01",
+    "tags":[
+      "generativeai",
+      "ragPattern",
+      "java",
+      "springai",
+      "gpt4",
+      "openai",
+      "vectorcosmosnosql",
+      "azurespringapps",
+      "microsoft",
+      "example"
+    ]
   }
 
   
