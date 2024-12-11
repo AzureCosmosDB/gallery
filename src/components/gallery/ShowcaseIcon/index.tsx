@@ -2,117 +2,59 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./styles.module.css";
-import { Tags, type User, type TagType } from "../../../data/tags";
+import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { sortBy } from "@site/src/utils/jsUtils";
-import { Tooltip, Image, Button } from "@fluentui/react-components";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import { openai, meta, microsoft, mistralai } from "../../../data/tags";
-import { useColorMode } from "@docusaurus/theme-common";
+import { Tooltip, Button } from "@fluentui/react-components";
+import { TagImage } from "../TagImage";
 
 export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
-  const tagObjects = tags
-    .filter((tagObject) => tagObject != "featured")
-    .map((tag) => ({ tag, ...Tags[tag] }));
-  const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
+  const tagObjectsSorted = useMemo(() => {
+    const tagObjects = tags
+      .filter((tag) => tag !== "featured")
+      .map((tag) => ({ tag, ...Tags[tag] }));
+    return sortBy(tagObjects, (tagObject) => TagList.indexOf(tagObject.tag));
+  }, [tags]);
+
+  const uniqueModelTags = ["openai", "meta", "microsoft", "mistralai"].flatMap(
+    (subType) =>
+      tagObjectsSorted
+        .filter((tag) => tag.type === "Model" && tag.subType === subType)
+        .slice(0, 1)
   );
-  const languageTags = tagObjectsSorted.filter((tag) =>
-    tag.type == "Language");
-  const resourceTypeTags = tagObjectsSorted.filter((tag) => 
-    tag.type == "ResourceType").slice(0, 1);
-  const uniqueOpenAITag = tagObjectsSorted.filter((tag) =>
-    tag.type == "Model" && tag.subType === openai).slice(0, 1);
-  const uniqueMetaTag = tagObjectsSorted.filter((tag) =>
-    tag.type == "Model" && tag.subType === meta).slice(0, 1);
-  const uniqueMicrosoftTag = tagObjectsSorted.filter((tag) =>
-    tag.type == "Model" && tag.subType === microsoft).slice(0, 1);
-  const uniqueMistralAITag = tagObjectsSorted.filter((tag) =>
-    tag.type == "Model" && tag.subType === mistralai).slice(0, 1);
-  const totalTags = [...languageTags, ...uniqueOpenAITag, ...uniqueMetaTag, ...uniqueMicrosoftTag, ...uniqueMistralAITag, ...resourceTypeTags];
-  const length = totalTags.length;
-  let number = 3;
-  const rest = length - number;
 
-  const cardPanelDetailList = totalTags
-    .slice(number, length)
-    .map((tagObject) => tagObject.label)
-    .join("\n");
+  const filteredTags = [
+    ...tagObjectsSorted.filter((tag) => tag.type === "Language"),
+    ...uniqueModelTags,
+    ...tagObjectsSorted.filter((tag) => tag.type === "ResourceType").slice(0, 1),
+  ];
 
-  const { colorMode } = useColorMode();
+  const displayTags = filteredTags.slice(0, 3); // First 3 Tags
+  const hiddenTags = filteredTags.slice(3); // Rest of the Tags
 
-  if (length > number && rest > 1) {
-    return (
-      <>
-        {totalTags.slice(0, number).map((tagObject) => {
-          const key = `showcase_card_icon_${tagObject.tag}`;
-          return (
-            <Tooltip
-              withArrow
-              content={tagObject.label}
-              relationship="label"
-              {...tagObject}
-              key={key}
-            >
-              <Button
-              icon={
-                <Image
-                alt={tagObject.label}
-                src={useBaseUrl(colorMode == "dark" && tagObject.darkIcon ? tagObject.darkIcon : tagObject.icon)}
-                height={16}
-                width={16}
-                />
-              }
-              />
-            </Tooltip>
-          );
-        })}
+  return (
+    <>
+      {displayTags.map((tagObject) => (
+        <TagImage
+          key={`showcase_card_icon_${tagObject.tag}`}
+          tagObject={tagObject}
+        />
+      ))}
+      {hiddenTags.length > 0 && (
         <Tooltip
           withArrow
-          content={{
-            children: (
-              <span style={{ whiteSpace: "pre-line" }}>
-                {cardPanelDetailList}
-              </span>
-            ),
-          }}
+          content={
+            <span style={{ whiteSpace: "pre-line" }}>
+              {hiddenTags.map((tag) => tag.label).join("\n")}
+            </span>
+          }
           relationship="label"
-          key={`showcase_card_icon_more`}
         >
-          <Button className={styles.toolTip}>+{rest}</Button>
+          <Button className={styles.toolTip}>+{hiddenTags.length}</Button>
         </Tooltip>
-      </>
-    );
-  } else {
-    return (
-      <>
-        {totalTags.map((tagObject) => {
-          const key = `showcase_card_icon_${tagObject.tag}`;
-          return (
-            <Tooltip
-              withArrow
-              content={tagObject.label}
-              relationship="label"
-              {...tagObject}
-              key={key}
-            >
-              <Button
-              icon={
-                <Image
-                alt={tagObject.label}
-                src={useBaseUrl(colorMode == "dark" && tagObject.darkIcon ? tagObject.darkIcon : tagObject.icon)}
-                height={16}
-                width={16}
-                />
-              }
-              />
-            </Tooltip>
-          );
-        })}
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
