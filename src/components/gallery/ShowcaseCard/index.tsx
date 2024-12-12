@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styleCSS from "./styles.module.css";
 import { type User } from "../../../data/tags";
-import {
-  Card,
-  CardFooter,
-  Caption1Strong,
-  Image,
-} from "@fluentui/react-components";
+import { Card, CardFooter, Caption1Strong, Image } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
 import { Panel, PanelType, ThemeProvider, PartialTheme } from "@fluentui/react";
 import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
@@ -29,7 +24,6 @@ function ShowcaseCard({
   user: User;
   coverPage: Boolean;
 }): JSX.Element {
-
   const tags = user.tags;
   const title = user.title;
   const { colorMode } = useColorMode();
@@ -48,8 +42,7 @@ function ShowcaseCard({
     },
   };
 
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
-    useBoolean(false);
+  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
 
   const fetchGitHubData = async (owner: string, repo: string) => {
@@ -122,7 +115,9 @@ function ShowcaseCard({
         {coverPage ? (
           <>
             <div className={styleCSS.cardTitleCoverPage}>{title}</div>
-            <div className={styleCSS.cardDescriptionCoverPage}>{user.description}</div>
+            <div className={styleCSS.cardDescriptionCoverPage}>
+              {user.description}
+            </div>
           </>
         ) : (
           <>
@@ -162,7 +157,11 @@ const GitHubInfo = ({ githubData }) => {
         <>
           <Image
             alt="fork"
-            src={colorMode === "dark" ? useBaseUrl("/img/forkDark.svg") : useBaseUrl("/img/fork.svg")}
+            src={
+              colorMode === "dark"
+                ? useBaseUrl("/img/forkDark.svg")
+                : useBaseUrl("/img/fork.svg")
+            }
             height={16}
             width={16}
           />
@@ -175,7 +174,11 @@ const GitHubInfo = ({ githubData }) => {
         <>
           <Image
             alt="star"
-            src={colorMode === "dark" ? useBaseUrl("/img/starDark.svg") : useBaseUrl("/img/star.svg")}
+            src={
+              colorMode === "dark"
+                ? useBaseUrl("/img/starDark.svg")
+                : useBaseUrl("/img/star.svg")
+            }
             height={16}
             width={16}
           />
