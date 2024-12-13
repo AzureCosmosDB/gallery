@@ -86,6 +86,11 @@ const config = {
             type: "custom-NavbarButton",
             position: "right",
           },
+          {
+            type: "custom-NavbarButtonGithub",
+            href: "https://github.com/NucleoidJS/Nucleoid",
+            position: "right",
+          },
         ],
       },
 
