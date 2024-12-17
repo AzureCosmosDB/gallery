@@ -1444,6 +1444,7 @@
       "openai",
       "Microsoft",
       "vectorcosmosnosql",
+      "serverless",
       "example"
     ]
   },
@@ -1715,6 +1716,31 @@
       "vectorcosmosnosql",
       "azurespringapps",
       "microsoft",
+      "example"
+    ]
+  },
+  {
+    "title": "Serverless Gen-AI News Aggregator",
+    "description": "This is a GenAI news aggregator and summarizer app to answer any queries related to latest news in natural language. This is a serverless GenAI application built using Azure Functions, Azure Cosmos DB and Azure OpenAI.",
+    "preview": "coming soon",
+    "website": "https://github.com/richagaur",
+    "author": "Richa Gaur",
+    "source": "https://github.com/AzureCosmosDB/serverless-gen-ai-news-app",
+    "date": "2024-12-17",
+    "tags": [
+      "generativeai",
+      "python",
+      "swa",
+      "javascript",
+      "serverless",
+      "gpt4",
+      "embedding-text-3",
+      "chat",
+      "ragPattern",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "functions",
       "example"
     ]
   }
