@@ -74,6 +74,7 @@ export type TagType =
   | "outbox-pattern"
   | "event-sourcing"
   | "data-modeling"
+  | "serverless"
   | "BCDR"
   | "agent"
   | "ragPattern"
