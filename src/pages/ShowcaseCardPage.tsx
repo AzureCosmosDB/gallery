@@ -263,6 +263,7 @@ export default function ShowcaseCardPage({
   const sortByOnSelect = (event, data) => {
     setLoading(true);
     setSelectedOptions(data.selectedOptions);
+    console.log("@@selected drop" , data);
   };
   const templateNumber = cards ? cards.length : 0;
 
@@ -276,6 +277,7 @@ export default function ShowcaseCardPage({
           <FilterBar data-m={contentForAdobeAnalytics} />
           <Dropdown
             className={styles.sortBar}
+            defaultValue={SORT_BY_OPTIONS[0]}
             aria-labelledby="dropdown-default"
             appearance="outline"
             size="large"
