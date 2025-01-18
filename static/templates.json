@@ -1745,7 +1745,7 @@
     ]
   },
   {
-    "title": "Cosmos DB + Azure Functions Embedding Generator",
+    "title": "Cosmos DB & Azure Functions Embedding Generator",
     "description": "This sample shows how to use a Cosmos DB Trigger in Azure Functions Triggers (C# or Python) to automatically generate embeddings on data on new or updated data.",
     "preview": "coming soon",
     "website": "https://github.com/markjbrown",
