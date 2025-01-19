@@ -1765,7 +1765,27 @@
       "functions",
       "example"
     ]
+  },
+  {
+    "title": "Node.js ORM for Azure CosmosDB",
+    "description": "Type-safe query builder for CosmosDB. It helps constructing complex filtering queries by providing real-time autocompletion based on your data models.",
+    "preview": "coming soon",
+    "website": "https://github.com/Mingyang-Li",
+    "author": "Mingyang Li",
+    "source": "https://github.com/Mingyang-Li/cosmox",
+    "date": "2025-01-20",
+    "tags": [
+      "typescript",
+      "data-modeling",
+      "analytics",
+      "serverless",
+      "functions",
+      "example",
+      "javascript",
+      "tools",
+      "documentation",
+      "migration",
+      "community"
+    ]
   }
-
-  
 ]
