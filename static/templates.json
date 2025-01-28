@@ -1717,7 +1717,25 @@
       "microsoft",
       "example"
     ]
-  }
-
-  
+  },
+  {
+    "title": "Multi-agent AI sample with Azure Cosmos DB",
+    "description": "A sample exploring ergonomic, lightweight multi-agent orchestration in Python using Azure Cosmos DB with OpenAI Swarm.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author": "Theo van Kraay",
+    "source": "https://github.com/AzureCosmosDB/multi-agent-swarm",
+    "date": "2025-01-28",
+    "tags": [
+      "generativeai",
+      "python",
+      "jupyternotebook",
+      "analytics",
+      "embedding-text-3",
+      "openai",
+      "Microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
+  }  
 ]
