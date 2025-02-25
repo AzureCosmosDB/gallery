@@ -1765,6 +1765,25 @@
     ]
   },
   {
+    "title": "Multi-agent AI sample with Azure Cosmos DB",
+    "description": "A sample exploring ergonomic, lightweight multi-agent orchestration in Python using Azure Cosmos DB with OpenAI Swarm.",
+    "preview": "coming soon",
+    "website": "https://github.com/TheovanKraay",
+    "author": "Theo van Kraay",
+    "source": "https://github.com/AzureCosmosDB/multi-agent-swarm",
+    "date": "2025-01-28",
+    "tags": [
+      "generativeai",
+      "python",
+      "analytics",
+      "embedding-text-3",
+      "openai",
+      "Microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
+  },
+  {
     "title": "Azure Cosmos DB Design Patterns: Attribute Array",
     "description": "Learn how the Attribute Array pattern simplifies query construction and improves indexing efficiency by storing similar name/value pairs in an array.",
     "preview": "coming soon",
@@ -1845,7 +1864,7 @@
     ]
   },
   {
-      "title": "Azure Cosmos DB Design Patterns: Event Sourcing",
+    "title": "Azure Cosmos DB Design Patterns: Event Sourcing",
     "description": "Explore how Event Sourcing enables tracking and reconstructing state changes by storing a complete history of events.",
     "preview": "coming soon",
     "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
@@ -1895,5 +1914,5 @@
     ]
   }
 
-  
 ]
+
