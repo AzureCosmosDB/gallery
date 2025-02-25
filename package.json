@@ -52,6 +52,7 @@
     "@popperjs/core": "^2.11.8",
     "react-helmet": "^6.1.0",
     "scheduler": "^0.20.2",
-    "search-insights": "^2.11.0"
+    "search-insights": "^2.11.0",
+    "yarn": "^1.22.22"
   }
 }

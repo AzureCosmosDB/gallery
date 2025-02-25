@@ -1253,8 +1253,8 @@
     "preview": "coming soon",
     "website": "https://github.com/sajeetharan",
     "author": "Sajeetharan",
-    "source": "https://github.com/Azure-Samples/cosmos-db-rest-samples",
-    "date": "2023-09-01",
+    "source": "https://github.com/Azure-Samples/dab-swa-wonders",
+    "date": "2025-01-15",
     "tags": [
       "architecturedesign",
       "typescript",
@@ -1669,8 +1669,6 @@
     "date": "2023-02-27",
     "tags":[
       "documentation",
-      "video",
-      "example",
       "architecturedesign",
       "data-modeling",
       "community"
@@ -1784,6 +1782,137 @@
       "vectorcosmosnosql",
       "example"
     ]
-  }  
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Attribute Array",
+    "description": "Learn how the Attribute Array pattern simplifies query construction and improves indexing efficiency by storing similar name/value pairs in an array.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/vdsSvPUeNVE?si=XRkpqN7HHWyNMlIt",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Data Binning",
+    "description": "Discover how Data Binning aggregates high-frequency data into time-based intervals, reducing storage costs and improving query performance.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/aYPumS4_NBQ?si=NCsdV1DiAedCCT_5",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Distributed Counter",
+    "description": "See how the Distributed Counter pattern efficiently tracks high-volume counting scenarios like views, votes, or API usage across multiple instances.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/InCb-fcqWWA?si=CKUVLufGLFHD2zdc",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Distributed Lock",
+    "description": "Learn how to use the Distributed Lock pattern to manage concurrent updates and prevent conflicts in distributed applications.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/_MplAKWhrec?si=8SYYnvqSAqZ5Qq7Y",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Document Versioning",
+    "description": "Understand how Document Versioning helps maintain historical document states without impacting query performance.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/shCuTTrrcNs?si=-jCLIxE4kLxdqhhN",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Event Sourcing",
+    "description": "Explore how Event Sourcing enables tracking and reconstructing state changes by storing a complete history of events.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/cKp9al533KA?si=RQnmar2qL4Mv9_Z-",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "functions",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Materialized View",
+    "description": "Learn how Materialized Views optimize read-heavy queries by precomputing and persisting query results.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/lfxtYtXuAGk?si=usrhgQ8XxJlN8VzX",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "functions",
+      "video"
+    ]
+  },
+  {
+    "title": "Azure Cosmos DB Design Patterns: Schema Versioning",
+    "description": "See how Schema Versioning helps evolve your database schema without breaking existing applications.",
+    "preview": "coming soon",
+    "website": "https://aka.ms/AzureCosmosDB/DesignPatternsVids",
+    "author": "Mark Brown & Jasmine Greenaway",
+    "source": "https://youtu.be/BNtkvtIjW6M?si=Ik59VVsjB0TbYIBP",
+    "date": "2025-02-24",
+    "tags":[
+      "architecturedesign",
+      "microsoft",
+      "vectorcosmosnosql",
+      "csharp",
+      "video"
+    ]
+  }
+
 ]
 
