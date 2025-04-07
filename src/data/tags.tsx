@@ -321,7 +321,7 @@ export const Tags: { [type in TagType]: Tag } = {
   // GenerativeAI Tags
   agent: {
     label: "Agent",
-    description: "Template implements copilot that uses agent(s)",
+    description: "Template implements one or more agents",
     type: "GenerativeAI",
   },
   chat: {
