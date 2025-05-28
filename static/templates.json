@@ -1929,7 +1929,57 @@
       "vectorcosmosnosql",
       "example"
     ]
+  },
+  {
+    "title": "MCP-Powered AI Chat with Python and Azure Cosmos DB",
+    "description": "A full-stack chat application powered by Azure Cosmos DB acting as a Model Context Provider (MCP) client.",
+    "preview": "",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/azurecosmosdb-mcp-chat-app",
+    "date": "2025-05-28",
+    "tags": [
+      "generativeai",
+      "python",
+      "csharp",
+      "mcp",
+      "featured",
+      "agent",
+      "gpt4",
+      "embedding-text-3",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
+  },
+   {
+    "title": "Multi-Language Guide to MCP Servers on Azure Cosmos DB",
+    "description": "Code samples in multiple programming languages for building an MCP server backed by Azure Cosmos DB. Learn how to manage data and perform queries using TypeScript, Java, Python, and beyond.",
+    "preview": "",
+    "website": "https://github.com/AzureCosmosDB",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/azure-cosmos-mcp-server-samples",
+    "date": "2025-05-28",
+    "tags": [
+      "generativeai",
+      "python",
+      "csharp",
+      "java",
+      "go",
+      "typescript",
+      "mcp",
+      "featured",
+      "agent",
+      "gpt4",
+      "embedding-text-3",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
   }
+
 
 ]
 
