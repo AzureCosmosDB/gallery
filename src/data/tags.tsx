@@ -82,12 +82,14 @@ export type TagType =
   | "search"
   | "llmops"
   | "summarization"
+  | "mcp"
   | "graphrag"
   | "javascript"
   | "csharp"
   | "java"
   | "python"
   | "typescript"
+  | "go"
   | "jupyternotebook"
   | "openai"
   | "dalle"
@@ -169,7 +171,6 @@ export type TagType =
 //   - url = url for azure service
 export const Tags: { [type in TagType]: Tag } = {
   //============  FOR REGULAR USE
-
   // Special Tag
   featured: {
     label: "Featured Template",
@@ -207,6 +208,12 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Template contains TypeScript app code",
     type: "Language",
     icon: "./img/typescript.svg",
+  },
+  go: {
+    label: "Go",
+    description: "Template contains Go app code",
+    type: "Language",
+    icon: "./img/go.svg",
   },
 
   // Vector Database Tags
@@ -339,6 +346,11 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Template involves LLM Operations",
     type: "GenerativeAI",
   },
+  mcp: {
+    label: "MCP",
+    description: "Multi context protocol, a pattern for building LLM applications",
+    type: "GenerativeAI",
+  },
   summarization: {
     label: "Summarization",
     description: "Template involves summarization and / or augmentation",
@@ -353,21 +365,21 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "View Deck",
   },
-  video : {
+  video: {
     label: "Video",
     description: "Video on YouTube, Vimeo, etc.",
     icon: "./img/videos.svg", //need icons for this
     type: "ResourceType",
     buttonText: "Watch Video",
   },
-  blog : {
+  blog: {
     label: "Blog",
     description: "Blog post",
     icon: "./img/blogs.svg", //need icons for this
     type: "ResourceType",
     buttonText: "Read Blog",
   },
-  example : {
+  example: {
     label: "Example",
     description: "Code example",
     icon: "./img/github.svg",
@@ -375,13 +387,13 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "Go to GitHub repo",
   },
-  documentation : {
+  documentation: {
     label: "Documentation",
     description: "Documentation",
     icon: "./img/docs.svg",
     type: "ResourceType",
     buttonText: "Read Article",
-  }, 
+  },
 
   // Content Category for filtering content
   generativeai: {
@@ -390,25 +402,999 @@ export const Tags: { [type in TagType]: Tag } = {
     icon: "",
     type: "ContentType"
   },
-  architecturedesign : {
+  architecturedesign: {
     label: "Architecture",
     description: "Architecture and design patterns",
     type: "ContentType"
   },
-  tools : {
+  tools: {
     label: "Tools",
     description: "Tools and utilities for development",
     type: "ContentType"
   },
-  migration : {
+  migration: {
     label: "Data Migration",
     description: "Migrating data between services",
     type: "ContentType"
   },
-  analytics : {
+  analytics: {
     label: "Analytics",
     description: "Data Analytics and visualization",
     type: "ContentType"
+  },
+  microsoft: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  community: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  infrastructure: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  CQRS: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  "outbox-pattern": {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  "event-sourcing": {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  "data-modeling": {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  serverless: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  BCDR: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  search: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  graphrag: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  jupyternotebook: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  openai: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  "azure-vision": {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  "embedding-cohere": {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  promptflow: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  pinecone: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  diskann: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  semantickernel: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  langchain: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  llamaindex: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  springai: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  bicep: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  terraform: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  prometheus: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  cosmosdb: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  appinsights: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  loganalytics: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  appservice: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  documentintelligence: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  monitor: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  keyvault: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  aca: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  functions: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  blobstorage: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azuresql: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azurepostrgres: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azuredbmysql: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  swa: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  servicebus: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  vnets: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  aisearch: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azureai: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  apim: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  aks: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azurecdn: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  frontdoor: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  grafana: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azurespringapps: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  rediscache: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  agw: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azurebot: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  ade: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  acr: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  eventhub: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azurestorage: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azureappconfig: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  aistudio: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  apicenter: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  eventgrid: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  diagnosticsettings: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  logicapps: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  managedidentity: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  serviceprincipal: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
+  },
+  azuredatafactory: {
+    label: "",
+    description: "",
+    icon: "",
+    darkIcon: "",
+    url: "",
+    type: "",
+    subType: {
+      label: "",
+      icon: "",
+      darkIcon: ""
+    },
+    buttonText: "",
+    date: ""
   }
- 
 };
