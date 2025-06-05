@@ -1908,6 +1908,28 @@
       "example"
     ]
   },
+    {
+    "title": "Multi-agent Java sample with Spring AI and Azure Cosmos DB",
+    "description": "A sample exploring ergonomic, lightweight multi-agent orchestration in Python using Azure Cosmos DB with OpenAI Swarm.",
+    "preview": "",
+    "website": "https://github.com/TheovanKraay",
+    "author": "Theo van Kraay",
+    "source": "https://github.com/AzureCosmosDB/multi-agent-swarm",
+    "date": "2025-04-07",
+    "tags": [
+      "generativeai",
+      "python",
+      "featured",
+      "agent",
+      "gpt4",
+      "embedding-text-3",
+      "ragPattern",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
+  },
   {
     "title": "Multi-agent AI Workshop with LangGraph and Semantic Kernel",
     "description": "Learn how to build a multi-tenant, multi-agent, application in Python using LangGraph or C# using Semantic Kernel Agents.",
