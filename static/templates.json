@@ -1910,15 +1910,15 @@
   },
     {
     "title": "Multi-agent Java sample with Spring AI and Azure Cosmos DB",
-    "description": "A sample exploring ergonomic, lightweight multi-agent orchestration in Python using Azure Cosmos DB with OpenAI Swarm.",
+    "description": "A sample for multi-agent orchestration in Java using Azure Cosmos DB with Spring AI",
     "preview": "",
     "website": "https://github.com/TheovanKraay",
     "author": "Theo van Kraay",
-    "source": "https://github.com/AzureCosmosDB/multi-agent-swarm",
+    "source": "https://github.com/AzureCosmosDB/multi-agent-spring-ai",
     "date": "2025-04-07",
     "tags": [
       "generativeai",
-      "python",
+      "java",
       "featured",
       "agent",
       "gpt4",
