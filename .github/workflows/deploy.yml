@@ -34,5 +34,5 @@ jobs:
         with:
           personal_token: ${{ secrets.GH_PAT }} # PAT secret
           publish_dir: ./build
-          external_repository: <USERNAME>/<TARGET_REPO> # e.g. org/docs-site
+          external_repository: AzureCosmosDB/gallery 
           publish_branch: gh-pages
