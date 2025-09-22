@@ -1,23 +1,20 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (with PAT)
 
 on:
   push:
     branches:
       - main
-    # You can further define triggers if needed
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
-  build:
-    name: Build Docusaurus Site
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
+      # Checkout source repo
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Set up Node.js
+      # Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -31,25 +28,11 @@ jobs:
       - name: Build website
         run: yarn build
 
-      # Upload the build folder for deployment
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
-
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      # Deploy to GitHub Pages using PAT
+      # Deploy using PAT to gh-pages branch
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GH_PAT }}  # <-- Use your PAT here
-
-    # Optional: specify environment for Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+          personal_token: ${{ secrets.GH_PAT }} # PAT secret
+          publish_dir: ./build
+          external_repository: <USERNAME>/<TARGET_REPO> # e.g. org/docs-site
+          publish_branch: gh-pages
