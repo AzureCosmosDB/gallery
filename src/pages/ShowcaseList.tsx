@@ -1,23 +1,14 @@
-/**
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License.
- */
-
 import React, { useState } from "react";
 import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
-import { type User, type TagType } from "../data/tags-copy";
+import { type User } from "../data/tags-copy";
 import styles from "./styles.module.css";
-import ShowcaseCard from "../components/gallery/ShowcaseCard";
+import ShowcaseListTile from "../components/gallery/ShowcaseListTile";
 import Pagination from "../components/Pagination";
 
-export default function ShowcaseCards({
+export default function ShowcaseList({
   filteredUsers,
-  coverPage,
-  noGrid = false,
 }: {
   filteredUsers: User[];
-  coverPage: boolean;
-  noGrid?: boolean;
 }) {
   const len = filteredUsers ? filteredUsers.length : 0;
   const CARDS_PER_PAGE = 6;
@@ -29,25 +20,19 @@ export default function ShowcaseCards({
   }
   return (
     <section>
-      <div
-        className={noGrid ? undefined : styles.showcaseCards}
-        style={
-          noGrid
-            ? { display: "flex", flexDirection: "column", alignItems: "center" }
-            : undefined
-        }
-      >
+      <div className={styles.showcaseList}>
         {filteredUsers
           .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
-          .map((user, index) => (
+          .map((user, idx) => (
             <React.Fragment key={user.title}>
-              <ShowcaseCard user={user} coverPage={coverPage} />
+              <ShowcaseListTile
+                user={user}
+                tileNumber={(page - 1) * CARDS_PER_PAGE + idx + 1}
+              />
             </React.Fragment>
           ))}
       </div>
-      {!noGrid && (
-        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-      )}
+      <Pagination page={page} totalPages={totalPages} setPage={setPage} />
     </section>
   );
 }

@@ -5,34 +5,32 @@
 
 import React, { useCallback, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
-import { toggleListItem } from "@site/src/utils/jsUtils";
-import { prepareUserState } from "@site/src/pages/index";
-import { type TagType } from "@site/src/data/tags";
+import { toggleListItem } from "../../../utils/jsUtils";
+import { prepareUserState } from "../../../pages/index";
+import { type TagType } from "../../../data/tags-copy";
 import { Checkbox } from "@fluentui/react-components";
 
-export default function ShowcaseTagSelect(
-  {
-    label,
-    tag,
-    id,
-    activeTags,
-    selectedCheckbox,
-    setSelectedCheckbox,
-    location,
-    readSearchTags,
-    replaceSearchTags,
-  }: {
-    label: string;
-    tag: TagType;
-    id: string;
-    activeTags: TagType[];
-    selectedCheckbox: TagType[];
-    setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
-    location;
-    readSearchTags: (search: string) => TagType[];
-    replaceSearchTags: (search: string, newTags: TagType[]) => string;
-  }
-): JSX.Element {
+export default function ShowcaseTagSelect({
+  label,
+  tag,
+  id,
+  activeTags,
+  selectedCheckbox,
+  setSelectedCheckbox,
+  location,
+  readSearchTags,
+  replaceSearchTags,
+}: {
+  label: string;
+  tag: TagType;
+  id: string;
+  activeTags: TagType[];
+  selectedCheckbox: TagType[];
+  setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
+  location;
+  readSearchTags: (search: string) => TagType[];
+  replaceSearchTags: (search: string, newTags: TagType[]) => string;
+}): JSX.Element {
   const history = useHistory();
   // updates only the url query
   const toggleTag = () => {
@@ -45,10 +43,9 @@ export default function ShowcaseTagSelect(
       state: prepareUserState(),
     });
   };
-
   // Adobe Analytics
-  const checkbox = id.replace("showcase_checkbox_id_", "")
-  const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`
+  const checkbox = id.replace("showcase_checkbox_id_", "");
+  const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
 
   const toggleCheck = (tag: TagType) => {
     if (selectedCheckbox.includes(tag)) {

@@ -10,18 +10,172 @@ const config = {
   customFields: {
     env: process.env.REACT_APP_GITHUB_TOKEN,
     description:
-      "Your one-stop for everything Azure Cosmos DB. Code samples, docs, videos, decks, etc. Everything in one location. Community contributions are welcome.",
+      "Build scalable, secure, and high-performance applications with Azure PostgreSQL. Get started with our comprehensive documentation, samples, and community resources.",
+    disclaimerSection: {
+      title: "Azure PostgreSQL Developer Hub",
+      description:
+        "Build scalable, secure, and high-performance applications with Azure PostgreSQL. Get started with our comprehensive documentation, samples, and community resources.",
+    },
+    quickLinks: [
+      {
+        icon: "BookOpen",
+        color: "#1960fc",
+        label: "Documentation",
+        description: "Complete guides and API references",
+        href: "/docs/intro",
+      },
+      {
+        icon: "Rss",
+        color: "#04a841",
+        label: "Blog",
+        description: "Latest updates and insights",
+        href: "/blog",
+      },
+      {
+        icon: "FileText",
+        color: "#9a14fa",
+        label: "AI infographic & ebook",
+        description: "AI-powered PostgreSQL resources",
+        href: "/ai-infographic-ebook",
+      },
+      {
+        icon: "GraduationCap",
+        color: "#f54a00",
+        label: "microsoft learn",
+        description: "Structured learning paths",
+        href: "https://learn.microsoft.com/",
+      },
+      {
+        icon: "Play",
+        color: "#e80913",
+        label: "video learning",
+        description: "Step-by-step video tutorials",
+        href: "/videos",
+      },
+    ],
+    learningPathsSection: {
+      paths: [
+        {
+          icon: "Database",
+          iconColor: "#0078d4",
+          title: "Azure PostgreSQL for Application Developers",
+          description:
+            "Master the fundamentals of building production-ready applications with PostgreSQL Flexible Server on Azure",
+          level: "Beginner",
+          duration: "2-3 hours",
+          tags: ["Database Setup", "Connection Management"],
+          filterTag: "developing-core-applications",
+        },
+        {
+          icon: "Bot",
+          iconColor: "#157f15",
+          title: "AI-Powered Applications with PostgreSQL",
+          description:
+            "Learn to integrate AI capabilities with PostgreSQL vector extensions and build intelligent applications",
+          level: "Intermediate",
+          duration: "3-4 hours",
+          tags: ["Vector Extensions", "AI Integration"],
+          filterTag: "building-genai-apps",
+        },
+        {
+          icon: "Layers",
+          iconColor: "#5c2d91",
+          title: "Advanced AI Agents and Automation",
+          description:
+            "Create sophisticated AI agents that leverage PostgreSQL for data persistence and workflow automation",
+          level: "Advanced",
+          duration: "4-5 hours",
+          tags: ["Agent Architecture", "Workflow Management"],
+          filterTag: "building-ai-agents",
+        },
+      ],
+    },
+    communitySupportSection: {
+      title: "Community & Support",
+      description:
+        "Connect with fellow developers, get support, and contribute to the Azure PostgreSQL ecosystem",
+      cards: [
+        {
+          title: "Contact Us",
+          desc: "Have questions or need help? Our team is here to support you.",
+          icon: "Mail",
+          actions: [
+            {
+              label: "azure-postgresql@microsoft.com",
+              href: "mailto:azure-postgresql@microsoft.com",
+              variant: "outlined",
+              icon: "Mailbox",
+            },
+            {
+              label: "Technical support portal",
+              href: "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest",
+              variant: "outlined",
+              icon: "ExternalLink",
+            },
+          ],
+        },
+        {
+          title: "Stay Tuned",
+          desc: "Stay updated with the latest news, tips, and announcements.",
+          icon: "Bell",
+          actions: [
+            {
+              label: "Subscribe to Newsletter",
+              href: "/subscribe",
+              fullWidth: true,
+            },
+          ],
+        },
+        {
+          title: "Join the Community",
+          desc: "Join our exclusive developer community for Azure PostgreSQL with early access to features.",
+          icon: "Users",
+          iconColor: "#20b256",
+          iconBg: "#e6f7ed",
+          actions: [
+            { label: "Forum", href: "/forum" },
+            {
+              label: "Discord",
+              href: "https://discord.com/invite/azurepostgres",
+            },
+          ],
+        },
+        {
+          title: "How to Contribute",
+          desc: "Help improve Azure PostgreSQL documentation, samples, and tooling.",
+          icon: "Handshake",
+          iconColor: "#543ef6",
+          iconBg: "#edeafd",
+          actions: [{ label: "Contribute Guide", href: "/contribute" }],
+        },
+        {
+          title: "Submit Your Ideas",
+          desc: "Share feedback, request features, and vote on improvements to Azure PostgreSQL.",
+          icon: "Lightbulb",
+          iconColor: "#9a15fa",
+          iconBg: "#f5e6fd",
+          actions: [{ label: "Submit Idea", href: "/ideas" }],
+        },
+        {
+          title: "Events & Webinars",
+          desc: "Join our live sessions, workshops, and community events.",
+          icon: "Calendar",
+          iconColor: "#ea252d",
+          iconBg: "#fdeaea",
+          actions: [{ label: "View Events", href: "/events" }],
+        },
+      ],
+    },
   },
 
-  title: "Azure Cosmos DB Gallery",
+  title: "Application Developer Hub",
   tagline: "Discover - Create - Contribute",
-  url: "https://azurecosmosdb.github.io",
+  url: "https://EmumbaOrg.github.io",
   baseUrl: "/postgres-gallery/",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo.png",
   organizationName: "EmumbaOrg",
   projectName: "postgres-gallery",
   deploymentBranch: "gh-pages",
-
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
@@ -50,9 +204,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: "Azure Cosmos DB Gallery",
+        title: "Application Developer Hub",
         logo: {
-          alt: "Azure Cosmos DB logo",
+          alt: "Azure PostgreSQL App logo",
           src: "img/logo.png",
           href: "/",
           target: "_self",
@@ -64,18 +218,18 @@ const config = {
             type: "custom-NavbarButton",
             position: "right",
           },
-          {
-            type: "custom-NavbarButtonGithub",
-            href: "https://github.com/NucleoidJS/Nucleoid",
-            position: "right",
-          },
+          // {
+          //   type: "custom-NavbarButtonGithub",
+          //   href: "https://github.com/NucleoidJS/Nucleoid",
+          //   position: "right",
+          // },
         ],
       },
       footer: {
         style: "light",
         links: [
           {
-            label: "Privacy Statement",
+            label: "Privacy & Cookies",
             to: "https://privacy.microsoft.com/privacystatement",
           },
           {
@@ -87,7 +241,7 @@ const config = {
             to: "https://docusaurus.io",
           },
           {
-            label: `Copyright © ${new Date().getFullYear()} Microsoft`,
+            label: ` © ${new Date().getFullYear()} Microsoft`,
             to: "https://microsoft.com",
           },
         ],
@@ -113,23 +267,25 @@ const config = {
 
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         blog: {
           showReadingTime: true,
-          routeBasePath: 'blog',
-          blogTitle: 'Azure Cosmos DB Gallery Blog',
-          blogDescription: 'Latest updates, community stories, and developer news',
+          routeBasePath: "blog",
+          blogTitle: "Application Developer Hub Blog",
+          blogDescription:
+            "Latest updates, community stories, and developer news",
           feedOptions: {
-            type: 'all', // 'rss' | 'atom' | 'all'
-            title: 'Azure Cosmos DB Gallery Blog RSS Feed',
-            description: 'Stay updated with new blog posts from Azure Cosmos DB Gallery',
-            language: 'en',
+            type: "all", // 'rss' | 'atom' | 'all'
+            title: "Application Developer Hub Blog RSS Feed",
+            description:
+              "Stay updated with new blog posts from Application Developer Hub",
+            language: "en",
             copyright: `Copyright © ${new Date().getFullYear()} Microsoft`,
           },
         },
         gtag: {
-          trackingID: 'G-CNSKHL41CT',
+          trackingID: "G-CNSKHL41CT",
           anonymizeIP: true,
         },
         theme: {

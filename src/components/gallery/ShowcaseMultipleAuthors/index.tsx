@@ -5,7 +5,7 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-import { type User } from "../../../data/tags";
+import { type User } from "../../../data/tags-copy";
 import { Link } from "@fluentui/react";
 
 function ShowcaseMultipleWebsites(
@@ -41,18 +41,18 @@ function ShowcaseMultipleWebsites(
 }
 
 export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
-  const authors = user.author;
-  const websites = user.website;
+  const authors = user?.author;
+  const websites = user?.website;
   let i = 0;
 
-  if (authors.includes(", ")) {
+  if (authors?.includes(", ")) {
     var multiWebsites = websites.split(", ");
-    var multiAuthors = authors.split(", ");
+    var multiAuthors = authors?.split(", ");
 
-    if (multiWebsites.length != multiAuthors.length) {
+    if (multiWebsites.length != multiAuthors?.length) {
       throw new Error(
         "The number of multiple authors(" +
-          multiAuthors.length +
+          multiAuthors?.length +
           ") and websites(" +
           multiWebsites.length +
           ") are not equal."
@@ -65,7 +65,7 @@ export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
         {multiWebsites.map((value, index) => {
           return ShowcaseMultipleWebsites(
             index,
-            multiAuthors[index],
+            multiAuthors?.[index],
             multiWebsites[index],
             multiWebsites.length,
             i++
@@ -78,7 +78,12 @@ export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
   return (
     <>
       <div>by</div>
-      <Link className={styles.color} key={authors} href={websites} target="_blank">
+      <Link
+        className={styles.color}
+        key={authors}
+        href={websites}
+        target="_blank"
+      >
         {authors}
       </Link>
     </>

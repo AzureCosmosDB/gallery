@@ -3,9 +3,34 @@
 * Licensed under the MIT License.
  */
 
+
+
 .checkboxListItem {
   user-select: none;
   white-space: nowrap;
+  padding-left: 0 !important;
+}
+
+.checkboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.subCheckboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 24px;
+}
+
+.subCheckboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.subCheckboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 24px;
 }
 
 .checkboxListItem:last-child {
@@ -28,7 +53,7 @@
 }
 
 .tagCatalogBackground {
-  background: linear-gradient(#d1d1d1 0 0) top / 89.8% 0.6px no-repeat;
+  /* Removed border-top and top gradient for accordion header */
 }
 
 .tagSubCatalog {

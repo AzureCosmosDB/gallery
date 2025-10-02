@@ -1,3 +1,4 @@
+import LearningPathsSection from "../components/LearningPathsSection";
 /**
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
@@ -8,6 +9,9 @@ import Layout from "@theme/Layout";
 import ShowcaseLeftFilters from "../components/gallery/ShowcaseLeftFilters";
 import ShowcaseCoverPage from "../components/gallery/ShowcaseCoverPage";
 import ShowcaseCardPage, { UserState } from "./ShowcaseCardPage";
+import QuickLinks from "../components/QuickLinks";
+import CommunitySupportSection from "../components/CommunitySupportSection";
+import DisclaimerSection from "../components/DisclaimerSection";
 import {
   FluentProvider,
   webLightTheme,
@@ -17,8 +21,8 @@ import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { useColorMode } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
-import { type TagType } from "@site/src/data/tags";
-import { TagList } from "@site/src/data/users";
+import { type TagType } from "../data/tags-copy";
+import { TagList } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
 
@@ -57,7 +61,7 @@ const App = () => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-    
+
     // Read tags from location search regardless of loading state
     const tags = readSearchTags(location.search);
     setSelectedCheckbox(tags);
@@ -74,60 +78,100 @@ const App = () => {
       theme={colorMode == "dark" ? webDarkTheme : webLightTheme}
       className={styles.container}
     >
-      <ShowcaseCoverPage />
-      <div className={styles.filterAndCardContainer}>
-        <div className={styles.filterAndCard}>
-          <div className={styles.filter}>
-            <ShowcaseLeftFilters
-              activeTags={activeTags}
-              selectedCheckbox={selectedCheckbox}
-              setSelectedCheckbox={setSelectedCheckbox}
-              location={location}
-              setSelectedTags={setSelectedTags}
-              selectedTags={selectedTags}
-              readSearchTags={readSearchTags}
-              replaceSearchTags={replaceSearchTags}
-            />
-          </div>
-          <div className={styles.card}>
-            <ShowcaseCardPage
-              setActiveTags={setActiveTags}
-              selectedTags={selectedTags}
-              location={location}
-              setSelectedTags={setSelectedTags}
-              setSelectedCheckbox={setSelectedCheckbox}
-              readSearchTags={readSearchTags}
-              replaceSearchTags={replaceSearchTags}
-            />
+      <div id="home">
+        <ShowcaseCoverPage />
+      </div>
+      <div id="learning-paths">
+        <LearningPathsSection />
+      </div>
+      <div id="resource-library">
+        <div className={styles.filterAndCardContainer}>
+          <div className={styles.filterAndCard}>
+            <div className={styles.filter}>
+              <ShowcaseLeftFilters
+                activeTags={activeTags}
+                selectedCheckbox={selectedCheckbox}
+                setSelectedCheckbox={setSelectedCheckbox}
+                location={location}
+                setSelectedTags={setSelectedTags}
+                selectedTags={selectedTags}
+                readSearchTags={readSearchTags}
+                replaceSearchTags={replaceSearchTags}
+              />
+            </div>
+            <div className={styles.card}>
+              <ShowcaseCardPage
+                setActiveTags={setActiveTags}
+                selectedTags={selectedTags}
+                location={location}
+                setSelectedTags={setSelectedTags}
+                setSelectedCheckbox={setSelectedCheckbox}
+                readSearchTags={readSearchTags}
+                replaceSearchTags={replaceSearchTags}
+              />
+            </div>
           </div>
         </div>
+      </div>
+      <div id="quick-links">
+        <QuickLinks />
+      </div>
+      <div id="community-support">
+        <CommunitySupportSection />
       </div>
     </FluentProvider>
   );
 };
 
-
 export default function Showcase(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>Azure Cosmos DB Gallery</title>
-        <meta name="description" content="Your best source for patterns and content for Azure Cosmos DB" />
-        <meta name="keywords" content="Azure Cosmos DB, samples, Gen-AI, Azure OpenAI, GitHub, OSS, content" />
+        <title>Azure PostgreSQL App Dev Hub</title>
+        <meta
+          name="description"
+          content="Your best source for patterns and content for Azure Cosmos DB"
+        />
+        <meta
+          name="keywords"
+          content="Azure Cosmos DB, samples, Gen-AI, Azure OpenAI, GitHub, OSS, content"
+        />
         <meta name="author" content="Azure Cosmos DB Team" />
-        <meta property="og:title" content="Azure Cosmos DB Gallery" />
-        <meta property="og:description" content="Your best source for patterns and content for Azure Cosmos DB" />
-        <meta property="og:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
-        <meta property="og:url" content="https://azurecosmosdb.github.io/gallery" />
-        <meta name="twitter:card" content="Azure Cosmos DB Gallery Home Page" />
-        <meta name="twitter:title" content="Azure Cosmos DB Gallery" />
-        <meta name="twitter:description" content="Your best source for patterns and content for Azure Cosmos DB" />
-        <meta name="twitter:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
-        <meta name="twitter:url" content="https://azurecosmosdb.github.io/gallery"/>
+        <meta property="og:title" content="Azure PostgreSQL App Dev Hub" />
+        <meta
+          property="og:description"
+          content="Your best source for patterns and content for Azure Cosmos DB"
+        />
+        <meta
+          property="og:image"
+          content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png"
+        />
+        <meta
+          property="og:url"
+          content="https://azurecosmosdb.github.io/gallery"
+        />
+        <meta
+          name="twitter:card"
+          content="Azure PostgreSQL App Dev Hub Home Page"
+        />
+        <meta name="twitter:title" content="Azure PostgreSQL App Dev Hub" />
+        <meta
+          name="twitter:description"
+          content="Your best source for patterns and content for Azure Cosmos DB"
+        />
+        <meta
+          name="twitter:image"
+          content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png"
+        />
+        <meta
+          name="twitter:url"
+          content="https://azurecosmosdb.github.io/gallery"
+        />
       </Helmet>
-    <Layout>
-      <App />
-    </Layout>
-  </>
+      <Layout>
+        <App />
+      </Layout>
+      <DisclaimerSection />
+    </>
   );
 }
