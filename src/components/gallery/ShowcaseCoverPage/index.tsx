@@ -50,7 +50,10 @@ export default function ShowcaseCoverPage() {
               }}
             >
               {/* Card 1 */}
-              <div className={`${styles.cardCommon} ${styles.cardBlue}`}>
+              <div
+                className={`${styles.cardCommon} ${styles.cardBlue}`}
+                style={{ border: "3px solid #b3daf2 !important" }}
+              >
                 <div className={styles.cardIconWrapper}>
                   <BookOpen size={40} style={{ color: "#0078d4" }} />
                 </div>
