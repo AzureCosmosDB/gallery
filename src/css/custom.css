@@ -38,7 +38,7 @@ html, body, #__docusaurus, #__docusaurus * {
 }
 
 .navbar {
-  max-width: 1736px;
+  /* max-width: 1736px; */
   width: 100%;
   margin: auto;
 }
