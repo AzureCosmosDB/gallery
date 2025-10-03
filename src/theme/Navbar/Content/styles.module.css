@@ -1,3 +1,84 @@
+.menuItemDropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  z-index: 100;
+  padding: 0.5rem 0;
+}
+.menuItemDropdown:hover .dropdownMenu {
+  display: block;
+}
+.dropdownMenuItem {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #454f60;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdownMenuItem:hover,
+.dropdownMenuItem.activeMenuItem {
+  background: #f5f5f5;
+  color: #2567a8;
+  text-decoration: none !important;
+}
+/* Custom navbar layout for three sections */
+.navbarCustomInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+}
+
+.navbarCenter {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+}
+
+.menuNav {
+  display: flex;
+  gap: 2rem;
+}
+
+.menuItem {
+  color: #454f60;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.menuItem:hover,
+.activeMenuItem {
+  color: #2567a8;
+  text-decoration: none !important;
+}
+.activeMenuItem{
+  font-weight: 600;
+}
+
 /*
 Hide color mode toggle in small viewports
  */

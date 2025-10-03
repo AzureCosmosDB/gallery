@@ -25,6 +25,7 @@ export type User = {
   tags: TagType[];
   video?: string;
   previewTags?: TagType[];
+  image?: string;
 };
 
 type SubType = {
@@ -42,11 +43,11 @@ export const openai: SubType = {
 export const meta: SubType = {
   label: "Meta",
   icon: "./img/meta.svg",
-}
+};
 
 export const microsoft: SubType = {
   label: "Microsoft",
-  icon: "./img/Microsoft.svg"
+  icon: "./img/Microsoft.svg",
 };
 
 export const mistralai: SubType = {
@@ -177,7 +178,6 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "This tag is used for featured templates.",
   },
 
-
   // Language Tags
   javascript: {
     label: "JavaScript",
@@ -239,7 +239,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Azure AI Search",
     description: "Template uses Azure AI Search",
     type: "VectorDatabase",
-    icon: "./img/aisearch.svg"
+    icon: "./img/aisearch.svg",
   },
 
   // Model Tags
@@ -348,7 +348,8 @@ export const Tags: { [type in TagType]: Tag } = {
   },
   mcp: {
     label: "MCP",
-    description: "Multi context protocol, a pattern for building LLM applications",
+    description:
+      "Multi context protocol, a pattern for building LLM applications",
     type: "GenerativeAI",
   },
   summarization: {
@@ -400,27 +401,27 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Generative AI",
     description: "Generative AI and Vector Database content",
     icon: "",
-    type: "ContentType"
+    type: "ContentType",
   },
   architecturedesign: {
     label: "Architecture",
     description: "Architecture and design patterns",
-    type: "ContentType"
+    type: "ContentType",
   },
   tools: {
     label: "Tools",
     description: "Tools and utilities for development",
-    type: "ContentType"
+    type: "ContentType",
   },
   migration: {
     label: "Data Migration",
     description: "Migrating data between services",
-    type: "ContentType"
+    type: "ContentType",
   },
   analytics: {
     label: "Analytics",
     description: "Data Analytics and visualization",
-    type: "ContentType"
+    type: "ContentType",
   },
   microsoft: {
     label: "",
@@ -432,10 +433,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   community: {
     label: "",
@@ -447,10 +448,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   infrastructure: {
     label: "",
@@ -462,10 +463,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   CQRS: {
     label: "",
@@ -477,10 +478,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   "outbox-pattern": {
     label: "",
@@ -492,10 +493,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   "event-sourcing": {
     label: "",
@@ -507,10 +508,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   "data-modeling": {
     label: "",
@@ -522,10 +523,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   serverless: {
     label: "",
@@ -537,10 +538,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   BCDR: {
     label: "",
@@ -552,10 +553,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   search: {
     label: "",
@@ -567,10 +568,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   graphrag: {
     label: "",
@@ -582,10 +583,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   jupyternotebook: {
     label: "",
@@ -597,10 +598,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   openai: {
     label: "",
@@ -612,10 +613,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   "azure-vision": {
     label: "",
@@ -627,10 +628,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   "embedding-cohere": {
     label: "",
@@ -642,10 +643,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   promptflow: {
     label: "",
@@ -657,10 +658,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   pinecone: {
     label: "",
@@ -672,10 +673,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   diskann: {
     label: "",
@@ -687,10 +688,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   semantickernel: {
     label: "",
@@ -702,10 +703,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   langchain: {
     label: "",
@@ -717,10 +718,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   llamaindex: {
     label: "",
@@ -732,10 +733,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   springai: {
     label: "",
@@ -747,10 +748,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   bicep: {
     label: "",
@@ -762,10 +763,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   terraform: {
     label: "",
@@ -777,10 +778,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   prometheus: {
     label: "",
@@ -792,10 +793,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   cosmosdb: {
     label: "",
@@ -807,10 +808,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   appinsights: {
     label: "",
@@ -822,10 +823,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   loganalytics: {
     label: "",
@@ -837,10 +838,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   appservice: {
     label: "",
@@ -852,10 +853,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   documentintelligence: {
     label: "",
@@ -867,10 +868,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   monitor: {
     label: "",
@@ -882,10 +883,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   keyvault: {
     label: "",
@@ -897,10 +898,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   aca: {
     label: "",
@@ -912,10 +913,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   functions: {
     label: "",
@@ -927,10 +928,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   blobstorage: {
     label: "",
@@ -942,10 +943,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azuresql: {
     label: "",
@@ -957,10 +958,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azurepostrgres: {
     label: "",
@@ -972,10 +973,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azuredbmysql: {
     label: "",
@@ -987,10 +988,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   swa: {
     label: "",
@@ -1002,10 +1003,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   servicebus: {
     label: "",
@@ -1017,10 +1018,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   vnets: {
     label: "",
@@ -1032,10 +1033,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   aisearch: {
     label: "",
@@ -1047,10 +1048,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azureai: {
     label: "",
@@ -1062,10 +1063,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   apim: {
     label: "",
@@ -1077,10 +1078,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   aks: {
     label: "",
@@ -1092,10 +1093,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azurecdn: {
     label: "",
@@ -1107,10 +1108,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   frontdoor: {
     label: "",
@@ -1122,10 +1123,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   grafana: {
     label: "",
@@ -1137,10 +1138,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azurespringapps: {
     label: "",
@@ -1152,10 +1153,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   rediscache: {
     label: "",
@@ -1167,10 +1168,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   agw: {
     label: "",
@@ -1182,10 +1183,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azurebot: {
     label: "",
@@ -1197,10 +1198,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   ade: {
     label: "",
@@ -1212,10 +1213,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   acr: {
     label: "",
@@ -1227,10 +1228,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   eventhub: {
     label: "",
@@ -1242,10 +1243,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azurestorage: {
     label: "",
@@ -1257,10 +1258,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azureappconfig: {
     label: "",
@@ -1272,10 +1273,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   aistudio: {
     label: "",
@@ -1287,10 +1288,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   apicenter: {
     label: "",
@@ -1302,10 +1303,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   eventgrid: {
     label: "",
@@ -1317,10 +1318,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   diagnosticsettings: {
     label: "",
@@ -1332,10 +1333,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   logicapps: {
     label: "",
@@ -1347,10 +1348,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   managedidentity: {
     label: "",
@@ -1362,10 +1363,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   serviceprincipal: {
     label: "",
@@ -1377,10 +1378,10 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
+    date: "",
   },
   azuredatafactory: {
     label: "",
@@ -1392,9 +1393,9 @@ export const Tags: { [type in TagType]: Tag } = {
     subType: {
       label: "",
       icon: "",
-      darkIcon: ""
+      darkIcon: "",
     },
     buttonText: "",
-    date: ""
-  }
+    date: "",
+  },
 };

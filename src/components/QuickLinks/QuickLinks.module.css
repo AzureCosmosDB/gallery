@@ -1,0 +1,66 @@
+.quickLinksSection {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.description {
+   font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #91949a;
+  margin-bottom: 32px;
+}
+
+.tilesContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: nowrap;
+  padding: 0px 32px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  padding: 32px 12px !important;
+  transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform, box-shadow;
+  text-decoration: none !important;
+  width: 250px !important;
+  min-height: 150px !important;
+}
+
+.tile:hover {
+  border-color: #bdbdbd;
+  box-shadow: 0 8px 24px rgba(25, 96, 252, 0.12), 0 1.5px 6px rgba(0,0,0,0.10);
+  transform: translateY(-4px);
+  text-decoration: none !important;
+}
+
+.icon {
+  margin-bottom: 12px;
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #2d3035;
+}
+
+.tileDescription {
+  font-size: 0.97rem;
+  color: #959a9d;
+}

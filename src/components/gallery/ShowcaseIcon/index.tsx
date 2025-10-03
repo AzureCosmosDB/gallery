@@ -4,9 +4,9 @@
  */
 import React, { useMemo } from "react";
 import styles from "./styles.module.css";
-import { Tags, type TagType } from "../../../data/tags";
+import { Tags, type TagType } from "../../../data/tags-copy";
 import { TagList } from "../../../data/users";
-import { sortBy } from "@site/src/utils/jsUtils";
+import { sortBy } from "../../../utils/jsUtils";
 import { Tooltip, Button } from "@fluentui/react-components";
 import { TagImage } from "../TagImage";
 
@@ -28,7 +28,9 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   const filteredTags = [
     ...tagObjectsSorted.filter((tag) => tag.type === "Language"),
     ...uniqueModelTags,
-    ...tagObjectsSorted.filter((tag) => tag.type === "ResourceType").slice(0, 1),
+    ...tagObjectsSorted
+      .filter((tag) => tag.type === "ResourceType")
+      .slice(0, 1),
   ];
 
   const displayTags = filteredTags.slice(0, 3); // First 3 Tags

@@ -1,3 +1,108 @@
+/* Reusable style for resource links */
+.resourceLink {
+  color: #83817f;
+  text-decoration: none;
+  font-weight: 500;
+}
+.resourceLink:hover{
+  text-decoration: underline;
+  color: #2567a8;
+}
+/* Common card styles */
+.cardCommon {
+  width: 325px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+.cardCommon:hover{
+  transform: translateY(-8px);
+  transition: all 0.3s ease-in-out;
+  .cardIconWrapper{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+  }
+}
+.cardBlue {
+  border: 3px solid #b3daf2;
+  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+}
+.cardGreen {
+  border: 3px solid #c8f2c8;
+  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+}
+.cardPurple {
+  border: 3px solid #e1d7f2;
+  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+}
+
+.cardIconWrapper {
+  background: #fff;
+  padding: 25px;
+  border-radius: 30%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.cardDesc {
+  color: #555;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.cardLinks {
+  color: #555;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+/* Blue outlined button for resource links */
+.resourceButton {
+  color: #2567a8 !important;
+  border-color: #2567a8 !important;
+  --fuib-button-outline-color: #2567a8;
+  --fuib-button-color: #2567a8;
+}
+.centeredDescription {
+  text-align: center !important;
+  width: 100%;
+  color: #636364;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+.greyText{
+  text-align: center !important;
+  font-weight: 400 !important;
+  font-size: 26px !important;
+  color: #91949a
+}
+
+.titleSection :global(.fuib-Title3),
+.titleSection .fuib-Title3 {
+  text-align: center;
+}
 /**
 * Copyright (c) Microsoft Corporation. All rights reserved.
 * Licensed under the MIT License.
@@ -20,25 +125,28 @@
 }
 
 .coverPageAreaContainer {
-  max-width: 1736px;
   margin: 0 auto;
+   background-size: cover;
+  background-repeat: no-repeat;
  
 }
 
 .coverPageArea {
-  position: relative;
-  width: 100%;
-  height: 728px;
-  padding: 72px 72px 96px 72px;
-  max-height: fit-content;
+  padding: 180px 72px 96px 72px;
+  max-height: fit-content; 
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .titleSection {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 16px;
-  width: 70%;
+  width: 65%;
 }
 
 .subtitleSection {

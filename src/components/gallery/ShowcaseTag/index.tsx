@@ -5,9 +5,9 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-import { Tags, type TagType } from "../../../data/tags";
+import { Tags, type TagType } from "../../../data/tags-copy";
 import { TagList } from "../../../data/users";
-import { sortBy } from "@site/src/utils/jsUtils";
+import { sortBy } from "../../../utils/jsUtils";
 import { Badge, Tooltip } from "@fluentui/react-components";
 
 export default function ShowcaseCardTag({
@@ -28,10 +28,20 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "Language"
   );
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
-  const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === "GenerativeAI");
+  const intelligentSolutionTags = tagObjectsSorted.filter(
+    (tag) => tag.type === "GenerativeAI"
+  );
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
-  const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
-  const contentTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ContentType");
+  const resourceTypeTags = tagObjectsSorted.filter(
+    (tag) => tag.type === "ResourceType"
+  );
+  const contentTypeTags = tagObjectsSorted.filter(
+    (tag) => tag.type === "ContentType"
+  );
+  const serviceTags = tagObjectsSorted.filter((tag) => tag.type === "Service");
+  const learningPathTags = tagObjectsSorted.filter(
+    (tag) => tag.type === "LearningPath"
+  );
   const tagsByTypeSorted = [
     ...languageTags,
     ...modelTags,
@@ -39,6 +49,8 @@ export default function ShowcaseCardTag({
     ...azureTags,
     ...resourceTypeTags,
     ...contentTypeTags,
+    ...serviceTags,
+    ...learningPathTags,
   ];
   const length = tagObjectsSorted.length;
   let number = 0;
@@ -51,29 +63,42 @@ export default function ShowcaseCardTag({
     number = index + 1;
   });
   const rest = length - number;
-
- const moreTagDetailList = tagsByTypeSorted
+  const moreTagDetailList = tagsByTypeSorted
     .map((tagObject) => tagObject.tag)
     .join("\n");
-
+  console.log(
+    "length, number, rest, tagsByTypeSorted, moreTagDetailList:",
+    length,
+    number,
+    rest,
+    tagsByTypeSorted,
+    moreTagDetailList
+  );
   if (!cardPanel) {
-    if (length > number) {
-      return (
-        <>
-          {tagsByTypeSorted.slice(0, number).map((tagObject, index) => {
-            const key = `showcase_card_tag_${tagObject.tag}`;
-            return (
-              <Badge
-                appearance="tint"
-                size="medium"
-                color="brand"
-                key={key}
-                className={styles.cardTag}
-              >
-                {tagObject.label}
-              </Badge>
-            );
-          })}
+    const maxTags = 1;
+    const shownTags = tagsByTypeSorted.slice(0, maxTags);
+    const rest = tagsByTypeSorted.length - maxTags;
+    const moreTagDetailList = tagsByTypeSorted
+      .slice(maxTags)
+      .map((tagObject) => tagObject.tag)
+      .join("\n");
+    return (
+      <>
+        {shownTags.map((tagObject, index) => {
+          const key = `showcase_card_tag_${tagObject.tag}`;
+          return (
+            <Badge
+              appearance="tint"
+              size="medium"
+              color="brand"
+              key={key}
+              className={styles.cardTag}
+            >
+              {tagObject.label}
+            </Badge>
+          );
+        })}
+        {rest > 0 && (
           <Tooltip
             withArrow
             content={{
@@ -92,31 +117,12 @@ export default function ShowcaseCardTag({
               color="brand"
               className={styles.cardTag}
             >
-              + {rest} more
+              +{rest} more
             </Badge>
           </Tooltip>
-        </>
-      );
-    } else {
-      return (
-        <>
-          {tagsByTypeSorted.map((tagObject, index) => {
-            const key = `showcase_card_tag_${tagObject.tag}`;
-            return (
-              <Badge
-                appearance="tint"
-                size="medium"
-                color="brand"
-                key={key}
-                className={styles.cardTag}
-              >
-                {tagObject.label}
-              </Badge>
-            );
-          })}
-        </>
-      );
-    }
+        )}
+      </>
+    );
   } else {
     return (
       <>
