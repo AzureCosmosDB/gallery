@@ -31,7 +31,7 @@
   }
 }
 .cardBlue {
-  border: 3px solid #b3daf2;
+  border: 3px solid #b3daf2 !important;
   box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
 }
 .cardGreen {
