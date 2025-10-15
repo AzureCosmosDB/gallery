@@ -8,6 +8,7 @@ import { Title3, Display, Title2, Button } from "@fluentui/react-components";
 import { BookOpen, Library, Users } from "lucide-react";
 import styles from "./styles.module.css";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import { useHistory, useLocation } from "@docusaurus/router";
 
 const title = "Application Developer Hub";
 const description =
@@ -16,12 +17,39 @@ const subDescription = "for Azure PostgreSQL";
 
 export default function ShowcaseCoverPage() {
   const bgUrl = useBaseUrl("/img/dotted-background-opacity40.png");
-  // Scroll to resource library section
-  const scrollToResourceLibrary = (e) => {
+  const history = useHistory();
+  const location = useLocation();
+
+  // Scroll to resource library section with filtering
+  const scrollToResourceLibrary = (e, tagFilter) => {
     e.preventDefault();
-    const el = document.getElementById("resource-library");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (tagFilter) {
+      // Update URL with the tag filter
+      const params = new URLSearchParams();
+      params.set("tags", tagFilter);
+
+      // Use history to update the URL
+      history.replace({
+        pathname: location.pathname,
+        search: `?${params.toString()}`,
+      });
+
+      // Scroll to resource library and switch to list view
+      requestAnimationFrame(() => {
+        const el = document.getElementById("resource-library");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Dispatch custom event to switch to list view
+          window.dispatchEvent(new Event("switchToListView"));
+        }
+      });
+    } else {
+      // Just scroll without filtering
+      const el = document.getElementById("resource-library");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
@@ -57,7 +85,7 @@ export default function ShowcaseCoverPage() {
                 <div className={styles.cardIconWrapper}>
                   <BookOpen size={40} style={{ color: "#0078d4" }} />
                 </div>
-                <span className={styles.cardTitle}>Learning pathways</span>
+                <span className={styles.cardTitle}>Learning Pathways</span>
                 <span className={styles.cardDesc}>
                   Structured learning paths from beginner to advanced
                 </span>
@@ -67,12 +95,12 @@ export default function ShowcaseCoverPage() {
                 <div className={styles.cardIconWrapper}>
                   <Library size={40} style={{ color: "#157f15" }} />
                 </div>
-                <span className={styles.cardTitle}>Resource library</span>
+                <span className={styles.cardTitle}>Resource Library</span>
                 <span className={styles.cardLinks}>
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) => scrollToResourceLibrary(e, "training")}
                   >
                     Trainings
                   </a>{" "}
@@ -80,7 +108,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) => scrollToResourceLibrary(e, "concepts")}
                   >
                     Documentation
                   </a>{" "}
@@ -88,7 +116,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) => scrollToResourceLibrary(e, "samples")}
                   >
                     Samples
                   </a>{" "}
@@ -96,7 +124,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) => scrollToResourceLibrary(e, "blog")}
                   >
                     Blogs
                   </a>{" "}
@@ -104,7 +132,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) => scrollToResourceLibrary(e, "video")}
                   >
                     Videos
                   </a>{" "}
@@ -112,7 +140,9 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={scrollToResourceLibrary}
+                    onClick={(e) =>
+                      scrollToResourceLibrary(e, "solution-accelerator")
+                    }
                   >
                     Solution Accelerators
                   </a>
@@ -123,7 +153,7 @@ export default function ShowcaseCoverPage() {
                 <div className={styles.cardIconWrapper}>
                   <Users size={40} style={{ color: "#5c2d91" }} />
                 </div>
-                <span className={styles.cardTitle}>Community & support</span>
+                <span className={styles.cardTitle}>Community & Support</span>
                 <span className={styles.cardDesc}>
                   Connect with developers and get expert help
                 </span>

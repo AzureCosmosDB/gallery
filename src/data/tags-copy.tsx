@@ -24,6 +24,7 @@ export type User = {
   video?: string;
   previewTags?: TagType[];
   image?: string;
+  date?: string;
 };
 
 type SubType = {
@@ -60,7 +61,7 @@ export type TagType =
   | "connect"
   | "vscode"
   | "best-practice"
-  // | "devops"
+  | "devops"
   | "fabric"
   | "powerbi"
   | "adf"
@@ -89,19 +90,19 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   // Language Tags for filtering content
-  javascript: {
-    label: "JavaScript",
-    description: "Template contains JavaScript app code",
+  python: {
+    label: "Python",
+    description: "Template contains Python app code",
+    type: "Language",
+  },
+  dotnet: {
+    label: ".NET",
+    description: "Template contains .NET app code",
     type: "Language",
   },
   java: {
     label: "Java",
     description: "Template contains Java app code",
-    type: "Language",
-  },
-  python: {
-    label: "Python",
-    description: "Template contains Python app code",
     type: "Language",
   },
   go: {
@@ -114,9 +115,9 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Template contains PHP app code",
     type: "Language",
   },
-  dotnet: {
-    label: ".NET",
-    description: "Template contains .NET app code",
+  javascript: {
+    label: "JavaScript",
+    description: "Template contains JavaScript app code",
     type: "Language",
   },
 
@@ -133,6 +134,26 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "GenerativeAI",
     buttonText: "Go to Github repo",
   },
+
+  fundamentals: {
+    label: "Azure PostgreSQL Fundamentals",
+    description: "Fundamental concepts and getting started content",
+    type: "ContentType",
+    subType: [{ label: "Overview" }, { label: "getting-started" }],
+  },
+
+  "app-dev": {
+    label: "Application Development (Core)",
+    description: "Application Development",
+    type: "ContentType",
+    subType: [
+      { label: "Connect" },
+      { label: "vscode" },
+      { label: "best-practice" },
+      { label: "devops" },
+    ],
+  },
+
   overview: {
     label: "Overview",
     description: "Template provides an overview of GenAI capabilities",
@@ -156,7 +177,7 @@ export const Tags: { [type in TagType]: Tag } = {
   azureai: {
     label: "Azure AI services integration",
     description: "Template integrates with Azure AI services",
-    type: "GenerativeAI",
+    type: ["GenerativeAI", "ContentType"],
   },
 
   // ResourceType Tags for filtering content
@@ -228,6 +249,7 @@ export const Tags: { [type in TagType]: Tag } = {
       { label: "Agent" },
       { label: "Semantic" },
       { label: "Graph" },
+      { label: "AzureAI" },
     ],
   },
 
@@ -236,6 +258,10 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Data Analytics and visualization",
     type: "ContentType",
     subType: [{ label: "PowerBI" }, { label: "Fabric" }, { label: "ADF" }],
+  },
+  devops: {
+    label: "CI/CD",
+    description: "Data Analytics and visualization",
   },
   powerbi: {
     label: "PowerBI",
@@ -249,16 +275,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Azure Data Factory and Synapse",
     description: "Azure Data Factory",
   },
-  "app-dev": {
-    label: "Application Development (Core)",
-    description: "Application Development",
-    type: "ContentType",
-    subType: [
-      { label: "Connect" },
-      { label: "vscode" },
-      { label: "best-practice" },
-    ],
-  },
+
   connect: {
     label: "Connect and Query",
     description: "Connect to Azure Database for PostgreSQL",
@@ -270,13 +287,6 @@ export const Tags: { [type in TagType]: Tag } = {
   "best-practice": {
     label: "Best Practices",
     description: "Best Practices for Application Development",
-  },
-
-  fundamentals: {
-    label: "Azure PostgreSQL Fundamentals",
-    description: "Fundamental concepts and getting started content",
-    type: "ContentType",
-    subType: [{ label: "Overview" }, { label: "getting-started" }],
   },
   "getting-started": {
     label: "Getting Started",

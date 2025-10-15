@@ -122,24 +122,23 @@ export default function ShowcaseLeftFilters({
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
-  const sortTagList = TagList.sort();
-  const languageTag = sortTagList.filter((tag) => {
+  const languageTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     return tagObject.type === "Language";
   });
-  const resourceTypeTag = sortTagList.filter((tag) => {
+  const resourceTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     return tagObject.type === "ResourceType";
   });
-  const contentTypeTag = sortTagList.filter((tag) => {
+  const contentTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     return tagObject.type === "ContentType";
   });
-  const serviceTag = sortTagList.filter((tag) => {
+  const serviceTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     return tagObject.type === "Service";
   });
-  const learningPathTag = sortTagList.filter((tag) => {
+  const learningPathTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     return tagObject.type === "LearningPath";
   });

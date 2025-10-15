@@ -15,7 +15,7 @@ const QuickLinks: React.FC = () => {
   }>;
   return (
     <section className={styles.quickLinksSection}>
-      <h2 className={styles.title}>Quick links</h2>
+      <h2 className={styles.title}>Quick Links</h2>
       <div className={styles.description}>
         Jump straight to the resources you need to accelerate your development
       </div>

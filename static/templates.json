@@ -3,20 +3,16 @@
     "title": "Get started for free with an Azure free account",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
-    "tags": ["learning-path", "developing-core-applications", "featured"],
+    "tags": ["learning-path", "developing-core-applications"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn how to set up and explore Azure Database for PostgreSQL using a free Azure account."
+    "description": "Learn how to set up and explore Azure Database for PostgreSQL using a free Azure account.",
+    "date": ""
   },
   {
     "title": "Build a CRUD app with Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
-    "tags": [
-      "flexibleserver",
-      "learning-path",
-      "developing-core-applications",
-      "featured"
-    ],
+    "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
     "description": "Step-by-step guide to building a CRUD application with Azure Database for PostgreSQL."
   },
@@ -24,7 +20,7 @@
     "title": "Develop using the PostgreSQL extension for VS Code",
     "website": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-connect",
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-connect",
-    "tags": ["learning-path", "developing-core-applications", "featured"],
+    "tags": ["learning-path", "developing-core-applications"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
     "description": "Get started with the PostgreSQL extension for Visual Studio Code to streamline database development."
   },
@@ -36,7 +32,6 @@
       "python",
       "learning-path",
       "developing-core-applications",
-      "featured",
       "app-dev"
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
@@ -79,7 +74,8 @@
       "building-genai-apps"
     ],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Introduction to generative AI concepts and features in Azure Database for PostgreSQL."
+    "description": "Introduction to generative AI concepts and features in Azure Database for PostgreSQL.",
+    "date": "2025-03-11"
   },
   {
     "title": "Enable and use pgvector for native Vector Search",
@@ -87,7 +83,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgvector",
     "tags": ["vector", "learning-path", "building-genai-apps"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Guide to enabling and using pgvector for efficient vector search in PostgreSQL."
+    "description": "Guide to enabling and using pgvector for efficient vector search in PostgreSQL.",
+    "date": "2025-03-11"
   },
   {
     "title": "Integrate with Azure AI services",
@@ -217,7 +214,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/overview",
     "tags": ["flexibleserver", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Overview of Azure Database for PostgreSQL and its key features."
+    "description": "Overview of Azure Database for PostgreSQL and its key features.",
+    "date": "2025-04-25"
   },
   {
     "title": "Try PostgreSQL flexible server for free with an Azure free account",
@@ -225,7 +223,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Get started with PostgreSQL flexible server on Azure using a free account."
+    "description": "Get started with PostgreSQL flexible server on Azure using a free account.",
+    "date": "2025-02-12"
   },
   {
     "title": "Quickstart: Create an Azure Database for PostgreSQL",
@@ -233,7 +232,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "tags": ["flexibleserver", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart guide for creating an Azure Database for PostgreSQL flexible server."
+    "description": "Quickstart guide for creating an Azure Database for PostgreSQL flexible server.",
+    "date": "2025-03-11"
   },
   {
     "title": "Quickstart: Use Azure SDK for Python to create and manage a PostgreSQL flexible server instance",
@@ -241,7 +241,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-python-sdk",
     "tags": ["python", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn to create and manage PostgreSQL flexible server instances using Azure SDK for Python."
+    "description": "Learn to create and manage PostgreSQL flexible server instances using Azure SDK for Python.",
+    "date": "2025-01-30"
   },
   {
     "title": "Quickstart: Use Azure SDK for .NET to create and manage a PostgreSQL flexible server instance",
@@ -249,7 +250,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-dotnet-sdk",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for creating and managing PostgreSQL flexible server instances with Azure SDK for .NET."
+    "description": "Quickstart for creating and managing PostgreSQL flexible server instances with Azure SDK for .NET.",
+    "date": "2025-01-05"
   },
   {
     "title": "Quickstart: Use Azure SDK for Java to create and manage a PostgreSQL flexible server instance",
@@ -257,7 +259,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-java-sdk",
     "tags": ["java", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for creating and managing PostgreSQL flexible server instances with Azure SDK for Java."
+    "description": "Quickstart for creating and managing PostgreSQL flexible server instances with Azure SDK for Java.",
+    "date": "2025-03-13"
   },
   {
     "title": "Quickstart: Use a Bicep file to create a PostgreSQL flexible server instance",
@@ -265,7 +268,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-bicep",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Guide to creating PostgreSQL flexible server instances using Bicep files in Azure."
+    "description": "Guide to creating PostgreSQL flexible server instances using Bicep files in Azure.",
+    "date": "2025-02-28"
   },
   {
     "title": "Quickstart: Manage PostgreSQL flexible server using automation tasks",
@@ -273,7 +277,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/create-automation-tasks",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Automate management of PostgreSQL flexible server with Azure automation tasks."
+    "description": "Automate management of PostgreSQL flexible server with Azure automation tasks.",
+    "date": "2024-10-15"
   },
   {
     "title": "Quickstart: Connect and query with PostgreSQL extension for Visual Studio Code (preview)",
@@ -281,7 +286,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-connect",
     "tags": ["connect", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for connecting and querying PostgreSQL using the VS Code extension."
+    "description": "Quickstart for connecting and querying PostgreSQL using the VS Code extension.",
+    "date": "2025-05-19"
   },
   {
     "title": "Quickstart: Use GitHub Copilot extension in Visual Studio Code for enhancing DB workflows",
@@ -289,7 +295,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Enhance database workflows in VS Code using the GitHub Copilot extension."
+    "description": "Enhance database workflows in VS Code using the GitHub Copilot extension.",
+    "date": "2025-05-19"
   },
   {
     "title": "Quickstart: Connect and query data using Python",
@@ -297,7 +304,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["python", "connect", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for connecting and querying PostgreSQL data using Python."
+    "description": "Quickstart for connecting and querying PostgreSQL data using Python.",
+    "date": "2025-03-11"
   },
   {
     "title": "Quickstart: Connect and query data using Java and ODBC",
@@ -305,7 +313,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-java",
     "tags": ["java", "connect", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for connecting and querying PostgreSQL data using Java and ODBC."
+    "description": "Quickstart for connecting and querying PostgreSQL data using Java and ODBC.",
+    "date": "2025-02-12"
   },
   {
     "title": "Quickstart: Connect and query data using .NET",
@@ -345,7 +354,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Automate deployment of database updates using GitHub Actions for PostgreSQL flexible server."
+    "description": "Automate deployment of database updates using GitHub Actions for PostgreSQL flexible server.",
+    "date": "2025-02-10"
   },
   {
     "title": "Quickstart: Deploy database updates using Azure Pipelines",
@@ -353,7 +363,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/azure-pipelines-deploy-database-task",
     "tags": ["app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Automate deployment of database updates using Azure Pipelines for PostgreSQL flexible server."
+    "description": "Automate deployment of database updates using Azure Pipelines for PostgreSQL flexible server.",
+    "date": "2024-12-17"
   },
   {
     "title": "Deploy a Python (Flask) web app with PostgreSQL on Azure App Service using system-assigned managed identity",
@@ -361,7 +372,8 @@
     "source": "https://learn.microsoft.com/azure/developer/python/tutorial-python-managed-identity-cli",
     "tags": ["python", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Deploy a Python Flask web app with PostgreSQL on Azure App Service using managed identity."
+    "description": "Deploy a Python Flask web app with PostgreSQL on Azure App Service using managed identity.",
+    "date": "2024-09-23"
   },
   {
     "title": "Deploy a Python Django web app with PostgreSQL on Azure App Service",
@@ -385,7 +397,8 @@
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database",
     "tags": ["java", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Tutorial for deploying a Java Tomcat app with PostgreSQL on Azure App Service."
+    "description": "Tutorial for deploying a Java Tomcat app with PostgreSQL on Azure App Service.",
+    "date": "2024-06-05"
   },
   {
     "title": "Deploy a Django app with PostgreSQL on AKS",
@@ -401,7 +414,8 @@
     "source": "https://learn.microsoft.com/azure/container-apps/tutorial-java-quarkus-connect-managed-identity-postgresql-database",
     "tags": ["java", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Tutorial for deploying a Java Quarkus container app with PostgreSQL on Azure Container Apps."
+    "description": "Tutorial for deploying a Java Quarkus container app with PostgreSQL on Azure Container Apps.",
+    "date": "2025-01-05"
   },
   {
     "title": "Deploy a Quarkus application to Azure Container Apps",
@@ -417,7 +431,8 @@
     "source": "https://learn.microsoft.com/azure/service-connector/how-to-integrate-postgres",
     "tags": ["connect", "app-dev", "dotnet"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn to use Azure Service Connector for connecting PostgreSQL from any Azure app."
+    "description": "Learn to use Azure Service Connector for connecting PostgreSQL from any Azure app.",
+    "date": "2025-03-14"
   },
   {
     "title": "Connection pooling strategy using PgBouncer",
@@ -425,7 +440,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
     "tags": ["connect", "app-dev"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Best practices for connection pooling in PostgreSQL using PgBouncer."
+    "description": "Best practices for connection pooling in PostgreSQL using PgBouncer.",
+    "date": "2025-03-11"
   },
   {
     "title": "Handling transient connectivity errors",
@@ -433,7 +449,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
     "tags": ["app-dev", "learning-path", "developing-core-applications"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Best practices for handling transient connectivity errors in Azure Database for PostgreSQL."
+    "description": "Best practices for handling transient connectivity errors in Azure Database for PostgreSQL.",
+    "date": "2024-12-17"
   },
   {
     "title": "Accelerate your data and AI tasks with Visual Studio Code extension for PostgreSQL & GitHub Copilot",
@@ -465,7 +482,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-optimize-performance-pgvector",
     "tags": ["vector", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Tips for optimizing performance when using pgvector in PostgreSQL."
+    "description": "Tips for optimizing performance when using pgvector in PostgreSQL.",
+    "date": "2024-08-14"
   },
   {
     "title": "Enable and use DiskANN extension for efficient vector indexing",
@@ -473,7 +491,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgdiskann",
     "tags": ["vector", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Enable and use DiskANN extension for efficient vector indexing in PostgreSQL."
+    "description": "Enable and use DiskANN extension for efficient vector indexing in PostgreSQL.",
+    "date": "2025-05-19"
   },
   {
     "title": "Integrate basic Azure AI capabilities into Azure Database for PostgreSQL flexible server",
@@ -481,7 +500,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-integrate-azure-ai",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Integrate basic Azure AI capabilities into Azure Database for PostgreSQL flexible server."
+    "description": "Integrate basic Azure AI capabilities into Azure Database for PostgreSQL flexible server.",
+    "date": "2024-08-23"
   },
   {
     "title": "Integrate with Azure Machine Learning Services",
@@ -489,7 +509,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "tags": ["genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Integrate Azure Machine Learning Services with Azure Database for PostgreSQL."
+    "description": "Integrate Azure Machine Learning Services with Azure Database for PostgreSQL.",
+    "date": "2025-03-11"
   },
   {
     "title": "Enable Managed Identity for integrating with Azure AI services",
@@ -497,7 +518,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-enable-managed-identity-azure-ai",
     "tags": ["genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Enable managed identity for secure integration with Azure AI services."
+    "description": "Enable managed identity for secure integration with Azure AI services.",
+    "date": "2025-05-19"
   },
   {
     "title": "Use Semantic operators in the Azure AI extension",
@@ -505,7 +527,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-ai-semantic-operators",
     "tags": ["semantic", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Use semantic operators in Azure AI extension for advanced search capabilities."
+    "description": "Use semantic operators in Azure AI extension for advanced search capabilities.",
+    "date": "2025-05-19"
   },
   {
     "title": "Implement semantic ranker to improve recall accuracy",
@@ -513,7 +536,8 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-the-semantic-ranking-solution-for-azure-database-for-postgresql/4298781",
     "tags": ["semantic", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Implement semantic ranker to improve recall accuracy in search results."
+    "description": "Implement semantic ranker to improve recall accuracy in search results.",
+    "date": "2025-01-07"
   },
   {
     "title": "Build a Semantic Search application with Azure Database for PostgreSQL and Azure OpenAI",
@@ -521,7 +545,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-semantic-search",
     "tags": ["semantic", "flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Build a semantic search application using Azure Database for PostgreSQL and Azure OpenAI."
+    "description": "Build a semantic search application using Azure Database for PostgreSQL and Azure OpenAI.",
+    "date": "2025-03-11"
   },
   {
     "title": "Build a Recommendation System with Azure Database for PostgreSQL and Azure OpenAI",
@@ -529,7 +554,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-recommendation-system",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Build a recommendation system with Azure Database for PostgreSQL and Azure OpenAI."
+    "description": "Build a recommendation system with Azure Database for PostgreSQL and Azure OpenAI.",
+    "date": "2025-03-11"
   },
   {
     "title": "Build your own AI copilot | Financial Services Industry",
@@ -537,7 +563,8 @@
     "source": "https://aka.ms/pg-byoac-docs",
     "tags": ["genai", "javascript"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Guide to building your own AI copilot for financial services using Azure Database for PostgreSQL."
+    "description": "Guide to building your own AI copilot for financial services using Azure Database for PostgreSQL.",
+    "date": "2025-04-11"
   },
   {
     "title": "Chat with your Data Solution Accelerator for Azure Database for PostgreSQL",
@@ -545,7 +572,8 @@
     "source": "https://aka.ms/pg-cwyd-repo ",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Chat with your data using the Solution Accelerator for Azure Database for PostgreSQL."
+    "description": "Chat with your data using the Solution Accelerator for Azure Database for PostgreSQL.",
+    "date": "2025-05-22"
   },
   {
     "title": "Build AI Apps with Azure Database for PostgreSQL",
@@ -601,7 +629,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-develop-with-langchain",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Build AI applications using LangChain with Azure Database for PostgreSQL."
+    "description": "Build AI applications using LangChain with Azure Database for PostgreSQL.",
+    "date": "2025-04-05"
   },
   {
     "title": "Build an AI Agent with  Azure Database for PostgreSQL and Azure AI Agent Service",
@@ -609,7 +638,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "tags": ["agent", "flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Build an AI agent using Azure Database for PostgreSQL and Azure AI Agent Service."
+    "description": "Build an AI agent using Azure Database for PostgreSQL and Azure AI Agent Service.",
+    "date": "2025-04-05"
   },
   {
     "title": "AgenticShop: e-Imagined Shopping Experience for the Era of AI Agents",
@@ -617,7 +647,8 @@
     "source": "https://aka.ms/agentic-shop",
     "tags": ["agent", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Explore AgenticShop, an imagined shopping experience for the era of AI agents."
+    "description": "Explore AgenticShop, an imagined shopping experience for the era of AI agents.",
+    "date": "2025-05-19"
   },
   {
     "title": "Build AI agents using Semantic Kernel and PostgreSQL",
@@ -641,7 +672,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-age-overview",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Use Apache AGE extension with Azure Database for PostgreSQL for advanced graph analytics."
+    "description": "Use Apache AGE extension with Azure Database for PostgreSQL for advanced graph analytics.",
+    "date": "2025-05-19"
   },
   {
     "title": "GraphRAG Solution Accelerator for Azure Database for PostgreSQL",
@@ -649,7 +681,8 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-the-graphrag-solution-for-azure-database-for-postgresql/4299871",
     "tags": ["rag", "graph", "flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Accelerate graph-based RAG solutions with Azure Database for PostgreSQL."
+    "description": "Accelerate graph-based RAG solutions with Azure Database for PostgreSQL.",
+    "date": "2025-02-20"
   },
   {
     "title": "Azure MCP Server support for Azure Database for PostgreSQL",
@@ -657,7 +690,8 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/azure-mcp-server-now-includes-support-for-azure-database-for-postgresql/4413744",
     "tags": ["flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn about Azure MCP Server support for Azure Database for PostgreSQL."
+    "description": "Learn about Azure MCP Server support for Azure Database for PostgreSQL.",
+    "date": "2025-05-19"
   },
   {
     "title": "Demo: Azure AI & pgvector with Azure Database for PostgreSQL",
@@ -673,7 +707,8 @@
     "source": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "tags": ["vector", "flexibleserver", "genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Explore the mechanics of integrating AI and vector search into Azure Database for PostgreSQL."
+    "description": "Explore the mechanics of integrating AI and vector search into Azure Database for PostgreSQL.",
+    "date": "2024-05-30"
   },
   {
     "title": "Generative AI features in Azure Database for PostgreSQL",
@@ -689,7 +724,8 @@
     "source": "https://www.youtube.com/playlist?list=PLlrxD0HtieHi4t4ESF44OPMa0nbF2RsR8",
     "tags": ["genai"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Collection of AI talks from POSETTE conference."
+    "description": "Collection of AI talks from POSETTE conference.",
+    "date": "2025-05-20"
   },
   {
     "title": "Build AI Apps and Agents with Azure Database for PostgreSQL",
@@ -713,7 +749,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-fabric-mirroring",
     "tags": ["fabric", "flexibleserver", "analytics", "concepts", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn about PostgreSQL mirroring in Microsoft Fabric for analytics and data integration."
+    "description": "Learn about PostgreSQL mirroring in Microsoft Fabric for analytics and data integration.",
+    "date": "2025-03-31"
   },
   {
     "title": "Create a copy activity in Microsoft Fabric Data Factory",
@@ -721,7 +758,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-fabric",
     "tags": ["fabric", "analytics", "flexibleserver", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Create a copy activity in Microsoft Fabric Data Factory for PostgreSQL data movement."
+    "description": "Create a copy activity in Microsoft Fabric Data Factory for PostgreSQL data movement.",
+    "date": "2025-07-24"
   },
   {
     "title": "Create a script activity in Microsoft Fabric Data Factory",
@@ -729,7 +767,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-fabric",
     "tags": ["fabric", "analytics", "flexibleserver", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Create a script activity in Microsoft Fabric Data Factory for PostgreSQL automation."
+    "description": "Create a script activity in Microsoft Fabric Data Factory for PostgreSQL automation.",
+    "date": "2025-07-24"
   },
   {
     "title": "Quickstart: Import data from Azure Database for PostgreSQL flexible server in Power BI",
@@ -737,7 +776,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-with-power-bi-desktop",
     "tags": ["flexibleserver", "analytics", "powerbi", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Quickstart for importing data from PostgreSQL flexible server into Power BI."
+    "description": "Quickstart for importing data from PostgreSQL flexible server into Power BI.",
+    "date": "2025-03-31"
   },
   {
     "title": "Connect Azure Database for PostgreSQL to Azure Data Factory and Synapse Analytics",
@@ -745,7 +785,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory",
     "tags": ["concepts", "adf", "flexibleserver", "analytics"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Connect Azure Database for PostgreSQL to Data Factory and Synapse Analytics for data integration."
+    "description": "Connect Azure Database for PostgreSQL to Data Factory and Synapse Analytics for data integration.",
+    "date": "2025-05-29"
   },
   {
     "title": "Connect from Azure Data Factory with managed private endpoint",
@@ -753,7 +794,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "tags": ["adf", "flexibleserver", "analytics", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Connect from Azure Data Factory to PostgreSQL using managed private endpoint."
+    "description": "Connect from Azure Data Factory to PostgreSQL using managed private endpoint.",
+    "date": "2025-04-15"
   },
   {
     "title": "Copy activity in Azure Data Factory and Azure Synapse Analytics",
@@ -761,7 +803,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "tags": ["adf", "flexibleserver", "analytics", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Perform copy activity in Azure Data Factory and Synapse Analytics for PostgreSQL data."
+    "description": "Perform copy activity in Azure Data Factory and Synapse Analytics for PostgreSQL data.",
+    "date": "2025-07-24"
   },
   {
     "title": "Script activity in Data Factory and Azure Synapse Analytics",
@@ -769,6 +812,127 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "tags": ["adf", "flexibleserver", "analytics", "how-to"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Create and run script activities in Data Factory and Synapse Analytics for PostgreSQL."
+    "description": "Create and run script activities in Data Factory and Synapse Analytics for PostgreSQL.",
+    "date": "2025-07-24"
+  },
+
+  {
+    "title": "Announcing a new IDE for PostgreSQL in VS Code from Microsoft",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-a-new-ide-for-postgresql-in-vs-code-from-microsoft/4414648",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-a-new-ide-for-postgresql-in-vs-code-from-microsoft/4414648",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "app-dev",
+      "vscode",
+      "connect",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Announcing a new IDE for PostgreSQL in VS Code from Microsoft.",
+    "date": "2025-05-19"
+  },
+  {
+    "title": "Build 2025: New Generative AI Features in Azure Database for PostgreSQL",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/new-generative-ai-features-in-azure-database-for-postgresql/4414858",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/new-generative-ai-features-in-azure-database-for-postgresql/4414858",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "genai",
+      "vector",
+      "agent",
+      "azureai",
+      "rag",
+      "semantic",
+      "graph",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Build 2025: New Generative AI Features in Azure Database for PostgreSQL.",
+    "date": "2025-05-19"
+  },
+  {
+    "title": "Bringing Generative AI to Your Data: Semantic Operators in Azure Database for PostgreSQL",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/bringing-generative-ai-to-your-data-semantic-operators-in-azure-database-for-pos/4414983",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/bringing-generative-ai-to-your-data-semantic-operators-in-azure-database-for-pos/4414983",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "genai",
+      "vector",
+      "azureai",
+      "rag",
+      "semantic",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Bringing Generative AI to Your Data: Semantic Operators in Azure Database for PostgreSQL.",
+    "date": "2025-05-19"
+  },
+  {
+    "title": "DiskANN on Azure Database for PostgreSQL – Now Generally Available",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/diskann-on-azure-database-for-postgresql-%E2%80%93-now-generally-available/4414723",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/diskann-on-azure-database-for-postgresql-%E2%80%93-now-generally-available/4414723",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "genai",
+      "vector",
+      "rag",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "DiskANN on Azure Database for PostgreSQL – Now Generally Available.",
+    "date": "2025-05-19"
+  },
+  {
+    "title": "Video Series: Build AI-Ready Apps and Agents with PostgreSQL on Azure",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-ai-ready-apps-and-agents-with-postgresql-on-azure/4428001",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-ai-ready-apps-and-agents-with-postgresql-on-azure/4428001",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "genai",
+      "vector",
+      "azureai",
+      "agent",
+      "rag",
+      "semantic",
+      "graph",
+      "video",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Video Series: Build AI-Ready Apps and Agents with PostgreSQL on Azure.",
+    "date": "2025-07-02"
+  },
+  {
+    "title": "New Azure PostgreSQL Solution Accelerator: AgenticShop",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/new-azure-postgresql-solution-accelerator-agenticshop/4445748",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/new-azure-postgresql-solution-accelerator-agenticshop/4445748",
+    "tags": [
+      "featured",
+      "announcement",
+      "flexibleserver",
+      "genai",
+      "vector",
+      "azureai",
+      "agent",
+      "rag",
+      "semantic",
+      "graph",
+      "solution-accelerator",
+      "python",
+      "blog"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "New Azure PostgreSQL Solution Accelerator: AgenticShop.",
+    "date": "2025-08-26"
   }
 ]

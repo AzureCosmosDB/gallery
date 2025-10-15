@@ -1,0 +1,49 @@
+.navbarBrandContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbarLogo {
+  height: 32px;
+  width: auto;
+}
+
+.navbarTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.navbarTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--ifm-navbar-link-color);
+}
+
+.navbarSubtitle {
+  font-size: 0.75rem;
+  color: var(--ifm-navbar-link-color);
+  opacity: 0.8;
+  margin-top: 2px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .navbarSubtitle {
+    font-size: 0.7rem;
+  }
+  
+  .navbarTitle {
+    font-size: 1.1rem;
+  }
+  
+  .navbarLogo {
+    height: 28px;
+  }
+}
