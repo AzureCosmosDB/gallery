@@ -56,8 +56,15 @@ export type UserState = {
 
 function readSortChoice(rule: string): User[] {
   if (rule == SORT_BY_OPTIONS[0]) {
+    // Sort by newest date first
     const copyUnsortedUser = unsortedUsers.slice();
-    return copyUnsortedUser.reverse();
+    return copyUnsortedUser.sort((a, b) => {
+      // Handle cases where date might be empty or undefined
+      const dateA = a.date || "1970-01-01";
+      const dateB = b.date || "1970-01-01";
+      // Sort in descending order (newest first)
+      return new Date(dateB).getTime() - new Date(dateA).getTime();
+    });
   } else if (rule == SORT_BY_OPTIONS[1]) {
     return unsortedUsers;
   }
@@ -251,7 +258,6 @@ export default function ShowcaseCardPage({
   const sortByOnSelect = (event, data) => {
     setLoading(true);
     setSelectedOptions(data.selectedOptions);
-    console.log("@@selected drop", data);
   };
   const templateNumber = cards ? cards.length : 0;
 

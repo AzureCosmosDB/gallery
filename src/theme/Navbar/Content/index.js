@@ -8,6 +8,7 @@ import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from "@docusaurus/theme-common/internal";
+import { useHistory, useLocation } from "@docusaurus/router";
 import NavbarItem from "@theme/NavbarItem";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import SearchBar from "@theme/SearchBar";
@@ -68,6 +69,8 @@ export default function NavbarContent() {
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === "search");
   const [activeSection, setActiveSection] = React.useState("home");
+  const history = useHistory();
+  const location = useLocation();
 
   // Helper to handle click and set active section
   const handleMenuClick = (e, hash) => {
@@ -75,9 +78,44 @@ export default function NavbarContent() {
     setActiveSection(hash.replace("#", ""));
   };
 
-  // Always scroll to resource library for dropdown links
+  // Always scroll to resource library for dropdown links and apply filter
   const handleDropdownClick = (e, tagHash) => {
-    scrollToSection(e, "#resource-library");
+    e.preventDefault();
+
+    // Map dropdown items to their corresponding tag filters
+    const tagMapping = {
+      "#documentation": "concepts", // or could be "how-to" depending on preference
+      "#solution-accelerators": "solution-accelerator",
+      "#videos": "video",
+      "#blogs": "blog",
+      "#trainings": "training",
+      "#samples": "samples",
+    };
+
+    const tagFilter = tagMapping[tagHash];
+
+    if (tagFilter) {
+      // Update URL with the tag filter
+      const params = new URLSearchParams();
+      params.set("tags", tagFilter);
+
+      // Use history to update the URL
+      history.replace({
+        pathname: location.pathname,
+        search: `?${params.toString()}`,
+      });
+
+      // Scroll to resource library and switch to list view
+      requestAnimationFrame(() => {
+        const el = document.getElementById("resource-library");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          // Dispatch custom event to switch to list view
+          window.dispatchEvent(new Event("switchToListView"));
+        }
+      });
+    }
+
     setActiveSection(tagHash.replace("#", ""));
   };
 
@@ -107,7 +145,7 @@ export default function NavbarContent() {
             }`}
             onClick={(e) => handleMenuClick(e, "#learning-paths")}
           >
-            Learning paths
+            Learning Paths
           </Link>
           <div className={styles.menuItemDropdown}>
             <Link
@@ -171,6 +209,15 @@ export default function NavbarContent() {
               >
                 Trainings
               </Link>
+              <Link
+                to="#samples"
+                className={`${styles.dropdownMenuItem} ${
+                  activeSection === "samples" ? styles.activeMenuItem : ""
+                }`}
+                onClick={(e) => handleDropdownClick(e, "#samples")}
+              >
+                Samples
+              </Link>
             </div>
           </div>
           <Link
@@ -180,7 +227,7 @@ export default function NavbarContent() {
             }`}
             onClick={(e) => handleMenuClick(e, "#quick-links")}
           >
-            Quick links
+            Quick Links
           </Link>
           <Link
             to="#community-support"
@@ -189,7 +236,7 @@ export default function NavbarContent() {
             }`}
             onClick={(e) => handleMenuClick(e, "#community-support")}
           >
-            Community & support
+            Community & Support
           </Link>
         </nav>
       }

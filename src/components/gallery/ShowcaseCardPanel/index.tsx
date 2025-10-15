@@ -38,6 +38,7 @@ export default function ShowcaseCardPanel({
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
     TagList.indexOf(tagObject.tag)
   );
+  console.log("tagObjectsSorted:", tagObjectsSorted);
   const languageTags = tagObjectsSorted.filter(
     (tag) => tag.type === "Language"
   );
@@ -98,12 +99,12 @@ export default function ShowcaseCardPanel({
         </MessageBar>
       ) : null}
       <div className={styles.divider} />
-      {languageTags.length > 0 ? (
+      {/* {languageTags.length > 0 ? (
         <>
           <div className={styles.subTitle2}>Languages</div>
           <CardPanelTag tags={languageTags} />{" "}
         </>
-      ) : null}
+      ) : null} */}
       <div className={styles.subTitle}>Description</div>
       <div className={styles.text}>{description}</div>
       {video ? (

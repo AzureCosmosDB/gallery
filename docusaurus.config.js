@@ -58,7 +58,7 @@ const config = {
         {
           icon: "Database",
           iconColor: "#0078d4",
-          title: "Azure PostgreSQL for Application Developers",
+          title: "Developing Core Applications",
           description:
             "Master the fundamentals of building production-ready applications with PostgreSQL Flexible Server on Azure",
           level: "Beginner",
@@ -69,7 +69,7 @@ const config = {
         {
           icon: "Bot",
           iconColor: "#157f15",
-          title: "AI-Powered Applications with PostgreSQL",
+          title: "Building Generative AI Apps",
           description:
             "Learn to integrate AI capabilities with PostgreSQL vector extensions and build intelligent applications",
           level: "Intermediate",
@@ -80,7 +80,7 @@ const config = {
         {
           icon: "Layers",
           iconColor: "#5c2d91",
-          title: "Advanced AI Agents and Automation",
+          title: "Building AI Agents",
           description:
             "Create sophisticated AI agents that leverage PostgreSQL for data persistence and workflow automation",
           level: "Advanced",

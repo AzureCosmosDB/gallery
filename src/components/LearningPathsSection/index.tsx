@@ -106,7 +106,7 @@ export default function LearningPathsSection({
   return (
     <section className={styles.learningPathsSection}>
       <div className={styles.left}>
-        <h2 className={styles.heading}>Learning pathways</h2>
+        <h2 className={styles.heading}>Learning Pathways</h2>
         <div className={styles.sectionDesc}>
           Choose from structured learning paths designed to guide you through
           PostgreSQL development on Azure, from basic application development to
@@ -150,7 +150,7 @@ export default function LearningPathsSection({
         <Swiper
           spaceBetween={24}
           slidesPerView={1}
-          style={{ width: 400, minWidth: 300, maxWidth: 420 }}
+          style={{ width: 420 }}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           modules={[Autoplay]}
         >
