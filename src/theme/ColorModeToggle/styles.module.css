@@ -14,9 +14,7 @@
   transition: background var(--ifm-transition-fast);
 }
 
-
-[data-theme='light'] .darkToggleIcon,
-[data-theme='dark'] .lightToggleIcon {
+.darkToggleIcon {
   display: none;
 }
 

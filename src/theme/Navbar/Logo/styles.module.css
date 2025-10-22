@@ -26,12 +26,12 @@
 .navbarTitle {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--ifm-navbar-link-color);
+  color: #555454;
 }
 
 .navbarSubtitle {
   font-size: 0.75rem;
-  color: var(--ifm-navbar-link-color);
+  color: #555454;
   opacity: 0.8;
   margin-top: 2px;
   font-weight: 500;

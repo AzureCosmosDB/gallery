@@ -54,9 +54,6 @@
   gap: 16px;
   width: 70%;
 }
-[data-theme="dark"] .container {
-  background-color: #1F1F1F !important;
-}
 
 .checkboxList {
   flex-wrap: wrap;

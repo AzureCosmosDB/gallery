@@ -12,14 +12,9 @@ import ShowcaseCardPage, { UserState } from "./ShowcaseCardPage";
 import QuickLinks from "../components/QuickLinks";
 import CommunitySupportSection from "../components/CommunitySupportSection";
 import DisclaimerSection from "../components/DisclaimerSection";
-import {
-  FluentProvider,
-  webLightTheme,
-  webDarkTheme,
-} from "@fluentui/react-components";
+import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import { useColorMode } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import { type TagType } from "../data/tags-copy";
 import { TagList } from "../data/users";
@@ -51,7 +46,6 @@ const replaceSearchTags = (search: string, newTags: TagType[]) => {
 };
 const App = () => {
   const location = useLocation<UserState>();
-  const { colorMode } = useColorMode();
   const [selectedCheckbox, setSelectedCheckbox] = useState<TagType[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
   const [activeTags, setActiveTags] = useState<TagType[]>(TagList);
@@ -64,10 +58,7 @@ const App = () => {
   }, [location]);
 
   return (
-    <FluentProvider
-      theme={colorMode == "dark" ? webDarkTheme : webLightTheme}
-      className={styles.container}
-    >
+    <FluentProvider theme={webLightTheme} className={styles.container}>
       <div id="home">
         <ShowcaseCoverPage />
       </div>

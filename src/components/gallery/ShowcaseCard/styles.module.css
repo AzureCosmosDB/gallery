@@ -76,13 +76,6 @@
   color: #6c757d;
 }
 
-[data-theme="dark"] .cardDescription {
-  color: #d6d6d6;
-}
-
-[data-theme="dark"] .cardDescriptionCoverPage {
-  color: #d6d6d6;
-}
 
 .cardDescriptionCoverPage {
   overflow: hidden;
