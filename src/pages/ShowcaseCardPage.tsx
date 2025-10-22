@@ -66,7 +66,17 @@ function readSortChoice(rule: string): User[] {
       return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
   } else if (rule == SORT_BY_OPTIONS[1]) {
-    return unsortedUsers;
+    // Sort by priority: P0 > P1 > P2, then by original order
+    const copyUnsortedUser = unsortedUsers.slice();
+    return copyUnsortedUser.sort((a, b) => {
+      // Define priority order (P0 = highest priority = 0, P1 = 1, P2 = 2, no priority = 3)
+      const priorityOrder = { P0: 0, P1: 1, P2: 2 };
+      const priorityA = priorityOrder[a.priority] ?? 3; // Default to lowest priority if not set
+      const priorityB = priorityOrder[b.priority] ?? 3;
+
+      // Sort by priority (ascending - lower number = higher priority)
+      return priorityA - priorityB;
+    });
   }
   return sortedUsers;
 }

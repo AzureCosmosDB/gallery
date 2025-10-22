@@ -25,6 +25,7 @@ export type User = {
   previewTags?: TagType[];
   image?: string;
   date?: string;
+  priority?: "P0" | "P1" | "P2";
 };
 
 type SubType = {

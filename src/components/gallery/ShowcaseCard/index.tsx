@@ -153,6 +153,7 @@ function ShowcaseCard({
                 href={user.website}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   margin: "16px 0 0 0",
                   width: "100%",

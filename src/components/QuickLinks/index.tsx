@@ -23,7 +23,13 @@ const QuickLinks: React.FC = () => {
         {quickLinks.map((link) => {
           const LucideIcon = LucideIcons[link.icon] || LucideIcons["BookOpen"];
           return (
-            <Link key={link.label} href={link.href} className={styles.tile}>
+            <Link
+              key={link.label}
+              href={link.href}
+              className={styles.tile}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className={styles.icon}>
                 <LucideIcon size={32} color={link.color} />
               </div>

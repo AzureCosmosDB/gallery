@@ -143,7 +143,7 @@ export default function ShowcaseLeftFilters({
     return tagObject.type === "LearningPath";
   });
 
-  const [openItems, setOpenItems] = React.useState(["1", "2", "3", "4"]);
+  const [openItems, setOpenItems] = React.useState(["1", "2", "3", "4", "5"]);
   const handleToggle: AccordionToggleEventHandler<string> = (event, data) => {
     setOpenItems(data.openItems);
   };

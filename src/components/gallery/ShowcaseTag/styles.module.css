@@ -3,11 +3,20 @@
 * Licensed under the MIT License.
  */
 
+.tagContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
 .cardTag {
   color: #115ea3 !important;
   border-color: #b4d6fa !important;
   background: #ebf3fc !important;
   margin-right: 4px;
+  flex-shrink: 0;
 }
 
 .cardPanelTag {
@@ -22,6 +31,8 @@
   font-weight: 500;
   border-radius: 100px;
   background: #ebf3fc !important;
+  display: flex;
+  align-items: center;
 }
 
 [data-theme="dark"] .cardTag {
