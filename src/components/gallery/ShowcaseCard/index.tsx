@@ -39,7 +39,6 @@ function ShowcaseCard({
 }): JSX.Element {
   const tags = user.tags;
   const title = user.title;
-  console.log("user in card:", user);
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
 
@@ -88,7 +87,6 @@ function ShowcaseCard({
     const slugParts = repoSlug.split("/");
     const owner = slugParts[0];
     const repo = slugParts[1];
-    console.log("Fetching GitHub data forrrrrrrrrrr", owner, repo);
 
     // Check if data is already in local storage
     const cachedData = localStorage.getItem(`${owner}/${repo}`);
