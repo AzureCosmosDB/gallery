@@ -52,26 +52,16 @@ const replaceSearchTags = (search: string, newTags: TagType[]) => {
 const App = () => {
   const location = useLocation<UserState>();
   const { colorMode } = useColorMode();
-  const [loading, setLoading] = useState(true);
   const [selectedCheckbox, setSelectedCheckbox] = useState<TagType[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
   const [activeTags, setActiveTags] = useState<TagType[]>(TagList);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-
-    // Read tags from location search regardless of loading state
+    // Read tags from location search
     const tags = readSearchTags(location.search);
     setSelectedCheckbox(tags);
     setSelectedTags(tags);
   }, [location]);
-
-  // You can still render null for loading state, but hooks should always run
-  if (loading) {
-    return null; // This will not affect hook calls as all hooks are already called
-  }
 
   return (
     <FluentProvider
