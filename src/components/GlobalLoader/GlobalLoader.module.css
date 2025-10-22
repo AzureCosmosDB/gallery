@@ -12,10 +12,6 @@
   flex-direction: column;
 }
 
-[data-theme='dark'] .loaderOverlay {
-  background: #1b1b1f;
-}
-
 .loaderContainer {
   display: flex;
   flex-direction: column;
@@ -31,18 +27,10 @@
   animation: spin 1s linear infinite;
 }
 
-[data-theme='dark'] .spinner {
-  color: #60a5fa;
-}
-
 .loadingText {
   font-size: 18px;
   font-weight: 500;
   color: #424242;
-}
-
-[data-theme='dark'] .loadingText {
-  color: #ffffff;
 }
 
 @keyframes spin {

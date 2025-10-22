@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  useThemeConfig,
-  ErrorCauseBoundary,
-  useColorMode,
-} from "@docusaurus/theme-common";
+import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
 import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from "@docusaurus/theme-common/internal";
 import { useHistory, useLocation } from "@docusaurus/router";
 import NavbarItem from "@theme/NavbarItem";
-import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import SearchBar from "@theme/SearchBar";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
 import NavbarLogo from "@theme/Navbar/Logo";

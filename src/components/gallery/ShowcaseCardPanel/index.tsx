@@ -17,7 +17,6 @@ import {
 } from "@fluentui/react";
 import ShowcaseMultipleAuthors from "../ShowcaseMultipleAuthors/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
-import { useColorMode } from "@docusaurus/theme-common";
 import { sortBy } from "../../../utils/jsUtils";
 
 export default function ShowcaseCardPanel({
@@ -186,7 +185,6 @@ const GitHubInfoCardPanel = ({ githubData }) => {
     }).format(new Date(date));
   };
   if (!githubData) return githubData;
-  const { colorMode } = useColorMode();
 
   return (
     <>
@@ -204,11 +202,7 @@ const GitHubInfoCardPanel = ({ githubData }) => {
           <div className={styles.info}>•</div>
           <Image
             alt="fork"
-            src={
-              colorMode == "dark"
-                ? useBaseUrl("/img/forkDark.svg")
-                : useBaseUrl("/img/fork.svg")
-            }
+            src={useBaseUrl("/img/fork.svg")}
             height={16}
             width={16}
           />
@@ -220,11 +214,7 @@ const GitHubInfoCardPanel = ({ githubData }) => {
           <div className={styles.info}>•</div>
           <Image
             alt="star"
-            src={
-              colorMode == "dark"
-                ? useBaseUrl("/img/starDark.svg")
-                : useBaseUrl("/img/star.svg")
-            }
+            src={useBaseUrl("/img/star.svg")}
             height={16}
             width={16}
           />
@@ -236,7 +226,6 @@ const GitHubInfoCardPanel = ({ githubData }) => {
 };
 
 function CardPanelTag({ tags }: { tags: Tag[] }) {
-  const { colorMode } = useColorMode();
   return (
     <>
       {tags.map((item, index) => {
@@ -254,11 +243,7 @@ function CardPanelTag({ tags }: { tags: Tag[] }) {
             {/* {subType ? (
               <div className={styles.icon}>
                 <img
-                  src={
-                    colorMode == "dark" && item.subType.darkIcon
-                      ? useBaseUrl(item.subType.darkIcon)
-                      : useBaseUrl(item.subType.icon)
-                  }
+                  src={useBaseUrl(item.subType.icon)}
                   alt={label}
                   height={20}
                 />

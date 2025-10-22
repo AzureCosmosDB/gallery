@@ -3,12 +3,7 @@
 * Licensed under the MIT License.
  */
 
-/* Keep for future change on light vs dark theme */
 
 .color {
   color: #707070;
-}
-
-[data-theme="dark"] .color {
-  color: #999999;
 }

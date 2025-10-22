@@ -48,14 +48,6 @@
   line-height: 22px;
 }
 
-[data-theme="dark"] .tagCatalog {
-  color: #ffffff;
-}
-
-.tagCatalogBackground {
-  /* Removed border-top and top gradient for accordion header */
-}
-
 .tagSubCatalog {
   padding: 0 0 7px 0px;
 }

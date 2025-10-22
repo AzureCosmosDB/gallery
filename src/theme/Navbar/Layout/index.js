@@ -177,7 +177,6 @@ export default function NavbarLayout({ children }) {
           !isNavbarVisible && styles.navbarHidden,
         ],
         {
-          "navbar--dark": style === "dark",
           "navbar--primary": style === "primary",
           "navbar-sidebar--show": mobileSidebar.shown,
         }

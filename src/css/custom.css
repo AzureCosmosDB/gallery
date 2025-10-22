@@ -23,11 +23,6 @@ html, body, #__docusaurus, #__docusaurus * {
   --ifm-color-text-ai-site: #242424;
 }
 
-[data-theme="dark"] {
-  --ifm-navbar-link-color: #ffffff;
-  --ifm-footer-background-color: #292929;
-  --ifm-color-text-ai-site: #ffffff;
-}
 
 /* For readability - FIXME: is there a better way to handle it? */
 .docusaurus-highlight-code-line {
@@ -41,8 +36,25 @@ html, body, #__docusaurus, #__docusaurus * {
   /* max-width: 1736px; */
   width: 100%;
   margin: auto;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e3e3e3 !important;
+}
+
+.navbar--primary {
+  background-color: #ffffff !important;
+}
+
+
+.navbar .navbar__link,
+.navbar .navbar__item,
+.navbar .navbar__title {
+  color: var(--ifm-navbar-link-color) !important;
 }
 
 .navbar .navbar__inner .navbar__items {
   gap: 16px;
+}
+.footer__link-item {
+        color: #606770 !important;
+
 }

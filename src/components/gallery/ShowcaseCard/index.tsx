@@ -13,12 +13,9 @@ import {
   DialogTitle,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
-// Removed unused Panel, ThemeProvider, PartialTheme imports
 import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
-import ShowcaseCardIcon from "../ShowcaseIcon/index";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { useColorMode } from "@docusaurus/theme-common";
 import siteConfig from "@generated/docusaurus.config";
 
 import type { User } from "../../../data/tags-copy";
@@ -208,19 +205,13 @@ const GitHubInfo = ({ githubData }) => {
 
   if (!githubData) return null;
 
-  const { colorMode } = useColorMode();
-
   return (
     <div className={styleCSS.gitHubData}>
       {formatNumber(githubData.forks) === "NaN" ? null : (
         <>
           <Image
             alt="fork"
-            src={
-              colorMode === "dark"
-                ? useBaseUrl("/img/forkDark.svg")
-                : useBaseUrl("/img/fork.svg")
-            }
+            src={useBaseUrl("/img/fork.svg")}
             height={16}
             width={16}
           />
@@ -233,11 +224,7 @@ const GitHubInfo = ({ githubData }) => {
         <>
           <Image
             alt="star"
-            src={
-              colorMode === "dark"
-                ? useBaseUrl("/img/starDark.svg")
-                : useBaseUrl("/img/star.svg")
-            }
+            src={useBaseUrl("/img/star.svg")}
             height={16}
             width={16}
           />

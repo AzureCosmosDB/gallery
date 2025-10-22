@@ -238,8 +238,8 @@ const config = {
       },
       colorMode: {
         defaultMode: "light",
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
       navbar: {
         title: "Application Developer Hub",
@@ -286,7 +286,7 @@ const config = {
       },
       prism: {
         theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        // darkTheme: prismThemes.dracula,
       },
     }),
 
