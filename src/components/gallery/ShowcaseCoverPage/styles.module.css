@@ -20,27 +20,27 @@
   border-radius: 20px;
   padding: 32px 24px;
   box-sizing: border-box;
+  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
 }
 
 .cardCommon:hover{
   transform: translateY(-8px);
   transition: all 0.3s ease-in-out;
-  .cardIconWrapper{
-    transform: scale(1.1);
-    transition: all 0.3s ease-in-out;
-  }
 }
-.cardBlue {
-  border: 3px solid #b3daf2 !important;
-  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+
+.cardCommon:hover .cardIconWrapper{
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.cardBlueBorder {
+  border: 3px solid #b3daf2;
 }
 .cardGreen {
   border: 3px solid #c8f2c8;
-  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
 }
 .cardPurple {
   border: 3px solid #e1d7f2;
-  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
 }
 
 .cardIconWrapper {
