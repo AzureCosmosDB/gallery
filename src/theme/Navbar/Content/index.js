@@ -18,14 +18,24 @@ import NavbarSearch from "@theme/Navbar/Search";
 import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
 
-// Smooth scroll to section by id
+// Smooth scroll to section by id with navbar offset
 function scrollToSection(e, hash) {
   if (hash && hash.startsWith("#")) {
     e.preventDefault();
     const id = hash.slice(1);
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Get navbar height to offset scroll position
+      const navbar = document.querySelector(".navbar");
+      const navbarHeight = navbar ? navbar.offsetHeight : 80; // fallback to 80px
+      const elementPosition =
+        el.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight - 20; // extra 20px padding
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   }
 }

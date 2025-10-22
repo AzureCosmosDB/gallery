@@ -1,7 +1,7 @@
 import React from "react";
+import * as LucideIcons from "lucide-react";
 import styles from "./CommunitySupportSection.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import * as LucideIcons from "lucide-react";
 
 type CardAction = {
   label: string;
@@ -10,6 +10,14 @@ type CardAction = {
   icon?: string;
   fullWidth?: boolean;
 };
+
+type Event = {
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+};
+
 type CardType = {
   title: string;
   desc: string;
@@ -17,6 +25,7 @@ type CardType = {
   iconColor?: string;
   iconBg?: string;
   actions: CardAction[];
+  events?: Event[];
 };
 type SectionType = {
   title: string;
@@ -30,12 +39,24 @@ const CommunitySupportSection = () => {
     | SectionType
     | undefined;
   if (!section) return null;
+
+  // Determine grid class based on number of cards
+  const cardCount = section.cards.length;
+  let gridClass = styles.cardsGrid;
+
+  if (cardCount === 4) {
+    gridClass += ` ${styles.fourCards}`;
+  } else if (cardCount <= 3) {
+    gridClass += ` ${styles.threeOrFewer}`;
+  }
+  // 5 or more cards use default 3-column layout
+
   return (
     <section className={styles.communitySupportSection}>
       <div className={styles.contentWrapper}>
         <h2 className={styles.title}>{section.title}</h2>
         <p className={styles.description}>{section.description}</p>
-        <div className={styles.cardsGrid}>
+        <div className={gridClass}>
           {section.cards.map((card, idx) => {
             const Icon = (LucideIcons as any)[card.icon] || LucideIcons.Mail;
             return (
@@ -54,6 +75,57 @@ const CommunitySupportSection = () => {
                   <span className={styles.cardTitle}>{card.title}</span>
                 </div>
                 <div className={styles.cardDesc}>{card.desc}</div>
+
+                {/* Events display for Events & Webinars card */}
+                {card.events && (
+                  <div
+                    className={
+                      card.events.length > 0
+                        ? styles.eventsContainer
+                        : styles.eventsContainerEmpty
+                    }
+                  >
+                    {card.events.length > 0 ? (
+                      card.events.map((event, eventIdx) => (
+                        <div key={eventIdx} className={styles.eventTile}>
+                          <div className={styles.eventTitle}>{event.title}</div>
+                          <div className={styles.eventDescription}>
+                            {event.description}
+                          </div>
+                          <div className={styles.eventDateTime}>
+                            <span className={styles.eventDate}>
+                              {new Date(event.date).toLocaleDateString(
+                                "en-US",
+                                {
+                                  weekday: "short",
+                                  month: "short",
+                                  day: "numeric",
+                                }
+                              )}
+                            </span>
+                            <span className={styles.eventTime}>
+                              {event.time}
+                            </span>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className={styles.emptyState}>
+                        <LucideIcons.Calendar
+                          size={48}
+                          className={styles.emptyStateIcon}
+                        />
+                        <div className={styles.emptyStateTitle}>
+                          No Upcoming Events
+                        </div>
+                        <div className={styles.emptyStateDescription}>
+                          Check back soon for new webinars and events
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div
                   className={styles.cardActions}
                   style={
@@ -99,10 +171,7 @@ const CommunitySupportSection = () => {
                         }
                       >
                         {ActionIcon && (
-                          <ActionIcon
-                            size={18}
-                            style={{ marginRight: 10, minWidth: 18 }}
-                          />
+                          <ActionIcon size={18} style={{ minWidth: 18 }} />
                         )}
                         {action.label}
                       </a>
