@@ -26,6 +26,7 @@ export type User = {
   image?: string;
   date?: string;
   priority?: "P0" | "P1" | "P2";
+  order?: number;
 };
 
 type SubType = {

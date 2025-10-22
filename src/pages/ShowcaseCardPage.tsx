@@ -75,12 +75,17 @@ function readSortChoice(rule: string): User[] {
       const priorityB = priorityOrder[b.priority] ?? 3;
 
       // Sort by priority (ascending - lower number = higher priority)
-      return priorityA - priorityB;
+      if (priorityA !== priorityB) {
+        return priorityA - priorityB;
+      }
+
+      // If priorities are equal, sort by original order
+      return (a.order || 0) - (b.order || 0);
     });
   }
-  return sortedUsers;
+  // Default case: maintain original order from templates.json
+  return unsortedUsers.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
 }
-
 const SearchNameQueryKey = "name";
 
 function readSearchName(search: string) {

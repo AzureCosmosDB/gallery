@@ -52,7 +52,29 @@
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
     "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates."
   },
-
+  {
+    "title": "Design a connection pooling strategy using PgBouncer",
+    "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
+    "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
+    "tags": [
+      "connect",
+      "app-dev",
+      "learning-path",
+      "developing-core-applications"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Connection pooling is a recommended practice in database-driven application development as it enhances performance and scalability by efficiently managing and reusing active connections, minimizing overhead and resource consumption. This article provides strategic guidance for implementing connection pooling for your Azure Database for PostgreSQL instances.",
+    "priority": "P1"
+  },
+  {
+    "title": "Handling transient connectivity errors",
+    "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
+    "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
+    "tags": ["app-dev", "learning-path", "developing-core-applications"],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "Handling transient connectivity errors is a best practice in cloud-native app development, as it ensures resilience and reliability by gracefully managing brief network interruptions or service unavailability. This article walks you through how to handle transient errors when connecting to Azure Database for PostgreSQL instances.",
+    "priority": "P1"
+  },
   {
     "title": "Workshop: Azure PostgreSQL Developer Workshop",
     "website": "https://github.com/microsoft/azure_pg_dev_workshop",
@@ -179,11 +201,11 @@
   },
   {
     "title": "TBD",
-    "website": "https://aka.ms/agentic-shop",
-    "source": "https://aka.ms/agentic-shop",
+    "website": "",
+    "source": "",
     "tags": ["learning-path", "building-ai-agents"],
     "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Learn to develop applications using the Agentic AI architecture with AgenticShop."
+    "description": ""
   },
   {
     "title": "MCP and the Azure MCP Server",
@@ -459,29 +481,6 @@
     "description": "Service Connector helps you to easily connect Azure compute services (App Services, Container Apps, Azure Kubernetes Services, etc.) to other backing services like Azure databases. This article covers supported authentication methods, clients, and sample code you can use to connect your apps to Azure Database for PostgreSQL using Service Connector.",
     "date": "2025-03-14",
     "priority": "P0"
-  },
-  {
-    "title": "Design a connection pooling strategy using PgBouncer",
-    "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
-    "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
-    "tags": [
-      "connect",
-      "app-dev",
-      "learning-path",
-      "developing-core-applications"
-    ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Connection pooling is a recommended practice in database-driven application development as it enhances performance and scalability by efficiently managing and reusing active connections, minimizing overhead and resource consumption. This article provides strategic guidance for implementing connection pooling for your Azure Database for PostgreSQL instances.",
-    "priority": "P1"
-  },
-  {
-    "title": "Handling transient connectivity errors",
-    "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
-    "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
-    "tags": ["app-dev", "learning-path", "developing-core-applications"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "Handling transient connectivity errors is a best practice in cloud-native app development, as it ensures resilience and reliability by gracefully managing brief network interruptions or service unavailability. This article walks you through how to handle transient errors when connecting to Azure Database for PostgreSQL instances.",
-    "priority": "P1"
   },
   {
     "title": "Accelerate your data and AI tasks with Visual Studio Code extension for PostgreSQL & GitHub Copilot",
