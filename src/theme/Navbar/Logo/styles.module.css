@@ -7,6 +7,10 @@
   color: inherit;
 }
 
+.navbarBrandContainer:hover {
+  text-decoration: none;
+}
+
 .navbarLogo {
   height: 32px;
   width: auto;
