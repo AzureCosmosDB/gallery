@@ -33,14 +33,10 @@ export default function ShowcaseCardPanel({
   const tagObjects = user.tags
     .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
-  console.log("tagObjects:", tagObjects);
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
     TagList.indexOf(tagObject.tag)
   );
-  console.log("tagObjectsSorted:", tagObjectsSorted);
-  const languageTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "Language"
-  );
+
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
   const vectorDatabaseTags = tagObjectsSorted.filter(
     (tag) => tag.type === "VectorDatabase"
@@ -50,7 +46,6 @@ export default function ShowcaseCardPanel({
   return (
     <>
       <div className={styles.padding}>
-        {/* <div className={styles.title}>{title}</div> */}
         <div className={styles.cardTag}>
           <ShowcaseCardTag
             key={"tag_" + user.title}
@@ -86,7 +81,7 @@ export default function ShowcaseCardPanel({
           <GitHubInfoCardPanel githubData={githubData} />
         </div>
       </div>
-      {user.previewTags ? (
+      {/* {user.previewTags ? (
         <MessageBar
           messageBarType={MessageBarType.severeWarning}
           isMultiline={false}
@@ -96,7 +91,7 @@ export default function ShowcaseCardPanel({
             Learn more
           </Link>
         </MessageBar>
-      ) : null}
+      ) : null} */}
       <div className={styles.divider} />
       {/* {languageTags.length > 0 ? (
         <>

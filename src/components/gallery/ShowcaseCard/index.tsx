@@ -42,17 +42,9 @@ function ShowcaseCard({
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
 
   const fetchGitHubData = async (owner: string, repo: string) => {
-    const token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
     try {
       const response = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}`,
-        {
-          headers: token
-            ? {
-                Authorization: `Bearer ${token}`,
-              }
-            : undefined,
-        }
+        `https://api.github.com/repos/${owner}/${repo}`
       );
 
       if (response.status === 429) {
@@ -78,21 +70,14 @@ function ShowcaseCard({
   };
 
   useEffect(() => {
+    if (!user.source.includes("https://github.com/")) return;
     const repoSlug = user.source
       .toLowerCase()
       .replace("https://github.com/", "");
     const slugParts = repoSlug.split("/");
     const owner = slugParts[0];
     const repo = slugParts[1];
-
-    // Check if data is already in local storage
-    const cachedData = localStorage.getItem(`${owner}/${repo}`);
-    if (cachedData) {
-      setGithubData(JSON.parse(cachedData));
-      console.log("Using cached GitHub data for:", owner, repo);
-    } else {
-      fetchGitHubData(owner, repo);
-    }
+    fetchGitHubData(owner, repo);
   }, [user.source]);
 
   return (
@@ -183,6 +168,7 @@ function ShowcaseCard({
             fontSize: 26,
             fontWeight: 600,
             lineHeight: "32px",
+            padding: "0px 10px",
           }}
         >
           {user.title}

@@ -28,23 +28,11 @@
     justify-items: center;
 }
 
-/* Default: 3 cards per row for 5+ cards */
 .cardsGrid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     max-width: 1200px;
 }
 
-/* 4 cards: 2 per row */
-.cardsGrid.fourCards {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
-}
-
-/* 3 or fewer cards: maintain current layout */
-.cardsGrid.threeOrFewer {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    max-width: 1200px;
-}
 
 .card {
   background: #fff;

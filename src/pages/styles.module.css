@@ -1,3 +1,6 @@
+.learningPathStyled {
+  background-color: #f4fafd !important;
+}
 .sortAndViewBar {
   display: flex;
   align-items: center;
@@ -43,9 +46,7 @@
   background: #2e76bb;
 }
 
-.container {
-  background-color: #f4fafd !important;
-}
+
 .titleSection {
   display: flex;
   flex-direction: column;
@@ -110,7 +111,7 @@
 .showcaseCards {
   display: grid;
   grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 20px 0px;
+  gap: 20px;
   margin: 0 auto;
 }
 
@@ -161,8 +162,10 @@
 
 .filterAndCard {
   display: flex;
-  padding: 70px;
+  padding: 50px;
   background-color: white;
+  max-width: 1500px;
+    margin: 0 auto;
 }
 
 .filter {
@@ -174,7 +177,7 @@
 .card {
   flex: 8;
   min-width: 15rem;
-  margin: 0px 80px;
+  margin: 0px 32px;
   transition: box-shadow 0.3s, transform 0.3s;
 }
 

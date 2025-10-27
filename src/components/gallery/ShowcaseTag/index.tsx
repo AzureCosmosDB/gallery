@@ -127,11 +127,39 @@ export default function ShowcaseCardTag({
       <div ref={containerRef} className={styles.tagContainer}>
         {shownTags.map((tagObject, index) => {
           const key = `showcase_card_tag_${tagObject.tag}`;
+          // Map our custom colors to Fluent UI Badge colors
+          const getFluentColor = (customColor: string) => {
+            switch (customColor) {
+              case "blue":
+                return "informative";
+              case "green":
+                return "success";
+              case "grey":
+                return "subtle";
+              case "purple":
+                return "brand";
+              case "orange":
+                return "warning";
+              case "brown":
+                return "severe";
+              case "mustard":
+                return "warning";
+              case "red":
+                return "danger";
+              case "teal":
+                return "informative";
+              case "indigo":
+                return "brand";
+              default:
+                return "brand";
+            }
+          };
+
           return (
             <Badge
               appearance="tint"
               size="medium"
-              color="brand"
+              color={getFluentColor(tagObject.color || "brand")}
               key={key}
               className={styles.cardTag}
             >
@@ -155,7 +183,7 @@ export default function ShowcaseCardTag({
             <Badge
               appearance="tint"
               size="medium"
-              color="brand"
+              color="subtle"
               className={styles.cardTag}
             >
               +{restCount} more

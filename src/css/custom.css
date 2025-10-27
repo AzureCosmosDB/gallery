@@ -33,11 +33,11 @@ html, body, #__docusaurus, #__docusaurus * {
 }
 
 .navbar {
-  /* max-width: 1736px; */
   width: 100%;
   margin: auto;
   background-color: #ffffff !important;
   border-bottom: 1px solid #e3e3e3 !important;
+  padding: 38px 86px;
 }
 
 .navbar--primary {
