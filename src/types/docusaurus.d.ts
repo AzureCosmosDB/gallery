@@ -64,3 +64,23 @@ declare module "*.css" {
   const content: { [key: string]: string };
   export default content;
 }
+
+// Google Analytics Global Site Tag (gtag) interface
+declare global {
+  interface Window {
+    gtag?: (
+      command: "config" | "set" | "event" | "consent" | "js",
+      target: string | Date,
+      params?: {
+        [key: string]: any;
+        page_location?: string;
+        page_path?: string | any[];
+        user_properties?: {
+          [key: string]: any;
+        };
+      }
+    ) => void;
+  }
+}
+
+export {};

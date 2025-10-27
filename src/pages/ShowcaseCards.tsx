@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
 import { type User, type TagType } from "../data/tags-copy";
 import styles from "./styles.module.css";
@@ -23,6 +23,11 @@ export default function ShowcaseCards({
   const CARDS_PER_PAGE = 6;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(len / CARDS_PER_PAGE);
+
+  // Reset pagination to first page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [filteredUsers]);
 
   if (len === 0) {
     return <ShowcaseEmptyResult id="showcase.usersList.noResult" />;

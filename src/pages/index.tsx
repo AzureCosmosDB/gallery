@@ -62,7 +62,7 @@ const App = () => {
       <div id="home">
         <ShowcaseCoverPage />
       </div>
-      <div id="learning-paths">
+      <div id="learning-paths" className={styles.learningPathStyled}>
         <LearningPathsSection />
       </div>
       <div id="resource-library">

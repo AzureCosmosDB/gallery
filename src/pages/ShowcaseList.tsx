@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
 import { type User } from "../data/tags-copy";
 import styles from "./styles.module.css";
@@ -16,6 +16,11 @@ export default function ShowcaseList({
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(len / CARDS_PER_PAGE);
   const location = useLocation();
+
+  // Reset pagination to first page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [filteredUsers]);
 
   const searchParams = new URLSearchParams(location.search);
   const currentTags = searchParams.getAll("tags");

@@ -8,7 +8,6 @@ import { manageCookieLabel } from "./constants.js";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   customFields: {
-    env: process.env.REACT_APP_GITHUB_TOKEN,
     description:
       "Build scalable, secure, and high-performance applications with Azure PostgreSQL. Get started with our comprehensive documentation, samples, and community resources.",
     disclaimerSection: {
@@ -286,7 +285,6 @@ const config = {
       },
       prism: {
         theme: prismThemes.github,
-        // darkTheme: prismThemes.dracula,
       },
     }),
 

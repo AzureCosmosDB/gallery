@@ -12,9 +12,6 @@
 }
 
 .cardTag {
-  color: #115ea3 !important;
-  border-color: #b4d6fa !important;
-  background: #ebf3fc !important;
   margin-right: 4px;
   flex-shrink: 0;
 }

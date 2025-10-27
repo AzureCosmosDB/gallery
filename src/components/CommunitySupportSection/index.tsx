@@ -40,23 +40,12 @@ const CommunitySupportSection = () => {
     | undefined;
   if (!section) return null;
 
-  // Determine grid class based on number of cards
-  const cardCount = section.cards.length;
-  let gridClass = styles.cardsGrid;
-
-  if (cardCount === 4) {
-    gridClass += ` ${styles.fourCards}`;
-  } else if (cardCount <= 3) {
-    gridClass += ` ${styles.threeOrFewer}`;
-  }
-  // 5 or more cards use default 3-column layout
-
   return (
     <section className={styles.communitySupportSection}>
       <div className={styles.contentWrapper}>
         <h2 className={styles.title}>{section.title}</h2>
         <p className={styles.description}>{section.description}</p>
-        <div className={gridClass}>
+        <div className={styles.cardsGrid}>
           {section.cards.map((card, idx) => {
             const Icon = (LucideIcons as any)[card.icon] || LucideIcons.Mail;
             return (

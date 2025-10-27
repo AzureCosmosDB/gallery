@@ -6,16 +6,97 @@
 import React from "react";
 import ShowcaseTagSelect from "../ShowcaseTagSelect";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import { useHistory } from "@docusaurus/router";
 import {
   Accordion,
   AccordionHeader,
   AccordionItem,
   AccordionPanel,
   AccordionToggleEventHandler,
+  Checkbox,
 } from "@fluentui/react-components";
 import { Tags, type TagType } from "../../../data/tags-copy";
 import { TagList } from "../../../data/users";
+import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
+
+// Custom component for Learning Path tags with special behavior
+function LearningPathTagSelect({
+  label,
+  tag,
+  id,
+  activeTags,
+  selectedCheckbox,
+  setSelectedCheckbox,
+  location,
+  readSearchTags,
+  replaceSearchTags,
+}: {
+  label: string;
+  tag: TagType;
+  id: string;
+  activeTags: TagType[];
+  selectedCheckbox: TagType[];
+  setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
+  location;
+  readSearchTags: (search: string) => TagType[];
+  replaceSearchTags: (search: string, newTags: TagType[]) => string;
+}) {
+  const history = useHistory();
+  
+  const toggleTag = () => {
+    // Clear all other tags and set only this learning path tag
+    const newSearch = `tags=${tag}`;
+    
+    history.replace({
+      ...location,
+      search: newSearch,
+      state: prepareUserState(),
+    });
+
+    // Scroll to resource library and switch to list view
+    requestAnimationFrame(() => {
+      const el = document.getElementById("resource-library");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        // Dispatch custom event to switch to list view
+        window.dispatchEvent(new Event("switchToListView"));
+      }
+    });
+  };
+
+  const toggleCheck = (tag: TagType) => {
+    if (selectedCheckbox.includes(tag)) {
+      setSelectedCheckbox(selectedCheckbox.filter((item) => item !== tag));
+    } else {
+      setSelectedCheckbox([...selectedCheckbox, tag]);
+    }
+  };
+
+  // Adobe Analytics
+  const checkbox = id.replace("showcase_checkbox_id_", "");
+  const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
+
+  return (
+    <Checkbox
+      id={id}
+      data-m={contentForAdobeAnalytics}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          toggleTag();
+          toggleCheck(tag);
+        }
+      }}
+      onChange={() => {
+        toggleTag();
+        toggleCheck(tag);
+      }}
+      checked={selectedCheckbox.includes(tag)}
+      label={label}
+      disabled={!activeTags?.includes(tag)}
+    />
+  );
+}
 
 function ShowcaseFilterViewAll({
   tags,
@@ -26,6 +107,7 @@ function ShowcaseFilterViewAll({
   location,
   readSearchTags,
   replaceSearchTags,
+  isLearningPath = false,
 }) {
   return (
     <>
@@ -40,17 +122,31 @@ function ShowcaseFilterViewAll({
               <AccordionItem value={`${tag}-subtags`}>
                 <AccordionHeader expandIconPosition="end">
                   <div className={styles.checkboxListItem}>
-                    <ShowcaseTagSelect
-                      id={id}
-                      tag={tag}
-                      label={tagObject.label}
-                      activeTags={activeTags}
-                      selectedCheckbox={selectedCheckbox}
-                      setSelectedCheckbox={setSelectedCheckbox}
-                      location={location}
-                      readSearchTags={readSearchTags}
-                      replaceSearchTags={replaceSearchTags}
-                    />
+                    {isLearningPath ? (
+                      <LearningPathTagSelect
+                        id={id}
+                        tag={tag}
+                        label={tagObject.label}
+                        activeTags={activeTags}
+                        selectedCheckbox={selectedCheckbox}
+                        setSelectedCheckbox={setSelectedCheckbox}
+                        location={location}
+                        readSearchTags={readSearchTags}
+                        replaceSearchTags={replaceSearchTags}
+                      />
+                    ) : (
+                      <ShowcaseTagSelect
+                        id={id}
+                        tag={tag}
+                        label={tagObject.label}
+                        activeTags={activeTags}
+                        selectedCheckbox={selectedCheckbox}
+                        setSelectedCheckbox={setSelectedCheckbox}
+                        location={location}
+                        readSearchTags={readSearchTags}
+                        replaceSearchTags={replaceSearchTags}
+                      />
+                    )}
                   </div>
                 </AccordionHeader>
                 <AccordionPanel>
@@ -62,17 +158,31 @@ function ShowcaseFilterViewAll({
                         key={subTagKey}
                         className={styles.subCheckboxListItem}
                       >
-                        <ShowcaseTagSelect
-                          id={`showcase_checkbox_id_${subTagKey}`}
-                          tag={subTagKey as TagType}
-                          label={subTagObject.label}
-                          activeTags={activeTags}
-                          selectedCheckbox={selectedCheckbox}
-                          setSelectedCheckbox={setSelectedCheckbox}
-                          location={location}
-                          readSearchTags={readSearchTags}
-                          replaceSearchTags={replaceSearchTags}
-                        />
+                        {isLearningPath ? (
+                          <LearningPathTagSelect
+                            id={`showcase_checkbox_id_${subTagKey}`}
+                            tag={subTagKey as TagType}
+                            label={subTagObject.label}
+                            activeTags={activeTags}
+                            selectedCheckbox={selectedCheckbox}
+                            setSelectedCheckbox={setSelectedCheckbox}
+                            location={location}
+                            readSearchTags={readSearchTags}
+                            replaceSearchTags={replaceSearchTags}
+                          />
+                        ) : (
+                          <ShowcaseTagSelect
+                            id={`showcase_checkbox_id_${subTagKey}`}
+                            tag={subTagKey as TagType}
+                            label={subTagObject.label}
+                            activeTags={activeTags}
+                            selectedCheckbox={selectedCheckbox}
+                            setSelectedCheckbox={setSelectedCheckbox}
+                            location={location}
+                            readSearchTags={readSearchTags}
+                            replaceSearchTags={replaceSearchTags}
+                          />
+                        )}
                       </div>
                     );
                   })}
@@ -84,17 +194,31 @@ function ShowcaseFilterViewAll({
           // Tag has no subTags: render as normal checkbox
           return (
             <div key={key} className={styles.checkboxListItem}>
-              <ShowcaseTagSelect
-                id={id}
-                tag={tag}
-                label={tagObject.label}
-                activeTags={activeTags}
-                selectedCheckbox={selectedCheckbox}
-                setSelectedCheckbox={setSelectedCheckbox}
-                location={location}
-                readSearchTags={readSearchTags}
-                replaceSearchTags={replaceSearchTags}
-              />
+              {isLearningPath ? (
+                <LearningPathTagSelect
+                  id={id}
+                  tag={tag}
+                  label={tagObject.label}
+                  activeTags={activeTags}
+                  selectedCheckbox={selectedCheckbox}
+                  setSelectedCheckbox={setSelectedCheckbox}
+                  location={location}
+                  readSearchTags={readSearchTags}
+                  replaceSearchTags={replaceSearchTags}
+                />
+              ) : (
+                <ShowcaseTagSelect
+                  id={id}
+                  tag={tag}
+                  label={tagObject.label}
+                  activeTags={activeTags}
+                  selectedCheckbox={selectedCheckbox}
+                  setSelectedCheckbox={setSelectedCheckbox}
+                  location={location}
+                  readSearchTags={readSearchTags}
+                  replaceSearchTags={replaceSearchTags}
+                />
+              )}
             </div>
           );
         }
@@ -177,6 +301,7 @@ export default function ShowcaseLeftFilters({
             location={location}
             readSearchTags={readSearchTags}
             replaceSearchTags={replaceSearchTags}
+            isLearningPath={true}
           />
         </AccordionPanel>
       </AccordionItem>

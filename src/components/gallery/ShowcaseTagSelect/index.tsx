@@ -7,7 +7,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { toggleListItem } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
-import { type TagType } from "../../../data/tags-copy";
+import { Tags, type TagType } from "../../../data/tags-copy";
 import { Checkbox } from "@fluentui/react-components";
 
 export default function ShowcaseTagSelect({
@@ -34,14 +34,38 @@ export default function ShowcaseTagSelect({
   const history = useHistory();
   // updates only the url query
   const toggleTag = () => {
-    const tags = readSearchTags(location.search);
-    const newTags = toggleListItem(tags, tag);
-    const newSearch = replaceSearchTags(location.search, newTags);
-    history.push({
-      ...location,
-      search: newSearch,
-      state: prepareUserState(),
-    });
+    const tagObject = Tags[tag];
+    const isLearningPath = tagObject?.type === "LearningPath";
+    
+    if (isLearningPath) {
+      // For learning path tags: clear all other filters and set only this tag
+      const newSearch = `tags=${tag}`;
+      history.replace({
+        ...location,
+        search: newSearch,
+        state: prepareUserState(),
+      });
+
+      // Scroll to resource library and switch to list view
+      requestAnimationFrame(() => {
+        const el = document.getElementById("resource-library");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          // Dispatch custom event to switch to list view
+          window.dispatchEvent(new Event("switchToListView"));
+        }
+      });
+    } else {
+      // Normal behavior for other tags
+      const tags = readSearchTags(location.search);
+      const newTags = toggleListItem(tags, tag);
+      const newSearch = replaceSearchTags(location.search, newTags);
+      history.push({
+        ...location,
+        search: newSearch,
+        state: prepareUserState(),
+      });
+    }
   };
   // Adobe Analytics
   const checkbox = id.replace("showcase_checkbox_id_", "");

@@ -114,7 +114,6 @@ function FilterAppliedBar({
         page_path: newTags,
       });
     }
-    console.log(window);
     history.push({
       ...location,
       search: newSearch,
