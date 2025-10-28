@@ -24,28 +24,37 @@ export default function ShowcaseCardTag({
   const tagObjects = tags
     .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
+
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
     TagList.indexOf(tagObject.tag)
   );
-  // TODO Modify once filter tags are up to date
+
   const languageTags = tagObjectsSorted.filter(
     (tag) => tag.type === "Language"
   );
+
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
+
   const intelligentSolutionTags = tagObjectsSorted.filter(
     (tag) => tag.type === "GenerativeAI"
   );
+
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
+
   const resourceTypeTags = tagObjectsSorted.filter(
     (tag) => tag.type === "ResourceType"
   );
+
   const contentTypeTags = tagObjectsSorted.filter(
     (tag) => tag.type === "ContentType"
   );
+
   const serviceTags = tagObjectsSorted.filter((tag) => tag.type === "Service");
+
   const learningPathTags = tagObjectsSorted.filter(
     (tag) => tag.type === "LearningPath"
   );
+
   const tagsByTypeSorted = [
     ...languageTags,
     ...modelTags,
@@ -65,7 +74,19 @@ export default function ShowcaseCardTag({
       const container = containerRef.current;
       if (!container) return;
 
-      const containerWidth = container.offsetWidth;
+      // Get the measured width but use it more reliably
+      let containerWidth = container.offsetWidth;
+
+      // If width seems unreasonably small or large, use a fallback
+      // 275px is actually a valid card width, so adjust the range
+      if (containerWidth < 200 || containerWidth > 400) {
+        // Fallback to expected card width (you mentioned 308px)
+        containerWidth = 308;
+        console.log("Using fallback width:", containerWidth);
+      } else {
+        console.log("Measured containerWidth:", containerWidth);
+      }
+
       setContainerWidth(containerWidth);
 
       // Estimate tag widths (approximate calculation)
@@ -76,16 +97,29 @@ export default function ShowcaseCardTag({
 
       for (let i = 0; i < tagsByTypeSorted.length; i++) {
         const tagWidth = tagsByTypeSorted[i].label.length * 7 + 20; // 7px per char + 20px padding/margin
-
-        // Check if adding this tag would exceed available space
-        // Reserve space for "+X more" if there are remaining tags
         const remainingTags = tagsByTypeSorted.length - i - 1;
-        const needsMoreTag = remainingTags > 0;
-        const requiredWidth =
-          totalWidth + tagWidth + (needsMoreTag ? moreTagWidth : 0);
 
-        if (requiredWidth > containerWidth - 10) {
-          // 10px buffer
+        // Calculate required width for this iteration
+        let requiredWidth = totalWidth + tagWidth;
+
+        // Only add "+X more" space if there are remaining tags AND we would need to show it
+        if (remainingTags > 0) {
+          // Check if adding this tag would leave remaining tags
+          const potentialTotalWidth = totalWidth + tagWidth;
+
+          // If adding this tag leaves remaining tags, we need space for "+X more"
+          requiredWidth = potentialTotalWidth + moreTagWidth;
+        }
+
+        // Use a smaller buffer (10px instead of 20px) and ensure at least one tag shows
+        const availableWidth = containerWidth - 10;
+
+        if (requiredWidth > availableWidth) {
+          // Special case: if no tags have been added yet, force at least one tag
+          if (count === 0 && tagWidth < availableWidth) {
+            totalWidth += tagWidth;
+            count++;
+          }
           break;
         }
 
@@ -96,23 +130,31 @@ export default function ShowcaseCardTag({
       setVisibleTagsCount(count);
     };
 
-    calculateVisibleTags();
+    // Use requestAnimationFrame to ensure layout is complete
+    const scheduledCalculation = () => {
+      requestAnimationFrame(() => {
+        setTimeout(calculateVisibleTags, 50);
+      });
+    };
 
-    // Recalculate on window resize
+    // Initial calculation
+    scheduledCalculation();
+
+    // Recalculate on window resize with debouncing
+    let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
-      setTimeout(calculateVisibleTags, 100);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        requestAnimationFrame(calculateVisibleTags);
+      }, 150);
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
+    };
   }, [tagsByTypeSorted, cardPanel]);
-
-  const length = tagObjectsSorted.length;
-
-  // Remove the old character-based calculation logic
-  const moreTagDetailList = tagsByTypeSorted
-    .map((tagObject) => tagObject.tag)
-    .join("\n");
 
   if (!cardPanel) {
     // Use the calculated visible tags count instead of character-based calculation
@@ -135,6 +177,8 @@ export default function ShowcaseCardTag({
               case "green":
                 return "success";
               case "grey":
+                return "subtle";
+              case "slate":
                 return "subtle";
               case "purple":
                 return "brand";

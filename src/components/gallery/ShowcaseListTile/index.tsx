@@ -14,6 +14,8 @@ import { useBoolean } from "@fluentui/react-hooks";
 import { X } from "lucide-react";
 import styleCSS from "../ShowcaseCard/styles.module.css";
 import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
+import ShowcaseCardTag from "../ShowcaseTag/index";
+import { getButtonText } from "../../../utils/buttonTextUtils";
 
 export default function ShowcaseListTile({
   user,
@@ -70,6 +72,9 @@ export default function ShowcaseListTile({
               />
             )}
             <div className={styleCSS.listTileText}>
+              <div className={styleCSS.listTileTags}>
+                <ShowcaseCardTag tags={user.tags} cardPanel={false} />
+              </div>
               <div className={styleCSS.listTitle}>{user.title}</div>
               <div className={styleCSS.cardDescription}>{user.description}</div>
               {user.website && (
@@ -82,7 +87,7 @@ export default function ShowcaseListTile({
                   onClick={(e) => e.stopPropagation()}
                   style={{ marginTop: 12, backgroundColor: "#0078d4" }}
                 >
-                  Read More
+                  {getButtonText(user.website)}
                 </Button>
               )}
             </div>
