@@ -14,7 +14,7 @@ export type Tag = {
   color?:
     | "blue"
     | "green"
-    | "grey"
+    | "slate"
     | "purple"
     | "orange"
     | "brown"
@@ -182,7 +182,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Overview",
     description: "Template provides an overview of GenAI capabilities",
     type: ["GenerativeAI", "ContentType"],
-    color: "grey",
+    color: "slate",
   },
   semantic: {
     label: "Semantic Operators",
@@ -239,7 +239,7 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Concepts article",
     type: "ResourceType",
     buttonText: "Read Concepts",
-    color: "grey",
+    color: "slate",
   },
 
   "how-to": {
@@ -337,7 +337,7 @@ export const Tags: { [type in TagType]: Tag } = {
   "getting-started": {
     label: "Getting Started",
     description: "Getting Started with Azure Database for PostgreSQL",
-    color: "grey",
+    color: "slate",
   },
 
   // Services Category for filtering content

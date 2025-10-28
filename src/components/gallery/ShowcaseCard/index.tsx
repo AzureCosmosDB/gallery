@@ -19,6 +19,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import siteConfig from "@generated/docusaurus.config";
 
 import type { User } from "../../../data/tags-copy";
+import { getButtonText } from "../../../utils/buttonTextUtils";
 import { X } from "lucide-react";
 
 type GitHubRepoInfo = {
@@ -36,6 +37,7 @@ function ShowcaseCard({
 }): JSX.Element {
   const tags = user.tags;
   const title = user.title;
+
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
 
@@ -141,7 +143,7 @@ function ShowcaseCard({
                   backgroundColor: "#0078d4",
                 }}
               >
-                Read More
+                {getButtonText(user.website)}
               </Button>
             )}
           </div>
