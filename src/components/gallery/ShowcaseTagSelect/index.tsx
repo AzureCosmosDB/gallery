@@ -7,7 +7,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { toggleListItem } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
-import { Tags, type TagType } from "../../../data/tags-copy";
+import { Tags, type TagType } from "../../../data/tags";
 import { Checkbox } from "@fluentui/react-components";
 
 export default function ShowcaseTagSelect({
@@ -36,7 +36,7 @@ export default function ShowcaseTagSelect({
   const toggleTag = () => {
     const tagObject = Tags[tag];
     const isLearningPath = tagObject?.type === "LearningPath";
-    
+
     if (isLearningPath) {
       // For learning path tags: clear all other filters and set only this tag
       const newSearch = `tags=${tag}`;

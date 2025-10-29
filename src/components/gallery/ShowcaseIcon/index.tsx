@@ -4,7 +4,7 @@
  */
 import React, { useMemo } from "react";
 import styles from "./styles.module.css";
-import { Tags, type TagType } from "../../../data/tags-copy";
+import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
 import { Tooltip, Button } from "@fluentui/react-components";

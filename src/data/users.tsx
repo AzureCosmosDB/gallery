@@ -6,7 +6,7 @@
 /* eslint-disable global-require */
 
 import { sortBy } from "../utils/jsUtils";
-import { TagType, User, Tags } from "./tags-copy";
+import { TagType, User, Tags } from "./tags";
 import templates from "../../static/templates.json";
 
 // *** ADDING DATA TO AZD GALLERY ****/

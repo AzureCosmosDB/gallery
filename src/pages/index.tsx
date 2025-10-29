@@ -16,7 +16,7 @@ import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import styles from "./styles.module.css";
-import { type TagType } from "../data/tags-copy";
+import { type TagType } from "../data/tags";
 import { TagList } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";

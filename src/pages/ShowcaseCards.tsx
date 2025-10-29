@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from "react";
 import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
-import { type User, type TagType } from "../data/tags-copy";
+import { type User, type TagType } from "../data/tags";
 import styles from "./styles.module.css";
 import ShowcaseCard from "../components/gallery/ShowcaseCard";
 import Pagination from "../components/Pagination";

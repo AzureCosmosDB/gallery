@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
-import { Tags, type TagType } from "../../../data/tags-copy";
+import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
 import { Badge, Tooltip } from "@fluentui/react-components";
@@ -80,7 +80,7 @@ export default function ShowcaseCardTag({
       // If width seems unreasonably small or large, use a fallback
       // 275px is actually a valid card width, so adjust the range
       if (containerWidth < 200 || containerWidth > 400) {
-        // Fallback to expected card width (you mentioned 308px)
+        // Fallback to expected card width
         containerWidth = 308;
         console.log("Using fallback width:", containerWidth);
       } else {

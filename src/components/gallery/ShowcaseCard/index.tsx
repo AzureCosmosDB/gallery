@@ -5,22 +5,17 @@ import {
   CardFooter,
   Caption1Strong,
   Image,
-  Dialog,
   DialogTrigger,
-  DialogSurface,
-  DialogBody,
   Button,
-  DialogTitle,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
-import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
+import ShowcaseDialog from "../ShowcaseDialog/index";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import siteConfig from "@generated/docusaurus.config";
 
-import type { User } from "../../../data/tags-copy";
+import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
-import { X } from "lucide-react";
 
 type GitHubRepoInfo = {
   forks: number;
@@ -83,11 +78,11 @@ function ShowcaseCard({
   }, [user.source]);
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(_e, data) => {
-        if (!data.open) dismissDialog();
-      }}
+    <ShowcaseDialog
+      user={user}
+      githubData={githubData}
+      isOpen={isOpen}
+      onClose={dismissDialog}
     >
       <DialogTrigger disableButtonEnhancement>
         <Card
@@ -147,39 +142,9 @@ function ShowcaseCard({
               </Button>
             )}
           </div>
-
-          {/* <div className={styleCSS.cardFooterTag}>
-            <ShowcaseCardIcon key={title} tags={tags} />
-          </div>
-          <GitHubInfo githubData={githubData} /> */}
         </Card>
       </DialogTrigger>
-      <DialogSurface>
-        <DialogTitle
-          action={
-            <Button
-              appearance="subtle"
-              aria-label="Close"
-              icon={<X />}
-              onClick={dismissDialog}
-              style={{ position: "absolute", top: 12, right: 12 }}
-            />
-          }
-          style={{
-            color: "var(--ifm-color-text-ai-site)",
-            fontSize: 26,
-            fontWeight: 600,
-            lineHeight: "32px",
-            padding: "0px 10px",
-          }}
-        >
-          {user.title}
-        </DialogTitle>
-        <DialogBody style={{ display: "block" }}>
-          <ShowcaseCardPanel user={user} githubData={githubData} />
-        </DialogBody>
-      </DialogSurface>
-    </Dialog>
+    </ShowcaseDialog>
   );
 }
 

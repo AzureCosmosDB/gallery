@@ -5,7 +5,7 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-import { type User } from "../../../data/tags-copy";
+import { type User } from "../../../data/tags";
 import { Link } from "@fluentui/react";
 
 function ShowcaseMultipleWebsites(
