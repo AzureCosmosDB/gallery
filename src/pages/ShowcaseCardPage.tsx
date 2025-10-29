@@ -5,7 +5,7 @@
 
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
-import { Tags, type User, type TagType } from "../data/tags-copy";
+import { Tags, type User, type TagType } from "../data/tags";
 import { sortedUsers, unsortedUsers } from "../data/users";
 import {
   Text,

@@ -15,7 +15,7 @@ import {
   AccordionToggleEventHandler,
   Checkbox,
 } from "@fluentui/react-components";
-import { Tags, type TagType } from "../../../data/tags-copy";
+import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
@@ -43,11 +43,11 @@ function LearningPathTagSelect({
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
   const history = useHistory();
-  
+
   const toggleTag = () => {
     // Clear all other tags and set only this learning path tag
     const newSearch = `tags=${tag}`;
-    
+
     history.replace({
       ...location,
       search: newSearch,

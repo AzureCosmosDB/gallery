@@ -5,7 +5,7 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-import { Tag, Tags, type User, type TagType } from "../../../data/tags-copy";
+import { Tag, Tags, type User, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import {

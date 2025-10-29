@@ -4,7 +4,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/databse.jpeg",
     "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
   },
   {
@@ -12,7 +12,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/brainstorming.jpeg",
     "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data."
   },
   {
@@ -33,7 +33,7 @@
       "developing-core-applications",
       "app-dev"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/python.jpeg",
     "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL."
   },
   {
@@ -41,7 +41,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "tags": ["go", "learning-path", "developing-core-applications"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/Deploying Django on AKS with PostgreSQL.png",
     "description": "Azure Kubernetes Service (AKS) is a managed container orchestration platform ideal for building and running scalable, resilient microservices and cloud-native applications. In this quickstart, you'll learn how to deploy a Django application on Azure Kubernetes Service (AKS) cluster integrating Azure Database for PostgreSQL."
   },
   {
@@ -49,7 +49,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/github.jpg",
     "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates."
   },
   {
@@ -868,7 +868,7 @@
       "connect",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/azure-db-for-postgres-blog.png",
     "description": "We are excited to announce the public preview of the brand-new PostgreSQL extension for Visual Studio Code (VS Code), designed to simplify PostgreSQL database management and development workflows. With this extension, you can now manage database objects, draft queries with intelligent assistance from context-aware IntelliSense and our ‘@pgsql’ GitHub Copilot agent—all without ever leaving your favorite code editor.",
     "date": "2025-05-19",
     "priority": "P0"
@@ -890,7 +890,7 @@
       "graph",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/new-genai-azure-postgres.png",
     "description": "At Microsoft Build 2025, we announced new Generative AI capabilities in Azure Database for PostgreSQL flexible server, unlocking intelligent database features for next-generation applications. This article provides an overview of these innovations and how they enable smarter data-driven AI solutions using patterns like Retrieval-Augmented Generation (RAG).",
     "date": "2025-05-19",
     "priority": "P0"
@@ -910,7 +910,7 @@
       "semantic",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/bringing genai to semantic operators.jpeg",
     "description": "Semantic Operators in Azure Database for PostgreSQL azure_ai extension introduce a native intelligence layer to relational algebra by integrating large language models directly into the SQL query engine. This feature enables in-database reasoning over operational data, allowing developers to extract and act on hidden semantic relationships for GenAI applications and agents. This blog explains the 4 semantic operators: generate(), is_true(), extract() and rank() with live use cases!",
     "date": "2025-05-19",
     "priority": "P0"
@@ -928,7 +928,7 @@
       "rag",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/diskann-on-azure-db.png",
     "description": "DiskANN for Azure Database for PostgreSQL is now generally available, delivering fast, scalable, and cost-efficient vector search for production workloads. This article highlights new GA features, performance optimizations like product quantization, and benchmark results showing up to 10x faster speed and 96x lower memory usage compared to pgvector HNSW.",
     "date": "2025-05-19",
     "priority": "P0"
@@ -951,7 +951,7 @@
       "video",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/build ai ready apps.png",
     "description": "This blog introduces a four-part video series,where  you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more—all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
     "date": "2025-07-02",
     "priority": "P0"
@@ -975,7 +975,7 @@
       "python",
       "blog"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/azure-solution-accelerator.png",
     "description": "AgenticShop is a GenAI-powered e-commerce demo that showcases how multi-agent workflows, powered by LlamaIndex, can drive personalized product discovery using unstructured data like user reviews and preferences. This demo runs fully on Azure, and can be deployed quickly using the Azure Developer CLI. Explore how intelligent agents handle search, sentiment, memory, and personalization with observability and memory persistence.",
     "date": "2025-08-26",
     "priority": "P0"

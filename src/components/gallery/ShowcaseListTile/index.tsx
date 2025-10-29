@@ -1,19 +1,14 @@
 import React from "react";
-import { User } from "../../../data/tags-copy";
+import { User } from "../../../data/tags";
 import {
   Button,
   Card,
   CardFooter,
-  Dialog,
   DialogTrigger,
-  DialogSurface,
-  DialogBody,
-  DialogTitle,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
-import { X } from "lucide-react";
 import styleCSS from "../ShowcaseCard/styles.module.css";
-import ShowcaseCardPanel from "../ShowcaseCardPanel/index";
+import ShowcaseDialog from "../ShowcaseDialog/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { getButtonText } from "../../../utils/buttonTextUtils";
 
@@ -28,12 +23,7 @@ export default function ShowcaseListTile({
     useBoolean(false);
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(_e, data) => {
-        if (!data.open) dismissDialog();
-      }}
-    >
+    <ShowcaseDialog user={user} isOpen={isOpen} onClose={dismissDialog}>
       <DialogTrigger disableButtonEnhancement>
         <Card
           className={styleCSS.listTile}
@@ -97,30 +87,6 @@ export default function ShowcaseListTile({
           </CardFooter>
         </Card>
       </DialogTrigger>
-      <DialogSurface>
-        <DialogTitle
-          action={
-            <Button
-              appearance="subtle"
-              aria-label="Close"
-              icon={<X />}
-              onClick={dismissDialog}
-              style={{ position: "absolute", top: 12, right: 12 }}
-            />
-          }
-          style={{
-            color: "var(--ifm-color-text-ai-site)",
-            fontSize: 26,
-            fontWeight: 600,
-            lineHeight: "32px",
-          }}
-        >
-          {user.title}
-        </DialogTitle>
-        <DialogBody style={{ display: "block" }}>
-          <ShowcaseCardPanel user={user} githubData={null} />
-        </DialogBody>
-      </DialogSurface>
-    </Dialog>
+    </ShowcaseDialog>
   );
 }

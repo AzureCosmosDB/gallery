@@ -6,13 +6,22 @@
 export type Tag = {
   label: string;
   description: string;
-  icon?: string;
-  darkIcon?: string;
   url?: string;
-  type?: string;
-  subType?: SubType;
+  type?: string | string[];
+  subType?: SubType[];
   buttonText?: string;
   date?: string; // ISO 8601 format ("2024-09-23")
+  color?:
+    | "blue"
+    | "green"
+    | "slate"
+    | "purple"
+    | "orange"
+    | "brown"
+    | "mustard"
+    | "red"
+    | "teal"
+    | "indigo";
 };
 
 export type User = {
@@ -26,140 +35,56 @@ export type User = {
   video?: string;
   previewTags?: TagType[];
   image?: string;
+  date?: string;
+  priority?: "P0" | "P1" | "P2";
+  order?: number;
 };
 
 type SubType = {
   label: string;
-  icon: string;
-  darkIcon?: string;
-};
-
-export const openai: SubType = {
-  label: "OpenAI",
-  icon: "./img/openAI.svg",
-  darkIcon: "./img/openAIDark.svg",
-};
-
-export const meta: SubType = {
-  label: "Meta",
-  icon: "./img/meta.svg",
-};
-
-export const microsoft: SubType = {
-  label: "Microsoft",
-  icon: "./img/Microsoft.svg",
-};
-
-export const mistralai: SubType = {
-  label: "Mistral AI",
-  icon: "", // "./img/mistralai.svg",
 };
 
 // NN: Updated TagType to suit Static Web Apps
 export type TagType =
   | "featured"
-  | "microsoft"
-  | "community"
-  | "deck"
-  | "example"
-  | "blog"
-  | "video"
-  | "documentation"
-  | "generativeai"
-  | "architecturedesign"
-  | "tools"
-  | "infrastructure"
-  | "migration"
-  | "analytics"
-  | "CQRS"
-  | "outbox-pattern"
-  | "event-sourcing"
-  | "data-modeling"
-  | "serverless"
-  | "BCDR"
-  | "agent"
-  | "ragPattern"
-  | "chat"
-  | "search"
-  | "llmops"
-  | "summarization"
-  | "mcp"
-  | "graphrag"
-  | "javascript"
-  | "csharp"
-  | "java"
-  | "python"
-  | "typescript"
-  | "go"
-  | "jupyternotebook"
-  | "openai"
-  | "dalle"
-  | "gpt35"
-  | "gpt4"
-  | "azure-vision"
-  | "embedding-ada"
-  | "embedding-text-3"
-  | "embedding-cohere"
-  | "llama"
-  | "llama2"
-  | "promptflow"
-  | "pinecone"
-  | "diskann"
-  | "vectorcosmosnosql"
-  | "vectorcosmosmongo"
-  | "vectorpostrgresql"
-  | "vectoraisearch"
-  | "semantickernel"
-  | "langchain"
-  | "llamaindex"
-  | "springai"
-  | "phi2"
-  | "orca2"
-  | "mistral7b"
-  | "mistral8*7b"
-  | "bicep"
-  | "terraform"
-  | "prometheus"
-  | "cosmosdb"
-  | "appinsights"
-  | "loganalytics"
-  | "appservice"
-  | "documentintelligence"
-  | "monitor"
-  | "keyvault"
-  | "aca"
-  | "functions"
-  | "blobstorage"
-  | "azuresql"
-  | "azurepostrgres"
-  | "azuredbmysql"
-  | "swa"
-  | "servicebus"
-  | "vnets"
-  | "aisearch"
+  | "flexibleserver"
+  | "genai"
+  | "overview"
+  | "vector"
   | "azureai"
-  | "apim"
-  | "aks"
-  | "azurecdn"
-  | "frontdoor"
-  | "grafana"
-  | "azurespringapps"
-  | "rediscache"
-  | "agw"
-  | "azurebot"
-  | "ade"
-  | "acr"
-  | "eventhub"
-  | "azurestorage"
-  | "azureappconfig"
-  | "aistudio"
-  | "apicenter"
-  | "eventgrid"
-  | "diagnosticsettings"
-  | "logicapps"
-  | "managedidentity"
-  | "serviceprincipal"
-  | "azuredatafactory";
+  | "semantic"
+  | "agent"
+  | "graph"
+  | "rag"
+  | "concepts"
+  | "how-to"
+  | "solution-accelerator"
+  | "tutorial"
+  | "javascript"
+  | "python"
+  | "training"
+  | "dotnet"
+  | "java"
+  | "video"
+  | "oriondb"
+  | "fundamentals"
+  | "app-dev"
+  | "blog"
+  | "getting-started"
+  | "connect"
+  | "vscode"
+  | "best-practice"
+  | "devops"
+  | "fabric"
+  | "powerbi"
+  | "adf"
+  | "go"
+  | "php"
+  | "samples"
+  | "analytics"
+  | "developing-core-applications"
+  | "building-genai-apps"
+  | "building-ai-agents";
 
 // LIST OF AVAILABLE TAGS
 // Each tag in lit about must have a defined object here
@@ -168,7 +93,6 @@ export type TagType =
 //   - label = short name seen in tag
 //   - description = explainer for usage
 //   - type = type of tag
-//   - icon = svg path for icon
 //   - url = url for azure service
 export const Tags: { [type in TagType]: Tag } = {
   //============  FOR REGULAR USE
@@ -176,1226 +100,279 @@ export const Tags: { [type in TagType]: Tag } = {
   featured: {
     label: "Featured Template",
     description: "This tag is used for featured templates.",
+    color: "orange",
   },
 
-  // Language Tags
-  javascript: {
-    label: "JavaScript",
-    description: "Template contains JavaScript app code",
+  // Language Tags for filtering content
+  python: {
+    label: "Python",
+    description: "Template contains Python app code",
     type: "Language",
-    icon: "./img/js.svg",
+    color: "blue",
   },
-  csharp: {
-    label: ".NET/C#",
-    description: "Template contains .NET and/or C# app code",
+  dotnet: {
+    label: ".NET",
+    description: "Template contains .NET app code",
     type: "Language",
-    icon: "./img/csharp.svg",
+    color: "purple",
   },
   java: {
     label: "Java",
     description: "Template contains Java app code",
     type: "Language",
-    icon: "./img/java.svg",
-  },
-  python: {
-    label: "Python",
-    description: "Template contains Python app code",
-    type: "Language",
-    icon: "./img/python.svg",
-  },
-  typescript: {
-    label: "TypeScript",
-    description: "Template contains TypeScript app code",
-    type: "Language",
-    icon: "./img/typescript.svg",
+    color: "red",
   },
   go: {
     label: "Go",
     description: "Template contains Go app code",
     type: "Language",
-    icon: "./img/go.svg",
+    color: "teal",
+  },
+  php: {
+    label: "PHP",
+    description: "Template contains PHP app code",
+    type: "Language",
+    color: "indigo",
+  },
+  javascript: {
+    label: "JavaScript",
+    description: "Template contains JavaScript app code",
+    type: "Language",
+    color: "mustard",
   },
 
-  // Vector Database Tags
-  vectorcosmosnosql: {
-    label: "Azure Cosmos DB for NoSQL",
-    description: "Template uses Azure Cosmos DB for NoSQL",
-    type: "VectorDatabase",
-    icon: "./img/cosmos.png",
-  },
-  vectorcosmosmongo: {
-    label: "Azure Cosmos DB for MongoDB",
-    description: "Template uses Azure Cosmos DB for MongoDB",
-    type: "VectorDatabase",
-    icon: "./img/cosmos.png",
-  },
-  vectorpostrgresql: {
-    label: "PostgreSQL",
-    description: "Template uses Azure PostgreSQL",
-    type: "VectorDatabase",
-    icon: "./img/postgresql.svg",
-  },
-  vectoraisearch: {
-    label: "Azure AI Search",
-    description: "Template uses Azure AI Search",
-    type: "VectorDatabase",
-    icon: "./img/aisearch.svg",
-  },
-
-  // Model Tags
-  dalle: {
-    label: "Dalle",
-    description: "Template use OpenAI Dalle model",
-    type: "Model",
-    subType: openai,
-    url: "https://platform.openai.com/docs/models/dall-e",
-    icon: "./img/openAI.svg",
-    darkIcon: "./img/openAIDark.svg",
-  },
-  gpt35: {
-    label: "GPT 3.5/Turbo",
-    description: "Template use OpenAI GPT 3.5 and 3.5 Turbo model",
-    type: "Model",
-    subType: openai,
-    url: "https://platform.openai.com/docs/models/gpt-3-5-turbo",
-    icon: "./img/openAI.svg",
-    darkIcon: "./img/openAIDark.svg",
-  },
-  gpt4: {
-    label: "GPT 4/4o",
-    description: "Template use OpenAI GPT 4 and GPT 4o model",
-    type: "Model",
-    subType: openai,
-    url: "https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4",
-    icon: "./img/openAI.svg",
-    darkIcon: "./img/openAIDark.svg",
-  },
-  "embedding-ada": {
-    label: "Embedding ADA",
-    description: "Template use OpenAI Embedding-ada model",
-    type: "Model",
-    subType: openai,
-    icon: "./img/openAI.svg",
-    darkIcon: "./img/openAIDark.svg",
-  },
-  "embedding-text-3": {
-    label: "Embedding Text 3",
-    description: "Template use OpenAI Embedding-text-3 models",
-    type: "Model",
-    subType: openai,
-    icon: "./img/openAI.svg",
-    darkIcon: "./img/openAIDark.svg",
-  },
-  llama: {
-    label: "Code Llama",
-    description: "Template use Meta Code Llama model",
-    type: "Model",
-    subType: meta,
-    url: "https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-code-llama",
-  },
-  llama2: {
-    label: "Llama 2",
-    description: "Template use Meta Llama 2 model",
-    type: "Model",
-    subType: meta,
-    url: "https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2",
-  },
-  phi2: {
-    label: "Phi 2",
-    description: "Template use Microsoft Phi 2 model",
-    type: "Model",
-    subType: microsoft,
-  },
-  orca2: {
-    label: "Orca 2",
-    description: "Template use Microsoft Orca 2 model",
-    type: "Model",
-    subType: microsoft,
-  },
-  mistral7b: {
-    label: "Mistral 7b",
-    description: "Template use Mistral AI Mistral 7b model",
-    type: "Model",
-    subType: mistralai,
-  },
-  "mistral8*7b": {
-    label: "Mixtral 8x7B",
-    description: "Template use Mistral AI Mixtral 8x7B model",
-    type: "Model",
-    subType: mistralai,
-  },
-
-  // GenerativeAI Tags
+  // GenAI Tags for filtering content (subtype)
   agent: {
-    label: "Agent",
+    label: "Agents",
     description: "Template implements one or more agents",
     type: "GenerativeAI",
+    buttonText: "Go to Github repo",
+    color: "green",
   },
-  chat: {
-    label: "Interactive Chat",
-    description: "Template implements interactive chat",
-    type: "GenerativeAI",
-  },
-  ragPattern: {
+  rag: {
     label: "RAG Pattern",
     description: "Template implements RAG Pattern",
     type: "GenerativeAI",
-  },
-  llmops: {
-    label: "LLM Ops",
-    description: "Template involves LLM Operations",
-    type: "GenerativeAI",
-  },
-  mcp: {
-    label: "MCP",
-    description:
-      "Multi context protocol, a pattern for building LLM applications",
-    type: "GenerativeAI",
-  },
-  summarization: {
-    label: "Summarization",
-    description: "Template involves summarization and / or augmentation",
-    type: "GenerativeAI",
+    buttonText: "Go to Github repo",
+    color: "green",
   },
 
-  // ResourceType Tags
-  deck: {
-    label: "Presentation",
-    description: "Presentation, PPT, PDF, etc.",
-    icon: "./img/decks.svg", //need icons for this
-    type: "ResourceType",
-    buttonText: "View Deck",
+  fundamentals: {
+    label: "Azure PostgreSQL Fundamentals",
+    description: "Fundamental concepts and getting started content",
+    type: "ContentType",
+    subType: [{ label: "Overview" }, { label: "getting-started" }],
+    color: "blue",
   },
+
+  "app-dev": {
+    label: "Application Development (Core)",
+    description: "Application Development",
+    type: "ContentType",
+    color: "purple",
+    subType: [
+      { label: "Connect" },
+      { label: "vscode" },
+      { label: "best-practice" },
+      { label: "devops" },
+    ],
+  },
+
+  overview: {
+    label: "Overview",
+    description: "Template provides an overview of GenAI capabilities",
+    type: ["GenerativeAI", "ContentType"],
+    color: "slate",
+  },
+  semantic: {
+    label: "Semantic Operators",
+    description: "Template uses Semantic Operators",
+    type: "GenerativeAI",
+    color: "green",
+  },
+  vector: {
+    label: "Vector Search",
+    description: "Template uses a Vector Search",
+    type: "GenerativeAI",
+    color: "green",
+  },
+  graph: {
+    label: "GraphRAG",
+    description: "Template uses GraphRAG",
+    type: "GenerativeAI",
+    color: "green",
+  },
+  azureai: {
+    label: "Azure AI services integration",
+    description: "Template integrates with Azure AI services",
+    type: ["GenerativeAI", "ContentType"],
+    color: "brown",
+  },
+
+  // ResourceType Tags for filtering content
+
   video: {
     label: "Video",
+    color: "orange",
     description: "Video on YouTube, Vimeo, etc.",
-    icon: "./img/videos.svg", //need icons for this
     type: "ResourceType",
     buttonText: "Watch Video",
   },
   blog: {
     label: "Blog",
     description: "Blog post",
-    icon: "./img/blogs.svg", //need icons for this
     type: "ResourceType",
     buttonText: "Read Blog",
+    color: "brown",
   },
-  example: {
-    label: "Example",
-    description: "Code example",
-    icon: "./img/github.svg",
-    darkIcon: "./img/githubDark.svg",
+
+  "solution-accelerator": {
+    label: "Solution Accelerator and Workshop",
+    description: "Solution Accelerator",
     type: "ResourceType",
-    buttonText: "Go to GitHub repo",
+    buttonText: "Explore Solution Accelerator",
+    color: "indigo",
   },
-  documentation: {
-    label: "Documentation",
-    description: "Documentation",
-    icon: "./img/docs.svg",
+
+  concepts: {
+    label: "Concepts",
+    description: "Concepts article",
     type: "ResourceType",
-    buttonText: "Read Article",
+    buttonText: "Read Concepts",
+    color: "slate",
+  },
+
+  "how-to": {
+    label: "How-To guide",
+    description: "How-To guide",
+    type: "ResourceType",
+    buttonText: "Read How-To Guide",
+    color: "blue",
+  },
+
+  tutorial: {
+    label: "Tutorial",
+    description: "Tutorial",
+    type: "ResourceType",
+    buttonText: "Start Tutorial",
+    color: "green",
+  },
+
+  training: {
+    label: "Training",
+    description: "Training",
+    type: "ResourceType",
+    buttonText: "Start Training",
+    color: "purple",
+  },
+
+  samples: {
+    label: "Samples",
+    description: "Sample",
+    type: "ResourceType",
+    buttonText: "View Sample",
+    color: "teal",
   },
 
   // Content Category for filtering content
-  generativeai: {
+  genai: {
     label: "Generative AI",
     description: "Generative AI and Vector Database content",
-    icon: "",
     type: "ContentType",
+    color: "green",
+    subType: [
+      { label: "Overview" },
+      { label: "Vector" },
+      { label: "RAG" },
+      { label: "Agent" },
+      { label: "Semantic" },
+      { label: "Graph" },
+      { label: "AzureAI" },
+    ],
   },
-  architecturedesign: {
-    label: "Architecture",
-    description: "Architecture and design patterns",
-    type: "ContentType",
-  },
-  tools: {
-    label: "Tools",
-    description: "Tools and utilities for development",
-    type: "ContentType",
-  },
-  migration: {
-    label: "Data Migration",
-    description: "Migrating data between services",
-    type: "ContentType",
-  },
+
   analytics: {
     label: "Analytics",
     description: "Data Analytics and visualization",
     type: "ContentType",
-  },
-  microsoft: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  community: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  infrastructure: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  CQRS: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  "outbox-pattern": {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  "event-sourcing": {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  "data-modeling": {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  serverless: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  BCDR: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  search: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  graphrag: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  jupyternotebook: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  openai: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  "azure-vision": {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  "embedding-cohere": {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  promptflow: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  pinecone: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  diskann: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  semantickernel: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  langchain: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  llamaindex: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  springai: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  bicep: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  terraform: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  prometheus: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  cosmosdb: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  appinsights: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  loganalytics: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  appservice: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  documentintelligence: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  monitor: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  keyvault: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  aca: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  functions: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  blobstorage: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azuresql: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azurepostrgres: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azuredbmysql: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  swa: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  servicebus: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  vnets: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  aisearch: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azureai: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  apim: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  aks: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azurecdn: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  frontdoor: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  grafana: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azurespringapps: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  rediscache: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  agw: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azurebot: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  ade: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  acr: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  eventhub: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azurestorage: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azureappconfig: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  aistudio: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  apicenter: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  eventgrid: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  diagnosticsettings: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  logicapps: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  managedidentity: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  serviceprincipal: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
-  },
-  azuredatafactory: {
-    label: "",
-    description: "",
-    icon: "",
-    darkIcon: "",
-    url: "",
-    type: "",
-    subType: {
-      label: "",
-      icon: "",
-      darkIcon: "",
-    },
-    buttonText: "",
-    date: "",
+    color: "orange",
+    subType: [{ label: "PowerBI" }, { label: "Fabric" }, { label: "ADF" }],
+  },
+  devops: {
+    label: "CI/CD",
+    description: "Data Analytics and visualization",
+    color: "red",
+  },
+  powerbi: {
+    label: "PowerBI",
+    description: "Power BI",
+    color: "mustard",
+  },
+  fabric: {
+    label: "Microsoft Fabric",
+    description: "Microsoft Fabric",
+    color: "purple",
+  },
+  adf: {
+    label: "Azure Data Factory and Synapse",
+    description: "Azure Data Factory",
+    color: "indigo",
+  },
+
+  connect: {
+    label: "Connect and Query",
+    description: "Connect to Azure Database for PostgreSQL",
+    color: "blue",
+  },
+  vscode: {
+    label: "Visual Studio Code Extension",
+    description: "Integrate with Visual Studio Code",
+    color: "teal",
+  },
+  "best-practice": {
+    label: "Best Practices",
+    description: "Best Practices for Application Development",
+    color: "green",
+  },
+  "getting-started": {
+    label: "Getting Started",
+    description: "Getting Started with Azure Database for PostgreSQL",
+    color: "slate",
+  },
+
+  // Services Category for filtering content
+  flexibleserver: {
+    label: "Azure Database for PostgreSQL",
+    description:
+      "Content related to Azure Database for PostgreSQL - Flexible Server",
+    type: "Service",
+    color: "blue",
+  },
+
+  oriondb: {
+    label: "Azure OrionDB for PostgreSQL",
+    description: "Content related to Azure OrionDB for PostgreSQL",
+    type: "Service",
+    color: "purple",
+  },
+
+  // Learning Path Tags for filtering content
+  "developing-core-applications": {
+    label: "Developing core applications",
+    description: "Learning path for developing core applications",
+    type: "LearningPath",
+    color: "orange",
+  },
+  "building-genai-apps": {
+    label: "Building generative AI apps",
+    description: "Learning path for building GenAI applications",
+    type: "LearningPath",
+    color: "green",
+  },
+  "building-ai-agents": {
+    label: "Building AI agents",
+    description: "Learning path for building AI agents",
+    type: "LearningPath",
+    color: "teal",
   },
 };
