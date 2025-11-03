@@ -82,11 +82,7 @@ export default function ShowcaseCardTag({
       if (containerWidth < 200 || containerWidth > 400) {
         // Fallback to expected card width
         containerWidth = 308;
-        console.log("Using fallback width:", containerWidth);
-      } else {
-        console.log("Measured containerWidth:", containerWidth);
       }
-
       setContainerWidth(containerWidth);
 
       // Estimate tag widths (approximate calculation)
@@ -237,17 +233,53 @@ export default function ShowcaseCardTag({
       </div>
     );
   } else {
+    // Map our custom colors to Fluent UI Badge colors
+    const getFluentColor = (customColor: string) => {
+      switch (customColor) {
+        case "blue":
+          return "informative";
+        case "green":
+          return "success";
+        case "grey":
+          return "subtle";
+        case "slate":
+          return "subtle";
+        case "purple":
+          return "brand";
+        case "orange":
+          return "warning";
+        case "brown":
+          return "severe";
+        case "mustard":
+          return "warning";
+        case "red":
+          return "danger";
+        case "teal":
+          return "informative";
+        case "indigo":
+          return "brand";
+        default:
+          return "brand";
+      }
+    };
+
     return (
-      <>
+      <div className={styles.tagContainer}>
         {tagsByTypeSorted.map((tagObject, index) => {
           const id = `showcase_card_tag_${tagObject.tag}`;
           return (
-            <div key={index} id={id} className={styles.cardPanelTag}>
+            <Badge
+              appearance="tint"
+              size="medium"
+              color={getFluentColor(tagObject.color || "brand")}
+              key={index}
+              className={styles.cardPanelColoredTag}
+            >
               {tagObject.label}
-            </div>
+            </Badge>
           );
         })}
-      </>
+      </div>
     );
   }
 }

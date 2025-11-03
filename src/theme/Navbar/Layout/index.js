@@ -129,6 +129,7 @@ const adobeInit = () => {
           jsError: true,
         },
       },
+      disableTelemetry: true, // Disabled telemetry by default, can enable here on need.
     };
     //Initialize SDK
     analytics.initialize(config, []);

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import GlobalLoader from "../components/GlobalLoader";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
-// Default implementation, that you can customize
 export default function Root({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    return ExecutionEnvironment.canUseDOM;
+  });
 
   useEffect(() => {
     // Only run on client side
@@ -39,13 +40,10 @@ export default function Root({ children }) {
           clearTimeout(fallbackTimeout);
         };
       }
-    } else {
-      // On server side, don't show loader
-      setIsLoading(false);
     }
   }, []);
 
-  if (isLoading && ExecutionEnvironment.canUseDOM) {
+  if (isLoading) {
     return <GlobalLoader />;
   }
 

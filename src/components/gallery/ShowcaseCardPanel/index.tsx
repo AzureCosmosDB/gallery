@@ -8,14 +8,7 @@ import styles from "./styles.module.css";
 import { Tag, Tags, type User, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import {
-  Image,
-  Link,
-  MessageBar,
-  MessageBarType,
-  PrimaryButton,
-} from "@fluentui/react";
-import ShowcaseMultipleAuthors from "../ShowcaseMultipleAuthors/index";
+import { Image, Link, PrimaryButton } from "@fluentui/react";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { sortBy } from "../../../utils/jsUtils";
 
@@ -27,7 +20,6 @@ export default function ShowcaseCardPanel({
   githubData: { forks: number; stars: number; updatedOn: Date };
 }) {
   const githubURL = user.source;
-  // const title = user.title;
   const description = user.description;
   const video = user.video;
   const tagObjects = user.tags
@@ -81,24 +73,7 @@ export default function ShowcaseCardPanel({
           <GitHubInfoCardPanel githubData={githubData} />
         </div>
       </div>
-      {/* {user.previewTags ? (
-        <MessageBar
-          messageBarType={MessageBarType.severeWarning}
-          isMultiline={false}
-        >
-          This template features one or more services that are in preview.
-          <Link href="www.bing.com" target="_blank" underline>
-            Learn more
-          </Link>
-        </MessageBar>
-      ) : null} */}
       <div className={styles.divider} />
-      {/* {languageTags.length > 0 ? (
-        <>
-          <div className={styles.subTitle2}>Languages</div>
-          <CardPanelTag tags={languageTags} />{" "}
-        </>
-      ) : null} */}
       <div className={styles.subTitle}>Description</div>
       <div className={styles.text}>{description}</div>
       {video ? (
@@ -132,19 +107,6 @@ export default function ShowcaseCardPanel({
       ) : null}
 
       <div className={styles.buttonSection}>
-        {/* <div className={styles.text}>
-          The languages & services used in this template are subject to their
-          normal usage fees. Learn more about the cost of services by using the{" "}
-          <Link
-            href="https://azure.microsoft.com/pricing/calculator/"
-            target="_blank"
-            className={styles.color}
-          >
-            Azure Pricing Calculator
-          </Link>
-          .
-        </div> */}
-
         <PrimaryButton
           className={styles.button}
           onClick={() => {
@@ -153,12 +115,11 @@ export default function ShowcaseCardPanel({
         >
           <img
             src={useBaseUrl("/img/redirect.svg")}
-            height={24}
+            height={20}
             alt="Redirect"
           />
-          {/* <div className={styles.buttonText}>Go to GitHub repo</div> */}
           <div className={styles.buttonText}>
-            {tagObjectsSorted[0]?.buttonText || "View more"}
+            {tagObjectsSorted[0]?.buttonText || "View More"}
           </div>
         </PrimaryButton>
       </div>
