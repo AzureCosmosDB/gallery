@@ -45,24 +45,36 @@ function LearningPathTagSelect({
   const history = useHistory();
 
   const toggleTag = () => {
-    // Clear all other tags and set only this learning path tag
-    const newSearch = `tags=${tag}`;
+    // Check if the tag is currently selected
+    const isCurrentlySelected = selectedCheckbox.includes(tag);
 
-    history.replace({
-      ...location,
-      search: newSearch,
-      state: prepareUserState(),
-    });
+    if (isCurrentlySelected) {
+      // If currently selected, remove it (uncheck) - clear the search
+      const newSearch = "";
+      history.replace({
+        ...location,
+        search: newSearch,
+        state: prepareUserState(),
+      });
+    } else {
+      // If not selected, clear all other tags and set only this learning path tag
+      const newSearch = `tags=${tag}`;
+      history.replace({
+        ...location,
+        search: newSearch,
+        state: prepareUserState(),
+      });
 
-    // Scroll to resource library and switch to list view
-    requestAnimationFrame(() => {
-      const el = document.getElementById("resource-library");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        // Dispatch custom event to switch to list view
-        window.dispatchEvent(new Event("switchToListView"));
-      }
-    });
+      // Scroll to resource library and switch to list view only when checking
+      requestAnimationFrame(() => {
+        const el = document.getElementById("resource-library");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          // Dispatch custom event to switch to list view
+          window.dispatchEvent(new Event("switchToListView"));
+        }
+      });
+    }
   };
 
   const toggleCheck = (tag: TagType) => {
@@ -109,6 +121,8 @@ function ShowcaseFilterViewAll({
   replaceSearchTags,
   isLearningPath = false,
 }) {
+  const [openInner, setOpenInner] = React.useState<string[]>([]);
+
   return (
     <>
       {tags.map((tag) => {
@@ -118,7 +132,13 @@ function ShowcaseFilterViewAll({
         if (Array.isArray(tagObject.subType) && tagObject.subType.length > 0) {
           // Tag has subTags: render as Accordion with tag checkbox as header
           return (
-            <Accordion key={key} multiple collapsible>
+            <Accordion
+              key={key}
+              multiple
+              collapsible
+              openItems={openInner}
+              onToggle={(e, data) => setOpenInner(data.openItems as string[])}
+            >
               <AccordionItem value={`${tag}-subtags`}>
                 <AccordionHeader expandIconPosition="end">
                   <div className={styles.checkboxListItem}>
@@ -268,6 +288,7 @@ export default function ShowcaseLeftFilters({
   });
 
   const [openItems, setOpenItems] = React.useState(["1", "2", "3", "4", "5"]);
+
   const handleToggle: AccordionToggleEventHandler<string> = (event, data) => {
     setOpenItems(data.openItems);
   };

@@ -358,19 +358,19 @@ export const Tags: { [type in TagType]: Tag } = {
 
   // Learning Path Tags for filtering content
   "developing-core-applications": {
-    label: "Developing core applications",
+    label: "Developing Core Applications",
     description: "Learning path for developing core applications",
     type: "LearningPath",
     color: "orange",
   },
   "building-genai-apps": {
-    label: "Building generative AI apps",
+    label: "Building Generative AI Apps",
     description: "Learning path for building GenAI applications",
     type: "LearningPath",
     color: "green",
   },
   "building-ai-agents": {
-    label: "Building AI agents",
+    label: "Building AI Agents",
     description: "Learning path for building AI agents",
     type: "LearningPath",
     color: "teal",

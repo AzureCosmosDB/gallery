@@ -19,7 +19,7 @@
     "@docusaurus/plugin-ideal-image": "^3.0.1",
     "@docusaurus/preset-classic": "^3.0.1",
     "@fluentui/react": "^8.112.9",
-    "@fluentui/react-components": "^9.42.0",
+    "@fluentui/react-components": "^9.72.4",
     "@mdx-js/react": "^3.0.0",
     "@tsconfig/docusaurus": "^2.0.4",
     "@types/react-dom": "^18.2.17",
