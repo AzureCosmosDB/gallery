@@ -5,7 +5,7 @@
 
 .tagContainer {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   overflow: hidden;
   width: 100%;
@@ -36,4 +36,5 @@
   margin-right: 8px;
   margin-bottom: 4px;
   flex-shrink: 0;
+  display: block !important;
 }
