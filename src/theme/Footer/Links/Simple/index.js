@@ -24,16 +24,14 @@ function SimpleLinkItem({ item }) {
 export default function FooterLinksSimple({ links }) {
   return (
     <div className={`footer__links text--center ${styles.footer__links}`}>
-      <div className="footer__links">
-        {links.map((item, i) => (
-          <React.Fragment key={i}>
-            <SimpleLinkItem item={item} />
-            {links.length !== i + 1 && (
-              <Separator id={"footer__links_" + item.label} />
-            )}
-          </React.Fragment>
-        ))}
-      </div>
+      {links.map((item, i) => (
+        <React.Fragment key={i}>
+          <SimpleLinkItem item={item} />
+          {links.length !== i + 1 && (
+            <Separator id={"footer__links_" + item.label} />
+          )}
+        </React.Fragment>
+      ))}
     </div>
   );
 }

@@ -88,38 +88,43 @@ export default function ShowcaseCardTag({
       // Estimate tag widths (approximate calculation)
       // Each character is roughly 7px, plus padding (16px) and margin (4px)
       const moreTagWidth = 80; // Approximate width of "+X more" badge
-      let totalWidth = 0;
+      let currentRowWidth = 0;
+      let rowCount = 1;
       let count = 0;
+      const maxRows = 2;
 
       for (let i = 0; i < tagsByTypeSorted.length; i++) {
         const tagWidth = tagsByTypeSorted[i].label.length * 7 + 20; // 7px per char + 20px padding/margin
         const remainingTags = tagsByTypeSorted.length - i - 1;
 
-        // Calculate required width for this iteration
-        let requiredWidth = totalWidth + tagWidth;
-
-        // Only add "+X more" space if there are remaining tags AND we would need to show it
-        if (remainingTags > 0) {
-          // Check if adding this tag would leave remaining tags
-          const potentialTotalWidth = totalWidth + tagWidth;
-
-          // If adding this tag leaves remaining tags, we need space for "+X more"
-          requiredWidth = potentialTotalWidth + moreTagWidth;
-        }
-
-        // Use a smaller buffer (10px instead of 20px) and ensure at least one tag shows
-        const availableWidth = containerWidth - 10;
-
-        if (requiredWidth > availableWidth) {
-          // Special case: if no tags have been added yet, force at least one tag
-          if (count === 0 && tagWidth < availableWidth) {
-            totalWidth += tagWidth;
-            count++;
+        // Check if adding this tag would require a new row
+        if (currentRowWidth + tagWidth > containerWidth - 10) {
+          // If we're already at max rows, we need to stop and show "+X more"
+          if (rowCount >= maxRows) {
+            // Only stop if we can fit the "+X more" tag
+            if (remainingTags > 0) {
+              // Check if "+X more" fits in current row
+              if (currentRowWidth + moreTagWidth <= containerWidth - 10) {
+                break; // Stop here and show "+X more"
+              } else {
+                // If "+X more" doesn't fit, remove the last tag and show "+X more"
+                if (count > 0) {
+                  count--; // Remove the last tag to make room for "+X more"
+                }
+                break;
+              }
+            }
+            break;
+          } else {
+            // Move to next row
+            rowCount++;
+            currentRowWidth = tagWidth;
           }
-          break;
+        } else {
+          // Add tag to current row
+          currentRowWidth += tagWidth;
         }
 
-        totalWidth += tagWidth;
         count++;
       }
 
