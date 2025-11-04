@@ -26,11 +26,43 @@
     margin: 40px auto 0;
     justify-content: center;
     justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
-.cardsGrid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1200px;
+/* Large screens - 4 columns */
+@media (min-width: 1200px) {
+    .cardsGrid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+    }
+}
+
+/* Medium-large screens - 3 columns */
+@media (max-width: 1199px) and (min-width: 900px) {
+    .cardsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
+    }
+}
+
+/* Medium screens - 2 columns */
+@media (max-width: 899px) and (min-width: 600px) {
+    .cardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+    }
+}
+
+/* Small screens - 1 column */
+@media (max-width: 599px) {
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 24px;
+        padding: 0 16px;
+    }
 }
 
 
@@ -46,7 +78,17 @@
   transition: box-shadow 0.2s;
   row-gap: 12px;
   height: 300px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 280px;
+}
+
+/* Card responsiveness for smaller screens */
+@media (max-width: 599px) {
+  .card {
+    padding: 24px 20px;
+    min-width: 260px;
+  }
 }
 .card:hover {
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);

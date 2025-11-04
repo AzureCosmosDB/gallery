@@ -6,13 +6,15 @@
 .tagContainer {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   width: 100%;
+  max-height: calc(2 * 1.5em + 8px); /* Allow for 2 rows of tags with some margin */
 }
 
 .cardTag {
   margin-right: 4px;
+  margin-bottom: 4px;
   flex-shrink: 0;
 }
 

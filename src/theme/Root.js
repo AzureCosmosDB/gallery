@@ -7,6 +7,17 @@ export default function Root({ children }) {
     return ExecutionEnvironment.canUseDOM;
   });
 
+  // Initialize gtag safety wrapper on client side
+  useEffect(() => {
+    if (ExecutionEnvironment.canUseDOM && !window.gtag) {
+      window.gtag = function () {
+        // If gtag is not available yet, queue the calls
+        window.gtag.q = window.gtag.q || [];
+        window.gtag.q.push(arguments);
+      };
+    }
+  }, []);
+
   useEffect(() => {
     // Only run on client side
     if (ExecutionEnvironment.canUseDOM) {
