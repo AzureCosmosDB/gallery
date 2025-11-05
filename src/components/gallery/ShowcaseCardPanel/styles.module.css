@@ -162,8 +162,15 @@
 }
 
 .imageContainer {
-  width: 550px;
-  height: 300px;
+  width: 100%;
+  max-width: 550px;
+  min-height: 200px;
+  max-height: 400px;
   margin-bottom: 16px;
-  max-width: 100%;
+  background: #f8f8f8;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }

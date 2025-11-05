@@ -51,12 +51,13 @@ export default function ShowcaseCardPanel({
             <OptimizedImage
               src={user.image}
               alt={user.title}
-              width={550}
-              height={300}
-              objectFit="cover"
+              width="100%"
+              height="auto"
+              objectFit="contain"
               style={{
                 borderRadius: "16px",
                 display: "block",
+                maxHeight: "400px",
               }}
               priority={true}
             />
