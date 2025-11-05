@@ -58,10 +58,6 @@ const App = () => {
     setSelectedTags(tags);
   }, [location]);
 
-  // Removed featured image preloading - OptimizedImage component handles
-  // lazy loading efficiently with IntersectionObserver, and preloading below-the-fold
-  // images causes "preload not used" warnings
-
   return (
     <FluentProvider theme={webLightTheme} className={styles.container}>
       <div id="home">
