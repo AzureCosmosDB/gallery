@@ -161,3 +161,16 @@
   border-top: 1px solid #e0e0e0;
 }
 
+.imageContainer {
+  width: 100%;
+  max-width: 550px;
+  min-height: 200px;
+  max-height: 400px;
+  margin-bottom: 16px;
+  background: #f8f8f8;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}

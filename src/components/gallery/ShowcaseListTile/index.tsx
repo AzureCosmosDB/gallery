@@ -11,6 +11,7 @@ import styleCSS from "../ShowcaseCard/styles.module.css";
 import ShowcaseDialog from "../ShowcaseDialog/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import OptimizedImage from "../../OptimizedImage";
 
 export default function ShowcaseListTile({
   user,
@@ -55,10 +56,11 @@ export default function ShowcaseListTile({
           )}
           <div className={styleCSS.listTileContent}>
             {user.image && (
-              <img
+              <OptimizedImage
                 src={user.image}
                 alt={user.title + " image"}
                 className={styleCSS.listTileImage}
+                objectFit="cover"
               />
             )}
             <div className={styleCSS.listTileText}>

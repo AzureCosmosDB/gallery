@@ -11,6 +11,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { Image, Link, PrimaryButton } from "@fluentui/react";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { sortBy } from "../../../utils/jsUtils";
+import OptimizedImage from "../../OptimizedImage";
 
 export default function ShowcaseCardPanel({
   user,
@@ -47,16 +48,18 @@ export default function ShowcaseCardPanel({
         </div>
         {user.image && (
           <div className={styles.imageContainer}>
-            <img
-              src={useBaseUrl(user.image)}
+            <OptimizedImage
+              src={user.image}
               alt={user.title}
+              width="100%"
+              height="auto"
+              objectFit="contain"
               style={{
-                height: "300px",
-                width: "100%",
                 borderRadius: "16px",
-                objectFit: "cover",
                 display: "block",
+                maxHeight: "400px",
               }}
+              priority={true}
             />
           </div>
         )}

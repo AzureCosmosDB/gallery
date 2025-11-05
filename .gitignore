@@ -8,6 +8,9 @@
 .docusaurus
 .cache-loader
 
+# Optimized images (generated during build)
+/static/img-optimized
+
 # Misc
 .DS_Store
 .env.local

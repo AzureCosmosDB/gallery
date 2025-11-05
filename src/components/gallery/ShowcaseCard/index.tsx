@@ -12,6 +12,7 @@ import ShowcaseDialog from "../ShowcaseDialog/index";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import OptimizedImage from "../../OptimizedImage";
 
 type GitHubRepoInfo = {
   forks: number;
@@ -88,14 +89,14 @@ function ShowcaseCard({
           onClick={openDialog}
         >
           {user.image && (
-            <img
+            <OptimizedImage
               src={user.image}
               alt={title + " image"}
+              height={200}
+              objectFit="cover"
               style={{
                 width: "100%",
-                height: 200,
-                objectFit: "cover",
-                borderRadius: "8px 0px 0px",
+                borderRadius: "8px 8px 0px 0px",
                 marginBottom: 12,
               }}
             />

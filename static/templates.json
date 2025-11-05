@@ -4,18 +4,16 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "./img/databse.jpeg",
-    "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!",
-    "tileNumber": 1
+    "image": "./img/database.jpeg",
+    "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
   },
   {
     "title": "Build a CRUD app with Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
-    "image": "./img/brainstorming.jpeg",
-    "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data.",
-    "tileNumber": 2
+    "image": "./img/crud-app-with-az.png",
+    "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data."
   },
   {
     "title": "Develop using the PostgreSQL extension for VS Code",
@@ -36,16 +34,15 @@
       "developing-core-applications",
       "app-dev"
     ],
-    "image": "./img/python.jpeg",
-    "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL.",
-    "tileNumber": 4
+    "image": "./img/deploy-python-flask-app.png",
+    "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL."
   },
   {
     "title": "Deploy a Django app with PostgreSQL on AKS",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "tags": ["go", "learning-path", "developing-core-applications"],
-    "image": "./img/deploying-django-on-aks-with-postgreSQL.png",
+    "image": "./img/deploy-django-on-aks.png",
     "description": "Azure Kubernetes Service (AKS) is a managed container orchestration platform ideal for building and running scalable, resilient microservices and cloud-native applications. In this quickstart, you'll learn how to deploy a Django application on Azure Kubernetes Service (AKS) cluster integrating Azure Database for PostgreSQL.",
     "tileNumber": 5
   },
@@ -54,7 +51,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "./img/github.jpg",
+    "image": "./img/deploy-using-gh-actions.png",
     "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates.",
     "tileNumber": 6
   },
@@ -209,9 +206,8 @@
     "website": "",
     "source": "",
     "tags": ["learning-path", "building-ai-agents"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-    "description": "TBD",
-    "tileNumber": 4
+    "image": "./img/microsoft-placeholder.png",
+    "description": ""
   },
   {
     "title": "MCP and the Azure MCP Server",
@@ -276,7 +272,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "tags": ["flexibleserver", "app-dev"],
-    "image": "./img/quick-start--az-pg.png",
+    "image": "./img/quick-start-az-pg.png",
     "description": "This quickstart guide shows you how to create and manage an Azure Database for PostgreSQL instance.",
     "date": "2025-03-11",
     "priority": "P0"
@@ -931,7 +927,7 @@
       "semantic",
       "blog"
     ],
-    "image": "./img/bringing genai to semantic operators.jpeg",
+    "image": "./img/bringing-genai-to-semantic-operators.png",
     "description": "Semantic Operators in Azure Database for PostgreSQL azure_ai extension introduce a native intelligence layer to relational algebra by integrating large language models directly into the SQL query engine. This feature enables in-database reasoning over operational data, allowing developers to extract and act on hidden semantic relationships for GenAI applications and agents. This blog explains the 4 semantic operators: generate(), is_true(), extract() and rank() with live use cases!",
     "date": "2025-05-19",
     "priority": "P0"
@@ -972,7 +968,7 @@
       "video",
       "blog"
     ],
-    "image": "./img/build ai ready apps.png",
+    "image": "./img/build-ai-ready-apps.png",
     "description": "This blog introduces a four-part video series,where  you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more—all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
     "date": "2025-07-02",
     "priority": "P0"
