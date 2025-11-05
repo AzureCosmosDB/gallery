@@ -4,9 +4,9 @@
  * Optimized for GitHub Pages deployment
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
+import React, { useState, useEffect, useRef } from "react";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.css";
 
 interface OptimizedImageProps {
   src: string;
@@ -16,7 +16,7 @@ interface OptimizedImageProps {
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean; // Load immediately without lazy loading
-  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
 /**
@@ -24,33 +24,36 @@ interface OptimizedImageProps {
  */
 function getImageSources(imagePath: string) {
   // Check if it's already an optimized image path
-  if (imagePath.includes('-optimized/')) {
-    return { webpSrcSet: '', fallbackSrc: imagePath };
+  if (imagePath.includes("-optimized/")) {
+    return { webpSrcSet: "", fallbackSrc: imagePath };
   }
 
   // Extract filename and extension
-  const pathParts = imagePath.split('/');
+  const pathParts = imagePath.split("/");
   const filename = pathParts[pathParts.length - 1];
-  const ext = filename.split('.').pop()?.toLowerCase();
-  const nameWithoutExt = filename.replace(`.${ext}`, '');
+  const ext = filename.split(".").pop()?.toLowerCase();
+  const nameWithoutExt = filename.replace(`.${ext}`, "");
 
   // SVG files are used as-is
-  if (ext === 'svg') {
-    return { webpSrcSet: '', fallbackSrc: imagePath };
+  if (ext === "svg") {
+    return { webpSrcSet: "", fallbackSrc: imagePath };
   }
 
   // Build optimized paths - replace /img/ with /img-optimized/
-  const pathWithoutFilename = imagePath.substring(0, imagePath.lastIndexOf('/'));
-  const basePath = pathWithoutFilename.replace(/\/img$/, '/img-optimized');
-  
+  const pathWithoutFilename = imagePath.substring(
+    0,
+    imagePath.lastIndexOf("/")
+  );
+  const basePath = pathWithoutFilename.replace(/\/img$/, "/img-optimized");
+
   // WebP srcset for responsive images (always try all sizes - browser will fallback gracefully)
   const webpSources = [
     `${basePath}/${nameWithoutExt}-300w.webp 300w`,
     `${basePath}/${nameWithoutExt}-600w.webp 600w`,
     `${basePath}/${nameWithoutExt}-1200w.webp 1200w`,
   ];
-  
-  const webpSrcSet = webpSources.join(', ');
+
+  const webpSrcSet = webpSources.join(", ");
 
   // Fallback to optimized original format
   const fallbackSrc = `${basePath}/${filename}`;
@@ -66,19 +69,19 @@ export default function OptimizedImage({
   className,
   style,
   priority = false,
-  objectFit = 'cover',
+  objectFit = "cover",
 }: OptimizedImageProps): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
   const imgRef = useRef<HTMLDivElement>(null);
 
   // Get base URL from Docusaurus - called at top level
-  const baseUrl = useBaseUrl('/');
-  const fullSrc = src.startsWith('./') ? src.replace('./', baseUrl) : src;
+  const baseUrl = useBaseUrl("/");
+  const fullSrc = src.startsWith("./") ? src.replace("./", baseUrl) : src;
 
   // Get optimized image sources
   const { webpSrcSet, fallbackSrc } = getImageSources(fullSrc);
-  
+
   // Pre-compute the fallback URL at top level
   const fallbackUrl = useBaseUrl(fallbackSrc);
 
@@ -96,7 +99,7 @@ export default function OptimizedImage({
         });
       },
       {
-        rootMargin: '50px', // Start loading 50px before image enters viewport
+        rootMargin: "50px", // Start loading 50px before image enters viewport
       }
     );
 
@@ -117,7 +120,7 @@ export default function OptimizedImage({
   return (
     <div
       ref={imgRef}
-      className={`${styles.imageContainer} ${className || ''}`}
+      className={`${styles.imageContainer} ${className || ""}`}
       style={{ width, height }}
     >
       {/* Blur placeholder while loading */}
@@ -141,10 +144,10 @@ export default function OptimizedImage({
           <img
             src={fallbackUrl}
             alt={alt}
-            className={`${styles.image} ${isLoaded ? styles.loaded : ''}`}
+            className={`${styles.image} ${isLoaded ? styles.loaded : ""}`}
             style={combinedStyle}
             onLoad={handleLoad}
-            loading={priority ? 'eager' : 'lazy'}
+            loading={priority ? "eager" : "lazy"}
             decoding="async"
           />
         </picture>
