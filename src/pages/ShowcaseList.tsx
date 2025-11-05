@@ -46,8 +46,8 @@ export default function ShowcaseList({
               <ShowcaseListTile
                 user={user}
                 tileNumber={
-                  isLearningPathFiltered
-                    ? (page - 1) * CARDS_PER_PAGE + idx + 1
+                  isLearningPathFiltered && user.tileNumber
+                    ? user.tileNumber
                     : undefined
                 }
               />

@@ -38,6 +38,7 @@ export type User = {
   date?: string;
   priority?: "P0" | "P1" | "P2";
   order?: number;
+  tileNumber?: number; // Optional tile number for learning path ordering
 };
 
 type SubType = {
