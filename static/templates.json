@@ -5,6 +5,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
     "image": "./img/database.jpeg",
+    "tileNumber": 1,
     "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
   },
   {
@@ -12,6 +13,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
+    "tileNumber": 2,
     "image": "./img/crud-app-with-az.png",
     "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data."
   },
@@ -34,6 +36,7 @@
       "developing-core-applications",
       "app-dev"
     ],
+    "tileNumber": 4,
     "image": "./img/deploy-python-flask-app.png",
     "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL."
   },
@@ -207,7 +210,8 @@
     "source": "",
     "tags": ["learning-path", "building-ai-agents"],
     "image": "./img/microsoft-placeholder.png",
-    "description": ""
+    "description": "",
+    "tileNumber": 4
   },
   {
     "title": "MCP and the Azure MCP Server",

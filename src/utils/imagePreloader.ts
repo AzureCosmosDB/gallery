@@ -61,40 +61,53 @@ export function preloadImageWithWebP(
 
 /**
  * Preload featured/hero images from user data
+ * Only preloads above-the-fold images with priority hints
  */
-export function preloadFeaturedImages(users: User[], limit: number = 6): void {
+export function preloadFeaturedImages(users: User[], limit: number = 3): void {
   if (typeof window === 'undefined') return;
 
+  // Only preload first 3 images that are likely above the fold
   const featuredImages = users
     .filter(user => user.image)
     .slice(0, limit)
     .map(user => user.image);
 
-  featuredImages.forEach((src, index) => {
-    const priority = index < 3 ? 'high' : 'low';
+  featuredImages.forEach((src) => {
+    // Build optimized image path
+    const baseUrl = '/postgres-gallery/';
+    const imagePath = src.startsWith('./') ? src.replace('./', baseUrl) : src;
     
-    // Try to preload WebP version if available
-    const ext = src.substring(src.lastIndexOf('.'));
-    if (['.png', '.jpg', '.jpeg'].includes(ext.toLowerCase())) {
-      const webpSrc = src.replace(ext, '.webp');
-      preloadImageWithWebP(src, webpSrc, { priority: priority as 'high' | 'low' });
-    } else {
-      preloadImage(src, { priority: priority as 'high' | 'low' });
-    }
+    // Extract filename and extension
+    const pathParts = imagePath.split('/');
+    const filename = pathParts[pathParts.length - 1];
+    const ext = filename.split('.').pop()?.toLowerCase();
+    const nameWithoutExt = filename.replace(`.${ext}`, '');
+    
+    // Skip SVG files
+    if (ext === 'svg') return;
+    
+    // Build optimized path
+    const pathWithoutFilename = imagePath.substring(0, imagePath.lastIndexOf('/'));
+    const basePath = pathWithoutFilename.replace(/\/img$/, '/img-optimized');
+    
+    // Preload small WebP version for fast initial display
+    const webpSrc = `${basePath}/${nameWithoutExt}-300w.webp`;
+    preloadImage(webpSrc, { priority: 'high', type: 'image/webp' });
   });
 }
 
 /**
  * Preload critical assets (background images, logos, etc.)
+ * Uses optimized images for better performance
  */
 export function preloadCriticalAssets(): void {
   if (typeof window === 'undefined') return;
 
   const criticalAssets = [
-    '/postgres-gallery/img/logo.png',
-    '/postgres-gallery/img/dotted-background-opacity40.png',
+    '/postgres-gallery/img-optimized/logo.webp',
+    '/postgres-gallery/img-optimized/dotted-background-opacity40.webp',
   ];
 
-  preloadImages(criticalAssets, { priority: 'high' });
+  preloadImages(criticalAssets, { priority: 'high', type: 'image/webp' });
 }
 
