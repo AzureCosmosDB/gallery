@@ -3,20 +3,16 @@ import styleCSS from "./styles.module.css";
 import {
   Card,
   CardFooter,
-  Caption1Strong,
-  Image,
   DialogTrigger,
   Button,
 } from "@fluentui/react-components";
 import { useBoolean } from "@fluentui/react-hooks";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import ShowcaseDialog from "../ShowcaseDialog/index";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import siteConfig from "@generated/docusaurus.config";
-import OptimizedImage from "../../OptimizedImage";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import OptimizedImage from "../../OptimizedImage";
 
 type GitHubRepoInfo = {
   forks: number;
@@ -124,71 +120,30 @@ function ShowcaseCard({
                 </div>
               </>
             )}
-            {user.website && (
-              <Button
-                appearance="primary"
-                as="a"
-                href={user.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  margin: "16px 0 0 0",
-                  width: "100%",
-                  fontSize: "16px",
-                  backgroundColor: "#0078d4",
-                }}
-              >
-                {getButtonText(user.website)}
-              </Button>
-            )}
           </div>
+          {/* <CardFooter> */}
+          {user.website && (
+            <Button
+              appearance="primary"
+              as="a"
+              href={user.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: "100%",
+                fontSize: "16px",
+                backgroundColor: "#0078d4",
+              }}
+            >
+              {getButtonText(user.website)}
+            </Button>
+          )}
+          {/* </CardFooter> */}
         </Card>
       </DialogTrigger>
     </ShowcaseDialog>
   );
 }
-
-const GitHubInfo = ({ githubData }) => {
-  const formatNumber = (number: number): string => {
-    return Intl.NumberFormat("en-US", {
-      notation: "compact",
-      maximumFractionDigits: 1,
-    }).format(number);
-  };
-
-  if (!githubData) return null;
-
-  return (
-    <div className={styleCSS.gitHubData}>
-      {formatNumber(githubData.forks) === "NaN" ? null : (
-        <>
-          <Image
-            alt="fork"
-            src={useBaseUrl("/img/fork.svg")}
-            height={16}
-            width={16}
-          />
-          <Caption1Strong className={styleCSS.forkNumber}>
-            {formatNumber(githubData.forks)}
-          </Caption1Strong>
-        </>
-      )}
-      {formatNumber(githubData.stars) === "NaN" ? null : (
-        <>
-          <Image
-            alt="star"
-            src={useBaseUrl("/img/star.svg")}
-            height={16}
-            width={16}
-          />
-          <Caption1Strong className={styleCSS.starNumber}>
-            {formatNumber(githubData.stars)}
-          </Caption1Strong>
-        </>
-      )}
-    </div>
-  );
-};
 
 export default React.memo(ShowcaseCard);

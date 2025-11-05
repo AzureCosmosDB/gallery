@@ -50,7 +50,7 @@ export default function ShowcaseSurveyCard(): React.ReactElement {
         className={styles.closeButton}
       />
       <Image
-        src={useBaseUrl("/img/chatPencil.svg")}
+        src={useBaseUrl("/img/chat-pencil.svg")}
         alt="surveyCard"
         height={72}
         width={72}
@@ -70,7 +70,7 @@ export default function ShowcaseSurveyCard(): React.ReactElement {
           }}
           icon={
             <Image
-              src={useBaseUrl("/img/openLink.svg")}
+              src={useBaseUrl("/img/open-link.svg")}
               alt="surveyCard"
               height={20}
               width={20}

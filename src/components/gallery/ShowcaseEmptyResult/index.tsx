@@ -11,14 +11,11 @@ import styles from "./styles.module.css";
 
 export default function ShowcaseEmptyResult({ id }: { id: string }) {
   return (
-    <div
-      id={id}
-      className={styles.emptyResultSection}
-    >
+    <div id={id} className={styles.emptyResultSection}>
       {InputValue != null ? (
         <>
           <Image
-            src={useBaseUrl("/img/searchQuestionmark.svg")}
+            src={useBaseUrl("/img/search-question-mark.svg")}
             alt="searchQuestionmark"
             height={128}
             width={128}
@@ -27,20 +24,14 @@ export default function ShowcaseEmptyResult({ id }: { id: string }) {
             <Subtitle1>
               We couldn’t find any results for '{InputValue}'
             </Subtitle1>
-            <Body2>
-              Check for spelling or try searching for another term.
-            </Body2>
+            <Body2>Check for spelling or try searching for another term.</Body2>
           </div>
         </>
       ) : (
         <>
           <div className={styles.resultSection}>
-            <Subtitle1>
-              We couldn’t find any results.
-            </Subtitle1>
-            <Body2>
-              Check for tags or try filtering for another tag.
-            </Body2>
+            <Subtitle1>We couldn’t find any results.</Subtitle1>
+            <Body2>Check for tags or try filtering for another tag.</Body2>
           </div>
         </>
       )}

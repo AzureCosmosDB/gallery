@@ -51,3 +51,25 @@
 .tagSubCatalog {
   padding: 0 0 7px 0px;
 }
+
+.tagCatalogBackground {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Override the specific Fluent UI accordion button padding */
+:global(.fui-AccordionHeader__button) {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Ensure consistent alignment for all accordion headers */
+:global(.fui-AccordionHeader) {
+  padding: 0 !important;
+}
+
+/* Ensure accordion panels don't add extra padding */
+:global(.fui-AccordionPanel) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
