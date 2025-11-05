@@ -4,7 +4,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "./img/databse.jpeg",
+    "image": "./img/database.jpeg",
     "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
   },
   {
@@ -12,7 +12,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
-    "image": "./img/brainstorming.jpeg",
+    "image": "./img/crud-app-with-az.png",
     "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data."
   },
   {
@@ -34,7 +34,7 @@
       "developing-core-applications",
       "app-dev"
     ],
-    "image": "./img/python.jpeg",
+    "image": "./img/deploy-python-flask-app.png",
     "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL."
   },
   {
@@ -51,7 +51,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "./img/github.jpg",
+    "image": "./img/deploy-using-gh-actions.png",
     "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates.",
     "tileNumber": 6
   },
@@ -206,7 +206,7 @@
     "website": "",
     "source": "",
     "tags": ["learning-path", "building-ai-agents"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/microsoft-placeholder.png",
     "description": ""
   },
   {
@@ -272,7 +272,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "tags": ["flexibleserver", "app-dev"],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "image": "./img/quick-start-az-pg.png",
     "description": "This quickstart guide shows you how to create and manage an Azure Database for PostgreSQL instance.",
     "date": "2025-03-11",
     "priority": "P0"

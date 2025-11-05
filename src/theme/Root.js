@@ -2,7 +2,9 @@
  * Root component - Registers service worker for caching
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import GlobalLoader from '@site/src/components/GlobalLoader';
 
 export default function Root({ children }) {
   useEffect(() => {
