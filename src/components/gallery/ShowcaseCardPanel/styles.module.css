@@ -161,3 +161,9 @@
   border-top: 1px solid #e0e0e0;
 }
 
+.imageContainer {
+  width: 550px;
+  height: 300px;
+  margin-bottom: 16px;
+  max-width: 100%;
+}

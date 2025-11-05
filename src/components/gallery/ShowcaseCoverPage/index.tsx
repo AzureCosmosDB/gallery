@@ -16,7 +16,7 @@ const description =
 const subDescription = "for Azure PostgreSQL";
 
 export default function ShowcaseCoverPage() {
-  const bgUrl = useBaseUrl("/img/dotted-background-opacity40.png");
+  const bgUrl = useBaseUrl("/img-optimized/dotted-background-opacity40.png");
   const history = useHistory();
   const location = useLocation();
 

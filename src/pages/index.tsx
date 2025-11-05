@@ -17,9 +17,10 @@ import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import styles from "./styles.module.css";
 import { type TagType } from "../data/tags";
-import { TagList } from "../data/users";
+import { TagList, featuredUsers } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
+import { preloadFeaturedImages } from "../utils/imagePreloader";
 
 initializeIcons();
 
@@ -55,6 +56,9 @@ const App = () => {
     const tags = readSearchTags(location.search);
     setSelectedCheckbox(tags);
     setSelectedTags(tags);
+    
+    // Preload featured images for better performance
+    preloadFeaturedImages(featuredUsers, 8);
   }, [location]);
 
   return (

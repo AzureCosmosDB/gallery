@@ -1,53 +1,34 @@
-import React, { useState, useEffect } from "react";
-import GlobalLoader from "../components/GlobalLoader";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+/**
+ * Root component - Registers service worker for caching
+ */
 
-// Default implementation, that you can customize
+import React, { useEffect } from 'react';
+
 export default function Root({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    // Only run on client side
-    if (ExecutionEnvironment.canUseDOM) {
-      // Show loader for minimum 800ms to ensure smooth experience
-      const minLoadTime = 800;
-      const startTime = Date.now();
-
-      const handleLoad = () => {
-        const elapsedTime = Date.now() - startTime;
-        const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-
-        setTimeout(() => {
-          setIsLoading(false);
-        }, remainingTime);
-      };
-
-      // Check if page is already loaded
-      if (document.readyState === "complete") {
-        handleLoad();
-      } else {
-        // Wait for window load event
-        window.addEventListener("load", handleLoad);
-
-        // Fallback timeout in case load event doesn't fire
-        const fallbackTimeout = setTimeout(() => {
-          setIsLoading(false);
-        }, 3000);
-
-        return () => {
-          window.removeEventListener("load", handleLoad);
-          clearTimeout(fallbackTimeout);
-        };
-      }
-    } else {
-      // On server side, don't show loader
-      setIsLoading(false);
+    // Register service worker for production builds
+    if (
+      typeof window !== 'undefined' &&
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production'
+    ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/postgres-gallery/sw.js')
+          .then((registration) => {
+            console.log('SW registered:', registration);
+            
+            // Check for updates periodically
+            setInterval(() => {
+              registration.update();
+            }, 60000); // Check every minute
+          })
+          .catch((error) => {
+            console.log('SW registration failed:', error);
+          });
+      });
     }
   }, []);
-
-  if (isLoading && ExecutionEnvironment.canUseDOM) {
-    return <GlobalLoader />;
-  }
 
   return <>{children}</>;
 }
