@@ -44,6 +44,13 @@ function LearningPathTagSelect({
 }) {
   const history = useHistory();
 
+  // Learning path tags that should be mutually exclusive
+  const learningPathTags = [
+    "developing-core-applications",
+    "building-genai-apps",
+    "building-ai-agents",
+  ];
+
   const toggleTag = () => {
     // Check if the tag is currently selected
     const isCurrentlySelected = selectedCheckbox.includes(tag);
@@ -89,6 +96,13 @@ function LearningPathTagSelect({
   const checkbox = id.replace("showcase_checkbox_id_", "");
   const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
 
+  // Check if this learning path tag should be disabled
+  // It should be disabled if another learning path tag is selected and this one isn't
+  const otherLearningPathSelected = learningPathTags.some(
+    (lpTag) => lpTag !== tag && selectedCheckbox.includes(lpTag as TagType)
+  );
+  const isDisabled = !activeTags?.includes(tag) || otherLearningPathSelected;
+
   return (
     <Checkbox
       id={id}
@@ -105,7 +119,7 @@ function LearningPathTagSelect({
       }}
       checked={selectedCheckbox.includes(tag)}
       label={label}
-      disabled={!activeTags?.includes(tag)}
+      disabled={isDisabled}
     />
   );
 }

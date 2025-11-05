@@ -5,7 +5,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
     "image": "./img/databse.jpeg",
-    "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
+    "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!",
+    "tileNumber": 1
   },
   {
     "title": "Build a CRUD app with Azure Database for PostgreSQL",
@@ -13,7 +14,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "tags": ["flexibleserver", "learning-path", "developing-core-applications"],
     "image": "./img/brainstorming.jpeg",
-    "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data."
+    "description": "Learn how to build a simple Python app that connects to Azure Database for PostgreSQL flexible server (using either Microsoft Entra or PostgreSQL authentication), and performs basic SQL operations to query, insert, update, and delete data.",
+    "tileNumber": 2
   },
   {
     "title": "Develop using the PostgreSQL extension for VS Code",
@@ -21,7 +23,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-connect",
     "tags": ["learning-path", "developing-core-applications"],
     "image": "./img/postgresql-vscode.png",
-    "description": "The PostgreSQL extension for Visual Studio Code is a powerful tool designed to streamline the development and management of PostgreSQL databases. Learn how to connect to a PostgreSQL database, execute queries and build full-stack applications within the Visual Studio Code environment."
+    "description": "The PostgreSQL extension for Visual Studio Code is a powerful tool designed to streamline the development and management of PostgreSQL databases. Learn how to connect to a PostgreSQL database, execute queries and build full-stack applications within the Visual Studio Code environment.",
+    "tileNumber": 3
   },
   {
     "title": "Deploy a Python (Flask) web app with PostgreSQL on Azure App Service",
@@ -34,7 +37,8 @@
       "app-dev"
     ],
     "image": "./img/python.jpeg",
-    "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL."
+    "description": "Azure App Service is a fully managed platform-as-a-service (PaaS) designed for building and hosting web apps without the need to manage the underlying infrastructure.This tutorial is a complete guide to deploying a data-driven Python web app (Django) to Azure App Service, integrating Azure Database for PostgreSQL.",
+    "tileNumber": 4
   },
   {
     "title": "Deploy a Django app with PostgreSQL on AKS",
@@ -42,7 +46,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "tags": ["go", "learning-path", "developing-core-applications"],
     "image": "./img/deploying-django-on-aks-with-postgreSQL.png",
-    "description": "Azure Kubernetes Service (AKS) is a managed container orchestration platform ideal for building and running scalable, resilient microservices and cloud-native applications. In this quickstart, you'll learn how to deploy a Django application on Azure Kubernetes Service (AKS) cluster integrating Azure Database for PostgreSQL."
+    "description": "Azure Kubernetes Service (AKS) is a managed container orchestration platform ideal for building and running scalable, resilient microservices and cloud-native applications. In this quickstart, you'll learn how to deploy a Django application on Azure Kubernetes Service (AKS) cluster integrating Azure Database for PostgreSQL.",
+    "tileNumber": 5
   },
   {
     "title": "Deploy database updates along with app updates using GitHub Actions",
@@ -50,7 +55,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "tags": ["learning-path", "developing-core-applications"],
     "image": "./img/github.jpg",
-    "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates."
+    "description": "GitHub Actions is a CI/CD platform that automates workflows directly from your GitHub repository, enabling tasks like building, testing, and deploying code. This quickstart guide walks you through how to create a GitHub Actions workflow to deploy database updates to Azure Database for PostgreSQL, along with your application updates.",
+    "tileNumber": 6
   },
   {
     "title": "Design a connection pooling strategy using PgBouncer",
@@ -64,7 +70,8 @@
     ],
     "image": "./img/connection-pooling.png",
     "description": "Connection pooling is a recommended practice in database-driven application development as it enhances performance and scalability by efficiently managing and reusing active connections, minimizing overhead and resource consumption. This article provides strategic guidance for implementing connection pooling for your Azure Database for PostgreSQL instances.",
-    "priority": "P1"
+    "priority": "P1",
+    "tileNumber": 7
   },
   {
     "title": "Handling transient connectivity errors",
@@ -73,7 +80,8 @@
     "tags": ["app-dev", "learning-path", "developing-core-applications"],
     "image": "./img/transient-connect-error.png",
     "description": "Handling transient connectivity errors is a best practice in cloud-native app development, as it ensures resilience and reliability by gracefully managing brief network interruptions or service unavailability. This article walks you through how to handle transient errors when connecting to Azure Database for PostgreSQL instances.",
-    "priority": "P1"
+    "priority": "P1",
+    "tileNumber": 8
   },
   {
     "title": "Workshop: Azure PostgreSQL Developer Workshop",
@@ -96,7 +104,8 @@
     ],
     "image": "./img/generative-ai-overview.png",
     "description": "Generative AI encompasses algorithms that learn from existing multimedia content to create new, original outputs. This article introduces key concepts and terminology of Generative AI and provides an overview of using it with Azure Database for PostgreSQL.",
-    "date": "2025-03-11"
+    "date": "2025-03-11",
+    "tileNumber": 1
   },
   {
     "title": "Enable and use pgvector for native Vector Search",
@@ -105,7 +114,8 @@
     "tags": ["vector", "learning-path", "building-genai-apps"],
     "image": "./img/pgvector-search.png",
     "description": "The pgvector extension brings open-source vector similarity search to PostgreSQL, enabling advanced AI and semantic search scenarios. This article explains vector databases and pgvector’s capabilities, covering concepts like embeddings and similarity, and provides guidance on enabling the extension, creating, storing, and querying vectors.",
-    "date": "2025-03-11"
+    "date": "2025-03-11",
+    "tileNumber": 2
   },
   {
     "title": "Integrate with Azure AI services",
@@ -113,7 +123,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-integrate-azure-ai",
     "tags": ["learning-path", "building-genai-apps"],
     "image": "./img/azure-ai-integration.png",
-    "description": "Learn how to integrate Azure AI services with Azure Database for PostgreSQL."
+    "description": "Learn how to integrate Azure AI services with Azure Database for PostgreSQL.",
+    "tileNumber": 3
   },
   {
     "title": "Build a RAG application using Azure Database for PostgreSQL and LangChain",
@@ -121,7 +132,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-develop-with-langchain",
     "tags": ["rag", "flexibleserver", "learning-path", "building-genai-apps"],
     "image": "./img/rag-langchain-pg.png",
-    "description": "Tutorial for building Retrieval-Augmented Generation (RAG) applications with LangChain and PostgreSQL."
+    "description": "Tutorial for building Retrieval-Augmented Generation (RAG) applications with LangChain and PostgreSQL.",
+    "tileNumber": 4
   },
   {
     "title": "Enhance scale with DiskANN vector indexing",
@@ -129,7 +141,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgdiskann",
     "tags": ["vector", "learning-path", "building-genai-apps"],
     "image": "./img/diskann-vector-indexing.png",
-    "description": "Learn to use DiskANN for scalable and efficient vector indexing in PostgreSQL."
+    "description": "Learn to use DiskANN for scalable and efficient vector indexing in PostgreSQL.",
+    "tileNumber": 5
   },
   {
     "title": "Improve search accuracy with Semantic Operators",
@@ -137,7 +150,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-ai-semantic-operators",
     "tags": ["semantic", "learning-path", "building-genai-apps"],
     "image": "./img/semantic-operators.png",
-    "description": "Explore semantic operators to enhance search accuracy in Azure Database for PostgreSQL."
+    "description": "Explore semantic operators to enhance search accuracy in Azure Database for PostgreSQL.",
+    "tileNumber": 6
   },
   {
     "title": "Improve search accuracy using Knowledge Graphs (GraphRAG)",
@@ -145,10 +159,11 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-the-graphrag-solution-for-azure-database-for-postgresql/4299871",
     "tags": ["graph", "rag", "learning-path", "building-genai-apps"],
     "image": "./img/knowledge-graph.png",
-    "description": "Discover how to use knowledge graphs and GraphRAG for improved search and recommendations."
+    "description": "Discover how to use knowledge graphs and GraphRAG for improved search and recommendations.",
+    "tileNumber": 7
   },
   {
-    "title": "Training path: Build AI Apps and Agents with Azure Database for PostgreSQL",
+    "title": "Training Path: Build AI Apps and Agents with Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
     "tags": [
@@ -161,27 +176,15 @@
     "image": "./img/ai-agents-pg.png",
     "description": "Comprehensive training path for building AI apps and agents with Azure Database for PostgreSQL."
   },
-  {
-    "title": "Video series: Build AI Apps and Agents with Azure Database for PostgreSQL",
-    "website": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
-    "source": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
-    "tags": [
-      "video",
-      "agent",
-      "flexibleserver",
-      "learning-path",
-      "building-genai-apps"
-    ],
-    "image": "./img/vid-ai-agents-pg.png",
-    "description": "Video series covering AI app and agent development with Azure Database for PostgreSQL."
-  },
+
   {
     "title": "AI agents - Overview",
     "tags": ["overview", "agent", "learning-path", "building-ai-agents"],
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "image": "./img/ai-agents-overview.jpg",
-    "description": "Introduction to AI agents and their capabilities in Azure Database for PostgreSQL."
+    "description": "Introduction to AI agents and their capabilities in Azure Database for PostgreSQL.",
+    "tileNumber": 1
   },
   {
     "title": "Build an AI Agent with  Azure Database for PostgreSQL and Azure AI Agent Service",
@@ -189,7 +192,8 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "tags": ["agent", "flexibleserver", "learning-path", "building-ai-agents"],
     "image": "./img/agents-az-db-agents.png",
-    "description": "Step-by-step guide to building AI agents using Azure Database for PostgreSQL and Azure AI Agent Service."
+    "description": "Step-by-step guide to building AI agents using Azure Database for PostgreSQL and Azure AI Agent Service.",
+    "tileNumber": 2
   },
   {
     "title": "Develop using Agentic AI architecture: AgenticShop",
@@ -197,15 +201,17 @@
     "source": "https://aka.ms/agentic-shop",
     "tags": ["agent", "learning-path", "building-ai-agents"],
     "image": "./img/agentic-shop.png",
-    "description": "Learn to develop applications using the Agentic AI architecture with AgenticShop."
+    "description": "Learn to develop applications using the Agentic AI architecture with AgenticShop.",
+    "tileNumber": 3
   },
   {
     "title": "TBD",
     "website": "",
     "source": "",
     "tags": ["learning-path", "building-ai-agents"],
-    "image": "./img/tbd.png",
-    "description": ""
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    "description": "TBD",
+    "tileNumber": 4
   },
   {
     "title": "MCP and the Azure MCP Server",
@@ -213,10 +219,11 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/azure-mcp-server-now-includes-support-for-azure-database-for-postgresql/4413744",
     "tags": ["learning-path", "building-ai-agents"],
     "image": "./img/azure-mcp.png",
-    "description": "Overview of MCP and its support for Azure Database for PostgreSQL."
+    "description": "Overview of MCP and its support for Azure Database for PostgreSQL.",
+    "tileNumber": 5
   },
   {
-    "title": "Training path: Build AI Apps and Agents with Azure Database for PostgreSQL",
+    "title": "Training Path: Build AI Apps and Agents with Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
     "tags": [
@@ -228,6 +235,21 @@
     ],
     "image": "./img/tp-azure-agents.png",
     "description": "Comprehensive training path for building AI apps and agents with Azure Database for PostgreSQL."
+  },
+  {
+    "title": "Video Series: Build AI Apps and Agents with Azure Database for PostgreSQL",
+    "website": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
+    "source": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
+    "tags": [
+      "video",
+      "agent",
+      "flexibleserver",
+      "learning-path",
+      "building-genai-apps",
+      "building-ai-agents"
+    ],
+    "image": "./img/vid-ai-agents-pg.png",
+    "description": "Video series covering AI app and agent development with Azure Database for PostgreSQL."
   },
   {
     "title": "What is Azure Database for PostgreSQL?",
