@@ -3,6 +3,8 @@
  * Preloads critical above-the-fold images for better perceived performance
  */
 
+import type { User } from '../data/tags';
+
 export interface PreloadOptions {
   priority?: 'high' | 'low';
   as?: 'image';
@@ -60,7 +62,7 @@ export function preloadImageWithWebP(
 /**
  * Preload featured/hero images from user data
  */
-export function preloadFeaturedImages(users: any[], limit: number = 6): void {
+export function preloadFeaturedImages(users: User[], limit: number = 6): void {
   if (typeof window === 'undefined') return;
 
   const featuredImages = users

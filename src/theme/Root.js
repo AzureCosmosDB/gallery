@@ -32,9 +32,7 @@ export default function Root({ children }) {
     }
   }, []);
 
-  const [isLoading, setIsLoading] = useState(() => {
-    return ExecutionEnvironment.canUseDOM;
-  });
+  const [isLoading, setIsLoading] = useState(true);
 
   // Initialize gtag safety wrapper on client side
   useEffect(() => {
