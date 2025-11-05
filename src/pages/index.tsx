@@ -58,11 +58,9 @@ const App = () => {
     setSelectedTags(tags);
   }, [location]);
 
-  useEffect(() => {
-    // Preload only first 3 featured images on initial mount
-    // These are the above-the-fold images that users see immediately
-    preloadFeaturedImages(featuredUsers, 3);
-  }, []); // Empty dependency array - only run once on mount
+  // Removed featured image preloading - OptimizedImage component handles
+  // lazy loading efficiently with IntersectionObserver, and preloading below-the-fold
+  // images causes "preload not used" warnings
 
   return (
     <FluentProvider theme={webLightTheme} className={styles.container}>

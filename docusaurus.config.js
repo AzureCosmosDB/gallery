@@ -302,15 +302,6 @@ const config = {
   ],
 
   headTags: [
-    // Preload critical background image
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preload',
-        as: 'image',
-        href: '/postgres-gallery/img-optimized/dotted-background-opacity40.png',
-      },
-    },
     // DNS prefetch for external resources
     {
       tagName: 'link',

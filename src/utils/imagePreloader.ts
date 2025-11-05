@@ -9,6 +9,10 @@ export interface PreloadOptions {
   priority?: 'high' | 'low';
   as?: 'image';
   type?: string;
+  // Responsive image preload support
+  imageSrcSet?: string;
+  imageSizes?: string;
+  hrefOverride?: string;
 }
 
 /**
@@ -20,10 +24,18 @@ export function preloadImage(src: string, options: PreloadOptions = {}): void {
   const link = document.createElement('link');
   link.rel = 'preload';
   link.as = options.as || 'image';
-  link.href = src;
+  link.href = options.hrefOverride || src;
   
   if (options.type) {
     link.type = options.type;
+  }
+
+  // If provided, attach responsive image hints so the browser can pick the exact variant
+  if (options.imageSrcSet) {
+    link.setAttribute('imagesrcset', options.imageSrcSet);
+  }
+  if (options.imageSizes) {
+    link.setAttribute('imagesizes', options.imageSizes);
   }
   
   if (options.priority === 'high') {
@@ -76,23 +88,46 @@ export function preloadFeaturedImages(users: User[], limit: number = 3): void {
     // Build optimized image path
     const baseUrl = '/postgres-gallery/';
     const imagePath = src.startsWith('./') ? src.replace('./', baseUrl) : src;
-    
+
     // Extract filename and extension
     const pathParts = imagePath.split('/');
     const filename = pathParts[pathParts.length - 1];
     const ext = filename.split('.').pop()?.toLowerCase();
     const nameWithoutExt = filename.replace(`.${ext}`, '');
-    
+
     // Skip SVG files
     if (ext === 'svg') return;
-    
+
     // Build optimized path
     const pathWithoutFilename = imagePath.substring(0, imagePath.lastIndexOf('/'));
     const basePath = pathWithoutFilename.replace(/\/img$/, '/img-optimized');
-    
-    // Preload small WebP version for fast initial display
-    const webpSrc = `${basePath}/${nameWithoutExt}-300w.webp`;
-    preloadImage(webpSrc, { priority: 'high', type: 'image/webp' });
+
+    // Build responsive WebP srcset mirroring OptimizedImage component
+    const webpSrcSet = [
+      `${basePath}/${nameWithoutExt}-300w.webp 300w`,
+      `${basePath}/${nameWithoutExt}-600w.webp 600w`,
+      `${basePath}/${nameWithoutExt}-1200w.webp 1200w`,
+    ].join(', ');
+
+    const sizes = '(max-width: 600px) 300px, (max-width: 1200px) 600px, 1200px';
+
+    // Pick href candidate based on slot size (from sizes) multiplied by DPR.
+    const viewport = window.innerWidth;
+    const dpr = window.devicePixelRatio || 1;
+    const slotCss = viewport <= 600 ? 300 : viewport <= 1200 ? 600 : 1200; // css px from sizes
+    const required = slotCss * dpr; // px width actually needed
+
+    let hrefCandidate = `${basePath}/${nameWithoutExt}-1200w.webp`;
+    if (required <= 300) hrefCandidate = `${basePath}/${nameWithoutExt}-300w.webp`;
+    else if (required <= 600) hrefCandidate = `${basePath}/${nameWithoutExt}-600w.webp`;
+
+    preloadImage(hrefCandidate, {
+      priority: 'high',
+      type: 'image/webp',
+      imageSrcSet: webpSrcSet,
+      imageSizes: sizes,
+      hrefOverride: hrefCandidate,
+    });
   });
 }
 
@@ -105,7 +140,6 @@ export function preloadCriticalAssets(): void {
 
   const criticalAssets = [
     '/postgres-gallery/img-optimized/logo.webp',
-    '/postgres-gallery/img-optimized/dotted-background-opacity40.webp',
   ];
 
   preloadImages(criticalAssets, { priority: 'high', type: 'image/webp' });

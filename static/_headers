@@ -1,4 +1,20 @@
-# GitHub Pages doesn't support _headers file, but we'll add this for documentation
+# ============================================================================
+# IMPORTANT: This file is IGNORED by GitHub Pages
+# ============================================================================
+# GitHub Pages does NOT support custom HTTP headers (no _headers file support)
+# 
+# Our caching is handled by the Service Worker instead:
+# - See: static/sw.js for cache strategies
+# - Images: Cache First (indefinite)
+# - HTML: Network First (always fresh)
+#
+# This file is kept for:
+# 1. Documentation/reference of desired cache behavior
+# 2. Future migration to Netlify/Vercel/Cloudflare (they support _headers)
+# 3. Team understanding of intended cache strategy
+# ============================================================================
+#
+# Desired cache behavior (if we migrate to a platform that supports it):
 # Cache static assets for 1 year
 /static/img/*
   Cache-Control: public, max-age=31536000, immutable
