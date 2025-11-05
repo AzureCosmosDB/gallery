@@ -39,14 +39,14 @@ function getImageSources(imagePath: string) {
     return { webpSrcSet: '', fallbackSrc: imagePath };
   }
 
-  // Build optimized paths - replace img/ with img-optimized/ and remove the filename
+  // Build optimized paths - replace /img/ with /img-optimized/
   const pathWithoutFilename = imagePath.substring(0, imagePath.lastIndexOf('/'));
-  const basePath = pathWithoutFilename.replace(/\/img$/, '/img-optimized').replace(/img$/, 'img-optimized');
+  const basePath = pathWithoutFilename.replace(/\/img$/, '/img-optimized');
   
   // WebP srcset for responsive images (always try all sizes - browser will fallback gracefully)
   const webpSources = [
-    `${basePath}/${nameWithoutExt}-400w.webp 400w`,
-    `${basePath}/${nameWithoutExt}-800w.webp 800w`,
+    `${basePath}/${nameWithoutExt}-300w.webp 300w`,
+    `${basePath}/${nameWithoutExt}-600w.webp 600w`,
     `${basePath}/${nameWithoutExt}-1200w.webp 1200w`,
   ];
   
@@ -133,7 +133,7 @@ export default function OptimizedImage({
             <source
               type="image/webp"
               srcSet={webpSrcSet}
-              sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+              sizes="(max-width: 600px) 300px, (max-width: 1200px) 600px, 1200px"
             />
           )}
 

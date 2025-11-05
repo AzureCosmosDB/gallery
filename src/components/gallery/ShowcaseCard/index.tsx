@@ -97,7 +97,6 @@ function ShowcaseCard({
               style={{
                 width: "100%",
                 borderRadius: "8px 8px 0px 0px",
-                marginBottom: 12,
               }}
             />
           )}
