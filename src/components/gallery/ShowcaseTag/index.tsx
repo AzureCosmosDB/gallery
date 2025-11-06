@@ -8,7 +8,8 @@ import styles from "./styles.module.css";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
-import { Badge, Tooltip } from "@fluentui/react-components";
+import { Tooltip } from "@fluentui/react-components";
+import CustomBadge from "../../CustomBadge";
 
 export default function ShowcaseCardTag({
   tags,
@@ -161,10 +162,7 @@ export default function ShowcaseCardTag({
     // Use the calculated visible tags count instead of character-based calculation
     const shownTags = tagsByTypeSorted.slice(0, visibleTagsCount);
     const restCount = tagsByTypeSorted.length - visibleTagsCount;
-    const moreTagDetailList = tagsByTypeSorted
-      .slice(visibleTagsCount)
-      .map((tagObject) => tagObject.tag)
-      .join("\n");
+    const hiddenTags = tagsByTypeSorted.slice(visibleTagsCount);
 
     return (
       <div ref={containerRef} className={styles.tagContainer}>
@@ -201,7 +199,7 @@ export default function ShowcaseCardTag({
           };
 
           return (
-            <Badge
+            <CustomBadge
               appearance="tint"
               size="medium"
               color={getFluentColor(tagObject.color || "brand")}
@@ -209,30 +207,34 @@ export default function ShowcaseCardTag({
               className={styles.cardTag}
             >
               {tagObject.label}
-            </Badge>
+            </CustomBadge>
           );
         })}
         {restCount > 0 && (
           <Tooltip
             withArrow
-            content={{
-              children: (
-                <span style={{ whiteSpace: "pre-line" }}>
-                  {moreTagDetailList}
-                </span>
-              ),
-            }}
+            content={
+              <div className={styles.tooltipContent}>
+                {hiddenTags.map((tagObject, idx) => (
+                  <div key={idx} className={styles.tooltipTag}>
+                    {tagObject.label}
+                  </div>
+                ))}
+              </div>
+            }
             relationship="label"
             key="showcase_card_tag_more"
           >
-            <Badge
-              appearance="tint"
-              size="medium"
-              color="subtle"
-              className={styles.cardTag}
-            >
-              +{restCount} more
-            </Badge>
+            <div className={styles.moreBadgeWrapper} style={{ display: 'inline-block', cursor: 'pointer' }}>
+              <CustomBadge
+                appearance="tint"
+                size="medium"
+                color="subtle"
+                className={`${styles.cardTag} ${styles.moreBadge}`}
+              >
+                +{restCount} more
+              </CustomBadge>
+            </div>
           </Tooltip>
         )}
       </div>
@@ -273,7 +275,7 @@ export default function ShowcaseCardTag({
         {tagsByTypeSorted.map((tagObject, index) => {
           const id = `showcase_card_tag_${tagObject.tag}`;
           return (
-            <Badge
+            <CustomBadge
               appearance="tint"
               size="medium"
               color={getFluentColor(tagObject.color || "brand")}
@@ -281,7 +283,7 @@ export default function ShowcaseCardTag({
               className={styles.cardPanelColoredTag}
             >
               {tagObject.label}
-            </Badge>
+            </CustomBadge>
           );
         })}
       </div>

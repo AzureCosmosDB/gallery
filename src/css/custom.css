@@ -1,5 +1,5 @@
 html, body, #__docusaurus, #__docusaurus * {
-  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji") !important;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 /**
  * Any CSS included here will be global. The classic template
@@ -57,4 +57,53 @@ html, body, #__docusaurus, #__docusaurus * {
 .footer__link-item {
         color: #606770 !important;
 
+}
+
+/* Ensure Roboto font is applied to Fluent UI components as well */
+:global(.fui-Badge),
+:global(.fui-Button),
+:global(.fui-Dialog),
+:global(.fui-Card),
+:global([class*="fui-"]),
+:global([class*="fuib-"]) {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+/* Enhanced Tooltip styling for better appearance */
+:global([class*="fui-Tooltip"]),
+:global([class*="Tooltip"]) {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+:global([class*="fui-Tooltip"] [class*="content"]),
+:global([class*="Tooltip"] [class*="content"]) {
+  background-color: #ffffff !important;
+  color: #323130 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  max-width: 300px !important;
+  z-index: 1000 !important;
+}
+
+/* Ensure tooltip is visible on hover */
+:global([class*="fui-Tooltip"]),
+:global([class*="Tooltip"]) {
+  z-index: 1000 !important;
+}
+
+:global([class*="fui-Tooltip"] [data-popper-placement]),
+:global([class*="Tooltip"] [data-popper-placement]),
+:global([data-floating-ui-portal]),
+:global([class*="TooltipContent"]) {
+  z-index: 1000 !important;
+  pointer-events: none;
+}
+
+/* Ensure tooltip trigger is interactive */
+:global([class*="fui-Tooltip"] > *),
+:global([class*="Tooltip"] > *) {
+  pointer-events: auto;
 }
