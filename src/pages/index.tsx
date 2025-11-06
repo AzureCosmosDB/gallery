@@ -58,12 +58,6 @@ const App = () => {
     setSelectedTags(tags);
   }, [location]);
 
-  useEffect(() => {
-    // Preload only first 3 featured images on initial mount
-    // These are the above-the-fold images that users see immediately
-    preloadFeaturedImages(featuredUsers, 3);
-  }, []); // Empty dependency array - only run once on mount
-
   return (
     <FluentProvider theme={webLightTheme} className={styles.container}>
       <div id="home">
