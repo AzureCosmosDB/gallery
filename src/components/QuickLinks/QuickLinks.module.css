@@ -20,10 +20,17 @@
 
 .tilesContainer {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
   padding: 0 16px;
+}
+
+@media (min-width: 1200px) {
+  .tilesContainer {
+    flex-wrap: nowrap;
+  }
 }
 
 .tile {

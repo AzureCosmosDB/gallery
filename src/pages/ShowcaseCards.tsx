@@ -37,7 +37,9 @@ export default function ShowcaseCards({
       <div
         className={noGrid ? undefined : styles.showcaseCards}
         style={
-          noGrid ? { display: "flex", flexDirection: "column" } : undefined
+          noGrid
+            ? { display: "flex", flexDirection: "column", alignItems: "center" }
+            : undefined
         }
       >
         {filteredUsers

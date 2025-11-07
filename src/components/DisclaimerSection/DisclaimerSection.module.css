@@ -4,11 +4,18 @@
   justify-content: center;
   gap: 8px;
   margin-bottom: 8px;
+}
 
-  >img{
-    height: 32px;
-    width: auto;
-  }
+.titleRow > img {
+  height: 32px;
+  width: auto;
+}
+
+/* Explicit class for the logo image to ensure styles apply reliably */
+.navbarLogo {
+  height: 32px;
+  width: auto;
+  display: inline-block;
 }
 
 .disclaimerSection {
