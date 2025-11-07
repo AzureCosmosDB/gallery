@@ -12,6 +12,7 @@ import { Image, Link, PrimaryButton } from "@fluentui/react";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { sortBy } from "../../../utils/jsUtils";
 import OptimizedImage from "../../OptimizedImage";
+import { User as UserIcon, Calendar, Clock } from "lucide-react";
 
 export default function ShowcaseCardPanel({
   user,
@@ -23,6 +24,7 @@ export default function ShowcaseCardPanel({
   const githubURL = user.source;
   const description = user.description;
   const video = user.video;
+  const meta = user.meta || {};
   const tagObjects = user.tags
     .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
@@ -75,6 +77,34 @@ export default function ShowcaseCardPanel({
           {/* <ShowcaseMultipleAuthors key={"author_" + user.title} user={user} /> */}
           <GitHubInfoCardPanel githubData={githubData} />
         </div>
+        {meta && (meta.author || meta.date || meta.duration) && (
+          <div className={styles.metaInfo}>
+            {meta.author && (
+              <div className={styles.metaItem}>
+                <UserIcon size={16} />
+                <span>{meta.author}</span>
+              </div>
+            )}
+            {meta.date && (
+              <div className={styles.metaItem}>
+                <Calendar size={16} />
+                <span>
+                  {new Date(meta.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+            )}
+            {meta.duration && (
+              <div className={styles.metaItem}>
+                <Clock size={16} />
+                <span>{meta.duration}</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div className={styles.divider} />
       <div className={styles.subTitle}>Description</div>
