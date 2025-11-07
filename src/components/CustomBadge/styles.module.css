@@ -1,0 +1,323 @@
+/**
+ * Custom Badge Styles - No fixed heights, uses padding instead
+ * 
+ * Enhanced with Microsoft Fluent Design System 2.0 color palette
+ * - Modern, vibrant colors with excellent contrast
+ * - Smooth animations and hover effects
+ * - Four appearance variants: tint, filled, outline, ghost
+ * - Seven color variants: brand, informative, success, warning, danger, severe, subtle
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: none;
+  cursor: default;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  
+  /* No fixed heights - uses padding instead */
+  height: auto;
+  min-height: unset;
+  max-height: none;
+}
+
+/* Reset button default styles */
+button.badge {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: inherit;
+}
+
+.badgeClickable {
+  cursor: pointer;
+}
+
+/* Allow cursor pointer to be set externally */
+.badge[style*="cursor: pointer"],
+.badge[class*="moreBadge"] {
+  cursor: pointer !important;
+}
+
+.badgeText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.badgeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Size variants */
+.badge_small {
+  font-size: 10px;
+  padding: 2px 6px;
+  gap: 4px;
+}
+
+.badge_medium {
+  font-size: 11px;
+  padding: 4px 8px;
+  gap: 4px;
+}
+
+.badge_large {
+  font-size: 12px;
+  padding: 6px 10px;
+  gap: 6px;
+}
+
+.badge_extra-large {
+  font-size: 13px;
+  padding: 8px 12px;
+  gap: 6px;
+}
+
+/* Shape variants */
+.badge_rounded {
+  border-radius: 4px;
+}
+
+.badge_circular {
+  border-radius: 9999px;
+}
+
+.badge_square {
+  border-radius: 0;
+}
+
+/* Appearance: Tint - Modern Microsoft Fluent Design System 2.0 Colors */
+.badge_tint.badge_brand {
+  background-color: #e8f1fb;
+  color: #0f6cbd;
+  border: 1px solid #a0d2f6;
+}
+
+.badge_tint.badge_informative {
+  background-color: #e5f3ff;
+  color: #0078d4;
+  border: 1px solid #7cb8f7;
+}
+
+.badge_tint.badge_success {
+  background-color: #dff6dd;
+  color: #0b7a0b;
+  border: 1px solid #6fbc6f;
+}
+
+.badge_tint.badge_warning {
+  background-color: #fff4e5;
+  color: #ca5010;
+  border: 1px solid #ffcc80;
+}
+
+.badge_tint.badge_danger {
+  background-color: #fef0f1;
+  color: #d13438;
+  border: 1px solid #fbb8bc;
+}
+
+.badge_tint.badge_severe {
+  background-color: #fef0f1;
+  color: #c50e1f;
+  border: 1px solid #f88d9b;
+}
+
+.badge_tint.badge_subtle {
+  background-color: #f3f2f1;
+  color: #323130;
+  border: 1px solid #d2d0ce;
+}
+
+/* Appearance: Filled - Vibrant Microsoft Fluent Colors */
+.badge_filled.badge_brand {
+  background-color: #0f6cbd;
+  color: #ffffff;
+  border: 1px solid #0f6cbd;
+  box-shadow: 0 1px 2px rgba(15, 108, 189, 0.2);
+}
+
+.badge_filled.badge_informative {
+  background-color: #0078d4;
+  color: #ffffff;
+  border: 1px solid #0078d4;
+  box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+}
+
+.badge_filled.badge_success {
+  background-color: #107c10;
+  color: #ffffff;
+  border: 1px solid #107c10;
+  box-shadow: 0 1px 2px rgba(16, 124, 16, 0.2);
+}
+
+.badge_filled.badge_warning {
+  background-color: #ffaa44;
+  color: #ffffff;
+  border: 1px solid #ffaa44;
+  box-shadow: 0 1px 2px rgba(255, 170, 68, 0.2);
+}
+
+.badge_filled.badge_danger {
+  background-color: #d13438;
+  color: #ffffff;
+  border: 1px solid #d13438;
+  box-shadow: 0 1px 2px rgba(209, 52, 56, 0.2);
+}
+
+.badge_filled.badge_severe {
+  background-color: #c50e1f;
+  color: #ffffff;
+  border: 1px solid #c50e1f;
+  box-shadow: 0 1px 2px rgba(197, 14, 31, 0.2);
+}
+
+.badge_filled.badge_subtle {
+  background-color: #605e5c;
+  color: #ffffff;
+  border: 1px solid #605e5c;
+  box-shadow: 0 1px 2px rgba(96, 94, 92, 0.2);
+}
+
+/* Appearance: Outline - Clean borders with vibrant colors */
+.badge_outline.badge_brand {
+  background-color: transparent;
+  color: #0f6cbd;
+  border: 1.5px solid #0f6cbd;
+}
+
+.badge_outline.badge_informative {
+  background-color: transparent;
+  color: #0078d4;
+  border: 1.5px solid #0078d4;
+}
+
+.badge_outline.badge_success {
+  background-color: transparent;
+  color: #107c10;
+  border: 1.5px solid #107c10;
+}
+
+.badge_outline.badge_warning {
+  background-color: transparent;
+  color: #ffaa44;
+  border: 1.5px solid #ffaa44;
+}
+
+.badge_outline.badge_danger {
+  background-color: transparent;
+  color: #d13438;
+  border: 1.5px solid #d13438;
+}
+
+.badge_outline.badge_severe {
+  background-color: transparent;
+  color: #c50e1f;
+  border: 1.5px solid #c50e1f;
+}
+
+.badge_outline.badge_subtle {
+  background-color: transparent;
+  color: #605e5c;
+  border: 1.5px solid #605e5c;
+}
+
+/* Appearance: Ghost - Subtle text-only badges */
+.badge_ghost.badge_brand {
+  background-color: transparent;
+  color: #0f6cbd;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_informative {
+  background-color: transparent;
+  color: #0078d4;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_success {
+  background-color: transparent;
+  color: #107c10;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_warning {
+  background-color: transparent;
+  color: #ffaa44;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_danger {
+  background-color: transparent;
+  color: #d13438;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_severe {
+  background-color: transparent;
+  color: #c50e1f;
+  border: 1px solid transparent;
+}
+
+.badge_ghost.badge_subtle {
+  background-color: transparent;
+  color: #323130;
+  border: 1px solid transparent;
+}
+
+
+/* Hover states for clickable badges - Enhanced Microsoft Fluent interactions */
+.badgeClickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.badgeClickable:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.badgeClickable:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+/* Enhanced hover states for tint badges */
+.badgeClickable.badge_tint:hover {
+  filter: brightness(0.95);
+}
+
+/* Enhanced hover states for filled badges */
+.badgeClickable.badge_filled:hover {
+  filter: brightness(1.1);
+}
+
+/* Enhanced hover states for outline badges */
+.badgeClickable.badge_outline:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+

@@ -8,7 +8,8 @@ import styles from "./styles.module.css";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
-import { Badge, Tooltip } from "@fluentui/react-components";
+import { Tooltip } from "@fluentui/react-components";
+import CustomBadge from "../../CustomBadge";
 
 export default function ShowcaseCardTag({
   tags,
@@ -161,127 +162,72 @@ export default function ShowcaseCardTag({
     // Use the calculated visible tags count instead of character-based calculation
     const shownTags = tagsByTypeSorted.slice(0, visibleTagsCount);
     const restCount = tagsByTypeSorted.length - visibleTagsCount;
-    const moreTagDetailList = tagsByTypeSorted
-      .slice(visibleTagsCount)
-      .map((tagObject) => tagObject.tag)
-      .join("\n");
+    const hiddenTags = tagsByTypeSorted.slice(visibleTagsCount);
 
     return (
       <div ref={containerRef} className={styles.tagContainer}>
         {shownTags.map((tagObject, index) => {
           const key = `showcase_card_tag_${tagObject.tag}`;
-          // Map our custom colors to Fluent UI Badge colors
-          const getFluentColor = (customColor: string) => {
-            switch (customColor) {
-              case "blue":
-                return "informative";
-              case "green":
-                return "success";
-              case "grey":
-                return "subtle";
-              case "slate":
-                return "subtle";
-              case "purple":
-                return "brand";
-              case "orange":
-                return "warning";
-              case "brown":
-                return "severe";
-              case "mustard":
-                return "warning";
-              case "red":
-                return "danger";
-              case "teal":
-                return "informative";
-              case "indigo":
-                return "brand";
-              default:
-                return "brand";
-            }
-          };
 
           return (
-            <Badge
+            <CustomBadge
               appearance="tint"
               size="medium"
-              color={getFluentColor(tagObject.color || "brand")}
+              color="informative"
               key={key}
               className={styles.cardTag}
             >
               {tagObject.label}
-            </Badge>
+            </CustomBadge>
           );
         })}
         {restCount > 0 && (
           <Tooltip
             withArrow
-            content={{
-              children: (
-                <span style={{ whiteSpace: "pre-line" }}>
-                  {moreTagDetailList}
-                </span>
-              ),
-            }}
+            content={
+              <div className={styles.tooltipContent}>
+                {hiddenTags.map((tagObject, idx) => (
+                  <div key={idx} className={styles.tooltipTag}>
+                    {tagObject.label}
+                  </div>
+                ))}
+              </div>
+            }
             relationship="label"
             key="showcase_card_tag_more"
           >
-            <Badge
-              appearance="tint"
-              size="medium"
-              color="subtle"
-              className={styles.cardTag}
+            <div
+              className={styles.moreBadgeWrapper}
+              style={{ display: "inline-block", cursor: "pointer" }}
             >
-              +{restCount} more
-            </Badge>
+              <CustomBadge
+                appearance="tint"
+                size="medium"
+                color="subtle"
+                className={`${styles.cardTag} ${styles.moreBadge}`}
+              >
+                +{restCount} more
+              </CustomBadge>
+            </div>
           </Tooltip>
         )}
       </div>
     );
   } else {
-    // Map our custom colors to Fluent UI Badge colors
-    const getFluentColor = (customColor: string) => {
-      switch (customColor) {
-        case "blue":
-          return "informative";
-        case "green":
-          return "success";
-        case "grey":
-          return "subtle";
-        case "slate":
-          return "subtle";
-        case "purple":
-          return "brand";
-        case "orange":
-          return "warning";
-        case "brown":
-          return "severe";
-        case "mustard":
-          return "warning";
-        case "red":
-          return "danger";
-        case "teal":
-          return "informative";
-        case "indigo":
-          return "brand";
-        default:
-          return "brand";
-      }
-    };
-
     return (
       <div className={styles.tagContainer}>
         {tagsByTypeSorted.map((tagObject, index) => {
           const id = `showcase_card_tag_${tagObject.tag}`;
           return (
-            <Badge
+            <CustomBadge
               appearance="tint"
               size="medium"
-              color={getFluentColor(tagObject.color || "brand")}
+              color="informative"
               key={index}
               className={styles.cardPanelColoredTag}
             >
               {tagObject.label}
-            </Badge>
+            </CustomBadge>
           );
         })}
       </div>

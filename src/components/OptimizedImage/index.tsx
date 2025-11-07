@@ -39,12 +39,25 @@ function getImageSources(imagePath: string) {
     return { webpSrcSet: "", fallbackSrc: imagePath };
   }
 
-  // Build optimized paths - replace /img/ with /img-optimized/
+  // Build optimized paths - replace /img/ or img/ with /img-optimized/ or img-optimized/
   const pathWithoutFilename = imagePath.substring(
     0,
     imagePath.lastIndexOf("/")
   );
-  const basePath = pathWithoutFilename.replace(/\/img$/, "/img-optimized");
+  // Handle both /img and img (with or without leading slash)
+  // Match /img at the end, or img at the start/end, preserving the leading slash if present
+  let basePath = pathWithoutFilename;
+  if (pathWithoutFilename.endsWith("/img")) {
+    basePath = pathWithoutFilename.replace(/\/img$/, "/img-optimized");
+  } else if (pathWithoutFilename === "img") {
+    basePath = "img-optimized";
+  } else {
+    // Fallback: try to replace img anywhere in the path
+    basePath = pathWithoutFilename.replace(
+      /(^|\/)img(\/|$)/,
+      "$1img-optimized$2"
+    );
+  }
 
   // WebP srcset for responsive images (always try all sizes - browser will fallback gracefully)
   const webpSources = [

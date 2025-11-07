@@ -93,14 +93,15 @@ async function optimizeRasterImage(inputPath, outputPath) {
     totalSaved += (originalSize - optimizedSize);
     
     // Generate WebP versions at different sizes
+    // Always generate all sizes up to the original width (or the size itself if larger)
     for (const size of SIZES) {
-      if (size < metadata.width) {
-        const webpPath = path.join(outputDir, `${basename}-${size}w.webp`);
-        await sharp(inputPath)
-          .resize(size, null, { withoutEnlargement: true })
-          .webp({ quality: QUALITY })
-          .toFile(webpPath);
-      }
+      const webpPath = path.join(outputDir, `${basename}-${size}w.webp`);
+      // If size is larger than original, use original dimensions
+      const targetWidth = size < metadata.width ? size : metadata.width;
+      await sharp(inputPath)
+        .resize(targetWidth, null, { withoutEnlargement: true })
+        .webp({ quality: QUALITY })
+        .toFile(webpPath);
     }
     
     // Generate full-size WebP

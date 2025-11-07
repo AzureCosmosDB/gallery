@@ -4,7 +4,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "tags": ["learning-path", "developing-core-applications"],
-    "image": "./img/database.jpeg",
+    "image": "./img/database.png",
     "tileNumber": 1,
     "description": "Create and use an Azure Database for PostgreSQL flexible server instance for free using an Azure free account!"
   },
@@ -98,7 +98,6 @@
     "tags": [
       "genai",
       "overview",
-      "genai",
       "learning-path",
       "building-genai-apps"
     ],
@@ -112,7 +111,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgvector",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgvector",
     "tags": ["vector", "learning-path", "building-genai-apps"],
-    "image": "./img/pgvector-search.png",
+    "image": "./img/enable-and-use-pgvector-for-search.png",
     "description": "The pgvector extension brings open-source vector similarity search to PostgreSQL, enabling advanced AI and semantic search scenarios. This article explains vector databases and pgvector’s capabilities, covering concepts like embeddings and similarity, and provides guidance on enabling the extension, creating, storing, and querying vectors.",
     "date": "2025-03-11",
     "tileNumber": 2
@@ -248,7 +247,7 @@
       "building-genai-apps",
       "building-ai-agents"
     ],
-    "image": "./img/vid-ai-agents-pg.png",
+    "image": "./img/tp-azure-agents.png",
     "description": "Video series covering AI app and agent development with Azure Database for PostgreSQL."
   },
   {
@@ -517,7 +516,7 @@
     "website": "https://github.com/microsoft/azure_pg_dev_workshop",
     "source": "https://github.com/microsoft/azure_pg_dev_workshop",
     "tags": ["app-dev"],
-    "image": "./img/pg-developer-workshop.png",
+    "image": "./img/azure-pg-dev-workshop.png",
     "description": "In this comprehensive workshop, you'll learn PostgreSQL fundamentals, how to get started and how to implement modern data applications with Azure Database for PostgreSQL, through a hands-on lab.",
     "priority": "P0"
   },
@@ -579,7 +578,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-ai-semantic-operators",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-ai-semantic-operators",
     "tags": ["semantic", "genai"],
-    "image": "img/semantic-operator-in-az-ai.png",
+    "image": "img/use-semantic-operators.png",
     "description": "Semantic Operators in Azure Database for PostgreSQL azure_ai extension introduce a native intelligence layer to relational algebra by integrating large language models directly into the SQL query engine. This feature enables in-database reasoning over operational data, allowing developers to extract and act on hidden semantic relationships for GenAI applications and agents. This article explains the 4 semantic operators: generate(), is_true(), extract() and rank() and walks you through how to get started with using them.",
     "date": "2025-05-19"
   },
@@ -649,7 +648,7 @@
     "website": "https://learn.microsoft.com/training/modules/perform-sentiment-analysis-opinion-mining-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/perform-sentiment-analysis-opinion-mining-azure-database-postgresql/",
     "tags": ["flexibleserver", "genai"],
-    "image": "./img/azure-ai-insights.png",
+    "image": "./img/azure-sentiment-analysis.png",
     "description": "Perform sentiment analysis and opinion mining with Azure Database for PostgreSQL."
   },
   {
@@ -767,7 +766,7 @@
     "title": "Generative AI features in Azure Database for PostgreSQL",
     "website": "https://www.youtube.com/watch?v=1-ftLron4xo",
     "source": "https://www.youtube.com/watch?v=1-ftLron4xo",
-    "tags": ["genai", "flexibleserver", "genai"],
+    "tags": ["genai", "flexibleserver"],
     "image": "./img/gen-ai-in-az.png",
     "description": "Learn how to build the next generation of intelligent agents and applications with Azure Database for PostgreSQL. Explore powerful new AI features and integrations, such as DiskANN, Vector Search, Semantic Ranker, and VS Code Extension from directly within the Azure Ecosystem."
   },

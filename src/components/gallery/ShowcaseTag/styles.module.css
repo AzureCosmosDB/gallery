@@ -9,7 +9,6 @@
   align-items: flex-start;
   overflow: hidden;
   width: 100%;
-  max-height: calc(2 * 1.5em + 8px); /* Allow for 2 rows of tags with some margin */
 }
 
 .cardTag {
@@ -18,11 +17,21 @@
   flex-shrink: 0;
 }
 
+/* Cursor pointer for "+X more" badge */
+.moreBadge {
+  cursor: pointer !important;
+}
+
+.moreBadgeWrapper {
+  display: inline-block;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
 .cardPanelTag {
-  height: 20px;
   align-content: center;
   border: 1px solid #b4d6fa !important;
-  padding: 0 5px;
+  padding: 4px 8px;
   margin-top: 3px;
   font-size: 10px;
   min-width: 0px;
@@ -32,11 +41,28 @@
   background: #ebf3fc !important;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .cardPanelColoredTag {
   margin-right: 8px;
   margin-bottom: 4px;
   flex-shrink: 0;
-  display: block !important;
+}
+
+/* Tooltip content styling for "+X more" badge */
+.tooltipContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 0;
+  min-width: 100px;
+}
+
+.tooltipTag {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #323130;
+  font-weight: 400;
 }

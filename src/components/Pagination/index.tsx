@@ -15,6 +15,23 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   setPage,
 }) => {
+  // Helper function to change page and scroll to resource library
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+
+    if (typeof window !== "undefined") {
+      setTimeout(() => {
+        const resourceLibrary = document.getElementById("resource-library");
+        if (resourceLibrary) {
+          resourceLibrary.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 50); // Small delay to ensure page content updates first
+    }
+  };
+
   return (
     totalPages > 1 && (
       <div
@@ -27,7 +44,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }}
       >
         <button
-          onClick={() => setPage(page - 1)}
+          onClick={() => handlePageChange(page - 1)}
           disabled={page === 1}
           style={{
             padding: "6px 8px",
@@ -66,7 +83,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 {page}
               </button>
               <button
-                onClick={() => setPage(page + 1)}
+                onClick={() => handlePageChange(page + 1)}
                 style={{
                   padding: "6px 12px",
                   border: "none",
@@ -83,7 +100,7 @@ const Pagination: React.FC<PaginationProps> = ({
           {page > 1 && page < totalPages && (
             <>
               <button
-                onClick={() => setPage(page - 1)}
+                onClick={() => handlePageChange(page - 1)}
                 style={{
                   padding: "6px 12px",
                   border: "none",
@@ -114,7 +131,7 @@ const Pagination: React.FC<PaginationProps> = ({
           {page === totalPages && totalPages > 1 && (
             <>
               <button
-                onClick={() => setPage(page - 1)}
+                onClick={() => handlePageChange(page - 1)}
                 style={{
                   padding: "6px 12px",
                   border: "none",
@@ -144,7 +161,7 @@ const Pagination: React.FC<PaginationProps> = ({
           )}
         </div>
         <button
-          onClick={() => setPage(page + 1)}
+          onClick={() => handlePageChange(page + 1)}
           disabled={page === totalPages}
           style={{
             padding: "6px 8px",
