@@ -53,7 +53,10 @@ function getImageSources(imagePath: string) {
     basePath = "img-optimized";
   } else {
     // Fallback: try to replace img anywhere in the path
-    basePath = pathWithoutFilename.replace(/(^|\/)img(\/|$)/, "$1img-optimized$2");
+    basePath = pathWithoutFilename.replace(
+      /(^|\/)img(\/|$)/,
+      "$1img-optimized$2"
+    );
   }
 
   // WebP srcset for responsive images (always try all sizes - browser will fallback gracefully)
