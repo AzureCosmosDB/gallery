@@ -5,7 +5,6 @@
 
 .padding {
   padding-top: 8px;
-  padding-bottom: 20px;
 }
 
 .githubUrl {
@@ -134,7 +133,6 @@
 }
 
 .buttonSection {
-  padding-top: 20px;
   padding-bottom: 0px;
 }
 
@@ -155,6 +153,27 @@
   line-height: 22px;
   padding-left: 6px;
   width: 100%;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  color: #707070;
+  font-size: 14px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metaItem svg {
+  color: #707070;
 }
 
 .divider {
