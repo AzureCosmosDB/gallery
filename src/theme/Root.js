@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import GlobalLoader from '@site/src/components/GlobalLoader';
+import FloatingFeedbackButton from '@site/src/components/FloatingFeedbackButton';
 
 export default function Root({ children }) {
   useEffect(() => {
@@ -85,5 +86,10 @@ export default function Root({ children }) {
     return <GlobalLoader />;
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <FloatingFeedbackButton />
+    </>
+  );
 }

@@ -31,7 +31,8 @@ const submitFeedbackButton = () => {
         iconPosition="before"
         shape="rounded"
         className={style.button}
-        onClick={() => setOpen(true)}
+        onClick={() => {}}
+        disabled
       >
         Share Feedback
       </Button>

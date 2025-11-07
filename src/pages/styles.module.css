@@ -56,6 +56,18 @@
   width: 70%;
 }
 
+.resourceTitle {
+  text-align: center;
+}
+
+.centeredDescription {
+  text-align: center !important;
+  width: 100%;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #605e5c;
+}
+
 .checkboxList {
   flex-wrap: wrap;
 }
@@ -88,13 +100,6 @@
   position: relative;
   width: 100%;
 }
-.centeredDescription {
-  text-align: center !important;
-  width: 100%;
-  font-size: 18px !important;
-  font-weight: 400 !important;
-  color: #605e5c;
-}
 .searchArea {
   position: relative;
   width: 100%;
@@ -110,9 +115,26 @@
 
 .showcaseCards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1260px;
   margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .showcaseCards {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    max-width: 860px;
+  }
+}
+
+@media (max-width: 768px) {
+  .showcaseCards {
+    grid-template-columns: minmax(240px, 1fr);
+    max-width: 100%;
+    gap: 20px;
+  }
 }
 
 .showcaseList {
@@ -158,26 +180,31 @@
 
 .filterAndCardContainer {
   margin: 0 auto;
+  background: #fff;
 }
 
 .filterAndCard {
   display: flex;
-  padding: 50px;
+  gap: 32px;
+  padding: 56px 48px;
   background-color: white;
-  max-width: 1500px;
-    margin: 0 auto;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .filter {
-  flex: 2;
-  margin: 250px 25px 0px 25px;
-  max-width: 320px;
+  flex: 0 0 320px;
+  margin: 0;
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
 }
 
 .card {
-  flex: 8;
-  min-width: 15rem;
-  margin: 0px 32px;
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
@@ -233,27 +260,41 @@
   color: #0f6cbd;
   cursor: pointer;
 }
-@media screen and (max-width: 1450px){
-  .card{
-      margin: 0px 40px;
-  }
-}
-
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1280px) {
   .filterAndCard {
-    flex-direction: column;
+    padding: 48px 32px;
+    gap: 28px;
   }
 
   .filter {
-    max-width: 100%;
+    flex: 0 0 280px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .filterAndCard {
+    padding: 40px 28px;
   }
 
-  .heroBar {
+  .filter {
+    position: static;
+    flex: 0 0 260px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .filterAndCard {
+    flex-direction: column;
+    padding: 36px 24px;
+  }
+
+  .filter {
     width: 100%;
+    flex: 1 1 auto;
   }
 
-  .cardLoad {
-    margin-top: 1rem;
+  .card {
+    width: 100%;
   }
 
   .searchAndSortBarSection {
@@ -262,12 +303,42 @@
     gap: 16px;
   }
 
-  .searchBox {
+  .searchBox,
+  .sortBar {
     width: 100% !important;
     max-width: 100% !important;
   }
+}
 
-  .sortBar {
-    width: 100% !important;
+@media screen and (max-width: 720px) {
+  .filterAndCard {
+    padding: 28px 20px;
+    gap: 24px;
+  }
+
+  .templateResultsNumber {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filterAppliedBar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .filterAndCard {
+    padding: 24px 16px;
+  }
+
+  .templateResultsNumber {
+    align-items: flex-start;
+  }
+
+  .filterAppliedBar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

@@ -1,7 +1,8 @@
 .quickLinksSection {
-  margin-top: 48px;
-  margin-bottom: 48px;
+  margin: 56px auto;
   text-align: center;
+  padding: 0 24px;
+  max-width: 1200px;
 }
 
 .title {
@@ -19,11 +20,10 @@
 
 .tilesContainer {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: nowrap;
-  padding: 0px 32px;
+  gap: 32px;
+  padding: 0 16px;
 }
 
 .tile {
@@ -33,13 +33,14 @@
   justify-content: center;
   text-align: center !important;
   border: 1.5px solid #d1d5db;
-  border-radius: 12px;
-  padding: 32px 12px !important;
+  border-radius: 14px;
+  padding: 32px 20px !important;
   transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
   will-change: transform, box-shadow;
   text-decoration: none !important;
-  width: 250px !important;
-  min-height: 150px !important;
+  width: min(260px, 100%);
+  min-height: 160px !important;
+  background: #fff;
 }
 
 .tile:hover {
@@ -63,4 +64,62 @@
 .tileDescription {
   font-size: 0.97rem;
   color: #959a9d;
+}
+
+@media (max-width: 992px) {
+  .quickLinksSection {
+    padding: 0 20px;
+  }
+
+  .tilesContainer {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quickLinksSection {
+    padding: 0 16px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 1.05rem !important;
+  }
+
+  .tilesContainer {
+    gap: 24px;
+  }
+
+  .tile {
+    padding: 28px 20px !important;
+    width: min(320px, 100%);
+  }
+}
+
+@media (max-width: 540px) {
+  .quickLinksSection {
+    margin: 48px auto;
+  }
+
+  .tilesContainer {
+    gap: 20px;
+    padding: 0;
+  }
+
+  .tile {
+    width: 100%;
+    padding: 24px 18px !important;
+    min-height: 150px !important;
+  }
+
+  .label {
+    font-size: 1.05rem;
+  }
+
+  .tileDescription {
+    font-size: 0.95rem;
+  }
 }

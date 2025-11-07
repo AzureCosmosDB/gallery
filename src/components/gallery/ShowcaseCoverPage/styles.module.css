@@ -10,8 +10,9 @@
 }
 /* Common card styles */
 .cardCommon {
-  width: 325px;
-  height: 300px;
+  width: 100%;
+  max-width: 325px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,6 +78,20 @@
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
+}
+
+.cardsRow {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+
+.heroTitle {
+  font-size: 64px !important;
+  font-weight: 700 !important;
+  line-height: 1.05;
 }
 /* Blue outlined button for resource links */
 .resourceButton {
@@ -159,5 +174,119 @@
 @media screen and (max-width: 1264px) {
   .coverPageArea {
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .coverPageArea {
+    padding: 140px 48px 80px;
+  }
+
+  .titleSection {
+    width: 80%;
+  }
+
+  .heroTitle {
+    font-size: 52px !important;
+  }
+
+  .greyText {
+    font-size: 24px !important;
+  }
+
+  .centeredDescription {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .coverPageArea {
+    padding: 120px 40px 72px;
+  }
+
+  .titleSection {
+    width: 90%;
+  }
+
+  .heroTitle {
+    font-size: 46px !important;
+  }
+
+  .cardsRow {
+    gap: 24px;
+  }
+
+  .cardCommon {
+    width: min(280px, 100%);
+    padding: 28px 22px;
+  }
+
+  .cardDesc,
+  .cardLinks {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .coverPageArea {
+    padding: 100px 32px 64px;
+  }
+
+  .titleSection {
+    width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 40px !important;
+  }
+
+  .greyText {
+    font-size: 22px !important;
+  }
+
+  .centeredDescription {
+    font-size: 18px !important;
+  }
+
+  .cardsRow {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 24px 0;
+  }
+
+  .cardCommon {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .cardIconWrapper {
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .coverPageArea {
+    padding: 80px 24px 56px;
+  }
+
+  .heroTitle {
+    font-size: 34px !important;
+  }
+
+  .greyText {
+    font-size: 20px !important;
+  }
+
+  .centeredDescription {
+    font-size: 16px !important;
+  }
+
+  .cardCommon {
+    padding: 24px 20px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
   }
 }

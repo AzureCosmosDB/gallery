@@ -57,4 +57,10 @@
   line-height: 20px !important;
 }
 
+@media (max-width: 996px) {
+  .button {
+    display: none !important;
+  }
+}
+
 
