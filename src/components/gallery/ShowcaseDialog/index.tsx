@@ -55,7 +55,7 @@ export default function ShowcaseDialog({
             fontSize: 26,
             fontWeight: 600,
             lineHeight: "32px",
-            padding: "0px 10px",
+            padding: "0px 10px 0px 0px",
           }}
         >
           {user.title}
