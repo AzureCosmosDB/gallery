@@ -64,6 +64,16 @@
   gap: 2rem;
 }
 
+@media (max-width: 996px) {
+  .navbarCenter {
+    display: none;
+  }
+
+  .navbarRight {
+    margin-left: auto;
+  }
+}
+
 .menuItem {
   color: #454f60;
   text-decoration: none;

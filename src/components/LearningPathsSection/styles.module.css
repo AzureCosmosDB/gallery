@@ -8,6 +8,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 6px;
+  flex-wrap: wrap;
 }
 .levelChip {
   background: #e3f2fd;
@@ -35,34 +36,10 @@
   margin: 0 auto;
 }
 
-@media (max-width: 1400px) {
-  .learningPathsSection {
-    max-width: 1200px;
-  }
-}
-.left {
-  flex: 1;
-}
-.right {
-  flex: 1 1 0;
-  max-width: 420px;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-sizing: border-box;
-}
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 32px;
-  color: #222;
-}
 .tiles {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-width: 750px;
 }
 .tile {
   display: flex;
@@ -122,9 +99,115 @@
 .arrow {
   align-self: center;
   color: #bdbdbd;
-  margin-left: 8px;
+  margin-left: auto;
   transition: color 0.2s;
 }
 .tile:hover .arrow {
   color: #2563eb;
+}
+.featuredSlider {
+  width: 100%;
+  max-width: 420px;
+}
+
+@media (max-width: 1400px) {
+  .learningPathsSection {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .learningPathsSection {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 40px 24px;
+    gap: 40px;
+  }
+
+  .left,
+  .right {
+    max-width: none;
+    width: 100%;
+  }
+
+  .right {
+    align-items: center;
+  }
+
+  .tiles {
+    min-width: 0;
+  }
+
+  .featuredSlider {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .learningPathsSection {
+    padding: 32px 20px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+  }
+
+  .tile {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .arrow {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .learningPathsSection {
+    padding: 28px 16px;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .sectionDesc {
+    text-align: center;
+  }
+
+  .tiles {
+    gap: 16px;
+  }
+
+  .tile {
+    padding: 18px;
+  }
+
+  .featuredSlider {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .learningPathsSection {
+    padding: 24px 12px;
+  }
+
+  .tile {
+    padding: 16px;
+  }
+
+  .tileTitle {
+    font-size: 1rem;
+  }
+
+  .sectionDesc {
+    font-size: 1rem;
+  }
+
+  .tagsRow {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }

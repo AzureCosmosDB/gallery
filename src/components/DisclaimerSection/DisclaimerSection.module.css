@@ -2,23 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 8px;
+
+  >img{
+    height: 32px;
+    width: auto;
+  }
 }
 
-.logoAZ {
-  background: #2e76bb;
-  color: #fff;
-  font-weight: bold;
-  font-size: 14px;
-  border-radius: 6px;
-  padding: 2px 6px;
-  letter-spacing: 1px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 1px 4px rgba(46,118,187,0.08);
-}
 .disclaimerSection {
   margin: 0;
   padding: 32px 0 24px 0;
@@ -30,7 +22,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: #2d3035;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .description {

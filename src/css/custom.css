@@ -107,3 +107,100 @@ html, body, #__docusaurus, #__docusaurus * {
 :global([class*="Tooltip"] > *) {
   pointer-events: auto;
 }
+
+/* Mobile sidebar theming */
+.navbar-sidebar {
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08) !important;
+  left: auto !important;
+  right: 0 !important;
+  transform: translate3d(100%, 0, 0) !important;
+  transition: transform 200ms ease-in-out !important;
+}
+.navbar-sidebar__items {
+  padding: 12px 8px !important;
+}
+.navbar-sidebar__item .menu__list {
+  padding: 4px 8px !important;
+}
+.navbar-sidebar .menu__list-item {
+  border-radius: 8px;
+}
+.navbar-sidebar .menu__link {
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  color: #323130 !important;
+  font-weight: 500;
+}
+.navbar-sidebar .menu__link:hover {
+  background: #f5f8fb !important;
+  color: #0f6cbd !important;
+}
+.navbar-sidebar .menu__link--active {
+  background: #e8f1fb !important;
+  color: #0f6cbd !important;
+}
+/* Nested list spacing */
+.navbar-sidebar .menu .menu__list .menu__list {
+  margin-left: 8px;
+  border-left: 2px solid #e5effa;
+}
+
+/* When sidebar is shown, slide it in from the right */
+.navbar.navbar-sidebar--show .navbar-sidebar {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Hamburger button styling */
+.navbar__toggle {
+  color: #565555 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 6px !important;
+}
+.navbar__toggle:hover {
+  background: #f5f8fb !important;
+  border-color: #d7e6fb !important;
+  color: #0f6cbd !important;
+}
+.navbar__toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Sidebar close button styling */
+.navbar-sidebar__close {
+  color: #565555 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  background: #ffffff !important;
+}
+.navbar-sidebar__close:hover {
+  background: #f5f8fb !important;
+  border-color: #d7e6fb !important;
+  color: #0f6cbd !important;
+}
+.navbar-sidebar__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Reduce navbar horizontal padding below 1024px */
+@media (max-width: 1024px) {
+  .navbar {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .navbar .navbar__inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .navbar .navbar__items {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .navbar__brand {
+    margin-left: 0 !important;
+  }
+}

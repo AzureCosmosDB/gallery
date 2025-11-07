@@ -1,0 +1,35 @@
+.floatingButton {
+  position: fixed;
+  right: 16px;
+  bottom: 24px;
+  z-index: 1100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 999px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  background-color: #2e76bb !important;
+  color: #ffffff !important;
+  display: none !important;
+}
+
+.floatingButton:hover {
+  transform: translateY(-2px);
+  background-color: #1b5fa1 !important;
+}
+
+@media (max-width: 996px) {
+  .floatingButton {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .floatingButton {
+    right: 16px;
+    bottom: 16px;
+    padding: 10px 20px !important;
+  }
+}
+

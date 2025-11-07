@@ -61,7 +61,7 @@ export default function ShowcaseCoverPage() {
       >
         <div className={styles.coverPageArea}>
           <div className={styles.titleSection}>
-            <Display style={{ fontSize: "64px", fontWeight: 700 }}>
+            <Display className={styles.heroTitle}>
               {title}
             </Display>
             <Title3 className={styles.greyText}>{subDescription}</Title3>
@@ -69,14 +69,7 @@ export default function ShowcaseCoverPage() {
               {description}
             </Title3>
             {/* Cards Row */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: 32,
-                margin: "32px 0",
-              }}
-            >
+            <div className={styles.cardsRow}>
               {/* Card 1 */}
               <div className={`${styles.cardCommon} ${styles.cardBlueBorder}`}>
                 <div className={styles.cardIconWrapper}>

@@ -118,7 +118,6 @@ export default function LearningPathsSection({
               className={styles.tile}
               key={idx}
               onClick={() => onTileClick(idx)}
-              style={{ cursor: "pointer" }}
             >
               <div className={styles.icon}>{path.icon}</div>
               <div className={styles.tileContent}>
@@ -150,7 +149,7 @@ export default function LearningPathsSection({
         <Swiper
           spaceBetween={24}
           slidesPerView={1}
-          style={{ width: 420 }}
+          className={styles.featuredSlider}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           modules={[Autoplay]}
         >

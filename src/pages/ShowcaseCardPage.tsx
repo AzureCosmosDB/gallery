@@ -290,7 +290,7 @@ export default function ShowcaseCardPage({
     <>
       <div>
         <div className={styles.titleSection}>
-          <Title1 style={{ fontWeight: 700 }}>Resource Library</Title1>
+          <Title1 className={styles.resourceTitle}>Resource Library</Title1>
           <Title3 className={styles.centeredDescription}>
             Explore our comprehensive collection of documentation, tutorials,
             videos, and solution accelerators to help you build amazing
