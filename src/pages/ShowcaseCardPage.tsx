@@ -126,27 +126,34 @@ function FilterAppliedBar({
   return selectedTags && selectedTags.length > 0 ? (
     <div className={styles.filterAppliedBar}>
       <Body1>Filters applied:</Body1>
-      {selectedTags.map((tag, index) => {
-        const tagObject = Tags[tag];
-        const key = `showcase_checkbox_key_${tag}`;
-        const id = `showcase_checkbox_id_${tag}`;
+      {selectedTags
+        .map((tag) => {
+          const tagObject = Tags[tag];
 
-        return (
-          <Badge
-            appearance="filled"
-            size="extra-large"
-            color="brand"
-            shape="circular"
-            icon={<Dismiss20Filled />}
-            iconPosition="after"
-            onClick={() => {
-              toggleTag(tag, location);
-            }}
-          >
-            {tagObject.label}
-          </Badge>
-        );
-      })}
+          // Safety check: skip if tag doesn't exist in Tags object
+          if (!tagObject) {
+            return null;
+          }
+
+          return (
+            <Badge
+              key={tag}
+              appearance="filled"
+              size="extra-large"
+              color="brand"
+              shape="circular"
+              icon={<Dismiss20Filled />}
+              iconPosition="after"
+              onClick={() => {
+                toggleTag(tag, location);
+              }}
+            >
+              {tagObject.label}
+            </Badge>
+          );
+        })
+        .filter(Boolean)}{" "}
+      {/* Filter out null elements */}
       <div className={styles.clearAll} onClick={clearAll}>
         Clear all
       </div>
