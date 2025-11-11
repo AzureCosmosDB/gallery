@@ -87,9 +87,9 @@ export default function NavbarContent() {
   const handleDropdownClick = (e, tagHash) => {
     e.preventDefault();
 
-    // Map dropdown items to their corresponding tag filters
+    // Map dropdown items to their corresponding tag filters (can be single tag or array of tags)
     const tagMapping = {
-      "#documentation": "concepts", // or could be "how-to" depending on preference
+      "#documentation": ["concepts", "how-to"], // Multiple tags for documentation
       "#solution-accelerators": "solution-accelerator",
       "#videos": "video",
       "#blogs": "blog",
@@ -100,9 +100,16 @@ export default function NavbarContent() {
     const tagFilter = tagMapping[tagHash];
 
     if (tagFilter) {
-      // Update URL with the tag filter
+      // Update URL with the tag filter(s)
       const params = new URLSearchParams();
-      params.set("tags", tagFilter);
+
+      if (Array.isArray(tagFilter)) {
+        // For multiple tags, join them with commas
+        params.set("tags", tagFilter.join(","));
+      } else {
+        // For single tag
+        params.set("tags", tagFilter);
+      }
 
       // Use history to update the URL
       history.replace({

@@ -21,36 +21,38 @@ export default function ShowcaseCoverPage() {
   const location = useLocation();
 
   // Scroll to resource library section with filtering
-  const scrollToResourceLibrary = (e, tagFilter) => {
+  const scrollToResourceLibrary = (e, tagFilters = []) => {
     e.preventDefault();
 
-    if (tagFilter) {
-      // Update URL with the tag filter
-      const params = new URLSearchParams();
-      params.set("tags", tagFilter);
+    const hasFilters = Array.isArray(tagFilters) && tagFilters.length > 0;
 
-      // Use history to update the URL
-      history.replace({
-        pathname: location.pathname,
-        search: `?${params.toString()}`,
-      });
-
-      // Scroll to resource library and switch to list view
-      requestAnimationFrame(() => {
-        const el = document.getElementById("resource-library");
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-          // Dispatch custom event to switch to list view
-          window.dispatchEvent(new Event("switchToListView"));
-        }
-      });
+    // Build and update URL params
+    const params = new URLSearchParams(location.search);
+    if (hasFilters) {
+      // Join multiple tags as comma-separated values
+      params.set("tags", tagFilters.join(","));
     } else {
-      // Just scroll without filtering
+      // Remove the tag filter if empty
+      params.delete("tags");
+    }
+
+    // Update the URL without reloading
+    history.replace({
+      pathname: location.pathname,
+      search: params.toString() ? `?${params.toString()}` : "",
+    });
+
+    // Scroll to resource library and possibly switch to list view
+    requestAnimationFrame(() => {
       const el = document.getElementById("resource-library");
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (hasFilters) {
+          // Dispatch custom event to switch to list view
+          window.dispatchEvent(new Event("switchToListView"));
+        }
       }
-    }
+    });
   };
 
   return (
@@ -61,9 +63,7 @@ export default function ShowcaseCoverPage() {
       >
         <div className={styles.coverPageArea}>
           <div className={styles.titleSection}>
-            <Display className={styles.heroTitle}>
-              {title}
-            </Display>
+            <Display className={styles.heroTitle}>{title}</Display>
             <Title3 className={styles.greyText}>{subDescription}</Title3>
             <Title3 className={styles.centeredDescription}>
               {description}
@@ -90,7 +90,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, "training")}
+                    onClick={(e) => scrollToResourceLibrary(e, ["training"])}
                   >
                     Trainings
                   </a>{" "}
@@ -98,7 +98,9 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, "concepts")}
+                    onClick={(e) =>
+                      scrollToResourceLibrary(e, ["concepts", "how-to"])
+                    }
                   >
                     Documentation
                   </a>{" "}
@@ -106,7 +108,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, "samples")}
+                    onClick={(e) => scrollToResourceLibrary(e, ["samples"])}
                   >
                     Samples
                   </a>{" "}
@@ -114,7 +116,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, "blog")}
+                    onClick={(e) => scrollToResourceLibrary(e, ["blog"])}
                   >
                     Blogs
                   </a>{" "}
@@ -122,7 +124,7 @@ export default function ShowcaseCoverPage() {
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, "video")}
+                    onClick={(e) => scrollToResourceLibrary(e, ["video"])}
                   >
                     Videos
                   </a>{" "}
@@ -131,7 +133,7 @@ export default function ShowcaseCoverPage() {
                     href="#resource-library"
                     className={styles.resourceLink}
                     onClick={(e) =>
-                      scrollToResourceLibrary(e, "solution-accelerator")
+                      scrollToResourceLibrary(e, ["solution-accelerator"])
                     }
                   >
                     Solution Accelerators

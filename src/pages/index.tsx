@@ -37,7 +37,27 @@ export function prepareUserState(): UserState | undefined {
 
 const TagQueryStringKey = "tags";
 const readSearchTags = (search: string): TagType[] => {
-  return new URLSearchParams(search).getAll(TagQueryStringKey) as TagType[];
+  const params = new URLSearchParams(search);
+  const tagValues = params.getAll(TagQueryStringKey);
+
+  // Handle both comma-separated values and individual parameters
+  const allTags: string[] = [];
+  tagValues.forEach((value) => {
+    if (value.includes(",")) {
+      // Split comma-separated values
+      allTags.push(
+        ...value
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+      );
+    } else {
+      // Individual tag value
+      allTags.push(value);
+    }
+  });
+
+  return allTags as TagType[];
 };
 const replaceSearchTags = (search: string, newTags: TagType[]) => {
   const searchParams = new URLSearchParams(search);
