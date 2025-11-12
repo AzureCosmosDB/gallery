@@ -464,7 +464,7 @@
     "title": "Deploy a Django app with PostgreSQL on AKS",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
-    "tags": ["go", "app-dev"],
+    "tags": ["tutorial", "app-dev", "python"],
     "image": "./img/deploy-django-on-aks.png",
     "description": "Azure Kubernetes Service (AKS) is a managed container orchestration platform ideal for building and running scalable, resilient microservices and cloud-native applications. In this quickstart, you'll learn how to deploy a Django application on Azure Kubernetes Service (AKS) cluster integrating Azure Database for PostgreSQL.",
     "priority": "P0"
