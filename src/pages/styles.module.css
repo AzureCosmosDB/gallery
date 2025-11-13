@@ -14,7 +14,11 @@
   max-width: 83px;
   flex: 0 0 83px;
 }
-
+.featuredCarousel{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .viewButtons {
   display: flex;
   border-radius: 8px;
@@ -89,6 +93,9 @@
 
   .centeredDescription {
     text-align: center !important;
+  }
+  .featuredCarousel{
+    align-items: center;
   }
 }
 
@@ -342,7 +349,6 @@
   }
 
   .templateResultsNumber {
-    flex-direction: column;
     gap: 8px;
   }
 
@@ -359,6 +365,7 @@
   }
 
   .templateResultsNumber {
+    flex-direction: row;
     align-items: flex-start;
   }
 

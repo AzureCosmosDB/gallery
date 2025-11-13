@@ -237,7 +237,8 @@
   }
 
   .heroTitle {
-    font-size: 40px !important;
+    font-size: 30px !important;
+    line-height: normal;
   }
 
   .greyText {
@@ -269,9 +270,8 @@
   .coverPageArea {
     padding: 80px 24px 56px;
   }
-
-  .heroTitle {
-    font-size: 34px !important;
+ .heroTitle {
+    font-size: 22px !important;
   }
 
   .greyText {
