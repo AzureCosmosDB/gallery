@@ -34,14 +34,7 @@ export default function ShowcaseCards({
   }
   return (
     <section>
-      <div
-        className={noGrid ? undefined : styles.showcaseCards}
-        style={
-          noGrid
-            ? { display: "flex", flexDirection: "column", alignItems: "center" }
-            : undefined
-        }
-      >
+      <div className={noGrid ? styles.featuredCarousel : styles.showcaseCards}>
         {filteredUsers
           .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
           .map((user, index) => (
