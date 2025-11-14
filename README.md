@@ -23,7 +23,7 @@ Contributions to this project are more than welcome. Make sure you check out the
 
 ### Content Management
 - **Add/Remove Resources**: Update `static/templates.json` to add new tutorials, samples, or documentation links to the resource library
-- **Configure Site Content**: Edit `docusaurus.config.js` to modify quick links, learning paths, community sections (Events & Webinars), and site metadata
+- **Configure Site Content**: Edit `docusaurus.config.js` to modify Quick Links, Learning Paths, Community Sections (Events & Webinars), and site metadata
 - **Create New Tags**: Add tag definitions to `src/data/tags.tsx` for new filtering categories and content organization
 
 ### Component Updates
