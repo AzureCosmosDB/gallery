@@ -1,0 +1,66 @@
+.newsletterDialogSurface {
+  background: #fff !important;
+  border-radius: 8px !important;
+}
+.newsletterDialogBody{
+  display: block !important;
+}
+.newsletterInput {
+  background: #fbfafa !important;
+  width: 100% !important;
+  min-width: 200px;
+  max-width: 100%;
+  padding: 8px !important;
+}
+.newsletterDialogTitle{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem;
+}
+.newsletterBulletsSection {
+  background: #fbfafa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+.newsletterActions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.newsletterDisclaimer {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+}
+.newsletterDialogSurface {
+  background: #fff !important;
+}
+.newsletterButton{
+  width: 400px !important;
+}
+
+.button {
+  display: flex !important;
+  padding: 6px 16px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border-radius: 4px !important;
+  background-color: #2e76bb !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
+}
+
+@media (max-width: 996px) {
+  .button {
+    display: none !important;
+  }
+}
+
+

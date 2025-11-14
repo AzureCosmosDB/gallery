@@ -1,0 +1,49 @@
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 20%,
+    #f0f0f0 40%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.image {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.image.loaded {
+  opacity: 1;
+}
+
+/* Ensure images don't cause layout shift */
+.imageContainer::before {
+  content: '';
+  display: block;
+}

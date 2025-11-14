@@ -1,0 +1,206 @@
+html, body, #__docusaurus, #__docusaurus * {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #242424;
+  --ifm-color-primary-dark: #205585;
+  --ifm-color-primary-darker: #1f507e;
+  --ifm-color-primary-darkest: #194268;
+  --ifm-color-primary-light: #2867a3;
+  --ifm-color-primary-lighter: #296caa;
+  --ifm-color-primary-lightest: #2f7ac0;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-navbar-link-color: #242424;
+  --ifm-footer-background-color: #ffffff;
+  --ifm-color-text-ai-site: #242424;
+}
+
+
+/* For readability - FIXME: is there a better way to handle it? */
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.navbar {
+  width: 100%;
+  margin: auto;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e3e3e3 !important;
+  padding: 38px 86px;
+}
+
+.navbar--primary {
+  background-color: #ffffff !important;
+}
+
+
+.navbar .navbar__link,
+.navbar .navbar__item,
+.navbar .navbar__title {
+  color: var(--ifm-navbar-link-color) !important;
+}
+
+.navbar .navbar__inner .navbar__items {
+  gap: 16px;
+}
+.footer__link-item {
+        color: #606770 !important;
+
+}
+
+/* Ensure Roboto font is applied to Fluent UI components as well */
+:global(.fui-Badge),
+:global(.fui-Button),
+:global(.fui-Dialog),
+:global(.fui-Card),
+:global([class*="fui-"]),
+:global([class*="fuib-"]) {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+/* Enhanced Tooltip styling for better appearance */
+:global([class*="fui-Tooltip"]),
+:global([class*="Tooltip"]) {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+:global([class*="fui-Tooltip"] [class*="content"]),
+:global([class*="Tooltip"] [class*="content"]) {
+  background-color: #ffffff !important;
+  color: #323130 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  max-width: 300px !important;
+  z-index: 1000 !important;
+}
+
+/* Ensure tooltip is visible on hover */
+:global([class*="fui-Tooltip"]),
+:global([class*="Tooltip"]) {
+  z-index: 1000 !important;
+}
+
+:global([class*="fui-Tooltip"] [data-popper-placement]),
+:global([class*="Tooltip"] [data-popper-placement]),
+:global([data-floating-ui-portal]),
+:global([class*="TooltipContent"]) {
+  z-index: 1000 !important;
+  pointer-events: none;
+}
+
+/* Ensure tooltip trigger is interactive */
+:global([class*="fui-Tooltip"] > *),
+:global([class*="Tooltip"] > *) {
+  pointer-events: auto;
+}
+
+/* Mobile sidebar theming */
+.navbar-sidebar {
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08) !important;
+  left: auto !important;
+  right: 0 !important;
+  transform: translate3d(100%, 0, 0) !important;
+  transition: transform 200ms ease-in-out !important;
+}
+.navbar-sidebar__items {
+  padding: 12px 8px !important;
+}
+.navbar-sidebar__item .menu__list {
+  padding: 4px 8px !important;
+}
+.navbar-sidebar .menu__list-item {
+  border-radius: 8px;
+}
+.navbar-sidebar .menu__link {
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  color: #323130 !important;
+  font-weight: 500;
+}
+.navbar-sidebar .menu__link:hover {
+  background: #f5f8fb !important;
+  color: #0f6cbd !important;
+}
+.navbar-sidebar .menu__link--active {
+  background: #e8f1fb !important;
+  color: #0f6cbd !important;
+}
+/* Nested list spacing */
+.navbar-sidebar .menu .menu__list .menu__list {
+  margin-left: 8px;
+  border-left: 2px solid #e5effa;
+}
+
+/* When sidebar is shown, slide it in from the right */
+.navbar.navbar-sidebar--show .navbar-sidebar {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Hamburger button styling */
+.navbar__toggle {
+  color: #565555 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 6px !important;
+}
+.navbar__toggle:hover {
+  background: #f5f8fb !important;
+  border-color: #d7e6fb !important;
+  color: #0f6cbd !important;
+}
+.navbar__toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Sidebar close button styling */
+.navbar-sidebar__close {
+  color: #565555 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  background: #ffffff !important;
+}
+.navbar-sidebar__close:hover {
+  background: #f5f8fb !important;
+  border-color: #d7e6fb !important;
+  color: #0f6cbd !important;
+}
+.navbar-sidebar__close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Reduce navbar horizontal padding below 1024px */
+@media (max-width: 1024px) {
+  .navbar {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .navbar .navbar__inner {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .navbar .navbar__items {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .navbar__brand {
+    margin-left: 0 !important;
+  }
+}

@@ -416,3 +416,27 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Optimized images (generated during build)
+/static/img-optimized
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

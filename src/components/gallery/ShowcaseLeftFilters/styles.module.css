@@ -1,0 +1,75 @@
+/**
+* Copyright (c) Microsoft Corporation. All rights reserved.
+* Licensed under the MIT License.
+ */
+
+
+
+.checkboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 0 !important;
+}
+
+.checkboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.subCheckboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 24px;
+}
+
+.subCheckboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.subCheckboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 24px;
+}
+
+.checkboxListItem:last-child {
+  margin-right: 0;
+}
+
+.filterBy {
+  padding: 0 0 24px 12px;
+}
+
+.tagCatalog {
+  font-size: 16px;
+  font-weight: 600;
+  color: #242424;
+  line-height: 22px;
+}
+
+.tagSubCatalog {
+  padding: 0 0 7px 0px;
+}
+
+.tagCatalogBackground {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Override the specific Fluent UI accordion button padding */
+:global(.fui-AccordionHeader__button) {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Ensure consistent alignment for all accordion headers */
+:global(.fui-AccordionHeader) {
+  padding: 0 !important;
+}
+
+/* Ensure accordion panels don't add extra padding */
+:global(.fui-AccordionPanel) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
