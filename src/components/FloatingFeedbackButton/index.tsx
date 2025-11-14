@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "@fluentui/react-components";
 import NewsletterDialog from "@site/src/theme/NavbarItem/NewsletterDialog";
+import { shareFeedbackHandler } from "../../utils/githubUtils";
 import styles from "./styles.module.css";
 
 export default function FloatingFeedbackButton(): JSX.Element {
   const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    // Button is disabled; do not open dialog
-  };
+  const handleClick = shareFeedbackHandler();
 
   return (
     <>
@@ -17,7 +15,6 @@ export default function FloatingFeedbackButton(): JSX.Element {
         size="large"
         className={styles.floatingButton}
         onClick={handleClick}
-        disabled
       >
         Share Feedback
       </Button>
@@ -25,4 +22,3 @@ export default function FloatingFeedbackButton(): JSX.Element {
     </>
   );
 }
-

@@ -20,7 +20,6 @@ import { type TagType } from "../data/tags";
 import { TagList, featuredUsers } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
-import { preloadFeaturedImages } from "../utils/imagePreloader";
 
 initializeIcons();
 
@@ -132,25 +131,17 @@ export default function Showcase(): JSX.Element {
         <title>Azure PostgreSQL App Dev Hub</title>
         <meta
           name="description"
-          content="Your best source for patterns and content for Azure Cosmos DB"
+          content="Your best source for patterns and content for Azure PostgreSQL"
         />
         <meta
           name="keywords"
-          content="Azure Cosmos DB, samples, Gen-AI, Azure OpenAI, GitHub, OSS, content"
+          content="Azure PostgreSQL, samples, Gen-AI, Azure OpenAI, GitHub"
         />
-        <meta name="author" content="Azure Cosmos DB Team" />
+        <meta name="author" content="Azure PostgreSQL Team" />
         <meta property="og:title" content="Azure PostgreSQL App Dev Hub" />
         <meta
           property="og:description"
-          content="Your best source for patterns and content for Azure Cosmos DB"
-        />
-        <meta
-          property="og:image"
-          content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png"
-        />
-        <meta
-          property="og:url"
-          content="https://azurecosmosdb.github.io/gallery"
+          content="Your best source for patterns and content for Azure PostgreSQL"
         />
         <meta
           name="twitter:card"
@@ -159,16 +150,9 @@ export default function Showcase(): JSX.Element {
         <meta name="twitter:title" content="Azure PostgreSQL App Dev Hub" />
         <meta
           name="twitter:description"
-          content="Your best source for patterns and content for Azure Cosmos DB"
+          content="Your best source for patterns and content for Azure PostgreSQL"
         />
-        <meta
-          name="twitter:image"
-          content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png"
-        />
-        <meta
-          name="twitter:url"
-          content="https://azurecosmosdb.github.io/gallery"
-        />
+        <meta name="twitter:url" content="https://x.com/AzureDBPostgres" />
       </Helmet>
       <Layout>
         <App />

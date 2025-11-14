@@ -1,6 +1,6 @@
-# Website
+# Application Developer Hub for Azure PostgreSQL
 
-This repository is your one-stop shop for Azure Cosmos DB resources, including:
+This repository is your one-stop shop for Azure PostgreSQL resources, including:
 
 - GitHub Samples: Code in Python, JavaScript, and C#
 - Docs & Articles: In-depth guides and insights
@@ -9,7 +9,7 @@ This repository is your one-stop shop for Azure Cosmos DB resources, including:
 
 And more!
 
-Explore all things Azure Cosmos DB in one place!
+Explore all things Azure PostgreSQL in one place!
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
