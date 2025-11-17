@@ -1,6 +1,6 @@
-# Website
+# Application Developer Hub for Azure PostgreSQL
 
-This repository is your one-stop shop for Azure Cosmos DB resources, including:
+This repository is your one-stop shop for Azure PostgreSQL resources, including:
 
 - GitHub Samples: Code in Python, JavaScript, and C#
 - Docs & Articles: In-depth guides and insights
@@ -9,7 +9,7 @@ This repository is your one-stop shop for Azure Cosmos DB resources, including:
 
 And more!
 
-Explore all things Azure Cosmos DB in one place!
+Explore all things Azure PostgreSQL in one place!
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -18,6 +18,18 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 Contributions to this project are more than welcome. Make sure you check out the following documents, to successfully contribute to the project:
 
 - [Contributing](./CONTRIBUTING.md)
+
+## Developer Onboarding
+
+### Content Management
+- **Add/Remove Resources**: Update `static/templates.json` to add new tutorials, samples, or documentation links to the resource library
+- **Configure Site Content**: Edit `docusaurus.config.js` to modify Quick Links, Learning Paths, Community Sections (Events & Webinars), and site metadata
+- **Create New Tags**: Add tag definitions to `src/data/tags.tsx` for new filtering categories and content organization
+
+### Component Updates
+- **Modify UI Components**: Update React components in `src/components/` for layout, styling, or functionality changes
+- **Update Navigation**: Edit `src/theme/Navbar/` files to modify site navigation, menu items, or header behavior
+- **Customize Styling**: Update CSS modules or custom styles to change visual appearance and branding
 
 ## Getting Started
 

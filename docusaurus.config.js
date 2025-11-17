@@ -126,22 +126,16 @@ const config = {
           icon: "Bell",
           actions: [
             {
-              // label: "LinkedIn",
               href: "https://www.linkedin.com/company/azure-database-for-postgresql/",
               icon: "Linkedin",
-              // fullWidth: true,
             },
             {
-              // label: "X",
               href: "https://x.com/AzureDBPostgres",
               icon: "X",
-              // fullWidth: true,
             },
             {
-              // label: "Blog",
               href: "https://aka.ms/azurepostgresblog",
               icon: "BookOpen",
-              // fullWidth: true,
             },
           ],
         },
@@ -304,42 +298,42 @@ const config = {
   headTags: [
     // Preconnect to Google Fonts for Roboto
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
       },
     },
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: 'anonymous',
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
       },
     },
     // Load Roboto font
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap",
       },
     },
     // DNS prefetch for external resources
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'dns-prefetch',
-        href: 'https://api.github.com',
+        rel: "dns-prefetch",
+        href: "https://api.github.com",
       },
     },
     // Optimize rendering
     {
-      tagName: 'meta',
+      tagName: "meta",
       attributes: {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1.0, maximum-scale=5.0',
+        name: "viewport",
+        content: "width=device-width, initial-scale=1.0, maximum-scale=5.0",
       },
     },
   ],
