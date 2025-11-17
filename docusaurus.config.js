@@ -201,8 +201,8 @@ const config = {
 
   title: "Application Developer Hub",
   tagline: "Discover - Create - Contribute",
-  url: "https://Azure-Samples.github.io",
-  baseUrl: "/postgres-appdev-hub/",
+  url: "https://automatic-umbrella-o7rj9m1.pages.github.io",
+  baseUrl: "/",
   favicon: "img/logo.png",
   organizationName: "Azure-Samples",
   projectName: "postgres-appdev-hub",
