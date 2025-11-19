@@ -2,6 +2,7 @@ import React from "react";
 import * as LucideIcons from "lucide-react";
 import styles from "./CommunitySupportSection.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { TwitterXIcon } from "@site/src/theme/Icon/TwitterXIcon";
 
 type CardAction = {
   label: string;
@@ -124,9 +125,11 @@ const CommunitySupportSection = () => {
                   }
                 >
                   {card.actions.map((action, i) => {
-                    const ActionIcon = action.icon
-                      ? (LucideIcons as any)[action.icon]
-                      : null;
+                    const isTwitterX = action.icon === "X";
+                    const ActionIcon =
+                      action.icon && !isTwitterX
+                        ? (LucideIcons as any)[action.icon]
+                        : null;
                     const isOutlined = action.variant === "outlined";
                     const fullWidth =
                       action.fullWidth || card.title === "Contact Us";
@@ -159,9 +162,11 @@ const CommunitySupportSection = () => {
                             : undefined
                         }
                       >
-                        {ActionIcon && (
+                        {isTwitterX ? (
+                          <TwitterXIcon size={18} />
+                        ) : ActionIcon ? (
                           <ActionIcon size={18} style={{ minWidth: 18 }} />
-                        )}
+                        ) : null}
                         {action.label}
                       </a>
                     );
@@ -177,4 +182,3 @@ const CommunitySupportSection = () => {
 };
 
 export default CommunitySupportSection;
-// ...existing code above (correct function and export)...
