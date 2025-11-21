@@ -219,20 +219,6 @@
     "tileNumber": 5
   },
   {
-    "title": "Training Path: Build AI Apps and Agents with Azure Database for PostgreSQL",
-    "website": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
-    "source": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
-    "tags": [
-      "training / training-path",
-      "agent",
-      "flexibleserver",
-      "learning-path",
-      "building-ai-agents"
-    ],
-    "image": "./img/tp-azure-agents.png",
-    "description": "Comprehensive training path for building AI apps and agents with Azure Database for PostgreSQL."
-  },
-  {
     "title": "Video Series: Build AI Apps and Agents with Azure Database for PostgreSQL",
     "website": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
     "source": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
