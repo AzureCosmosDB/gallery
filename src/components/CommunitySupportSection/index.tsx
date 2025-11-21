@@ -183,4 +183,3 @@ const CommunitySupportSection = () => {
 };
 
 export default CommunitySupportSection;
-// ...existing code above (correct function and export)...
