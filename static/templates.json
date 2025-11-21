@@ -66,7 +66,8 @@
       "connect",
       "app-dev",
       "learning-path",
-      "developing-core-applications"
+      "developing-core-applications",
+      "best-practice"
     ],
     "image": "./img/connection-pooling.png",
     "description": "Connection pooling is a recommended practice in database-driven application development as it enhances performance and scalability by efficiently managing and reusing active connections, minimizing overhead and resource consumption. This article provides strategic guidance for implementing connection pooling for your Azure Database for PostgreSQL instances.",
@@ -77,7 +78,7 @@
     "title": "Handling transient connectivity errors",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
-    "tags": ["app-dev", "learning-path", "developing-core-applications"],
+    "tags": ["app-dev", "learning-path", "developing-core-applications","best-practice"],
     "image": "./img/transient-connect-error.png",
     "description": "Handling transient connectivity errors is a best practice in cloud-native app development, as it ensures resilience and reliability by gracefully managing brief network interruptions or service unavailability. This article walks you through how to handle transient errors when connecting to Azure Database for PostgreSQL instances.",
     "priority": "P1",
@@ -1023,6 +1024,35 @@
     "image": "./img/azure-solution-accelerator.png",
     "description": "AgenticShop is a GenAI-powered e-commerce demo that showcases how multi-agent workflows, powered by LlamaIndex, can drive personalized product discovery using unstructured data like user reviews and preferences. This demo runs fully on Azure, and can be deployed quickly using the Azure Developer CLI. Explore how intelligent agents handle search, sentiment, memory, and personalization with observability and memory persistence.",
     "date": "2025-08-26",
+    "priority": "P0"
+  },
+  {
+    "title": "Announcing Azure HorizonDB",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-azure-horizondb/4469710",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-azure-horizondb/4469710",
+    "tags": [
+      "announcement",
+      "horizondb",
+      "genai",
+      "fundamentals",
+      "blog",
+      "featured"
+    ],
+    "image": "./img/announcing-horizondb.png",
+    "description": "At Microsoft Ignite, we unveiled the preview of Azure HorizonDB, a fully managed Postgres-compatible database service designed to meet the needs of modern enterprise workloads. The cloud native architecture of Azure HorizonDB delivers highly scalable shared storage, elastic scale-out compute, and a tiered cache optimized for running cloud applications of any scale.",
+    "date": "2025-18-11",
+    "priority": "P0"
+  },
+  {
+    "title": "Build Smarter with Azure HorizonDB",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-smarter-with-azure-horizondb/4470302",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-smarter-with-azure-horizondb/4470302",
+    "tags": [
+      "announcement", "horizondb", "blog", "genai","vscode","azureai","connect","rag","semantic","graph","agent", "featured"
+    ],
+    "image": "./img/build-with-horizondb.png",
+    "description": "At Microsoft Ignite, we announced Azure HorizonDB, a new PostgreSQL database service designed to power modern workloads and AI-driven applications. This blog explores HorizonDB’s advanced AI features such as DiskANN filtering, built-in model management, and Microsoft Foundry integration, along with new tools for efficient database management, including the GA release of the PostgreSQL extension for Visual Studio Code.",
+    "date": "2025-18-11",
     "priority": "P0"
   }
 ]
