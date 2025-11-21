@@ -484,7 +484,7 @@
     "title": "Deploy a Quarkus application to Azure Container Apps",
     "website": "https://learn.microsoft.com/training/modules/deploy-java-quarkus-azure-container-app-postgres/",
     "source": "https://learn.microsoft.com/training/modules/deploy-java-quarkus-azure-container-app-postgres/",
-    "tags": ["app-dev"],
+    "tags": ["app-dev","training"],
     "image": "./img/deploy-quarkus-to-az.png",
     "description": "This training module walks you through building, configuring, deploying, and managing a Java Quarkus app on Azure Container Apps, using managed identity to securely integrate with data in Azure Database for PostgreSQL.",
     "priority": "P1"
@@ -627,7 +627,7 @@
     "title": "Build AI Apps with Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
-    "tags": ["flexibleserver", "genai"],
+    "tags": ["flexibleserver", "genai","training"],
     "image": "./img/build-ai-apps-with-az-for-pg.png",
     "description": "This learning path teaches you how to build Generative AI applications and agents with Azure Database for PostgreSQL, including vector search with pgvector, invoking LLMs using the azure_ai extension and semantic operators, and creating end-to-end RAG solutions. It also covers building intelligent AI agents that integrate seamlessly with your PostgreSQL data."
   },
@@ -635,7 +635,7 @@
     "title": "Enable semantic search in Azure Database for PostgreSQL (Learning Path Module 2)",
     "website": "https://learn.microsoft.com/training/modules/enable-semantic-search-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/enable-semantic-search-azure-database-postgresql/",
-    "tags": ["semantic", "flexibleserver", "genai"],
+    "tags": ["semantic", "flexibleserver", "genai","training"],
     "image": "./img/enable-semantic-search-module-2.png",
     "description": "This training module explores semantic search, embedding vectors, vector similarity, and using Azure Database for PostgreSQL - Flexible Server with PostgreSQL Vector and Azure AI extensions to generate, store, and query rows with semantic search."
   },
@@ -667,7 +667,7 @@
     "title": "Use Azure Machine Learning for inferencing from Azure Database for PostgreSQL",
     "website": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
-    "tags": ["flexibleserver", "genai"],
+    "tags": ["flexibleserver", "genai","training"],
     "image": "./img/use-az-ml.png",
     "description": "This training module guides you through training and deploying an Azure Machine Learning model using automated machine learning. Then, you'll call the model directly from Azure Database for PostgreSQL."
   },
@@ -710,7 +710,7 @@
     "title": "Build enterprise AI agents with Java and Spring",
     "website": "https://learn.microsoft.com/training/modules/build-enterprise-ai-agents-with-java-spring/",
     "source": "https://learn.microsoft.com/training/modules/build-enterprise-ai-agents-with-java-spring/",
-    "tags": ["java", "agent", "genai"],
+    "tags": ["java", "agent", "genai","training"],
     "image": "./img/enterprise-ai-agents-with-java-and-spring.png",
     "description": "This training module shows you how to build and deploy a Java application and AI agents using Spring AI, Azure OpenAI, and Azure Container Apps with PostgreSQL vector storage."
   },
@@ -1054,5 +1054,77 @@
     "description": "At Microsoft Ignite, we announced Azure HorizonDB, a new PostgreSQL database service designed to power modern workloads and AI-driven applications. This blog explores HorizonDB’s advanced AI features such as DiskANN filtering, built-in model management, and Microsoft Foundry integration, along with new tools for efficient database management, including the GA release of the PostgreSQL extension for Visual Studio Code.",
     "date": "2025-18-11",
     "priority": "P0"
+  },
+  {
+    "title": "Introducing Model Context Protocol (MCP) Server for Azure Database for PostgreSQL (Preview)",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-model-context-protocol-mcp-server-for-azure-database-for-postgresql-/4404360",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-model-context-protocol-mcp-server-for-azure-database-for-postgresql-/4404360",
+    "tags": [
+      "genai","how-to","agent","rag","blog","flexibleserver"
+    ],
+    "image": "./img/introducing-mcp-for-az.png",
+    "description": "The Model Context Protocol (MCP) enables standardized, scalable, and secure integration between AI models and external data sources. This article introduces the public preview of the MCP Server for Azure Database for PostgreSQL and shows how it helps AI applications interact with your data seamlessly.",
+    "date": "2025-4-17",
+    "priority": "P1"
+  },
+  {
+    "title": "UBS unlocks advanced AI techniques with PostgreSQL on Azure",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/ubs-unlocks-advanced-ai-techniques-with-postgresql-on-azure/4403561",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/ubs-unlocks-advanced-ai-techniques-with-postgresql-on-azure/4403561",
+    "tags": [
+      "genai","vector","azureai","agent","rag","semantic","blog","flexibleserver"
+    ],
+    "image": "./img/ubs.png",
+    "description": "UBS leverages Azure services to power its RiskLab platform, enabling over 1,200 data scientists to build AI solutions for risk, compliance, finance, and front-office operations. This article details how UBS uses Azure Database for PostgreSQL to implement advanced RAG techniques—including vector search, semantic ranking, and GraphRAG—for financial generative AI use cases.",
+    "date": "2025-5-1",
+    "priority": "P0"
+  },
+  {
+    "title": "Fueling the Agentic Web Revolution with NLWeb and PostgreSQL",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/fueling-the-agentic-web-revolution-with-nlweb-and-postgresql/4437439",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/fueling-the-agentic-web-revolution-with-nlweb-and-postgresql/4437439",
+    "tags": [
+      "flexibleserver","genai","agent","rag","vector","semantic","how-to","blog"
+    ],
+    "image": "./img/nlweb.png",
+    "description": "NLWeb, Microsoft’s open project for natural language web interfaces, now supports PostgreSQL, enabling developers to turn any website into an AI-powered application or MCP server. This article explains how NLWeb works with pgvector for vector similarity search and shows you how to get started integrating NLWeb with Postgres for conversational web experiences.",
+    "date": "2025-7-30",
+    "priority": "P0"
+  },
+  {
+    "title": "Real AI development and real wins with the new VS Code extension for PostgreSQL",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
+    "tags": [
+      "flexibleserver","app-dev","vscode","connect","blog"
+    ],
+    "image": "./img/real-ai-dev.png",
+    "description": "The new Visual Studio Code extension for PostgreSQL streamlines AI app development by integrating database management and intelligent query assistance directly into your coding workflow. This article highlights its GitHub Copilot integration and shares customer experiences on how it accelerates productivity and reduces context switching.",
+    "date": "2025-9-11",
+    "priority": "P1"
+  },
+  {
+    "title": "Build Enterprise-Ready AI Agents with the New Azure Postgres LangChain + LangGraph Connector",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-enterprise-ready-ai-agents-with-the-new-azure-postgres-langchain--langgrap/4453420",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-enterprise-ready-ai-agents-with-the-new-azure-postgres-langchain--langgrap/4453420",
+    "tags": [
+      "flexibleserver","featured","genai","vector","rag","azureai","agent","blog","python"
+    ],
+    "image": "./img/enterprise-ready-ai-agents.png",
+    "description": "AI agents rely on a strong data layer, and the new LangChain + LangGraph connector for Azure Database for PostgreSQL makes Postgres the single source of truth for embeddings, chat history, and long-term memory. This article introduces the connector’s enterprise-ready features—like Entra ID authentication, DiskANN acceleration, vector store, and agent store—to help you build secure, scalable AI agents on Azure.",
+    "date": "2025-9-15",
+    "priority": "P0"
+  },
+  {
+    "title": "PgBouncer Best Practices in Azure Database for PostgreSQL – Part 1",
+    "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
+    "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
+    "tags": [
+      "flexibleserver", "app-dev","best-practice","blog"
+    ],
+    "image": "./img/pgbouncer.png",
+    "description": "PgBouncer is a lightweight connection pooler that optimizes PostgreSQL performance by managing thousands of client connections efficiently. This article outlines best practices for configuring PgBouncer in Azure Database for PostgreSQL to prevent resource bottlenecks and ensure scalable, high-performance workloads.",
+    "date": "2025-10-3",
+    "priority": "P1"
   }
 ]
