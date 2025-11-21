@@ -181,7 +181,7 @@
     "tileNumber": 1
   },
   {
-    "title": "Build an AI Agent with  Azure Database for PostgreSQL and Azure AI Agent Service",
+    "title": "Build an AI Agent with Azure Database for PostgreSQL and Azure AI Agent Service",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "tags": ["agent", "flexibleserver", "learning-path", "building-ai-agents"],
@@ -680,7 +680,7 @@
     "date": "2025-04-05"
   },
   {
-    "title": "Build an AI Agent with  Azure Database for PostgreSQL and Azure AI Agent Service",
+    "title": "Build an AI Agent with Azure Database for PostgreSQL and Azure AI Agent Service",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "tags": ["agent", "flexibleserver", "genai"],
