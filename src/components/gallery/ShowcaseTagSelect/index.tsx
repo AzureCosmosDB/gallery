@@ -79,6 +79,28 @@ export default function ShowcaseTagSelect({
     }
   };
 
+  // Find parent tags that have this tag as a sub-tag
+  const parentTags = Object.entries(Tags)
+    .filter(([parentKey, parentTag]) => {
+      if (parentTag.subType && Array.isArray(parentTag.subType)) {
+        const subTagKey = tag.toLowerCase();
+        return parentTag.subType.some((sub) => sub.label.toLowerCase() === subTagKey);
+      }
+      return false;
+    })
+    .map(([parentKey]) => parentKey as TagType);
+
+  // Check if any parent tag is selected (in checkbox state or URL)
+  const selectedTagsFromUrl = readSearchTags(location.search);
+  const isParentSelected = parentTags.some((parentTag) =>
+    selectedCheckbox.includes(parentTag) || selectedTagsFromUrl.includes(parentTag)
+  );
+
+  // Enable the sub-tag if:
+  // 1. The tag itself is in activeTags, OR
+  // 2. Any parent tag is selected (so sub-filters are enabled when parent is checked)
+  const isDisabled = !(activeTags?.includes(tag) || isParentSelected);
+
   return (
     <>
       <Checkbox
@@ -96,7 +118,7 @@ export default function ShowcaseTagSelect({
         }}
         checked={selectedCheckbox.includes(tag)}
         label={label}
-        disabled={!activeTags?.includes(tag)}
+        disabled={isDisabled}
       />
     </>
   );

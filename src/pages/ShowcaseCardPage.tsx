@@ -215,11 +215,35 @@ function filterUsers(
   if (!selectedTags || selectedTags.length === 0) {
     return users;
   }
+  
+  // Expand parent tags to include their sub-tags
+  // Create groups: each parent tag expands to [parent, sub-tag1, sub-tag2, ...]
+  const tagGroups = selectedTags.map((tag) => {
+    const tagObject = Tags[tag];
+    const group = [tag];
+    
+    if (tagObject && Array.isArray(tagObject.subType) && tagObject.subType.length > 0) {
+      // Add sub-tags from parent tag
+      tagObject.subType.forEach((sub) => {
+        const subTagKey = sub.label.toLowerCase() as TagType;
+        if (Tags[subTagKey]) {
+          group.push(subTagKey);
+        }
+      });
+    }
+    
+    return group;
+  });
+
   return users.filter((user) => {
     if (!user && !user.tags && user.tags.length === 0) {
       return false;
     }
-    return selectedTags.every((tag) => user.tags.includes(tag));
+    // For each tag group (parent + sub-tags), user must have at least one tag from that group
+    // AND user must satisfy all groups (AND between groups, OR within each group)
+    return tagGroups.every((group) => 
+      group.some((tag) => user.tags.includes(tag))
+    );
   });
 }
 
@@ -273,8 +297,23 @@ export default function ShowcaseCardPage({
   useEffect(() => {
     const unionTags = new Set<TagType>();
     cards.forEach((user) => user.tags.forEach((tag) => unionTags.add(tag)));
+    
+    // If a parent tag is selected, ensure its sub-tags are also in activeTags
+    // This enables sub-filters when parent is checked
+    selectedTags.forEach((selectedTag) => {
+      const tagObject = Tags[selectedTag];
+      if (tagObject && Array.isArray(tagObject.subType) && tagObject.subType.length > 0) {
+        tagObject.subType.forEach((sub) => {
+          const subTagKey = sub.label.toLowerCase() as TagType;
+          if (Tags[subTagKey]) {
+            unionTags.add(subTagKey);
+          }
+        });
+      }
+    });
+    
     setActiveTags(Array.from(unionTags));
-  }, [cards]);
+  }, [cards, selectedTags]);
 
   const sortByOnSelect = (event, data) => {
     setLoading(true);
