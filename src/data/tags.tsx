@@ -72,7 +72,7 @@ export type TagType =
   | "dotnet"
   | "java"
   | "video"
-  | "oriondb"
+  | "horizondb"
   | "fundamentals"
   | "app-dev"
   | "blog"
@@ -355,9 +355,9 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "blue",
   },
 
-  oriondb: {
-    label: "Azure OrionDB for PostgreSQL",
-    description: "Content related to Azure OrionDB for PostgreSQL",
+  horizondb: {
+    label: "Azure HorizonDB",
+    description: "Content related to Azure HorizonDB for PostgreSQL",
     type: "Service",
     color: "purple",
   },

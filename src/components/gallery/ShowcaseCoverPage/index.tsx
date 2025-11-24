@@ -13,7 +13,7 @@ import { useHistory, useLocation } from "@docusaurus/router";
 const title = "Application Developer Hub";
 const description =
   "Discover comprehensive resources, learning paths, and community support to accelerate your PostgreSQL development journey on Azure.";
-const subDescription = "for Azure PostgreSQL";
+const subDescription = "for PostgreSQL on Azure";
 
 export default function ShowcaseCoverPage() {
   const bgUrl = useBaseUrl("/img-optimized/dotted-background-opacity40.png");
@@ -55,6 +55,28 @@ export default function ShowcaseCoverPage() {
     });
   };
 
+  // Scroll to learning paths section
+  const scrollToLearningPaths = (e) => {
+    e.preventDefault();
+    requestAnimationFrame(() => {
+      const el = document.getElementById("learning-paths");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  };
+
+  // Scroll to community support section
+  const scrollToCommunitySupport = (e) => {
+    e.preventDefault();
+    requestAnimationFrame(() => {
+      const el = document.getElementById("community-support");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  };
+
   return (
     <div className={styles.coverPageContainer}>
       <div
@@ -71,7 +93,18 @@ export default function ShowcaseCoverPage() {
             {/* Cards Row */}
             <div className={styles.cardsRow}>
               {/* Card 1 */}
-              <div className={`${styles.cardCommon} ${styles.cardBlueBorder}`}>
+              <div
+                className={`${styles.cardCommon} ${styles.cardBlueBorder}`}
+                onClick={(e) => scrollToLearningPaths(e)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    scrollToLearningPaths(e);
+                  }
+                }}
+              >
                 <div className={styles.cardIconWrapper}>
                   <BookOpen size={40} style={{ color: "#0078d4" }} />
                 </div>
@@ -81,12 +114,26 @@ export default function ShowcaseCoverPage() {
                 </span>
               </div>
               {/* Card 2 */}
-              <div className={`${styles.cardCommon} ${styles.cardGreen}`}>
+              <div
+                className={`${styles.cardCommon} ${styles.cardGreen}`}
+                onClick={(e) => scrollToResourceLibrary(e)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    scrollToResourceLibrary(e);
+                  }
+                }}
+              >
                 <div className={styles.cardIconWrapper}>
                   <Library size={40} style={{ color: "#157f15" }} />
                 </div>
                 <span className={styles.cardTitle}>Resource Library</span>
-                <span className={styles.cardLinks}>
+                <span
+                  className={styles.cardLinks}
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <a
                     href="#resource-library"
                     className={styles.resourceLink}
@@ -141,7 +188,18 @@ export default function ShowcaseCoverPage() {
                 </span>
               </div>
               {/* Card 3 */}
-              <div className={`${styles.cardCommon} ${styles.cardPurple}`}>
+              <div
+                className={`${styles.cardCommon} ${styles.cardPurple}`}
+                onClick={(e) => scrollToCommunitySupport(e)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    scrollToCommunitySupport(e);
+                  }
+                }}
+              >
                 <div className={styles.cardIconWrapper}>
                   <Users size={40} style={{ color: "#5c2d91" }} />
                 </div>

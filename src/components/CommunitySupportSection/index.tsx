@@ -4,6 +4,7 @@ import styles from "./CommunitySupportSection.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { TwitterXIcon } from "@site/src/theme/Icon/TwitterXIcon";
 
+// Custom Twitter X SVG Icon Component
 type CardAction = {
   label: string;
   href: string;
