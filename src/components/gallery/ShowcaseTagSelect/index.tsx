@@ -20,6 +20,7 @@ export default function ShowcaseTagSelect({
   location,
   readSearchTags,
   replaceSearchTags,
+  parentTag,
 }: {
   label: string;
   tag: TagType;
@@ -30,6 +31,7 @@ export default function ShowcaseTagSelect({
   location;
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
+  parentTag?: TagType; // The parent tag if this is a sub-tag
 }): JSX.Element {
   const history = useHistory();
   // updates only the url query
@@ -58,7 +60,21 @@ export default function ShowcaseTagSelect({
     } else {
       // Normal behavior for other tags
       const tags = readSearchTags(location.search);
-      const newTags = toggleListItem(tags, tag);
+      let newTags = toggleListItem(tags, tag);
+      
+      // If this is a sub-tag and its parent is not selected, automatically select the parent
+      if (parentTag) {
+        const parentSelected = newTags.includes(parentTag);
+        const subTagSelected = newTags.includes(tag);
+        
+        // If sub-tag is being selected and parent is not selected, add parent
+        if (subTagSelected && !parentSelected) {
+          newTags = toggleListItem(newTags, parentTag);
+        }
+        // If sub-tag is being deselected and it's the last sub-tag, we could deselect parent
+        // But for now, keep parent selected even if all sub-tags are deselected
+      }
+      
       const newSearch = replaceSearchTags(location.search, newTags);
       history.push({
         ...location,
@@ -79,6 +95,42 @@ export default function ShowcaseTagSelect({
     }
   };
 
+  // Find parent tags that have this tag as a sub-tag
+  const parentTags = Object.entries(Tags)
+    .filter(([parentKey, parentTag]) => {
+      if (parentTag.subType && Array.isArray(parentTag.subType)) {
+        const subTagKey = tag.toLowerCase();
+        return parentTag.subType.some((sub) => sub.label.toLowerCase() === subTagKey);
+      }
+      return false;
+    })
+    .map(([parentKey]) => parentKey as TagType);
+
+  // Check if any parent tag is selected (in checkbox state or URL)
+  const selectedTagsFromUrl = readSearchTags(location.search);
+  const isParentSelected = parentTags.some((parentTag) =>
+    selectedCheckbox.includes(parentTag) || selectedTagsFromUrl.includes(parentTag)
+  );
+
+  // Enable the sub-tag if:
+  // 1. The tag itself is in activeTags, OR
+  // 2. Any parent tag is selected (so sub-filters are enabled when parent is checked)
+  const isDisabled = !(activeTags?.includes(tag) || isParentSelected);
+
+  // Determine checked state:
+  // - If this is a sub-tag (parentTag provided), only check if BOTH parent and sub-tag are selected
+  // - Otherwise, check if the tag is selected
+  let isChecked = false;
+  if (parentTag) {
+    // Sub-tag: only checked if both parent and sub-tag are selected
+    const parentSelected = selectedCheckbox.includes(parentTag) || selectedTagsFromUrl.includes(parentTag);
+    const subTagSelected = selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
+    isChecked = parentSelected && subTagSelected;
+  } else {
+    // Regular tag: checked if selected
+    isChecked = selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
+  }
+
   return (
     <>
       <Checkbox
@@ -94,9 +146,9 @@ export default function ShowcaseTagSelect({
           toggleTag();
           toggleCheck(tag);
         }}
-        checked={selectedCheckbox.includes(tag)}
+        checked={isChecked}
         label={label}
-        disabled={!activeTags?.includes(tag)}
+        disabled={isDisabled}
       />
     </>
   );

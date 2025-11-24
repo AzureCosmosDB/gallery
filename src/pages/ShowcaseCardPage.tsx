@@ -215,11 +215,100 @@ function filterUsers(
   if (!selectedTags || selectedTags.length === 0) {
     return users;
   }
+
+  // Detect parent-sub-tag pairs that require AND logic
+  // If both a parent and one of its sub-tags are selected, they require AND
+  const parentSubPairs = new Map<TagType, TagType>(); // Map<parent, subTag>
+
+  selectedTags.forEach((selectedTag) => {
+    // Check if this selected tag is a parent that has sub-tags
+    const tagObject = Tags[selectedTag];
+    if (
+      tagObject &&
+      Array.isArray(tagObject.subType) &&
+      tagObject.subType.length > 0
+    ) {
+      // Check if any of its sub-tags are also selected
+      tagObject.subType.forEach((sub) => {
+        const subTagKey = sub.label.toLowerCase() as TagType;
+        if (selectedTags.includes(subTagKey)) {
+          // Both parent and sub-tag are selected - require AND logic
+          parentSubPairs.set(selectedTag, subTagKey);
+        }
+      });
+    }
+  });
+
+  // Create tag groups with special handling for parent-sub pairs
+  const tagGroups: Array<{ tags: TagType[]; requireAll: boolean }> = [];
+  const processedTags = new Set<TagType>();
+
+  selectedTags.forEach((tag) => {
+    if (processedTags.has(tag)) {
+      return; // Already processed as part of a parent-sub pair
+    }
+
+    // Check if this tag is part of a parent-sub pair
+    let isInPair = false;
+    for (const [parent, subTag] of Array.from(parentSubPairs.entries())) {
+      if (tag === parent || tag === subTag) {
+        // This is a parent-sub pair requiring AND logic
+        tagGroups.push({
+          tags: [parent, subTag],
+          requireAll: true, // Require both tags
+        });
+        processedTags.add(parent);
+        processedTags.add(subTag);
+        isInPair = true;
+        break;
+      }
+    }
+
+    if (!isInPair) {
+      // Regular tag - create group with parent expansion (OR logic)
+      const tagObject = Tags[tag];
+      const group: TagType[] = [tag];
+
+      if (
+        tagObject &&
+        Array.isArray(tagObject.subType) &&
+        tagObject.subType.length > 0
+      ) {
+        // Add sub-tags from parent tag (but only if sub-tag isn't already selected separately)
+        tagObject.subType.forEach((sub) => {
+          const subTagKey = sub.label.toLowerCase() as TagType;
+          if (Tags[subTagKey] && !selectedTags.includes(subTagKey)) {
+            // Only include sub-tag in expansion if it's not explicitly selected
+            group.push(subTagKey);
+          }
+        });
+      }
+
+      tagGroups.push({
+        tags: group,
+        requireAll: false, // OR logic within group
+      });
+      processedTags.add(tag);
+    }
+  });
+
   return users.filter((user) => {
     if (!user && !user.tags && user.tags.length === 0) {
       return false;
     }
-    return selectedTags.every((tag) => user.tags.includes(tag));
+    // For each tag group:
+    // - If requireAll is true (parent-sub pair), user must have ALL tags in the group
+    // - If requireAll is false, user must have at least one tag from the group
+    // AND user must satisfy all groups (AND between groups)
+    return tagGroups.every((group) => {
+      if (group.requireAll) {
+        // AND logic: user must have all tags in this group
+        return group.tags.every((tag) => user.tags.includes(tag));
+      } else {
+        // OR logic: user must have at least one tag from this group
+        return group.tags.some((tag) => user.tags.includes(tag));
+      }
+    });
   });
 }
 
@@ -273,8 +362,27 @@ export default function ShowcaseCardPage({
   useEffect(() => {
     const unionTags = new Set<TagType>();
     cards.forEach((user) => user.tags.forEach((tag) => unionTags.add(tag)));
+
+    // If a parent tag is selected, ensure its sub-tags are also in activeTags
+    // This enables sub-filters when parent is checked
+    selectedTags.forEach((selectedTag) => {
+      const tagObject = Tags[selectedTag];
+      if (
+        tagObject &&
+        Array.isArray(tagObject.subType) &&
+        tagObject.subType.length > 0
+      ) {
+        tagObject.subType.forEach((sub) => {
+          const subTagKey = sub.label.toLowerCase() as TagType;
+          if (Tags[subTagKey]) {
+            unionTags.add(subTagKey);
+          }
+        });
+      }
+    });
+
     setActiveTags(Array.from(unionTags));
-  }, [cards]);
+  }, [cards, selectedTags]);
 
   const sortByOnSelect = (event, data) => {
     setLoading(true);

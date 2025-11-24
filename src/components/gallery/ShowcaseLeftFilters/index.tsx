@@ -215,6 +215,7 @@ function ShowcaseFilterViewAll({
                             location={location}
                             readSearchTags={readSearchTags}
                             replaceSearchTags={replaceSearchTags}
+                            parentTag={tag}
                           />
                         )}
                       </div>
