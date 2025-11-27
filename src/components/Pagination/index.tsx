@@ -126,6 +126,19 @@ const Pagination: React.FC<PaginationProps> = ({
               >
                 {page}
               </button>
+              <button
+                onClick={() => handlePageChange(page + 1)}
+                style={{
+                  padding: "6px 12px",
+                  border: "none",
+                  background: "none",
+                  color: "#222",
+                  fontWeight: 400,
+                  cursor: "pointer",
+                }}
+              >
+                {page + 1}
+              </button>
             </>
           )}
           {page === totalPages && totalPages > 1 && (

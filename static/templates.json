@@ -59,7 +59,6 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "image": "./img/deploy-django-on-aks.png",
     "tags": [
-      "go",
       "learning-path",
       "developing-core-applications",
       "flexibleserver",
