@@ -13,6 +13,7 @@ import ShowcaseCardTag from "../ShowcaseTag/index";
 import { sortBy } from "../../../utils/jsUtils";
 import OptimizedImage from "../../OptimizedImage";
 import { User as UserIcon, Calendar, Clock } from "lucide-react";
+import { getButtonText } from "../../../utils/buttonTextUtils";
 
 export default function ShowcaseCardPanel({
   user,
@@ -143,7 +144,7 @@ export default function ShowcaseCardPanel({
         <PrimaryButton
           className={styles.button}
           onClick={() => {
-            window.open(user.source, "_blank");
+            window.open(user.website || user.source, "_blank");
           }}
         >
           <img
@@ -152,7 +153,7 @@ export default function ShowcaseCardPanel({
             alt="Redirect"
           />
           <div className={styles.buttonText}>
-            {tagObjectsSorted[0]?.buttonText || "View More"}
+            {getButtonText(user.website || user.source)}
           </div>
         </PrimaryButton>
       </div>
