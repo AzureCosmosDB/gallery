@@ -1941,6 +1941,29 @@
       "generativeai",
       "python",
       "csharp",
+      "agent",
+      "gpt4",
+      "embedding-text-3",
+      "openai",
+      "microsoft",
+      "vectorcosmosnosql",
+      "example"
+    ]
+  },
+   {
+    "title": "Azure Cosmos DB MCP Toolkit",
+    "description": "An MCP ToolKit enabling agents and agentic apps to work with Azure Cosmos DB.",
+    "preview": "",
+    "website": "https://github.com/AzureCosmosDB/MCPToolKit",
+    "author": "Azure Cosmos DB Team",
+    "source": "https://github.com/AzureCosmosDB/MCPToolKit",
+    "date": "2025-11-06",
+    "tags": [
+      "generativeai",
+      "csharp",
+      "go",
+      "typescript",
+      "mcp",
       "featured",
       "agent",
       "gpt4",
@@ -1989,31 +2012,6 @@
       "go",
       "typescript",
       "mcp",
-      "featured",
-      "agent",
-      "gpt4",
-      "embedding-text-3",
-      "openai",
-      "microsoft",
-      "vectorcosmosnosql",
-      "example"
-    ]
-  },
-  {
-    "title": "Azure Cosmos DB MCP Toolkit",
-    "description": "An MCP ToolKit enabling agents and agentic apps to work with Azure Cosmos DB.",
-    "preview": "",
-    "website": "https://github.com/AzureCosmosDB/MCPToolKit",
-    "author": "Azure Cosmos DB Team",
-    "source": "https://github.com/AzureCosmosDB/MCPToolKit",
-    "date": "2025-11-06",
-    "tags": [
-      "generativeai",
-      "csharp",
-      "go",
-      "typescript",
-      "mcp",
-      "featured",
       "agent",
       "gpt4",
       "embedding-text-3",
@@ -2023,7 +2021,5 @@
       "example"
     ]
   }
-
-
 ]
 
