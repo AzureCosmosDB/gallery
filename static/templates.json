@@ -926,7 +926,7 @@
   },
   {
     "title": "Demo: Azure AI & pgvector with Azure Database for PostgreSQL",
-    "description": "Demo by Claire Giordano. This video showcases how you can improve the relevance of search results on a recipe website by using Azure OpenAI. Specifically the demo shows how you can use the azure_ai extension along with the open source pgvector extension and the Azure Database for PostgreSQL managed service to deliver semantic search results-as compared to search results you could obtain in the past via pattern matching with the LIKE clause in Postgres, or via Postgres full text search.",
+    "description": "Demo by Claire Giordano. This video showcases how you can improve the relevance of search results on a recipe website by using Azure OpenAI. Specifically the demo shows how you can use the azure_ai extension along with the open source pgvector extension and the Azure Database for PostgreSQL managed service to deliver semantic search results—as compared to search results you could obtain in the past via pattern matching with the LIKE clause in Postgres, or via Postgres full text search.",
     "website": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "source": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "image": "./img/demo-azure-ai-and-pg-vector.png",
@@ -936,7 +936,7 @@
   },
   {
     "title": "The mechanics of integrating AI and vector search into Azure Database for PostgreSQL",
-    "description": "Talk by Charles Fedderson. This video showcases how you can improve the relevance of search results on a recipe website by using Azure OpenAI. Specifically the demo shows how you can use the azure_ai extension along with the open source pgvector extension and the Azure Database for PostgreSQL managed service to deliver semantic search results-as compared to search results you could obtain in the past via pattern matching with the LIKE clause in Postgres, or via Postgres full text search.",
+    "description": "Talk by Charles Fedderson. This video showcases how you can improve the relevance of search results on a recipe website by using Azure OpenAI. Specifically the demo shows how you can use the azure_ai extension along with the open source pgvector extension and the Azure Database for PostgreSQL managed service to deliver semantic search results—as compared to search results you could obtain in the past via pattern matching with the LIKE clause in Postgres, or via Postgres full text search.",
     "website": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "source": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "image": "./img/integrating-ai-and-vector-search.png",
@@ -986,7 +986,7 @@
   },
   {
     "title": "Build AI Apps and Agents with Azure Database for PostgreSQL",
-    "description": "In this four-part video series, you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more-all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
+    "description": "In this four-part video series, you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more—all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
     "website": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
     "source": "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7&si=neVj7xUcQ1aUs7yC",
     "image": "./img/build-ai-apps-with-az-pg.png",
@@ -1210,7 +1210,7 @@
   },
   {
     "title": "Video Series: Build AI-Ready Apps and Agents with PostgreSQL on Azure",
-    "description": "This blog introduces a four-part video series,where  you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more-all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
+    "description": "This blog introduces a four-part video series,where  you'll discover how to build intelligent applications using the AI capabilities of Azure Database for PostgreSQL. Learn how to orchestrate agents, enhance search accuracy, integrate Azure AI services, and much more—all while leveraging the power of PostgreSQL and cutting-edge AI tools like the Visual Studio Code extension for PostgreSQL and GitHub copilot.",
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-ai-ready-apps-and-agents-with-postgresql-on-azure/4428001",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/build-ai-ready-apps-and-agents-with-postgresql-on-azure/4428001",
     "image": "./img/build-ai-ready-apps.png",
