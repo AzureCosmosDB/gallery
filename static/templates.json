@@ -479,7 +479,7 @@
     ],
     "tileNumber": 2,
     "learningPathTitle": "Enable and use pgvector for native Vector Search",
-    "learningPathDescription": "The pgvector extension brings open-source vector similarity search to PostgreSQL, enabling advanced AI and semantic search scenarios. This article explains vector databases and pgvector\u00e2\u20ac\u2122s capabilities, covering concepts like embeddings and similarity, and provides guidance on enabling the extension, creating, storing, and querying vectors."
+    "learningPathDescription": "The pgvector extension brings open-source vector similarity search to PostgreSQL, enabling advanced AI and semantic search scenarios. This article explains vector databases and pgvector’s capabilities, covering concepts like embeddings and similarity, and provides guidance on enabling the extension, creating, storing, and querying vectors."
   },
   {
     "title": "Optimize performance when using pgvector",
