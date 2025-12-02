@@ -243,6 +243,13 @@ function filterUsers(
   const tagGroups: Array<{ tags: TagType[]; requireAll: boolean }> = [];
   const processedTags = new Set<TagType>();
 
+  // Special-case AND relation for Connect & Query: require both 'app-dev' and 'connect'
+  if (selectedTags.includes("app-dev" as TagType) && selectedTags.includes("connect" as TagType)) {
+    tagGroups.push({ tags: ["app-dev" as TagType, "connect" as TagType], requireAll: true });
+    processedTags.add("app-dev" as TagType);
+    processedTags.add("connect" as TagType);
+  }
+
   selectedTags.forEach((tag) => {
     if (processedTags.has(tag)) {
       return; // Already processed as part of a parent-sub pair
@@ -274,14 +281,18 @@ function filterUsers(
         Array.isArray(tagObject.subType) &&
         tagObject.subType.length > 0
       ) {
-        // Add sub-tags from parent tag (but only if sub-tag isn't already selected separately)
-        tagObject.subType.forEach((sub) => {
-          const subTagKey = sub.label.toLowerCase() as TagType;
-          if (Tags[subTagKey] && !selectedTags.includes(subTagKey)) {
-            // Only include sub-tag in expansion if it's not explicitly selected
-            group.push(subTagKey);
-          }
-        });
+        // Special-case: Do NOT expand Fundamentals to include its subtypes.
+        // Fundamentals should match only items explicitly tagged with 'fundamentals'.
+        if (tag !== ("fundamentals" as TagType)) {
+          // Add sub-tags from parent tag (but only if sub-tag isn't already selected separately)
+          tagObject.subType.forEach((sub) => {
+            const subTagKey = sub.label.toLowerCase() as TagType;
+            if (Tags[subTagKey] && !selectedTags.includes(subTagKey)) {
+              // Only include sub-tag in expansion if it's not explicitly selected
+              group.push(subTagKey);
+            }
+          });
+        }
       }
 
       tagGroups.push({

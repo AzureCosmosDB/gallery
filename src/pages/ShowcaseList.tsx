@@ -6,6 +6,12 @@ import ShowcaseListTile from "../components/gallery/ShowcaseListTile";
 import Pagination from "../components/Pagination";
 import { useLocation } from "@docusaurus/router";
 
+const LEARNING_PATH_TAGS = [
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
+];
+
 export default function ShowcaseList({
   filteredUsers,
 }: {
@@ -24,14 +30,22 @@ export default function ShowcaseList({
 
   const searchParams = new URLSearchParams(location.search);
   const currentTags = searchParams.getAll("tags");
-  const learningPathTags = [
-    "developing-core-applications",
-    "building-genai-apps",
-    "building-ai-agents",
-  ];
   const isLearningPathFiltered = currentTags.some((tag) =>
-    learningPathTags.includes(tag)
+    LEARNING_PATH_TAGS.includes(tag)
   );
+  const orderedUsers = React.useMemo(() => {
+    if (!isLearningPathFiltered) {
+      return filteredUsers;
+    }
+    return [...filteredUsers].sort((a, b) => {
+      const tileA = a.tileNumber ?? Number.MAX_SAFE_INTEGER;
+      const tileB = b.tileNumber ?? Number.MAX_SAFE_INTEGER;
+      if (tileA === tileB) {
+        return (a.order || 0) - (b.order || 0);
+      }
+      return tileA - tileB;
+    });
+  }, [filteredUsers, isLearningPathFiltered]);
 
   if (len === 0) {
     return <ShowcaseEmptyResult id="showcase.usersList.noResult" />;
@@ -39,7 +53,7 @@ export default function ShowcaseList({
   return (
     <section>
       <div className={styles.showcaseList}>
-        {filteredUsers
+        {orderedUsers
           .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
           .map((user, idx) => (
             <React.Fragment key={user.title}>

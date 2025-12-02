@@ -66,8 +66,8 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-     font-size: 19px;
-    font-weight: 600;
+  font-size: 19px;
+  font-weight: 600;
   line-height: 28px;
 }
 

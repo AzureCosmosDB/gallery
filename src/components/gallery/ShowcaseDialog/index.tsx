@@ -22,6 +22,8 @@ interface ShowcaseDialogProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactElement;
+  titleOverride?: string;
+  descriptionOverride?: string;
 }
 
 export default function ShowcaseDialog({
@@ -30,7 +32,11 @@ export default function ShowcaseDialog({
   isOpen,
   onClose,
   children,
+  titleOverride,
+  descriptionOverride,
 }: ShowcaseDialogProps): JSX.Element {
+  const dialogTitle = titleOverride || user.title;
+
   return (
     <Dialog
       open={isOpen}
@@ -58,10 +64,14 @@ export default function ShowcaseDialog({
             padding: "0px 10px 0px 0px",
           }}
         >
-          {user.title}
+          {dialogTitle}
         </DialogTitle>
         <DialogBody style={{ display: "block" }}>
-          <ShowcaseCardPanel user={user} githubData={githubData} />
+          <ShowcaseCardPanel
+            user={user}
+            githubData={githubData}
+            descriptionOverride={descriptionOverride}
+          />
         </DialogBody>
       </DialogSurface>
     </Dialog>

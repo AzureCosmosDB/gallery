@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "@docusaurus/router";
 import styleCSS from "./styles.module.css";
 import {
   Card,
@@ -14,6 +15,12 @@ import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
 import OptimizedImage from "../../OptimizedImage";
 
+const LEARNING_PATH_TAGS = [
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
+];
+
 type GitHubRepoInfo = {
   forks: number;
   stars: number;
@@ -23,12 +30,31 @@ type GitHubRepoInfo = {
 function ShowcaseCard({
   user,
   coverPage,
+  fixedHeight,
 }: {
   user: User;
   coverPage: Boolean;
+  fixedHeight?: number;
 }): JSX.Element {
   const tags = user.tags;
   const title = user.title;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentTags = searchParams.getAll("tags");
+  const isLearningPathFiltered =
+    !coverPage &&
+    currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
+  const shouldUseLearningPathContent =
+    isLearningPathFiltered &&
+    user.tileNumber !== undefined &&
+    !!user.learningPathTitle &&
+    !!user.learningPathDescription;
+  const displayTitle = shouldUseLearningPathContent
+    ? user.learningPathTitle!
+    : title;
+  const displayDescription = shouldUseLearningPathContent
+    ? user.learningPathDescription!
+    : user.description;
 
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
@@ -80,18 +106,21 @@ function ShowcaseCard({
       githubData={githubData}
       isOpen={isOpen}
       onClose={dismissDialog}
+      titleOverride={displayTitle}
+      descriptionOverride={displayDescription}
     >
       <DialogTrigger disableButtonEnhancement>
         <Card
-          key={title}
+          key={displayTitle}
           className={styleCSS.card}
           appearance="filled"
           onClick={openDialog}
+          style={fixedHeight ? { height: fixedHeight } : undefined}
         >
           {user.image && (
             <OptimizedImage
               src={user.image}
-              alt={title + " image"}
+               alt={displayTitle + " image"}
               height={200}
               objectFit="cover"
               style={{
@@ -101,21 +130,27 @@ function ShowcaseCard({
             />
           )}
           <div className={styleCSS.cardTags}>
-            <ShowcaseCardTag key={title} tags={tags} cardPanel={false} />
+            <ShowcaseCardTag
+              key={displayTitle}
+              tags={tags}
+              cardPanel={false}
+            />
           </div>
           <div style={{ padding: 16 }}>
             {coverPage ? (
               <>
-                <div className={styleCSS.cardTitleCoverPage}>{title}</div>
+                <div className={styleCSS.cardTitleCoverPage}>
+                  {displayTitle}
+                </div>
                 <div className={styleCSS.cardDescriptionCoverPage}>
-                  {user.description}
+                  {displayDescription}
                 </div>
               </>
             ) : (
               <>
-                <div className={styleCSS.cardTitle}>{title}</div>
+                <div className={styleCSS.cardTitle}>{displayTitle}</div>
                 <div className={styleCSS.cardDescription}>
-                  {user.description}
+                  {displayDescription}
                 </div>
               </>
             )}

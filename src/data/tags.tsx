@@ -39,6 +39,8 @@ export type User = {
   priority?: "P0" | "P1" | "P2";
   order?: number;
   tileNumber?: number; // Optional tile number for learning path ordering
+  learningPathTitle?: string; // Optional title for learning path context
+  learningPathDescription?: string; // Optional description for learning path context
   meta?: {
     author?: string;
     date?: string;
