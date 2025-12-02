@@ -18,12 +18,14 @@ import { getButtonText } from "../../../utils/buttonTextUtils";
 export default function ShowcaseCardPanel({
   user,
   githubData,
+  descriptionOverride,
 }: {
   user: User;
   githubData: { forks: number; stars: number; updatedOn: Date };
+  descriptionOverride?: string;
 }) {
   const githubURL = user.source;
-  const description = user.description;
+  const description = descriptionOverride || user.description;
   const video = user.video;
   const meta = user.meta || {};
   const tagObjects = user.tags
