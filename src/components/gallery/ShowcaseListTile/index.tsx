@@ -22,9 +22,25 @@ export default function ShowcaseListTile({
 }) {
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
+  const shouldUseLearningPathContent =
+    tileNumber !== undefined &&
+    !!user.learningPathTitle &&
+    !!user.learningPathDescription;
+  const displayTitle = shouldUseLearningPathContent
+    ? user.learningPathTitle!
+    : user.title;
+  const displayDescription = shouldUseLearningPathContent
+    ? user.learningPathDescription!
+    : user.description;
 
   return (
-    <ShowcaseDialog user={user} isOpen={isOpen} onClose={dismissDialog}>
+    <ShowcaseDialog
+      user={user}
+      isOpen={isOpen}
+      onClose={dismissDialog}
+      titleOverride={displayTitle}
+      descriptionOverride={displayDescription}
+    >
       <DialogTrigger disableButtonEnhancement>
         <Card
           className={styleCSS.listTile}
@@ -58,7 +74,7 @@ export default function ShowcaseListTile({
             {user.image && (
               <OptimizedImage
                 src={user.image}
-                alt={user.title + " image"}
+                alt={displayTitle + " image"}
                 className={styleCSS.listTileImage}
                 objectFit="cover"
               />
@@ -67,8 +83,10 @@ export default function ShowcaseListTile({
               <div className={styleCSS.listTileTags}>
                 <ShowcaseCardTag tags={user.tags} cardPanel={false} />
               </div>
-              <div className={styleCSS.listTitle}>{user.title}</div>
-              <div className={styleCSS.cardDescription}>{user.description}</div>
+              <div className={styleCSS.listTitle}>{displayTitle}</div>
+              <div className={styleCSS.cardDescription}>
+                {displayDescription}
+              </div>
               {user.website && (
                 <Button
                   appearance="primary"
