@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (with PAT)
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -7,10 +7,16 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+  deployments: write
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://azurecosmosdb.github.io/gallery/
     steps:
       # Checkout source repo
       - uses: actions/checkout@v4
@@ -31,10 +37,12 @@ jobs:
       - name: Build website
         run: yarn build
 
-      # Deploy using PAT to gh-pages branch
+      # Deploy to gh-pages branch using PAT
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAT }}
           publish_dir: ./build
           publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
