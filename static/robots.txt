@@ -1,0 +1,41 @@
+# Azure Cosmos DB Gallery - Robots.txt
+# Updated: December 2025
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.git/
+
+# Sitemap
+Sitemap: https://azurecosmosdb.github.io/gallery/sitemap.xml
+
+# LLM.txt for AI agents
+# Reference: https://azurecosmosdb.github.io/gallery/llm.txt
+
+# LLM-specific crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

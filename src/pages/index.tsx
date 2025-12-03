@@ -21,6 +21,7 @@ import { type TagType } from "@site/src/data/tags";
 import { TagList } from "@site/src/data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
+import StructuredData from "@site/src/components/StructuredData";
 
 initializeIcons();
 
@@ -110,20 +111,34 @@ const App = () => {
 export default function Showcase(): JSX.Element {
   return (
     <>
+      <StructuredData />
       <Helmet>
-        <title>Azure Cosmos DB Gallery</title>
-        <meta name="description" content="Your best source for patterns and content for Azure Cosmos DB" />
-        <meta name="keywords" content="Azure Cosmos DB, samples, Gen-AI, Azure OpenAI, GitHub, OSS, content" />
+        <title>Azure Cosmos DB Gallery | AI Apps, Vector Search & Code Samples</title>
+        <meta name="description" content="Discover 100+ code samples, tutorials, and resources for building AI applications with Azure Cosmos DB. Featuring RAG patterns, vector search with DiskANN, multi-agent systems, and OpenAI integrations in Python, C#, JavaScript, and Java." />
+        <meta name="keywords" content="Azure Cosmos DB, vector search, RAG pattern, AI samples, OpenAI, semantic kernel, langchain, DiskANN, NoSQL, MongoDB, multi-agent, MCP, vector database, generative AI, embeddings, Python, C#, JavaScript, Java" />
         <meta name="author" content="Azure Cosmos DB Team" />
-        <meta property="og:title" content="Azure Cosmos DB Gallery" />
-        <meta property="og:description" content="Your best source for patterns and content for Azure Cosmos DB" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://azurecosmosdb.github.io/gallery/" />
+        <meta property="og:title" content="Azure Cosmos DB Gallery | AI Apps & Vector Search" />
+        <meta property="og:description" content="Discover 100+ code samples and resources for building AI applications with Azure Cosmos DB, featuring RAG patterns, vector search, and multi-agent systems." />
         <meta property="og:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
-        <meta property="og:url" content="https://azurecosmosdb.github.io/gallery" />
-        <meta name="twitter:card" content="Azure Cosmos DB Gallery Home Page" />
-        <meta name="twitter:title" content="Azure Cosmos DB Gallery" />
-        <meta name="twitter:description" content="Your best source for patterns and content for Azure Cosmos DB" />
+        <meta property="og:site_name" content="Azure Cosmos DB Gallery" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@AzureCosmosDB" />
+        <meta name="twitter:creator" content="@AzureCosmosDB" />
+        <meta name="twitter:url" content="https://azurecosmosdb.github.io/gallery/" />
+        <meta name="twitter:title" content="Azure Cosmos DB Gallery | AI Apps & Vector Search" />
+        <meta name="twitter:description" content="Discover 100+ code samples for building AI applications with Azure Cosmos DB" />
         <meta name="twitter:image" content="https://azurecosmosdb.github.io/gallery/img/gallery-social.png" />
-        <meta name="twitter:url" content="https://azurecosmosdb.github.io/gallery"/>
+        
+        {/* Additional SEO */}
+        <link rel="canonical" href="https://azurecosmosdb.github.io/gallery/" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#0078d4" />
       </Helmet>
     <Layout>
       <App />
