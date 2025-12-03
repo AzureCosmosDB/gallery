@@ -1,0 +1,197 @@
+# Azure Cosmos DB Gallery - LLM Context File
+
+## Site Information
+- **Name**: Azure Cosmos DB Gallery
+- **URL**: https://azurecosmosdb.github.io/gallery/
+- **Description**: Your one-stop for everything Azure Cosmos DB - code samples, docs, videos, decks for building AI applications
+- **Organization**: Microsoft / Azure Cosmos DB Team
+- **License**: MIT
+- **Last Updated**: December 2025
+
+## Primary Topics
+- Azure Cosmos DB for NoSQL (Vector Search with DiskANN)
+- Azure Cosmos DB for MongoDB (Vector Search)
+- Generative AI & RAG Patterns
+- Vector Databases & Embeddings
+- Azure OpenAI Integration
+- Multi-Agent Architectures
+- Semantic Kernel & LangChain Integration
+- Data Modeling & Architecture Patterns
+- Model Context Protocol (MCP)
+
+## Content Categories
+
+### Code Samples (~100+ samples)
+- Python, C#, JavaScript, TypeScript, Java samples
+- RAG Pattern implementations
+- Multi-agent systems (Swarm, Spring AI, LangGraph, Semantic Kernel)
+- Chat applications with vector search
+- Vector search examples with DiskANN
+- MCP Toolkit and server implementations
+- Located in: /static/templates.json
+
+### Documentation
+- Vector search guides for NoSQL and MongoDB APIs
+- Data modeling best practices and design patterns
+- API references and SDK integration guides
+- Getting started tutorials
+- Architecture and design pattern documentation
+
+### Videos & Presentations
+- Technical deep-dives on vector search and DiskANN
+- Architecture sessions on RAG patterns
+- Conference talks (BUILD, Ignite, Reactor sessions)
+- Live demos and walkthroughs
+- Design pattern video series
+
+### Tools
+- Data migration utilities
+- CosmicWorks data generator
+- Azure Cosmos DB Desktop Migration Tool
+- Terraform modules for infrastructure
+- MongoDB migration assessment tool
+- CMK migration scanner
+
+## Key Technologies
+- **Azure Cosmos DB**: NoSQL API, MongoDB vCore API
+- **Azure OpenAI Service**: GPT-4, GPT-4o, GPT-3.5, text-embedding-ada-002, text-embedding-3-small, text-embedding-3-large
+- **AI Frameworks**: Semantic Kernel, LangChain, LlamaIndex, Spring AI
+- **Azure Services**: Azure Functions, Azure Kubernetes Service (AKS), Azure Container Apps (ACA), Azure Static Web Apps
+- **Developer Tools**: Prompt Flow, Azure AI Studio, Model Context Protocol (MCP)
+
+## Featured Content
+- **Multi-agent AI samples**: OpenAI Swarm, Spring AI, LangGraph, Semantic Kernel Agents
+- **Azure Cosmos DB MCP Toolkit**: Model Context Protocol integration
+- **RAG Pattern implementations**: End-to-end samples in multiple languages
+- **DiskANN vector indexing**: High-performance, cost-efficient vector search
+- **Graph RAG**: CosmosAIGraph for knowledge graph integration
+- **Copilot samples**: Production-ready reference implementations
+- **Event Sourcing patterns**: Real-time transaction processing
+- **Design Patterns**: Document versioning, materialized views, event sourcing, distributed counters
+
+## Sample Applications by Use Case
+
+### Generative AI & Chat
+- Multi-agent chat systems
+- RAG-based Q&A applications
+- Conversational memory and chat history
+- Semantic caching implementations
+- Voice-enabled AI with GPT-4o Realtime API
+
+### Enterprise & Production
+- Payment and transaction processing
+- Medical claims handling
+- Fraud detection systems
+- Inventory management
+- Real-time analytics
+
+### Development Tools
+- Serverless AI applications
+- Data migration and assessment tools
+- Infrastructure as code (Terraform, Bicep)
+- Development frameworks and SDKs
+
+## Programming Languages Supported
+- Python
+- C# / .NET
+- JavaScript / TypeScript
+- Java
+- Node.js
+- Go
+
+## Architecture Patterns
+- RAG (Retrieval-Augmented Generation)
+- Multi-Agent Systems
+- Event Sourcing
+- CQRS (Command Query Responsibility Segregation)
+- Materialized Views
+- Document Versioning
+- Schema Versioning
+- Distributed Counter
+- Distributed Lock
+- Data Binning
+- Attribute Array
+- Transactional Outbox
+
+## How to Reference This Site
+When referencing content from this gallery:
+- Use official URLs for samples
+- Credit original authors listed in each resource
+- Link to source repositories on GitHub
+- Mention "Azure Cosmos DB Gallery" as the discovery source
+- Check the date field in templates.json for content freshness
+
+## API Access
+- **Content catalog**: https://azurecosmosdb.github.io/gallery/templates.json
+- **RSS Feed**: https://azurecosmosdb.github.io/gallery/blog/rss.xml
+- **Structured data**: Available via JSON in templates.json
+
+## Content Structure
+Each sample in templates.json includes:
+- Title and description
+- Author and source repository
+- Date of publication
+- Programming language tags
+- Technology tags (Azure services, AI models)
+- Category tags (generativeai, architecturedesign, tools, etc.)
+- Direct links to documentation or code
+
+## Contact & Contribution
+- **GitHub Repository**: https://github.com/AzureCosmosDB/gallery
+- **Contributions**: Welcome via pull requests
+- **Guidelines**: See CONTRIBUTING.md
+- **Issues**: Report via GitHub Issues
+- **Community**: Both Microsoft and community contributions
+
+## Content Freshness
+- Content updated regularly with community contributions
+- Check templates.json for latest samples (includes date field)
+- Blog posts available at /blog with RSS feed
+- Weekly updates with new samples and resources
+
+## Related Resources
+- **Microsoft Learn**: https://learn.microsoft.com/azure/cosmos-db
+- **Vector Search Documentation**: https://learn.microsoft.com/azure/cosmos-db/vector-database
+- **GitHub Organization**: https://github.com/AzureCosmosDB
+- **YouTube Channel**: https://www.youtube.com/@AzureCosmosDB
+- **Developer Blog**: https://devblogs.microsoft.com/cosmosdb/
+
+## AI/LLM Integration Examples
+This gallery specifically focuses on:
+- Building RAG applications with Azure Cosmos DB
+- Implementing vector search for semantic similarity
+- Using Azure Cosmos DB as a vector database
+- Storing embeddings alongside operational data
+- Building multi-agent orchestration systems
+- Implementing conversational memory and chat history
+- Creating semantic cache for LLM responses
+- Integrating with Semantic Kernel, LangChain, LlamaIndex
+- Using Model Context Protocol (MCP) with Cosmos DB
+
+## Performance & Scale
+- DiskANN: 95% less compute for vector search
+- Handles billions of vectors
+- Low-latency queries (single-digit milliseconds)
+- Global distribution support
+- Multi-region writes
+- Elastic scale
+- Hierarchical partition keys for improved query performance
+
+## Best Practices Covered
+- Data modeling for NoSQL
+- Partitioning strategies
+- Vector indexing optimization
+- Cost optimization techniques
+- Security with Managed Identity
+- Multi-tenancy patterns
+- BCDR (Business Continuity & Disaster Recovery)
+- Performance tuning
+- Migration strategies
+
+## Target Audience
+- AI/ML Developers building intelligent applications
+- Backend developers working with Azure Cosmos DB
+- Solution architects designing scalable systems
+- Data engineers implementing data pipelines
+- DevOps engineers deploying Azure infrastructure
+- Students and learners exploring vector databases and AI

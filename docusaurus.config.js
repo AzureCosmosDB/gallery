@@ -10,6 +10,8 @@ const config = {
     env: process.env.REACT_APP_GITHUB_TOKEN,
     description:
       "Your one-stop for everything Azure Cosmos DB. Code samples, docs, videos, decks, etc. Everything in one location. Community contributions are welcome.",
+    keywords:
+      "Azure Cosmos DB, NoSQL, Vector Search, RAG, AI, Machine Learning, Generative AI, OpenAI, Semantic Kernel, LangChain, DiskANN, Python, C#, JavaScript, Java, Multi-Agent, MCP, Vector Database",
   },
 
   title: "Azure Cosmos DB Gallery",
@@ -37,6 +39,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'keywords', content: 'Azure Cosmos DB, Vector Database, AI, RAG Pattern, OpenAI, Semantic Kernel, LangChain, DiskANN, Multi-Agent, MCP'},
+        {name: 'author', content: 'Azure Cosmos DB Team'},
+        {property: 'og:type', content: 'website'},
+        {name: 'twitter:card', content: 'summary_large_image'},
+        {name: 'twitter:site', content: '@AzureCosmosDB'},
+        {name: 'theme-color', content: '#0078d4'},
+      ],
       docs: {
         sidebar: {
           hideable: true,
