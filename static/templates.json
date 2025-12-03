@@ -195,8 +195,8 @@
   {
     "title": "Quickstart: Use GitHub Copilot extension in Visual Studio Code for enhancing DB workflows",
     "description": "The PostgreSQL extension for Visual Studio Code now integrates GitHub Copilot to enhance database workflows with AI-assisted development using live connection context. This allows the @pgsql Copilot chat participant to generate schema-aware SQL queries and insights, streamlining development and reducing context-switching.Get started with this quickstart guide.",
-    "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
-    "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connectivity",
+    "website": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
+    "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
     "image": "./img/github-copilot-in-vscode.png",
     "tags": [
       "app-dev",
