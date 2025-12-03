@@ -3,12 +3,19 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
-import { type User, type TagType } from "../data/tags";
+import { type User } from "../data/tags";
 import styles from "./styles.module.css";
 import ShowcaseCard from "../components/gallery/ShowcaseCard";
 import Pagination from "../components/Pagination";
+import { useLocation } from "@docusaurus/router";
+
+const LEARNING_PATH_TAGS = [
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
+];
 
 export default function ShowcaseCards({
   filteredUsers,
@@ -23,6 +30,24 @@ export default function ShowcaseCards({
   const CARDS_PER_PAGE = 6;
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(len / CARDS_PER_PAGE);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentTags = searchParams.getAll("tags");
+  const isLearningPathFiltered =
+    !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
+  const orderedUsers = useMemo(() => {
+    if (!isLearningPathFiltered) {
+      return filteredUsers;
+    }
+    return [...filteredUsers].sort((a, b) => {
+      const tileA = a.tileNumber ?? Number.MAX_SAFE_INTEGER;
+      const tileB = b.tileNumber ?? Number.MAX_SAFE_INTEGER;
+      if (tileA === tileB) {
+        return (a.order || 0) - (b.order || 0);
+      }
+      return tileA - tileB;
+    });
+  }, [filteredUsers, isLearningPathFiltered]);
 
   // Reset pagination to first page when filters change
   useEffect(() => {
@@ -35,11 +60,15 @@ export default function ShowcaseCards({
   return (
     <section>
       <div className={noGrid ? styles.featuredCarousel : styles.showcaseCards}>
-        {filteredUsers
+        {orderedUsers
           .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
           .map((user, index) => (
             <React.Fragment key={user.title}>
-              <ShowcaseCard user={user} coverPage={coverPage} />
+              <ShowcaseCard
+                user={user}
+                coverPage={coverPage}
+                fixedHeight={noGrid ? 460 : undefined}
+              />
             </React.Fragment>
           ))}
       </div>
