@@ -60,21 +60,29 @@ export default function ShowcaseTagSelect({
     } else {
       // Normal behavior for other tags
       const tags = readSearchTags(location.search);
+      const wasSelected = tags.includes(tag);
       let newTags = toggleListItem(tags, tag);
-      
+
       // If this is a sub-tag and its parent is not selected, automatically select the parent
       if (parentTag) {
         const parentSelected = newTags.includes(parentTag);
         const subTagSelected = newTags.includes(tag);
-        
+
         // If sub-tag is being selected and parent is not selected, add parent
         if (subTagSelected && !parentSelected) {
           newTags = toggleListItem(newTags, parentTag);
         }
-        // If sub-tag is being deselected and it's the last sub-tag, we could deselect parent
-        // But for now, keep parent selected even if all sub-tags are deselected
       }
-      
+
+      // If a BASE (parent) tag is being deselected, also clear all its sub-filters from URL
+      if (!parentTag && wasSelected) {
+        const parentObj = Tags[tag];
+        if (parentObj?.subType && Array.isArray(parentObj.subType) && parentObj.subType.length > 0) {
+          const subKeys = parentObj.subType.map((s) => s.label.toLowerCase() as TagType);
+          newTags = newTags.filter((t) => !subKeys.includes(t));
+        }
+      }
+
       const newSearch = replaceSearchTags(location.search, newTags);
       history.push({
         ...location,
@@ -86,14 +94,6 @@ export default function ShowcaseTagSelect({
   // Adobe Analytics
   const checkbox = id.replace("showcase_checkbox_id_", "");
   const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
-
-  const toggleCheck = (tag: TagType) => {
-    if (selectedCheckbox.includes(tag)) {
-      setSelectedCheckbox(selectedCheckbox.filter((item) => item !== tag));
-    } else {
-      setSelectedCheckbox([...selectedCheckbox, tag]);
-    }
-  };
 
   // Find parent tags that have this tag as a sub-tag
   const parentTags = Object.entries(Tags)
@@ -136,15 +136,19 @@ export default function ShowcaseTagSelect({
       <Checkbox
         id={id}
         data-m={contentForAdobeAnalytics}
+        onClick={(e) => {
+          // Prevent the click from bubbling to parent accordion header
+          e.stopPropagation();
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
+            e.preventDefault();
+            e.stopPropagation();
             toggleTag();
-            toggleCheck(tag);
           }
         }}
         onChange={() => {
           toggleTag();
-          toggleCheck(tag);
         }}
         checked={isChecked}
         label={label}

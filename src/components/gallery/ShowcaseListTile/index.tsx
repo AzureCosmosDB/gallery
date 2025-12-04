@@ -23,7 +23,6 @@ export default function ShowcaseListTile({
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
   const shouldUseLearningPathContent =
-    tileNumber !== undefined &&
     !!user.learningPathTitle &&
     !!user.learningPathDescription;
   const displayTitle = shouldUseLearningPathContent

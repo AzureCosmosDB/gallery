@@ -46,7 +46,6 @@ function ShowcaseCard({
     currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const shouldUseLearningPathContent =
     isLearningPathFiltered &&
-    user.tileNumber !== undefined &&
     !!user.learningPathTitle &&
     !!user.learningPathDescription;
   const displayTitle = shouldUseLearningPathContent
