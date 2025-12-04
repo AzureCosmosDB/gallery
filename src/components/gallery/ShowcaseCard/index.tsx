@@ -63,6 +63,19 @@ function ShowcaseCard({
       pathname: location.pathname,
       search: searchParams.toString(),
     });
+    
+    // Track card click in Google Analytics
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'card_click', {
+        card_title: title,
+        card_slug: cardSlug,
+        card_author: user.author,
+        card_tags: tags.join(','),
+        event_category: 'engagement',
+        event_label: title,
+      });
+    }
+    
     openPanel();
   };
 
@@ -82,9 +95,20 @@ function ShowcaseCard({
     const searchParams = new URLSearchParams(location.search);
     const cardParam = searchParams.get('card');
     if (cardParam === cardSlug && !isOpen) {
+      // Track deep link access in Google Analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'deep_link_open', {
+          card_title: title,
+          card_slug: cardSlug,
+          card_author: user.author,
+          event_category: 'engagement',
+          event_label: `Deep Link: ${title}`,
+          referrer: document.referrer || 'direct',
+        });
+      }
       openPanel();
     }
-  }, [location.search, cardSlug, isOpen, openPanel]);
+  }, [location.search, cardSlug, isOpen, openPanel, title, user.author]);
 
   const fetchGitHubData = async (owner: string, repo: string) => {
     const token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
