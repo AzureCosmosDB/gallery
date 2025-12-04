@@ -81,19 +81,26 @@ function ShowcaseCard({
 
   // Handle closing panel and removing deep link
   const handleDismissPanel = () => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.delete('card');
-    history.push({
-      pathname: location.pathname,
-      search: searchParams.toString(),
-    });
+    // Dismiss panel first to prevent re-render conflicts
     dismissPanel();
+    
+    // Then update URL after a brief delay to ensure state is updated
+    setTimeout(() => {
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.delete('card');
+      history.push({
+        pathname: location.pathname,
+        search: searchParams.toString(),
+      });
+    }, 0);
   };
 
   // Check if this card should be opened based on URL parameter
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const cardParam = searchParams.get('card');
+    
+    // Only open if URL matches this card and panel is not already open
     if (cardParam === cardSlug && !isOpen) {
       // Track deep link access in Google Analytics
       if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -107,8 +114,11 @@ function ShowcaseCard({
         });
       }
       openPanel();
+    } else if (!cardParam && isOpen) {
+      // Close if URL param is removed but panel is still open
+      dismissPanel();
     }
-  }, [location.search, cardSlug, isOpen, openPanel, title, user.author]);
+  }, [location.search, cardSlug, isOpen, openPanel, dismissPanel, title, user.author]);
 
   const fetchGitHubData = async (owner: string, repo: string) => {
     const token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
