@@ -9,8 +9,8 @@ Disallow: /.git/
 # Sitemap
 Sitemap: https://azurecosmosdb.github.io/gallery/sitemap.xml
 
-# LLM.txt for AI agents
-# Reference: https://azurecosmosdb.github.io/gallery/llm.txt
+# LLMs.txt for AI agents
+# Reference: https://azurecosmosdb.github.io/gallery/llms.txt
 
 # LLM-specific crawlers
 User-agent: GPTBot
