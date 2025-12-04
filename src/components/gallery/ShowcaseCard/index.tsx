@@ -10,6 +10,7 @@ import ShowcaseCardIcon from "../ShowcaseIcon/index";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { useColorMode } from "@docusaurus/theme-common";
 import siteConfig from "@generated/docusaurus.config";
+import { useHistory, useLocation } from "@docusaurus/router";
 
 type GitHubRepoInfo = {
   forks: number;
@@ -27,6 +28,8 @@ function ShowcaseCard({
   const tags = user.tags;
   const title = user.title;
   const { colorMode } = useColorMode();
+  const history = useHistory();
+  const location = useLocation();
 
   const lightTheme: PartialTheme = {
     semanticColors: {
@@ -44,6 +47,44 @@ function ShowcaseCard({
 
   const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
+
+  // Create a URL-safe slug from the title
+  const createSlug = (text: string) => {
+    return encodeURIComponent(text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+  };
+
+  const cardSlug = createSlug(title);
+
+  // Handle opening panel with deep link
+  const handleCardClick = () => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('card', cardSlug);
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
+    openPanel();
+  };
+
+  // Handle closing panel and removing deep link
+  const handleDismissPanel = () => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.delete('card');
+    history.push({
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    });
+    dismissPanel();
+  };
+
+  // Check if this card should be opened based on URL parameter
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const cardParam = searchParams.get('card');
+    if (cardParam === cardSlug && !isOpen) {
+      openPanel();
+    }
+  }, [location.search, cardSlug, isOpen, openPanel]);
 
   const fetchGitHubData = async (owner: string, repo: string) => {
     const token = siteConfig.customFields.REACT_APP_GITHUB_TOKEN;
@@ -98,14 +139,14 @@ function ShowcaseCard({
       key={title}
       className={styleCSS.card}
       appearance="filled"
-      onClick={openPanel}
+      onClick={handleCardClick}
     >
       <div>
         <ThemeProvider theme={colorMode !== "dark" ? lightTheme : darkTheme}>
           <Panel
             isLightDismiss
             isOpen={isOpen}
-            onDismiss={dismissPanel}
+            onDismiss={handleDismissPanel}
             closeButtonAriaLabel="Close"
             type={PanelType.medium}
           >
