@@ -65,15 +65,22 @@ function ShowcaseCard({
     });
     
     // Track card click in Google Analytics
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'card_click', {
-        card_title: title,
-        card_slug: cardSlug,
-        card_author: user.author,
-        card_tags: tags.join(','),
-        event_category: 'engagement',
-        event_label: title,
-      });
+    if (typeof window !== 'undefined') {
+      const gtag = (window as any).gtag;
+      if (typeof gtag === 'function') {
+        gtag('event', 'card_click', {
+          card_title: title,
+          card_slug: cardSlug,
+          card_author: user.author,
+          card_tags: tags.join(','),
+          event_category: 'engagement',
+          event_label: title,
+          send_to: 'G-CNSKHL41CT',
+        });
+        console.log('GA Event: card_click', { title, cardSlug });
+      } else {
+        console.log('gtag not available');
+      }
     }
     
     openPanel();
@@ -103,15 +110,22 @@ function ShowcaseCard({
     // Only open if URL matches this card and panel is not already open
     if (cardParam === cardSlug && !isOpen) {
       // Track deep link access in Google Analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'deep_link_open', {
-          card_title: title,
-          card_slug: cardSlug,
-          card_author: user.author,
-          event_category: 'engagement',
-          event_label: `Deep Link: ${title}`,
-          referrer: document.referrer || 'direct',
-        });
+      if (typeof window !== 'undefined') {
+        const gtag = (window as any).gtag;
+        if (typeof gtag === 'function') {
+          gtag('event', 'deep_link_open', {
+            card_title: title,
+            card_slug: cardSlug,
+            card_author: user.author,
+            event_category: 'engagement',
+            event_label: `Deep Link: ${title}`,
+            referrer: document.referrer || 'direct',
+            send_to: 'G-CNSKHL41CT',
+          });
+          console.log('GA Event: deep_link_open', { title, cardSlug });
+        } else {
+          console.log('gtag not available for deep link');
+        }
       }
       openPanel();
     } else if (!cardParam && isOpen) {
