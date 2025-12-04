@@ -106,7 +106,23 @@ function FilterAppliedBar({
   const history = useHistory();
   const toggleTag = (tag: TagType, location: Location) => {
     const tags = readSearchTags(location.search);
-    const newTags = toggleListItem(tags, tag);
+    const wasSelected = tags.includes(tag);
+    let newTags = toggleListItem(tags, tag);
+
+    // If a parent/base tag is being deselected from the badge, also clear its sub-filters
+    if (wasSelected) {
+      const tagObject = Tags[tag];
+      if (
+        tagObject &&
+        Array.isArray(tagObject.subType) &&
+        tagObject.subType.length > 0
+      ) {
+        const subKeys = tagObject.subType.map(
+          (s) => s.label.toLowerCase() as TagType
+        );
+        newTags = newTags.filter((t) => !subKeys.includes(t));
+      }
+    }
     const newSearch = replaceSearchTags(location.search, newTags);
     if (typeof window.gtag === "function") {
       window.gtag("set", "user_properties", {
@@ -281,9 +297,17 @@ function filterUsers(
         Array.isArray(tagObject.subType) &&
         tagObject.subType.length > 0
       ) {
-        // Special-case: Do NOT expand Fundamentals to include its subtypes.
-        // Fundamentals should match only items explicitly tagged with 'fundamentals'.
-        if (tag !== ("fundamentals" as TagType)) {
+        // Special-cases:
+        // - Do NOT expand 'fundamentals' to include its subtypes.
+        // - Do NOT expand 'genai' to include its subtypes. Selecting GenAI alone
+        //   should match only items explicitly tagged with 'genai'.
+        // - Do NOT expand 'app-dev' to include its subtypes. Selecting Application Development (Core)
+        //   should match only items explicitly tagged with 'app-dev', unless sub-tags are explicitly selected.
+        if (
+          tag !== ("fundamentals" as TagType) &&
+          tag !== ("genai" as TagType) &&
+          tag !== ("app-dev" as TagType)
+        ) {
           // Add sub-tags from parent tag (but only if sub-tag isn't already selected separately)
           tagObject.subType.forEach((sub) => {
             const subTagKey = sub.label.toLowerCase() as TagType;
