@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 html, body, #__docusaurus, #__docusaurus * {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  font-family: "Inter", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 /**
  * Any CSS included here will be global. The classic template
@@ -59,20 +61,20 @@ html, body, #__docusaurus, #__docusaurus * {
 
 }
 
-/* Ensure Roboto font is applied to Fluent UI components as well */
+/* Ensure Inter font is applied to Fluent UI components as well */
 :global(.fui-Badge),
 :global(.fui-Button),
 :global(.fui-Dialog),
 :global(.fui-Card),
 :global([class*="fui-"]),
 :global([class*="fuib-"]) {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
 /* Enhanced Tooltip styling for better appearance */
 :global([class*="fui-Tooltip"]),
 :global([class*="Tooltip"]) {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
 }
 
 :global([class*="fui-Tooltip"] [class*="content"]),

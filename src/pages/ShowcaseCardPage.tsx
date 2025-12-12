@@ -26,7 +26,7 @@ import styles from "./styles.module.css";
 import { toggleListItem } from "../utils/jsUtils";
 import { prepareUserState } from "./index";
 import { Dismiss20Filled } from "@fluentui/react-icons";
-import { Grid3x3, List } from "lucide-react";
+import MobileFilterDrawer from "../components/gallery/MobileFilterDrawer";
 
 function restoreUserState(userState: UserState | null) {
   const { scrollTopPosition, focusedElementId } = userState ?? {
@@ -260,8 +260,14 @@ function filterUsers(
   const processedTags = new Set<TagType>();
 
   // Special-case AND relation for Connect & Query: require both 'app-dev' and 'connect'
-  if (selectedTags.includes("app-dev" as TagType) && selectedTags.includes("connect" as TagType)) {
-    tagGroups.push({ tags: ["app-dev" as TagType, "connect" as TagType], requireAll: true });
+  if (
+    selectedTags.includes("app-dev" as TagType) &&
+    selectedTags.includes("connect" as TagType)
+  ) {
+    tagGroups.push({
+      tags: ["app-dev" as TagType, "connect" as TagType],
+      requireAll: true,
+    });
     processedTags.add("app-dev" as TagType);
     processedTags.add("connect" as TagType);
   }
@@ -349,22 +355,29 @@ function filterUsers(
 
 export default function ShowcaseCardPage({
   setActiveTags,
+  activeTags,
   selectedTags,
   location,
   setSelectedTags,
   setSelectedCheckbox,
+  selectedCheckbox,
   readSearchTags,
   replaceSearchTags,
 }: {
   setActiveTags: React.Dispatch<React.SetStateAction<TagType[]>>;
+  activeTags: TagType[];
   selectedTags: TagType[];
   location;
   setSelectedTags: React.Dispatch<React.SetStateAction<TagType[]>>;
   setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
+  selectedCheckbox: TagType[];
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([
+    SORT_BY_OPTIONS[0],
+  ]);
+  const [sortOption, setSortOption] = useState<string>(SORT_BY_OPTIONS[0]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState<string | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
@@ -383,11 +396,11 @@ export default function ShowcaseCardPage({
 
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
-    setSelectedUsers(readSortChoice(selectedOptions[0]));
+    setSelectedUsers(readSortChoice(sortOption));
     setSearchName(readSearchName(location.search));
     restoreUserState(location.state);
     setLoading(false);
-  }, [location, selectedOptions]);
+  }, [location, sortOption]);
 
   var cards = useMemo(
     () => filterUsers(selectedUsers, selectedTags, searchName),
@@ -422,19 +435,13 @@ export default function ShowcaseCardPage({
   const sortByOnSelect = (event, data) => {
     setLoading(true);
     setSelectedOptions(data.selectedOptions);
+    setSortOption(data.selectedOptions[0] || SORT_BY_OPTIONS[0]);
   };
   const templateNumber = cards ? cards.length : 0;
+  const filterCount = selectedTags.length;
 
   // Adobe Analytics Content
   const contentForAdobeAnalytics = `{\"cN\":\"Searchbox\"}`;
-
-  const [viewType, setViewType] = useState<"grid" | "list">("grid");
-  // Listen for custom event to switch to list view
-  React.useEffect(() => {
-    const handler = () => setViewType("list");
-    window.addEventListener("switchToListView", handler);
-    return () => window.removeEventListener("switchToListView", handler);
-  }, []);
 
   return (
     <>
@@ -452,65 +459,53 @@ export default function ShowcaseCardPage({
           <div className={styles.sortAndViewBar}>
             <Dropdown
               className={styles.sortBar}
-              defaultValue={SORT_BY_OPTIONS[0]}
+              value={sortOption}
               aria-labelledby="dropdown-default"
               appearance="outline"
               size="large"
-              placeholder={SORT_BY_OPTIONS[2]}
               onOptionSelect={sortByOnSelect}
             >
               {SORT_BY_OPTIONS.map((option) => (
                 <Option key={option}>{option}</Option>
               ))}
             </Dropdown>
-            <div className={styles.viewButtons}>
-              <button
-                className={`${styles.iconButton} ${
-                  viewType === "grid" ? styles.activeIconButton : ""
-                }`}
-                aria-label="Grid View"
-                onClick={() => setViewType("grid")}
-              >
-                <Grid3x3
-                  color={viewType === "grid" ? "#fff" : "#2e76bb"}
-                  size={20}
-                  strokeWidth={2}
-                />
-              </button>
-              <button
-                className={`${styles.iconButton} ${
-                  viewType === "list" ? styles.activeIconButton : ""
-                }`}
-                aria-label="List View"
-                onClick={() => setViewType("list")}
-              >
-                <List
-                  color={viewType === "list" ? "#fff" : "#2e76bb"}
-                  size={20}
-                  strokeWidth={2}
-                />
-              </button>
-            </div>
           </div>
         </div>
-        <div className={styles.templateResultsNumber}>
-          <Text size={400}>Showing</Text>
-          <Text size={400} weight="bold">
-            {templateNumber}
-          </Text>
-          {templateNumber != 1 ? (
-            <Text size={400}>resources</Text>
-          ) : (
-            <Text size={400}>resources</Text>
-          )}
-          {InputValue != null ? (
-            <>
-              <Text size={400}>for</Text>
-              <Text size={400} weight="bold">
-                '{InputValue}'
-              </Text>
-            </>
-          ) : null}
+        <div className={styles.templateResultsNumberContainer}>
+          <div className={styles.templateResultsNumber}>
+            <Text size={400}>Showing</Text>
+            <Text size={400} weight="bold">
+              {templateNumber}
+            </Text>
+            {templateNumber != 1 ? (
+              <Text size={400}>resources</Text>
+            ) : (
+              <Text size={400}>resource</Text>
+            )}
+            {InputValue != null ? (
+              <>
+                <Text size={400}>for</Text>
+                <Text size={400} weight="bold">
+                  '{InputValue}'
+                </Text>
+              </>
+            ) : null}
+          </div>
+          <div className={styles.mobileFilterButtonContainer}>
+            <MobileFilterDrawer
+              activeTags={activeTags}
+              selectedCheckbox={selectedCheckbox}
+              setSelectedCheckbox={setSelectedCheckbox}
+              location={location}
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              readSearchTags={readSearchTags}
+              replaceSearchTags={replaceSearchTags}
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+              filterCount={filterCount}
+            />
+          </div>
         </div>
       </div>
       <FilterAppliedBar
@@ -521,13 +516,8 @@ export default function ShowcaseCardPage({
       />
       {loading ? (
         <Spinner labelPosition="below" label="Loading..." />
-      ) : viewType === "grid" ? (
-        <ShowcaseCards filteredUsers={cards} coverPage={false} />
       ) : (
-        <ShowcaseList
-          filteredUsers={cards}
-          key={cards.map((u) => u.title).join("-")}
-        />
+        <ShowcaseCards filteredUsers={cards} coverPage={false} />
       )}
     </>
   );

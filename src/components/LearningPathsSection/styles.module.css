@@ -168,15 +168,28 @@
 
 @media (max-width: 768px) {
   .learningPathsSection {
-    padding: 28px 16px;
+    padding: 28px 0px;
+    gap: 32px;
+  }
+
+  .left {
+    padding: 0 16px;
+  }
+
+  .right {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   .heading {
     text-align: center;
+    padding: 0 16px;
   }
 
   .sectionDesc {
     text-align: center;
+    padding: 0 16px;
   }
 
   .tiles {
@@ -189,13 +202,52 @@
 
   .featuredSlider {
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 !important;
+    padding: 0 16px 40px 16px;
+    overflow: visible;
+  }
+
+  /* Show 80% of current card and 20% of next card on mobile */
+  .featuredSlider :global(.swiper-slide) {
+    width: 80% !important;
+  }
+
+  /* Pagination dots styling */
+  .featuredSlider :global(.swiper-pagination) {
+    bottom: 10px !important;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet) {
+    width: 8px;
+    height: 8px;
+    background: #bdbdbd;
+    opacity: 1;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active) {
+    background: #0f6cbd;
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* Dynamic bullets for many items */
+  .featuredSlider :global(.swiper-pagination-bullet-active-main) {
+    background: #0f6cbd;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active-prev),
+  .featuredSlider :global(.swiper-pagination-bullet-active-next) {
+    transform: scale(0.66);
   }
 }
 
 @media (max-width: 600px) {
   .learningPathsSection {
-    padding: 24px 12px;
+    padding: 24px 0px;
+  }
+
+  .left {
+    padding: 0 12px;
   }
 
   .tile {
@@ -213,5 +265,13 @@
   .tagsRow {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .heading {
+    padding: 0 12px;
+  }
+
+  .sectionDesc {
+    padding: 0 12px;
   }
 }

@@ -103,10 +103,12 @@ const App = () => {
             <div className={styles.card}>
               <ShowcaseCardPage
                 setActiveTags={setActiveTags}
+                activeTags={activeTags}
                 selectedTags={selectedTags}
                 location={location}
                 setSelectedTags={setSelectedTags}
                 setSelectedCheckbox={setSelectedCheckbox}
+                selectedCheckbox={selectedCheckbox}
                 readSearchTags={readSearchTags}
                 replaceSearchTags={replaceSearchTags}
               />

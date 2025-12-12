@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 import { ArrowRight, Database, Bot, Layers } from "lucide-react";
 import ShowcaseCards from "../../pages/ShowcaseCards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/pagination";
 import { featuredUsers } from "../../data/users";
 import siteConfig from "@generated/docusaurus.config";
 
@@ -147,11 +148,30 @@ export default function LearningPathsSection({
           comprehensive guides, tutorials, and solution accelerators.
         </div>
         <Swiper
-          spaceBetween={24}
+          spaceBetween={12}
           slidesPerView={1}
+          slidesPerGroup={1}
+          centeredSlides={true}
           className={styles.featuredSlider}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          modules={[Autoplay]}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
+          }}
+          breakpoints={{
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 24,
+              centeredSlides: false,
+            },
+            320: {
+              slidesPerView: 1.2,
+              spaceBetween: 12,
+              centeredSlides: true,
+            },
+          }}
+          modules={[Autoplay, Pagination]}
         >
           {featuredUsers.map((user, idx) => (
             <SwiperSlide key={idx}>
