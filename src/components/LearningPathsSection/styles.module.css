@@ -203,7 +203,7 @@
   .featuredSlider {
     max-width: 100%;
     margin: 0 !important;
-    padding: 0 16px 40px 16px;
+    padding: 0 16px 56px 16px;
     overflow: visible;
   }
 
@@ -213,21 +213,36 @@
   }
 
   /* Pagination dots styling */
+  /* Place below slides and let bullets wrap/resize to fit without horizontal scroll */
   .featuredSlider :global(.swiper-pagination) {
-    bottom: 10px !important;
+    position: relative !important;
+    margin-top: 12px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 6px 8px 0 !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
   }
 
   .featuredSlider :global(.swiper-pagination-bullet) {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: #bdbdbd;
     opacity: 1;
+    margin: 4px;
+    transition: width 200ms ease, transform 200ms ease, background 200ms ease;
+    flex: 0 0 auto !important;
+    border-radius: 50%;
+    display: inline-block !important;
   }
 
   .featuredSlider :global(.swiper-pagination-bullet-active) {
     background: #0f6cbd;
-    width: 24px;
-    border-radius: 4px;
+    width: 14px;
+    height: 6px;
+    border-radius: 6px;
   }
 
   /* Dynamic bullets for many items */
@@ -238,6 +253,31 @@
   .featuredSlider :global(.swiper-pagination-bullet-active-prev),
   .featuredSlider :global(.swiper-pagination-bullet-active-next) {
     transform: scale(0.66);
+  }
+
+  /* Hide dot pagination on mobile; use numeric pagination instead */
+  .featuredSlider :global(.swiper-pagination) {
+    display: none !important;
+  }
+
+  /* Numeric pagination (centered below the slider) */
+  .numericPagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #6b6b6b;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .numericCurrent {
+    color: #0f6cbd;
+  }
+
+  .numericSlash {
+    opacity: 0.6;
   }
 }
 

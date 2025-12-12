@@ -120,7 +120,7 @@ function ShowcaseCard({
             <OptimizedImage
               src={user.image}
                alt={displayTitle + " image"}
-              height={200}
+              
               objectFit="cover"
               style={{
                 width: "100%",

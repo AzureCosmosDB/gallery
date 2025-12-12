@@ -173,28 +173,7 @@ export default function MobileFilterDrawer({
         </DrawerHeader>
 
         <DrawerBody className={styles.drawerBody}>
-          {/* Sort Options */}
-          <div className={styles.sortSection}>
-            <h3 className={styles.sectionTitle}>Sort By</h3>
-            <RadioGroup
-              value={tempSortOption}
-              onChange={(_, data) => setTempSortOption(data.value)}
-            >
-              {SORT_BY_OPTIONS.map((option) => (
-                <Radio
-                  key={option}
-                  value={option}
-                  label={option}
-                  className={styles.radioOption}
-                />
-              ))}
-            </RadioGroup>
-          </div>
-
-          {/* Divider */}
-          <div className={styles.divider}></div>
-
-          {/* Filter Options */}
+          {/* Filter Options (including Sort as an accordion item) */}
           <div className={styles.filterSection}>
             <Accordion
               multiple
@@ -205,6 +184,30 @@ export default function MobileFilterDrawer({
               }
               className={styles.filterAccordion}
             >
+              {/* Sort Options as Accordion Item */}
+              <AccordionItem value="sort" className={styles.sortSection}>
+                <AccordionHeader
+                  expandIconPosition="end"
+                  className={styles.accordionHeader}
+                >
+                  Sort By
+                </AccordionHeader>
+                <AccordionPanel>
+                  <RadioGroup
+                    value={tempSortOption}
+                    onChange={(_, data) => setTempSortOption(data.value)}
+                  >
+                    {SORT_BY_OPTIONS.map((option) => (
+                      <Radio
+                        key={option}
+                        value={option}
+                        label={option}
+                        className={styles.radioOption}
+                      />
+                    ))}
+                  </RadioGroup>
+                </AccordionPanel>
+              </AccordionItem>
               {/* Learning Paths */}
               <AccordionItem value="1" className={styles.sortSection}>
                 <AccordionHeader

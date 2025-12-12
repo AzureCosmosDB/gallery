@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { ArrowRight, Database, Bot, Layers } from "lucide-react";
 import ShowcaseCards from "../../pages/ShowcaseCards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { featuredUsers } from "../../data/users";
@@ -60,6 +60,7 @@ export default function LearningPathsSection({
 }) {
   const history = useHistory();
   const location = useLocation();
+  const [currentIndex, setCurrentIndex] = useState(0);
   const onTileClick = (idx) => {
     let newSearch = "";
     if (idx === 0) {
@@ -154,11 +155,9 @@ export default function LearningPathsSection({
           centeredSlides={true}
           className={styles.featuredSlider}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-            dynamicMainBullets: 3,
-          }}
+          // Numeric pagination is rendered separately for mobile only
+          onInit={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
+          onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
           breakpoints={{
             768: {
               slidesPerView: 1,
@@ -171,7 +170,7 @@ export default function LearningPathsSection({
               centeredSlides: true,
             },
           }}
-          modules={[Autoplay, Pagination]}
+          modules={[Autoplay]}
         >
           {featuredUsers.map((user, idx) => (
             <SwiperSlide key={idx}>
@@ -179,6 +178,13 @@ export default function LearningPathsSection({
             </SwiperSlide>
           ))}
         </Swiper>
+        {/* Mobile-only numeric pagination (e.g. "1 / 5") placed below the slider */}
+        <div className={styles.numericPagination} aria-hidden={false}>
+          { /* initial value will be updated by Swiper events when mounted */ }
+          <span className={styles.numericCurrent}>{currentIndex + 1}</span>
+          <span className={styles.numericSlash}> / </span>
+          <span className={styles.numericTotal}>{featuredUsers.length}</span>
+        </div>
       </div>
     </section>
   );

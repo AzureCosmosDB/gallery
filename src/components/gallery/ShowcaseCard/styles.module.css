@@ -97,8 +97,9 @@
 }
 
 .card {
-  width: 350px;
-  min-width: 220px;
+  /* responsive card sizing: avoid hard-coded width */
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
   max-height: 100%;
   padding: 0px !important;
@@ -136,4 +137,30 @@
 .cardTags{
   padding: 0px 16px;
   margin-top: 12px;
+}
+
+/* Mobile breakpoint: cap card size to 600px and center */
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .listTileImage {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    border-radius: 8px 8px 0 0;
+  }
+  .listTileContent {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* For very small screens, use a fixed card height of 500px */
+@media screen and (max-width: 650px) {
+  .card {
+    height: 500px !important;
+  }
 }

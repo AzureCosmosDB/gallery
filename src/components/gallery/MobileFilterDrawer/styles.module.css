@@ -251,6 +251,28 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Make the checkbox checkmark (SVG/path) use the primary blue color */
+.checkboxItem :global(.fui-Checkbox__indicator) svg,
+.checkboxItem :global(.fui-Checkbox__indicator) path {
+  fill: #0078D4 !important;
+  stroke: #0078D4 !important;
+}
+
+/* Also set currentColor on the indicator so SVGs using currentColor inherit the blue */
+.checkboxItem :global(.fui-Checkbox__indicator) {
+  color: #0078D4 !important;
+}
+
+/* Checkbox checked tick color */
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) {
+  background: #0078D4 !important;
+  border-color: #0078D4 !important;
+}
+
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) :global(.fui-Checkbox__check) {
+  color: #FFF !important;
+}
+
 .radioOption :global(.fui-Radio__label),
 .checkboxItem :global(.fui-Checkbox__label) {
   color: #323130 !important;
