@@ -60,6 +60,16 @@ export default function LearningPathsSection({
 }) {
   const history = useHistory();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentTags = searchParams.getAll("tags");
+  const LEARNING_PATH_TAGS = [
+    "developing-core-applications",
+    "building-genai-apps",
+    "building-ai-agents",
+  ];
+  const isLearningPathFiltered = currentTags.some((t) =>
+    LEARNING_PATH_TAGS.includes(t)
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const onTileClick = (idx) => {
     let newSearch = "";
@@ -175,7 +185,12 @@ export default function LearningPathsSection({
         >
           {featuredUsers.map((user, idx) => (
             <SwiperSlide key={idx}>
-              <ShowcaseCards filteredUsers={[user]} coverPage={true} noGrid />
+              <ShowcaseCards
+                filteredUsers={[user]}
+                coverPage={true}
+                noGrid
+                forceShowTileNumber={isLearningPathFiltered}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

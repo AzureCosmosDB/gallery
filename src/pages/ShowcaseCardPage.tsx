@@ -27,6 +27,7 @@ import { toggleListItem } from "../utils/jsUtils";
 import { prepareUserState } from "./index";
 import { Dismiss20Filled } from "@fluentui/react-icons";
 import MobileFilterDrawer from "../components/gallery/MobileFilterDrawer";
+import { Grid3x3, List } from "lucide-react";
 
 function restoreUserState(userState: UserState | null) {
   const { scrollTopPosition, focusedElementId } = userState ?? {
@@ -377,6 +378,7 @@ export default function ShowcaseCardPage({
   const [selectedOptions, setSelectedOptions] = useState<string[]>([
     SORT_BY_OPTIONS[0],
   ]);
+  const [viewType, setViewType] = useState<"grid" | "list">("grid");
   const [sortOption, setSortOption] = useState<string>(SORT_BY_OPTIONS[0]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState<string | null>(null);
@@ -401,6 +403,13 @@ export default function ShowcaseCardPage({
     restoreUserState(location.state);
     setLoading(false);
   }, [location, sortOption]);
+
+  // Listen for custom event to switch to list view (used by other components)
+  React.useEffect(() => {
+    const handler = () => setViewType("list");
+    window.addEventListener("switchToListView", handler);
+    return () => window.removeEventListener("switchToListView", handler);
+  }, []);
 
   var cards = useMemo(
     () => filterUsers(selectedUsers, selectedTags, searchName),
@@ -469,6 +478,34 @@ export default function ShowcaseCardPage({
                 <Option key={option}>{option}</Option>
               ))}
             </Dropdown>
+            <div className={styles.viewButtons}>
+              <button
+                className={`${styles.iconButton} ${
+                  viewType === "grid" ? styles.activeIconButton : ""
+                }`}
+                aria-label="Grid View"
+                onClick={() => setViewType("grid")}
+              >
+                <Grid3x3
+                  color={viewType === "grid" ? "#fff" : "#2e76bb"}
+                  size={20}
+                  strokeWidth={2}
+                />
+              </button>
+              <button
+                className={`${styles.iconButton} ${
+                  viewType === "list" ? styles.activeIconButton : ""
+                }`}
+                aria-label="List View"
+                onClick={() => setViewType("list")}
+              >
+                <List
+                  color={viewType === "list" ? "#fff" : "#2e76bb"}
+                  size={20}
+                  strokeWidth={2}
+                />
+              </button>
+            </div>
           </div>
         </div>
         <div className={styles.templateResultsNumberContainer}>
@@ -516,8 +553,13 @@ export default function ShowcaseCardPage({
       />
       {loading ? (
         <Spinner labelPosition="below" label="Loading..." />
-      ) : (
+      ) : viewType === "grid" ? (
         <ShowcaseCards filteredUsers={cards} coverPage={false} />
+      ) : (
+        <ShowcaseList
+          filteredUsers={cards}
+          key={cards.map((u) => u.title).join("-")}
+        />
       )}
     </>
   );

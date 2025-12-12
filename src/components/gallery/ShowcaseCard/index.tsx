@@ -118,8 +118,8 @@ function ShowcaseCard({
           onClick={openDialog}
           style={fixedHeight ? { height: fixedHeight } : undefined}
         >
-          {/* Mobile-only tile number badge when learning path filter is active */}
-          {tileNumber !== undefined && isLearningPathFiltered && (
+          {/* Mobile-only tile number badge when a tileNumber is supplied (parent controls when to provide it) */}
+          {tileNumber !== undefined && (
             <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
           )}
           {user.image && (

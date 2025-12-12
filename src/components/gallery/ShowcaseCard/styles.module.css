@@ -152,7 +152,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    z-index: 30;
+    z-index: 9999;
     background: #eaf3fc;
     color: #0078d4;
     font-weight: 700;
@@ -163,6 +163,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    pointer-events: none; /* allow clicks to hit the card underneath */
   }
   .listTileImage {
     width: 100%;
@@ -180,5 +181,12 @@
 @media screen and (max-width: 650px) {
   .card {
     height: 500px !important;
+  }
+}
+
+/* Hide tile number on larger screens */
+@media screen and (min-width: 769px) {
+  .mobileTileNumber {
+    display: none !important;
   }
 }
