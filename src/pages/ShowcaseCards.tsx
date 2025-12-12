@@ -63,15 +63,23 @@ export default function ShowcaseCards({
       <div className={noGrid ? styles.featuredCarousel : styles.showcaseCards}>
         {orderedUsers
           .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
-          .map((user, index) => (
-            <React.Fragment key={user.title}>
-              <ShowcaseCard
-                user={user}
-                coverPage={coverPage}
-                fixedHeight={noGrid ? 460 : undefined}
-              />
-            </React.Fragment>
-          ))}
+          .map((user, index) => {
+            // Compute global index for this user within orderedUsers
+            const globalIndex = (page - 1) * CARDS_PER_PAGE + index;
+            const tileNumber = isLearningPathFiltered
+              ? user.tileNumber ?? globalIndex + 1
+              : undefined;
+            return (
+              <React.Fragment key={user.title}>
+                <ShowcaseCard
+                  user={user}
+                  coverPage={coverPage}
+                  fixedHeight={noGrid ? 460 : undefined}
+                  tileNumber={tileNumber}
+                />
+              </React.Fragment>
+            );
+          })}
       </div>
       {!noGrid && (
         <Pagination page={page} totalPages={totalPages} setPage={setPage} />

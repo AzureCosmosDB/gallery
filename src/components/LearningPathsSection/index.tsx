@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { ArrowRight, Database, Bot, Layers } from "lucide-react";
 import ShowcaseCards from "../../pages/ShowcaseCards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { featuredUsers } from "../../data/users";
@@ -158,6 +158,7 @@ export default function LearningPathsSection({
           // Numeric pagination is rendered separately for mobile only
           onInit={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
           onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
+          pagination={{ clickable: true }}
           breakpoints={{
             768: {
               slidesPerView: 1,
@@ -170,7 +171,7 @@ export default function LearningPathsSection({
               centeredSlides: true,
             },
           }}
-          modules={[Autoplay]}
+          modules={[Autoplay, Pagination]}
         >
           {featuredUsers.map((user, idx) => (
             <SwiperSlide key={idx}>

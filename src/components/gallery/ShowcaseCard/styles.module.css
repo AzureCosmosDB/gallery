@@ -113,6 +113,7 @@
   box-shadow: none !important;
   border: 1px solid #0078d426 !important;
   transform-origin: center;
+  position: relative;
 }
 
 .card:hover {
@@ -145,6 +146,23 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+  /* Mobile tile number badge */
+  .mobileTileNumber {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 30;
+    background: #eaf3fc;
+    color: #0078d4;
+    font-weight: 700;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   }
   .listTileImage {
     width: 100%;

@@ -255,12 +255,11 @@
     transform: scale(0.66);
   }
 
-  /* Hide dot pagination on mobile; use numeric pagination instead */
+  /* On mobile we hide the dot pagination (swipe bullets) and show numeric pagination */
   .featuredSlider :global(.swiper-pagination) {
     display: none !important;
   }
 
-  /* Numeric pagination (centered below the slider) */
   .numericPagination {
     display: flex;
     justify-content: center;
@@ -278,6 +277,18 @@
 
   .numericSlash {
     opacity: 0.6;
+  }
+
+}
+
+/* Desktop and tablet: ensure dot pagination shows and numeric pagination hides */
+@media (min-width: 769px) {
+  .featuredSlider :global(.swiper-pagination) {
+    /* hide pagination on desktop/tablet as requested */
+    display: none !important;
+  }
+  .numericPagination {
+    display: none !important;
   }
 }
 
