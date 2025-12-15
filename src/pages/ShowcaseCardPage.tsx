@@ -26,6 +26,7 @@ import styles from "./styles.module.css";
 import { toggleListItem } from "../utils/jsUtils";
 import { prepareUserState } from "./index";
 import { Dismiss20Filled } from "@fluentui/react-icons";
+import MobileFilterDrawer from "../components/gallery/MobileFilterDrawer";
 import { Grid3x3, List } from "lucide-react";
 
 function restoreUserState(userState: UserState | null) {
@@ -260,8 +261,14 @@ function filterUsers(
   const processedTags = new Set<TagType>();
 
   // Special-case AND relation for Connect & Query: require both 'app-dev' and 'connect'
-  if (selectedTags.includes("app-dev" as TagType) && selectedTags.includes("connect" as TagType)) {
-    tagGroups.push({ tags: ["app-dev" as TagType, "connect" as TagType], requireAll: true });
+  if (
+    selectedTags.includes("app-dev" as TagType) &&
+    selectedTags.includes("connect" as TagType)
+  ) {
+    tagGroups.push({
+      tags: ["app-dev" as TagType, "connect" as TagType],
+      requireAll: true,
+    });
     processedTags.add("app-dev" as TagType);
     processedTags.add("connect" as TagType);
   }
@@ -349,22 +356,30 @@ function filterUsers(
 
 export default function ShowcaseCardPage({
   setActiveTags,
+  activeTags,
   selectedTags,
   location,
   setSelectedTags,
   setSelectedCheckbox,
+  selectedCheckbox,
   readSearchTags,
   replaceSearchTags,
 }: {
   setActiveTags: React.Dispatch<React.SetStateAction<TagType[]>>;
+  activeTags: TagType[];
   selectedTags: TagType[];
   location;
   setSelectedTags: React.Dispatch<React.SetStateAction<TagType[]>>;
   setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
+  selectedCheckbox: TagType[];
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([
+    SORT_BY_OPTIONS[0],
+  ]);
+  const [viewType, setViewType] = useState<"grid" | "list">("grid");
+  const [sortOption, setSortOption] = useState<string>(SORT_BY_OPTIONS[0]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState<string | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
@@ -383,11 +398,18 @@ export default function ShowcaseCardPage({
 
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
-    setSelectedUsers(readSortChoice(selectedOptions[0]));
+    setSelectedUsers(readSortChoice(sortOption));
     setSearchName(readSearchName(location.search));
     restoreUserState(location.state);
     setLoading(false);
-  }, [location, selectedOptions]);
+  }, [location, sortOption]);
+
+  // Listen for custom event to switch to list view (used by other components)
+  React.useEffect(() => {
+    const handler = () => setViewType("list");
+    window.addEventListener("switchToListView", handler);
+    return () => window.removeEventListener("switchToListView", handler);
+  }, []);
 
   var cards = useMemo(
     () => filterUsers(selectedUsers, selectedTags, searchName),
@@ -422,19 +444,13 @@ export default function ShowcaseCardPage({
   const sortByOnSelect = (event, data) => {
     setLoading(true);
     setSelectedOptions(data.selectedOptions);
+    setSortOption(data.selectedOptions[0] || SORT_BY_OPTIONS[0]);
   };
   const templateNumber = cards ? cards.length : 0;
+  const filterCount = selectedTags.length;
 
   // Adobe Analytics Content
   const contentForAdobeAnalytics = `{\"cN\":\"Searchbox\"}`;
-
-  const [viewType, setViewType] = useState<"grid" | "list">("grid");
-  // Listen for custom event to switch to list view
-  React.useEffect(() => {
-    const handler = () => setViewType("list");
-    window.addEventListener("switchToListView", handler);
-    return () => window.removeEventListener("switchToListView", handler);
-  }, []);
 
   return (
     <>
@@ -452,11 +468,10 @@ export default function ShowcaseCardPage({
           <div className={styles.sortAndViewBar}>
             <Dropdown
               className={styles.sortBar}
-              defaultValue={SORT_BY_OPTIONS[0]}
+              value={sortOption}
               aria-labelledby="dropdown-default"
               appearance="outline"
               size="large"
-              placeholder={SORT_BY_OPTIONS[2]}
               onOptionSelect={sortByOnSelect}
             >
               {SORT_BY_OPTIONS.map((option) => (
@@ -493,24 +508,41 @@ export default function ShowcaseCardPage({
             </div>
           </div>
         </div>
-        <div className={styles.templateResultsNumber}>
-          <Text size={400}>Showing</Text>
-          <Text size={400} weight="bold">
-            {templateNumber}
-          </Text>
-          {templateNumber != 1 ? (
-            <Text size={400}>resources</Text>
-          ) : (
-            <Text size={400}>resources</Text>
-          )}
-          {InputValue != null ? (
-            <>
-              <Text size={400}>for</Text>
-              <Text size={400} weight="bold">
-                '{InputValue}'
-              </Text>
-            </>
-          ) : null}
+        <div className={styles.templateResultsNumberContainer}>
+          <div className={styles.templateResultsNumber}>
+            <Text size={400}>Showing</Text>
+            <Text size={400} weight="bold">
+              {templateNumber}
+            </Text>
+            {templateNumber != 1 ? (
+              <Text size={400}>resources</Text>
+            ) : (
+              <Text size={400}>resource</Text>
+            )}
+            {InputValue != null ? (
+              <>
+                <Text size={400}>for</Text>
+                <Text size={400} weight="bold">
+                  '{InputValue}'
+                </Text>
+              </>
+            ) : null}
+          </div>
+          <div className={styles.mobileFilterButtonContainer}>
+            <MobileFilterDrawer
+              activeTags={activeTags}
+              selectedCheckbox={selectedCheckbox}
+              setSelectedCheckbox={setSelectedCheckbox}
+              location={location}
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              readSearchTags={readSearchTags}
+              replaceSearchTags={replaceSearchTags}
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+              filterCount={filterCount}
+            />
+          </div>
         </div>
       </div>
       <FilterAppliedBar

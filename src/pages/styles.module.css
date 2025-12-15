@@ -14,11 +14,13 @@
   max-width: 83px;
   flex: 0 0 83px;
 }
+
 .featuredCarousel{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .viewButtons {
   display: flex;
   border-radius: 8px;
@@ -162,10 +164,16 @@
 
 @media (max-width: 768px) {
   .showcaseCards {
-    grid-template-columns: minmax(240px, 1fr);
+    grid-template-columns: 1fr;
     max-width: 100%;
+    width: 100%;
     gap: 20px;
-    justify-items: center;
+    padding: 0;
+  }
+
+  .featuredCarousel {
+    width: 100%;
+    align-items: stretch;
   }
 }
 
@@ -272,13 +280,26 @@
   margin-top:24px
 }
 
-.templateResultsNumber {
+.templateResultsNumberContainer {
   padding: 24px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.templateResultsNumber {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 5px;
-   color: #605e5c;
+  color: #605e5c;
+  flex: 1;
+}
+
+.mobileFilterButtonContainer {
+  display: none;
 }
 
 .filterAppliedBar {
@@ -339,6 +360,38 @@
   .sortBar {
     width: 100% !important;
     max-width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Hide desktop filters on mobile */
+  .filter {
+    display: none !important;
+  }
+
+  /* Hide view toggle on mobile */
+  .viewButtons {
+    display: none !important;
+  }
+
+  /* Show mobile filter button */
+  .mobileFilterButtonContainer {
+    display: block;
+  }
+
+  /* Hide desktop sort dropdown on mobile */
+  .sortBar {
+    display: none !important;
+  }
+
+  /* Adjust results number container for mobile */
+  .templateResultsNumberContainer {
+    padding: 16px 0;
+    align-items: center;
+  }
+
+  .templateResultsNumber {
+    font-size: 14px;
   }
 }
 

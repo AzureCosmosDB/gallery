@@ -97,8 +97,9 @@
 }
 
 .card {
-  width: 350px;
-  min-width: 220px;
+  /* responsive card sizing: avoid hard-coded width */
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
   max-height: 100%;
   padding: 0px !important;
@@ -112,6 +113,7 @@
   box-shadow: none !important;
   border: 1px solid #0078d426 !important;
   transform-origin: center;
+  position: relative;
 }
 
 .card:hover {
@@ -136,4 +138,55 @@
 .cardTags{
   padding: 0px 16px;
   margin-top: 12px;
+}
+
+/* Mobile breakpoint: cap card size to 600px and center */
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Mobile tile number badge */
+  .mobileTileNumber {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 9999;
+    background: #eaf3fc;
+    color: #0078d4;
+    font-weight: 700;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    pointer-events: none; /* allow clicks to hit the card underneath */
+  }
+  .listTileImage {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    border-radius: 8px 8px 0 0;
+  }
+  .listTileContent {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* For very small screens, use a fixed card height of 500px */
+@media screen and (max-width: 650px) {
+  .card {
+    height: 500px !important;
+  }
+}
+
+/* Hide tile number on larger screens */
+@media screen and (min-width: 769px) {
+  .mobileTileNumber {
+    display: none !important;
+  }
 }

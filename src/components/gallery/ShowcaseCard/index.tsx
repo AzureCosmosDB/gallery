@@ -31,10 +31,12 @@ function ShowcaseCard({
   user,
   coverPage,
   fixedHeight,
+  tileNumber,
 }: {
   user: User;
   coverPage: Boolean;
   fixedHeight?: number;
+  tileNumber?: number;
 }): JSX.Element {
   const tags = user.tags;
   const title = user.title;
@@ -116,11 +118,15 @@ function ShowcaseCard({
           onClick={openDialog}
           style={fixedHeight ? { height: fixedHeight } : undefined}
         >
+          {/* Mobile-only tile number badge when a tileNumber is supplied (parent controls when to provide it) */}
+          {tileNumber !== undefined && (
+            <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
+          )}
           {user.image && (
             <OptimizedImage
               src={user.image}
                alt={displayTitle + " image"}
-              height={200}
+              
               objectFit="cover"
               style={{
                 width: "100%",

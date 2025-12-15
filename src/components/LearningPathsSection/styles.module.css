@@ -168,15 +168,28 @@
 
 @media (max-width: 768px) {
   .learningPathsSection {
-    padding: 28px 16px;
+    padding: 28px 0px;
+    gap: 32px;
+  }
+
+  .left {
+    padding: 0 16px;
+  }
+
+  .right {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
   }
 
   .heading {
     text-align: center;
+    padding: 0 16px;
   }
 
   .sectionDesc {
     text-align: center;
+    padding: 0 16px;
   }
 
   .tiles {
@@ -189,13 +202,103 @@
 
   .featuredSlider {
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 !important;
+    padding: 0 16px 56px 16px;
+    overflow: visible;
+  }
+
+  /* Show 80% of current card and 20% of next card on mobile */
+  .featuredSlider :global(.swiper-slide) {
+    width: 80% !important;
+  }
+
+  /* Pagination dots styling */
+  /* Place below slides and let bullets wrap/resize to fit without horizontal scroll */
+  .featuredSlider :global(.swiper-pagination) {
+    position: relative !important;
+    margin-top: 12px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 6px 8px 0 !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet) {
+    width: 6px;
+    height: 6px;
+    background: #bdbdbd;
+    opacity: 1;
+    margin: 4px;
+    transition: width 200ms ease, transform 200ms ease, background 200ms ease;
+    flex: 0 0 auto !important;
+    border-radius: 50%;
+    display: inline-block !important;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active) {
+    background: #0f6cbd;
+    width: 14px;
+    height: 6px;
+    border-radius: 6px;
+  }
+
+  /* Dynamic bullets for many items */
+  .featuredSlider :global(.swiper-pagination-bullet-active-main) {
+    background: #0f6cbd;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active-prev),
+  .featuredSlider :global(.swiper-pagination-bullet-active-next) {
+    transform: scale(0.66);
+  }
+
+  /* On mobile we hide the dot pagination (swipe bullets) and show numeric pagination */
+  .featuredSlider :global(.swiper-pagination) {
+    display: none !important;
+  }
+
+  .numericPagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #6b6b6b;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .numericCurrent {
+    color: #0f6cbd;
+  }
+
+  .numericSlash {
+    opacity: 0.6;
+  }
+
+}
+
+/* Desktop and tablet: ensure dot pagination shows and numeric pagination hides */
+@media (min-width: 769px) {
+  .featuredSlider :global(.swiper-pagination) {
+    /* hide pagination on desktop/tablet as requested */
+    display: none !important;
+  }
+  .numericPagination {
+    display: none !important;
   }
 }
 
 @media (max-width: 600px) {
   .learningPathsSection {
-    padding: 24px 12px;
+    padding: 24px 0px;
+  }
+
+  .left {
+    padding: 0 12px;
   }
 
   .tile {
@@ -213,5 +316,13 @@
   .tagsRow {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .heading {
+    padding: 0 12px;
+  }
+
+  .sectionDesc {
+    padding: 0 12px;
   }
 }
