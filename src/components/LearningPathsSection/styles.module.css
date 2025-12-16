@@ -109,6 +109,7 @@
   width: 100%;
   max-width: 420px;
   margin-left: 0px !important;
+  overflow: hidden;
 }
 .right{
   max-width: 390px;
