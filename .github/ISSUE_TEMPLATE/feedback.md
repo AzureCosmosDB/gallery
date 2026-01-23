@@ -1,14 +1,15 @@
 ---
 name: Feedback
 about: Share feedback about the PostgreSQL Gallery
-title: '[FEEDBACK] '
+title: "[FEEDBACK] "
 labels: feedback
-assignees: ''
-
+assignees: ""
 ---
 
 ## Type of Feedback
+
 <!-- Please check the type of feedback you're providing -->
+
 - [ ] Bug report
 - [ ] Feature request
 - [ ] Content suggestion
@@ -16,27 +17,53 @@ assignees: ''
 - [ ] Other
 
 ## Description
+
 <!-- Please provide a clear and concise description of your feedback -->
 
+## Describe the Bug (if reporting a bug)
+
+<!-- A clear and concise description of what the bug is -->
+
 ## Steps to Reproduce (for bug reports)
-<!-- If reporting a bug, please describe the steps to reproduce the issue -->
-1. 
-2. 
-3. 
+
+<!-- Steps to reproduce the behavior -->
+
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
 ## Expected Behavior
-<!-- What did you expect to happen? -->
+
+<!-- A clear and concise description of what you expected to happen -->
 
 ## Actual Behavior
+
 <!-- What actually happened? -->
 
-## Additional Context
-<!-- Add any other context about the feedback here, such as screenshots, environment details, etc. -->
+## Screenshots
 
-## Browser Information (if applicable)
-- Browser: [e.g. Chrome, Firefox, Safari]
+<!-- If applicable, add screenshots to help explain your problem -->
+
+## Device Information
+
+**Desktop (please complete the following information):**
+
+- OS: [e.g. Windows, macOS, Linux]
+- Browser: [e.g. Chrome, Firefox, Safari, Edge]
 - Version: [e.g. 22]
-- OS: [e.g. iOS, Windows, Mac]
+
+**Smartphone (please complete the following information):**
+
+- Device: [e.g. iPhone6]
+- OS: [e.g. iOS8.1]
+- Browser: [e.g. stock browser, safari]
+- Version: [e.g. 22]
+
+## Additional Context
+
+<!-- Add any other context about the problem here, such as error messages, network conditions, etc. -->
 
 ## Additional Comments
+
 <!-- Any other information you'd like to share -->
