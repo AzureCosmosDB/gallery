@@ -41,9 +41,12 @@ assignees: ""
 
 <!-- What actually happened? -->
 
-## Screenshots
+## Screenshots / Screen Recordings
 
-<!-- If applicable, add screenshots to help explain your problem -->
+<!-- If applicable, add screenshots or screen recordings to help explain your problem -->
+<!-- For screen recordings, you can drag and drop MP4, MOV, or WebM files directly into GitHub -->
+<!-- Consider using tools like OBS Studio, QuickTime (Mac), or Windows Game Bar for recording -->
+<!-- Max file size: 10MB per file -->
 
 ## Device Information
 
