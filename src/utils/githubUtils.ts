@@ -1,18 +1,18 @@
 /**
- * Utility function to open GitHub issues page in a new tab
- * @param issuesUrl - Optional GitHub issues URL, defaults to the postgres-appdev-hub issues page
+ * Utility function to open GitHub new issue page with feedback template in a new tab
+ * @param issuesUrl - Optional GitHub new issue URL, defaults to the gallery repository new issue page with feedback template
  */
-export const openGitHubIssues = (issuesUrl?: string): void => {
+export const openGitHubNewIssue = (issuesUrl?: string): void => {
   const defaultUrl =
-    "https://github.com/Azure-Samples/postgres-appdev-hub/issues";
+    "https://github.com/AzureCosmosDB/gallery/issues/new?template=feedback.md";
   window.open(issuesUrl || defaultUrl, "_blank");
 };
 
 /**
- * Higher-order function to create a click handler that opens GitHub issues
- * @param issuesUrl - Optional GitHub issues URL, defaults to the postgres-appdev-hub issues page
+ * Higher-order function to create a click handler that opens GitHub new issue page with template
+ * @param issuesUrl - Optional GitHub new issue URL, defaults to the gallery repository new issue page with feedback template
  * @returns A click handler function
  */
 export const shareFeedbackHandler = (issuesUrl?: string) => {
-  return () => openGitHubIssues(issuesUrl);
+  return () => openGitHubNewIssue(issuesUrl);
 };
