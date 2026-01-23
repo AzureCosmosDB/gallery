@@ -32,12 +32,12 @@ export default function ShowcaseCardPanel({
     .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
+    TagList.indexOf(tagObject.tag),
   );
 
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
   const vectorDatabaseTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "VectorDatabase"
+    (tag) => tag.type === "VectorDatabase",
   );
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
 
@@ -137,7 +137,7 @@ export default function ShowcaseCardPanel({
       ) : null}
       {azureTags.length > 0 ? (
         <>
-          <div className={styles.subTitle2}>Services</div>
+          <div className={styles.subTitle2}>Products</div>
           <CardPanelTag tags={azureTags} />{" "}
         </>
       ) : null}

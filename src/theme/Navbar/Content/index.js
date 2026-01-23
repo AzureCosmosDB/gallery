@@ -77,6 +77,56 @@ export default function NavbarContent() {
   const history = useHistory();
   const location = useLocation();
 
+  // Scroll listener to update active section based on scroll position
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        'home',
+        'learning-paths', 
+        'resource-library',
+        'quick-links',
+        'community-support'
+      ];
+      
+      const navbar = document.querySelector('.navbar');
+      const navbarHeight = navbar ? navbar.offsetHeight : 80;
+      const scrollPosition = window.scrollY + navbarHeight + 50; // Add some offset for better detection
+      
+      // Check if we've reached the bottom of the page (more accurate detection)
+      const isAtBottom = Math.abs((window.innerHeight + window.scrollY) - document.documentElement.scrollHeight) < 5;
+      
+      let currentSection = 'home';
+      
+      // If at bottom, always set to community-support (last section)
+      if (isAtBottom) {
+        currentSection = 'community-support';
+      } else {
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+            if (scrollPosition >= elementTop) {
+              currentSection = sectionId;
+            }
+          }
+        }
+      }
+      
+      setActiveSection(currentSection);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Call once to set initial state
+    handleScroll();
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   // Helper to handle click and set active section
   const handleMenuClick = (e, hash) => {
     scrollToSection(e, hash);
@@ -91,6 +141,7 @@ export default function NavbarContent() {
     const tagMapping = {
       "#documentation": ["concepts", "how-to"], // Multiple tags for documentation
       "#solution-accelerators": "solution-accelerator",
+      "#workshops": "workshop",
       "#videos": "video",
       "#blogs": "blog",
       "#trainings": "training",
@@ -121,7 +172,11 @@ export default function NavbarContent() {
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const navbar = document.querySelector('.navbar');
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 20;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           // Dispatch custom event to switch to list view
           window.dispatchEvent(new Event("switchToListView"));
         }
@@ -156,7 +211,7 @@ export default function NavbarContent() {
             }`}
             onClick={(e) => handleMenuClick(e, "#learning-paths")}
           >
-            Learning Paths
+            Pathways
           </Link>
           <div className={styles.menuItemDropdown}>
             <Link
@@ -192,6 +247,15 @@ export default function NavbarContent() {
                 }
               >
                 Solution accelerators
+              </Link>
+              <Link
+                to="#workshops"
+                className={`${styles.dropdownMenuItem} ${
+                  activeSection === "workshops" ? styles.activeMenuItem : ""
+                }`}
+                onClick={(e) => handleDropdownClick(e, "#workshops")}
+              >
+                Workshops
               </Link>
               <Link
                 to="#videos"

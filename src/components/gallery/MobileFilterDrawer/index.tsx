@@ -86,7 +86,7 @@ export default function MobileFilterDrawer({
 
   const handleClear = () => {
     setTempSelectedCheckbox([]);
-    setTempSortOption(SORT_BY_OPTIONS[0]);
+    setTempSortOption(SORT_BY_OPTIONS[1]);
   };
 
   const tempFilterCount = tempSelectedCheckbox.length;
@@ -100,7 +100,7 @@ export default function MobileFilterDrawer({
 
       if (tagObject?.subType && Array.isArray(tagObject.subType)) {
         const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase() as TagType
+          (s) => s.label.toLowerCase() as TagType,
         );
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
@@ -114,14 +114,14 @@ export default function MobileFilterDrawer({
 
   // Organize tags by type
   const learningPathTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "LearningPath"
+    (tag) => Tags[tag]?.type === "LearningPath",
   );
   const serviceTags = TagList.filter((tag) => Tags[tag]?.type === "Service");
   const contentTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ContentType"
+    (tag) => Tags[tag]?.type === "ContentType",
   );
   const resourceTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ResourceType"
+    (tag) => Tags[tag]?.type === "ResourceType",
   );
   const languageTags = TagList.filter((tag) => Tags[tag]?.type === "Language");
 
@@ -208,13 +208,13 @@ export default function MobileFilterDrawer({
                   </RadioGroup>
                 </AccordionPanel>
               </AccordionItem>
-              {/* Learning Paths */}
+              {/* Pathways */}
               <AccordionItem value="1" className={styles.sortSection}>
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Learning Paths
+                  Pathways
                 </AccordionHeader>
                 <AccordionPanel>
                   {learningPathTags.map((tag) => {
@@ -233,13 +233,38 @@ export default function MobileFilterDrawer({
                 </AccordionPanel>
               </AccordionItem>
 
-              {/* Services */}
+              {/* Resource Type */}
               <AccordionItem value="2" className={styles.sortSection}>
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Services
+                  Resource Type
+                </AccordionHeader>
+                <AccordionPanel>
+                  {resourceTypeTags.map((tag) => {
+                    const tagObject = Tags[tag];
+                    return (
+                      <div key={tag} className={styles.checkboxItem}>
+                        <Checkbox
+                          checked={tempSelectedCheckbox.includes(tag)}
+                          onChange={() => toggleTempTag(tag)}
+                          label={tagObject.label}
+                          disabled={!activeTags.includes(tag)}
+                        />
+                      </div>
+                    );
+                  })}
+                </AccordionPanel>
+              </AccordionItem>
+
+              {/* Products */}
+              <AccordionItem value="3" className={styles.sortSection}>
+                <AccordionHeader
+                  expandIconPosition="end"
+                  className={styles.accordionHeader}
+                >
+                  Products
                 </AccordionHeader>
                 <AccordionPanel>
                   {serviceTags.map((tag) => {
@@ -273,7 +298,7 @@ export default function MobileFilterDrawer({
                                   >
                                     <Checkbox
                                       checked={tempSelectedCheckbox.includes(
-                                        subTagKey
+                                        subTagKey,
                                       )}
                                       onChange={() => toggleTempTag(subTagKey)}
                                       label={subTagObject.label}
@@ -302,41 +327,16 @@ export default function MobileFilterDrawer({
                 </AccordionPanel>
               </AccordionItem>
 
-              {/* Content Type */}
-              <AccordionItem value="3" className={styles.sortSection}>
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
-                  Content Type
-                </AccordionHeader>
-                <AccordionPanel>
-                  {contentTypeTags.map((tag) => {
-                    const tagObject = Tags[tag];
-                    return (
-                      <div key={tag} className={styles.checkboxItem}>
-                        <Checkbox
-                          checked={tempSelectedCheckbox.includes(tag)}
-                          onChange={() => toggleTempTag(tag)}
-                          label={tagObject.label}
-                          disabled={!activeTags.includes(tag)}
-                        />
-                      </div>
-                    );
-                  })}
-                </AccordionPanel>
-              </AccordionItem>
-
-              {/* Resource Type */}
+              {/* Category */}
               <AccordionItem value="4" className={styles.sortSection}>
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Resource Type
+                  Category
                 </AccordionHeader>
                 <AccordionPanel>
-                  {resourceTypeTags.map((tag) => {
+                  {contentTypeTags.map((tag) => {
                     const tagObject = Tags[tag];
                     return (
                       <div key={tag} className={styles.checkboxItem}>

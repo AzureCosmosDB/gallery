@@ -19,7 +19,7 @@ export default function ShowcaseCardTag({
   cardPanel: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Standard: Always show exactly 3 badges before the plus badge
   const MAX_VISIBLE_TAGS = 3;
 
@@ -28,41 +28,74 @@ export default function ShowcaseCardTag({
     .map((tag) => ({ tag, ...Tags[tag] }));
 
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
+    TagList.indexOf(tagObject.tag),
   );
 
   const languageTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "Language"
+    (tag) => tag.type === "Language",
   );
 
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
 
   const intelligentSolutionTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "GenerativeAI"
+    (tag) => tag.type === "GenerativeAI",
   );
 
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
 
   const resourceTypeTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "ResourceType"
+    (tag) => tag.type === "ResourceType",
   );
 
+  // Special handling for documentation tags: ensure Documentation appears first, followed by sub-tag
+  const processedResourceTypeTags = [];
+  const hasDocumentationSubTag = tags.some((tag) =>
+    ["concepts", "how-to", "tutorial"].includes(tag),
+  );
+
+  if (hasDocumentationSubTag && tags.includes("documentation")) {
+    // Add documentation tag first
+    const docTag = resourceTypeTags.find((tag) => tag.tag === "documentation");
+    if (docTag) {
+      processedResourceTypeTags.push(docTag);
+    }
+
+    // Add the specific sub-tag (concepts, how-to, or tutorial)
+    const subTag = resourceTypeTags.find((tag) =>
+      ["concepts", "how-to", "tutorial"].includes(tag.tag),
+    );
+    if (subTag) {
+      processedResourceTypeTags.push(subTag);
+    }
+
+    // Add any other resource type tags
+    const otherResourceTypeTags = resourceTypeTags.filter(
+      (tag) =>
+        tag.tag !== "documentation" &&
+        !["concepts", "how-to", "tutorial"].includes(tag.tag),
+    );
+    processedResourceTypeTags.push(...otherResourceTypeTags);
+  } else {
+    // No special documentation handling needed
+    processedResourceTypeTags.push(...resourceTypeTags);
+  }
+
   const contentTypeTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "ContentType"
+    (tag) => tag.type === "ContentType",
   );
 
   const serviceTags = tagObjectsSorted.filter((tag) => tag.type === "Service");
 
   const learningPathTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "LearningPath"
+    (tag) => tag.type === "LearningPath",
   );
 
   const tagsByTypeSorted = [
+    ...processedResourceTypeTags,
     ...languageTags,
     ...modelTags,
     ...intelligentSolutionTags,
     ...azureTags,
-    ...resourceTypeTags,
     ...contentTypeTags,
     ...serviceTags,
     ...learningPathTags,

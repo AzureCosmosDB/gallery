@@ -67,7 +67,7 @@ function readSortChoice(rule: string): User[] {
       return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
   } else if (rule == SORT_BY_OPTIONS[1]) {
-    // Sort by priority: P0 > P1 > P2, then by original order
+    // Sort by priority: P0 > P1 > P2, then by solution accelerator tag, then by original order
     const copyUnsortedUser = unsortedUsers.slice();
     return copyUnsortedUser.sort((a, b) => {
       // Define priority order (P0 = highest priority = 0, P1 = 1, P2 = 2, no priority = 3)
@@ -80,7 +80,18 @@ function readSortChoice(rule: string): User[] {
         return priorityA - priorityB;
       }
 
-      // If priorities are equal, sort by original order
+      // If priorities are equal, prioritize solution accelerator items
+      const hasSolutionAcceleratorA = a.tags.includes("solution-accelerator");
+      const hasSolutionAcceleratorB = b.tags.includes("solution-accelerator");
+
+      if (hasSolutionAcceleratorA && !hasSolutionAcceleratorB) {
+        return -1; // A comes before B
+      }
+      if (!hasSolutionAcceleratorA && hasSolutionAcceleratorB) {
+        return 1; // B comes before A
+      }
+
+      // If both have same priority and same solution accelerator status, sort by original order
       return (a.order || 0) - (b.order || 0);
     });
   }
@@ -119,7 +130,7 @@ function FilterAppliedBar({
         tagObject.subType.length > 0
       ) {
         const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase() as TagType
+          (s) => s.label.toLowerCase() as TagType,
         );
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
@@ -221,12 +232,12 @@ function FilterBar(): React.JSX.Element {
 function filterUsers(
   users: User[],
   selectedTags: TagType[],
-  searchName: string | null
+  searchName: string | null,
 ) {
   if (searchName) {
     // eslint-disable-next-line no-param-reassign
     users = users.filter((user) =>
-      user.title.toLowerCase().includes(searchName.toLowerCase())
+      user.title.toLowerCase().includes(searchName.toLowerCase()),
     );
   }
   if (!selectedTags || selectedTags.length === 0) {
@@ -376,10 +387,10 @@ export default function ShowcaseCardPage({
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([
-    SORT_BY_OPTIONS[0],
+    SORT_BY_OPTIONS[1],
   ]);
   const [viewType, setViewType] = useState<"grid" | "list">("grid");
-  const [sortOption, setSortOption] = useState<string>(SORT_BY_OPTIONS[0]);
+  const [sortOption, setSortOption] = useState<string>(SORT_BY_OPTIONS[1]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState<string | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
@@ -413,7 +424,7 @@ export default function ShowcaseCardPage({
 
   var cards = useMemo(
     () => filterUsers(selectedUsers, selectedTags, searchName),
-    [selectedUsers, selectedTags, searchName]
+    [selectedUsers, selectedTags, searchName],
   );
 
   useEffect(() => {
@@ -444,7 +455,7 @@ export default function ShowcaseCardPage({
   const sortByOnSelect = (event, data) => {
     setLoading(true);
     setSelectedOptions(data.selectedOptions);
-    setSortOption(data.selectedOptions[0] || SORT_BY_OPTIONS[0]);
+    setSortOption(data.selectedOptions[0] || SORT_BY_OPTIONS[1]);
   };
   const templateNumber = cards ? cards.length : 0;
   const filterCount = selectedTags.length;

@@ -1,8 +1,7 @@
 /* Reusable style for resource links */
 .resourceLink {
-  color: #83817f;
-  text-decoration: none;
-  font-weight: 500;
+  color: #555;
+  text-decoration: underline;
 }
 .resourceLink:hover{
   text-decoration: underline;
@@ -23,6 +22,11 @@
   box-sizing: border-box;
   box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
   cursor: pointer;
+}
+
+.heroTextWrapper{
+  display: flex;
+  flex-direction: column;
 }
 
 .cardCommon:hover{
@@ -85,7 +89,7 @@
   display: flex;
   justify-content: center;
   gap: 32px;
-  margin: 32px 0;
+  padding-top: 32px;
   flex-wrap: wrap;
 }
 
@@ -107,6 +111,7 @@
   color: #636364;
   font-size: 24px !important;
   font-weight: 400 !important;
+    max-width: 868px;
 }
 .greyText{
   text-align: center !important;
@@ -142,18 +147,19 @@
 
 .coverPageAreaContainer {
   margin: 0 auto;
-   background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
- 
 }
 
 .coverPageArea {
-  padding: 180px 72px 96px 72px;
-  max-height: fit-content; 
+  /* padding: 180px 72px 96px 72px; */
+  /* max-height: fit-content;  */
   text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  height: calc(100vh - 77px);
 }
 
 .titleSection {
@@ -162,7 +168,7 @@
   align-items: center;
   text-align: center;
   gap: 16px;
-  width: 65%;
+  /* width: 65%; */
 }
 
 .subtitleSection {

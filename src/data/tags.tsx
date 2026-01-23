@@ -67,6 +67,7 @@ export type TagType =
   | "concepts"
   | "how-to"
   | "solution-accelerator"
+  | "workshop"
   | "tutorial"
   | "javascript"
   | "python"
@@ -235,11 +236,19 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "solution-accelerator": {
-    label: "Solution Accelerator and Workshop",
+    label: "Solution Accelerator",
     description: "Solution Accelerator",
     type: "ResourceType",
     buttonText: "Explore Solution Accelerator",
     color: "indigo",
+  },
+
+  workshop: {
+    label: "Workshop",
+    description: "Interactive workshop or hands-on lab",
+    type: "ResourceType",
+    buttonText: "Start Workshop",
+    color: "purple",
   },
 
   concepts: {

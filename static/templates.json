@@ -6,6 +6,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account",
     "image": "./img/try-azure-postgresql.png",
     "tags": [
+      "documentation",
       "fundamentals",
       "how-to",
       "overview",
@@ -26,6 +27,7 @@
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-python-postgresql-app-flask",
     "image": "./img/deploy-python-flask-app.png",
     "tags": [
+      "documentation",
       "python",
       "learning-path",
       "developing-core-applications",
@@ -42,6 +44,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-pooling-best-practices",
     "image": "./img/connection-pooling.png",
     "tags": [
+      "documentation",
       "app-dev",
       "learning-path",
       "developing-core-applications",
@@ -60,6 +63,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-overview",
     "image": "./img/generative-ai-overview.png",
     "tags": [
+      "documentation",
       "genai",
       "overview",
       "learning-path",
@@ -77,7 +81,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/overview",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/overview",
     "image": "./img/explore-az-pg.png",
-    "tags": ["flexibleserver", "fundamentals", "concepts", "overview"],
+    "tags": [
+      "documentation",
+      "flexibleserver",
+      "fundamentals",
+      "concepts",
+      "overview"
+    ],
     "date": "2025-10-04",
     "priority": "P0"
   },
@@ -87,7 +97,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server",
     "image": "./img/quick-start-az-pg.png",
-    "tags": ["flexibleserver", "fundamentals", "getting-started", "how-to"],
+    "tags": [
+      "documentation",
+      "flexibleserver",
+      "fundamentals",
+      "getting-started",
+      "how-to"
+    ],
     "date": "2025-10-04",
     "priority": "P0"
   },
@@ -98,6 +114,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-python-sdk",
     "image": "./img/quickstart-python-sdk-azure-postgresql-manage.png",
     "tags": [
+      "documentation",
       "python",
       "fundamentals",
       "how-to",
@@ -114,6 +131,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-dotnet-sdk",
     "image": "./img/quickstart-dotnet-sdk-azure-postgresql-manage.png",
     "tags": [
+      "documentation",
       "fundamentals",
       "getting-started",
       "how-to",
@@ -130,6 +148,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-java-sdk",
     "image": "./img/quickstart-java-sdk-azure-postgresql-manage.png",
     "tags": [
+      "documentation",
       "java",
       "fundamentals",
       "getting-started",
@@ -146,6 +165,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/quickstart-create-server-bicep",
     "image": "./img/quickstart-bicep-file-create-postgresql-server-notext.png",
     "tags": [
+      "documentation",
       "fundamentals",
       "getting-started",
       "devops",
@@ -162,6 +182,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/create-automation-tasks",
     "image": "./img/quickstart-manage-postgresql-automation-tasks.png",
     "tags": [
+      "documentation",
       "fundamentals",
       "getting-started",
       "devops",
@@ -178,6 +199,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-connect",
     "image": "./img/pg-with-vs-code.png",
     "tags": [
+      "documentation",
       "learning-path",
       "developing-core-applications",
       "connect",
@@ -199,6 +221,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
     "image": "./img/github-copilot-in-vscode.png",
     "tags": [
+      "documentation",
       "app-dev",
       "learning-path",
       "developing-core-applications",
@@ -222,6 +245,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-python",
     "image": "./img/connect-and-query-using-python.png",
     "tags": [
+      "documentation",
       "flexibleserver",
       "learning-path",
       "developing-core-applications",
@@ -242,7 +266,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-java",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-java",
     "image": "./img/connect-and-query-using-java-and-odbc.png",
-    "tags": ["java", "connect", "app-dev", "how-to", "flexibleserver"],
+    "tags": [
+      "documentation",
+      "java",
+      "connect",
+      "app-dev",
+      "how-to",
+      "flexibleserver"
+    ],
     "date": "2025-10-1",
     "priority": "P1"
   },
@@ -252,7 +283,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-csharp",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-csharp",
     "image": "./img/connect-and-query-using-net.png",
-    "tags": ["connect", "app-dev", "how-to", "flexibleserver", "dotnet"],
+    "tags": [
+      "documentation",
+      "connect",
+      "app-dev",
+      "how-to",
+      "flexibleserver",
+      "dotnet"
+    ],
     "date": "2025-10-1",
     "priority": "P1"
   },
@@ -262,7 +300,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-go",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-go",
     "image": "./img/connect-and-query-using-go.png",
-    "tags": ["go", "connect", "app-dev", "how-to", "flexibleserver"],
+    "tags": [
+      "documentation",
+      "go",
+      "connect",
+      "app-dev",
+      "how-to",
+      "flexibleserver"
+    ],
     "date": "2025-12-18",
     "priority": "P2"
   },
@@ -272,7 +317,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-php",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-php",
     "image": "./img/connect-query-using-php.png",
-    "tags": ["php", "connect", "app-dev", "how-to", "flexibleserver"],
+    "tags": [
+      "documentation",
+      "php",
+      "connect",
+      "app-dev",
+      "how-to",
+      "flexibleserver"
+    ],
     "date": "2025-10-1",
     "priority": "P2"
   },
@@ -283,6 +335,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-connection-libraries",
     "image": "./img/list-of-supported-libraries.png",
     "tags": [
+      "documentation",
       "connect",
       "app-dev",
       "dotnet",
@@ -303,6 +356,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-deploy-github-action",
     "image": "./img/deploy-using-github-actions.png",
     "tags": [
+      "documentation",
       "learning-path",
       "developing-core-applications",
       "app-dev",
@@ -322,7 +376,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/azure-pipelines-deploy-database-task",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/azure-pipelines-deploy-database-task",
     "image": "./img/deploy-using-az-pipeline.png",
-    "tags": ["app-dev", "devops", "how-to", "flexibleserver"],
+    "tags": ["documentation", "app-dev", "devops", "how-to", "flexibleserver"],
     "date": "2024-10-1",
     "priority": "P1"
   },
@@ -332,7 +386,13 @@
     "website": "https://learn.microsoft.com/azure/developer/python/tutorial-python-managed-identity-cli",
     "source": "https://learn.microsoft.com/azure/developer/python/tutorial-python-managed-identity-cli",
     "image": "./img/deploy-flask-app.png",
-    "tags": ["python", "app-dev", "flexibleserver", "tutorial"],
+    "tags": [
+      "documentation",
+      "python",
+      "app-dev",
+      "flexibleserver",
+      "tutorial"
+    ],
     "date": "2024-4-17",
     "priority": "P0"
   },
@@ -342,7 +402,13 @@
     "website": "https://learn.microsoft.com/azure/app-service/tutorial-python-postgresql-app-django",
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-python-postgresql-app-django",
     "image": "./img/deploy-django-app.png",
-    "tags": ["python", "app-dev", "flexibleserver", "tutorial"],
+    "tags": [
+      "documentation",
+      "python",
+      "app-dev",
+      "flexibleserver",
+      "tutorial"
+    ],
     "date": "2025-04-17",
     "priority": "P0"
   },
@@ -352,7 +418,13 @@
     "website": "https://learn.microsoft.com/azure/app-service/tutorial-python-postgresql-app-fastapi",
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-python-postgresql-app-fastapi",
     "image": "./img/deploy-fastapi-app.png",
-    "tags": ["python", "app-dev", "flexibleserver", "tutorial"],
+    "tags": [
+      "documentation",
+      "python",
+      "app-dev",
+      "flexibleserver",
+      "tutorial"
+    ],
     "date": "2025-7-27",
     "priority": "P1"
   },
@@ -362,7 +434,7 @@
     "website": "https://learn.microsoft.com/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database",
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database",
     "image": "./img/deploy-tomcat-app.png",
-    "tags": ["java", "app-dev", "flexibleserver", "tutorial"],
+    "tags": ["documentation", "java", "app-dev", "flexibleserver", "tutorial"],
     "date": "2024-06-05",
     "priority": "P1"
   },
@@ -373,6 +445,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/tutorial-django-aks-database",
     "image": "./img/deploy-django-on-aks.png",
     "tags": [
+      "documentation",
       "learning-path",
       "developing-core-applications",
       "flexibleserver",
@@ -392,7 +465,7 @@
     "website": "https://learn.microsoft.com/azure/container-apps/tutorial-java-quarkus-connect-managed-identity-postgresql-database",
     "source": "https://learn.microsoft.com/azure/container-apps/tutorial-java-quarkus-connect-managed-identity-postgresql-database",
     "image": "./img/deploy-java-quarkus-container.png",
-    "tags": ["java", "app-dev", "flexibleserver", "tutorial"],
+    "tags": ["documentation", "java", "app-dev", "flexibleserver", "tutorial"],
     "date": "2025-02-03",
     "priority": "P1"
   },
@@ -402,7 +475,14 @@
     "website": "https://learn.microsoft.com/training/modules/deploy-java-quarkus-azure-container-app-postgres/",
     "source": "https://learn.microsoft.com/training/modules/deploy-java-quarkus-azure-container-app-postgres/",
     "image": "./img/deploy-quarkus-to-az.png",
-    "tags": ["app-dev", "training", "flexibleserver", "java", "tutorial"],
+    "tags": [
+      "documentation",
+      "app-dev",
+      "training",
+      "flexibleserver",
+      "java",
+      "tutorial"
+    ],
     "date": "2025-02-03",
     "priority": "P1"
   },
@@ -413,6 +493,7 @@
     "source": "https://learn.microsoft.com/azure/service-connector/how-to-integrate-postgres",
     "image": "./img/az-service-connector.png",
     "tags": [
+      "documentation",
       "connect",
       "app-dev",
       "dotnet",
@@ -443,6 +524,7 @@
     "source": "https://github.com/microsoft/azure_pg_dev_workshop",
     "image": "./img/azure-pg-dev-workshop.png",
     "tags": [
+      "documentation",
       "learning-path",
       "developing-core-applications",
       "app-dev",
@@ -460,7 +542,7 @@
     "date": "2025-4-16",
     "priority": "P0",
     "learningPathTitle": "Workshop: Azure PostgreSQL Developer Workshop",
-    "learningPathDescription": "In this comprehensive workshop, you'll learn PostgreSQL fundamentals, how to get started and how to implement modern data applications with Azure Database for PostgreSQL, through a hands-on lab."
+    "learningPathDescription": "In this comprehensive workshop, you\u0027ll learn PostgreSQL fundamentals, how to get started and how to implement modern data applications with Azure Database for PostgreSQL, through a hands-on lab."
   },
   {
     "title": "Enable and use pgvector for native Vector Search",
@@ -469,6 +551,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgvector",
     "image": "./img/enable-and-use-pgvector-for-search.png",
     "tags": [
+      "documentation",
       "vector",
       "learning-path",
       "building-genai-apps",
@@ -487,7 +570,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-optimize-performance-pgvector",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-optimize-performance-pgvector",
     "image": "./img/optimization-using-pgvector.png",
-    "tags": ["vector", "genai", "how-to", "flexibleserver", "rag"],
+    "tags": [
+      "documentation",
+      "vector",
+      "genai",
+      "how-to",
+      "flexibleserver",
+      "rag"
+    ],
     "date": "2024-8-14",
     "priority": "P0"
   },
@@ -498,6 +588,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-use-pgdiskann",
     "image": "./img/enable-and-use-diskann.png",
     "tags": [
+      "documentation",
       "vector",
       "learning-path",
       "building-genai-apps",
@@ -519,6 +610,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-integrate-azure-ai",
     "image": "./img/integrate-basic-azure-ai.png",
     "tags": [
+      "documentation",
       "learning-path",
       "building-genai-apps",
       "flexibleserver",
@@ -540,7 +632,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "image": "./img/integrate-with-az-ai-services.png",
-    "tags": ["genai", "how-to", "flexibleserver", "azureai"],
+    "tags": ["documentation", "genai", "how-to", "flexibleserver", "azureai"],
     "date": "2025-10-3",
     "priority": "P1"
   },
@@ -550,7 +642,15 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-enable-managed-identity-azure-ai",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-enable-managed-identity-azure-ai",
     "image": "./img/managed-identity-for-az-ai.png",
-    "tags": ["genai", "how-to", "flexibleserver", "vector", "rag", "azureai"],
+    "tags": [
+      "documentation",
+      "genai",
+      "how-to",
+      "flexibleserver",
+      "vector",
+      "rag",
+      "azureai"
+    ],
     "date": "2025-05-19",
     "priority": "P1"
   },
@@ -561,6 +661,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-ai-semantic-operators",
     "image": "img/use-semantic-operators.png",
     "tags": [
+      "documentation",
       "semantic",
       "learning-path",
       "building-genai-apps",
@@ -600,6 +701,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-semantic-search",
     "image": "./img/build-semantic-search-application.png",
     "tags": [
+      "documentation",
       "semantic",
       "flexibleserver",
       "genai",
@@ -617,7 +719,15 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-recommendation-system",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-recommendation-system",
     "image": "./img/build-recommendation-sys-with-az.png",
-    "tags": ["flexibleserver", "genai", "tutorial", "vector", "rag", "azureai"],
+    "tags": [
+      "documentation",
+      "flexibleserver",
+      "genai",
+      "tutorial",
+      "vector",
+      "rag",
+      "azureai"
+    ],
     "date": "2025-06-27",
     "priority": "P0"
   },
@@ -741,6 +851,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-develop-with-langchain",
     "image": "./img/langchain-with-az-pg.png",
     "tags": [
+      "documentation",
       "rag",
       "flexibleserver",
       "learning-path",
@@ -764,6 +875,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "image": "./img/build-with-azure-ai-agent-service.png",
     "tags": [
+      "documentation",
       "overview",
       "agent",
       "learning-path",
@@ -789,6 +901,7 @@
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-agents",
     "image": "./img/build-with-azure-ai-agent-service.png",
     "tags": [
+      "documentation",
       "overview",
       "agent",
       "learning-path",
@@ -840,6 +953,7 @@
     "source": "https://learn.microsoft.com/semantic-kernel/concepts/vector-store-connectors/out-of-the-box-connectors/postgres-connector",
     "image": "./img/ai-agents-sementic-kernal-and-pg.png",
     "tags": [
+      "documentation",
       "semantic",
       "agent",
       "genai",
@@ -878,7 +992,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-age-overview",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-age-overview",
     "image": "./img/apache-age-extension-with-az.png",
-    "tags": ["flexibleserver", "genai", "how-to", "graph", "rag"],
+    "tags": [
+      "documentation",
+      "flexibleserver",
+      "genai",
+      "how-to",
+      "graph",
+      "rag"
+    ],
     "date": "2025-05-19",
     "priority": "P0"
   },
@@ -911,6 +1032,7 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/azure-mcp-server-now-includes-support-for-azure-database-for-postgresql/4413744",
     "image": "./img/az-mcp-for-az-pg.png",
     "tags": [
+      "documentation",
       "learning-path",
       "building-ai-agents",
       "flexibleserver",
@@ -1037,7 +1159,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-fabric-mirroring",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-fabric-mirroring",
     "image": "./img/az-db-for-pg-mirroring.png",
-    "tags": ["fabric", "flexibleserver", "analytics", "concepts", "how-to"],
+    "tags": [
+      "documentation",
+      "fabric",
+      "flexibleserver",
+      "analytics",
+      "concepts",
+      "how-to"
+    ],
     "date": "2025-10-1",
     "priority": "P0"
   },
@@ -1047,7 +1176,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-fabric",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-fabric",
     "image": "./img/copy-activity-in-az.png",
-    "tags": ["fabric", "analytics", "flexibleserver", "how-to"],
+    "tags": [
+      "documentation",
+      "fabric",
+      "analytics",
+      "flexibleserver",
+      "how-to"
+    ],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1057,7 +1192,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-fabric",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-fabric",
     "image": "./img/script-activity.png",
-    "tags": ["fabric", "analytics", "flexibleserver", "how-to"],
+    "tags": [
+      "documentation",
+      "fabric",
+      "analytics",
+      "flexibleserver",
+      "how-to"
+    ],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1067,7 +1208,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-with-power-bi-desktop",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/connect-with-power-bi-desktop",
     "image": "./img/flexible-server-in-power-bi.png",
-    "tags": ["flexibleserver", "analytics", "powerbi", "how-to"],
+    "tags": [
+      "documentation",
+      "flexibleserver",
+      "analytics",
+      "powerbi",
+      "how-to"
+    ],
     "date": "2025-10-1",
     "priority": "P0"
   },
@@ -1077,7 +1224,14 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory",
     "image": "./img/azure-data-factory-and-synapse-analytics.png",
-    "tags": ["concepts", "adf", "flexibleserver", "analytics", "how-to"],
+    "tags": [
+      "documentation",
+      "concepts",
+      "adf",
+      "flexibleserver",
+      "analytics",
+      "how-to"
+    ],
     "date": "2025-05-29",
     "priority": "P1"
   },
@@ -1087,7 +1241,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "image": "./img/azure-data-factory-with-managed-endpoints.png",
-    "tags": ["adf", "flexibleserver", "analytics", "how-to"],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-04-15",
     "priority": "P1"
   },
@@ -1097,7 +1251,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "image": "./img/copy-activity-in-az.png",
-    "tags": ["adf", "flexibleserver", "analytics", "how-to"],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1107,7 +1261,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "image": "./img/script-activity-in-data-factory.png",
-    "tags": ["adf", "flexibleserver", "analytics", "how-to"],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1322,7 +1476,15 @@
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-model-context-protocol-mcp-server-for-azure-database-for-postgresql-/4404360",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-model-context-protocol-mcp-server-for-azure-database-for-postgresql-/4404360",
     "image": "./img/introducing-mcp-for-az.png",
-    "tags": ["genai", "how-to", "agent", "rag", "blog", "flexibleserver"],
+    "tags": [
+      "documentation",
+      "genai",
+      "how-to",
+      "agent",
+      "rag",
+      "blog",
+      "flexibleserver"
+    ],
     "date": "2025-4-17",
     "priority": "P1",
     "meta": {
@@ -1362,6 +1524,7 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/fueling-the-agentic-web-revolution-with-nlweb-and-postgresql/4437439",
     "image": "./img/nlweb.png",
     "tags": [
+      "documentation",
       "flexibleserver",
       "genai",
       "agent",
