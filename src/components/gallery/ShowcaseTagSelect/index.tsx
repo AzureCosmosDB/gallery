@@ -52,7 +52,14 @@ export default function ShowcaseTagSelect({
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const navbar = document.querySelector(
+            ".navbar",
+          ) as HTMLElement | null;
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 20;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event to switch to list view
           window.dispatchEvent(new Event("switchToListView"));
         }
@@ -77,8 +84,14 @@ export default function ShowcaseTagSelect({
       // If a BASE (parent) tag is being deselected, also clear all its sub-filters from URL
       if (!parentTag && wasSelected) {
         const parentObj = Tags[tag];
-        if (parentObj?.subType && Array.isArray(parentObj.subType) && parentObj.subType.length > 0) {
-          const subKeys = parentObj.subType.map((s) => s.label.toLowerCase() as TagType);
+        if (
+          parentObj?.subType &&
+          Array.isArray(parentObj.subType) &&
+          parentObj.subType.length > 0
+        ) {
+          const subKeys = parentObj.subType.map(
+            (s) => s.label.toLowerCase() as TagType,
+          );
           newTags = newTags.filter((t) => !subKeys.includes(t));
         }
       }
@@ -100,7 +113,9 @@ export default function ShowcaseTagSelect({
     .filter(([parentKey, parentTag]) => {
       if (parentTag.subType && Array.isArray(parentTag.subType)) {
         const subTagKey = tag.toLowerCase();
-        return parentTag.subType.some((sub) => sub.label.toLowerCase() === subTagKey);
+        return parentTag.subType.some(
+          (sub) => sub.label.toLowerCase() === subTagKey,
+        );
       }
       return false;
     })
@@ -108,8 +123,10 @@ export default function ShowcaseTagSelect({
 
   // Check if any parent tag is selected (in checkbox state or URL)
   const selectedTagsFromUrl = readSearchTags(location.search);
-  const isParentSelected = parentTags.some((parentTag) =>
-    selectedCheckbox.includes(parentTag) || selectedTagsFromUrl.includes(parentTag)
+  const isParentSelected = parentTags.some(
+    (parentTag) =>
+      selectedCheckbox.includes(parentTag) ||
+      selectedTagsFromUrl.includes(parentTag),
   );
 
   // Enable the sub-tag if:
@@ -123,12 +140,16 @@ export default function ShowcaseTagSelect({
   let isChecked = false;
   if (parentTag) {
     // Sub-tag: only checked if both parent and sub-tag are selected
-    const parentSelected = selectedCheckbox.includes(parentTag) || selectedTagsFromUrl.includes(parentTag);
-    const subTagSelected = selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
+    const parentSelected =
+      selectedCheckbox.includes(parentTag) ||
+      selectedTagsFromUrl.includes(parentTag);
+    const subTagSelected =
+      selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
     isChecked = parentSelected && subTagSelected;
   } else {
     // Regular tag: checked if selected
-    isChecked = selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
+    isChecked =
+      selectedCheckbox.includes(tag) || selectedTagsFromUrl.includes(tag);
   }
 
   return (

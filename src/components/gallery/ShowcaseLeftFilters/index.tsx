@@ -76,7 +76,12 @@ function LearningPathTagSelect({
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const navbar = document.querySelector(".navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 20;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event to switch to list view
           window.dispatchEvent(new Event("switchToListView"));
         }
@@ -99,7 +104,7 @@ function LearningPathTagSelect({
   // Check if this learning path tag should be disabled
   // It should be disabled if another learning path tag is selected and this one isn't
   const otherLearningPathSelected = learningPathTags.some(
-    (lpTag) => lpTag !== tag && selectedCheckbox.includes(lpTag as TagType)
+    (lpTag) => lpTag !== tag && selectedCheckbox.includes(lpTag as TagType),
   );
   const isDisabled = !activeTags?.includes(tag) || otherLearningPathSelected;
 
@@ -324,7 +329,7 @@ export default function ShowcaseLeftFilters({
             className={styles.tagCatalog}
             data-m='{\"id\":\"Learning Paths\",\"cN\":\"Tags Category\"}'
           >
-            Learning Paths
+            Pathways
           </div>
         </AccordionHeader>
         <AccordionPanel>
@@ -348,14 +353,14 @@ export default function ShowcaseLeftFilters({
         >
           <div
             className={styles.tagCatalog}
-            data-m='{\"id\":\"Service\",\"cN\":\"Tags Category\"}'
+            data-m='{\"id\":\"ResourceType\",\"cN\":\"Tags Category\"}'
           >
-            Services
+            Resource Type
           </div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll
-            tags={serviceTag}
+            tags={resourceTypeTag}
             number={"2"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}
@@ -373,14 +378,14 @@ export default function ShowcaseLeftFilters({
         >
           <div
             className={styles.tagCatalog}
-            data-m='{\"id\":\"ContentType\",\"cN\":\"Tags Category\"}'
+            data-m='{\"id\":\"Service\",\"cN\":\"Tags Category\"}'
           >
-            Content Type
+            Products
           </div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll
-            tags={contentTypeTag}
+            tags={serviceTag}
             number={"3"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}
@@ -398,14 +403,14 @@ export default function ShowcaseLeftFilters({
         >
           <div
             className={styles.tagCatalog}
-            data-m='{\"id\":\"ResourceType\",\"cN\":\"Tags Category\"}'
+            data-m='{\"id\":\"ContentType\",\"cN\":\"Tags Category\"}'
           >
-            Resource Type
+            Category
           </div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll
-            tags={resourceTypeTag}
+            tags={contentTypeTag}
             number={"4"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}

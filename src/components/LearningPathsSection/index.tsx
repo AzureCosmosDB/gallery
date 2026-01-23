@@ -68,7 +68,7 @@ export default function LearningPathsSection({
     "building-ai-agents",
   ];
   const isLearningPathFiltered = currentTags.some((t) =>
-    LEARNING_PATH_TAGS.includes(t)
+    LEARNING_PATH_TAGS.includes(t),
   );
   const [currentIndex, setCurrentIndex] = useState(0);
   const onTileClick = (idx) => {
@@ -92,7 +92,12 @@ export default function LearningPathsSection({
     const scrollToGallery = () => {
       const el = document.getElementById("resource-library");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         // Dispatch custom event after scrolling
         window.dispatchEvent(new Event("switchToListView"));
       }
@@ -106,7 +111,12 @@ export default function LearningPathsSection({
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const navbar = document.querySelector(".navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 20;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event after scrolling
           window.dispatchEvent(new Event("switchToListView"));
         }
@@ -118,9 +128,9 @@ export default function LearningPathsSection({
   return (
     <section className={styles.learningPathsSection}>
       <div className={styles.left}>
-        <h2 className={styles.heading}>Learning Pathways</h2>
+        <h2 className={styles.heading}>Pathways</h2>
         <div className={styles.sectionDesc}>
-          Choose from structured learning paths designed to guide you through
+          Choose from structured pathways designed to guide you through
           PostgreSQL development on Azure, from basic application development to
           advanced AI integration.
         </div>
@@ -196,7 +206,7 @@ export default function LearningPathsSection({
         </Swiper>
         {/* Mobile-only numeric pagination (e.g. "1 / 5") placed below the slider */}
         <div className={styles.numericPagination} aria-hidden={false}>
-          { /* initial value will be updated by Swiper events when mounted */ }
+          {/* initial value will be updated by Swiper events when mounted */}
           <span className={styles.numericCurrent}>{currentIndex + 1}</span>
           <span className={styles.numericSlash}> / </span>
           <span className={styles.numericTotal}>{featuredUsers.length}</span>

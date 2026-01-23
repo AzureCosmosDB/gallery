@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "@docusaurus/router";
 
 const title = "Application Developer Hub";
 const description =
-  "Discover comprehensive resources, learning paths, and community support to accelerate your PostgreSQL development journey on Azure.";
+  "Discover comprehensive resources, pathways, and community support to accelerate your PostgreSQL development journey on Azure.";
 const subDescription = "for PostgreSQL on Azure";
 
 export default function ShowcaseCoverPage() {
@@ -46,7 +46,12 @@ export default function ShowcaseCoverPage() {
     requestAnimationFrame(() => {
       const el = document.getElementById("resource-library");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         if (hasFilters) {
           // Dispatch custom event to switch to list view
           window.dispatchEvent(new Event("switchToListView"));
@@ -55,13 +60,18 @@ export default function ShowcaseCoverPage() {
     });
   };
 
-  // Scroll to learning paths section
+  // Scroll to pathways section
   const scrollToLearningPaths = (e) => {
     e.preventDefault();
     requestAnimationFrame(() => {
       const el = document.getElementById("learning-paths");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
   };
@@ -72,7 +82,12 @@ export default function ShowcaseCoverPage() {
     requestAnimationFrame(() => {
       const el = document.getElementById("community-support");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
   };
@@ -85,8 +100,11 @@ export default function ShowcaseCoverPage() {
       >
         <div className={styles.coverPageArea}>
           <div className={styles.titleSection}>
-            <Display className={styles.heroTitle}>{title}</Display>
-            <Title3 className={styles.greyText}>{subDescription}</Title3>
+            <span className={styles.heroTextWrapper}>
+              <Display className={styles.heroTitle}>{title}</Display>
+              <Title3 className={styles.greyText}>{subDescription}</Title3>
+            </span>
+
             <Title3 className={styles.centeredDescription}>
               {description}
             </Title3>
@@ -108,9 +126,9 @@ export default function ShowcaseCoverPage() {
                 <div className={styles.cardIconWrapper}>
                   <BookOpen size={40} style={{ color: "#0078d4" }} />
                 </div>
-                <span className={styles.cardTitle}>Learning Pathways</span>
+                <span className={styles.cardTitle}>Pathways</span>
                 <span className={styles.cardDesc}>
-                  Structured learning paths from beginner to advanced
+                  Structured pathways from beginner to advanced
                 </span>
               </div>
               {/* Card 2 */}
@@ -184,6 +202,14 @@ export default function ShowcaseCoverPage() {
                     }
                   >
                     Solution Accelerators
+                  </a>{" "}
+                  |
+                  <a
+                    href="#resource-library"
+                    className={styles.resourceLink}
+                    onClick={(e) => scrollToResourceLibrary(e, ["workshop"])}
+                  >
+                    Workshops
                   </a>
                 </span>
               </div>
