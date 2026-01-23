@@ -155,14 +155,14 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Agents",
     description: "Template implements one or more agents",
     type: "GenerativeAI",
-    buttonText: "Go to Github repo",
+    buttonText: "Go to GitHub Repo",
     color: "green",
   },
   rag: {
     label: "RAG Pattern",
     description: "Template implements RAG Pattern",
     type: "GenerativeAI",
-    buttonText: "Go to Github repo",
+    buttonText: "Go to GitHub Repo",
     color: "green",
   },
 
@@ -181,9 +181,9 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "purple",
     subType: [
       { label: "Connect" },
-      { label: "vscode" },
-      { label: "best-practice" },
-      { label: "devops" },
+      { label: "VSCode" },
+      { label: "Best-Practice" },
+      { label: "DevOps" },
     ],
   },
 
@@ -212,7 +212,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "green",
   },
   azureai: {
-    label: "Azure AI services integration",
+    label: "Azure AI Services Integration",
     description: "Template integrates with Azure AI services",
     type: ["GenerativeAI", "ContentType"],
     color: "brown",
@@ -260,7 +260,7 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "how-to": {
-    label: "How-To guide",
+    label: "How-To Guide",
     description: "How-To guide",
     type: "ResourceType",
     buttonText: "Read How-To Guide",
