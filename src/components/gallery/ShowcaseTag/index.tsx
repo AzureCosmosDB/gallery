@@ -60,12 +60,17 @@ export default function ShowcaseCardTag({
       processedResourceTypeTags.push(docTag);
     }
 
-    // Add the specific sub-tag (concepts, how-to, or tutorial)
-    const subTag = resourceTypeTags.find((tag) =>
-      ["concepts", "how-to", "tutorial"].includes(tag.tag),
-    );
-    if (subTag) {
-      processedResourceTypeTags.push(subTag);
+    // Add the specific sub-tag (concepts, how-to, or tutorial) - prioritize how-to
+    const prioritySubTags = ["how-to", "tutorial", "concepts"];
+    let addedSubTag = false;
+
+    for (const priorityTag of prioritySubTags) {
+      const subTag = resourceTypeTags.find((tag) => tag.tag === priorityTag);
+      if (subTag && !addedSubTag) {
+        processedResourceTypeTags.push(subTag);
+        addedSubTag = true;
+        break;
+      }
     }
 
     // Add any other resource type tags
@@ -76,8 +81,15 @@ export default function ShowcaseCardTag({
     );
     processedResourceTypeTags.push(...otherResourceTypeTags);
   } else {
-    // No special documentation handling needed
-    processedResourceTypeTags.push(...resourceTypeTags);
+    // No special documentation handling needed - but prioritize how-to if present
+    const howToTag = resourceTypeTags.find((tag) => tag.tag === "how-to");
+    const otherTags = resourceTypeTags.filter((tag) => tag.tag !== "how-to");
+
+    if (howToTag) {
+      processedResourceTypeTags.push(howToTag, ...otherTags);
+    } else {
+      processedResourceTypeTags.push(...resourceTypeTags);
+    }
   }
 
   const contentTypeTags = tagObjectsSorted.filter(
@@ -101,11 +113,26 @@ export default function ShowcaseCardTag({
     ...learningPathTags,
   ];
 
+  // Ensure critical tags like "how-to" are prioritized in display
+  const priorityTags = ["how-to", "tutorial", "concepts"];
+  const prioritizedTags = [];
+  const remainingTags = [];
+
+  tagsByTypeSorted.forEach((tag) => {
+    if (priorityTags.includes(tag.tag)) {
+      prioritizedTags.push(tag);
+    } else {
+      remainingTags.push(tag);
+    }
+  });
+
+  const finalTagsOrder = [...prioritizedTags, ...remainingTags];
+
   if (!cardPanel) {
-    // Standard: Always show exactly 3 badges, then show "+X more" for the rest
-    const shownTags = tagsByTypeSorted.slice(0, MAX_VISIBLE_TAGS);
-    const restCount = tagsByTypeSorted.length - MAX_VISIBLE_TAGS;
-    const hiddenTags = tagsByTypeSorted.slice(MAX_VISIBLE_TAGS);
+    // Standard: Show prioritized tags first, then show "+X more" for the rest
+    const shownTags = finalTagsOrder.slice(0, MAX_VISIBLE_TAGS);
+    const restCount = finalTagsOrder.length - MAX_VISIBLE_TAGS;
+    const hiddenTags = finalTagsOrder.slice(MAX_VISIBLE_TAGS);
 
     return (
       <div ref={containerRef} className={styles.tagContainer}>
@@ -159,7 +186,7 @@ export default function ShowcaseCardTag({
   } else {
     return (
       <div className={styles.tagContainer}>
-        {tagsByTypeSorted.map((tagObject, index) => {
+        {finalTagsOrder.map((tagObject, index) => {
           const id = `showcase_card_tag_${tagObject.tag}`;
           return (
             <CustomBadge
