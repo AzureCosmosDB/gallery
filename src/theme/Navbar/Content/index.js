@@ -139,7 +139,7 @@ export default function NavbarContent() {
 
     // Map dropdown items to their corresponding tag filters (can be single tag or array of tags)
     const tagMapping = {
-      "#documentation": ["concepts", "how-to"], // Multiple tags for documentation
+      "#documentation": ["documentation", "concepts", "how-to", "tutorial"], // Parent tag + all subtypes for documentation
       "#solution-accelerators": "solution-accelerator",
       "#workshops": "workshop",
       "#videos": "video",
@@ -177,8 +177,7 @@ export default function NavbarContent() {
           const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-          // Dispatch custom event to switch to list view
-          window.dispatchEvent(new Event("switchToListView"));
+          // Note: Do not switch to list view for navbar dropdown links
         }
       });
     }

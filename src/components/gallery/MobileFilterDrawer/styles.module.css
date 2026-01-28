@@ -72,12 +72,11 @@
 }
 
 .sortSection {
-  padding: 9px 16px 0;
+  padding: 0 16px;
 }
 
 .filterSection {
-  padding: 0;
-  padding-top: 13px;
+  padding: 8px 0 0;
 }
 
 .sectionTitle {
@@ -103,13 +102,12 @@
   border: none;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 8px;
 }
 
 .accordionItem {
   padding: 0;
-  margin-bottom: 22px;
-
+  margin-bottom: 12px;
 }
 
 .accordionHeader {
@@ -133,6 +131,7 @@
 
 .accordionHeader :global(.fui-AccordionHeader__button) {
   background: transparent !important;
+  min-height: unset !important;
 }
 
 .mobileDrawer :global(.fui-AccordionPanel) {

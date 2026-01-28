@@ -10,6 +10,7 @@ import { useBoolean } from "@fluentui/react-hooks";
 import styleCSS from "../ShowcaseCard/styles.module.css";
 import ShowcaseDialog from "../ShowcaseDialog/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
+import ResourceTypeOverlay from "../ResourceTypeOverlay/index";
 import { getButtonText } from "../../../utils/buttonTextUtils";
 import OptimizedImage from "../../OptimizedImage";
 
@@ -71,12 +72,15 @@ export default function ShowcaseListTile({
           )}
           <div className={styleCSS.listTileContent}>
             {user.image && (
-              <OptimizedImage
-                src={user.image}
-                alt={displayTitle + " image"}
-                className={styleCSS.listTileImage}
-                objectFit="cover"
-              />
+              <div className={styleCSS.imageContainer} style={{ width: "200px", marginRight: "24px", flexShrink: 0 }}>
+                <OptimizedImage
+                  src={user.image}
+                  alt={displayTitle + " image"}
+                  className={styleCSS.listTileImage}
+                  objectFit="cover"
+                />
+                <ResourceTypeOverlay tags={user.tags} />
+              </div>
             )}
             <div className={styleCSS.listTileText}>
               <div className={styleCSS.listTileTags}>

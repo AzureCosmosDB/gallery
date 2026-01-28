@@ -10,6 +10,7 @@ import {
 import { useBoolean } from "@fluentui/react-hooks";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import ShowcaseDialog from "../ShowcaseDialog/index";
+import ResourceTypeOverlay from "../ResourceTypeOverlay/index";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
@@ -123,16 +124,20 @@ function ShowcaseCard({
             <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
           )}
           {user.image && (
-            <OptimizedImage
-              src={user.image}
-               alt={displayTitle + " image"}
-              
-              objectFit="cover"
-              style={{
-                width: "100%",
-                borderRadius: "8px 8px 0px 0px",
-              }}
-            />
+            <div className={styleCSS.imageContainer}>
+              <OptimizedImage
+                src={user.image}
+                alt={displayTitle + " image"}
+                objectFit="cover"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  display: "block",
+                  borderRadius: "8px 8px 0px 0px",
+                }}
+              />
+              <ResourceTypeOverlay tags={tags} />
+            </div>
           )}
           <div className={styleCSS.cardTags}>
             <ShowcaseCardTag
