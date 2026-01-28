@@ -121,7 +121,8 @@ export default function MobileFilterDrawer({
     (tag) => Tags[tag]?.type === "ContentType",
   );
   const resourceTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ResourceType",
+    (tag) => Tags[tag]?.type === "ResourceType" && 
+             !['concepts', 'how-to', 'tutorial'].includes(tag)
   );
   const languageTags = TagList.filter((tag) => Tags[tag]?.type === "Language");
 
@@ -233,17 +234,61 @@ export default function MobileFilterDrawer({
                 </AccordionPanel>
               </AccordionItem>
 
-              {/* Resource Type */}
+              {/* Products */}
               <AccordionItem value="2" className={styles.sortSection}>
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Resource Type
+                  Products
                 </AccordionHeader>
                 <AccordionPanel>
-                  {resourceTypeTags.map((tag) => {
+                  {serviceTags.map((tag) => {
                     const tagObject = Tags[tag];
+                    const hasSubTags =
+                      tagObject.subType &&
+                      Array.isArray(tagObject.subType) &&
+                      tagObject.subType.length > 0;
+
+                    if (hasSubTags) {
+                      return (
+                        <div key={tag} className={styles.nestedCheckboxGroup}>
+                          <div className={styles.checkboxItem}>
+                            <Checkbox
+                              checked={tempSelectedCheckbox.includes(tag)}
+                              onChange={() => toggleTempTag(tag)}
+                              label={tagObject.label}
+                              disabled={!activeTags.includes(tag)}
+                            />
+                          </div>
+                          {tempSelectedCheckbox.includes(tag) && (
+                            <div className={styles.subCheckboxGroup}>
+                              {tagObject.subType.map((sub) => {
+                                const subTagKey =
+                                  sub.label.toLowerCase() as TagType;
+                                const subTagObject = Tags[subTagKey];
+                                return (
+                                  <div
+                                    key={subTagKey}
+                                    className={styles.checkboxItem}
+                                  >
+                                    <Checkbox
+                                      checked={tempSelectedCheckbox.includes(
+                                        subTagKey,
+                                      )}
+                                      onChange={() => toggleTempTag(subTagKey)}
+                                      label={subTagObject.label}
+                                      disabled={!activeTags.includes(subTagKey)}
+                                    />
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
                     return (
                       <div key={tag} className={styles.checkboxItem}>
                         <Checkbox
@@ -258,16 +303,16 @@ export default function MobileFilterDrawer({
                 </AccordionPanel>
               </AccordionItem>
 
-              {/* Products */}
+              {/* Resource Type */}
               <AccordionItem value="3" className={styles.sortSection}>
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Products
+                  Resource Type
                 </AccordionHeader>
                 <AccordionPanel>
-                  {serviceTags.map((tag) => {
+                  {resourceTypeTags.map((tag) => {
                     const tagObject = Tags[tag];
                     const hasSubTags =
                       tagObject.subType &&

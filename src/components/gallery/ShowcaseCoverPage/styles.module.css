@@ -140,7 +140,7 @@
 
 .coverPageContainer {
   display: inline-block;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   width: 100%;
 }
@@ -203,6 +203,7 @@
 
   .centeredDescription {
     font-size: 20px !important;
+    line-height: 1.5;
   }
 }
 

@@ -47,50 +47,27 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "ResourceType",
   );
 
-  // Special handling for documentation tags: ensure Documentation appears first, followed by sub-tag
-  const processedResourceTypeTags = [];
-  const hasDocumentationSubTag = tags.some((tag) =>
-    ["concepts", "how-to", "tutorial"].includes(tag),
-  );
-
-  if (hasDocumentationSubTag && tags.includes("documentation")) {
-    // Add documentation tag first
-    const docTag = resourceTypeTags.find((tag) => tag.tag === "documentation");
-    if (docTag) {
-      processedResourceTypeTags.push(docTag);
+  // Filter out resource types that will be shown in the overlay, but keep documentation sub-types
+  // since only the main "documentation" tag appears in the overlay
+  const processedResourceTypeTags = resourceTypeTags.filter((tag) => {
+    // Keep documentation sub-types (concepts, how-to, tutorial) as they won't be in overlay
+    if (["concepts", "how-to", "tutorial"].includes(tag.tag)) {
+      return true;
     }
+    // Remove main resource types as they will appear in the overlay
+    return false;
+  });
 
-    // Add the specific sub-tag (concepts, how-to, or tutorial) - prioritize how-to
-    const prioritySubTags = ["how-to", "tutorial", "concepts"];
-    let addedSubTag = false;
-
-    for (const priorityTag of prioritySubTags) {
-      const subTag = resourceTypeTags.find((tag) => tag.tag === priorityTag);
-      if (subTag && !addedSubTag) {
-        processedResourceTypeTags.push(subTag);
-        addedSubTag = true;
-        break;
-      }
-    }
-
-    // Add any other resource type tags
-    const otherResourceTypeTags = resourceTypeTags.filter(
-      (tag) =>
-        tag.tag !== "documentation" &&
-        !["concepts", "how-to", "tutorial"].includes(tag.tag),
-    );
-    processedResourceTypeTags.push(...otherResourceTypeTags);
-  } else {
-    // No special documentation handling needed - but prioritize how-to if present
-    const howToTag = resourceTypeTags.find((tag) => tag.tag === "how-to");
-    const otherTags = resourceTypeTags.filter((tag) => tag.tag !== "how-to");
-
-    if (howToTag) {
-      processedResourceTypeTags.push(howToTag, ...otherTags);
-    } else {
-      processedResourceTypeTags.push(...resourceTypeTags);
-    }
-  }
+  // Sort documentation sub-types by priority if they exist
+  const prioritySubTags = ["how-to", "tutorial", "concepts"];
+  processedResourceTypeTags.sort((a, b) => {
+    const aIndex = prioritySubTags.indexOf(a.tag);
+    const bIndex = prioritySubTags.indexOf(b.tag);
+    if (aIndex === -1 && bIndex === -1) return 0;
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
 
   const contentTypeTags = tagObjectsSorted.filter(
     (tag) => tag.type === "ContentType",
@@ -102,14 +79,15 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "LearningPath",
   );
 
+  // Order: Resource type → Category → Products → Language
   const tagsByTypeSorted = [
-    ...processedResourceTypeTags,
-    ...languageTags,
+    ...processedResourceTypeTags, // Resource type
+    ...contentTypeTags, // Category
+    ...intelligentSolutionTags, // Category (GenerativeAI)
+    ...azureTags, // Products
+    ...serviceTags, // Products  
+    ...languageTags, // Language
     ...modelTags,
-    ...intelligentSolutionTags,
-    ...azureTags,
-    ...contentTypeTags,
-    ...serviceTags,
     ...learningPathTags,
   ];
 
@@ -143,7 +121,7 @@ export default function ShowcaseCardTag({
             <CustomBadge
               appearance="tint"
               size="medium"
-              color="informative"
+              color="subtle"
               key={key}
               className={styles.cardTag}
             >
@@ -192,7 +170,7 @@ export default function ShowcaseCardTag({
             <CustomBadge
               appearance="tint"
               size="medium"
-              color="informative"
+              color="subtle"
               key={index}
               className={styles.cardPanelColoredTag}
             >
