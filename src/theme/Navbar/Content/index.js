@@ -25,7 +25,7 @@ function scrollToSection(e, hash) {
       const navbarHeight = navbar ? navbar.offsetHeight : 80; // fallback to 80px
       const elementPosition =
         el.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight - 20; // extra 20px padding
+      const offsetPosition = elementPosition - navbarHeight; // exact positioning at section start
 
       window.scrollTo({
         top: offsetPosition,
@@ -175,7 +175,7 @@ export default function NavbarContent() {
           const navbar = document.querySelector('.navbar');
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
           const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight - 20;
+          const offsetPosition = elementPosition - navbarHeight;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
           // Dispatch custom event to switch to list view
           window.dispatchEvent(new Event("switchToListView"));

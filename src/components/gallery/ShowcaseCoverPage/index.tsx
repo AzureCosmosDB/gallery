@@ -50,7 +50,7 @@ export default function ShowcaseCoverPage() {
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const elementPosition =
           el.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight - 20;
+        const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         if (hasFilters) {
           // Dispatch custom event to switch to list view
@@ -70,7 +70,7 @@ export default function ShowcaseCoverPage() {
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const elementPosition =
           el.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight - 20;
+        const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
@@ -86,7 +86,7 @@ export default function ShowcaseCoverPage() {
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const elementPosition =
           el.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight - 20;
+        const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });

@@ -96,7 +96,7 @@ export default function LearningPathsSection({
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const elementPosition =
           el.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight - 20;
+        const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         // Dispatch custom event after scrolling
         window.dispatchEvent(new Event("switchToListView"));
@@ -115,7 +115,7 @@ export default function LearningPathsSection({
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
           const elementPosition =
             el.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight - 20;
+          const offsetPosition = elementPosition - navbarHeight;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event after scrolling
           window.dispatchEvent(new Event("switchToListView"));

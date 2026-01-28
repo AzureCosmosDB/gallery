@@ -27,7 +27,7 @@ const Pagination: React.FC<PaginationProps> = ({
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
           const elementPosition =
             resourceLibrary.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight - 20;
+          const offsetPosition = elementPosition - navbarHeight;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       }, 50); // Small delay to ensure page content updates first

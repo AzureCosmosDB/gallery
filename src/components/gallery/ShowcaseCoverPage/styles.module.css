@@ -107,6 +107,7 @@
 }
 .centeredDescription {
   text-align: center !important;
+  line-height: 1.5 !important;
   width: 100%;
   color: #636364;
   font-size: 24px !important;
