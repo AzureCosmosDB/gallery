@@ -52,10 +52,7 @@ export default function ShowcaseCoverPage() {
           el.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - navbarHeight - 20;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-        if (hasFilters) {
-          // Dispatch custom event to switch to list view
-          window.dispatchEvent(new Event("switchToListView"));
-        }
+        // Note: Do not switch to list view for hero section links
       }
     });
   };
@@ -164,7 +161,7 @@ export default function ShowcaseCoverPage() {
                     href="#resource-library"
                     className={styles.resourceLink}
                     onClick={(e) =>
-                      scrollToResourceLibrary(e, ["concepts", "how-to"])
+                      scrollToResourceLibrary(e, ["documentation", "concepts", "how-to", "tutorial"])
                     }
                   >
                     Documentation

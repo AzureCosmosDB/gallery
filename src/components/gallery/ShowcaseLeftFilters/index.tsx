@@ -82,7 +82,7 @@ function LearningPathTagSelect({
             el.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight - 20;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-          // Dispatch custom event to switch to list view
+          // Dispatch custom event to switch to list view for learning paths
           window.dispatchEvent(new Event("switchToListView"));
         }
       });
@@ -292,7 +292,9 @@ export default function ShowcaseLeftFilters({
   });
   const resourceTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
-    return tagObject.type === "ResourceType";
+    // Exclude standalone documentation sub-types (concepts, how-to, tutorial) since they appear under Documentation parent
+    return tagObject.type === "ResourceType" && 
+           !['concepts', 'how-to', 'tutorial'].includes(tag);
   });
   const contentTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
@@ -353,14 +355,14 @@ export default function ShowcaseLeftFilters({
         >
           <div
             className={styles.tagCatalog}
-            data-m='{\"id\":\"ResourceType\",\"cN\":\"Tags Category\"}'
+            data-m='{\"id\":\"Service\",\"cN\":\"Tags Category\"}'
           >
-            Resource Type
+            Products
           </div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll
-            tags={resourceTypeTag}
+            tags={serviceTag}
             number={"2"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}
@@ -378,14 +380,14 @@ export default function ShowcaseLeftFilters({
         >
           <div
             className={styles.tagCatalog}
-            data-m='{\"id\":\"Service\",\"cN\":\"Tags Category\"}'
+            data-m='{\"id\":\"ResourceType\",\"cN\":\"Tags Category\"}'
           >
-            Products
+            Resource Type
           </div>
         </AccordionHeader>
         <AccordionPanel>
           <ShowcaseFilterViewAll
-            tags={serviceTag}
+            tags={resourceTypeTag}
             number={"3"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}

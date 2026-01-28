@@ -66,6 +66,7 @@ export type TagType =
   | "rag"
   | "concepts"
   | "how-to"
+  | "documentation"
   | "solution-accelerator"
   | "workshop"
   | "tutorial"
@@ -249,6 +250,19 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "Start Workshop",
     color: "purple",
+  },
+
+  documentation: {
+    label: "Documentation",
+    description: "Documentation resources including concepts, how-to guides, and tutorials",
+    type: "ResourceType",
+    buttonText: "View Documentation",
+    color: "blue",
+    subType: [
+      { label: "Concepts" },
+      { label: "How-To" },
+      { label: "Tutorial" },
+    ],
   },
 
   concepts: {

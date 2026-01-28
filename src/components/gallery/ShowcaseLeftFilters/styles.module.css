@@ -9,6 +9,7 @@
   user-select: none;
   white-space: nowrap;
   padding-left: 0 !important;
+  margin-bottom: 6px;
 }
 
 .checkboxListItem > * {
@@ -20,17 +21,12 @@
   user-select: none;
   white-space: nowrap;
   padding-left: 24px;
+  margin-bottom: 6px;
 }
 
 .subCheckboxListItem > * {
   margin-left: 0 !important;
   padding-left: 0 !important;
-}
-
-.subCheckboxListItem {
-  user-select: none;
-  white-space: nowrap;
-  padding-left: 24px;
 }
 
 .checkboxListItem:last-child {
@@ -61,6 +57,7 @@
 :global(.fui-AccordionHeader__button) {
   padding-right: 0 !important;
   padding-left: 0 !important;
+  min-height: unset !important;
 }
 
 /* Ensure consistent alignment for all accordion headers */
@@ -72,4 +69,6 @@
 :global(.fui-AccordionPanel) {
   padding-left: 0 !important;
   padding-right: 0 !important;
+  padding-top: 8px !important;
+  padding-bottom: 12px !important;
 }

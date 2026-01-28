@@ -60,7 +60,7 @@ export default function ShowcaseTagSelect({
             el.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight - 20;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-          // Dispatch custom event to switch to list view
+          // Dispatch custom event to switch to list view for learning paths
           window.dispatchEvent(new Event("switchToListView"));
         }
       });
