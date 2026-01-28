@@ -46,7 +46,6 @@ export default function NavbarMobilePrimaryMenu() {
         const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - navbarHeight - 20;
         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        // Note: Do not switch to list view for mobile sidebar links
       }
     });
     mobileSidebar.toggle();
