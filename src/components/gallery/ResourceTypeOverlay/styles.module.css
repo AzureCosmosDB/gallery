@@ -22,13 +22,13 @@
   gap: 3.5px;
   
   border-radius: 6.75px;
-  border: 1px solid rgba(255, 255, 255, 0.30);
-  background: rgba(0, 0, 0, 0.50);
+  border: 1px solid rgba(100, 100, 100, 0.30);
+  background: rgba(229, 229, 229, 0.80);
   backdrop-filter: blur(2px);
 }
 
 .resourceTypeText {
-  color: #FFF;
+  color: #242424;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 10.5px;
   font-style: normal;
