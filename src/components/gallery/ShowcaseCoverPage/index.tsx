@@ -20,6 +20,17 @@ export default function ShowcaseCoverPage() {
   const history = useHistory();
   const location = useLocation();
 
+  // Resource links for the Resource Library card (ordered & mapped)
+  const heroResourceLinks = [
+    {
+      label: "Documentation",
+      tags: ["documentation", "concepts", "how-to", "tutorial"],
+    },
+    { label: "Samples", tags: ["samples"] },
+    { label: "Solution Accelerators", tags: ["solution-accelerator"] },
+    { label: "Videos", tags: ["video"] },
+  ];
+
   // Scroll to resource library section with filtering
   const scrollToResourceLibrary = (e, tagFilters = []) => {
     e.preventDefault();
@@ -123,7 +134,7 @@ export default function ShowcaseCoverPage() {
                 <div className={styles.cardIconWrapper}>
                   <BookOpen size={40} style={{ color: "#0078d4" }} />
                 </div>
-                <span className={styles.cardTitle}>Pathways</span>
+                <span className={styles.cardTitle}>Learning Pathways</span>
                 <span className={styles.cardDesc}>
                   Structured pathways from beginner to advanced
                 </span>
@@ -149,65 +160,20 @@ export default function ShowcaseCoverPage() {
                   className={styles.cardLinks}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["training"])}
-                  >
-                    Trainings
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) =>
-                      scrollToResourceLibrary(e, ["documentation", "concepts", "how-to", "tutorial"])
-                    }
-                  >
-                    Documentation
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["samples"])}
-                  >
-                    Samples
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["blog"])}
-                  >
-                    Blogs
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["video"])}
-                  >
-                    Videos
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) =>
-                      scrollToResourceLibrary(e, ["solution-accelerator"])
-                    }
-                  >
-                    Solution Accelerators
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["workshop"])}
-                  >
-                    Workshops
-                  </a>
+                  {heroResourceLinks.map((item, idx) => (
+                    <React.Fragment key={item.label}>
+                      <a
+                        href="#resource-library"
+                        className={styles.resourceLink}
+                        onClick={(e) => scrollToResourceLibrary(e, item.tags)}
+                      >
+                        {item.label}
+                      </a>
+                      {idx < heroResourceLinks.length - 1 && (
+                        <span className={styles.linkSeparator}> | </span>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </span>
               </div>
               {/* Card 3 */}
