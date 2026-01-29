@@ -121,8 +121,9 @@ export default function MobileFilterDrawer({
     (tag) => Tags[tag]?.type === "ContentType",
   );
   const resourceTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ResourceType" && 
-             !['concepts', 'how-to', 'tutorial'].includes(tag)
+    (tag) =>
+      Tags[tag]?.type === "ResourceType" &&
+      !["concepts", "how-to", "tutorial"].includes(tag),
   );
   const languageTags = TagList.filter((tag) => Tags[tag]?.type === "Language");
 
@@ -210,7 +211,10 @@ export default function MobileFilterDrawer({
                 </AccordionPanel>
               </AccordionItem>
               {/* Pathways */}
-              <AccordionItem value="1" className={styles.sortSection}>
+              <AccordionItem
+                value="1"
+                className={`${styles.sortSection} ${styles.mainCategoryItem}`}
+              >
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
@@ -235,7 +239,10 @@ export default function MobileFilterDrawer({
               </AccordionItem>
 
               {/* Products */}
-              <AccordionItem value="2" className={styles.sortSection}>
+              <AccordionItem
+                value="2"
+                className={`${styles.sortSection} ${styles.mainCategoryItem}`}
+              >
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
@@ -304,7 +311,10 @@ export default function MobileFilterDrawer({
               </AccordionItem>
 
               {/* Resource Type */}
-              <AccordionItem value="3" className={styles.sortSection}>
+              <AccordionItem
+                value="3"
+                className={`${styles.sortSection} ${styles.mainCategoryItem}`}
+              >
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
@@ -373,7 +383,10 @@ export default function MobileFilterDrawer({
               </AccordionItem>
 
               {/* Category */}
-              <AccordionItem value="4" className={styles.sortSection}>
+              <AccordionItem
+                value="4"
+                className={`${styles.sortSection} ${styles.mainCategoryItem}`}
+              >
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}
@@ -398,7 +411,10 @@ export default function MobileFilterDrawer({
               </AccordionItem>
 
               {/* Language */}
-              <AccordionItem value="5" className={styles.sortSection}>
+              <AccordionItem
+                value="5"
+                className={`${styles.sortSection} ${styles.mainCategoryItem}`}
+              >
                 <AccordionHeader
                   expandIconPosition="end"
                   className={styles.accordionHeader}

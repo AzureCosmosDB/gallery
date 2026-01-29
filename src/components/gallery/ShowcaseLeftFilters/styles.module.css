@@ -72,3 +72,8 @@
   padding-top: 8px !important;
   padding-bottom: 12px !important;
 }
+
+/* Add spacing below main category accordion items only */
+.mainCategoryItem {
+  margin-bottom: 8px;
+}

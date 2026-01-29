@@ -110,6 +110,11 @@
   margin-bottom: 12px;
 }
 
+/* Add spacing below main category accordion items only */
+.mainCategoryItem {
+  margin-bottom: 12px !important;
+}
+
 .accordionHeader {
   display: flex !important;
 
