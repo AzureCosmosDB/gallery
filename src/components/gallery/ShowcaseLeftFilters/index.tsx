@@ -293,8 +293,10 @@ export default function ShowcaseLeftFilters({
   const resourceTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
     // Exclude standalone documentation sub-types (concepts, how-to, tutorial) since they appear under Documentation parent
-    return tagObject.type === "ResourceType" && 
-           !['concepts', 'how-to', 'tutorial'].includes(tag);
+    return (
+      tagObject.type === "ResourceType" &&
+      !["concepts", "how-to", "tutorial"].includes(tag)
+    );
   });
   const contentTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
@@ -322,7 +324,7 @@ export default function ShowcaseLeftFilters({
       multiple
       collapsible
     >
-      <AccordionItem value="1">
+      <AccordionItem value="1" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -348,7 +350,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="2">
+      <AccordionItem value="2" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -373,7 +375,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="3">
+      <AccordionItem value="3" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -398,7 +400,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="4">
+      <AccordionItem value="4" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -423,7 +425,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="5">
+      <AccordionItem value="5" className={styles.mainCategoryItem}>
         <AccordionHeader expandIconPosition="end">
           <div
             className={styles.tagCatalog}
