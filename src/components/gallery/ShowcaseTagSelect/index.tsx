@@ -136,7 +136,9 @@ export default function ShowcaseTagSelect({
   // 1. The tag itself is in activeTags, OR
   // 2. Any parent tag is selected (so sub-filters are enabled when parent is checked)
   // BUT always disable tags in alwaysDisabledTags list
-  const isDisabled = alwaysDisabledTags.includes(tag) || !(activeTags?.includes(tag) || isParentSelected);
+  const isDisabled =
+    alwaysDisabledTags.includes(tag) ||
+    !(activeTags?.includes(tag) || isParentSelected);
 
   // Determine checked state:
   // - If this is a sub-tag (parentTag provided), only check if BOTH parent and sub-tag are selected
