@@ -210,7 +210,7 @@ export default function NavbarContent() {
             }`}
             onClick={(e) => handleMenuClick(e, "#learning-paths")}
           >
-            Pathways
+            Learning Pathways
           </Link>
           <div className={styles.menuItemDropdown}>
             <Link

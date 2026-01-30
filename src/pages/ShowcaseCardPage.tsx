@@ -244,123 +244,80 @@ function filterUsers(
     return users;
   }
 
-  // Detect parent-sub-tag pairs that require AND logic
-  // If both a parent and one of its sub-tags are selected, they require AND
-  const parentSubPairs = new Map<TagType, TagType>(); // Map<parent, subTag>
+  // Group tags by their accordion/category type for OR/AND logic:
+  // - Within same accordion (type): OR logic (video OR blog shows both)
+  // - Across different accordions: AND logic (ResourceType AND Service must both match)
 
-  selectedTags.forEach((selectedTag) => {
-    // Check if this selected tag is a parent that has sub-tags
-    const tagObject = Tags[selectedTag];
-    if (
-      tagObject &&
-      Array.isArray(tagObject.subType) &&
-      tagObject.subType.length > 0
-    ) {
-      // Check if any of its sub-tags are also selected
-      tagObject.subType.forEach((sub) => {
-        const subTagKey = sub.label.toLowerCase() as TagType;
-        if (selectedTags.includes(subTagKey)) {
-          // Both parent and sub-tag are selected - require AND logic
-          parentSubPairs.set(selectedTag, subTagKey);
-        }
-      });
+  // Helper to get the primary type of a tag (for grouping purposes)
+  const getTagCategory = (tag: TagType): string => {
+    const tagObject = Tags[tag];
+    if (!tagObject) return "Other";
+
+    const tagType = tagObject.type;
+    if (Array.isArray(tagType)) {
+      // Use first type for grouping
+      return tagType[0] || "Other";
     }
-  });
+    return tagType || "Other";
+  };
 
-  // Create tag groups with special handling for parent-sub pairs
-  const tagGroups: Array<{ tags: TagType[]; requireAll: boolean }> = [];
-  const processedTags = new Set<TagType>();
-
-  // Special-case AND relation for Connect & Query: require both 'app-dev' and 'connect'
-  if (
-    selectedTags.includes("app-dev" as TagType) &&
-    selectedTags.includes("connect" as TagType)
-  ) {
-    tagGroups.push({
-      tags: ["app-dev" as TagType, "connect" as TagType],
-      requireAll: true,
-    });
-    processedTags.add("app-dev" as TagType);
-    processedTags.add("connect" as TagType);
-  }
+  // Group selected tags by their category/accordion type
+  const tagsByCategory = new Map<string, TagType[]>();
 
   selectedTags.forEach((tag) => {
-    if (processedTags.has(tag)) {
-      return; // Already processed as part of a parent-sub pair
+    const category = getTagCategory(tag);
+    if (!tagsByCategory.has(category)) {
+      tagsByCategory.set(category, []);
     }
+    tagsByCategory.get(category)!.push(tag);
+  });
 
-    // Check if this tag is part of a parent-sub pair
-    let isInPair = false;
-    for (const [parent, subTag] of Array.from(parentSubPairs.entries())) {
-      if (tag === parent || tag === subTag) {
-        // This is a parent-sub pair requiring AND logic
-        tagGroups.push({
-          tags: [parent, subTag],
-          requireAll: true, // Require both tags
-        });
-        processedTags.add(parent);
-        processedTags.add(subTag);
-        isInPair = true;
-        break;
-      }
-    }
+  // Expand parent tags to include their sub-tags for OR matching
+  const expandedTagsByCategory = new Map<string, TagType[]>();
 
-    if (!isInPair) {
-      // Regular tag - create group with parent expansion (OR logic)
+  Array.from(tagsByCategory.entries()).forEach(([category, tags]) => {
+    const expandedTags: TagType[] = [];
+
+    tags.forEach((tag) => {
+      expandedTags.push(tag);
+
       const tagObject = Tags[tag];
-      const group: TagType[] = [tag];
-
       if (
         tagObject &&
         Array.isArray(tagObject.subType) &&
         tagObject.subType.length > 0
       ) {
-        // Special-cases:
-        // - Do NOT expand 'fundamentals' to include its subtypes.
-        // - Do NOT expand 'genai' to include its subtypes. Selecting GenAI alone
-        //   should match only items explicitly tagged with 'genai'.
-        // - Do NOT expand 'app-dev' to include its subtypes. Selecting Application Development (Core)
-        //   should match only items explicitly tagged with 'app-dev', unless sub-tags are explicitly selected.
+        // Special-cases: don't expand certain parent tags
         if (
           tag !== ("fundamentals" as TagType) &&
           tag !== ("genai" as TagType) &&
           tag !== ("app-dev" as TagType)
         ) {
-          // Add sub-tags from parent tag (but only if sub-tag isn't already selected separately)
+          // Add sub-tags from parent tag for OR matching
           tagObject.subType.forEach((sub) => {
             const subTagKey = sub.label.toLowerCase() as TagType;
-            if (Tags[subTagKey] && !selectedTags.includes(subTagKey)) {
-              // Only include sub-tag in expansion if it's not explicitly selected
-              group.push(subTagKey);
+            if (Tags[subTagKey] && !expandedTags.includes(subTagKey)) {
+              expandedTags.push(subTagKey);
             }
           });
         }
       }
+    });
 
-      tagGroups.push({
-        tags: group,
-        requireAll: false, // OR logic within group
-      });
-      processedTags.add(tag);
-    }
+    expandedTagsByCategory.set(category, expandedTags);
   });
 
   return users.filter((user) => {
-    if (!user && !user.tags && user.tags.length === 0) {
+    if (!user || !user.tags || user.tags.length === 0) {
       return false;
     }
-    // For each tag group:
-    // - If requireAll is true (parent-sub pair), user must have ALL tags in the group
-    // - If requireAll is false, user must have at least one tag from the group
-    // AND user must satisfy all groups (AND between groups)
-    return tagGroups.every((group) => {
-      if (group.requireAll) {
-        // AND logic: user must have all tags in this group
-        return group.tags.every((tag) => user.tags.includes(tag));
-      } else {
-        // OR logic: user must have at least one tag from this group
-        return group.tags.some((tag) => user.tags.includes(tag));
-      }
+
+    // AND logic across categories: user must satisfy ALL category groups
+    // OR logic within category: user must have at least ONE tag from each category group
+    const categoryEntries = Array.from(expandedTagsByCategory.entries());
+    return categoryEntries.every(([category, categoryTags]) => {
+      // Check if user has at least one tag from this category (OR within category)
+      return categoryTags.some((tag) => user.tags.includes(tag));
     });
   });
 }
@@ -448,6 +405,36 @@ export default function ShowcaseCardPage({
         });
       }
     });
+
+    // Helper to get the primary type/category of a tag
+    const getTagCategory = (tag: TagType): string => {
+      const tagObject = Tags[tag];
+      if (!tagObject) return "Other";
+      const tagType = tagObject.type;
+      if (Array.isArray(tagType)) {
+        return tagType[0] || "Other";
+      }
+      return tagType || "Other";
+    };
+
+    // Get categories that have selected tags
+    const selectedCategories = new Set<string>();
+    selectedTags.forEach((tag) => {
+      selectedCategories.add(getTagCategory(tag));
+    });
+
+    // For OR logic within same category: keep ALL tags in categories that have selections enabled
+    // This prevents disabling other options when one is selected (since OR means more = more results)
+    if (selectedCategories.size > 0) {
+      Object.keys(Tags).forEach((tagKey) => {
+        const tag = tagKey as TagType;
+        const category = getTagCategory(tag);
+        if (selectedCategories.has(category)) {
+          // This tag is in a category with selections - keep it enabled
+          unionTags.add(tag);
+        }
+      });
+    }
 
     setActiveTags(Array.from(unionTags));
   }, [cards, selectedTags]);

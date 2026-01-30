@@ -74,7 +74,7 @@ export default function NavbarMobilePrimaryMenu() {
         <Link className="menu__link" to="#home" onClick={(e)=>handleScroll(e,'#home')}>Home</Link>
       </li>
       <li className="menu__list-item">
-        <Link className="menu__link" to="#learning-paths" onClick={(e)=>handleScroll(e,'#learning-paths')}>Pathways</Link>
+        <Link className="menu__link" to="#learning-paths" onClick={(e)=>handleScroll(e,'#learning-paths')}>Learning Pathways</Link>
       </li>
       <li className="menu__list-item">
         <Link className="menu__link" to="#resource-library" onClick={(e)=>handleScroll(e,'#resource-library')}>Resource Library</Link>

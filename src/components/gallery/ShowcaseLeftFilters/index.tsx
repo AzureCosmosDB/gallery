@@ -333,7 +333,7 @@ export default function ShowcaseLeftFilters({
             className={styles.tagCatalog}
             data-m='{\"id\":\"Learning Paths\",\"cN\":\"Tags Category\"}'
           >
-            Pathways
+            Learning Pathways
           </div>
         </AccordionHeader>
         <AccordionPanel>

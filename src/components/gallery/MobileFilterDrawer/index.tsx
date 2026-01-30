@@ -219,7 +219,7 @@ export default function MobileFilterDrawer({
                   expandIconPosition="end"
                   className={styles.accordionHeader}
                 >
-                  Pathways
+                  Learning Pathways
                 </AccordionHeader>
                 <AccordionPanel>
                   {learningPathTags.map((tag) => {
