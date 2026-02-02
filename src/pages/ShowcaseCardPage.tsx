@@ -229,6 +229,30 @@ function FilterBar(): React.JSX.Element {
   );
 }
 
+/**
+ * Filter Logic:
+ * 1. BETWEEN CATEGORIES (AND): If user selects filters from different categories
+ *    (e.g., "Video" from Resource Type AND "Python" from Language),
+ *    cards must match ALL category requirements.
+ *
+ * 2. WITHIN SAME CATEGORY (OR): If user selects multiple filters from the same category
+ *    (e.g., "Video" AND "Blog" from Resource Type),
+ *    cards matching ANY of these filters are shown.
+ *
+ * 3. PARENT-CHILD RELATIONSHIP: Always follows parent AND (child1 OR child2 OR ...) logic:
+ *    - If ONLY parent is selected: parent OR any of its sub-tags
+ *    - If parent AND ALL sub-filters are selected: equivalent to parent-only
+ *    - If parent AND some sub-filters are selected: parent AND (selected sub-filters)
+ *    - If ONLY sub-filters are selected: parent AND (selected sub-filters)
+ *      Example: "overview" + "getting-started" = fundamentals AND (overview OR getting-started)
+ *
+ * Categories:
+ * - LearningPath: Learning Pathways
+ * - Service: Products
+ * - ResourceType: Resource Type (has parent-child: documentation -> concepts, how-to, tutorial)
+ * - ContentType: Category (has parent-child: fundamentals, genai, app-dev, analytics)
+ * - Language: Language
+ */
 function filterUsers(
   users: User[],
   selectedTags: TagType[],
@@ -244,67 +268,112 @@ function filterUsers(
     return users;
   }
 
-  // Group tags by their accordion/category type for OR/AND logic:
-  // - Within same accordion (type): OR logic (video OR blog shows both)
-  // - Across different accordions: AND logic (ResourceType AND Service must both match)
+  // Define parent-child relationships
+  const parentChildMap: { [key: string]: string[] } = {
+    documentation: ["concepts", "how-to", "tutorial"],
+    fundamentals: ["overview", "getting-started"],
+    genai: [
+      "overview",
+      "vector",
+      "rag",
+      "agent",
+      "semantic",
+      "graph",
+      "azureai",
+    ],
+    "app-dev": ["connect", "vscode", "best-practice", "devops"],
+    analytics: ["powerbi", "fabric", "adf"],
+  };
 
-  // Helper to get the primary type of a tag (for grouping purposes)
+  // For children with multiple parents, create separate child-to-parent mappings
+  // based on which parent is actually involved in the current selection
+  const childToParent: { [key: string]: string } = {};
+
+  // Build child-to-parent map dynamically based on current selection context
+  selectedTags.forEach((tag) => {
+    if (parentChildMap[tag]) return; // Skip parents
+
+    // Find which parent this child belongs to based on current context
+    for (const [parentKey, children] of Object.entries(parentChildMap)) {
+      if (children.includes(tag)) {
+        // If parent is also selected, or if this is the first parent we find for this child
+        if (
+          selectedTags.includes(parentKey as TagType) ||
+          !childToParent[tag]
+        ) {
+          childToParent[tag] = parentKey;
+        }
+      }
+    }
+  });
+
+  // Helper to get the primary type/category of a tag
   const getTagCategory = (tag: TagType): string => {
     const tagObject = Tags[tag];
     if (!tagObject) return "Other";
 
     const tagType = tagObject.type;
     if (Array.isArray(tagType)) {
-      // Use first type for grouping
       return tagType[0] || "Other";
     }
     return tagType || "Other";
   };
 
-  // Group selected tags by their category/accordion type
+  // Helper to get the accordion category for grouping
+  // Sub-tags should be grouped with their parent's category
+  const getAccordionCategory = (tag: TagType): string => {
+    // If this is a child tag, get the parent's category
+    const parent = childToParent[tag];
+    if (parent) {
+      return getTagCategory(parent as TagType);
+    }
+    return getTagCategory(tag);
+  };
+
+  // Separate parent tags and their selected sub-tags
+  const selectedParents = new Set<string>();
+  const selectedSubTagsByParent = new Map<string, TagType[]>();
+  const standaloneSubTags = new Map<string, TagType[]>(); // Sub-tags without parent selected
+
+  selectedTags.forEach((tag) => {
+    if (parentChildMap[tag]) {
+      // This is a parent tag
+      selectedParents.add(tag);
+    } else if (childToParent[tag]) {
+      // This is a child tag
+      const parent = childToParent[tag];
+      if (selectedTags.includes(parent as TagType)) {
+        // Parent is also selected, group under parent
+        if (!selectedSubTagsByParent.has(parent)) {
+          selectedSubTagsByParent.set(parent, []);
+        }
+        selectedSubTagsByParent.get(parent)!.push(tag);
+      } else {
+        // Parent not selected, but we still need parent AND (child OR child) logic
+        // Add the parent to processing and treat children as sub-selections
+        selectedParents.add(parent);
+        if (!selectedSubTagsByParent.has(parent)) {
+          selectedSubTagsByParent.set(parent, []);
+        }
+        selectedSubTagsByParent.get(parent)!.push(tag);
+      }
+    }
+  });
+
+  // Group regular (non-parent-child) tags by category
   const tagsByCategory = new Map<string, TagType[]>();
 
   selectedTags.forEach((tag) => {
-    const category = getTagCategory(tag);
+    // Skip tags that are part of parent-child relationships (handled separately)
+    if (parentChildMap[tag] || childToParent[tag]) {
+      return;
+    }
+
+    const category = getAccordionCategory(tag);
     if (!tagsByCategory.has(category)) {
       tagsByCategory.set(category, []);
     }
     tagsByCategory.get(category)!.push(tag);
-  });
-
-  // Expand parent tags to include their sub-tags for OR matching
-  const expandedTagsByCategory = new Map<string, TagType[]>();
-
-  Array.from(tagsByCategory.entries()).forEach(([category, tags]) => {
-    const expandedTags: TagType[] = [];
-
-    tags.forEach((tag) => {
-      expandedTags.push(tag);
-
-      const tagObject = Tags[tag];
-      if (
-        tagObject &&
-        Array.isArray(tagObject.subType) &&
-        tagObject.subType.length > 0
-      ) {
-        // Special-cases: don't expand certain parent tags
-        if (
-          tag !== ("fundamentals" as TagType) &&
-          tag !== ("genai" as TagType) &&
-          tag !== ("app-dev" as TagType)
-        ) {
-          // Add sub-tags from parent tag for OR matching
-          tagObject.subType.forEach((sub) => {
-            const subTagKey = sub.label.toLowerCase() as TagType;
-            if (Tags[subTagKey] && !expandedTags.includes(subTagKey)) {
-              expandedTags.push(subTagKey);
-            }
-          });
-        }
-      }
-    });
-
-    expandedTagsByCategory.set(category, expandedTags);
   });
 
   return users.filter((user) => {
@@ -312,13 +381,86 @@ function filterUsers(
       return false;
     }
 
-    // AND logic across categories: user must satisfy ALL category groups
-    // OR logic within category: user must have at least ONE tag from each category group
-    const categoryEntries = Array.from(expandedTagsByCategory.entries());
-    return categoryEntries.every(([category, categoryTags]) => {
-      // Check if user has at least one tag from this category (OR within category)
-      return categoryTags.some((tag) => user.tags.includes(tag));
-    });
+    // Check parent-child filter matches
+    const selectedParentsArray = Array.from(selectedParents);
+    for (let i = 0; i < selectedParentsArray.length; i++) {
+      const parent = selectedParentsArray[i];
+      const subTags = selectedSubTagsByParent.get(parent) || [];
+      const allChildTags = parentChildMap[parent] || [];
+
+      // For this specific user/card, determine which child tags actually belong to this parent
+      // This handles cases where children like "overview" belong to multiple parents
+      const actualChildTagsForThisCard = allChildTags.filter((child) => {
+        // If user has the parent tag, then all children of that parent apply
+        if (user.tags.includes(parent as TagType)) {
+          return true;
+        }
+        // If user doesn't have parent tag, only include children that aren't claimed by other parents
+        // that the user DOES have
+        for (const otherParent of Object.keys(parentChildMap)) {
+          if (
+            otherParent !== parent &&
+            user.tags.includes(otherParent as TagType) &&
+            parentChildMap[otherParent].includes(child)
+          ) {
+            return false; // This child belongs to another parent that user has
+          }
+        }
+        return true;
+      });
+
+      if (subTags.length === 0) {
+        // Only parent selected: match parent OR any of its children (that apply to this card)
+        const matchesParent = user.tags.includes(parent as TagType);
+        const matchesAnyChild = actualChildTagsForThisCard.some((child) =>
+          user.tags.includes(child as TagType),
+        );
+        if (!matchesParent && !matchesAnyChild) {
+          return false;
+        }
+      } else if (subTags.length === allChildTags.length) {
+        // All sub-tags selected: equivalent to selecting parent
+        const matchesParent = user.tags.includes(parent as TagType);
+        const matchesAnyChild = actualChildTagsForThisCard.some((child) =>
+          user.tags.includes(child as TagType),
+        );
+        if (!matchesParent && !matchesAnyChild) {
+          return false;
+        }
+      } else {
+        // Some (but not all) sub-tags selected
+        // Only match if user has the selected sub-tags that are relevant to this parent context
+        const relevantSubTags = subTags.filter((subTag) =>
+          actualChildTagsForThisCard.includes(subTag),
+        );
+
+        if (relevantSubTags.length === 0) {
+          return false; // No relevant sub-tags for this parent context
+        }
+
+        const matchesSelectedSub = relevantSubTags.some((subTag) =>
+          user.tags.includes(subTag),
+        );
+        if (!matchesSelectedSub) {
+          return false;
+        }
+      }
+    }
+
+    // Check category-based filters (AND across categories, OR within category)
+    const categoryEntries = Array.from(tagsByCategory.entries());
+    for (let i = 0; i < categoryEntries.length; i++) {
+      const [category, categoryTags] = categoryEntries[i];
+      // OR logic within category: user must have at least ONE tag from this category
+      const matchesCategory = categoryTags.some((tag) =>
+        user.tags.includes(tag),
+      );
+      if (!matchesCategory) {
+        return false;
+      }
+    }
+
+    return true;
   });
 }
 
