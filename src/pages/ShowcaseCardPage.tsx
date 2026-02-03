@@ -16,7 +16,9 @@ import ShowcaseCards from "./ShowcaseCards";
 import ShowcaseList from "./ShowcaseList";
 import MobileFilterDrawer from "../components/gallery/MobileFilterDrawer";
 import FilterAppliedBar from "../components/gallery/FilterAppliedBar";
-import SearchFilterBar, { readSearchName } from "../components/gallery/SearchFilterBar";
+import SearchFilterBar, {
+  readSearchName,
+} from "../components/gallery/SearchFilterBar";
 import ViewToggle, { type ViewType } from "../components/gallery/ViewToggle";
 import SortDropdown from "../components/gallery/SortDropdown";
 import ResultsSummary from "../components/gallery/ResultsSummary";
@@ -37,7 +39,7 @@ export type UserState = {
   focusedElementId: string | undefined;
 };
 
-export interface ShowcaseCardPageProps {
+interface ShowcaseCardPageProps {
   setActiveTags: React.Dispatch<React.SetStateAction<TagType[]>>;
   activeTags: TagType[];
   selectedTags: TagType[];
@@ -112,7 +114,10 @@ interface HeaderSectionProps {
   description: string;
 }
 
-function HeaderSection({ title, description }: HeaderSectionProps): React.JSX.Element {
+function HeaderSection({
+  title,
+  description,
+}: HeaderSectionProps): React.JSX.Element {
   return (
     <div className={styles.titleSection}>
       <Title1 className={styles.resourceTitle}>{title}</Title1>
