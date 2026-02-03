@@ -14,7 +14,7 @@ import { toggleListItem } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
 import styles from "../../../pages/styles.module.css";
 
-export interface FilterAppliedBarProps {
+interface FilterAppliedBarProps {
   /** Currently selected tags */
   selectedTags: TagType[];
   /** Callback to clear all filters */

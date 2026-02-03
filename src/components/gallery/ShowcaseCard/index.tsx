@@ -35,7 +35,7 @@ function ShowcaseCard({
   tileNumber,
 }: {
   user: User;
-  coverPage: Boolean;
+  coverPage: boolean;
   fixedHeight?: number;
   tileNumber?: number;
 }): JSX.Element {

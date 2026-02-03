@@ -10,7 +10,6 @@ import { unsortedUsers } from "../data/users";
 
 /** Available sort options */
 export const SORT_BY_OPTIONS = ["Newest", "Recommended"] as const;
-export type SortOption = (typeof SORT_BY_OPTIONS)[number];
 
 /** Priority order mapping (P0 = highest = 0) */
 const PRIORITY_ORDER: Record<string, number> = { P0: 0, P1: 1, P2: 2 };
