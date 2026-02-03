@@ -17,7 +17,7 @@ import {
 } from "@fluentui/react-components";
 
 function closeCard(parentDiv) {
-  let parent = document.getElementById(parentDiv);
+  const parent = document.getElementById(parentDiv);
   parent.style.display = "none";
   // access localStorage until window is defined
   if (typeof window !== "undefined") {
@@ -25,7 +25,7 @@ function closeCard(parentDiv) {
   }
 }
 
-export default function ShowcaseSurveyCard(): React.ReactElement {
+function ShowcaseSurveyCard(): React.ReactElement {
   // access localStorage until window is defined
   if (
     typeof window !== "undefined" &&
@@ -65,7 +65,7 @@ export default function ShowcaseSurveyCard(): React.ReactElement {
           onClick={() => {
             window.open(
               "https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6",
-              "_blank"
+              "_blank",
             );
           }}
           icon={
