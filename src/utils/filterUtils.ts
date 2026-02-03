@@ -164,7 +164,12 @@ function matchesCategoryFilters(
  * Filter Logic:
  * 1. BETWEEN CATEGORIES (AND): Cards must match ALL category requirements.
  * 2. WITHIN SAME CATEGORY (OR): Cards matching ANY filter in category are shown.
- * 3. PARENT-CHILD: parent AND (child1 OR child2 OR ...) logic.
+ *    This includes OR between regular filters and parent-child groups.
+ * 3. PARENT-CHILD: parent AND (child1 OR child2 OR ...) logic within each group.
+ * 
+ * Examples:
+ * - ResourceType: blog OR video OR (documentation AND (concepts OR how-to OR tutorial))
+ * - ContentType: (fundamentals AND (overview OR getting-started)) OR (genai AND (vector OR rag))
  */
 export function filterUsers(
   users: User[],
@@ -186,46 +191,91 @@ export function filterUsers(
 
   const childToParent = buildChildToParentMap(selectedTags);
 
-  // Separate parent tags and their selected sub-tags
-  const selectedParents = new Set<string>();
-  const selectedSubTagsByParent = new Map<string, TagType[]>();
+  // Group all filters by category (regular filters and parent-child groups together)
+  const filtersByCategory = new Map<string, {
+    regularTags: TagType[];
+    parentChildGroups: Map<string, TagType[]>;
+  }>();
 
+  // Process all selected tags
   selectedTags.forEach((tag) => {
+    let category: string;
+    
     if (PARENT_CHILD_MAP[tag]) {
-      selectedParents.add(tag);
-    } else if (childToParent[tag]) {
-      const parent = childToParent[tag];
-      selectedParents.add(parent);
-      if (!selectedSubTagsByParent.has(parent)) {
-        selectedSubTagsByParent.set(parent, []);
+      // This is a parent tag
+      category = getTagCategory(tag);
+      if (!filtersByCategory.has(category)) {
+        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
       }
-      selectedSubTagsByParent.get(parent)!.push(tag);
+      filtersByCategory.get(category)!.parentChildGroups.set(tag, []);
+      
+    } else if (childToParent[tag]) {
+      // This is a child tag  
+      const parent = childToParent[tag];
+      category = getTagCategory(parent as TagType);
+      if (!filtersByCategory.has(category)) {
+        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
+      }
+      if (!filtersByCategory.get(category)!.parentChildGroups.has(parent)) {
+        filtersByCategory.get(category)!.parentChildGroups.set(parent, []);
+      }
+      filtersByCategory.get(category)!.parentChildGroups.get(parent)!.push(tag);
+      
+    } else {
+      // Regular tag
+      category = getTagCategory(tag);
+      if (!filtersByCategory.has(category)) {
+        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
+      }
+      filtersByCategory.get(category)!.regularTags.push(tag);
     }
-  });
-
-  // Group regular (non-parent-child) tags by category
-  const tagsByCategory = new Map<string, TagType[]>();
-  selectedTags.forEach((tag) => {
-    if (PARENT_CHILD_MAP[tag] || childToParent[tag]) {
-      return;
-    }
-    const category = getAccordionCategory(tag, childToParent);
-    if (!tagsByCategory.has(category)) {
-      tagsByCategory.set(category, []);
-    }
-    tagsByCategory.get(category)!.push(tag);
   });
 
   return filteredUsers.filter((user) => {
     if (!user?.tags?.length) {
       return false;
     }
-    if (!matchesParentChildFilters(user, selectedParents, selectedSubTagsByParent)) {
-      return false;
+
+    // AND logic across categories
+    for (const [category, filters] of filtersByCategory.entries()) {
+      let categoryMatches = false;
+      
+      // Check regular tags in this category (OR logic)
+      if (filters.regularTags.length > 0) {
+        categoryMatches = filters.regularTags.some((tag) => user.tags.includes(tag));
+      }
+      
+      // Check parent-child groups in this category (OR logic with regular tags)
+      for (const [parent, children] of filters.parentChildGroups.entries()) {
+        const allChildTags = PARENT_CHILD_MAP[parent] || [];
+        const actualChildTags = getActualChildTagsForUser(user, parent, allChildTags);
+        
+        let groupMatches = false;
+        
+        if (children.length === 0 || children.length === allChildTags.length) {
+          // Only parent selected OR all children selected: parent OR any child
+          groupMatches = user.tags.includes(parent as TagType) || 
+                       actualChildTags.some((child) => user.tags.includes(child as TagType));
+        } else {
+          // Some children selected: parent AND (selected children)
+          const relevantChildren = children.filter((child) => actualChildTags.includes(child));
+          if (relevantChildren.length > 0) {
+            groupMatches = relevantChildren.some((child) => user.tags.includes(child));
+          }
+        }
+        
+        if (groupMatches) {
+          categoryMatches = true;
+          break; // OR logic - one match in category is enough
+        }
+      }
+      
+      // If no matches in this category, user fails AND logic
+      if (!categoryMatches) {
+        return false;
+      }
     }
-    if (!matchesCategoryFilters(user, tagsByCategory)) {
-      return false;
-    }
+    
     return true;
   });
 }
