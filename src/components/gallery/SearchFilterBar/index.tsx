@@ -61,7 +61,8 @@ export default function SearchFilterBar(
     });
   };
 
-  const displayValue = readSearchName(location.search) != null ? value ?? "" : "";
+  const displayValue =
+    readSearchName(location.search) != null ? (value ?? "") : "";
 
   return (
     <SearchBox

@@ -27,7 +27,10 @@ export default function SortDropdown({
   onSortChange,
   setLoading,
 }: SortDropdownProps): React.JSX.Element {
-  const handleOptionSelect = (_event: unknown, data: { selectedOptions: string[] }) => {
+  const handleOptionSelect = (
+    _event: unknown,
+    data: { selectedOptions: string[] },
+  ) => {
     if (setLoading) {
       setLoading(true);
     }
