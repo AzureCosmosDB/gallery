@@ -83,18 +83,18 @@ export function sortResourceTypeTagsByCTA(
 ): Array<{ tag: TagType; [key: string]: any }> {
   const priorityOrder = getResourceTypePriorityByCTA(buttonText);
   
-  return resourceTypeTags.sort((a, b) => {
-    const aIndex = priorityOrder.indexOf(a.tag);
-    const bIndex = priorityOrder.indexOf(b.tag);
+  return resourceTypeTags.sort((firstTag, secondTag) => {
+    const firstTagIndex = priorityOrder.indexOf(firstTag.tag);
+    const secondTagIndex = priorityOrder.indexOf(secondTag.tag);
     
     // If both tags are in priority list, sort by priority
-    if (aIndex !== -1 && bIndex !== -1) {
-      return aIndex - bIndex;
+    if (firstTagIndex !== -1 && secondTagIndex !== -1) {
+      return firstTagIndex - secondTagIndex;
     }
     
     // If only one tag is in priority list, prioritize it
-    if (aIndex !== -1) return -1;
-    if (bIndex !== -1) return 1;
+    if (firstTagIndex !== -1) return -1;
+    if (secondTagIndex !== -1) return 1;
     
     // If neither tag is in priority list, maintain original order
     return 0;
