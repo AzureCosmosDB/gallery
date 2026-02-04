@@ -10,13 +10,16 @@ import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
 import { Tooltip } from "@fluentui/react-components";
 import CustomBadge from "../../CustomBadge";
+import { sortResourceTypeTagsByCTA } from "../../../utils/tagPriorityUtils";
 
 export default function ShowcaseCardTag({
   tags,
   cardPanel,
+  buttonText,
 }: {
   tags: TagType[];
   cardPanel: boolean;
+  buttonText?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,27 +50,10 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "ResourceType",
   );
 
-  // Filter out resource types that will be shown in the overlay, but keep documentation sub-types
-  // since only the main "documentation" tag appears in the overlay
-  const processedResourceTypeTags = resourceTypeTags.filter((tag) => {
-    // Keep documentation sub-types (concepts, how-to, tutorial) as they won't be in overlay
-    if (["concepts", "how-to", "tutorial"].includes(tag.tag)) {
-      return true;
-    }
-    // Remove main resource types as they will appear in the overlay
-    return false;
-  });
-
-  // Sort documentation sub-types by priority if they exist
-  const prioritySubTags = ["how-to", "tutorial", "concepts"];
-  processedResourceTypeTags.sort((a, b) => {
-    const aIndex = prioritySubTags.indexOf(a.tag);
-    const bIndex = prioritySubTags.indexOf(b.tag);
-    if (aIndex === -1 && bIndex === -1) return 0;
-    if (aIndex === -1) return 1;
-    if (bIndex === -1) return -1;
-    return aIndex - bIndex;
-  });
+  // Sort resource type tags by CTA-based priority if buttonText is provided
+  const sortedResourceTypeTags = buttonText
+    ? sortResourceTypeTagsByCTA(resourceTypeTags, buttonText)
+    : resourceTypeTags;
 
   const contentTypeTags = tagObjectsSorted.filter(
     (tag) => tag.type === "ContentType",
@@ -79,38 +65,23 @@ export default function ShowcaseCardTag({
     (tag) => tag.type === "LearningPath",
   );
 
-  // Order: Resource type → Category → Products → Language
+  // New priority order: Resource type → Category → Product → Language → Learning Path
   const tagsByTypeSorted = [
-    ...processedResourceTypeTags, // Resource type
+    ...sortedResourceTypeTags, // Resource type (with CTA-based priority)
     ...contentTypeTags, // Category
     ...intelligentSolutionTags, // Category (GenerativeAI)
     ...azureTags, // Products
-    ...serviceTags, // Products  
+    ...serviceTags, // Products
     ...languageTags, // Language
     ...modelTags,
-    ...learningPathTags,
+    ...learningPathTags, // Learning Path
   ];
 
-  // Ensure critical tags like "how-to" are prioritized in display
-  const priorityTags = ["how-to", "tutorial", "concepts"];
-  const prioritizedTags = [];
-  const remainingTags = [];
-
-  tagsByTypeSorted.forEach((tag) => {
-    if (priorityTags.includes(tag.tag)) {
-      prioritizedTags.push(tag);
-    } else {
-      remainingTags.push(tag);
-    }
-  });
-
-  const finalTagsOrder = [...prioritizedTags, ...remainingTags];
-
   if (!cardPanel) {
-    // Standard: Show prioritized tags first, then show "+X more" for the rest
-    const shownTags = finalTagsOrder.slice(0, MAX_VISIBLE_TAGS);
-    const restCount = finalTagsOrder.length - MAX_VISIBLE_TAGS;
-    const hiddenTags = finalTagsOrder.slice(MAX_VISIBLE_TAGS);
+    // Standard: Show first tags, then show "+X more" for the rest
+    const shownTags = tagsByTypeSorted.slice(0, MAX_VISIBLE_TAGS);
+    const restCount = tagsByTypeSorted.length - MAX_VISIBLE_TAGS;
+    const hiddenTags = tagsByTypeSorted.slice(MAX_VISIBLE_TAGS);
 
     return (
       <div ref={containerRef} className={styles.tagContainer}>
@@ -164,7 +135,7 @@ export default function ShowcaseCardTag({
   } else {
     return (
       <div className={styles.tagContainer}>
-        {finalTagsOrder.map((tagObject, index) => {
+        {tagsByTypeSorted.map((tagObject, index) => {
           const id = `showcase_card_tag_${tagObject.tag}`;
           return (
             <CustomBadge

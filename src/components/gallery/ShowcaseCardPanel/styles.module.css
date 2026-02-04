@@ -145,14 +145,19 @@
   background: #115ea3;
 }
 
-
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
 
 .buttonText {
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
-  padding-left: 6px;
-  width: 100%;
 }
 
 .metaInfo {

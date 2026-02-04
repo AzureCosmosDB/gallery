@@ -5,10 +5,14 @@
  * FilterAppliedBar - Displays active filter badges with remove functionality.
  */
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "@docusaurus/router";
 import { Badge, Body1 } from "@fluentui/react-components";
-import { Dismiss20Filled } from "@fluentui/react-icons";
+import {
+  Dismiss20Filled,
+  ChevronLeft20Filled,
+  ChevronRight20Filled,
+} from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
 import { toggleListItem } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
@@ -46,7 +50,7 @@ function removeTagWithSubFilters(
 }
 
 /**
- * Displays applied filter badges with click-to-remove functionality.
+ * Displays applied filter badges with click-to-remove functionality and horizontal scrolling.
  */
 export default function FilterAppliedBar({
   selectedTags,
@@ -55,6 +59,10 @@ export default function FilterAppliedBar({
   replaceSearchTags,
 }: FilterAppliedBarProps): React.JSX.Element | null {
   const history = useHistory();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [showScrollControls, setShowScrollControls] = useState(false);
 
   const handleRemoveTag = (tag: TagType) => {
     const currentTags = readSearchTags(location.search);
@@ -80,38 +88,130 @@ export default function FilterAppliedBar({
     });
   };
 
+  const updateScrollButtons = () => {
+    if (!scrollContainerRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    setCanScrollLeft(scrollLeft > 1); // Small threshold for precision
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1); // Small threshold for precision
+    setShowScrollControls(scrollWidth > clientWidth);
+  };
+
+  const scrollTo = (direction: "left" | "right") => {
+    if (!scrollContainerRef.current) return;
+
+    const scrollAmount = 200; // px to scroll
+    const currentScroll = scrollContainerRef.current.scrollLeft;
+    const targetScroll =
+      direction === "left"
+        ? currentScroll - scrollAmount
+        : currentScroll + scrollAmount;
+
+    scrollContainerRef.current.scrollTo({
+      left: targetScroll,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    updateScrollButtons();
+    scrollContainer.addEventListener("scroll", updateScrollButtons);
+    window.addEventListener("resize", updateScrollButtons);
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", updateScrollButtons);
+      window.removeEventListener("resize", updateScrollButtons);
+    };
+  }, [selectedTags]);
+
   if (!selectedTags?.length) {
     return null;
   }
 
   return (
-    <div className={styles.filterAppliedBar}>
-      <Body1>Filters applied:</Body1>
-      {selectedTags.map((tag) => {
-        const tagObject = Tags[tag];
+    <div className={styles.filterAppliedBarContainer}>
+      <div className={styles.filterAppliedBar}>
+        <Body1 className={styles.filtersLabel}>Filters applied:</Body1>
 
-        // Safety check: skip if tag doesn't exist
-        if (!tagObject) {
-          return null;
-        }
+        <div className={styles.scrollableFilterContainer}>
+          {showScrollControls && canScrollLeft && (
+            <>
+              <div className={styles.scrollGradientLeft}></div>
+              <div
+                className={`${styles.scrollButton} ${styles.scrollButtonLeft}`}
+                onClick={() => scrollTo("left")}
+                aria-label="Scroll filters left"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    scrollTo("left");
+                  }
+                }}
+              >
+                <ChevronLeft20Filled />
+              </div>
+            </>
+          )}
 
-        return (
-          <Badge
-            key={tag}
-            appearance="filled"
-            size="extra-large"
-            color="brand"
-            shape="circular"
-            icon={<Dismiss20Filled />}
-            iconPosition="after"
-            onClick={() => handleRemoveTag(tag)}
+          <div
+            ref={scrollContainerRef}
+            className={styles.filterScrollContainer}
           >
-            {tagObject.label}
-          </Badge>
-        );
-      })}
-      <div className={styles.clearAll} onClick={onClearAll}>
-        Clear all
+            <div className={styles.filterBadges}>
+              {selectedTags.map((tag) => {
+                const tagObject = Tags[tag];
+
+                // Safety check: skip if tag doesn't exist
+                if (!tagObject) {
+                  return null;
+                }
+
+                return (
+                  <Badge
+                    key={tag}
+                    appearance="filled"
+                    size="extra-large"
+                    color="brand"
+                    shape="circular"
+                    icon={<Dismiss20Filled />}
+                    iconPosition="after"
+                    onClick={() => handleRemoveTag(tag)}
+                    className={styles.filterBadge}
+                  >
+                    {tagObject.label}
+                  </Badge>
+                );
+              })}
+              <div className={styles.clearAll} onClick={onClearAll}>
+                Clear all
+              </div>
+            </div>
+          </div>
+
+          {showScrollControls && canScrollRight && (
+            <>
+              <div className={styles.scrollGradientRight}></div>
+              <div
+                className={`${styles.scrollButton} ${styles.scrollButtonRight}`}
+                onClick={() => scrollTo("right")}
+                aria-label="Scroll filters right"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    scrollTo("right");
+                  }
+                }}
+              >
+                <ChevronRight20Filled />
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

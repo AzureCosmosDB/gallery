@@ -10,7 +10,6 @@ import { useBoolean } from "@fluentui/react-hooks";
 import styleCSS from "../ShowcaseCard/styles.module.css";
 import ShowcaseDialog from "../ShowcaseDialog/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
-import ResourceTypeOverlay from "../ResourceTypeOverlay/index";
 import { getButtonText } from "../../../utils/buttonTextUtils";
 import OptimizedImage from "../../OptimizedImage";
 
@@ -24,8 +23,7 @@ export default function ShowcaseListTile({
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
   const shouldUseLearningPathContent =
-    !!user.learningPathTitle &&
-    !!user.learningPathDescription;
+    !!user.learningPathTitle && !!user.learningPathDescription;
   const displayTitle = shouldUseLearningPathContent
     ? user.learningPathTitle!
     : user.title;
@@ -72,19 +70,21 @@ export default function ShowcaseListTile({
           )}
           <div className={styleCSS.listTileContent}>
             {user.image && (
-              <div className={styleCSS.imageContainer} style={{ width: "200px", marginRight: "24px", flexShrink: 0 }}>
+              <div
+                className={styleCSS.imageContainer}
+                style={{ width: "200px", marginRight: "24px", flexShrink: 0 }}
+              >
                 <OptimizedImage
                   src={user.image}
                   alt={displayTitle + " image"}
                   className={styleCSS.listTileImage}
                   objectFit="cover"
                 />
-                <ResourceTypeOverlay tags={user.tags} />
               </div>
             )}
             <div className={styleCSS.listTileText}>
               <div className={styleCSS.listTileTags}>
-                <ShowcaseCardTag tags={user.tags} cardPanel={false} />
+                <ShowcaseCardTag tags={user.tags} cardPanel={false} buttonText={getButtonText(user.website)} />
               </div>
               <div className={styleCSS.listTitle}>{displayTitle}</div>
               <div className={styleCSS.cardDescription}>
@@ -98,9 +98,17 @@ export default function ShowcaseListTile({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  style={{ marginTop: 12, backgroundColor: "#0078d4" }}
+                  style={{
+                    marginTop: 12,
+                    backgroundColor: "#0078d4",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingLeft: "16px",
+                    paddingRight: "16px",
+                  }}
                 >
-                  {getButtonText(user.website)}
+                  <span>{getButtonText(user.website)}</span>
                 </Button>
               )}
             </div>
