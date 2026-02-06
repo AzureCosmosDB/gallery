@@ -49,6 +49,7 @@ export default function ShowcaseCardPanel({
             key={"tag_" + user.title}
             tags={user.tags}
             cardPanel={true}
+            buttonText={getButtonText(user.website || user.source)}
           />
         </div>
         {user.image && (
@@ -149,13 +150,8 @@ export default function ShowcaseCardPanel({
             window.open(user.website || user.source, "_blank");
           }}
         >
-          <img
-            src={useBaseUrl("/img/redirect.svg")}
-            height={20}
-            alt="Redirect"
-          />
-          <div className={styles.buttonText}>
-            {getButtonText(user.website || user.source)}
+          <div className={styles.buttonContent}>
+            <span className={styles.buttonText}>{getButtonText(user.website || user.source)}</span>
           </div>
         </PrimaryButton>
       </div>

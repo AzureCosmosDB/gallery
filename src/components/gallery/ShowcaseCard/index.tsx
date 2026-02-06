@@ -10,7 +10,6 @@ import {
 import { useBoolean } from "@fluentui/react-hooks";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import ShowcaseDialog from "../ShowcaseDialog/index";
-import ResourceTypeOverlay from "../ResourceTypeOverlay/index";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
@@ -45,8 +44,7 @@ function ShowcaseCard({
   const searchParams = new URLSearchParams(location.search);
   const currentTags = searchParams.getAll("tags");
   const isLearningPathFiltered =
-    !coverPage &&
-    currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
+    !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const shouldUseLearningPathContent =
     isLearningPathFiltered &&
     !!user.learningPathTitle &&
@@ -66,7 +64,7 @@ function ShowcaseCard({
   const fetchGitHubData = async (owner: string, repo: string) => {
     try {
       const response = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}`
+        `https://api.github.com/repos/${owner}/${repo}`,
       );
 
       if (response.status === 429) {
@@ -136,7 +134,6 @@ function ShowcaseCard({
                   borderRadius: "8px 8px 0px 0px",
                 }}
               />
-              <ResourceTypeOverlay tags={tags} />
             </div>
           )}
           <div className={styleCSS.cardTags}>
@@ -144,6 +141,7 @@ function ShowcaseCard({
               key={displayTitle}
               tags={tags}
               cardPanel={false}
+              buttonText={getButtonText(user.website)}
             />
           </div>
           <div style={{ padding: 16 }}>
@@ -178,9 +176,14 @@ function ShowcaseCard({
                 width: "100%",
                 fontSize: "16px",
                 backgroundColor: "#0078d4",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingLeft: "16px",
+                paddingRight: "16px",
               }}
             >
-              {getButtonText(user.website)}
+              <span>{getButtonText(user.website)}</span>
             </Button>
           )}
           {/* </CardFooter> */}
