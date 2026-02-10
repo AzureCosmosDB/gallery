@@ -41,8 +41,10 @@ export default function CustomCheckbox({
       onKeyDown(e);
     }
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onChange();
+      if (!e.defaultPrevented) {
+        e.preventDefault();
+        onChange();
+      }
     }
   };
 
