@@ -25,6 +25,7 @@ export const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
   // Documentation CTAs - documentation and its sub-types take priority
   "Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
   "View Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
+  "Open Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
   "Read Concepts": ["documentation", "concepts", "tutorial", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
   "Read How-To Guide": ["documentation", "how-to", "tutorial", "concepts", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
   

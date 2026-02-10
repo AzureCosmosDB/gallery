@@ -281,9 +281,38 @@ export function filterUsers(
 }
 
 /**
+ * Learning path compatible resource types mapping.
+ * Only these resource types should be enabled when a learning path is selected.
+ */
+const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
+  "developing-core-applications": [
+    "documentation", "concepts", "how-to", "tutorial", 
+    "workshop", "training", "video", "samples"
+  ],
+  "building-genai-apps": [
+    "documentation", "concepts", "how-to", "tutorial", 
+    "solution-accelerator", "training", "video"
+  ],
+  "building-ai-agents": [
+    "documentation", "concepts", "how-to", "tutorial", 
+    "solution-accelerator", "training", "video"
+  ]
+};
+
+/**
+ * Learning path tags.
+ */
+const LEARNING_PATH_TAGS = [
+  "developing-core-applications",
+  "building-genai-apps", 
+  "building-ai-agents"
+] as const;
+
+/**
  * Computes active tags based on current cards and selected tags.
  * Enables sub-filters when parent is checked and keeps all tags in
  * categories with selections enabled (OR logic).
+ * Special handling for learning paths to maintain compatibility restrictions.
  */
 export function computeActiveTags(
   cards: User[],
@@ -293,6 +322,11 @@ export function computeActiveTags(
 
   // Add all tags from current cards
   cards.forEach((user) => user.tags.forEach((tag) => unionTags.add(tag)));
+
+  // Check if any learning path is selected
+  const selectedLearningPaths = selectedTags.filter((tag) => 
+    LEARNING_PATH_TAGS.includes(tag as any)
+  );
 
   // Enable sub-tags when parent is selected
   selectedTags.forEach((selectedTag) => {
@@ -317,8 +351,18 @@ export function computeActiveTags(
     Object.keys(Tags).forEach((tagKey) => {
       const tag = tagKey as TagType;
       const category = getTagCategory(tag);
+      
       if (selectedCategories.has(category)) {
-        unionTags.add(tag);
+        // Special handling for ResourceType when learning path is selected
+        if (selectedLearningPaths.length > 0 && category === "ResourceType") {
+          // Only enable resource types that are compatible with the selected learning path
+          const compatibleResources = LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];
+          if (compatibleResources.includes(tag)) {
+            unionTags.add(tag);
+          }
+        } else {
+          unionTags.add(tag);
+        }
       }
     });
   }

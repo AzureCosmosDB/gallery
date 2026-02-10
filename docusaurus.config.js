@@ -48,7 +48,7 @@ const config = {
         icon: "GraduationCap",
         color: "#f54a00",
         label: "Microsoft Learn",
-        description: "Structured pathways",
+        description: "Structured learning pathways",
         href: "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
       },
       {
