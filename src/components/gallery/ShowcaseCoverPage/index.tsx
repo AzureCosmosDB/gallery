@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "@docusaurus/router";
 
 const title = "Application Developer Hub";
 const description =
-  "Discover comprehensive resources, pathways, and community support to accelerate your PostgreSQL development journey on Azure.";
+  "Discover comprehensive resources, learning pathways, and community support to accelerate your PostgreSQL development journey on Azure.";
 const subDescription = "for PostgreSQL on Azure";
 
 export default function ShowcaseCoverPage() {
@@ -136,7 +136,7 @@ export default function ShowcaseCoverPage() {
                 </div>
                 <span className={styles.cardTitle}>Learning Pathways</span>
                 <span className={styles.cardDesc}>
-                  Structured pathways from beginner to advanced
+                  Structured learning pathways from beginner to advanced
                 </span>
               </div>
               {/* Card 2 */}

@@ -190,7 +190,7 @@ export const Tags: { [type in TagType]: Tag } = {
 
   overview: {
     label: "Overview",
-    description: "Template provides an overview of GenAI capabilities",
+    description: "Template provides an overview of capabilities",
     type: ["GenerativeAI", "ContentType"],
     color: "slate",
   },
@@ -254,9 +254,10 @@ export const Tags: { [type in TagType]: Tag } = {
 
   documentation: {
     label: "Documentation",
-    description: "Documentation resources including concepts, how-to guides, and tutorials",
+    description:
+      "Documentation resources including concepts, how-to guides, and tutorials",
     type: "ResourceType",
-    buttonText: "View Documentation",
+    buttonText: "Open documentation",
     color: "blue",
     subType: [
       { label: "Concepts" },

@@ -283,7 +283,6 @@
 .filter {
   flex: 0 0 320px;
   margin: 0;
-  position: sticky;
   top: 120px;
   align-self: flex-start;
 }
@@ -533,22 +532,22 @@
   width: 80px;
   height: 100%;
   background: transparent;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   border-radius: 20px 9999px 9999px 20px;
   z-index: 1;
   mask: linear-gradient(
     to right,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
     rgba(0, 0, 0, 0) 100%
   );
   -webkit-mask: linear-gradient(
     to right,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
     rgba(0, 0, 0, 0) 100%
   );
 }
@@ -589,22 +588,22 @@
   width: 80px;
   height: 100%;
   background: transparent;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   border-radius: 9999px 20px 20px 9999px;
   z-index: 1;
   mask: linear-gradient(
     to left,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
     rgba(0, 0, 0, 0) 100%
   );
   -webkit-mask: linear-gradient(
     to left,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
     rgba(0, 0, 0, 0) 100%
   );
 }

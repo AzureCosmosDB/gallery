@@ -34,7 +34,7 @@ const BUTTON_RULES: ButtonRule[] = [
   },
   {
     match: (url) => url.includes("learn.microsoft.com"),
-    text: "Documentation",
+    text: "Open Documentation",
   },
   {
     match: (url) => url.includes("aka.ms"),

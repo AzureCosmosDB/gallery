@@ -130,7 +130,7 @@ export default function LearningPathsSection({
       <div className={styles.left}>
         <h2 className={styles.heading}>Learning Pathways</h2>
         <div className={styles.sectionDesc}>
-          Choose from structured pathways designed to guide you through
+          Choose from structured learning pathways designed to guide you through
           PostgreSQL development on Azure, from basic application development to
           advanced AI integration.
         </div>

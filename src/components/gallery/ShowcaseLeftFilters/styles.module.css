@@ -9,7 +9,7 @@
   user-select: none;
   white-space: nowrap;
   padding-left: 0 !important;
-  margin-bottom: 6px;
+  margin-bottom: 22px;
 }
 
 .checkboxListItem > * {
@@ -21,7 +21,7 @@
   user-select: none;
   white-space: nowrap;
   padding-left: 24px;
-  margin-bottom: 6px;
+  margin-bottom: 22px;
 }
 
 .subCheckboxListItem > * {
@@ -69,7 +69,7 @@
 :global(.fui-AccordionPanel) {
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: 8px !important;
+  padding-top: 10px !important;
   padding-bottom: 12px !important;
 }
 

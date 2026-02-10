@@ -13,14 +13,17 @@ import {
   AccordionItem,
   AccordionPanel,
   AccordionToggleEventHandler,
-  Checkbox,
 } from "@fluentui/react-components";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
+import CustomCheckbox from "../CustomCheckbox";
 
-// Custom component for Learning Path tags with special behavior
+// Helper function to map sub-tag labels to actual tag keys
+function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
+  return subLabel.toLowerCase() as TagType;
+}
 function LearningPathTagSelect({
   label,
   tag,
@@ -56,16 +59,23 @@ function LearningPathTagSelect({
     const isCurrentlySelected = selectedCheckbox.includes(tag);
 
     if (isCurrentlySelected) {
-      // If currently selected, remove it (uncheck) - clear the search
-      const newSearch = "";
+      // If currently selected, remove it (uncheck) - only remove this learning path tag
+      const tags = readSearchTags(location.search);
+      const newTags = tags.filter((t) => t !== tag);
+      const newSearch = replaceSearchTags(location.search, newTags);
       history.replace({
         ...location,
         search: newSearch,
         state: prepareUserState(),
       });
     } else {
-      // If not selected, clear all other tags and set only this learning path tag
-      const newSearch = `tags=${tag}`;
+      // If not selected, clear ONLY other learning path tags, keep all other filters
+      const tags = readSearchTags(location.search);
+      // Remove all other learning path tags, but keep non-learning-path tags
+      const newTags = tags.filter((t) => !learningPathTags.includes(t as any));
+      // Add the selected learning path tag
+      newTags.push(tag);
+      const newSearch = replaceSearchTags(location.search, newTags);
       history.replace({
         ...location,
         search: newSearch,
@@ -109,7 +119,7 @@ function LearningPathTagSelect({
   const isDisabled = !activeTags?.includes(tag) || otherLearningPathSelected;
 
   return (
-    <Checkbox
+    <CustomCheckbox
       id={id}
       data-m={contentForAdobeAnalytics}
       onKeyDown={(e) => {
@@ -190,18 +200,21 @@ function ShowcaseFilterViewAll({
                 </AccordionHeader>
                 <AccordionPanel>
                   {tagObject.subType.map((sub, idx) => {
-                    const subTagKey = sub.label.toLowerCase();
-                    const subTagObject = Tags[subTagKey as TagType];
+                    const subTagKey = getSubTagKey(tag, sub.label);
+                    const subTagObject = Tags[subTagKey];
+                    // Create unique key combining parent and child to prevent React confusion
+                    const uniqueKey = `${tag}-${subTagKey}`;
+                    const uniqueId = `showcase_checkbox_id_${tag}_${subTagKey}`;
                     return (
                       <div
-                        key={subTagKey}
+                        key={uniqueKey}
                         className={styles.subCheckboxListItem}
                       >
                         {isLearningPath ? (
                           <LearningPathTagSelect
-                            id={`showcase_checkbox_id_${subTagKey}`}
-                            tag={subTagKey as TagType}
-                            label={subTagObject.label}
+                            id={uniqueId}
+                            tag={subTagKey}
+                            label={sub.label}
                             activeTags={activeTags}
                             selectedCheckbox={selectedCheckbox}
                             setSelectedCheckbox={setSelectedCheckbox}
@@ -211,9 +224,9 @@ function ShowcaseFilterViewAll({
                           />
                         ) : (
                           <ShowcaseTagSelect
-                            id={`showcase_checkbox_id_${subTagKey}`}
-                            tag={subTagKey as TagType}
-                            label={subTagObject.label}
+                            id={uniqueId}
+                            tag={subTagKey}
+                            label={sub.label}
                             activeTags={activeTags}
                             selectedCheckbox={selectedCheckbox}
                             setSelectedCheckbox={setSelectedCheckbox}
