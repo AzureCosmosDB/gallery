@@ -386,6 +386,22 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
+  
+  /* Cross-browser scroll fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    black 32px,
+    black calc(100% - 32px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    black 32px,
+    black calc(100% - 32px),
+    transparent 100%
+  );
 }
 
 .filterScrollContainer::-webkit-scrollbar {
@@ -496,115 +512,67 @@
 }
 
 .scrollGradientLeft {
+  position: relative;
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
+  width: 120px;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.95) 12%,
-    rgba(255, 255, 255, 0.88) 20%,
-    rgba(255, 255, 255, 0.75) 28%,
-    rgba(255, 255, 255, 0.6) 38%,
-    rgba(255, 255, 255, 0.42) 50%,
-    rgba(255, 255, 255, 0.28) 62%,
-    rgba(255, 255, 255, 0.16) 74%,
-    rgba(255, 255, 255, 0.08) 84%,
-    rgba(255, 255, 255, 0.03) 92%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 24px 9999px 9999px 24px;
   overflow: hidden;
-  margin-right: 20px;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Organic gradient mask for subtle blur in pill-shaped area */
+/* Safari-safe radial highlight layer */
 .scrollGradientLeft::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 100%;
-  background: transparent;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 20px 9999px 9999px 20px;
-  z-index: 1;
-  mask: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    rgba(0, 0, 0, 0) 100%
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% center,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06) 45%,
+    transparent 70%
   );
-  -webkit-mask: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  pointer-events: none;
 }
 
 .scrollGradientRight {
+  position: relative;
   position: absolute;
   top: 0;
   right: 0;
-  width: 160px;
+  width: 120px;
   height: 100%;
-  background: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.95) 12%,
-    rgba(255, 255, 255, 0.88) 20%,
-    rgba(255, 255, 255, 0.75) 28%,
-    rgba(255, 255, 255, 0.6) 38%,
-    rgba(255, 255, 255, 0.42) 50%,
-    rgba(255, 255, 255, 0.28) 62%,
-    rgba(255, 255, 255, 0.16) 74%,
-    rgba(255, 255, 255, 0.08) 84%,
-    rgba(255, 255, 255, 0.03) 92%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 9999px 24px 24px 9999px;
   overflow: hidden;
-  margin-left: 20px;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Organic gradient mask for subtle blur in pill-shaped area */
+/* Safari-safe radial highlight layer */
 .scrollGradientRight::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 100%;
-  background: transparent;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 9999px 20px 20px 9999px;
-  z-index: 1;
-  mask: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    rgba(0, 0, 0, 0) 100%
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 70% center,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06) 45%,
+    transparent 70%
   );
-  -webkit-mask: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.7) 40%,
-    rgba(0, 0, 0, 0.3) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  pointer-events: none;
 }
 @media screen and (max-width: 1280px) {
   .filterAndCard {
