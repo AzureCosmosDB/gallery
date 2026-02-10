@@ -42,6 +42,7 @@
   font-weight: 600;
   color: #242424;
   line-height: 22px;
+  margin-bottom: 10px;
 }
 
 .tagSubCatalog {
@@ -57,12 +58,39 @@
 :global(.fui-AccordionHeader__button) {
   padding-right: 0 !important;
   padding-left: 0 !important;
-  min-height: unset !important;
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
 }
 
 /* Ensure consistent alignment for all accordion headers */
 :global(.fui-AccordionHeader) {
   padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Ensure the accordion header content is also centered */
+:global(.fui-AccordionHeader__button) > div {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Add 10px margin-bottom to main category chevron icons (Learning Pathways, Products, etc.) */
+.mainCategoryItem :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 10px !important;
+}
+
+/* Add margin-bottom to chevron expand icon only for filter items with children, not main category headers */
+:global(.fui-AccordionPanel) .mainCategoryItem :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 22px !important;
+}
+
+/* Alternative selector for nested accordion items */
+:global(.fui-AccordionItem):not(.mainCategoryItem) :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 22px !important;
 }
 
 /* Ensure accordion panels don't add extra padding */
@@ -75,5 +103,5 @@
 
 /* Add spacing below main category accordion items only */
 .mainCategoryItem {
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
