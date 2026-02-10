@@ -283,7 +283,6 @@
 .filter {
   flex: 0 0 320px;
   margin: 0;
-  top: 120px;
   align-self: flex-start;
 }
 

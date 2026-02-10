@@ -257,7 +257,7 @@ export const Tags: { [type in TagType]: Tag } = {
     description:
       "Documentation resources including concepts, how-to guides, and tutorials",
     type: "ResourceType",
-    buttonText: "Open documentation",
+    buttonText: "Open Documentation",
     color: "blue",
     subType: [
       { label: "Concepts" },

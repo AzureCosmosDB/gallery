@@ -21,7 +21,7 @@ import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
 
 // Helper function to map sub-tag labels to actual tag keys
-function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
+function getSubTagKey(subLabel: string): TagType {
   return subLabel.toLowerCase() as TagType;
 }
 function LearningPathTagSelect({
@@ -69,10 +69,62 @@ function LearningPathTagSelect({
         state: prepareUserState(),
       });
     } else {
-      // If not selected, clear ONLY other learning path tags, keep all other filters
+      // Define compatible resource types for each learning path
+      const learningPathCompatibility = {
+        "building-genai-apps": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "workshop",
+          "training",
+          "samples",
+        ],
+        "developing-core-applications": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "blog",
+          "workshop",
+          "training",
+          "samples",
+        ],
+        "building-ai-agents": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "workshop",
+          "training",
+          "samples",
+        ],
+      };
+
+      const compatibleTypes = learningPathCompatibility[tag] || [];
+
+      // If not selected, clear other learning path tags AND incompatible resource types
       const tags = readSearchTags(location.search);
-      // Remove all other learning path tags, but keep non-learning-path tags
-      const newTags = tags.filter((t) => !learningPathTags.includes(t as any));
+
+      // Remove all other learning path tags and incompatible resource type tags
+      const newTags = tags.filter((t) => {
+        // Keep if not a learning path tag (except the one we're adding)
+        if (!learningPathTags.includes(t as any)) {
+          // For non-learning-path tags, check if it's a resource type
+          const tagObject = Tags[t];
+          if (tagObject && tagObject.type === "ResourceType") {
+            // Keep only compatible resource types
+            return compatibleTypes.includes(t);
+          }
+          // Keep all non-resource-type tags (Language, ContentType, etc.)
+          return true;
+        }
+        return false;
+      });
+
       // Add the selected learning path tag
       newTags.push(tag);
       const newSearch = replaceSearchTags(location.search, newTags);

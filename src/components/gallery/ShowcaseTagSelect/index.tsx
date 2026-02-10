@@ -80,7 +80,6 @@ export default function ShowcaseTagSelect({
     } else {
       // Normal behavior for other tags
       const tags = readSearchTags(location.search);
-      const wasSelected = tags.includes(tag);
       let newTags = toggleListItem(tags, tag);
 
       // Handle parent tag with children - select/deselect all children
