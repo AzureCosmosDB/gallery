@@ -21,7 +21,7 @@ import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
 
 // Helper function to map sub-tag labels to actual tag keys
-function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
+function getSubTagKey(subLabel: string): TagType {
   return subLabel.toLowerCase() as TagType;
 }
 function LearningPathTagSelect({
