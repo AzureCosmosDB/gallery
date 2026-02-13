@@ -23,10 +23,25 @@
       { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }
     ],
     "import/no-duplicates": "error",
-    "import/no-unused-modules": ["error", { "unusedExports": true }]
+    "import/no-unused-modules": ["error", { "unusedExports": true }],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "^@theme",
+          "^@docusaurus",
+          "^@site",
+          "^@generated"
+        ]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      },
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

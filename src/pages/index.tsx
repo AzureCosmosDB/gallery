@@ -48,7 +48,7 @@ const readSearchTags = (search: string): TagType[] => {
         ...value
           .split(",")
           .map((tag) => tag.trim())
-          .filter(Boolean)
+          .filter(Boolean),
       );
     } else {
       // Individual tag value
