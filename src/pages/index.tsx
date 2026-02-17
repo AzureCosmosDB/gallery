@@ -10,7 +10,7 @@ import ShowcaseLeftFilters from "../components/gallery/ShowcaseLeftFilters";
 import ShowcaseCardPage from "./ResourceLibrarySection";
 import type { UserState } from "./ResourceLibrarySection/types";
 import QuickLinks from "../components/QuickLinks";
-import CommunitySupportSection from "../components/CommunitySupportSection";
+import CommunitySupportSection from "./CommunitySupportSection";
 import DisclaimerSection from "../components/DisclaimerSection";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { initializeIcons } from "@fluentui/react/lib/Icons";

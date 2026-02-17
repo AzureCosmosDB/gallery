@@ -139,6 +139,18 @@
   align-items: center;
   width: 100%;
 }
+
+.cardActionsStacked {
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.cardActionBtn[data-fullwidth="true"],
+.cardActionBtnOutlined[data-fullwidth="true"] {
+  width: 100%;
+  justify-content: center;
+}
 .cardActionBtn {
   background: #0078d4;
   color: #fff;
