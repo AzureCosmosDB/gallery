@@ -6,7 +6,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
-export type BadgeColor =
+type BadgeColor =
   | "brand"
   | "informative"
   | "success"
@@ -15,9 +15,9 @@ export type BadgeColor =
   | "severe"
   | "subtle";
 
-export type BadgeSize = "small" | "medium" | "large" | "extra-large";
+type BadgeSize = "small" | "medium" | "large" | "extra-large";
 
-export interface CustomBadgeProps {
+interface CustomBadgeProps {
   children: React.ReactNode;
   color?: BadgeColor;
   size?: BadgeSize;
@@ -47,7 +47,7 @@ export default function CustomBadge({
     styles[`badge_${appearance}`],
     styles[`badge_${shape}`],
     onClick && styles.badgeClickable,
-    className
+    className,
   );
 
   const content = (
@@ -75,10 +75,5 @@ export default function CustomBadge({
     );
   }
 
-  return (
-    <span className={badgeClasses}>
-      {content}
-    </span>
-  );
+  return <span className={badgeClasses}>{content}</span>;
 }
-

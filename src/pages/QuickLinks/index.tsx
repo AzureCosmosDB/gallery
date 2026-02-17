@@ -1,38 +1,40 @@
 import React from "react";
 import styles from "./QuickLinks.module.css";
 import { Link } from "@fluentui/react-components";
-import * as LucideIcons from "lucide-react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useQuickLinks } from "./hooks/useQuickLinks";
+import { getLucideIcon } from "./utils/icons";
+import { isExternal } from "./utils/external";
 
-const QuickLinks: React.FC = () => {
-  const { siteConfig } = useDocusaurusContext();
-  const quickLinks = (siteConfig.customFields.quickLinks || []) as Array<{
-    icon: string;
-    color: string;
-    label: string;
-    description: string;
-    href: string;
-  }>;
+export default function QuickLinks() {
+  const quickLinks = useQuickLinks();
+
   return (
     <section className={styles.quickLinksSection}>
       <h2 className={styles.title}>Quick Links</h2>
       <div className={styles.description}>
         Jump straight to the resources you need to accelerate your development
       </div>
+
       <div className={styles.tilesContainer}>
         {quickLinks.map((link) => {
-          const LucideIcon = LucideIcons[link.icon] || LucideIcons["BookOpen"];
+          const Icon = getLucideIcon(link.icon);
+          const external = isExternal(link.href);
+
           return (
             <Link
-              key={link.label}
+              key={link.id}
               href={link.href}
               className={styles.tile}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
             >
-              <div className={styles.icon}>
-                <LucideIcon size={32} color={link.color} />
+              <div
+                className={styles.icon}
+                style={link.color ? { color: link.color } : undefined}
+              >
+                <Icon size={32} />
               </div>
+
               <div className={styles.label}>{link.label}</div>
               <div className={styles.tileDescription}>{link.description}</div>
             </Link>
@@ -41,6 +43,4 @@ const QuickLinks: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default QuickLinks;
+}

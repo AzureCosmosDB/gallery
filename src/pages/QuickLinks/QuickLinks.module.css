@@ -58,7 +58,11 @@
 }
 
 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 12px;
+  color: #1960fc; /* default */
 }
 
 .label {

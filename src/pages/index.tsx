@@ -1,4 +1,4 @@
-import LearningPathsSection from "../components/LearningPathsSection";
+import LearningPathsSection from "./LearningPathsSection";
 /**
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
@@ -9,7 +9,7 @@ import Layout from "@theme/Layout";
 import ShowcaseLeftFilters from "../components/gallery/ShowcaseLeftFilters";
 import ShowcaseCardPage from "./ResourceLibrarySection";
 import type { UserState } from "./ResourceLibrarySection/types";
-import QuickLinks from "../components/QuickLinks";
+import QuickLinks from "./QuickLinks";
 import CommunitySupportSection from "./CommunitySupportSection";
 import DisclaimerSection from "../components/DisclaimerSection";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
