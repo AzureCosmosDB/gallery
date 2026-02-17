@@ -196,7 +196,7 @@ const getResourceTypeIcon = (resourceType: string) => {
       return <SolutionAcceleratorIcon />;
     case "workshop":
       return <WorkshopIcon />;
-    
+
     case "training":
       return <TrainingIcon />;
     default:
