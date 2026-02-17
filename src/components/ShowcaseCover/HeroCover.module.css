@@ -1,0 +1,311 @@
+.iconBlue { color: #0078d4; }
+.iconGreen { color: #157f15; }
+.iconPurple { color: #5c2d91; }
+
+/* Reusable style for resource links */
+.resourceLink {
+  color: #555;
+  text-decoration: underline;
+}
+.resourceLink:hover{
+  text-decoration: underline;
+  color: #2567a8;
+}
+/* Common card styles */
+.cardCommon {
+  width: 100%;
+  max-width: 325px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+  cursor: pointer;
+}
+
+.heroTextWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.cardCommon:hover{
+  transform: translateY(-8px);
+  transition: all 0.3s ease-in-out;
+}
+
+.cardCommon:hover .cardIconWrapper{
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.cardBlueBorder {
+  border: 3px solid #b3daf2;
+}
+.cardGreen {
+  border: 3px solid #c8f2c8;
+}
+.cardPurple {
+  border: 3px solid #e1d7f2;
+}
+
+.cardIconWrapper {
+  background: #fff;
+  padding: 25px;
+  border-radius: 30%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.cardDesc {
+  color: #555;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.cardLinks {
+  color: #555;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.linkSeparator {
+  font-size: 12px;
+  /* line-height: 1; */
+  margin-top: 3px;
+}
+
+.cardsRow {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding-top: 32px;
+  flex-wrap: wrap;
+}
+
+.heroTitle {
+  font-size: 64px !important;
+  font-weight: 700 !important;
+  line-height: 1.05;
+}
+/* Blue outlined button for resource links */
+.resourceButton {
+  color: #2567a8 !important;
+  border-color: #2567a8 !important;
+  --fuib-button-outline-color: #2567a8;
+  --fuib-button-color: #2567a8;
+}
+.centeredDescription {
+  text-align: center !important;
+  line-height: 1.5 !important;
+  width: 100%;
+  color: #636364;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  max-width: 934px;
+}
+.greyText{
+  text-align: center !important;
+  font-weight: 400 !important;
+  font-size: 26px !important;
+  color: #91949a
+}
+
+.titleSection :global(.fuib-Title3),
+.titleSection .fuib-Title3 {
+  text-align: center;
+}
+/**
+* Copyright (c) Microsoft Corporation. All rights reserved.
+* Licensed under the MIT License.
+*/
+
+.cover {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+}
+
+.coverPageContainer {
+  display: inline-block;
+  /* overflow: hidden; */
+  position: relative;
+  width: 100%;
+}
+
+.coverPageAreaContainer {
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.coverPageArea {
+  /* padding: 180px 72px 96px 72px; */
+  /* max-height: fit-content;  */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  height: 736px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  /* width: 65%; */
+}
+
+.subtitleSection {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media screen and (max-width: 1264px) {
+  .coverPageArea {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .coverPageArea {
+    padding: 140px 48px 80px;
+  }
+
+  .titleSection {
+    width: 80%;
+  }
+
+  .heroTitle {
+    font-size: 52px !important;
+  }
+
+  .greyText {
+    font-size: 24px !important;
+  }
+
+  .centeredDescription {
+    font-size: 20px !important;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .coverPageArea {
+    padding: 120px 40px 72px;
+  }
+
+  .titleSection {
+    width: 90%;
+  }
+
+  .heroTitle {
+    font-size: 46px !important;
+  }
+
+  .cardsRow {
+    gap: 24px;
+  }
+
+  .cardCommon {
+    width: min(280px, 100%);
+    padding: 28px 22px;
+  }
+
+  .cardDesc,
+  .cardLinks {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .coverPageArea {
+    padding: 100px 32px 64px;
+  }
+
+  .titleSection {
+    width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 30px !important;
+    line-height: normal;
+  }
+
+  .greyText {
+    font-size: 22px !important;
+  }
+
+  .centeredDescription {
+    font-size: 18px !important;
+  }
+
+  .cardsRow {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 24px 0;
+  }
+
+  .cardCommon {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .cardIconWrapper {
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .coverPageArea {
+    padding: 80px 24px 56px;
+  }
+ .heroTitle {
+    font-size: 22px !important;
+  }
+
+  .greyText {
+    font-size: 20px !important;
+  }
+
+  .centeredDescription {
+    font-size: 16px !important;
+  }
+
+  .cardCommon {
+    padding: 24px 20px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+}

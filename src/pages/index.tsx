@@ -7,7 +7,6 @@ import LearningPathsSection from "../components/LearningPathsSection";
 import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import ShowcaseLeftFilters from "../components/gallery/ShowcaseLeftFilters";
-import ShowcaseCoverPage from "../components/gallery/ShowcaseCoverPage";
 import ShowcaseCardPage, { UserState } from "./ShowcaseCardPage";
 import QuickLinks from "../components/QuickLinks";
 import CommunitySupportSection from "../components/CommunitySupportSection";
@@ -17,9 +16,10 @@ import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import styles from "./styles.module.css";
 import { type TagType } from "../data/tags";
-import { TagList, featuredUsers } from "../data/users";
+import { TagList } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
+import HeroCover from "./HeroSection";
 
 initializeIcons();
 
@@ -80,7 +80,7 @@ const App = () => {
   return (
     <FluentProvider theme={webLightTheme} className={styles.container}>
       <div id="home">
-        <ShowcaseCoverPage />
+        <HeroCover />
       </div>
       <div id="learning-paths" className={styles.learningPathStyled}>
         <LearningPathsSection />

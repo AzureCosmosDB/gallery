@@ -12,7 +12,7 @@ import { TagType } from "../data/tags";
  * comes before delivery format (blog)
  * Example: Blog about video → video tag first, then blog tag
  */
-export const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
+const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
   // Workshop CTAs - workshop comes first when both workshop and documentation are present
   "Start Workshop": ["workshop", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "training", "samples", "blog"],
   
@@ -50,7 +50,7 @@ export const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
 /**
  * Default resource type priority order when no CTA match is found
  */
-export const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
+const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
   "documentation",
   "tutorial", 
   "concepts", 
@@ -68,7 +68,7 @@ export const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
  * @param buttonText - The CTA button text from getButtonText()
  * @returns Array of resource type tags in priority order
  */
-export function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
+function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
   return CTA_TO_RESOURCE_TYPE_PRIORITY[buttonText] || DEFAULT_RESOURCE_TYPE_PRIORITY;
 }
 
