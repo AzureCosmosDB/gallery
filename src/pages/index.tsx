@@ -126,6 +126,7 @@ const App = () => {
   );
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export default function Showcase(): JSX.Element {
   return (
     <>
