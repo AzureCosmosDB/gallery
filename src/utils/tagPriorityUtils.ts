@@ -14,37 +14,37 @@ import { TagType } from "../data/tags";
  */
 export const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
   // Workshop CTAs - workshop comes first when both workshop and documentation are present
-  "Start Workshop": ["workshop", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "training", "samples", "blog"],
+  "Start Workshop": ["workshop", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "training", "blog"],
   
   // Training CTAs - training comes first when both training and documentation are present
-  "Start Training": ["training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "samples", "blog"],
+  "Start Training": ["training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "blog"],
   
   // Tutorial CTAs - documentation first, then tutorial content (as it's a doc sub-type)
-  "Start Tutorial": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
+  "Start Tutorial": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
   
   // Documentation CTAs - documentation and its sub-types take priority
-  "Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
-  "View Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
-  "Open Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
-  "Read Concepts": ["documentation", "concepts", "tutorial", "how-to", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
-  "Read How-To Guide": ["documentation", "how-to", "tutorial", "concepts", "solution-accelerator", "video", "workshop", "training", "samples", "blog"],
+  "Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
+  "View Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
+  "Open Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
+  "Read Concepts": ["documentation", "concepts", "tutorial", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
+  "Read How-To Guide": ["documentation", "how-to", "tutorial", "concepts", "solution-accelerator", "video", "workshop", "training", "blog"],
   
   // Video CTAs - documentation first, then doc sub-types, then video content
-  "Watch Video": ["documentation", "tutorial", "concepts", "how-to", "video", "solution-accelerator", "workshop", "training", "samples", "blog"],
+  "Watch Video": ["documentation", "tutorial", "concepts", "how-to", "video", "solution-accelerator", "workshop", "training", "blog"],
   
   // Blog CTAs - if blog is about workshop/training, those come first before documentation
   // Priority: workshop → training → documentation → tutorial/concepts/how-to → other content → blog
-  "Read Blog": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "samples", "blog"],
+  "Read Blog": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "blog"],
   
   // Sample CTAs - documentation first, then doc sub-types, then samples
-  "View Sample": ["documentation", "tutorial", "concepts", "how-to", "samples", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "Go to GitHub Repo": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "samples", "video", "workshop", "training", "blog"],
+  "View Sample": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
+  "Go to GitHub Repo": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
   
   // Solution Accelerator CTAs - documentation first, then doc sub-types, then solution-accelerator
-  "Explore Solution Accelerator": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "samples", "workshop", "training", "blog"],
+  "Explore Solution Accelerator": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
   
   // Default fallback for "Read More" and other generic CTAs - workshop and training before documentation when present
-  "Read More": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "samples", "blog"]
+  "Read More": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "blog"]
 };
 
 /**
@@ -59,7 +59,6 @@ export const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
   "video", 
   "workshop",
   "training",
-  "samples",
   "blog"
 ];
 

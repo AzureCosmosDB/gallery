@@ -287,7 +287,7 @@ export function filterUsers(
 const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
   "developing-core-applications": [
     "documentation", "concepts", "how-to", "tutorial", 
-    "workshop", "training", "video", "samples"
+    "workshop", "training", "video"
   ],
   "building-genai-apps": [
     "documentation", "concepts", "how-to", "tutorial", 

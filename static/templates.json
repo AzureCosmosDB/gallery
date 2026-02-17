@@ -376,13 +376,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/azure-pipelines-deploy-database-task",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/azure-pipelines-deploy-database-task",
     "image": "./img/deploy-using-az-pipeline.png",
-    "tags": [
-      "documentation",
-      "app-dev",
-      "devops",
-      "how-to",
-      "flexibleserver"
-    ],
+    "tags": ["documentation", "app-dev", "devops", "how-to", "flexibleserver"],
     "date": "2024-10-1",
     "priority": "P1"
   },
@@ -440,13 +434,7 @@
     "website": "https://learn.microsoft.com/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database",
     "source": "https://learn.microsoft.com/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database",
     "image": "./img/deploy-tomcat-app.png",
-    "tags": [
-      "documentation",
-      "java",
-      "app-dev",
-      "flexibleserver",
-      "tutorial"
-    ],
+    "tags": ["documentation", "java", "app-dev", "flexibleserver", "tutorial"],
     "date": "2024-06-05",
     "priority": "P1"
   },
@@ -477,13 +465,7 @@
     "website": "https://learn.microsoft.com/azure/container-apps/tutorial-java-quarkus-connect-managed-identity-postgresql-database",
     "source": "https://learn.microsoft.com/azure/container-apps/tutorial-java-quarkus-connect-managed-identity-postgresql-database",
     "image": "./img/deploy-java-quarkus-container.png",
-    "tags": [
-      "documentation",
-      "java",
-      "app-dev",
-      "flexibleserver",
-      "tutorial"
-    ],
+    "tags": ["documentation", "java", "app-dev", "flexibleserver", "tutorial"],
     "date": "2025-02-03",
     "priority": "P1"
   },
@@ -532,12 +514,7 @@
     "website": "https://www.youtube.com/watch?v=Li6Td47-Ods",
     "source": "https://www.youtube.com/watch?v=Li6Td47-Ods",
     "image": "./img/boost-data-tasks.png",
-    "tags": [
-      "vscode",
-      "app-dev",
-      "flexibleserver",
-      "video"
-    ],
+    "tags": ["vscode", "app-dev", "flexibleserver", "video"],
     "date": "2025-7-10"
   },
   {
@@ -655,13 +632,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "image": "./img/integrate-with-az-ai-services.png",
-    "tags": [
-      "documentation",
-      "genai",
-      "how-to",
-      "flexibleserver",
-      "azureai"
-    ],
+    "tags": ["documentation", "genai", "how-to", "flexibleserver", "azureai"],
     "date": "2025-10-3",
     "priority": "P1"
   },
@@ -846,10 +817,7 @@
     "website": "https://learn.microsoft.com/training/modules/perform-sentiment-analysis-opinion-mining-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/perform-sentiment-analysis-opinion-mining-azure-database-postgresql/",
     "image": "./img/azure-sentiment-analysis.png",
-    "tags": [
-      "flexibleserver",
-      "genai"
-    ]
+    "tags": ["flexibleserver", "genai"]
   },
   {
     "title": "Extract Insights using Azure AI Language and Azure Database for PostgreSQL",
@@ -857,10 +825,7 @@
     "website": "https://learn.microsoft.com/training/modules/extract-insights-using-azure-ai-language-azure-database-postgresq/",
     "source": "https://learn.microsoft.com/training/modules/extract-insights-using-azure-ai-language-azure-database-postgresq/",
     "image": "./img/azure-ai-insights.png",
-    "tags": [
-      "flexibleserver",
-      "genai"
-    ]
+    "tags": ["flexibleserver", "genai"]
   },
   {
     "title": "Translate Text with Azure AI Translator and Azure Database for PostgreSQL",
@@ -868,10 +833,7 @@
     "website": "https://learn.microsoft.com/training/modules/translate-text-azure-ai-translator-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/translate-text-azure-ai-translator-azure-database-postgresql/",
     "image": "./img/azure-ai-translator.png",
-    "tags": [
-      "flexibleserver",
-      "genai"
-    ]
+    "tags": ["flexibleserver", "genai"]
   },
   {
     "title": "Use Azure Machine Learning for Inferencing from Azure Database for PostgreSQL",
@@ -879,12 +841,7 @@
     "website": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
     "image": "./img/use-az-ml.png",
-    "tags": [
-      "flexibleserver",
-      "genai",
-      "training",
-      "azureai"
-    ],
+    "tags": ["flexibleserver", "genai", "training", "azureai"],
     "priority": "P1"
   },
   {
@@ -1096,14 +1053,7 @@
     "website": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "source": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "image": "./img/demo-azure-ai-and-pg-vector.png",
-    "tags": [
-      "vector",
-      "flexibleserver",
-      "genai",
-      "azureai",
-      "rag",
-      "video"
-    ],
+    "tags": ["vector", "flexibleserver", "genai", "azureai", "rag", "video"],
     "date": "2024-2-16",
     "priority": "P1"
   },
@@ -1113,14 +1063,7 @@
     "website": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "source": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "image": "./img/integrating-ai-and-vector-search.png",
-    "tags": [
-      "vector",
-      "flexibleserver",
-      "genai",
-      "azureai",
-      "rag",
-      "video"
-    ],
+    "tags": ["vector", "flexibleserver", "genai", "azureai", "rag", "video"],
     "date": "2024-05-30",
     "priority": "P0"
   },
@@ -1298,13 +1241,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "image": "./img/azure-data-factory-with-managed-endpoints.png",
-    "tags": [
-      "documentation",
-      "adf",
-      "flexibleserver",
-      "analytics",
-      "how-to"
-    ],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-04-15",
     "priority": "P1"
   },
@@ -1314,13 +1251,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "image": "./img/copy-activity-in-az.png",
-    "tags": [
-      "documentation",
-      "adf",
-      "flexibleserver",
-      "analytics",
-      "how-to"
-    ],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1330,13 +1261,7 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "image": "./img/script-activity-in-data-factory.png",
-    "tags": [
-      "documentation",
-      "adf",
-      "flexibleserver",
-      "analytics",
-      "how-to"
-    ],
+    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1623,13 +1548,7 @@
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
     "image": "./img/real-ai-dev.png",
-    "tags": [
-      "flexibleserver",
-      "app-dev",
-      "vscode",
-      "connect",
-      "blog"
-    ],
+    "tags": ["flexibleserver", "app-dev", "vscode", "connect", "blog"],
     "date": "2025-9-11",
     "priority": "P1",
     "meta": {
@@ -1669,12 +1588,7 @@
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
     "image": "./img/pgbouncer.png",
-    "tags": [
-      "flexibleserver",
-      "app-dev",
-      "best-practice",
-      "blog"
-    ],
+    "tags": ["flexibleserver", "app-dev", "best-practice", "blog"],
     "date": "2025-10-3",
     "priority": "P1",
     "meta": {
@@ -1682,5 +1596,35 @@
       "date": "Oct 3, 2025",
       "duration": "4 min read"
     }
+  },
+  {
+    "title": "The blueprint for intelligent AI agents backed by PostgreSQL",
+    "description": "AI agents are reshaping business operations across sectors. If you’re looking to bolster your business with agents, this video offers a strategic approach for building intelligent agents that truly understand your data. Learn how to uncover next-level AI reasoning for your agents using knowledge graphs, vector search and the latest AI integrations directly in PostgreSQL on Azure. Leave with a blueprint and best practices from Azure customers you can use to augment your own apps and copilots.",
+    "website": "https://www.youtube.com/watch?v=LD0Emp7Gr40",
+    "source": "https://www.youtube.com/watch?v=LD0Emp7Gr40",
+    "image": "./img/blueprint-for-intelligent-agents.png",
+    "tags": [
+      "flexibleserver",
+      "horizondb",
+      "genai",
+      "agent",
+      "vector",
+      "rag",
+      "azureai",
+      "graph",
+      "semantic"
+    ],
+    "date": "2025-11-20",
+    "priority": "P0"
+  },
+  {
+    "title": "Azure HorizonDB: Deep Dive into a New Enterprise-Scale PostgreSQL",
+    "description": "Azure HorizonDB is Azure’s new fully managed PostgreSQL database for mission-critical workloads. Watch this video to understand the architecture that enables enhanced scalability without sacrificing performance, ultra-fast failovers, and read replicas for constant availability. Learn how HorizonDB combines open-source Postgres with state-of-the-art Azure infrastructure, cutting-edge database innovation and advanced AI features to power next-generation applications.",
+    "website": "https://www.youtube.com/watch?v=BJxrSKAvCis",
+    "source": "https://www.youtube.com/watch?v=BJxrSKAvCis",
+    "image": "./img/meet-azure-horizondb.png",
+    "tags": ["horizondb", "fundamentals", "overview", "concepts"],
+    "date": "2025-11-21",
+    "priority": "P0"
   }
 ]

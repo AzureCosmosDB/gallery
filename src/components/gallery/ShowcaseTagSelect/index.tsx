@@ -157,7 +157,7 @@ export default function ShowcaseTagSelect({
   );
 
   // Tags that should always be disabled (no data available)
-  const alwaysDisabledTags: TagType[] = ["samples" as TagType];
+  const alwaysDisabledTags: TagType[] = [];
 
   // Enable the sub-tag if:
   // 1. The tag itself is in activeTags, OR

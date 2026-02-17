@@ -145,7 +145,6 @@ export default function NavbarContent() {
       "#videos": "video",
       "#blogs": "blog",
       "#trainings": "training",
-      "#samples": "samples",
     };
 
     const tagFilter = tagMapping[tagHash];
@@ -283,15 +282,7 @@ export default function NavbarContent() {
               >
                 Trainings
               </Link>
-              <Link
-                to="#samples"
-                className={`${styles.dropdownMenuItem} ${
-                  activeSection === "samples" ? styles.activeMenuItem : ""
-                }`}
-                onClick={(e) => handleDropdownClick(e, "#samples")}
-              >
-                Samples
-              </Link>
+              
             </div>
           </div>
           <Link
