@@ -24,6 +24,7 @@ import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
+import type { UserState } from "../../../pages/ResourceLibrarySection/types";
 
 const SORT_BY_OPTIONS = ["Newest", "Recommended"];
 
@@ -31,7 +32,7 @@ interface MobileFilterDrawerProps {
   activeTags: TagType[];
   selectedCheckbox: TagType[];
   setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
-  location: any;
+  location: Location & { state?: UserState };
   selectedTags: TagType[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TagType[]>>;
   readSearchTags: (search: string) => TagType[];

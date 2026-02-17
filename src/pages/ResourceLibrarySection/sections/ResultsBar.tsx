@@ -1,8 +1,9 @@
 import React from "react";
-import ResultsSummary from "../../../../components/gallery/ResultsSummary";
-import MobileFilterDrawer from "../../../../components/gallery/MobileFilterDrawer";
-import styles from "../../../styles.module.css";
-import type { TagType } from "../../../../data/tags";
+import ResultsSummary from "../../../components/gallery/ResultsSummary";
+import MobileFilterDrawer from "../../../components/gallery/MobileFilterDrawer";
+import styles from "../../styles.module.css";
+import type { TagType } from "../../../data/tags";
+import type { UserState } from "../types";
 
 type Props = {
   resourceCount: number;
@@ -14,7 +15,7 @@ type Props = {
   setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
   selectedTags: TagType[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TagType[]>>;
-  location: any;
+  location: Location & { state?: UserState };
 
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
