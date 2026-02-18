@@ -1,6 +1,6 @@
 import React from 'react';
-import ResultsSummary from '../../../../gallery/ResultsSummary';
-import MobileFilterDrawer from '../../../../gallery/MobileFilterDrawer';
+import ResultsSummary from '../../../../resource-library/shared/ResultsSummary';
+import MobileFilterDrawer from '../../../../resource-library/filters/MobileFilterDrawer';
 import styles from '../../../styles.module.css';
 import type { TagType } from '../../../data/tags';
 import type { UserState } from '../types';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ShowcaseLeftFilters from '../gallery/ShowcaseLeftFilters';
+import ShowcaseLeftFilters from '../resource-library/filters/ShowcaseLeftFilters';
 import ShowcaseCardPage from './sections/ResourceLibrarySection';
 import type { UserState } from './sections/ResourceLibrarySection/types';
 import QuickLinks from './sections/QuickLinks';

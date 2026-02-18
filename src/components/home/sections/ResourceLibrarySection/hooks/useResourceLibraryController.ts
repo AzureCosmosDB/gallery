@@ -4,7 +4,7 @@ import { SORT_BY_OPTIONS, getSortedUsers } from '../../../../../utils/sortingUti
 import { filterUsers, computeActiveTags } from '../../../../../utils/filterUtils';
 import { restoreUserState } from '../utils/restoreUserState';
 import { prepareUserState } from '../../../HomePage';
-import { readSearchName } from '../../../../gallery/SearchFilterBar';
+import { readSearchName } from '../../../../resource-library/filters/SearchFilterBar';
 import type { ShowcaseCardPageProps } from '../types';
 
 export function useResourceLibraryController(props: ShowcaseCardPageProps) {

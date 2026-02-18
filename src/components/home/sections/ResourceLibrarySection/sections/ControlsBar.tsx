@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchFilterBar from '../../../../gallery/SearchFilterBar';
-import SortDropdown from '../../../../gallery/SortDropdown';
-import ViewToggle, { type ViewType } from '../../../../gallery/ViewToggle';
+import SearchFilterBar from '../../../../resource-library/filters/SearchFilterBar';
+import SortDropdown from '../../../../resource-library/filters/SortDropdown';
+import ViewToggle, { type ViewType } from '../../../../resource-library/filters/ViewToggle';
 import styles from '../../../styles.module.css';
 
 type Props = {

@@ -134,7 +134,7 @@
     text-align: center !important;
   }
   .featuredCarousel {
-    align-items: center;
+    align-items: flex-start;
   }
 }
 
@@ -220,7 +220,7 @@
 
   .featuredCarousel {
     width: 100%;
-    align-items: stretch;
+    align-items: flex-start;
   }
 }
 
