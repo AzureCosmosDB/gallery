@@ -1,9 +1,9 @@
-import React from "react";
-import ResultsSummary from "../../../../gallery/ResultsSummary";
-import MobileFilterDrawer from "../../../../gallery/MobileFilterDrawer";
-import styles from "../../../styles.module.css";
-import type { TagType } from "../../../data/tags";
-import type { UserState } from "../types";
+import React from 'react';
+import ResultsSummary from '../../../../gallery/ResultsSummary';
+import MobileFilterDrawer from '../../../../gallery/MobileFilterDrawer';
+import styles from '../../../styles.module.css';
+import type { TagType } from '../../../data/tags';
+import type { UserState } from '../types';
 
 type Props = {
   resourceCount: number;

@@ -1,16 +1,10 @@
-import React from "react";
-import { Tags, type TagType } from "../../../data/tags";
-import styles from "./styles.module.css";
+import React from 'react';
+import { Tags, type TagType } from '../../../data/tags';
+import styles from './styles.module.css';
 
 // Documentation Icon
 const DocumentationIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <g clipPath="url(#clip0_350_2429)">
       <path
         d="M8.16675 1.75V4.08333C8.16675 4.23804 8.22821 4.38642 8.3376 4.49581C8.447 4.60521 8.59537 4.66667 8.75008 4.66667H11.0834"
@@ -24,18 +18,8 @@ const DocumentationIcon: React.FC = () => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        d="M5.25 9.91663H8.75"
-        stroke="#242424"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5.25 7.58337H8.75"
-        stroke="#242424"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M5.25 9.91663H8.75" stroke="#242424" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5.25 7.58337H8.75" stroke="#242424" strokeLinecap="round" strokeLinejoin="round" />
     </g>
     <defs>
       <clipPath id="clip0_350_2429">
@@ -47,13 +31,7 @@ const DocumentationIcon: React.FC = () => (
 
 // Blog Icon
 const BlogIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M11.6666 3.5C11.6666 3.34529 11.6051 3.19696 11.4957 3.08757C11.4 2.99181 11.2744 2.93275 11.1408 2.91951L11.0833 2.91667H2.91663C2.76192 2.91667 2.61359 2.97817 2.50419 3.08757C2.3948 3.19696 2.33329 3.34529 2.33329 3.5V10.5C2.33329 10.6547 2.39479 10.803 2.50419 10.9124C2.61359 11.0218 2.76192 11.0833 2.91663 11.0833H11.0833C11.238 11.0833 11.3863 11.0218 11.4957 10.9124C11.6051 10.803 11.6666 10.6547 11.6666 10.5V3.5ZM12.8333 10.5C12.8333 10.9641 12.6488 11.4091 12.3206 11.7373C11.9924 12.0655 11.5474 12.25 11.0833 12.25H2.91663C2.4525 12.25 2.00751 12.0655 1.67932 11.7373C1.35113 11.4091 1.16663 10.9641 1.16663 10.5V3.5C1.16663 3.03587 1.35113 2.59088 1.67932 2.2627C2.00751 1.93451 2.4525 1.75 2.91663 1.75H11.0833C11.5474 1.75 11.9924 1.93451 12.3206 2.2627C12.6488 2.59088 12.8333 3.03587 12.8333 3.5V10.5Z"
       fill="#242424"
@@ -75,13 +53,7 @@ const BlogIcon: React.FC = () => (
 
 // Video Icon
 const VideoIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M11.7192 3.86189C11.9177 3.87083 12.1106 3.93063 12.2797 4.03507C12.4488 4.13953 12.5884 4.28536 12.6853 4.4589C12.7822 4.63249 12.8333 4.82806 12.8334 5.02685V8.9729L12.8311 9.04752C12.82 9.22045 12.77 9.38897 12.6853 9.54085C12.5884 9.71443 12.4488 9.86077 12.2797 9.96525C12.1107 10.0696 11.9176 10.1289 11.7192 10.1379C11.5207 10.1468 11.3233 10.1047 11.1455 10.0159H11.1449L8.48918 8.68863C8.29159 8.58986 8.16683 8.38771 8.16675 8.16682V5.83349L8.17244 5.75146C8.19904 5.56346 8.31631 5.39815 8.48918 5.31168L11.1449 3.9838H11.1455C11.3233 3.89502 11.5207 3.85297 11.7192 3.86189ZM11.6667 5.02742L9.33341 6.19409V7.80566L11.6667 8.97233V5.02742Z"
       fill="#242424"
@@ -95,13 +67,7 @@ const VideoIcon: React.FC = () => (
 
 // Solution Accelerator Icon
 const SolutionAcceleratorIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M9.91672 1.75C10.5356 1.75 11.1289 1.99601 11.5665 2.43359C12.004 2.87118 12.2501 3.46449 12.2501 4.08333C12.2501 4.09393 12.2495 4.10466 12.2489 4.11523C12.1861 5.26708 11.7835 6.37449 11.0914 7.29736C10.4757 8.11819 9.65531 8.75937 8.71587 9.16073C8.64365 9.71617 8.45974 10.2526 8.17014 10.7353C7.81289 11.3307 7.30937 11.8252 6.70782 12.172C6.53799 12.2698 6.33045 12.2758 6.15524 12.1879C5.98006 12.1 5.86053 11.9302 5.83737 11.7356C5.72921 10.8255 5.31822 9.978 4.67014 9.32992C4.02206 8.68183 3.17458 8.27084 2.26446 8.16268C2.06983 8.13952 1.90003 8.02 1.81214 7.84481C1.72429 7.6696 1.73026 7.46206 1.8281 7.29224C2.1749 6.69068 2.66937 6.18716 3.26478 5.82992C3.74735 5.54039 4.28348 5.35588 4.83876 5.28361C5.24011 4.34429 5.88194 3.52425 6.70269 2.90869C7.62556 2.21659 8.73297 1.81397 9.88482 1.75114C9.89539 1.75056 9.90613 1.75 9.91672 1.75ZM9.9264 2.91667C9.01278 2.97082 8.13525 3.29306 7.4028 3.84237C6.66444 4.39614 6.10663 5.15637 5.80034 6.02702C5.72053 6.2538 5.5097 6.40811 5.26942 6.4161C4.77381 6.43246 4.29044 6.57516 3.8652 6.83024C3.68379 6.93909 3.51592 7.06777 3.36333 7.21191C4.16286 7.4644 4.89539 7.90543 5.49501 8.50505C6.09445 9.10449 6.53504 9.83689 6.78757 10.6361C6.9317 10.4836 7.06097 10.3163 7.16981 10.1348C7.42489 9.70961 7.56759 9.22624 7.58395 8.73063L7.59364 8.64233C7.63162 8.43985 7.77454 8.26957 7.97303 8.19971C8.84368 7.89342 9.60391 7.33561 10.1577 6.59725C10.7071 5.86465 11.0288 4.98689 11.0828 4.07308C11.0801 3.76737 10.958 3.47484 10.7416 3.25846C10.5251 3.04195 10.2323 2.9192 9.9264 2.91667Z"
       fill="#242424"
@@ -119,13 +85,7 @@ const SolutionAcceleratorIcon: React.FC = () => (
 
 // Workshop Icon
 const WorkshopIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M11.5665 3.49992C11.5664 3.21711 11.4543 2.94567 11.2543 2.74569C11.0793 2.57071 10.8496 2.46287 10.6055 2.43864L10.5001 2.43351C10.2172 2.43351 9.94586 2.54572 9.74585 2.74569L2.33341 10.1581V11.6666H3.84188L11.2543 4.25415C11.4543 4.05414 11.5665 3.78275 11.5665 3.49992ZM12.7332 3.49992C12.7332 4.09217 12.4979 4.66021 12.0792 5.07902L4.49585 12.6624C4.38645 12.7717 4.23812 12.8333 4.08341 12.8333H1.75008C1.42792 12.8333 1.16675 12.5721 1.16675 12.2499V9.91658C1.16679 9.76194 1.22829 9.6135 1.33765 9.50415L8.92098 1.92082C9.33979 1.50206 9.90783 1.26685 10.5001 1.26685C11.0923 1.26685 11.6604 1.50206 12.0792 1.92082C12.498 2.33959 12.7331 2.90769 12.7332 3.49992Z"
       fill="#242424"
@@ -155,13 +115,7 @@ const WorkshopIcon: React.FC = () => (
 
 // Samples Icon
 const SamplesIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M5.83333 1.75C6.1555 1.75 6.41667 2.01117 6.41667 2.33333V5.83333C6.41667 6.1555 6.1555 6.41667 5.83333 6.41667H2.33333C2.01117 6.41667 1.75 6.1555 1.75 5.83333V2.33333C1.75 2.01117 2.01117 1.75 2.33333 1.75H5.83333ZM2.91667 5.25H5.25V2.91667H2.91667V5.25Z"
       fill="#242424"
@@ -183,47 +137,36 @@ const SamplesIcon: React.FC = () => (
 
 // Training Icon (using a simple book/education icon)
 const TrainingIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path
       d="M7 2.33337L11.6667 3.50004V10.5L7 9.33337L2.33333 10.5V3.50004L7 2.33337Z"
       stroke="#242424"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <path
-      d="M7 2.33337V9.33337"
-      stroke="#242424"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path d="M7 2.33337V9.33337" stroke="#242424" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 // Get the appropriate icon for a resource type
 const getResourceTypeIcon = (resourceType: string) => {
   switch (resourceType) {
-    case "documentation":
-    case "concepts":
-    case "how-to":
-    case "tutorial":
+    case 'documentation':
+    case 'concepts':
+    case 'how-to':
+    case 'tutorial':
       return <DocumentationIcon />;
-    case "blog":
+    case 'blog':
       return <BlogIcon />;
-    case "video":
+    case 'video':
       return <VideoIcon />;
-    case "solution-accelerator":
+    case 'solution-accelerator':
       return <SolutionAcceleratorIcon />;
-    case "workshop":
+    case 'workshop':
       return <WorkshopIcon />;
-    case "samples":
+    case 'samples':
       return <SamplesIcon />;
-    case "training":
+    case 'training':
       return <TrainingIcon />;
     default:
       return null;
@@ -234,18 +177,13 @@ interface ResourceTypeOverlayProps {
   tags: TagType[];
 }
 
-export default function ResourceTypeOverlay({
-  tags,
-}: ResourceTypeOverlayProps) {
+export default function ResourceTypeOverlay({ tags }: ResourceTypeOverlayProps) {
   // Find all resource type tags, excluding documentation sub-types
   const resourceTypeTags = tags.filter((tag) => {
     const tagObject = Tags[tag];
     // Include main resource types but exclude documentation sub-types (concepts, how-to, tutorial)
     // since they will remain in the regular tags below
-    return (
-      tagObject?.type === "ResourceType" &&
-      !["concepts", "how-to", "tutorial"].includes(tag)
-    );
+    return tagObject?.type === 'ResourceType' && !['concepts', 'how-to', 'tutorial'].includes(tag);
   });
 
   if (resourceTypeTags.length === 0) return null;

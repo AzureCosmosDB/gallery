@@ -5,10 +5,10 @@
  * SortDropdown - Dropdown for selecting sort order.
  */
 
-import React from "react";
-import { Dropdown, Option } from "@fluentui/react-components";
-import { SORT_BY_OPTIONS } from "../../../utils/sortingUtils";
-import styles from "../../home/styles.module.css";
+import React from 'react';
+import { Dropdown, Option } from '@fluentui/react-components';
+import { SORT_BY_OPTIONS } from '../../../utils/sortingUtils';
+import styles from '../../home/styles.module.css';
 
 interface SortDropdownProps {
   /** Current sort option */
@@ -27,10 +27,7 @@ export default function SortDropdown({
   onSortChange,
   setLoading,
 }: SortDropdownProps): React.JSX.Element {
-  const handleOptionSelect = (
-    _event: unknown,
-    data: { selectedOptions: string[] },
-  ) => {
+  const handleOptionSelect = (_event: unknown, data: { selectedOptions: string[] }) => {
     if (setLoading) {
       setLoading(true);
     }

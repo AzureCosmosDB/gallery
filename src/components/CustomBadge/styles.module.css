@@ -13,7 +13,8 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-weight: 500;
   line-height: 1;
   text-align: center;
@@ -23,7 +24,7 @@
   cursor: default;
   user-select: none;
   transition: all 0.2s ease-in-out;
-  
+
   /* No fixed heights - uses padding instead */
   height: auto;
   min-height: unset;
@@ -49,8 +50,8 @@ button.badge {
 }
 
 /* Allow cursor pointer to be set externally */
-.badge[style*="cursor: pointer"],
-.badge[class*="moreBadge"] {
+.badge[style*='cursor: pointer'],
+.badge[class*='moreBadge'] {
   cursor: pointer !important;
 }
 
@@ -287,7 +288,6 @@ button.badge {
   border: 1px solid transparent;
 }
 
-
 /* Hover states for clickable badges - Enhanced Microsoft Fluent interactions */
 .badgeClickable:hover {
   transform: translateY(-1px);
@@ -320,4 +320,3 @@ button.badge {
 .badgeClickable.badge_outline:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
-

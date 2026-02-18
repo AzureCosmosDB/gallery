@@ -3,9 +3,9 @@
  * Licensed under the MIT License.
  */
 
-import React from "react";
-import styles from "./styles.module.css";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import React from 'react';
+import styles from './styles.module.css';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import {
   Card,
   CardFooter,
@@ -14,47 +14,32 @@ import {
   Image,
   Body1Strong,
   Caption1,
-} from "@fluentui/react-components";
+} from '@fluentui/react-components';
 
 function closeCard(parentDiv) {
   const parent = document.getElementById(parentDiv);
-  parent.style.display = "none";
+  parent.style.display = 'none';
   // access localStorage until window is defined
-  if (typeof window !== "undefined") {
-    localStorage.setItem("surveyCardDisplay", parent.style.display);
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('surveyCardDisplay', parent.style.display);
   }
 }
 
 function ShowcaseSurveyCard(): React.ReactElement {
   // access localStorage until window is defined
-  if (
-    typeof window !== "undefined" &&
-    localStorage.getItem("surveyCardDisplay")
-  ) {
+  if (typeof window !== 'undefined' && localStorage.getItem('surveyCardDisplay')) {
     return null;
   }
   return (
     <Card className={styles.card} appearance="filled" id="surveyCard">
       <ToggleButton
-        onClick={() => closeCard("surveyCard")}
+        onClick={() => closeCard('surveyCard')}
         size="small"
         appearance="transparent"
-        icon={
-          <Image
-            src={useBaseUrl("/img/close.svg")}
-            height={16}
-            width={16}
-            alt="Close"
-          />
-        }
+        icon={<Image src={useBaseUrl('/img/close.svg')} height={16} width={16} alt="Close" />}
         className={styles.closeButton}
       />
-      <Image
-        src={useBaseUrl("/img/chat-pencil.svg")}
-        alt="surveyCard"
-        height={72}
-        width={72}
-      />
+      <Image src={useBaseUrl('/img/chat-pencil.svg')} alt="surveyCard" height={72} width={72} />
       <div className={styles.text}>
         <Body1Strong>Got a minute? We're all ears!</Body1Strong>
         <Caption1>Help us shape the future of our template library.</Caption1>
@@ -63,18 +48,10 @@ function ShowcaseSurveyCard(): React.ReactElement {
         <Button
           appearance="primary"
           onClick={() => {
-            window.open(
-              "https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6",
-              "_blank",
-            );
+            window.open('https://microsoft.qualtrics.com/jfe/form/SV_cIRDC8WQdjKEmY6', '_blank');
           }}
           icon={
-            <Image
-              src={useBaseUrl("/img/open-link.svg")}
-              alt="surveyCard"
-              height={20}
-              width={20}
-            />
+            <Image src={useBaseUrl('/img/open-link.svg')} alt="surveyCard" height={20} width={20} />
           }
         >
           Take the survey

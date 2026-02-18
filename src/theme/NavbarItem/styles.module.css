@@ -2,7 +2,7 @@
   background: #fff !important;
   border-radius: 8px !important;
 }
-.newsletterDialogBody{
+.newsletterDialogBody {
   display: block !important;
 }
 .newsletterInput {
@@ -12,7 +12,7 @@
   max-width: 100%;
   padding: 8px !important;
 }
-.newsletterDialogTitle{
+.newsletterDialogTitle {
   font-size: 20px !important;
   font-weight: 600 !important;
   margin-bottom: 1rem;
@@ -39,7 +39,7 @@
 .newsletterDialogSurface {
   background: #fff !important;
 }
-.newsletterButton{
+.newsletterButton {
   width: 400px !important;
 }
 
@@ -62,5 +62,3 @@
     display: none !important;
   }
 }
-
-

@@ -12,7 +12,7 @@
 }
 
 .description {
-   font-size: 20px !important;
+  font-size: 20px !important;
   font-weight: 400 !important;
   color: #91949a;
   margin-bottom: 32px;
@@ -42,7 +42,8 @@
   border: 1.5px solid #d1d5db;
   border-radius: 14px;
   padding: 32px 20px !important;
-  transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s,
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, box-shadow;
   text-decoration: none !important;
   width: min(260px, 100%);
@@ -52,7 +53,7 @@
 
 .tile:hover {
   border-color: #bdbdbd;
-  box-shadow: 0 8px 24px rgba(25, 96, 252, 0.12), 0 1.5px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 24px rgba(25, 96, 252, 0.12), 0 1.5px 6px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
   text-decoration: none !important;
 }

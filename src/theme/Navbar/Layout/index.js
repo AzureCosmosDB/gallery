@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
-import clsx from "clsx";
-import { useThemeConfig } from "@docusaurus/theme-common";
-import {
-  useHideableNavbar,
-  useNavbarMobileSidebar,
-} from "@docusaurus/theme-common/internal";
-import { translate } from "@docusaurus/Translate";
-import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
-import styles from "./styles.module.css";
-import { manageCookieLabel, manageCookieId } from "../../../../constants.js";
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
+import { useThemeConfig } from '@docusaurus/theme-common';
+import { useHideableNavbar, useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
+import { translate } from '@docusaurus/Translate';
+import NavbarMobileSidebar from '@theme/Navbar/MobileSidebar';
+import styles from './styles.module.css';
+import { manageCookieLabel, manageCookieId } from '../../../../constants.js';
 function NavbarBackdrop(props) {
   return (
     <div
       role="presentation"
       {...props}
-      className={clsx("navbar-sidebar__backdrop", props.className)}
+      className={clsx('navbar-sidebar__backdrop', props.className)}
     />
   );
 }
@@ -31,7 +28,7 @@ function removeItem(id) {
 
 const adobeInit = () => {
   // Guard against missing window (SSR) and missing WcpConsent
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
   const WcpConsent = window.WcpConsent || null;
 
   if (!WcpConsent) {
@@ -41,14 +38,14 @@ const adobeInit = () => {
 
   // Adobe Analytics
   // WCP initialization
-  const SET = "set";
-  const RESET = "reset";
+  const SET = 'set';
+  const RESET = 'reset';
   let siteConsent = null;
 
   try {
     WcpConsent.init(
-      "en-US",
-      "cookie-banner",
+      'en-US',
+      'cookie-banner',
       function (err, _siteConsent) {
         if (!err) {
           siteConsent = _siteConsent; //siteConsent is used to get the current consent
@@ -102,9 +99,9 @@ const adobeInit = () => {
 
   try {
     if (WcpConsent.siteConsent && WcpConsent.siteConsent.isConsentRequired) {
-      var manageCookies = document.getElementById("manage_cookie");
+      var manageCookies = document.getElementById('manage_cookie');
       if (manageCookies) {
-        manageCookies.addEventListener("click", function (e) {
+        manageCookies.addEventListener('click', function (e) {
           e.preventDefault();
           if (WcpConsent.siteConsent && WcpConsent.siteConsent.manageConsent) {
             WcpConsent.siteConsent.manageConsent();
@@ -114,7 +111,7 @@ const adobeInit = () => {
     } else {
       // remove Manage Cookie and separator in footer if present
       try {
-        removeItem("footer__links_" + manageCookieLabel);
+        removeItem('footer__links_' + manageCookieLabel);
         removeItem(manageCookieId);
       } catch (e) {
         // ignore
@@ -122,7 +119,7 @@ const adobeInit = () => {
     }
 
     const consent =
-      WcpConsent.siteConsent && typeof WcpConsent.siteConsent.getConsent === "function"
+      WcpConsent.siteConsent && typeof WcpConsent.siteConsent.getConsent === 'function'
         ? WcpConsent.siteConsent.getConsent()
         : null;
 
@@ -130,15 +127,18 @@ const adobeInit = () => {
 
     // 1DS initialization
     try {
-      if (typeof oneDS !== "undefined" && oneDS && oneDS.ApplicationInsights) {
+      if (typeof oneDS !== 'undefined' && oneDS && oneDS.ApplicationInsights) {
         const analytics = new oneDS.ApplicationInsights();
         var config = {
           instrumentationKey:
-            "08243c72936e46a593d47b154e6c427a-3daf9d0a-e9eb-4525-90de-c6d9c47e6a87-7011",
+            '08243c72936e46a593d47b154e6c427a-3daf9d0a-e9eb-4525-90de-c6d9c47e6a87-7011',
           propertyConfiguration: {
             // Properties Plugin configuration
             callback: {
-              userConsentDetails: siteConsent && typeof siteConsent.getConsent === "function" ? siteConsent.getConsent() : null,
+              userConsentDetails:
+                siteConsent && typeof siteConsent.getConsent === 'function'
+                  ? siteConsent.getConsent()
+                  : null,
             },
           },
           webAnalyticsConfiguration: {
@@ -159,10 +159,7 @@ const adobeInit = () => {
         analytics.initialize(config, []);
       }
     } catch (error) {
-        if (
-        error instanceof ReferenceError &&
-        error.message.includes("oneDS is not defined")
-      ) {
+      if (error instanceof ReferenceError && error.message.includes('oneDS is not defined')) {
         // oneDS not defined (likely ad blocker) - telemetry disabled
       } else {
         // swallow other errors to avoid breaking the site
@@ -188,20 +185,17 @@ export default function NavbarLayout({ children }) {
     <nav
       ref={navbarRef}
       aria-label={translate({
-        id: "theme.NavBar.navAriaLabel",
-        message: "Main",
-        description: "The ARIA label for the main navigation",
+        id: 'theme.NavBar.navAriaLabel',
+        message: 'Main',
+        description: 'The ARIA label for the main navigation',
       })}
       className={clsx(
-        "navbar",
-        "navbar--fixed-top",
-        hideOnScroll && [
-          styles.navbarHideable,
-          !isNavbarVisible && styles.navbarHidden,
-        ],
+        'navbar',
+        'navbar--fixed-top',
+        hideOnScroll && [styles.navbarHideable, !isNavbarVisible && styles.navbarHidden],
         {
-          "navbar--primary": style === "primary",
-          "navbar-sidebar--show": mobileSidebar.shown,
+          'navbar--primary': style === 'primary',
+          'navbar-sidebar--show': mobileSidebar.shown,
         }
       )}
     >

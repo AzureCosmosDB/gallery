@@ -47,14 +47,14 @@
   background: #fff;
   border-radius: 16px;
   border: 2px solid #dfeefa;
-  box-shadow: 0 4px 16px rgba(60,60,60,0.08);
+  box-shadow: 0 4px 16px rgba(60, 60, 60, 0.08);
   padding: 16px 20px;
   gap: 20px;
   transition: box-shadow 0.2s, transform 0.2s;
   cursor: pointer;
 }
 .tile:hover {
-  box-shadow: 0 8px 32px rgba(60,60,60,0.16);
+  box-shadow: 0 8px 32px rgba(60, 60, 60, 0.16);
   transform: translateY(-2px) scale(1.01);
   border-color: #b8d8ef;
   background: #f6fafd;
@@ -111,7 +111,7 @@
   margin-left: 0px !important;
   overflow: hidden;
 }
-.right{
+.right {
   max-width: 390px;
 }
 
@@ -279,7 +279,6 @@
   .numericSlash {
     opacity: 0.6;
   }
-
 }
 
 /* Desktop and tablet: ensure dot pagination shows and numeric pagination hides */

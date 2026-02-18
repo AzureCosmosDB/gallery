@@ -1,8 +1,8 @@
-import React from "react";
-import SearchFilterBar from "../../../../gallery/SearchFilterBar";
-import SortDropdown from "../../../../gallery/SortDropdown";
-import ViewToggle, { type ViewType } from "../../../../gallery/ViewToggle";
-import styles from "../../../styles.module.css";
+import React from 'react';
+import SearchFilterBar from '../../../../gallery/SearchFilterBar';
+import SortDropdown from '../../../../gallery/SortDropdown';
+import ViewToggle, { type ViewType } from '../../../../gallery/ViewToggle';
+import styles from '../../../styles.module.css';
 
 type Props = {
   sortOption: string;
@@ -25,11 +25,7 @@ export function ControlsBar({
     <div className={styles.searchAndSortBarSection}>
       <SearchFilterBar data-m={analyticsData} />
       <div className={styles.sortAndViewBar}>
-        <SortDropdown
-          sortOption={sortOption}
-          onSortChange={onSortChange}
-          setLoading={setLoading}
-        />
+        <SortDropdown sortOption={sortOption} onSortChange={onSortChange} setLoading={setLoading} />
         <ViewToggle viewType={viewType} onViewChange={onViewChange} />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export type HeroResourceLink = {
   label: string;
@@ -7,7 +7,7 @@ export type HeroResourceLink = {
 
 export type CoverCardConfig =
   | {
-      kind: "section";
+      kind: 'section';
       id: string;
       title: string;
       description: string;
@@ -16,7 +16,7 @@ export type CoverCardConfig =
       className?: string;
     }
   | {
-      kind: "resource";
+      kind: 'resource';
       id: string;
       title: string;
       icon: ReactNode;

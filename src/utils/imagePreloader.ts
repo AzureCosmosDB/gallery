@@ -25,7 +25,7 @@ export function preloadImage(src: string, options: PreloadOptions = {}): void {
   link.rel = 'preload';
   link.as = options.as || 'image';
   link.href = options.hrefOverride || src;
-  
+
   if (options.type) {
     link.type = options.type;
   }
@@ -37,7 +37,7 @@ export function preloadImage(src: string, options: PreloadOptions = {}): void {
   if (options.imageSizes) {
     link.setAttribute('imagesizes', options.imageSizes);
   }
-  
+
   if (options.priority === 'high') {
     link.setAttribute('fetchpriority', 'high');
   }
@@ -49,7 +49,7 @@ export function preloadImage(src: string, options: PreloadOptions = {}): void {
  * Preload multiple images
  */
 export function preloadImages(sources: string[], options: PreloadOptions = {}): void {
-  sources.forEach(src => preloadImage(src, options));
+  sources.forEach((src) => preloadImage(src, options));
 }
 
 /**
@@ -63,9 +63,8 @@ export function preloadImageWithWebP(
   if (typeof window === 'undefined') return;
 
   // Check WebP support
-  const supportsWebP = document.createElement('canvas')
-    .toDataURL('image/webp')
-    .indexOf('data:image/webp') === 0;
+  const supportsWebP =
+    document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
 
   const imageToPreload = supportsWebP ? webpSrc : src;
   preloadImage(imageToPreload, { ...options, type: supportsWebP ? 'image/webp' : undefined });
@@ -80,9 +79,9 @@ export function preloadFeaturedImages(users: User[], limit: number = 3): void {
 
   // Only preload first 3 images that are likely above the fold
   const featuredImages = users
-    .filter(user => user.image)
+    .filter((user) => user.image)
     .slice(0, limit)
-    .map(user => user.image);
+    .map((user) => user.image);
 
   featuredImages.forEach((src) => {
     // Build optimized image path
@@ -138,10 +137,7 @@ export function preloadFeaturedImages(users: User[], limit: number = 3): void {
 export function preloadCriticalAssets(): void {
   if (typeof window === 'undefined') return;
 
-  const criticalAssets = [
-    '/postgres-gallery/img-optimized/logo.webp',
-  ];
+  const criticalAssets = ['/postgres-gallery/img-optimized/logo.webp'];
 
   preloadImages(criticalAssets, { priority: 'high', type: 'image/webp' });
 }
-

@@ -5,9 +5,9 @@
 
 /* eslint-disable global-require */
 
-import { sortBy } from "../utils/jsUtils";
-import { TagType, User, Tags } from "./tags";
-import templates from "../../static/templates.json";
+import { sortBy } from '../utils/jsUtils';
+import { TagType, User, Tags } from './tags';
+import templates from '../../static/templates.json';
 
 // *** ADDING DATA TO AZD GALLERY ****/
 
@@ -35,6 +35,4 @@ function sortUsers() {
 
 const sortedUsers = sortUsers();
 
-export const featuredUsers = sortedUsers.filter((user) =>
-  user.tags.includes("featured"),
-);
+export const featuredUsers = sortedUsers.filter((user) => user.tags.includes('featured'));

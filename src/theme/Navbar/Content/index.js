@@ -1,35 +1,31 @@
-import React from "react";
-import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
-import {
-  splitNavbarItems,
-  useNavbarMobileSidebar,
-} from "@docusaurus/theme-common/internal";
-import { useHistory, useLocation } from "@docusaurus/router";
-import NavbarItem from "@theme/NavbarItem";
-import SearchBar from "@theme/SearchBar";
-import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
-import NavbarLogo from "@theme/Navbar/Logo";
-import NavbarSearch from "@theme/Navbar/Search";
-import styles from "./styles.module.css";
-import Link from "@docusaurus/Link";
+import React from 'react';
+import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
+import { splitNavbarItems, useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
+import { useHistory, useLocation } from '@docusaurus/router';
+import NavbarItem from '@theme/NavbarItem';
+import SearchBar from '@theme/SearchBar';
+import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
+import NavbarLogo from '@theme/Navbar/Logo';
+import NavbarSearch from '@theme/Navbar/Search';
+import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 // Smooth scroll to section by id with navbar offset
 function scrollToSection(e, hash) {
-  if (hash && hash.startsWith("#")) {
+  if (hash && hash.startsWith('#')) {
     e.preventDefault();
     const id = hash.slice(1);
     const el = document.getElementById(id);
     if (el) {
       // Get navbar height to offset scroll position
-      const navbar = document.querySelector(".navbar");
+      const navbar = document.querySelector('.navbar');
       const navbarHeight = navbar ? navbar.offsetHeight : 80; // fallback to 80px
-      const elementPosition =
-        el.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarHeight; // exact positioning at section start
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   }
@@ -72,8 +68,8 @@ export default function NavbarContent() {
   const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
-  const searchBarItem = items.find((item) => item.type === "search");
-  const [activeSection, setActiveSection] = React.useState("home");
+  const searchBarItem = items.find((item) => item.type === 'search');
+  const [activeSection, setActiveSection] = React.useState('home');
   const history = useHistory();
   const location = useLocation();
 
@@ -82,21 +78,22 @@ export default function NavbarContent() {
     const handleScroll = () => {
       const sections = [
         'home',
-        'learning-paths', 
+        'learning-paths',
         'resource-library',
         'quick-links',
-        'community-support'
+        'community-support',
       ];
-      
+
       const navbar = document.querySelector('.navbar');
       const navbarHeight = navbar ? navbar.offsetHeight : 80;
       const scrollPosition = window.scrollY + navbarHeight + 50; // Add some offset for better detection
-      
+
       // Check if we've reached the bottom of the page (more accurate detection)
-      const isAtBottom = Math.abs((window.innerHeight + window.scrollY) - document.documentElement.scrollHeight) < 5;
-      
+      const isAtBottom =
+        Math.abs(window.innerHeight + window.scrollY - document.documentElement.scrollHeight) < 5;
+
       let currentSection = 'home';
-      
+
       // If at bottom, always set to community-support (last section)
       if (isAtBottom) {
         currentSection = 'community-support';
@@ -111,16 +108,16 @@ export default function NavbarContent() {
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
 
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
+
     // Call once to set initial state
     handleScroll();
-    
+
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -130,7 +127,7 @@ export default function NavbarContent() {
   // Helper to handle click and set active section
   const handleMenuClick = (e, hash) => {
     scrollToSection(e, hash);
-    setActiveSection(hash.replace("#", ""));
+    setActiveSection(hash.replace('#', ''));
   };
 
   // Always scroll to resource library for dropdown links and apply filter
@@ -139,13 +136,13 @@ export default function NavbarContent() {
 
     // Map dropdown items to their corresponding tag filters (can be single tag or array of tags)
     const tagMapping = {
-      "#documentation": ["documentation", "concepts", "how-to", "tutorial"], // Parent tag + all subtypes for documentation
-      "#solution-accelerators": "solution-accelerator",
-      "#workshops": "workshop",
-      "#videos": "video",
-      "#blogs": "blog",
-      "#trainings": "training",
-      "#samples": "samples",
+      '#documentation': ['documentation', 'concepts', 'how-to', 'tutorial'], // Parent tag + all subtypes for documentation
+      '#solution-accelerators': 'solution-accelerator',
+      '#workshops': 'workshop',
+      '#videos': 'video',
+      '#blogs': 'blog',
+      '#trainings': 'training',
+      '#samples': 'samples',
     };
 
     const tagFilter = tagMapping[tagHash];
@@ -156,10 +153,10 @@ export default function NavbarContent() {
 
       if (Array.isArray(tagFilter)) {
         // For multiple tags, join them with commas
-        params.set("tags", tagFilter.join(","));
+        params.set('tags', tagFilter.join(','));
       } else {
         // For single tag
-        params.set("tags", tagFilter);
+        params.set('tags', tagFilter);
       }
 
       // Use history to update the URL
@@ -170,7 +167,7 @@ export default function NavbarContent() {
 
       // Scroll to resource library and switch to list view
       requestAnimationFrame(() => {
-        const el = document.getElementById("resource-library");
+        const el = document.getElementById('resource-library');
         if (el) {
           const navbar = document.querySelector('.navbar');
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
@@ -182,7 +179,7 @@ export default function NavbarContent() {
       });
     }
 
-    setActiveSection(tagHash.replace("#", ""));
+    setActiveSection(tagHash.replace('#', ''));
   };
 
   return (
@@ -197,18 +194,18 @@ export default function NavbarContent() {
           <Link
             to="#home"
             className={`${styles.menuItem} ${
-              activeSection === "home" ? styles.activeMenuItem : ""
+              activeSection === 'home' ? styles.activeMenuItem : ''
             }`}
-            onClick={(e) => handleMenuClick(e, "#home")}
+            onClick={(e) => handleMenuClick(e, '#home')}
           >
             Home
           </Link>
           <Link
             to="#learning-paths"
             className={`${styles.menuItem} ${
-              activeSection === "learning-paths" ? styles.activeMenuItem : ""
+              activeSection === 'learning-paths' ? styles.activeMenuItem : ''
             }`}
-            onClick={(e) => handleMenuClick(e, "#learning-paths")}
+            onClick={(e) => handleMenuClick(e, '#learning-paths')}
           >
             Learning Pathways
           </Link>
@@ -216,11 +213,9 @@ export default function NavbarContent() {
             <Link
               to="#resource-library"
               className={`${styles.menuItem} ${
-                activeSection === "resource-library"
-                  ? styles.activeMenuItem
-                  : ""
+                activeSection === 'resource-library' ? styles.activeMenuItem : ''
               }`}
-              onClick={(e) => handleMenuClick(e, "#resource-library")}
+              onClick={(e) => handleMenuClick(e, '#resource-library')}
             >
               Resource Library
             </Link>
@@ -228,67 +223,63 @@ export default function NavbarContent() {
               <Link
                 to="#documentation"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "documentation" ? styles.activeMenuItem : ""
+                  activeSection === 'documentation' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#documentation")}
+                onClick={(e) => handleDropdownClick(e, '#documentation')}
               >
                 Documentation
               </Link>
               <Link
                 to="#solution-accelerators"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "solution-accelerators"
-                    ? styles.activeMenuItem
-                    : ""
+                  activeSection === 'solution-accelerators' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) =>
-                  handleDropdownClick(e, "#solution-accelerators")
-                }
+                onClick={(e) => handleDropdownClick(e, '#solution-accelerators')}
               >
                 Solution accelerators
               </Link>
               <Link
                 to="#workshops"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "workshops" ? styles.activeMenuItem : ""
+                  activeSection === 'workshops' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#workshops")}
+                onClick={(e) => handleDropdownClick(e, '#workshops')}
               >
                 Workshops
               </Link>
               <Link
                 to="#videos"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "videos" ? styles.activeMenuItem : ""
+                  activeSection === 'videos' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#videos")}
+                onClick={(e) => handleDropdownClick(e, '#videos')}
               >
                 Videos
               </Link>
               <Link
                 to="#blogs"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "blogs" ? styles.activeMenuItem : ""
+                  activeSection === 'blogs' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#blogs")}
+                onClick={(e) => handleDropdownClick(e, '#blogs')}
               >
                 Blogs
               </Link>
               <Link
                 to="#trainings"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "trainings" ? styles.activeMenuItem : ""
+                  activeSection === 'trainings' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#trainings")}
+                onClick={(e) => handleDropdownClick(e, '#trainings')}
               >
                 Trainings
               </Link>
               <Link
                 to="#samples"
                 className={`${styles.dropdownMenuItem} ${
-                  activeSection === "samples" ? styles.activeMenuItem : ""
+                  activeSection === 'samples' ? styles.activeMenuItem : ''
                 }`}
-                onClick={(e) => handleDropdownClick(e, "#samples")}
+                onClick={(e) => handleDropdownClick(e, '#samples')}
               >
                 Samples
               </Link>
@@ -297,18 +288,18 @@ export default function NavbarContent() {
           <Link
             to="#quick-links"
             className={`${styles.menuItem} ${
-              activeSection === "quick-links" ? styles.activeMenuItem : ""
+              activeSection === 'quick-links' ? styles.activeMenuItem : ''
             }`}
-            onClick={(e) => handleMenuClick(e, "#quick-links")}
+            onClick={(e) => handleMenuClick(e, '#quick-links')}
           >
             Quick Links
           </Link>
           <Link
             to="#community-support"
             className={`${styles.menuItem} ${
-              activeSection === "community-support" ? styles.activeMenuItem : ""
+              activeSection === 'community-support' ? styles.activeMenuItem : ''
             }`}
-            onClick={(e) => handleMenuClick(e, "#community-support")}
+            onClick={(e) => handleMenuClick(e, '#community-support')}
           >
             Community & Support
           </Link>

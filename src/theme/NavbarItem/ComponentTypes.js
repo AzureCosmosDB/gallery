@@ -3,13 +3,13 @@
  * Licensed under the MIT License.
  */
 
-import ComponentTypes from "@theme-original/NavbarItem/ComponentTypes";
-import { Button } from "@fluentui/react-components";
-import style from "./styles.module.css";
-import { shareFeedbackHandler } from "../../utils/githubUtils";
+import ComponentTypes from '@theme-original/NavbarItem/ComponentTypes';
+import { Button } from '@fluentui/react-components';
+import style from './styles.module.css';
+import { shareFeedbackHandler } from '../../utils/githubUtils';
 
-import React, { useState } from "react";
-import NewsletterDialog from "./NewsletterDialog";
+import React, { useState } from 'react';
+import NewsletterDialog from './NewsletterDialog';
 const submitFeedbackButton = () => {
   const [open, setOpen] = useState(false);
   const handleClick = shareFeedbackHandler();
@@ -32,5 +32,5 @@ const submitFeedbackButton = () => {
 
 export default {
   ...ComponentTypes,
-  "custom-NavbarButton": submitFeedbackButton,
+  'custom-NavbarButton': submitFeedbackButton,
 };

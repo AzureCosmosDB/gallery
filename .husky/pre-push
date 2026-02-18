@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Prevent pushing code that fails format or lint checks
+npm run format:check
+npm run lint:check

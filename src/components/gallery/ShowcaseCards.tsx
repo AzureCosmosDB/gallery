@@ -3,18 +3,18 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState, useEffect, useMemo } from "react";
-import ShowcaseEmptyResult from "./ShowcaseEmptyResult";
-import { type User } from "../../data/tags";
-import styles from "../home/styles.module.css";
-import ShowcaseCard from "./ShowcaseCard";
-import Pagination from "../Pagination";
-import { useLocation } from "@docusaurus/router";
+import React, { useState, useEffect, useMemo } from 'react';
+import ShowcaseEmptyResult from './ShowcaseEmptyResult';
+import { type User } from '../../data/tags';
+import styles from '../home/styles.module.css';
+import ShowcaseCard from './ShowcaseCard';
+import Pagination from '../Pagination';
+import { useLocation } from '@docusaurus/router';
 
 const LEARNING_PATH_TAGS = [
-  "developing-core-applications",
-  "building-genai-apps",
-  "building-ai-agents",
+  'developing-core-applications',
+  'building-genai-apps',
+  'building-ai-agents',
 ];
 
 export default function ShowcaseCards({
@@ -34,7 +34,7 @@ export default function ShowcaseCards({
   const totalPages = Math.ceil(len / CARDS_PER_PAGE);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const currentTags = searchParams.getAll("tags");
+  const currentTags = searchParams.getAll('tags');
   const isLearningPathFiltered =
     !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const orderedUsers = useMemo(() => {
@@ -69,7 +69,7 @@ export default function ShowcaseCards({
             const globalIndex = (page - 1) * CARDS_PER_PAGE + index;
             const tileNumber =
               isLearningPathFiltered || forceShowTileNumber
-                ? (user.tileNumber ?? globalIndex + 1)
+                ? user.tileNumber ?? globalIndex + 1
                 : undefined;
             return (
               <React.Fragment key={user.title}>
@@ -83,9 +83,7 @@ export default function ShowcaseCards({
             );
           })}
       </div>
-      {!noGrid && (
-        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-      )}
+      {!noGrid && <Pagination page={page} totalPages={totalPages} setPage={setPage} />}
     </section>
   );
 }

@@ -1,8 +1,4 @@
-export function setQueryParam(
-  search: string,
-  key: string,
-  value?: string | null
-) {
+export function setQueryParam(search: string, key: string, value?: string | null) {
   const params = new URLSearchParams(search);
 
   if (value && value.trim().length > 0) {
@@ -12,9 +8,9 @@ export function setQueryParam(
   }
 
   const next = params.toString();
-  return next ? `?${next}` : "";
+  return next ? `?${next}` : '';
 }
 
 export function joinComma(values: string[]) {
-  return values.join(",");
+  return values.join(',');
 }

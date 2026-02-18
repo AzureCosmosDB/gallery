@@ -1,8 +1,8 @@
-import { useLocation, useHistory } from "@docusaurus/router";
-import { setQueryParam, joinComma } from "../utils/url";
-import { useScrollToSection } from "./useScrollToSection";
+import { useLocation, useHistory } from '@docusaurus/router';
+import { setQueryParam, joinComma } from '../utils/url';
+import { useScrollToSection } from './useScrollToSection';
 
-const TAGS_KEY = "tags";
+const TAGS_KEY = 'tags';
 
 export function useResourceLibraryNavigation(resourceSectionId: string) {
   const location = useLocation();

@@ -3,11 +3,11 @@
  * Licensed under the MIT License.
  */
 
-import React from "react";
-import { readSearchName } from "../../../components/gallery/SearchFilterBar";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import { Text, Image, Subtitle1, Body2 } from "@fluentui/react-components";
-import styles from "./styles.module.css";
+import React from 'react';
+import { readSearchName } from '../../../components/gallery/SearchFilterBar';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import { Text, Image, Subtitle1, Body2 } from '@fluentui/react-components';
+import styles from './styles.module.css';
 
 export default function ShowcaseEmptyResult({ id }: { id: string }) {
   return (
@@ -15,15 +15,14 @@ export default function ShowcaseEmptyResult({ id }: { id: string }) {
       {readSearchName(window.location.search) != null ? (
         <>
           <Image
-            src={useBaseUrl("/img/search-question-mark.svg")}
+            src={useBaseUrl('/img/search-question-mark.svg')}
             alt="searchQuestionmark"
             height={128}
             width={128}
           />
           <div className={styles.resultSection}>
             <Subtitle1>
-              We couldn’t find any results for '
-              {readSearchName(window.location.search)}'
+              We couldn’t find any results for '{readSearchName(window.location.search)}'
             </Subtitle1>
             <Body2>Check for spelling or try searching for another term.</Body2>
           </div>

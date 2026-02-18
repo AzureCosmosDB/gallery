@@ -63,11 +63,11 @@ export default function Root({ children }) {
       };
 
       // Check if page is already loaded
-      if (document.readyState === "complete") {
+      if (document.readyState === 'complete') {
         handleLoad();
       } else {
         // Wait for window load event
-        window.addEventListener("load", handleLoad);
+        window.addEventListener('load', handleLoad);
 
         // Fallback timeout in case load event doesn't fire
         const fallbackTimeout = setTimeout(() => {
@@ -75,7 +75,7 @@ export default function Root({ children }) {
         }, 3000);
 
         return () => {
-          window.removeEventListener("load", handleLoad);
+          window.removeEventListener('load', handleLoad);
           clearTimeout(fallbackTimeout);
         };
       }

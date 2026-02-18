@@ -3,37 +3,27 @@
  * Licensed under the MIT License.
  */
 
-import React from "react";
-import styles from "./styles.module.css";
-import { type User } from "../../../data/tags";
-import { Link } from "@fluentui/react";
+import React from 'react';
+import styles from './styles.module.css';
+import { type User } from '../../../data/tags';
+import { Link } from '@fluentui/react';
 
 function ShowcaseMultipleWebsites(
   key: number,
   authorName: string,
   websiteLink: string,
   length: number,
-  i: number,
+  i: number
 ) {
   if (i != length - 1) {
     return (
-      <Link
-        className={styles.color}
-        key={key}
-        href={websiteLink}
-        target="_blank"
-      >
+      <Link className={styles.color} key={key} href={websiteLink} target="_blank">
         {authorName},
       </Link>
     );
   } else {
     return (
-      <Link
-        className={styles.color}
-        key={key}
-        href={websiteLink}
-        target="_blank"
-      >
+      <Link className={styles.color} key={key} href={websiteLink} target="_blank">
         {authorName}
       </Link>
     );
@@ -45,17 +35,17 @@ function ShowcaseMultipleAuthors({ user }: { user: User }) {
   const websites = user?.website;
   let i = 0;
 
-  if (authors?.includes(", ")) {
-    const multiWebsites = websites.split(", ");
-    const multiAuthors = authors?.split(", ");
+  if (authors?.includes(', ')) {
+    const multiWebsites = websites.split(', ');
+    const multiAuthors = authors?.split(', ');
 
     if (multiWebsites.length != multiAuthors?.length) {
       throw new Error(
-        "The number of multiple authors(" +
+        'The number of multiple authors(' +
           multiAuthors?.length +
-          ") and websites(" +
+          ') and websites(' +
           multiWebsites.length +
-          ") are not equal.",
+          ') are not equal.'
       );
     }
 
@@ -68,7 +58,7 @@ function ShowcaseMultipleAuthors({ user }: { user: User }) {
             multiAuthors?.[index],
             multiWebsites[index],
             multiWebsites.length,
-            i++,
+            i++
           );
         })}
       </>
@@ -78,12 +68,7 @@ function ShowcaseMultipleAuthors({ user }: { user: User }) {
   return (
     <>
       <div>by</div>
-      <Link
-        className={styles.color}
-        key={authors}
-        href={websites}
-        target="_blank"
-      >
+      <Link className={styles.color} key={authors} href={websites} target="_blank">
         {authors}
       </Link>
     </>

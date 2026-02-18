@@ -50,7 +50,7 @@
 }
 
 .drawerHeader {
-    padding: 16px !important;
+  padding: 16px !important;
 }
 
 .drawerHeader :global(.fui-DrawerHeaderTitle) {
@@ -61,7 +61,7 @@
 .closeButton {
   width: 34px !important;
   height: 34px !important;
-  border: 1px solid #E6E7EB !important;
+  border: 1px solid #e6e7eb !important;
   border-radius: 8px !important;
   min-width: 34px !important;
   padding: 0 !important;
@@ -94,7 +94,7 @@
   line-height: 17.5px;
   letter-spacing: -0.018px;
   border-radius: 8.75px;
-  background: rgba(243, 242, 241, 0.50);
+  background: rgba(243, 242, 241, 0.5);
   margin: 0;
 }
 
@@ -203,7 +203,7 @@
   flex: 1 0 0;
   border-radius: 6.75px;
   border: 0.568px solid rgba(0, 120, 212, 0.15);
-  background: #FFF;
+  background: #fff;
   color: #323130;
   text-align: center;
   font-family: Inter;
@@ -224,8 +224,8 @@
   flex: 1 0 0;
   border-radius: 6.75px;
   border: 0.568px solid rgba(0, 120, 212, 0.15);
-  background: #0078D4;
-  color: #FFF;
+  background: #0078d4;
+  color: #fff;
   text-align: center;
   font-family: Inter;
   font-size: 14px;
@@ -241,7 +241,7 @@
   height: 13.997px !important;
   border-radius: 20px !important;
   border: 0.568px solid rgba(0, 120, 212, 0.15) !important;
-  background: #F3F2F1 !important;
+  background: #f3f2f1 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
@@ -251,30 +251,30 @@
   flex-shrink: 0 !important;
   border-radius: 4px !important;
   border: 0.568px solid rgba(0, 120, 212, 0.15) !important;
-  background: #F3F2F1 !important;
+  background: #f3f2f1 !important;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
 /* Make the checkbox checkmark (SVG/path) use the primary blue color */
 .checkboxItem :global(.fui-Checkbox__indicator) svg,
 .checkboxItem :global(.fui-Checkbox__indicator) path {
-  fill: #0078D4 !important;
-  stroke: #0078D4 !important;
+  fill: #0078d4 !important;
+  stroke: #0078d4 !important;
 }
 
 /* Also set currentColor on the indicator so SVGs using currentColor inherit the blue */
 .checkboxItem :global(.fui-Checkbox__indicator) {
-  color: #0078D4 !important;
+  color: #0078d4 !important;
 }
 
 /* Checkbox checked tick color */
-.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) {
-  background: #0078D4 !important;
-  border-color: #0078D4 !important;
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked='true']) {
+  background: #0078d4 !important;
+  border-color: #0078d4 !important;
 }
 
-.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) :global(.fui-Checkbox__check) {
-  color: #FFF !important;
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked='true']) :global(.fui-Checkbox__check) {
+  color: #fff !important;
 }
 
 .radioOption :global(.fui-Radio__label),

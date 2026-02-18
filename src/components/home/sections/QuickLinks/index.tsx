@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./QuickLinks.module.css";
-import { Link } from "@fluentui/react-components";
-import { useQuickLinks } from "./hooks/useQuickLinks";
-import { getLucideIcon } from "./utils/icons";
-import { isExternal } from "./utils/external";
+import React from 'react';
+import styles from './QuickLinks.module.css';
+import { Link } from '@fluentui/react-components';
+import { useQuickLinks } from './hooks/useQuickLinks';
+import { getLucideIcon } from './utils/icons';
+import { isExternal } from './utils/external';
 
 export default function QuickLinks() {
   const quickLinks = useQuickLinks();
@@ -25,13 +25,10 @@ export default function QuickLinks() {
               key={link.id}
               href={link.href}
               className={styles.tile}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
             >
-              <div
-                className={styles.icon}
-                style={link.color ? { color: link.color } : undefined}
-              >
+              <div className={styles.icon} style={link.color ? { color: link.color } : undefined}>
                 <Icon size={32} />
               </div>
 

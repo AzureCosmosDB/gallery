@@ -3,17 +3,17 @@
  * Licensed under the MIT License.
  */
 
-import React from "react";
-import styles from "./styles.module.css";
-import { Tag, Tags, type User, type TagType } from "../../../data/tags";
-import { TagList } from "../../../data/users";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import { Image, Link, PrimaryButton } from "@fluentui/react";
-import ShowcaseCardTag from "../ShowcaseTag/index";
-import { sortBy } from "../../../utils/jsUtils";
-import OptimizedImage from "../../OptimizedImage";
-import { User as UserIcon, Calendar, Clock } from "lucide-react";
-import { getButtonText } from "../../../utils/buttonTextUtils";
+import React from 'react';
+import styles from './styles.module.css';
+import { Tag, Tags, type User, type TagType } from '../../../data/tags';
+import { TagList } from '../../../data/users';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import { Image, Link, PrimaryButton } from '@fluentui/react';
+import ShowcaseCardTag from '../ShowcaseTag/index';
+import { sortBy } from '../../../utils/jsUtils';
+import OptimizedImage from '../../OptimizedImage';
+import { User as UserIcon, Calendar, Clock } from 'lucide-react';
+import { getButtonText } from '../../../utils/buttonTextUtils';
 
 export default function ShowcaseCardPanel({
   user,
@@ -29,24 +29,20 @@ export default function ShowcaseCardPanel({
   const video = user.video;
   const meta = user.meta || {};
   const tagObjects = user.tags
-    .filter((tagObject) => tagObject != "featured")
+    .filter((tagObject) => tagObject != 'featured')
     .map((tag) => ({ tag, ...Tags[tag] }));
-  const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag),
-  );
+  const tagObjectsSorted = sortBy(tagObjects, (tagObject) => TagList.indexOf(tagObject.tag));
 
-  const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
-  const vectorDatabaseTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "VectorDatabase",
-  );
-  const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
+  const modelTags = tagObjectsSorted.filter((tag) => tag.type === 'Model');
+  const vectorDatabaseTags = tagObjectsSorted.filter((tag) => tag.type === 'VectorDatabase');
+  const azureTags = tagObjectsSorted.filter((tag) => tag.type === 'Azure');
 
   return (
     <>
       <div className={styles.padding}>
         <div className={styles.cardTag}>
           <ShowcaseCardTag
-            key={"tag_" + user.title}
+            key={'tag_' + user.title}
             tags={user.tags}
             cardPanel={true}
             buttonText={getButtonText(user.website || user.source)}
@@ -61,9 +57,9 @@ export default function ShowcaseCardPanel({
               height="auto"
               objectFit="contain"
               style={{
-                borderRadius: "16px",
-                display: "block",
-                maxHeight: "400px",
+                borderRadius: '16px',
+                display: 'block',
+                maxHeight: '400px',
               }}
               priority={true}
             />
@@ -72,7 +68,7 @@ export default function ShowcaseCardPanel({
         <div
           className={styles.githubUrl}
           onClick={() => {
-            window.open(githubURL, "_blank");
+            window.open(githubURL, '_blank');
           }}
         >
           {githubURL}
@@ -93,10 +89,10 @@ export default function ShowcaseCardPanel({
               <div className={styles.metaItem}>
                 <Calendar size={16} />
                 <span>
-                  {new Date(meta.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
+                  {new Date(meta.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
                   })}
                 </span>
               </div>
@@ -127,19 +123,19 @@ export default function ShowcaseCardPanel({
       {modelTags.length > 0 ? (
         <>
           <div className={styles.subTitle2}>Models</div>
-          <CardPanelTag tags={modelTags} />{" "}
+          <CardPanelTag tags={modelTags} />{' '}
         </>
       ) : null}
       {vectorDatabaseTags.length > 0 ? (
         <>
           <div className={styles.subTitle2}>Vector Database</div>
-          <CardPanelTag tags={vectorDatabaseTags} />{" "}
+          <CardPanelTag tags={vectorDatabaseTags} />{' '}
         </>
       ) : null}
       {azureTags.length > 0 ? (
         <>
           <div className={styles.subTitle2}>Products</div>
-          <CardPanelTag tags={azureTags} />{" "}
+          <CardPanelTag tags={azureTags} />{' '}
         </>
       ) : null}
 
@@ -147,7 +143,7 @@ export default function ShowcaseCardPanel({
         <PrimaryButton
           className={styles.button}
           onClick={() => {
-            window.open(user.website || user.source, "_blank");
+            window.open(user.website || user.source, '_blank');
           }}
         >
           <div className={styles.buttonContent}>
@@ -161,51 +157,38 @@ export default function ShowcaseCardPanel({
 
 const GitHubInfoCardPanel = ({ githubData }) => {
   const formatNumber = (number: number): string => {
-    return Intl.NumberFormat("en-US", {
-      notation: "compact",
+    return Intl.NumberFormat('en-US', {
+      notation: 'compact',
       maximumFractionDigits: 1,
     }).format(number);
   };
   const formatDate = (date: string): string => {
-    return Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
+    return Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
     }).format(new Date(date));
   };
   if (!githubData) return githubData;
 
   return (
     <>
-      {formatDate(githubData.updatedOn) != "" &&
-      formatDate(githubData.updatedOn) != "NaN" ? (
+      {formatDate(githubData.updatedOn) != '' && formatDate(githubData.updatedOn) != 'NaN' ? (
         <>
           <div className={styles.info}>•</div>
-          <div className={styles.info}>
-            Updated {formatDate(githubData.updatedOn)}
-          </div>
+          <div className={styles.info}>Updated {formatDate(githubData.updatedOn)}</div>
         </>
       ) : null}
-      {formatNumber(githubData.forks) == "NaN" ? null : (
+      {formatNumber(githubData.forks) == 'NaN' ? null : (
         <>
           <div className={styles.info}>•</div>
-          <Image
-            alt="fork"
-            src={useBaseUrl("/img/fork.svg")}
-            height={16}
-            width={16}
-          />
+          <Image alt="fork" src={useBaseUrl('/img/fork.svg')} height={16} width={16} />
           <div className={styles.info}>{formatNumber(githubData.forks)}</div>
         </>
       )}
-      {formatNumber(githubData.stars) == "NaN" ? null : (
+      {formatNumber(githubData.stars) == 'NaN' ? null : (
         <>
           <div className={styles.info}>•</div>
-          <Image
-            alt="star"
-            src={useBaseUrl("/img/star.svg")}
-            height={16}
-            width={16}
-          />
+          <Image alt="star" src={useBaseUrl('/img/star.svg')} height={16} width={16} />
           <div className={styles.info}>{formatNumber(githubData.stars)}</div>
         </>
       )}
@@ -219,7 +202,7 @@ function CardPanelTag({ tags }: { tags: Tag[] }) {
       {tags.map((item, index) => {
         const label = item.label;
         const subType = item.subType;
-        return !subType && item.type != "Azure" ? (
+        return !subType && item.type != 'Azure' ? (
           <div key={label} className={styles.cardPanelTag}>
             {/* <div className={styles.icon}>
               <img src={useBaseUrl(item.icon)} alt={label} height={20} />
@@ -246,11 +229,7 @@ function CardPanelTag({ tags }: { tags: Tag[] }) {
               <div className={styles.iconLearnMoreGroup}>
                 {subType ? <div>{subType?.[0]?.label}</div> : <div>Azure</div>}
                 <div>•</div>
-                <Link
-                  href={item.url}
-                  target="_blank"
-                  className={styles.iconLink}
-                >
+                <Link href={item.url} target="_blank" className={styles.iconLink}>
                   Learn More
                 </Link>
               </div>

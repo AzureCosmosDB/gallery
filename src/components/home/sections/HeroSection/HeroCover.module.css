@@ -1,13 +1,19 @@
-.iconBlue { color: #0078d4; }
-.iconGreen { color: #157f15; }
-.iconPurple { color: #5c2d91; }
+.iconBlue {
+  color: #0078d4;
+}
+.iconGreen {
+  color: #157f15;
+}
+.iconPurple {
+  color: #5c2d91;
+}
 
 /* Reusable style for resource links */
 .resourceLink {
   color: #555;
   text-decoration: underline;
 }
-.resourceLink:hover{
+.resourceLink:hover {
   text-decoration: underline;
   color: #2567a8;
 }
@@ -24,21 +30,21 @@
   border-radius: 20px;
   padding: 32px 24px;
   box-sizing: border-box;
-  box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
+  box-shadow: 0 8px 32px 0 rgba(60, 60, 60, 0.18), 0 1.5px 6px 0 rgba(60, 60, 60, 0.1);
   cursor: pointer;
 }
 
-.heroTextWrapper{
+.heroTextWrapper {
   display: flex;
   flex-direction: column;
 }
 
-.cardCommon:hover{
+.cardCommon:hover {
   transform: translateY(-8px);
   transition: all 0.3s ease-in-out;
 }
 
-.cardCommon:hover .cardIconWrapper{
+.cardCommon:hover .cardIconWrapper {
   transform: scale(1.1);
   transition: all 0.3s ease-in-out;
 }
@@ -57,7 +63,7 @@
   background: #fff;
   padding: 25px;
   border-radius: 30%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,11 +130,11 @@
   font-weight: 400 !important;
   max-width: 934px;
 }
-.greyText{
+.greyText {
   text-align: center !important;
   font-weight: 400 !important;
   font-size: 26px !important;
-  color: #91949a
+  color: #91949a;
 }
 
 .titleSection :global(.fuib-Title3),
@@ -289,7 +295,7 @@
   .coverPageArea {
     padding: 80px 24px 56px;
   }
- .heroTitle {
+  .heroTitle {
     font-size: 22px !important;
   }
 

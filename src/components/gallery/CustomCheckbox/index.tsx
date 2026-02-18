@@ -3,18 +3,18 @@
  * Licensed under the MIT License.
  */
 
-import React from "react";
-import styles from "./styles.module.css";
+import React from 'react';
+import styles from './styles.module.css';
 
 interface CustomCheckboxProps {
   id: string;
-  checked: boolean | "mixed";
+  checked: boolean | 'mixed';
   disabled?: boolean;
   label: string;
   onChange: () => void;
   onClick?: (e: React.MouseEvent) => void;
   onKeyDown?: (e: React.KeyboardEvent) => void;
-  "data-m"?: string;
+  'data-m'?: string;
 }
 
 export default function CustomCheckbox({
@@ -25,7 +25,7 @@ export default function CustomCheckbox({
   onChange,
   onClick,
   onKeyDown,
-  "data-m": dataM,
+  'data-m': dataM,
 }: CustomCheckboxProps) {
   const handleClick = (e: React.MouseEvent) => {
     if (disabled) return;
@@ -40,7 +40,7 @@ export default function CustomCheckbox({
     if (onKeyDown) {
       onKeyDown(e);
     }
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === 'Enter' || e.key === ' ') {
       if (!e.defaultPrevented) {
         e.preventDefault();
         onChange();
@@ -52,7 +52,7 @@ export default function CustomCheckbox({
     let className = styles.checkbox;
     if (checked === true) {
       className += ` ${styles.checked}`;
-    } else if (checked === "mixed") {
+    } else if (checked === 'mixed') {
       className += ` ${styles.indeterminate}`;
     }
     if (disabled) {
@@ -87,7 +87,7 @@ export default function CustomCheckbox({
               />
             </svg>
           )}
-          {checked === "mixed" && <div className={styles.minusSign}>−</div>}
+          {checked === 'mixed' && <div className={styles.minusSign}>−</div>}
         </div>
       </div>
       <label className={styles.label} htmlFor={id}>

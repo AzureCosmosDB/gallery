@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./CommunitySupportSection.module.css";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import type { CommunitySupportSectionType } from "./types";
-import { CommunityCard } from "./components/CommunityCard";
+import React from 'react';
+import styles from './CommunitySupportSection.module.css';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import type { CommunitySupportSectionType } from './types';
+import { CommunityCard } from './components/CommunityCard';
 
 const CommunitySupportSection = () => {
   const { siteConfig } = useDocusaurusContext();
@@ -20,10 +20,7 @@ const CommunitySupportSection = () => {
 
         <div className={styles.cardsGrid}>
           {section.cards.map((card, idx) => (
-            <CommunityCard
-              key={card.id ?? `${card.title}-${idx}`}
-              card={card}
-            />
+            <CommunityCard key={card.id ?? `${card.title}-${idx}`} card={card} />
           ))}
         </div>
       </div>

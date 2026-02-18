@@ -1,8 +1,8 @@
-import React from "react";
-import { BookOpen, Library, Users } from "lucide-react";
-import styles from "../HeroCover.module.css";
-import { CoverCard } from "./CoverCard";
-import type { HeroResourceLink } from "./types";
+import React from 'react';
+import { BookOpen, Library, Users } from 'lucide-react';
+import styles from '../HeroCover.module.css';
+import { CoverCard } from './CoverCard';
+import type { HeroResourceLink } from './types';
 
 type Props = {
   heroResourceLinks: HeroResourceLink[];

@@ -1,6 +1,6 @@
 export type LearningPath = {
   id: string;
-  iconName?: "Database" | "Bot" | "Layers";
+  iconName?: 'Database' | 'Bot' | 'Layers';
   iconColor?: string;
   title: string;
   description: string;

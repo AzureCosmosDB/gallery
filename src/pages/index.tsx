@@ -7,10 +7,7 @@ const DESCRIPTION = 'A collection of PostgreSQL resources, templates, and best p
 
 export default function Home(): JSX.Element {
   return (
-    <Layout
-      title={TITLE}
-      description={DESCRIPTION}
-    >
+    <Layout title={TITLE} description={DESCRIPTION}>
       <HomePage />
     </Layout>
   );

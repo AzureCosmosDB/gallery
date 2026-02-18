@@ -63,10 +63,7 @@ export function clearCache(): Promise<void> {
             }
           };
 
-          registration.active?.postMessage(
-            { type: 'CLEAR_CACHE' },
-            [messageChannel.port2]
-          );
+          registration.active?.postMessage({ type: 'CLEAR_CACHE' }, [messageChannel.port2]);
         })
         .catch(reject);
     } else {
@@ -74,4 +71,3 @@ export function clearCache(): Promise<void> {
     }
   });
 }
-

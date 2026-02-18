@@ -5,7 +5,11 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "prepare": "husky install",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md,mdx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md,mdx}\"",
     "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
+    "lint:check": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --max-warnings=0",
     "build": "node scripts/optimize-images.js && docusaurus build",
     "build:fast": "docusaurus build",
     "optimize-images": "node scripts/optimize-images.js",
@@ -47,7 +51,9 @@
     "sharp": "^0.34.4",
     "ts-prune": "^0.10.3",
     "typescript": "^5.3.2",
-    "webpack": "^5.89.0"
+    "webpack": "^5.89.0",
+    "prettier": "^2.8.8",
+    "lint-staged": "^13.0.3"
   },
   "eslintConfig": {},
   "browserslist": {
@@ -77,5 +83,11 @@
     "search-insights": "^2.11.0",
     "swiper": "^12.0.2",
     "yarn": "^1.22.22"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md,mdx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

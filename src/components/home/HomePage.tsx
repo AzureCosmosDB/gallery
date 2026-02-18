@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import ShowcaseLeftFilters from "../gallery/ShowcaseLeftFilters";
-import ShowcaseCardPage from "./sections/ResourceLibrarySection";
-import type { UserState } from "./sections/ResourceLibrarySection/types";
-import QuickLinks from "./sections/QuickLinks";
-import CommunitySupportSection from "./sections/CommunitySupportSection";
-import LearningPathsSection from "./sections/LearningPathsSection";
-import HeroCover from "./sections/HeroSection";
-import DisclaimerSection from "./sections/DisclaimerSection";
-import { FluentProvider, webLightTheme } from "@fluentui/react-components";
-import { initializeIcons } from "@fluentui/react/lib/Icons";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import styles from "./styles.module.css";
-import { type TagType } from "../../data/tags";
-import { TagList } from "../../data/users";
-import { useLocation } from "@docusaurus/router";
-import { Helmet } from "react-helmet";
+import React, { useState, useEffect } from 'react';
+import ShowcaseLeftFilters from '../gallery/ShowcaseLeftFilters';
+import ShowcaseCardPage from './sections/ResourceLibrarySection';
+import type { UserState } from './sections/ResourceLibrarySection/types';
+import QuickLinks from './sections/QuickLinks';
+import CommunitySupportSection from './sections/CommunitySupportSection';
+import LearningPathsSection from './sections/LearningPathsSection';
+import HeroCover from './sections/HeroSection';
+import DisclaimerSection from './sections/DisclaimerSection';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { initializeIcons } from '@fluentui/react/lib/Icons';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import styles from './styles.module.css';
+import { type TagType } from '../../data/tags';
+import { TagList } from '../../data/users';
+import { useLocation } from '@docusaurus/router';
+import { Helmet } from 'react-helmet';
 
 initializeIcons();
 
@@ -29,7 +29,7 @@ export function prepareUserState(): UserState | undefined {
   return undefined;
 }
 
-const TagQueryStringKey = "tags";
+const TagQueryStringKey = 'tags';
 const readSearchTags = (search: string): TagType[] => {
   const params = new URLSearchParams(search);
   const tagValues = params.getAll(TagQueryStringKey);
@@ -37,13 +37,13 @@ const readSearchTags = (search: string): TagType[] => {
   // Handle both comma-separated values and individual parameters
   const allTags: string[] = [];
   tagValues.forEach((value) => {
-    if (value.includes(",")) {
+    if (value.includes(',')) {
       // Split comma-separated values
       allTags.push(
         ...value
-          .split(",")
+          .split(',')
           .map((tag) => tag.trim())
-          .filter(Boolean),
+          .filter(Boolean)
       );
     } else {
       // Individual tag value
@@ -131,20 +131,14 @@ export default function HomePage(): JSX.Element {
           name="description"
           content="Your best source for patterns and content for Azure PostgreSQL"
         />
-        <meta
-          name="keywords"
-          content="Azure PostgreSQL, samples, Gen-AI, Azure OpenAI, GitHub"
-        />
+        <meta name="keywords" content="Azure PostgreSQL, samples, Gen-AI, Azure OpenAI, GitHub" />
         <meta name="author" content="Azure PostgreSQL Team" />
         <meta property="og:title" content="Azure PostgreSQL App Dev Hub" />
         <meta
           property="og:description"
           content="Your best source for patterns and content for Azure PostgreSQL"
         />
-        <meta
-          name="twitter:card"
-          content="Azure PostgreSQL App Dev Hub Home Page"
-        />
+        <meta name="twitter:card" content="Azure PostgreSQL App Dev Hub Home Page" />
         <meta name="twitter:title" content="Azure PostgreSQL App Dev Hub" />
         <meta
           name="twitter:description"

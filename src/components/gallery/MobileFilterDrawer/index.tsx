@@ -3,8 +3,8 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState, useEffect } from "react";
-import { useHistory } from "@docusaurus/router";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from '@docusaurus/router';
 import {
   Drawer,
   DrawerHeader,
@@ -18,15 +18,15 @@ import {
   AccordionItem,
   AccordionPanel,
   Checkbox,
-} from "@fluentui/react-components";
-import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
-import { Tags, type TagType } from "../../../data/tags";
-import { TagList } from "../../../data/users";
-import { prepareUserState } from "../../home/HomePage";
-import styles from "./styles.module.css";
-import type { UserState } from "../../../pages/ResourceLibrarySection/types";
+} from '@fluentui/react-components';
+import { Dismiss24Regular, Filter24Regular } from '@fluentui/react-icons';
+import { Tags, type TagType } from '../../../data/tags';
+import { TagList } from '../../../data/users';
+import { prepareUserState } from '../../home/HomePage';
+import styles from './styles.module.css';
+import type { UserState } from '../../../pages/ResourceLibrarySection/types';
 
-const SORT_BY_OPTIONS = ["Newest", "Recommended"];
+const SORT_BY_OPTIONS = ['Newest', 'Recommended'];
 
 interface MobileFilterDrawerProps {
   activeTags: TagType[];
@@ -56,8 +56,7 @@ export default function MobileFilterDrawer({
   filterCount,
 }: MobileFilterDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [tempSelectedCheckbox, setTempSelectedCheckbox] =
-    useState<TagType[]>(selectedCheckbox);
+  const [tempSelectedCheckbox, setTempSelectedCheckbox] = useState<TagType[]>(selectedCheckbox);
   const [tempSortOption, setTempSortOption] = useState(sortOption);
   const history = useHistory();
 
@@ -100,9 +99,7 @@ export default function MobileFilterDrawer({
       let newTags = tempSelectedCheckbox.filter((t) => t !== tag);
 
       if (tagObject?.subType && Array.isArray(tagObject.subType)) {
-        const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase() as TagType,
-        );
+        const subKeys = tagObject.subType.map((s) => s.label.toLowerCase() as TagType);
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
 
@@ -114,27 +111,15 @@ export default function MobileFilterDrawer({
   };
 
   // Organize tags by type
-  const learningPathTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "LearningPath",
-  );
-  const serviceTags = TagList.filter((tag) => Tags[tag]?.type === "Service");
-  const contentTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ContentType",
-  );
+  const learningPathTags = TagList.filter((tag) => Tags[tag]?.type === 'LearningPath');
+  const serviceTags = TagList.filter((tag) => Tags[tag]?.type === 'Service');
+  const contentTypeTags = TagList.filter((tag) => Tags[tag]?.type === 'ContentType');
   const resourceTypeTags = TagList.filter(
-    (tag) =>
-      Tags[tag]?.type === "ResourceType" &&
-      !["concepts", "how-to", "tutorial"].includes(tag),
+    (tag) => Tags[tag]?.type === 'ResourceType' && !['concepts', 'how-to', 'tutorial'].includes(tag)
   );
-  const languageTags = TagList.filter((tag) => Tags[tag]?.type === "Language");
+  const languageTags = TagList.filter((tag) => Tags[tag]?.type === 'Language');
 
-  const [openAccordionItems, setOpenAccordionItems] = useState([
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-  ]);
+  const [openAccordionItems, setOpenAccordionItems] = useState(['1', '2', '3', '4', '5']);
 
   return (
     <>
@@ -145,9 +130,7 @@ export default function MobileFilterDrawer({
         onClick={() => setIsOpen(true)}
       >
         Filters
-        {filterCount > 0 && (
-          <span className={styles.filterBadge}>{filterCount}</span>
-        )}
+        {filterCount > 0 && <span className={styles.filterBadge}>{filterCount}</span>}
       </Button>
 
       <Drawer
@@ -182,17 +165,12 @@ export default function MobileFilterDrawer({
               multiple
               collapsible
               openItems={openAccordionItems}
-              onToggle={(e, data) =>
-                setOpenAccordionItems(data.openItems as string[])
-              }
+              onToggle={(e, data) => setOpenAccordionItems(data.openItems as string[])}
               className={styles.filterAccordion}
             >
               {/* Sort Options as Accordion Item */}
               <AccordionItem value="sort" className={styles.sortSection}>
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Sort By
                 </AccordionHeader>
                 <AccordionPanel>
@@ -216,10 +194,7 @@ export default function MobileFilterDrawer({
                 value="1"
                 className={`${styles.sortSection} ${styles.mainCategoryItem}`}
               >
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Learning Pathways
                 </AccordionHeader>
                 <AccordionPanel>
@@ -244,10 +219,7 @@ export default function MobileFilterDrawer({
                 value="2"
                 className={`${styles.sortSection} ${styles.mainCategoryItem}`}
               >
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Products
                 </AccordionHeader>
                 <AccordionPanel>
@@ -272,18 +244,12 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = sub.label.toLowerCase() as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
-                                  <div
-                                    key={subTagKey}
-                                    className={styles.checkboxItem}
-                                  >
+                                  <div key={subTagKey} className={styles.checkboxItem}>
                                     <Checkbox
-                                      checked={tempSelectedCheckbox.includes(
-                                        subTagKey,
-                                      )}
+                                      checked={tempSelectedCheckbox.includes(subTagKey)}
                                       onChange={() => toggleTempTag(subTagKey)}
                                       label={subTagObject.label}
                                       disabled={!activeTags.includes(subTagKey)}
@@ -316,10 +282,7 @@ export default function MobileFilterDrawer({
                 value="3"
                 className={`${styles.sortSection} ${styles.mainCategoryItem}`}
               >
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Resource Type
                 </AccordionHeader>
                 <AccordionPanel>
@@ -344,18 +307,12 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = sub.label.toLowerCase() as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
-                                  <div
-                                    key={subTagKey}
-                                    className={styles.checkboxItem}
-                                  >
+                                  <div key={subTagKey} className={styles.checkboxItem}>
                                     <Checkbox
-                                      checked={tempSelectedCheckbox.includes(
-                                        subTagKey,
-                                      )}
+                                      checked={tempSelectedCheckbox.includes(subTagKey)}
                                       onChange={() => toggleTempTag(subTagKey)}
                                       label={subTagObject.label}
                                       disabled={!activeTags.includes(subTagKey)}
@@ -388,10 +345,7 @@ export default function MobileFilterDrawer({
                 value="4"
                 className={`${styles.sortSection} ${styles.mainCategoryItem}`}
               >
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Category
                 </AccordionHeader>
                 <AccordionPanel>
@@ -416,10 +370,7 @@ export default function MobileFilterDrawer({
                 value="5"
                 className={`${styles.sortSection} ${styles.mainCategoryItem}`}
               >
-                <AccordionHeader
-                  expandIconPosition="end"
-                  className={styles.accordionHeader}
-                >
+                <AccordionHeader expandIconPosition="end" className={styles.accordionHeader}>
                   Language
                 </AccordionHeader>
                 <AccordionPanel>
@@ -444,18 +395,10 @@ export default function MobileFilterDrawer({
 
         {/* Footer with Clear and Apply buttons */}
         <div className={styles.drawerFooter}>
-          <Button
-            appearance="secondary"
-            onClick={handleClear}
-            className={styles.clearButton}
-          >
+          <Button appearance="secondary" onClick={handleClear} className={styles.clearButton}>
             Clear {tempFilterCount > 0 && `(${tempFilterCount})`}
           </Button>
-          <Button
-            appearance="primary"
-            onClick={handleApply}
-            className={styles.applyButton}
-          >
+          <Button appearance="primary" onClick={handleApply} className={styles.applyButton}>
             Apply
           </Button>
         </div>

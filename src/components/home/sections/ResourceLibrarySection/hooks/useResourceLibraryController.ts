@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
-import { useHistory } from "@docusaurus/router";
-import { SORT_BY_OPTIONS, getSortedUsers } from "../../../../../utils/sortingUtils";
-import { filterUsers, computeActiveTags } from "../../../../../utils/filterUtils";
-import { restoreUserState } from "../utils/restoreUserState";
-import { prepareUserState } from "../../../HomePage";
-import { readSearchName } from "../../../../gallery/SearchFilterBar";
-import type { ShowcaseCardPageProps } from "../types";
+import { useEffect, useMemo, useState } from 'react';
+import { useHistory } from '@docusaurus/router';
+import { SORT_BY_OPTIONS, getSortedUsers } from '../../../../../utils/sortingUtils';
+import { filterUsers, computeActiveTags } from '../../../../../utils/filterUtils';
+import { restoreUserState } from '../utils/restoreUserState';
+import { prepareUserState } from '../../../HomePage';
+import { readSearchName } from '../../../../gallery/SearchFilterBar';
+import type { ShowcaseCardPageProps } from '../types';
 
 export function useResourceLibraryController(props: ShowcaseCardPageProps) {
   const {
@@ -26,7 +26,7 @@ export function useResourceLibraryController(props: ShowcaseCardPageProps) {
 
   const cards = useMemo(
     () => filterUsers(sortedUsers, selectedTags, searchName),
-    [sortedUsers, selectedTags, searchName],
+    [sortedUsers, selectedTags, searchName]
   );
 
   useEffect(() => {
@@ -44,11 +44,11 @@ export function useResourceLibraryController(props: ShowcaseCardPageProps) {
     setSelectedCheckbox([]);
 
     const params = new URLSearchParams(location.search);
-    params.delete("tags");
+    params.delete('tags');
 
     history.push({
       pathname: location.pathname,
-      search: params.toString() ? `?${params.toString()}` : "",
+      search: params.toString() ? `?${params.toString()}` : '',
       state: prepareUserState(),
     });
   };

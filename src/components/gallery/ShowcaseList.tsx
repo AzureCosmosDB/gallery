@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
-import ShowcaseEmptyResult from "./ShowcaseEmptyResult";
-import { type User } from "../../data/tags";
-import styles from "../home/styles.module.css";
-import ShowcaseListTile from "./ShowcaseListTile";
-import Pagination from "../Pagination";
-import { useLocation } from "@docusaurus/router";
-import { LEARNING_PATH_TAGS } from "../../constants/constants";
+import React, { useState, useEffect, useMemo } from 'react';
+import ShowcaseEmptyResult from './ShowcaseEmptyResult';
+import { type User } from '../../data/tags';
+import styles from '../home/styles.module.css';
+import ShowcaseListTile from './ShowcaseListTile';
+import Pagination from '../Pagination';
+import { useLocation } from '@docusaurus/router';
+import { LEARNING_PATH_TAGS } from '../../constants/constants';
 
-export default function ShowcaseList({
-  filteredUsers,
-}: {
-  filteredUsers: User[];
-}) {
+export default function ShowcaseList({ filteredUsers }: { filteredUsers: User[] }) {
   // debug: removed console.log
   const usersCount = filteredUsers ? filteredUsers.length : 0;
   const CARDS_PER_PAGE = 6;
@@ -25,10 +21,8 @@ export default function ShowcaseList({
   }, [filteredUsers]);
 
   const searchParams = new URLSearchParams(location.search);
-  const currentTags = searchParams.getAll("tags");
-  const isLearningPathFiltered = currentTags.some((tag) =>
-    LEARNING_PATH_TAGS.includes(tag),
-  );
+  const currentTags = searchParams.getAll('tags');
+  const isLearningPathFiltered = currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const orderedUsers = useMemo(() => {
     if (!isLearningPathFiltered) {
       return filteredUsers;
@@ -49,20 +43,14 @@ export default function ShowcaseList({
   return (
     <section>
       <div className={styles.showcaseList}>
-        {orderedUsers
-          .slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE)
-          .map((user) => (
-            <React.Fragment key={user.title}>
-              <ShowcaseListTile
-                user={user}
-                tileNumber={
-                  isLearningPathFiltered && user.tileNumber
-                    ? user.tileNumber
-                    : undefined
-                }
-              />
-            </React.Fragment>
-          ))}
+        {orderedUsers.slice((page - 1) * CARDS_PER_PAGE, page * CARDS_PER_PAGE).map((user) => (
+          <React.Fragment key={user.title}>
+            <ShowcaseListTile
+              user={user}
+              tileNumber={isLearningPathFiltered && user.tileNumber ? user.tileNumber : undefined}
+            />
+          </React.Fragment>
+        ))}
       </div>
       <Pagination page={page} totalPages={totalPages} setPage={setPage} />
     </section>
