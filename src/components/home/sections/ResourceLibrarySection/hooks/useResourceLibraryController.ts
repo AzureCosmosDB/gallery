@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useHistory } from "@docusaurus/router";
-import { SORT_BY_OPTIONS, getSortedUsers } from "../../../utils/sortingUtils";
-import { filterUsers, computeActiveTags } from "../../../utils/filterUtils";
+import { SORT_BY_OPTIONS, getSortedUsers } from "../../../../../utils/sortingUtils";
+import { filterUsers, computeActiveTags } from "../../../../../utils/filterUtils";
 import { restoreUserState } from "../utils/restoreUserState";
-import { prepareUserState } from "../../index";
-import { readSearchName } from "../../../components/gallery/SearchFilterBar";
+import { prepareUserState } from "../../../HomePage";
+import { readSearchName } from "../../../../gallery/SearchFilterBar";
 import type { ShowcaseCardPageProps } from "../types";
 
 export function useResourceLibraryController(props: ShowcaseCardPageProps) {

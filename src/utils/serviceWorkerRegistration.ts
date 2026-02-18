@@ -11,7 +11,7 @@ export function register(): void {
       navigator.serviceWorker
         .register(swUrl)
         .then((registration) => {
-          console.log('✅ Service Worker registered successfully:', registration.scope);
+          // Service Worker registered successfully
 
           // Check for updates periodically
           setInterval(() => {
@@ -24,8 +24,7 @@ export function register(): void {
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  console.log('🔄 New content available; please refresh.');
-                  // You could show a notification to the user here
+                  // New content available
                 }
               });
             }

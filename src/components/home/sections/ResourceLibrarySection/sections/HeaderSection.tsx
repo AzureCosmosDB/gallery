@@ -1,6 +1,6 @@
 import React from "react";
 import { Title1, Title3 } from "@fluentui/react-components";
-import styles from "../../styles.module.css";
+import styles from "../../../styles.module.css";
 
 export function HeaderSection() {
   return (

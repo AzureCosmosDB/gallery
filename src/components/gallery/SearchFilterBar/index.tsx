@@ -8,8 +8,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { SearchBox } from "@fluentui/react-search";
-import { prepareUserState } from "../../../pages/index";
-import styles from "../../../pages/styles.module.css";
+import { prepareUserState } from "../../home/HomePage";
+import styles from "../../home/styles.module.css";
 
 const SEARCH_NAME_QUERY_KEY = "name";
 

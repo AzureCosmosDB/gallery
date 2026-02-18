@@ -7,7 +7,7 @@
 
 import React from "react";
 import { Text } from "@fluentui/react-components";
-import styles from "../../../pages/styles.module.css";
+import styles from "../../home/styles.module.css";
 
 export interface ResultsSummaryProps {
   /** Number of resources shown */

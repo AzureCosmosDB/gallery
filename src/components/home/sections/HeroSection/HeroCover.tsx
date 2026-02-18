@@ -8,7 +8,7 @@ import {
   HERO_DESCRIPTION,
   HERO_SUB_DESCRIPTION,
   HERO_RESOURCE_LINKS,
-} from "../../constants/constants";
+} from "../../../../constants/constants";
 
 import { useScrollToSection } from "./hooks/useScrollToSection";
 import { useResourceLibraryNavigation } from "./hooks/useResourceLibraryNavigation";

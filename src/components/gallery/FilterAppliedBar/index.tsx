@@ -15,8 +15,8 @@ import {
 } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
 import { toggleListItem } from "../../../utils/jsUtils";
-import { prepareUserState } from "../../../pages/index";
-import styles from "../../../pages/styles.module.css";
+import { prepareUserState } from "../../home/HomePage";
+import styles from "../../home/styles.module.css";
 
 interface FilterAppliedBarProps {
   /** Currently selected tags */

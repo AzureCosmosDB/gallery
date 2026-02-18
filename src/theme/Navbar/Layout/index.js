@@ -53,13 +53,13 @@ const adobeInit = () => {
         if (!err) {
           siteConsent = _siteConsent; //siteConsent is used to get the current consent
         } else {
-          console.log("Error initializing WcpConsent: " + err);
+          // Error initializing consent manager
         }
       },
       onConsentChanged
     );
   } catch (err) {
-    console.log("WcpConsent.init failed:", err);
+    // WcpConsent init failed
   }
 
   function onConsentChanged(categoryPreferences) {
@@ -159,23 +159,17 @@ const adobeInit = () => {
         analytics.initialize(config, []);
       }
     } catch (error) {
-      if (
+        if (
         error instanceof ReferenceError &&
         error.message.includes("oneDS is not defined")
       ) {
-        // Print out a message if user uses a ad blocker
-        console.log(
-          "The oneDS functionality is currently unavailable. This could be caused by an active ad blocker. " +
-            "As a result, telemetry provided by Adobe Analytics has been disabled. Please consider " +
-            "disabling your ad blocker or whitelisting our site if you wish to enable this functionality."
-        );
+        // oneDS not defined (likely ad blocker) - telemetry disabled
       } else {
         // swallow other errors to avoid breaking the site
-        console.log("Analytics init error:", error);
       }
     }
   } catch (err) {
-    console.log("adobeInit runtime error:", err);
+    // adobeInit runtime error
   }
 };
 

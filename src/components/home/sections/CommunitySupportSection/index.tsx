@@ -19,8 +19,11 @@ const CommunitySupportSection = () => {
         <p className={styles.description}>{section.description}</p>
 
         <div className={styles.cardsGrid}>
-          {section.cards.map((card) => (
-            <CommunityCard key={card.id} card={card} />
+          {section.cards.map((card, idx) => (
+            <CommunityCard
+              key={card.id ?? `${card.title}-${idx}`}
+              card={card}
+            />
           ))}
         </div>
       </div>

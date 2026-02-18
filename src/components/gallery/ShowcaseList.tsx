@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useMemo } from "react";
-import ShowcaseEmptyResult from "../components/gallery/ShowcaseEmptyResult";
-import { type User } from "../data/tags";
-import styles from "./styles.module.css";
-import ShowcaseListTile from "../components/gallery/ShowcaseListTile";
-import Pagination from "../components/Pagination";
+import ShowcaseEmptyResult from "./ShowcaseEmptyResult";
+import { type User } from "../../data/tags";
+import styles from "../home/styles.module.css";
+import ShowcaseListTile from "./ShowcaseListTile";
+import Pagination from "../Pagination";
 import { useLocation } from "@docusaurus/router";
-import { LEARNING_PATH_TAGS } from "../constants/constants";
+import { LEARNING_PATH_TAGS } from "../../constants/constants";
 
 export default function ShowcaseList({
   filteredUsers,
 }: {
   filteredUsers: User[];
 }) {
-  console.log("ShowcaseList rendered with users:", filteredUsers);
+  // debug: removed console.log
   const usersCount = filteredUsers ? filteredUsers.length : 0;
   const CARDS_PER_PAGE = 6;
   const [page, setPage] = useState(1);

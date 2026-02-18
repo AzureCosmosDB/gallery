@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 
-import { featuredUsers } from "../../data/users";
+import { featuredUsers } from "../../../../data/users";
 import type { LearningPath } from "./types";
 import { getDefaultPathsFromConfig } from "./utils/pathsFromConfig";
 import { getAllParams } from "./utils/url";

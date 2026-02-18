@@ -19,15 +19,15 @@ export default function Root({ children }) {
         navigator.serviceWorker
           .register('/postgres-gallery/sw.js')
           .then((registration) => {
-            console.log('SW registered:', registration);
-            
+            // service worker registered
+
             // Check for updates periodically
             setInterval(() => {
               registration.update();
             }, 60000); // Check every minute
           })
           .catch((error) => {
-            console.log('SW registration failed:', error);
+            // registration failed
           });
       });
     }

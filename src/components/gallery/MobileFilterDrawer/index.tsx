@@ -22,7 +22,7 @@ import {
 import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
-import { prepareUserState } from "../../../pages/index";
+import { prepareUserState } from "../../home/HomePage";
 import styles from "./styles.module.css";
 import type { UserState } from "../../../pages/ResourceLibrarySection/types";
 

@@ -7,10 +7,7 @@ declare module "@docusaurus/useBaseUrl" {
 
 declare module "@docusaurus/router" {
   export function useHistory(): any;
-  export function useLocation<T = any>(): {
-    pathname: string;
-    search: string;
-    hash: string;
+  export function useLocation<T = any>(): Location & {
     state: T;
   };
 }

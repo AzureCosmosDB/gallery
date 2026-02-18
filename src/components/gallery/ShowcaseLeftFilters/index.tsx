@@ -16,7 +16,7 @@ import {
 } from "@fluentui/react-components";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
-import { prepareUserState } from "../../../pages/index";
+import { prepareUserState } from "../../home/HomePage";
 import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
 

@@ -7,7 +7,7 @@
 
 import React from "react";
 import { Grid3x3, List } from "lucide-react";
-import styles from "../../../pages/styles.module.css";
+import styles from "../../home/styles.module.css";
 
 export type ViewType = "grid" | "list";
 

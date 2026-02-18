@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles.module.css";
+import styles from "../../styles.module.css";
 
-import FilterAppliedBar from "../../components/gallery/FilterAppliedBar";
+import FilterAppliedBar from "../../../gallery/FilterAppliedBar";
 import { useViewType } from "./hooks/useViewType";
 import { useResourceLibraryController } from "./hooks/useResourceLibraryController";
 

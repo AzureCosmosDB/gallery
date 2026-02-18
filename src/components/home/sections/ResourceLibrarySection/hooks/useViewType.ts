@@ -1,4 +1,4 @@
-import { ViewType } from "@components/gallery/ViewToggle";
+import { ViewType } from "../../../../gallery/ViewToggle";
 import { useEffect, useState } from "react";
 
 export function useViewType(initialView: ViewType = "grid") {

@@ -8,7 +8,7 @@
 import React from "react";
 import { Dropdown, Option } from "@fluentui/react-components";
 import { SORT_BY_OPTIONS } from "../../../utils/sortingUtils";
-import styles from "../../../pages/styles.module.css";
+import styles from "../../home/styles.module.css";
 
 interface SortDropdownProps {
   /** Current sort option */

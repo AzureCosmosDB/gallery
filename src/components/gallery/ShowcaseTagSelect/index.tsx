@@ -6,7 +6,7 @@
 import React, { useCallback, useState, useEffect, useMemo } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { toggleListItem } from "../../../utils/jsUtils";
-import { prepareUserState } from "../../../pages/index";
+import { prepareUserState } from "../../home/HomePage";
 import { Tags, type TagType } from "../../../data/tags";
 import CustomCheckbox from "../CustomCheckbox";
 
