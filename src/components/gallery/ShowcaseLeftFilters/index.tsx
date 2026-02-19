@@ -79,7 +79,6 @@ function LearningPathTagSelect({
           "video",
           "workshop",
           "training",
-          "samples",
         ],
         "developing-core-applications": [
           "documentation",
@@ -90,7 +89,6 @@ function LearningPathTagSelect({
           "blog",
           "workshop",
           "training",
-          "samples",
         ],
         "building-ai-agents": [
           "documentation",
@@ -100,7 +98,6 @@ function LearningPathTagSelect({
           "video",
           "workshop",
           "training",
-          "samples",
         ],
       };
 

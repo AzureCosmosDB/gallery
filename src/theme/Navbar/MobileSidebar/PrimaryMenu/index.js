@@ -85,7 +85,7 @@ export default function NavbarMobilePrimaryMenu() {
           <li className="menu__list-item"><a className="menu__link" href="#videos" onClick={(e)=>handleFilterNavigate(e,'video')}>Videos</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#blogs" onClick={(e)=>handleFilterNavigate(e,'blog')}>Blogs</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#trainings" onClick={(e)=>handleFilterNavigate(e,'training')}>Trainings</a></li>
-          <li className="menu__list-item"><a className="menu__link" href="#samples" onClick={(e)=>handleFilterNavigate(e,'samples')}>Samples</a></li>
+          
         </ul>
       </li>
       <li className="menu__list-item">

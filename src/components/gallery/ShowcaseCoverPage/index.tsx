@@ -22,13 +22,11 @@ export default function ShowcaseCoverPage() {
 
   // Resource links for the Resource Library card (ordered & mapped)
   const heroResourceLinks = [
-    {
-      label: "Documentation",
-      tags: ["documentation", "concepts", "how-to", "tutorial"],
-    },
-    { label: "Samples", tags: ["samples"] },
+    { label: "Tutorials", tags: ["documentation", "how-to", "tutorial"] },
     { label: "Solution Accelerators", tags: ["solution-accelerator"] },
+    { label: "Training", tags: ["training", "workshop"] },
     { label: "Videos", tags: ["video"] },
+    { label: "Blogs", tags: ["blog"] },
   ];
 
   // Scroll to resource library section with filtering
