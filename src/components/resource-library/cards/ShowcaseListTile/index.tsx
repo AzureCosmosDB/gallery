@@ -1,13 +1,13 @@
-import React from 'react';
-import { User } from '../../../../data/tags';
-import { Button, Card, CardFooter, DialogTrigger } from '@fluentui/react-components';
-import { useBoolean } from '@fluentui/react-hooks';
-import styleCSS from '../ShowcaseCard/styles.module.css';
-import localStyles from './styles.module.css';
-import ShowcaseDialog from '../ShowcaseDialog/index';
-import ShowcaseCardTag from '../../tags/ShowcaseTag/index';
-import { getButtonText } from '../../../../utils/buttonTextUtils';
-import OptimizedImage from '../../../OptimizedImage';
+import React from "react";
+import { User } from "../../../../data/tags";
+import { Button, Card, CardFooter, DialogTrigger } from "@fluentui/react-components";
+import { useBoolean } from "@fluentui/react-hooks";
+import styleCSS from "../ShowcaseCard/styles.module.css";
+import localStyles from "./styles.module.css";
+import ShowcaseDialog from "../ShowcaseDialog/index";
+import ShowcaseCardTag from "../../tags/ShowcaseTag/index";
+import { getButtonText } from "../../../../utils/buttonTextUtils";
+import OptimizedImage from "../../../OptimizedImage";
 
 export default function ShowcaseListTile({
   user,
@@ -44,7 +44,7 @@ export default function ShowcaseListTile({
               <div className={`${styleCSS.imageContainer} ${localStyles.imageInline}`}>
                 <OptimizedImage
                   src={user.image}
-                  alt={displayTitle + ' image'}
+                  alt={displayTitle + " image"}
                   className={styleCSS.listTileImage}
                   objectFit="cover"
                 />

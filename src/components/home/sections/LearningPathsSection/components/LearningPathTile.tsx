@@ -1,8 +1,8 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import styles from '../styles.module.css';
-import type { LearningPath } from '../types';
-import { renderPathIcon } from '../utils/icons';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import styles from "../styles.module.css";
+import type { LearningPath } from "../types";
+import { renderPathIcon } from "../utils/icons";
 
 export function LearningPathTile({ path, onClick }: { path: LearningPath; onClick: () => void }) {
   return (

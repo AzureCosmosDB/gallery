@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 // eslint-disable-next-line import/no-unused-modules
 export const TwitterXIcon: React.FC<{
   size?: number;
   className?: string;
   style?: React.CSSProperties;
-}> = ({ size = 18, className = '', style = {} }) => (
+}> = ({ size = 18, className = "", style = {} }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

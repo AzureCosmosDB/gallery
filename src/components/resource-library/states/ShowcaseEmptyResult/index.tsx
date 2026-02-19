@@ -3,11 +3,11 @@
  * Licensed under the MIT License.
  */
 
-import React from 'react';
-import { readSearchName } from '../../filters/SearchFilterBar';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import { Image, Subtitle1, Body2 } from '@fluentui/react-components';
-import styles from './styles.module.css';
+import React from "react";
+import { readSearchName } from "../../filters/SearchFilterBar";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import { Image, Subtitle1, Body2 } from "@fluentui/react-components";
+import styles from "./styles.module.css";
 
 export default function ShowcaseEmptyResult({ id }: { id: string }) {
   return (
@@ -15,7 +15,7 @@ export default function ShowcaseEmptyResult({ id }: { id: string }) {
       {readSearchName(window.location.search) != null ? (
         <>
           <Image
-            src={useBaseUrl('/img/search-question-mark.svg')}
+            src={useBaseUrl("/img/search-question-mark.svg")}
             alt="searchQuestionmark"
             height={128}
             width={128}

@@ -1,5 +1,5 @@
-import type React from 'react';
-import type { TagType } from '../../../../data/tags';
+import type React from "react";
+import type { TagType } from "../../../../data/tags";
 
 export type UserState = {
   scrollTopPosition: number;

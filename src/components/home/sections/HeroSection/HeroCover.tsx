@@ -1,25 +1,25 @@
-import React from 'react';
-import { Title3, Display } from '@fluentui/react-components';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './HeroCover.module.css';
+import React from "react";
+import { Title3, Display } from "@fluentui/react-components";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./HeroCover.module.css";
 
 import {
   HERO_TITLE,
   HERO_DESCRIPTION,
   HERO_SUB_DESCRIPTION,
   HERO_RESOURCE_LINKS,
-} from '../../../../constants/constants';
+} from "../../../../constants/constants";
 
-import { useScrollToSection } from './hooks/useScrollToSection';
-import { useResourceLibraryNavigation } from './hooks/useResourceLibraryNavigation';
-import { CoverCardsRow } from './cards/CoverCardsRow';
+import { useScrollToSection } from "./hooks/useScrollToSection";
+import { useResourceLibraryNavigation } from "./hooks/useResourceLibraryNavigation";
+import { CoverCardsRow } from "./cards/CoverCardsRow";
 
-const RESOURCE_SECTION_ID = 'resource-library';
-const LEARNING_PATHS_ID = 'learning-paths';
-const COMMUNITY_SUPPORT_ID = 'community-support';
+const RESOURCE_SECTION_ID = "resource-library";
+const LEARNING_PATHS_ID = "learning-paths";
+const COMMUNITY_SUPPORT_ID = "community-support";
 
 export default function HeroCover() {
-  const bgUrl = useBaseUrl('/img-optimized/dotted-background-opacity40.png');
+  const bgUrl = useBaseUrl("/img-optimized/dotted-background-opacity40.png");
 
   const scrollToSection = useScrollToSection();
   const { navigateToResourceLibrary } = useResourceLibraryNavigation(RESOURCE_SECTION_ID);

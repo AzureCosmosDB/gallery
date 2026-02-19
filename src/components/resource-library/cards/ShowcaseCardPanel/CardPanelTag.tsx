@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from '@fluentui/react';
-import styles from './styles.module.css';
-import { Tag } from '../../../../data/tags';
+import React from "react";
+import { Link } from "@fluentui/react";
+import styles from "./styles.module.css";
+import { Tag } from "../../../../data/tags";
 
 function CardPanelTag({ tags }: { tags: Tag[] }) {
   return (
@@ -9,7 +9,7 @@ function CardPanelTag({ tags }: { tags: Tag[] }) {
       {tags.map((item, _index) => {
         const label = item.label;
         const subType = item.subType;
-        return !subType && item.type != 'Azure' ? (
+        return !subType && item.type != "Azure" ? (
           <div key={label} className={styles.cardPanelTag}>
             {/* <div className={styles.icon}>
               <img src={useBaseUrl(item.icon)} alt={label} height={20} />

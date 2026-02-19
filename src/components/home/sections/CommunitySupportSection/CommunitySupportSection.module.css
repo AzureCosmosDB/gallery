@@ -22,7 +22,7 @@
   margin: 0 auto;
   line-height: 1.5;
   letter-spacing: -0.292px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .cardsGrid {
@@ -145,8 +145,8 @@
   gap: 12px;
 }
 
-.cardActionBtn[data-fullwidth='true'],
-.cardActionBtnOutlined[data-fullwidth='true'] {
+.cardActionBtn[data-fullwidth="true"],
+.cardActionBtnOutlined[data-fullwidth="true"] {
   width: 100%;
   justify-content: center;
 }

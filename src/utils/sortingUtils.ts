@@ -5,11 +5,11 @@
  * Sorting utilities for user/resource data.
  */
 
-import type { User } from '../data/tags';
-import { unsortedUsers } from '../data/users';
+import type { User } from "../data/tags";
+import { unsortedUsers } from "../data/users";
 
 /** Available sort options */
-export const SORT_BY_OPTIONS = ['Newest', 'Recommended'] as const;
+export const SORT_BY_OPTIONS = ["Newest", "Recommended"] as const;
 
 /** Priority order mapping (P0 = highest = 0) */
 const PRIORITY_ORDER: Record<string, number> = { P0: 0, P1: 1, P2: 2 };
@@ -20,8 +20,8 @@ const DEFAULT_PRIORITY = 3;
  */
 function sortByNewest(users: User[]): User[] {
   return users.slice().sort((a, b) => {
-    const dateA = a.date || '1970-01-01';
-    const dateB = b.date || '1970-01-01';
+    const dateA = a.date || "1970-01-01";
+    const dateB = b.date || "1970-01-01";
     return new Date(dateB).getTime() - new Date(dateA).getTime();
   });
 }
@@ -31,15 +31,15 @@ function sortByNewest(users: User[]): User[] {
  */
 function sortByRecommended(users: User[]): User[] {
   return users.slice().sort((a, b) => {
-    const priorityA = PRIORITY_ORDER[a.priority ?? ''] ?? DEFAULT_PRIORITY;
-    const priorityB = PRIORITY_ORDER[b.priority ?? ''] ?? DEFAULT_PRIORITY;
+    const priorityA = PRIORITY_ORDER[a.priority ?? ""] ?? DEFAULT_PRIORITY;
+    const priorityB = PRIORITY_ORDER[b.priority ?? ""] ?? DEFAULT_PRIORITY;
 
     if (priorityA !== priorityB) {
       return priorityA - priorityB;
     }
 
-    const hasSolAccelA = a.tags.includes('solution-accelerator');
-    const hasSolAccelB = b.tags.includes('solution-accelerator');
+    const hasSolAccelA = a.tags.includes("solution-accelerator");
+    const hasSolAccelB = b.tags.includes("solution-accelerator");
 
     if (hasSolAccelA && !hasSolAccelB) return -1;
     if (!hasSolAccelA && hasSolAccelB) return 1;
@@ -61,9 +61,9 @@ function sortByOriginalOrder(users: User[]): User[] {
  */
 export function getSortedUsers(rule: string): User[] {
   switch (rule) {
-    case 'Newest':
+    case "Newest":
       return sortByNewest(unsortedUsers);
-    case 'Recommended':
+    case "Recommended":
       return sortByRecommended(unsortedUsers);
     default:
       return sortByOriginalOrder(unsortedUsers);

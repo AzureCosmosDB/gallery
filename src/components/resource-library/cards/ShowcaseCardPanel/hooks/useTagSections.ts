@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { getSortedTagObjects, groupTagsByType } from '../utils/tags';
+import { useMemo } from "react";
+import { getSortedTagObjects, groupTagsByType } from "../utils/tags";
 
 export function useTagSections(userTags: string[]) {
   return useMemo(() => {
@@ -7,9 +7,9 @@ export function useTagSections(userTags: string[]) {
     const grouped = groupTagsByType(sorted);
 
     return [
-      { title: 'Models', tags: grouped.models },
-      { title: 'Vector Database', tags: grouped.vectorDb },
-      { title: 'Products', tags: grouped.azure },
+      { title: "Models", tags: grouped.models },
+      { title: "Vector Database", tags: grouped.vectorDb },
+      { title: "Products", tags: grouped.azure },
     ];
   }, [userTags]);
 }

@@ -1,9 +1,9 @@
 export function formatCompactNumber(n: number): string {
-  return Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+  return Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 }).format(n);
 }
 
 export function formatShortDate(date: Date): string {
-  return Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(date);
+  return Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date);
 }
 
 export function parseDate(input: Date | string | undefined): Date | null {

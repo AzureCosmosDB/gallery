@@ -1,9 +1,9 @@
-import React from 'react';
-import { Spinner } from '@fluentui/react-components';
-import ShowcaseCards from '../../../../resource-library/views/ShowcaseCards';
-import ShowcaseList from '../../../../resource-library/views/ShowcaseList';
-import type { ViewType } from '../../../../resource-library/filters/ViewToggle';
-import { User } from 'src/data/tags';
+import React from "react";
+import { Spinner } from "@fluentui/react-components";
+import ShowcaseCards from "../../../../resource-library/views/ShowcaseCards";
+import ShowcaseList from "../../../../resource-library/views/ShowcaseList";
+import type { ViewType } from "../../../../resource-library/filters/ViewToggle";
+import { User } from "src/data/tags";
 
 type Props = {
   loading: boolean;
@@ -14,7 +14,7 @@ type Props = {
 export function ResourceContent({ loading, viewType, cards }: Props) {
   if (loading) return <Spinner labelPosition="below" label="Loading..." />;
 
-  return viewType === 'grid' ? (
+  return viewType === "grid" ? (
     <ShowcaseCards filteredUsers={cards} coverPage={false} />
   ) : (
     <ShowcaseList filteredUsers={cards} />

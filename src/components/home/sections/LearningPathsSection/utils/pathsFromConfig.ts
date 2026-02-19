@@ -1,5 +1,5 @@
-import siteConfig from '@generated/docusaurus.config';
-import type { LearningPath } from '../types';
+import siteConfig from "@generated/docusaurus.config";
+import type { LearningPath } from "../types";
 
 export function getDefaultPathsFromConfig(): LearningPath[] {
   const customFields = siteConfig.customFields as unknown as Record<string, unknown> | undefined;
@@ -17,12 +17,12 @@ export function getDefaultPathsFromConfig(): LearningPath[] {
         id: String(obj.id ?? obj.filterTag ?? obj.title ?? idx),
         iconName: (obj.icon as string) ?? undefined,
         iconColor: (obj.iconColor as string) ?? undefined,
-        title: String(obj.title ?? ''),
-        description: String(obj.description ?? ''),
-        level: String(obj.level ?? ''),
-        duration: String(obj.duration ?? ''),
+        title: String(obj.title ?? ""),
+        description: String(obj.description ?? ""),
+        level: String(obj.level ?? ""),
+        duration: String(obj.duration ?? ""),
         tags: Array.isArray(obj.tags) ? (obj.tags as string[]) : [],
-        filterTag: String(obj.filterTag ?? obj.filter ?? obj.tag ?? ''),
+        filterTag: String(obj.filterTag ?? obj.filter ?? obj.tag ?? ""),
       } as LearningPath;
     })
     .filter((p) => Boolean(p.filterTag));

@@ -5,7 +5,7 @@ export function setSingleParam(search: string, key: string, value?: string | nul
   else params.delete(key);
 
   const next = params.toString();
-  return next ? `?${next}` : '';
+  return next ? `?${next}` : "";
 }
 
 export function getAllParams(search: string, key: string) {

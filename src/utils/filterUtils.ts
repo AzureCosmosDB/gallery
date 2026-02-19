@@ -8,18 +8,18 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Tags, type User, type TagType } from '../data/tags';
+import { Tags, type User, type TagType } from "../data/tags";
 
 /**
  * Parent-child tag relationships.
  * Children inherit from their parent category for filtering purposes.
  */
 export const PARENT_CHILD_MAP: Record<string, string[]> = {
-  documentation: ['concepts', 'how-to', 'tutorial'],
-  fundamentals: ['overview', 'getting-started'],
-  genai: ['overview', 'vector', 'rag', 'agent', 'semantic', 'graph', 'azureai'],
-  'app-dev': ['connect', 'vscode', 'best-practice', 'devops'],
-  analytics: ['powerbi', 'fabric', 'adf'],
+  documentation: ["concepts", "how-to", "tutorial"],
+  fundamentals: ["overview", "getting-started"],
+  genai: ["overview", "vector", "rag", "agent", "semantic", "graph", "azureai"],
+  "app-dev": ["connect", "vscode", "best-practice", "devops"],
+  analytics: ["powerbi", "fabric", "adf"],
 };
 
 /**
@@ -27,13 +27,13 @@ export const PARENT_CHILD_MAP: Record<string, string[]> = {
  */
 export function getTagCategory(tag: TagType): string {
   const tagObject = Tags[tag];
-  if (!tagObject) return 'Other';
+  if (!tagObject) return "Other";
 
   const tagType = tagObject.type;
   if (Array.isArray(tagType)) {
-    return tagType[0] || 'Other';
+    return tagType[0] || "Other";
   }
-  return tagType || 'Other';
+  return tagType || "Other";
 }
 
 /**
@@ -273,33 +273,33 @@ export function filterUsers(
  * Only these resource types should be enabled when a learning path is selected.
  */
 const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
-  'developing-core-applications': [
-    'documentation',
-    'concepts',
-    'how-to',
-    'tutorial',
-    'workshop',
-    'training',
-    'video',
-    'samples',
+  "developing-core-applications": [
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "workshop",
+    "training",
+    "video",
+    "samples",
   ],
-  'building-genai-apps': [
-    'documentation',
-    'concepts',
-    'how-to',
-    'tutorial',
-    'solution-accelerator',
-    'training',
-    'video',
+  "building-genai-apps": [
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
   ],
-  'building-ai-agents': [
-    'documentation',
-    'concepts',
-    'how-to',
-    'tutorial',
-    'solution-accelerator',
-    'training',
-    'video',
+  "building-ai-agents": [
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
   ],
 };
 
@@ -307,9 +307,9 @@ const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
  * Learning path tags.
  */
 const LEARNING_PATH_TAGS = [
-  'developing-core-applications',
-  'building-genai-apps',
-  'building-ai-agents',
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
 ] as const;
 
 /**
@@ -355,7 +355,7 @@ export function computeActiveTags(cards: User[], selectedTags: TagType[]): TagTy
 
       if (selectedCategories.has(category)) {
         // Special handling for ResourceType when learning path is selected
-        if (selectedLearningPaths.length > 0 && category === 'ResourceType') {
+        if (selectedLearningPaths.length > 0 && category === "ResourceType") {
           // Only enable resource types that are compatible with the selected learning path
           const compatibleResources =
             LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];

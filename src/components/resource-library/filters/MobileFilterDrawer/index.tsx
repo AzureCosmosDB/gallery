@@ -3,8 +3,8 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState } from 'react';
-import { useHistory } from '@docusaurus/router';
+import React, { useState } from "react";
+import { useHistory } from "@docusaurus/router";
 import {
   Drawer,
   DrawerHeader,
@@ -17,15 +17,15 @@ import {
   AccordionHeader,
   AccordionItem,
   AccordionPanel,
-} from '@fluentui/react-components';
-import { Dismiss24Regular, Filter24Regular } from '@fluentui/react-icons';
-import type { TagType } from '../../../../data/tags';
-import { prepareUserState } from '../../../home/HomePage';
-import styles from './styles.module.css';
-import type { UserState } from '../../../home/sections/ResourceLibrarySection/types';
-import { buildFilterSections, toggleTagWithChildren } from './utils/mobileFilters';
-import { FilterSection } from './FilterSection';
-import { useTempDrawerState } from './hooks/useTempDrawerState';
+} from "@fluentui/react-components";
+import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
+import type { TagType } from "../../../../data/tags";
+import { prepareUserState } from "../../../home/HomePage";
+import styles from "./styles.module.css";
+import type { UserState } from "../../../home/sections/ResourceLibrarySection/types";
+import { buildFilterSections, toggleTagWithChildren } from "./utils/mobileFilters";
+import { FilterSection } from "./FilterSection";
+import { useTempDrawerState } from "./hooks/useTempDrawerState";
 
 const SECTIONS = buildFilterSections();
 
@@ -58,7 +58,7 @@ export default function MobileFilterDrawer(props: MobileFilterDrawerProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [openAccordionItems, setOpenAccordionItems] = useState<string[]>([
-    'sort',
+    "sort",
     ...SECTIONS.map((s) => s.key),
   ]);
 

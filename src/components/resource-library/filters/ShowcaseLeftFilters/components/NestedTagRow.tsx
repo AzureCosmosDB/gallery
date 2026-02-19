@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   Accordion,
   AccordionHeader,
   AccordionItem,
   AccordionPanel,
-} from '@fluentui/react-components';
-import { Tags, type TagType } from '../../../../../data/tags';
-import { TagRow } from './TagRow';
-import { LearningPathTagRow } from './LearningPathTagRow';
-import { toTagKey } from '../utils/tagKeys';
-import styles from '../styles.module.css';
-import type { Location } from 'history';
+} from "@fluentui/react-components";
+import { Tags, type TagType } from "../../../../../data/tags";
+import { TagRow } from "./TagRow";
+import { LearningPathTagRow } from "./LearningPathTagRow";
+import { toTagKey } from "../utils/tagKeys";
+import styles from "../styles.module.css";
+import type { Location } from "history";
 
 export function NestedTagRow({
   tag,

@@ -1,8 +1,8 @@
-import React from 'react';
-import * as LucideIcons from 'lucide-react';
-import styles from '../CommunitySupportSection.module.css';
-import type { EventItem } from '../types';
-import { formatEventDate } from '../utils/dates';
+import React from "react";
+import * as LucideIcons from "lucide-react";
+import styles from "../CommunitySupportSection.module.css";
+import type { EventItem } from "../types";
+import { formatEventDate } from "../utils/dates";
 
 export function CommunityCardEvents({ events }: { events: EventItem[] }) {
   const hasEvents = events.length > 0;

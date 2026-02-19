@@ -1,4 +1,4 @@
-import type { UserState } from '../types';
+import type { UserState } from "../types";
 
 export function restoreUserState(userState?: UserState | null) {
   const scrollTopPosition = userState?.scrollTopPosition ?? 0;

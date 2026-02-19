@@ -3,18 +3,18 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState, useEffect, useMemo } from 'react';
-import ShowcaseEmptyResult from '../states/ShowcaseEmptyResult';
-import styles from '../../home/styles.module.css';
-import ShowcaseCard from '../cards/ShowcaseCard';
-import Pagination from '../../Pagination';
-import { useLocation } from '@docusaurus/router';
-import { User } from 'src/data/tags';
+import React, { useState, useEffect, useMemo } from "react";
+import ShowcaseEmptyResult from "../states/ShowcaseEmptyResult";
+import styles from "../../home/styles.module.css";
+import ShowcaseCard from "../cards/ShowcaseCard";
+import Pagination from "../../Pagination";
+import { useLocation } from "@docusaurus/router";
+import { User } from "src/data/tags";
 
 const LEARNING_PATH_TAGS = [
-  'developing-core-applications',
-  'building-genai-apps',
-  'building-ai-agents',
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
 ];
 
 export default function ShowcaseCards({
@@ -34,7 +34,7 @@ export default function ShowcaseCards({
   const totalPages = Math.ceil(len / CARDS_PER_PAGE);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const currentTags = searchParams.getAll('tags');
+  const currentTags = searchParams.getAll("tags");
   const isLearningPathFiltered =
     !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const orderedUsers = useMemo(() => {

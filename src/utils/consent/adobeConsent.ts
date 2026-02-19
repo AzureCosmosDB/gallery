@@ -1,4 +1,4 @@
-import { removeElementById, addClickListenerOnce } from './dom';
+import { removeElementById, addClickListenerOnce } from "./dom";
 
 type ConsentCategories = {
   Analytics?: boolean;
@@ -71,13 +71,13 @@ export function initAdobeConsent({
   manageCookieId,
   instrumentationKey,
 }: InitOptions): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   const WcpConsent = window.WcpConsent;
   if (!WcpConsent?.init) return;
 
-  const SET = 'set';
-  const RESET = 'reset';
+  const SET = "set";
+  const RESET = "reset";
 
   let siteConsent: WcpConsentSite | null = null;
 
@@ -99,8 +99,8 @@ export function initAdobeConsent({
 
   try {
     WcpConsent.init?.(
-      'en-US',
-      'cookie-banner',
+      "en-US",
+      "cookie-banner",
       (error, consent) => {
         if (!error && consent) {
           siteConsent = consent;
@@ -114,12 +114,12 @@ export function initAdobeConsent({
 
   try {
     if (WcpConsent.siteConsent?.isConsentRequired) {
-      addClickListenerOnce('manage_cookie', (e) => {
+      addClickListenerOnce("manage_cookie", (e) => {
         e.preventDefault();
         WcpConsent.siteConsent?.manageConsent?.();
       });
     } else {
-      removeElementById('footer__links_' + manageCookieLabel);
+      removeElementById("footer__links_" + manageCookieLabel);
       removeElementById(manageCookieId);
     }
 

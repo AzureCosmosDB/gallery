@@ -3,14 +3,14 @@
  * Licensed under the MIT License.
  */
 
-import React, { useRef } from 'react';
-import styles from './styles.module.css';
-import { Tags, type TagType } from '../../../../data/tags';
-import { TagList } from '../../../../data/users';
-import { sortBy } from '../../../../utils/jsUtils';
-import { Tooltip } from '@fluentui/react-components';
-import CustomBadge from '../../../CustomBadge';
-import { sortResourceTypeTagsByCTA } from '../../../../utils/tagPriorityUtils';
+import React, { useRef } from "react";
+import styles from "./styles.module.css";
+import { Tags, type TagType } from "../../../../data/tags";
+import { TagList } from "../../../../data/users";
+import { sortBy } from "../../../../utils/jsUtils";
+import { Tooltip } from "@fluentui/react-components";
+import CustomBadge from "../../../CustomBadge";
+import { sortResourceTypeTagsByCTA } from "../../../../utils/tagPriorityUtils";
 
 export default function ShowcaseCardTag({
   tags,
@@ -27,31 +27,31 @@ export default function ShowcaseCardTag({
   const MAX_VISIBLE_TAGS = 3;
 
   const tagObjects = tags
-    .filter((tagObject) => tagObject != 'featured')
+    .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
 
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) => TagList.indexOf(tagObject.tag));
 
-  const languageTags = tagObjectsSorted.filter((tag) => tag.type === 'Language');
+  const languageTags = tagObjectsSorted.filter((tag) => tag.type === "Language");
 
-  const modelTags = tagObjectsSorted.filter((tag) => tag.type === 'Model');
+  const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
 
-  const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === 'GenerativeAI');
+  const intelligentSolutionTags = tagObjectsSorted.filter((tag) => tag.type === "GenerativeAI");
 
-  const azureTags = tagObjectsSorted.filter((tag) => tag.type === 'Azure');
+  const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
 
-  const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === 'ResourceType');
+  const resourceTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ResourceType");
 
   // Sort resource type tags by CTA-based priority if buttonText is provided
   const sortedResourceTypeTags = buttonText
     ? sortResourceTypeTagsByCTA(resourceTypeTags, buttonText)
     : resourceTypeTags;
 
-  const contentTypeTags = tagObjectsSorted.filter((tag) => tag.type === 'ContentType');
+  const contentTypeTags = tagObjectsSorted.filter((tag) => tag.type === "ContentType");
 
-  const serviceTags = tagObjectsSorted.filter((tag) => tag.type === 'Service');
+  const serviceTags = tagObjectsSorted.filter((tag) => tag.type === "Service");
 
-  const learningPathTags = tagObjectsSorted.filter((tag) => tag.type === 'LearningPath');
+  const learningPathTags = tagObjectsSorted.filter((tag) => tag.type === "LearningPath");
 
   // New priority order: Resource type → Category → Product → Language → Learning Path
   const tagsByTypeSorted = [
@@ -105,7 +105,7 @@ export default function ShowcaseCardTag({
           >
             <div
               className={styles.moreBadgeWrapper}
-              style={{ display: 'inline-block', cursor: 'pointer' }}
+              style={{ display: "inline-block", cursor: "pointer" }}
             >
               <CustomBadge
                 appearance="tint"

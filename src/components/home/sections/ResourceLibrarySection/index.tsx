@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../../styles.module.css';
+import React, { useState, useEffect } from "react";
+import styles from "../../styles.module.css";
 
-import FilterAppliedBar from '../../../resource-library/filters/FilterAppliedBar';
-import { useViewType } from './hooks/useViewType';
-import { useResourceLibraryController } from './hooks/useResourceLibraryController';
+import FilterAppliedBar from "../../../resource-library/filters/FilterAppliedBar";
+import { useViewType } from "./hooks/useViewType";
+import { useResourceLibraryController } from "./hooks/useResourceLibraryController";
 
-import { HeaderSection } from './sections/HeaderSection';
-import { ControlsBar } from './sections/ControlsBar';
-import { ResultsBar } from './sections/ResultsBar';
-import { ResourceContent } from './sections/ResourceContent';
+import { HeaderSection } from "./sections/HeaderSection";
+import { ControlsBar } from "./sections/ControlsBar";
+import { ResultsBar } from "./sections/ResultsBar";
+import { ResourceContent } from "./sections/ResourceContent";
 
-import type { ShowcaseCardPageProps } from './types';
+import type { ShowcaseCardPageProps } from "./types";
 
 export default function ShowcaseCardPage(props: ShowcaseCardPageProps) {
   const [loading, setLoading] = useState(true);
 
-  const [viewType, setViewType] = useViewType('grid');
+  const [viewType, setViewType] = useViewType("grid");
   const controller = useResourceLibraryController(props);
 
   useEffect(() => setLoading(false), []);

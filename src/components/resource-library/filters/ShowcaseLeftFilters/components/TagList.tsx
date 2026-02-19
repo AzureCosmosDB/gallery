@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Tags, type TagType } from '../../../../../data/tags';
-import type { Location } from '@docusaurus/router';
-import { TagRow } from './TagRow';
-import { LearningPathTagRow } from './LearningPathTagRow';
-import { NestedTagRow } from './NestedTagRow';
-import styles from '../styles.module.css';
+import React, { useState } from "react";
+import { Tags, type TagType } from "../../../../../data/tags";
+import type { Location } from "@docusaurus/router";
+import { TagRow } from "./TagRow";
+import { LearningPathTagRow } from "./LearningPathTagRow";
+import { NestedTagRow } from "./NestedTagRow";
+import styles from "../styles.module.css";
 
 export function TagList({
   tags,

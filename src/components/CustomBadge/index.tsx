@@ -3,35 +3,35 @@
  * Custom Badge Component - Replaces Fluent UI Badge with full height control
  */
 
-import React from 'react';
-import styles from './styles.module.css';
-import clsx from 'clsx';
+import React from "react";
+import styles from "./styles.module.css";
+import clsx from "clsx";
 
-type BadgeColor = 'brand' | 'informative' | 'success' | 'warning' | 'danger' | 'severe' | 'subtle';
+type BadgeColor = "brand" | "informative" | "success" | "warning" | "danger" | "severe" | "subtle";
 
-type BadgeSize = 'small' | 'medium' | 'large' | 'extra-large';
+type BadgeSize = "small" | "medium" | "large" | "extra-large";
 
 interface CustomBadgeProps {
   children: React.ReactNode;
   color?: BadgeColor;
   size?: BadgeSize;
   className?: string;
-  appearance?: 'tint' | 'filled' | 'outline' | 'ghost';
-  shape?: 'rounded' | 'circular' | 'square';
+  appearance?: "tint" | "filled" | "outline" | "ghost";
+  shape?: "rounded" | "circular" | "square";
   icon?: React.ReactNode;
-  iconPosition?: 'before' | 'after';
+  iconPosition?: "before" | "after";
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default function CustomBadge({
   children,
-  color = 'brand',
-  size = 'medium',
+  color = "brand",
+  size = "medium",
   className,
-  appearance = 'tint',
-  shape = 'circular',
+  appearance = "tint",
+  shape = "circular",
   icon,
-  iconPosition = 'before',
+  iconPosition = "before",
   onClick,
 }: CustomBadgeProps) {
   const badgeClasses = clsx(
@@ -46,9 +46,9 @@ export default function CustomBadge({
 
   const content = (
     <>
-      {icon && iconPosition === 'before' && <span className={styles.badgeIcon}>{icon}</span>}
+      {icon && iconPosition === "before" && <span className={styles.badgeIcon}>{icon}</span>}
       <span className={styles.badgeText}>{children}</span>
-      {icon && iconPosition === 'after' && <span className={styles.badgeIcon}>{icon}</span>}
+      {icon && iconPosition === "after" && <span className={styles.badgeIcon}>{icon}</span>}
     </>
   );
 
@@ -58,7 +58,7 @@ export default function CustomBadge({
         type="button"
         className={badgeClasses}
         onClick={onClick}
-        aria-label={typeof children === 'string' ? children : undefined}
+        aria-label={typeof children === "string" ? children : undefined}
       >
         {content}
       </button>

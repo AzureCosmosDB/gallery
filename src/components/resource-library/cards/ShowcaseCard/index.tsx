@@ -1,20 +1,20 @@
 /* eslint-disable import/no-named-as-default-member, import/no-named-as-default */
-import React, { useEffect, useState } from 'react';
-import { useLocation } from '@docusaurus/router';
-import styleCSS from './styles.module.css';
-import { Card, DialogTrigger, Button } from '@fluentui/react-components';
-import { useBoolean } from '@fluentui/react-hooks';
-import ShowcaseCardTag from '../../tags/ShowcaseTag/index';
-import ShowcaseDialog from '../ShowcaseDialog/index';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "@docusaurus/router";
+import styleCSS from "./styles.module.css";
+import { Card, DialogTrigger, Button } from "@fluentui/react-components";
+import { useBoolean } from "@fluentui/react-hooks";
+import ShowcaseCardTag from "../../tags/ShowcaseTag/index";
+import ShowcaseDialog from "../ShowcaseDialog/index";
 
-import { getButtonText } from '../../../../utils/buttonTextUtils';
-import OptimizedImage from '../../../OptimizedImage';
-import { User } from 'src/data/tags';
+import { getButtonText } from "../../../../utils/buttonTextUtils";
+import OptimizedImage from "../../../OptimizedImage";
+import { User } from "src/data/tags";
 
 const LEARNING_PATH_TAGS = [
-  'developing-core-applications',
-  'building-genai-apps',
-  'building-ai-agents',
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
 ];
 
 type GitHubRepoInfo = {
@@ -38,7 +38,7 @@ function ShowcaseCard({
   const title = user.title;
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const currentTags = searchParams.getAll('tags');
+  const currentTags = searchParams.getAll("tags");
   const isLearningPathFiltered =
     !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const shouldUseLearningPathContent =
@@ -57,7 +57,7 @@ function ShowcaseCard({
       const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
 
       if (response.status === 429) {
-        console.error('Rate limit exceeded. Please try again later.');
+        console.error("Rate limit exceeded. Please try again later.");
         return;
       }
 
@@ -71,17 +71,17 @@ function ShowcaseCard({
         setGithubData(repoData);
         localStorage.setItem(`${owner}/${repo}`, JSON.stringify(repoData));
       } else {
-        console.error('Failed to fetch data:', data.message);
+        console.error("Failed to fetch data:", data.message);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   useEffect(() => {
-    if (!user.source.includes('https://github.com/')) return;
-    const repoSlug = user.source.toLowerCase().replace('https://github.com/', '');
-    const slugParts = repoSlug.split('/');
+    if (!user.source.includes("https://github.com/")) return;
+    const repoSlug = user.source.toLowerCase().replace("https://github.com/", "");
+    const slugParts = repoSlug.split("/");
     const owner = slugParts[0];
     const repo = slugParts[1];
     fetchGitHubData(owner, repo);
@@ -112,7 +112,7 @@ function ShowcaseCard({
             <div className={styleCSS.imageContainer}>
               <OptimizedImage
                 src={user.image}
-                alt={displayTitle + ' image'}
+                alt={displayTitle + " image"}
                 objectFit="cover"
                 className={styleCSS.cardImageInner}
               />

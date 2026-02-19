@@ -1,15 +1,15 @@
-import React from 'react';
-import { useLocation } from '@docusaurus/router';
-import styles from './styles.module.css';
+import React from "react";
+import { useLocation } from "@docusaurus/router";
+import styles from "./styles.module.css";
 
-import { featuredUsers, type User } from '../../../../data/users';
-import type { LearningPath } from './types';
-import { getDefaultPathsFromConfig } from './utils/pathsFromConfig';
-import { getAllParams } from './utils/url';
-import { LEARNING_PATH_FILTER_TAGS } from './constants';
-import { useLearningPathNavigation } from './hooks/useLearningPathNavigation';
-import { LearningPathTile } from './components/LearningPathTile';
-import { FeaturedResourcesSlider } from './components/FeaturedResourcesSlider';
+import { featuredUsers, type User } from "../../../../data/users";
+import type { LearningPath } from "./types";
+import { getDefaultPathsFromConfig } from "./utils/pathsFromConfig";
+import { getAllParams } from "./utils/url";
+import { LEARNING_PATH_FILTER_TAGS } from "./constants";
+import { useLearningPathNavigation } from "./hooks/useLearningPathNavigation";
+import { LearningPathTile } from "./components/LearningPathTile";
+import { FeaturedResourcesSlider } from "./components/FeaturedResourcesSlider";
 
 const defaultPaths = getDefaultPathsFromConfig();
 
@@ -17,7 +17,7 @@ export default function LearningPathsSection({ paths = defaultPaths }: { paths?:
   const location = useLocation();
   const { goToResourceLibraryWithTag } = useLearningPathNavigation();
 
-  const currentTags = getAllParams(location.search, 'tags');
+  const currentTags = getAllParams(location.search, "tags");
   const isLearningPathFiltered = currentTags.some((t) =>
     (LEARNING_PATH_FILTER_TAGS as readonly string[]).includes(t)
   );

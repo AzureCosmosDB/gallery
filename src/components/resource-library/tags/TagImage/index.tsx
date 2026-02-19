@@ -1,6 +1,6 @@
-import React from 'react';
-import { Tooltip, Image, Button } from '@fluentui/react-components';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import React from "react";
+import { Tooltip, Image, Button } from "@fluentui/react-components";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export function TagImage({ tagObject }) {
   return (

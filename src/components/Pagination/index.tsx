@@ -1,7 +1,7 @@
-import React, { useMemo, useCallback } from 'react';
-import { ChevronLeft24Regular, ChevronRight24Regular } from '@fluentui/react-icons';
-import styles from './Pagination.module.css';
-import { scrollToId } from '../../utils/scroll';
+import React, { useMemo, useCallback } from "react";
+import { ChevronLeft24Regular, ChevronRight24Regular } from "@fluentui/react-icons";
+import styles from "./Pagination.module.css";
+import { scrollToId } from "../../utils/scroll";
 
 interface PaginationProps {
   page: number;
@@ -21,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({
   page,
   totalPages,
   setPage,
-  scrollTargetId = 'resource-library',
+  scrollTargetId = "resource-library",
 }) => {
   const visiblePages = useMemo(() => getVisiblePages(page, totalPages), [page, totalPages]);
 
@@ -29,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = ({
     (newPage: number) => {
       if (newPage < 1 || newPage > totalPages || newPage === page) return;
       setPage(newPage);
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         // scroll after next paint
         requestAnimationFrame(() => scrollToId(scrollTargetId));
       }
@@ -61,7 +61,7 @@ const Pagination: React.FC<PaginationProps> = ({
               className={isActive ? styles.pageActive : styles.page}
               onClick={() => handlePageChange(p)}
               disabled={isActive}
-              aria-current={isActive ? 'page' : undefined}
+              aria-current={isActive ? "page" : undefined}
             >
               {p}
             </button>

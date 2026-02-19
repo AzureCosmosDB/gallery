@@ -1,6 +1,6 @@
-import React from 'react';
-import { Loader2 } from 'lucide-react';
-import styles from './GlobalLoader.module.css';
+import React from "react";
+import { Loader2 } from "lucide-react";
+import styles from "./GlobalLoader.module.css";
 
 const GlobalLoader: React.FC = () => {
   return (

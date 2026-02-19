@@ -5,9 +5,9 @@
  * ResultsSummary - Displays the count of resources shown.
  */
 
-import React from 'react';
-import { Text } from '@fluentui/react-components';
-import styles from '../../../home/styles.module.css';
+import React from "react";
+import { Text } from "@fluentui/react-components";
+import styles from "../../../home/styles.module.css";
 
 export interface ResultsSummaryProps {
   /** Number of resources shown */
@@ -23,7 +23,7 @@ export default function ResultsSummary({
   count,
   searchTerm,
 }: ResultsSummaryProps): React.JSX.Element {
-  const resourceWord = count === 1 ? 'resource' : 'resources';
+  const resourceWord = count === 1 ? "resource" : "resources";
 
   return (
     <div className={styles.templateResultsNumber}>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { AccordionHeader, AccordionItem, AccordionPanel } from '@fluentui/react-components';
-import type { TagType } from '../../../../../data/tags';
-import type { Location } from 'history';
-import { TagList } from './TagList';
-import { adobeTagCategoryData } from '../utils/analytics';
-import styles from '../styles.module.css';
+import React from "react";
+import { AccordionHeader, AccordionItem, AccordionPanel } from "@fluentui/react-components";
+import type { TagType } from "../../../../../data/tags";
+import type { Location } from "history";
+import { TagList } from "./TagList";
+import { adobeTagCategoryData } from "../utils/analytics";
+import styles from "../styles.module.css";
 
 export function TagGroupAccordion({
   value,
@@ -31,7 +31,7 @@ export function TagGroupAccordion({
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
   isLearningPath?: boolean;
 }) {
-  const hasBackground = categoryId !== 'Language';
+  const hasBackground = categoryId !== "Language";
 
   return (
     <AccordionItem value={value} className={styles.mainCategoryItem}>

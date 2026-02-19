@@ -3,4 +3,4 @@
 // `gtag-safety.ts`.
 // Re-export the TypeScript implementation explicitly to avoid
 // resolving back to this .js file and causing a circular import.
-export { default, ensureGtag } from './gtag-safety.ts';
+export { default, ensureGtag } from "./gtag-safety.ts";

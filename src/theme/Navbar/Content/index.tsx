@@ -1,20 +1,20 @@
 /* eslint-disable import/no-named-as-default-member */
-import React from 'react';
-import { ErrorCauseBoundary } from '@docusaurus/theme-common';
-import { splitNavbarItems, useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
-import { useHistory, useLocation } from '@docusaurus/router';
-import NavbarItem from '@theme/NavbarItem';
-import SearchBar from '@theme/SearchBar';
-import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
-import NavbarLogo from '@theme/Navbar/Logo';
-import NavbarSearch from '@theme/Navbar/Search';
-import styles from './styles.module.css';
-import Link from '@docusaurus/Link';
+import React from "react";
+import { ErrorCauseBoundary } from "@docusaurus/theme-common";
+import { splitNavbarItems, useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
+import { useHistory, useLocation } from "@docusaurus/router";
+import NavbarItem from "@theme/NavbarItem";
+import SearchBar from "@theme/SearchBar";
+import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
+import NavbarLogo from "@theme/Navbar/Logo";
+import NavbarSearch from "@theme/Navbar/Search";
+import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
 
-import { useNavbarItems, useActiveSection } from './hooks';
-import { smoothScrollToHash } from './utils';
-import { getTagForHash, applyTagFilter } from './services';
-import { NAV_ITEMS } from './constants';
+import { useNavbarItems, useActiveSection } from "./hooks";
+import { smoothScrollToHash } from "./utils";
+import { getTagForHash, applyTagFilter } from "./services";
+import { NAV_ITEMS } from "./constants";
 
 type NavbarItemsProps = {
   items: unknown[];
@@ -66,20 +66,20 @@ const NavbarContent: React.FC = () => {
   const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
   const [, rightItems] = splitNavbarItems(items);
-  const searchBarItem = items.find((item) => item.type === 'search');
-  const [activeSection, setActiveSection] = useActiveSection('home');
+  const searchBarItem = items.find((item) => item.type === "search");
+  const [activeSection, setActiveSection] = useActiveSection("home");
   const history = useHistory();
   const location = useLocation();
 
   const navItemClass = React.useCallback(
     (id: string, base: string) =>
-      `${base} ${activeSection === id ? styles.activeMenuItem : ''}`.trim(),
+      `${base} ${activeSection === id ? styles.activeMenuItem : ""}`.trim(),
     [activeSection]
   );
 
   const handleMenuClick = (e: React.MouseEvent, hash: string) => {
     smoothScrollToHash(e, hash);
-    setActiveSection(hash.replace('#', ''));
+    setActiveSection(hash.replace("#", ""));
   };
 
   const handleDropdownClick = (e: React.MouseEvent, tagHash: string) => {
@@ -88,11 +88,11 @@ const NavbarContent: React.FC = () => {
     if (tagFilter) {
       applyTagFilter(history, location, tagFilter);
     }
-    setActiveSection(tagHash.replace('#', ''));
+    setActiveSection(tagHash.replace("#", ""));
   };
 
-  const onNavClick = (href: string, kind: 'menu' | 'dropdown') => (e: React.MouseEvent) => {
-    if (kind === 'menu') {
+  const onNavClick = (href: string, kind: "menu" | "dropdown") => (e: React.MouseEvent) => {
+    if (kind === "menu") {
       handleMenuClick(e, href);
     } else {
       handleDropdownClick(e, href);
@@ -117,7 +117,7 @@ const NavbarContent: React.FC = () => {
                   key={item.id}
                   to={item.href}
                   className={navItemClass(item.id, styles.menuItem)}
-                  onClick={onNavClick(item.href, 'menu')}
+                  onClick={onNavClick(item.href, "menu")}
                 >
                   {item.label}
                 </Link>
@@ -134,7 +134,7 @@ const NavbarContent: React.FC = () => {
                 <Link
                   to={item.href}
                   className={navItemClass(item.id, styles.menuItem)}
-                  onClick={onNavClick(item.href, 'menu')}
+                  onClick={onNavClick(item.href, "menu")}
                   aria-haspopup="true"
                   aria-expanded={activeSection === item.id}
                 >
@@ -150,7 +150,7 @@ const NavbarContent: React.FC = () => {
                       key={child.id}
                       to={child.href}
                       className={navItemClass(child.id, styles.dropdownMenuItem)}
-                      onClick={onNavClick(child.href, 'dropdown')}
+                      onClick={onNavClick(child.href, "dropdown")}
                       role="menuitem"
                     >
                       {child.label}

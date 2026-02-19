@@ -3,6 +3,6 @@
  * Licensed under the MIT License.
  */
 
-import HeroCover from './HeroCover';
+import HeroCover from "./HeroCover";
 
 export default HeroCover;

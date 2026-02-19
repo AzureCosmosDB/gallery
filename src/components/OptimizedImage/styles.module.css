@@ -38,6 +38,6 @@
 
 /* Ensure images don't cause layout shift */
 .imageContainer::before {
-  content: '';
+  content: "";
   display: block;
 }

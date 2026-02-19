@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { isValidEmail } from './utils/email';
+import React, { useState } from "react";
+import { isValidEmail } from "./utils/email";
 import {
   Button,
   Dialog,
@@ -8,8 +8,8 @@ import {
   DialogTitle,
   DialogContent,
   Input,
-} from '@fluentui/react-components';
-import style from './styles.module.css';
+} from "@fluentui/react-components";
+import style from "./styles.module.css";
 
 export default function NewsletterDialog({
   open,
@@ -18,19 +18,19 @@ export default function NewsletterDialog({
   open: boolean;
   setOpen: (open: boolean) => void;
 }) {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   function handleSubscribe() {
     if (!email) {
-      setError('Please enter your email address.');
+      setError("Please enter your email address.");
       return;
     }
     if (!isValidEmail(email)) {
-      setError('Please enter a valid email address.');
+      setError("Please enter a valid email address.");
       return;
     }
-    setError('');
+    setError("");
     setOpen(false);
     // Here you can add your subscribe logic
   }
@@ -45,20 +45,20 @@ export default function NewsletterDialog({
           <DialogContent>
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '1rem',
-                width: '100%',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "1rem",
+                width: "100%",
               }}
             >
               <label
                 htmlFor="newsletter-email"
                 style={{
-                  width: '100%',
+                  width: "100%",
                   fontWeight: 500,
-                  marginBottom: '0.25rem',
-                  display: 'block',
+                  marginBottom: "0.25rem",
+                  display: "block",
                 }}
               >
                 Email address
@@ -75,23 +75,23 @@ export default function NewsletterDialog({
               {error && (
                 <span
                   style={{
-                    color: '#d13438',
-                    fontSize: '0.95rem',
-                    width: '100%',
-                    textAlign: 'left',
+                    color: "#d13438",
+                    fontSize: "0.95rem",
+                    width: "100%",
+                    textAlign: "left",
                   }}
                 >
                   {error}
                 </span>
               )}
               <div className={style.newsletterBulletsSection}>
-                <div style={{ fontWeight: 500, marginBottom: '0.5rem' }}>What you'll receive:</div>
+                <div style={{ fontWeight: 500, marginBottom: "0.5rem" }}>What you'll receive:</div>
                 <ul
                   style={{
-                    textAlign: 'left',
+                    textAlign: "left",
                     margin: 0,
-                    paddingLeft: '1.2rem',
-                    fontSize: '1rem',
+                    paddingLeft: "1.2rem",
+                    fontSize: "1rem",
                   }}
                 >
                   <li>Weekly PostgreSQL tips and best practices</li>

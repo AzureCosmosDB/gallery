@@ -1,3 +1,3 @@
-import DisclaimerSection from './DisclaimerSection';
+import DisclaimerSection from "./DisclaimerSection";
 
 export default DisclaimerSection;

@@ -1,42 +1,42 @@
-import { Tags, type TagType } from '../../../../../data/tags';
+import { Tags, type TagType } from "../../../../../data/tags";
 
 export const LEARNING_PATH_TAGS: TagType[] = [
-  'developing-core-applications',
-  'building-genai-apps',
-  'building-ai-agents',
+  "developing-core-applications",
+  "building-genai-apps",
+  "building-ai-agents",
 ];
 
 const COMPATIBILITY: Record<TagType, TagType[]> = {
-  'building-genai-apps': [
-    'documentation',
-    'tutorial',
-    'concepts',
-    'how-to',
-    'video',
-    'workshop',
-    'training',
-    'samples',
+  "building-genai-apps": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "video",
+    "workshop",
+    "training",
+    "samples",
   ],
-  'developing-core-applications': [
-    'documentation',
-    'tutorial',
-    'concepts',
-    'how-to',
-    'video',
-    'blog',
-    'workshop',
-    'training',
-    'samples',
+  "developing-core-applications": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "video",
+    "blog",
+    "workshop",
+    "training",
+    "samples",
   ],
-  'building-ai-agents': [
-    'documentation',
-    'tutorial',
-    'concepts',
-    'how-to',
-    'video',
-    'workshop',
-    'training',
-    'samples',
+  "building-ai-agents": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "video",
+    "workshop",
+    "training",
+    "samples",
   ],
 };
 
@@ -58,7 +58,7 @@ export function applyLearningPathSelection({
     if (LEARNING_PATH_TAGS.includes(t)) return false;
 
     const tagObject = Tags[t];
-    if (tagObject?.type === 'ResourceType') {
+    if (tagObject?.type === "ResourceType") {
       return compatibleTypes.includes(t);
     }
     return true;

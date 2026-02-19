@@ -1,27 +1,27 @@
-import React from 'react';
-import { useHistory } from '@docusaurus/router';
-import type { Location, History } from 'history';
-import type { TagType } from '../../../../../data/tags';
-import CustomCheckbox from '../../../shared/CustomCheckbox';
-import { prepareUserState } from '../../../../home/HomePage';
+import React from "react";
+import { useHistory } from "@docusaurus/router";
+import type { Location, History } from "history";
+import type { TagType } from "../../../../../data/tags";
+import CustomCheckbox from "../../../shared/CustomCheckbox";
+import { prepareUserState } from "../../../../home/HomePage";
 import {
   isAnyOtherLearningPathSelected,
   applyLearningPathSelection,
   removeLearningPathTag,
-} from '../utils/learningPathRules';
-import { adobeTagCheckboxData } from '../utils/analytics';
+} from "../utils/learningPathRules";
+import { adobeTagCheckboxData } from "../utils/analytics";
 
 function scrollToResourceLibrary() {
   requestAnimationFrame(() => {
-    const el = document.getElementById('resource-library');
+    const el = document.getElementById("resource-library");
     if (el) {
-      const navbar = document.querySelector('.navbar');
+      const navbar = document.querySelector(".navbar");
       const navbarHeight = navbar ? (navbar as HTMLElement).offsetHeight : 80;
       const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarHeight - 20;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       // Dispatch custom event to switch to list view for learning paths
-      window.dispatchEvent(new Event('switchToListView'));
+      window.dispatchEvent(new Event("switchToListView"));
     }
   });
 }
@@ -99,7 +99,7 @@ export function LearningPathTagRow({
       id={id}
       data-m={adobeTagCheckboxData(id)}
       onKeyDown={(e) => {
-        if (e.key === 'Enter') {
+        if (e.key === "Enter") {
           toggleTag();
           toggleCheck(tag);
         }

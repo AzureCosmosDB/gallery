@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Button } from '@fluentui/react-components';
-import { shareFeedbackHandler } from '../../utils/githubUtils';
-import styles from './styles.module.css';
-import NewsletterDialog from 'src/theme/NavbarItem/NewsletterDialog';
+import React, { useState } from "react";
+import { Button } from "@fluentui/react-components";
+import { shareFeedbackHandler } from "../../utils/githubUtils";
+import styles from "./styles.module.css";
+import NewsletterDialog from "src/theme/NavbarItem/NewsletterDialog";
 
 // eslint-disable-next-line import/no-unused-modules
 export default function FloatingFeedbackButton(): JSX.Element {

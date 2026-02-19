@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-import GlobalLoader from '../components/GlobalLoader';
-import { ensureGtag } from '../utils/gtag-safety';
+import React, { useEffect, useState } from "react";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import GlobalLoader from "../components/GlobalLoader";
+import { ensureGtag } from "../utils/gtag-safety";
 // import FloatingFeedbackButton from '@site/src/components/FloatingFeedbackButton';
 
 declare global {
   interface Window {
     gtag?: (
-      command: 'config' | 'set' | 'event' | 'consent' | 'js',
+      command: "config" | "set" | "event" | "consent" | "js",
       target: string | Date,
       params?: {
         [key: string]: unknown;
@@ -27,13 +27,13 @@ export default function Root({ children }: RootProps): JSX.Element {
   useEffect(() => {
     // Register service worker for production builds
     if (
-      typeof window !== 'undefined' &&
-      'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production'
+      typeof window !== "undefined" &&
+      "serviceWorker" in navigator &&
+      process.env.NODE_ENV === "production"
     ) {
       const onLoad = () => {
         navigator.serviceWorker
-          .register('/postgres-gallery/sw.js')
+          .register("/postgres-gallery/sw.js")
           .then((registration) => {
             // Check for updates periodically
             setInterval(() => {
@@ -45,10 +45,10 @@ export default function Root({ children }: RootProps): JSX.Element {
           });
       };
 
-      window.addEventListener('load', onLoad);
+      window.addEventListener("load", onLoad);
 
       return () => {
-        window.removeEventListener('load', onLoad);
+        window.removeEventListener("load", onLoad);
       };
     }
     return undefined;
@@ -71,13 +71,13 @@ export default function Root({ children }: RootProps): JSX.Element {
         setTimeout(() => setIsLoading(false), remaining);
       };
 
-      if (document.readyState === 'complete') {
+      if (document.readyState === "complete") {
         handleLoad();
       } else {
-        window.addEventListener('load', handleLoad);
+        window.addEventListener("load", handleLoad);
         const fallback = window.setTimeout(() => setIsLoading(false), 3_000);
         return () => {
-          window.removeEventListener('load', handleLoad);
+          window.removeEventListener("load", handleLoad);
           clearTimeout(fallback);
         };
       }

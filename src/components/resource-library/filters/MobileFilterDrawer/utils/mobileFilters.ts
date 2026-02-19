@@ -1,12 +1,12 @@
-import { Tags, type TagType } from '../../../../../data/tags';
-import { TagList } from '../../../../../data/users';
+import { Tags, type TagType } from "../../../../../data/tags";
+import { TagList } from "../../../../../data/users";
 
 export type FilterSectionKey =
-  | 'learningPaths'
-  | 'products'
-  | 'resourceType'
-  | 'category'
-  | 'language';
+  | "learningPaths"
+  | "products"
+  | "resourceType"
+  | "category"
+  | "language";
 
 export type FilterSection = {
   key: FilterSectionKey;
@@ -16,22 +16,22 @@ export type FilterSection = {
   supportsSubTypes?: boolean;
 };
 
-const RESOURCE_TYPE_EXCLUDE: TagType[] = ['concepts', 'how-to', 'tutorial'] as TagType[];
+const RESOURCE_TYPE_EXCLUDE: TagType[] = ["concepts", "how-to", "tutorial"] as TagType[];
 
 export function buildFilterSections(): FilterSection[] {
   const byType = (type: string) => TagList.filter((tag) => Tags[tag]?.type === type);
 
   return [
-    { key: 'learningPaths', title: 'Learning Pathways', tags: byType('LearningPath') },
-    { key: 'products', title: 'Products', tags: byType('Service'), supportsSubTypes: true },
+    { key: "learningPaths", title: "Learning Pathways", tags: byType("LearningPath") },
+    { key: "products", title: "Products", tags: byType("Service"), supportsSubTypes: true },
     {
-      key: 'resourceType',
-      title: 'Resource Type',
-      tags: byType('ResourceType').filter((t) => !RESOURCE_TYPE_EXCLUDE.includes(t)),
+      key: "resourceType",
+      title: "Resource Type",
+      tags: byType("ResourceType").filter((t) => !RESOURCE_TYPE_EXCLUDE.includes(t)),
       supportsSubTypes: true,
     },
-    { key: 'category', title: 'Category', tags: byType('ContentType') },
-    { key: 'language', title: 'Language', tags: byType('Language') },
+    { key: "category", title: "Category", tags: byType("ContentType") },
+    { key: "language", title: "Language", tags: byType("Language") },
   ];
 }
 

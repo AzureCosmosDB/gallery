@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import styles from '../styles.module.css';
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import styles from "../styles.module.css";
 
-import ShowcaseCards from '../../../../resource-library/views/ShowcaseCards';
-import { User } from 'src/data/tags';
+import ShowcaseCards from "../../../../resource-library/views/ShowcaseCards";
+import { User } from "src/data/tags";
 
 export function FeaturedResourcesSlider({
   featuredUsers,

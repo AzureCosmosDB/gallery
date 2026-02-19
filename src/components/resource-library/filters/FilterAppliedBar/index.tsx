@@ -5,14 +5,14 @@
  * FilterAppliedBar - Displays active filter badges with remove functionality.
  */
 
-import React, { useRef, useState, useEffect } from 'react';
-import { useHistory } from '@docusaurus/router';
-import { Badge, Body1 } from '@fluentui/react-components';
-import { Dismiss20Filled, ChevronLeft20Filled, ChevronRight20Filled } from '@fluentui/react-icons';
-import { Tags, type TagType } from '../../../../data/tags';
-import { toggleListItem } from '../../../../utils/jsUtils';
-import { prepareUserState } from '../../../home/HomePage';
-import styles from '../../../home/styles.module.css';
+import React, { useRef, useState, useEffect } from "react";
+import { useHistory } from "@docusaurus/router";
+import { Badge, Body1 } from "@fluentui/react-components";
+import { Dismiss20Filled, ChevronLeft20Filled, ChevronRight20Filled } from "@fluentui/react-icons";
+import { Tags, type TagType } from "../../../../data/tags";
+import { toggleListItem } from "../../../../utils/jsUtils";
+import { prepareUserState } from "../../../home/HomePage";
+import styles from "../../../home/styles.module.css";
 
 interface FilterAppliedBarProps {
   /** Currently selected tags */
@@ -65,8 +65,8 @@ export default function FilterAppliedBar({
     const newSearch = replaceSearchTags(location.search, newTags);
 
     // Track in analytics if available
-    if (typeof window.gtag === 'function') {
-      window.gtag('set', 'user_properties', {
+    if (typeof window.gtag === "function") {
+      window.gtag("set", "user_properties", {
         page_location: window.location.href,
         page_path: newTags,
       });
@@ -88,17 +88,17 @@ export default function FilterAppliedBar({
     setShowScrollControls(scrollWidth > clientWidth);
   };
 
-  const scrollTo = (direction: 'left' | 'right') => {
+  const scrollTo = (direction: "left" | "right") => {
     if (!scrollContainerRef.current) return;
 
     const scrollAmount = 200; // px to scroll
     const currentScroll = scrollContainerRef.current.scrollLeft;
     const targetScroll =
-      direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+      direction === "left" ? currentScroll - scrollAmount : currentScroll + scrollAmount;
 
     scrollContainerRef.current.scrollTo({
       left: targetScroll,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -107,12 +107,12 @@ export default function FilterAppliedBar({
     if (!scrollContainer) return;
 
     updateScrollButtons();
-    scrollContainer.addEventListener('scroll', updateScrollButtons);
-    window.addEventListener('resize', updateScrollButtons);
+    scrollContainer.addEventListener("scroll", updateScrollButtons);
+    window.addEventListener("resize", updateScrollButtons);
 
     return () => {
-      scrollContainer.removeEventListener('scroll', updateScrollButtons);
-      window.removeEventListener('resize', updateScrollButtons);
+      scrollContainer.removeEventListener("scroll", updateScrollButtons);
+      window.removeEventListener("resize", updateScrollButtons);
     };
   }, [selectedTags]);
 
@@ -131,13 +131,13 @@ export default function FilterAppliedBar({
               <div className={styles.scrollGradientLeft}></div>
               <div
                 className={`${styles.scrollButton} ${styles.scrollButtonLeft}`}
-                onClick={() => scrollTo('left')}
+                onClick={() => scrollTo("left")}
                 aria-label="Scroll filters left"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    scrollTo('left');
+                  if (e.key === "Enter" || e.key === " ") {
+                    scrollTo("left");
                   }
                 }}
               >
@@ -183,13 +183,13 @@ export default function FilterAppliedBar({
               <div className={styles.scrollGradientRight}></div>
               <div
                 className={`${styles.scrollButton} ${styles.scrollButtonRight}`}
-                onClick={() => scrollTo('right')}
+                onClick={() => scrollTo("right")}
                 aria-label="Scroll filters right"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    scrollTo('right');
+                  if (e.key === "Enter" || e.key === " ") {
+                    scrollTo("right");
                   }
                 }}
               >

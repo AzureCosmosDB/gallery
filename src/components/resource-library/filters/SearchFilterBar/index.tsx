@@ -5,13 +5,13 @@
  * SearchFilterBar - Search box for filtering resources by name.
  */
 
-import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from '@docusaurus/router';
-import { SearchBox } from '@fluentui/react-search';
-import { prepareUserState } from '../../../home/HomePage';
-import styles from '../../../home/styles.module.css';
+import React, { useState, useEffect } from "react";
+import { useHistory, useLocation } from "@docusaurus/router";
+import { SearchBox } from "@fluentui/react-search";
+import { prepareUserState } from "../../../home/HomePage";
+import styles from "../../../home/styles.module.css";
 
-const SEARCH_NAME_QUERY_KEY = 'name';
+const SEARCH_NAME_QUERY_KEY = "name";
 
 /**
  * Reads the search name from URL search params.
@@ -22,7 +22,7 @@ export function readSearchName(search: string): string | null {
 
 export interface SearchFilterBarProps {
   /** Optional data attribute for analytics */
-  'data-m'?: string;
+  "data-m"?: string;
 }
 
 /**
@@ -59,7 +59,7 @@ export default function SearchFilterBar(props: SearchFilterBarProps): React.JSX.
     });
   };
 
-  const displayValue = readSearchName(location.search) != null ? value ?? '' : '';
+  const displayValue = readSearchName(location.search) != null ? value ?? "" : "";
 
   return (
     <SearchBox

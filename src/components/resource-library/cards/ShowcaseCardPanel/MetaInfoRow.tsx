@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './styles.module.css';
-import { User as UserIcon, Calendar, Clock } from 'lucide-react';
+import React from "react";
+import styles from "./styles.module.css";
+import { User as UserIcon, Calendar, Clock } from "lucide-react";
 
 type Meta = { author?: string; date?: string; duration?: string };
 
@@ -19,10 +19,10 @@ export default function MetaInfoRow({ meta }: { meta?: Meta }) {
         <div className={styles.metaItem}>
           <Calendar size={16} />
           <span>
-            {new Date(meta.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
+            {new Date(meta.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
             })}
           </span>
         </div>

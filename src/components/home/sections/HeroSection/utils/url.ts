@@ -8,9 +8,9 @@ export function setQueryParam(search: string, key: string, value?: string | null
   }
 
   const next = params.toString();
-  return next ? `?${next}` : '';
+  return next ? `?${next}` : "";
 }
 
 export function joinComma(values: string[]) {
-  return values.join(',');
+  return values.join(",");
 }

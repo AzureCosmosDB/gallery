@@ -1,8 +1,8 @@
-import React from 'react';
-import { Checkbox } from '@fluentui/react-components';
-import { Tags, type TagType } from '../../../../data/tags';
-import styles from './styles.module.css';
-import { getSubTagKeys } from './utils/mobileFilters';
+import React from "react";
+import { Checkbox } from "@fluentui/react-components";
+import { Tags, type TagType } from "../../../../data/tags";
+import styles from "./styles.module.css";
+import { getSubTagKeys } from "./utils/mobileFilters";
 
 export function FilterSection({
   tags,

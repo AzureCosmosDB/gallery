@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '../HeroCover.module.css';
+import React from "react";
+import styles from "../HeroCover.module.css";
 
 type Props = {
   title: string;
@@ -12,7 +12,7 @@ type Props = {
 
 export function CoverCard({ title, description, icon, className, onClick, children }: Props) {
   return (
-    <button type="button" className={`${styles.cardCommon} ${className ?? ''}`} onClick={onClick}>
+    <button type="button" className={`${styles.cardCommon} ${className ?? ""}`} onClick={onClick}>
       <div className={styles.cardIconWrapper}>{icon}</div>
       <span className={styles.cardTitle}>{title}</span>
 

@@ -2,28 +2,28 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-import React, { useMemo } from 'react';
-import styles from './styles.module.css';
-import { Tags, type TagType } from '../../../../data/tags';
+import React, { useMemo } from "react";
+import styles from "./styles.module.css";
+import { Tags, type TagType } from "../../../../data/tags";
 
-import { Tooltip, Button } from '@fluentui/react-components';
-import { TagImage } from '../../../resource-library/tags/TagImage';
-import { TagList } from 'src/data/users';
-import { sortBy } from 'src/utils/jsUtils';
+import { Tooltip, Button } from "@fluentui/react-components";
+import { TagImage } from "../../../resource-library/tags/TagImage";
+import { TagList } from "src/data/users";
+import { sortBy } from "src/utils/jsUtils";
 
 export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   const tagObjectsSorted = useMemo(() => {
     const tagObjects = tags
-      .filter((tag) => tag !== 'featured')
+      .filter((tag) => tag !== "featured")
       .map((tag) => ({ tag, ...Tags[tag] }));
     return sortBy(tagObjects, (tagObject) => TagList.indexOf(tagObject.tag));
   }, [tags]);
 
-  const uniqueModelTags = ['openai', 'meta', 'microsoft', 'mistralai'].flatMap((subType) =>
+  const uniqueModelTags = ["openai", "meta", "microsoft", "mistralai"].flatMap((subType) =>
     tagObjectsSorted
       .filter((tag) => {
         const isModelType =
-          tag.type === 'Model' || (Array.isArray(tag.type) && tag.type.includes('Model'));
+          tag.type === "Model" || (Array.isArray(tag.type) && tag.type.includes("Model"));
         const hasSubType = Array.isArray(tag.subType)
           ? tag.subType.some((st) => String(st.label).toLowerCase() === subType)
           : false;
@@ -33,9 +33,9 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   );
 
   const filteredTags = [
-    ...tagObjectsSorted.filter((tag) => tag.type === 'Language'),
+    ...tagObjectsSorted.filter((tag) => tag.type === "Language"),
     ...uniqueModelTags,
-    ...tagObjectsSorted.filter((tag) => tag.type === 'ResourceType').slice(0, 1),
+    ...tagObjectsSorted.filter((tag) => tag.type === "ResourceType").slice(0, 1),
   ];
 
   const displayTags = filteredTags.slice(0, 3); // First 3 Tags
@@ -50,8 +50,8 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
         <Tooltip
           withArrow
           content={
-            <span style={{ whiteSpace: 'pre-line' }}>
-              {hiddenTags.map((tag) => tag.label).join('\n')}
+            <span style={{ whiteSpace: "pre-line" }}>
+              {hiddenTags.map((tag) => tag.label).join("\n")}
             </span>
           }
           relationship="label"

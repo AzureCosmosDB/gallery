@@ -3,17 +3,17 @@
  * Licensed under the MIT License.
  */
 
-import React from 'react';
-import styles from './styles.module.css';
-import { type User } from '../../../../data/tags';
-import { PrimaryButton } from '@fluentui/react';
-import ShowcaseCardTag from '../../tags/ShowcaseTag/index';
-import OptimizedImage from '../../../OptimizedImage';
-import { getButtonText } from '../../../../utils/buttonTextUtils';
-import { useTagSections } from './hooks/useTagSections';
-import GitHubInfoRow from './GitHubInfoRow';
-import MetaInfoRow from './MetaInfoRow';
-import TagSection from './TagSection';
+import React from "react";
+import styles from "./styles.module.css";
+import { type User } from "../../../../data/tags";
+import { PrimaryButton } from "@fluentui/react";
+import ShowcaseCardTag from "../../tags/ShowcaseTag/index";
+import OptimizedImage from "../../../OptimizedImage";
+import { getButtonText } from "../../../../utils/buttonTextUtils";
+import { useTagSections } from "./hooks/useTagSections";
+import GitHubInfoRow from "./GitHubInfoRow";
+import MetaInfoRow from "./MetaInfoRow";
+import TagSection from "./TagSection";
 
 export default function ShowcaseCardPanel({
   user,
@@ -36,7 +36,7 @@ export default function ShowcaseCardPanel({
       <div className={styles.padding}>
         <div className={styles.cardTag}>
           <ShowcaseCardTag
-            key={'tag_' + user.title}
+            key={"tag_" + user.title}
             tags={user.tags}
             cardPanel={true}
             buttonText={getButtonText(user.website || user.source)}
@@ -51,9 +51,9 @@ export default function ShowcaseCardPanel({
               height="auto"
               objectFit="contain"
               style={{
-                borderRadius: '16px',
-                display: 'block',
-                maxHeight: '400px',
+                borderRadius: "16px",
+                display: "block",
+                maxHeight: "400px",
               }}
               priority={true}
             />
@@ -62,7 +62,7 @@ export default function ShowcaseCardPanel({
         <div
           className={styles.githubUrl}
           onClick={() => {
-            window.open(githubURL, '_blank');
+            window.open(githubURL, "_blank");
           }}
         >
           {githubURL}
@@ -94,7 +94,7 @@ export default function ShowcaseCardPanel({
         <PrimaryButton
           className={styles.button}
           onClick={() => {
-            window.open(user.website || user.source, '_blank');
+            window.open(user.website || user.source, "_blank");
           }}
         >
           <div className={styles.buttonContent}>

@@ -4,7 +4,7 @@ export type GtagFunction = ((...args: unknown[]) => void) & { q?: unknown[][] };
 declare global {
   interface Window {
     gtag?: (
-      command: 'set' | 'config' | 'event' | 'consent' | 'js',
+      command: "set" | "config" | "event" | "consent" | "js",
       target: string | Date,
       params?: {
         [key: string]: unknown;
@@ -17,7 +17,7 @@ declare global {
 }
 
 export function ensureGtag(): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
   if (window.gtag) return;
 
   const queue: unknown[][] = [];

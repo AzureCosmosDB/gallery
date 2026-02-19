@@ -1,4 +1,4 @@
-export function scrollToIdWithNavbarOffset(id: string, navbarSelector = '.navbar', fallback = 80) {
+export function scrollToIdWithNavbarOffset(id: string, navbarSelector = ".navbar", fallback = 80) {
   const el = document.getElementById(id);
   if (!el) return;
 
@@ -8,5 +8,5 @@ export function scrollToIdWithNavbarOffset(id: string, navbarSelector = '.navbar
   const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
   const offsetPosition = elementPosition - navbarHeight;
 
-  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 }

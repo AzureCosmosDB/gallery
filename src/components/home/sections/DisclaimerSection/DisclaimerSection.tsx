@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './DisclaimerSection.module.css';
-import { useDisclaimerSection } from './hooks/useDisclaimerSection';
-import { useNavbarLogoSrc } from './utils/logo';
+import React from "react";
+import styles from "./DisclaimerSection.module.css";
+import { useDisclaimerSection } from "./hooks/useDisclaimerSection";
+import { useNavbarLogoSrc } from "./utils/logo";
 
 export default function DisclaimerSection() {
   const { siteConfig, title, description, shouldRender } = useDisclaimerSection();

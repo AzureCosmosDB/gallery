@@ -4,9 +4,9 @@
  */
 
 export function register(): void {
-  if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      const swUrl = '/postgres-gallery/service-worker.js';
+  if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      const swUrl = "/postgres-gallery/service-worker.js";
 
       navigator.serviceWorker
         .register(swUrl)
@@ -19,11 +19,11 @@ export function register(): void {
           }, 60 * 60 * 1000); // Check every hour
 
           // Listen for updates
-          registration.addEventListener('updatefound', () => {
+          registration.addEventListener("updatefound", () => {
             const newWorker = registration.installing;
             if (newWorker) {
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              newWorker.addEventListener("statechange", () => {
+                if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
                   // New content available
                 }
               });
@@ -31,27 +31,27 @@ export function register(): void {
           });
         })
         .catch((error) => {
-          console.warn('⚠️ Service Worker registration failed:', error);
+          console.warn("⚠️ Service Worker registration failed:", error);
         });
     });
   }
 }
 
 export function unregister(): void {
-  if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  if (typeof window !== "undefined" && "serviceWorker" in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister();
       })
       .catch((error) => {
-        console.error('Service Worker unregistration failed:', error);
+        console.error("Service Worker unregistration failed:", error);
       });
   }
 }
 
 export function clearCache(): Promise<void> {
   return new Promise((resolve, reject) => {
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
       navigator.serviceWorker.ready
         .then((registration) => {
           const messageChannel = new MessageChannel();
@@ -59,15 +59,15 @@ export function clearCache(): Promise<void> {
             if (event.data.success) {
               resolve();
             } else {
-              reject(new Error('Failed to clear cache'));
+              reject(new Error("Failed to clear cache"));
             }
           };
 
-          registration.active?.postMessage({ type: 'CLEAR_CACHE' }, [messageChannel.port2]);
+          registration.active?.postMessage({ type: "CLEAR_CACHE" }, [messageChannel.port2]);
         })
         .catch(reject);
     } else {
-      reject(new Error('Service Worker not supported'));
+      reject(new Error("Service Worker not supported"));
     }
   });
 }

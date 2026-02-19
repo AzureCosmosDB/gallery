@@ -1,7 +1,7 @@
-import React from 'react';
-import ShowcaseTagSelect from '../../../tags/ShowcaseTagSelect';
-import type { TagType } from '../../../../../data/tags';
-import type { Location } from '@docusaurus/router';
+import React from "react";
+import ShowcaseTagSelect from "../../../tags/ShowcaseTagSelect";
+import type { TagType } from "../../../../../data/tags";
+import type { Location } from "@docusaurus/router";
 
 export function TagRow({
   id,

@@ -268,12 +268,12 @@
 }
 
 /* Checkbox checked tick color */
-.checkboxItem :global(.fui-Checkbox__indicator[aria-checked='true']) {
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) {
   background: #0078d4 !important;
   border-color: #0078d4 !important;
 }
 
-.checkboxItem :global(.fui-Checkbox__indicator[aria-checked='true']) :global(.fui-Checkbox__check) {
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) :global(.fui-Checkbox__check) {
   color: #fff !important;
 }
 

@@ -3,13 +3,13 @@
  * Licensed under the MIT License.
  */
 
-import React, { useMemo } from 'react';
-import { useHistory } from '@docusaurus/router';
-import type { History } from 'history';
-import { toggleListItem } from '../../../../utils/jsUtils';
-import { prepareUserState } from '../../../home/HomePage';
-import { Tags, type TagType } from '../../../../data/tags';
-import CustomCheckbox from '../../shared/CustomCheckbox';
+import React, { useMemo } from "react";
+import { useHistory } from "@docusaurus/router";
+import type { History } from "history";
+import { toggleListItem } from "../../../../utils/jsUtils";
+import { prepareUserState } from "../../../home/HomePage";
+import { Tags, type TagType } from "../../../../data/tags";
+import CustomCheckbox from "../../shared/CustomCheckbox";
 
 // Helper to get all child tag keys for a parent tag
 function getChildTags(parentTag: TagType): TagType[] {
@@ -51,7 +51,7 @@ export default function ShowcaseTagSelect({
   // updates only the url query
   const toggleTag = () => {
     const tagObject = Tags[tag];
-    const isLearningPath = tagObject?.type === 'LearningPath';
+    const isLearningPath = tagObject?.type === "LearningPath";
 
     if (isLearningPath) {
       // For learning path tags: clear all other filters and set only this tag
@@ -64,15 +64,15 @@ export default function ShowcaseTagSelect({
 
       // Scroll to resource library and switch to list view
       requestAnimationFrame(() => {
-        const el = document.getElementById('resource-library');
+        const el = document.getElementById("resource-library");
         if (el) {
-          const navbar = document.querySelector('.navbar') as HTMLElement | null;
+          const navbar = document.querySelector(".navbar") as HTMLElement | null;
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
           const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight - 20;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event to switch to list view for learning paths
-          window.dispatchEvent(new Event('switchToListView'));
+          window.dispatchEvent(new Event("switchToListView"));
         }
       });
     } else {
@@ -131,7 +131,7 @@ export default function ShowcaseTagSelect({
     }
   };
   // Adobe Analytics
-  const checkbox = id.replace('showcase_checkbox_id_', '');
+  const checkbox = id.replace("showcase_checkbox_id_", "");
   const contentForAdobeAnalytics = `{"id":"${checkbox}","cN":"Tags"}`;
 
   // Find parent tags that have this tag as a sub-tag
@@ -153,7 +153,7 @@ export default function ShowcaseTagSelect({
   );
 
   // Tags that should always be disabled (no data available)
-  const alwaysDisabledTags: TagType[] = ['samples' as TagType];
+  const alwaysDisabledTags: TagType[] = ["samples" as TagType];
 
   // Enable the sub-tag if:
   // 1. The tag itself is in activeTags, OR
@@ -172,7 +172,7 @@ export default function ShowcaseTagSelect({
   // - For parent tags with children: check indeterminate state
   // - For sub-tags: check if selected
   // - For regular tags without children: check if selected
-  let checkedState: boolean | 'mixed' = false;
+  let checkedState: boolean | "mixed" = false;
 
   if (hasChildren) {
     // Parent tag with children - determine if all, some, or none are selected
@@ -194,7 +194,7 @@ export default function ShowcaseTagSelect({
       checkedState = true;
     } else {
       // Some children selected - indeterminate state
-      checkedState = 'mixed';
+      checkedState = "mixed";
     }
   } else if (parentTag) {
     // Sub-tag: checked ONLY if BOTH parent AND this child tag are selected
@@ -218,7 +218,7 @@ export default function ShowcaseTagSelect({
           e.stopPropagation();
         }}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             e.preventDefault();
             e.stopPropagation();
             toggleTag();

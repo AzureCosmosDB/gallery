@@ -1,7 +1,7 @@
 export type CardAction = {
   label: string;
   href: string;
-  variant?: 'outlined' | 'filled';
+  variant?: "outlined" | "filled";
   icon?: string; // icon name OR "X"
   fullWidth?: boolean;
 };
@@ -22,7 +22,7 @@ export type CommunityCardType = {
   iconBg?: string;
   actions: CardAction[];
   events?: EventItem[];
-  layout?: 'default' | 'stackedActions';
+  layout?: "default" | "stackedActions";
 };
 
 export type CommunitySupportSectionType = {

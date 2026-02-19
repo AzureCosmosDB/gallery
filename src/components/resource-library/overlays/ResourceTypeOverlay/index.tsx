@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, import/no-unresolved */
-import React from 'react';
+import React from "react";
 
 // Documentation Icon
 const DocumentationIcon: React.FC = () => (

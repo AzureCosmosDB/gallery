@@ -1,5 +1,5 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { DisclaimerSectionConfig } from '../types';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { DisclaimerSectionConfig } from "../types";
 
 export function useDisclaimerSection() {
   const { siteConfig } = useDocusaurusContext();
@@ -8,8 +8,8 @@ export function useDisclaimerSection() {
     | DisclaimerSectionConfig
     | undefined;
 
-  const title = disclaimer?.title?.trim() || '';
-  const description = disclaimer?.description?.trim() || '';
+  const title = disclaimer?.title?.trim() || "";
+  const description = disclaimer?.description?.trim() || "";
 
   const shouldRender = Boolean(title || description);
 

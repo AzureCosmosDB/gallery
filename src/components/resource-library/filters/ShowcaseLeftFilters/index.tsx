@@ -3,12 +3,12 @@
  * Licensed under the MIT License.
  */
 
-import React, { useState } from 'react';
-import { useLocation } from '@docusaurus/router';
-import { Accordion, AccordionToggleEventHandler } from '@fluentui/react-components';
-import type { TagType } from '../../../../data/tags';
-import { useTagGroups } from './hooks/useTagGroups';
-import { TagGroupAccordion } from './components/TagGroupAccordion';
+import React, { useState } from "react";
+import { useLocation } from "@docusaurus/router";
+import { Accordion, AccordionToggleEventHandler } from "@fluentui/react-components";
+import type { TagType } from "../../../../data/tags";
+import { useTagGroups } from "./hooks/useTagGroups";
+import { TagGroupAccordion } from "./components/TagGroupAccordion";
 
 interface ShowcaseLeftFiltersProps {
   activeTags: TagType[];
@@ -30,7 +30,7 @@ export default function ShowcaseLeftFilters({
   const location = useLocation();
   const tagGroups = useTagGroups();
 
-  const [openItems, setOpenItems] = useState(['1', '2', '3', '4', '5']);
+  const [openItems, setOpenItems] = useState(["1", "2", "3", "4", "5"]);
 
   const handleToggle: AccordionToggleEventHandler<string> = (event, data) => {
     setOpenItems(data.openItems);
@@ -38,37 +38,37 @@ export default function ShowcaseLeftFilters({
 
   const tagGroupConfigs = [
     {
-      value: '1',
-      title: 'Learning Pathways',
-      categoryId: 'Learning Paths',
+      value: "1",
+      title: "Learning Pathways",
+      categoryId: "Learning Paths",
       tags: tagGroups.learningPath,
       isLearningPath: true,
     },
     {
-      value: '2',
-      title: 'Products',
-      categoryId: 'Service',
+      value: "2",
+      title: "Products",
+      categoryId: "Service",
       tags: tagGroups.service,
       isLearningPath: false,
     },
     {
-      value: '3',
-      title: 'Resource Type',
-      categoryId: 'ResourceType',
+      value: "3",
+      title: "Resource Type",
+      categoryId: "ResourceType",
       tags: tagGroups.resourceType,
       isLearningPath: false,
     },
     {
-      value: '4',
-      title: 'Category',
-      categoryId: 'ContentType',
+      value: "4",
+      title: "Category",
+      categoryId: "ContentType",
       tags: tagGroups.contentType,
       isLearningPath: false,
     },
     {
-      value: '5',
-      title: 'Language',
-      categoryId: 'Language',
+      value: "5",
+      title: "Language",
+      categoryId: "Language",
       tags: tagGroups.language,
       isLearningPath: false,
     },

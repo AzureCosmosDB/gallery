@@ -1,8 +1,8 @@
-import React from 'react';
-import { Image } from '@fluentui/react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css';
-import { formatCompactNumber, formatShortDate, parseDate } from './utils/format';
+import React from "react";
+import { Image } from "@fluentui/react";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.css";
+import { formatCompactNumber, formatShortDate, parseDate } from "./utils/format";
 
 type GitHubData = { forks: number; stars: number; updatedOn: Date | string };
 
@@ -24,7 +24,7 @@ export default function GitHubInfoRow({ githubData }: { githubData?: GitHubData 
       {Number.isFinite(githubData.forks) && (
         <>
           <div className={styles.info}>•</div>
-          <Image alt="fork" src={useBaseUrl('/img/fork.svg')} height={16} width={16} />
+          <Image alt="fork" src={useBaseUrl("/img/fork.svg")} height={16} width={16} />
           <div className={styles.info}>{formatCompactNumber(githubData.forks)}</div>
         </>
       )}
@@ -32,7 +32,7 @@ export default function GitHubInfoRow({ githubData }: { githubData?: GitHubData 
       {Number.isFinite(githubData.stars) && (
         <>
           <div className={styles.info}>•</div>
-          <Image alt="star" src={useBaseUrl('/img/star.svg')} height={16} width={16} />
+          <Image alt="star" src={useBaseUrl("/img/star.svg")} height={16} width={16} />
           <div className={styles.info}>{formatCompactNumber(githubData.stars)}</div>
         </>
       )}

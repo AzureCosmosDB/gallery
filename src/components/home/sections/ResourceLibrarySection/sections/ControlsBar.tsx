@@ -1,8 +1,8 @@
-import React from 'react';
-import SearchFilterBar from '../../../../resource-library/filters/SearchFilterBar';
-import SortDropdown from '../../../../resource-library/filters/SortDropdown';
-import ViewToggle, { type ViewType } from '../../../../resource-library/filters/ViewToggle';
-import styles from '../../../styles.module.css';
+import React from "react";
+import SearchFilterBar from "../../../../resource-library/filters/SearchFilterBar";
+import SortDropdown from "../../../../resource-library/filters/SortDropdown";
+import ViewToggle, { type ViewType } from "../../../../resource-library/filters/ViewToggle";
+import styles from "../../../styles.module.css";
 
 type Props = {
   sortOption: string;

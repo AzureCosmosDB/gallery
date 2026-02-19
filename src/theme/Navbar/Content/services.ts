@@ -1,5 +1,5 @@
-import { TAG_MAPPING } from './constants';
-import { getNavbarHeight } from './utils';
+import { TAG_MAPPING } from "./constants";
+import { getNavbarHeight } from "./utils";
 
 // Apply tag filter by updating history and scrolling to resource library
 export function applyTagFilter(
@@ -9,9 +9,9 @@ export function applyTagFilter(
 ): void {
   const params = new URLSearchParams();
   if (Array.isArray(tagFilter)) {
-    params.set('tags', tagFilter.join(','));
+    params.set("tags", tagFilter.join(","));
   } else {
-    params.set('tags', tagFilter);
+    params.set("tags", tagFilter);
   }
 
   const loc = location as { pathname?: string };
@@ -22,11 +22,11 @@ export function applyTagFilter(
   });
 
   requestAnimationFrame(() => {
-    const el = document.getElementById('resource-library');
+    const el = document.getElementById("resource-library");
     if (el) {
       const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - getNavbarHeight();
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   });
 }

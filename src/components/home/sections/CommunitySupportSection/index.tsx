@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './CommunitySupportSection.module.css';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import type { CommunitySupportSectionType } from './types';
-import { CommunityCard } from './components/CommunityCard';
+import React from "react";
+import styles from "./CommunitySupportSection.module.css";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import type { CommunitySupportSectionType } from "./types";
+import { CommunityCard } from "./components/CommunityCard";
 
 const CommunitySupportSection = () => {
   const { siteConfig } = useDocusaurusContext();

@@ -3,10 +3,10 @@
  * Licensed under the MIT License.
  */
 
-import React from 'react';
-import styles from './styles.module.css';
-import { type User } from '../../../../data/tags';
-import { Link } from '@fluentui/react';
+import React from "react";
+import styles from "./styles.module.css";
+import { type User } from "../../../../data/tags";
+import { Link } from "@fluentui/react";
 
 function ShowcaseMultipleWebsites(
   key: number,
@@ -35,17 +35,17 @@ function ShowcaseMultipleAuthors({ user }: { user: User }) {
   const websites = user?.website;
   let i = 0;
 
-  if (authors?.includes(', ')) {
-    const multiWebsites = websites.split(', ');
-    const multiAuthors = authors?.split(', ');
+  if (authors?.includes(", ")) {
+    const multiWebsites = websites.split(", ");
+    const multiAuthors = authors?.split(", ");
 
     if (multiWebsites.length != multiAuthors?.length) {
       throw new Error(
-        'The number of multiple authors(' +
+        "The number of multiple authors(" +
           multiAuthors?.length +
-          ') and websites(' +
+          ") and websites(" +
           multiWebsites.length +
-          ') are not equal.'
+          ") are not equal."
       );
     }
 
