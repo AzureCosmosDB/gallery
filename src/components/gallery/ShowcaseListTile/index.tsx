@@ -84,7 +84,7 @@ export default function ShowcaseListTile({
             )}
             <div className={styleCSS.listTileText}>
               <div className={styleCSS.listTileTags}>
-                <ShowcaseCardTag tags={user.tags} cardPanel={false} buttonText={getButtonText(user.website)} />
+                <ShowcaseCardTag tags={user.tags} cardPanel={false} buttonText={getButtonText(user.website, user.tags)} />
               </div>
               <div className={styleCSS.listTitle}>{displayTitle}</div>
               <div className={styleCSS.cardDescription}>
@@ -108,7 +108,7 @@ export default function ShowcaseListTile({
                     paddingRight: "16px",
                   }}
                 >
-                  <span>{getButtonText(user.website)}</span>
+                  <span>{getButtonText(user.website, user.tags)}</span>
                 </Button>
               )}
             </div>
