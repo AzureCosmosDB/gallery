@@ -10,8 +10,8 @@ export function getSortedTagObjects(tags: string[]) {
 
 export function groupTagsByType(sorted: Array<{ type: string } & Tag>) {
   return {
-    models: sorted.filter((t: any) => t.type === 'Model'),
-    vectorDb: sorted.filter((t: any) => t.type === 'VectorDatabase'),
-    azure: sorted.filter((t: any) => t.type === 'Azure'),
+    models: sorted.filter((t: Tag) => t.type === 'Model'),
+    vectorDb: sorted.filter((t: Tag) => t.type === 'VectorDatabase'),
+    azure: sorted.filter((t: Tag) => t.type === 'Azure'),
   };
 }

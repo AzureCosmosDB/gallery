@@ -73,7 +73,7 @@ export default function ShowcaseCardTag({
 
     return (
       <div ref={containerRef} className={styles.tagContainer}>
-        {shownTags.map((tagObject, index) => {
+        {shownTags.map((tagObject, _index) => {
           const key = `showcase_card_tag_${tagObject.tag}`;
 
           return (
@@ -84,7 +84,7 @@ export default function ShowcaseCardTag({
               key={key}
               className={styles.cardTag}
             >
-              {tagObject.label}
+              {String(tagObject.label)}
             </CustomBadge>
           );
         })}
@@ -95,7 +95,7 @@ export default function ShowcaseCardTag({
               <div className={styles.tooltipContent}>
                 {hiddenTags.map((tagObject, idx) => (
                   <div key={idx} className={styles.tooltipTag}>
-                    {tagObject.label}
+                    {String(tagObject.label)}
                   </div>
                 ))}
               </div>
@@ -133,7 +133,7 @@ export default function ShowcaseCardTag({
               key={_id}
               className={styles.cardPanelColoredTag}
             >
-              {tagObject.label}
+              {String(tagObject.label)}
             </CustomBadge>
           );
         })}

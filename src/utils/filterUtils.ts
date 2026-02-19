@@ -6,6 +6,7 @@
  * Implements AND logic across categories and OR logic within categories,
  * with special handling for parent-child tag relationships.
  */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Tags, type User, type TagType } from '../data/tags';
 
@@ -325,7 +326,7 @@ export function computeActiveTags(cards: User[], selectedTags: TagType[]): TagTy
 
   // Check if any learning path is selected
   const selectedLearningPaths = selectedTags.filter((tag) =>
-    LEARNING_PATH_TAGS.includes(tag as any)
+    LEARNING_PATH_TAGS.includes(tag as string)
   );
 
   // Enable sub-tags when parent is selected

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import GlobalLoader from '../components/GlobalLoader';
-import ensureGtag from '../utils/gtag-safety';
+import { ensureGtag } from '../utils/gtag-safety';
 // import FloatingFeedbackButton from '@site/src/components/FloatingFeedbackButton';
 
 declare global {
@@ -10,10 +10,10 @@ declare global {
       command: 'config' | 'set' | 'event' | 'consent' | 'js',
       target: string | Date,
       params?: {
-        [key: string]: any;
+        [key: string]: unknown;
         page_location?: string;
-        page_path?: string | any[];
-        user_properties?: { [key: string]: any };
+        page_path?: string | unknown[];
+        user_properties?: { [key: string]: unknown };
       }
     ) => void;
   }

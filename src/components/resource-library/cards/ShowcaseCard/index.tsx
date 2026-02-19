@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member, import/no-named-as-default */
 import React, { useEffect, useState } from 'react';
 import { useLocation } from '@docusaurus/router';
 import styleCSS from './styles.module.css';

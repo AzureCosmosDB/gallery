@@ -60,3 +60,5 @@ function ShowcaseSurveyCard(): React.ReactElement {
     </Card>
   );
 }
+
+export default ShowcaseSurveyCard;

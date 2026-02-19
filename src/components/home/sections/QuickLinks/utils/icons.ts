@@ -4,10 +4,14 @@ import type { LucideIcon } from 'lucide-react';
 type LucideIconName = keyof typeof LucideIcons;
 
 export function getLucideIcon(name?: string): LucideIcon {
-  if (!name) return LucideIcons.BookOpen;
+  const resolver = LucideIcons as unknown as Record<string, unknown>;
+
+  if (!name) return resolver['BookOpen'] as unknown as LucideIcon;
 
   const key = name as LucideIconName;
-  const Icon = LucideIcons[key];
+  const Icon = resolver[key];
 
-  return typeof Icon === 'function' ? (Icon as LucideIcon) : LucideIcons.BookOpen;
+  return typeof Icon === 'function'
+    ? (Icon as unknown as LucideIcon)
+    : (resolver['BookOpen'] as unknown as LucideIcon);
 }

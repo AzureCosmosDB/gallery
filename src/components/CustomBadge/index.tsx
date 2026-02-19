@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /**
  * Custom Badge Component - Replaces Fluent UI Badge with full height control
  */

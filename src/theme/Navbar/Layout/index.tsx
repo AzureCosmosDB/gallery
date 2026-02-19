@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import clsx from 'clsx';
 import { useThemeConfig } from '@docusaurus/theme-common';

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import React from 'react';
 import { ErrorCauseBoundary } from '@docusaurus/theme-common';
 import { splitNavbarItems, useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
@@ -16,7 +17,7 @@ import { getTagForHash, applyTagFilter } from './services';
 import { NAV_ITEMS } from './constants';
 
 type NavbarItemsProps = {
-  items: any[];
+  items: unknown[];
 };
 
 function NavbarItems({ items }: NavbarItemsProps) {
@@ -36,7 +37,7 @@ function NavbarItems({ items }: NavbarItemsProps) {
             )
           }
         >
-          <NavbarItem {...item} />
+          <NavbarItem {...(item as Record<string, unknown>)} />
         </ErrorCauseBoundary>
       ))}
     </>
@@ -64,7 +65,7 @@ function NavbarContentLayout({
 const NavbarContent: React.FC = () => {
   const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
-  const [leftItems, rightItems] = splitNavbarItems(items);
+  const [, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
   const [activeSection, setActiveSection] = useActiveSection('home');
   const history = useHistory();

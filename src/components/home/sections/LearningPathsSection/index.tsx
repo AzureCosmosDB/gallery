@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from '@docusaurus/router';
 import styles from './styles.module.css';
 
-import { featuredUsers } from '../../../../data/users';
+import { featuredUsers, type User } from '../../../../data/users';
 import type { LearningPath } from './types';
 import { getDefaultPathsFromConfig } from './utils/pathsFromConfig';
 import { getAllParams } from './utils/url';
@@ -50,7 +50,7 @@ export default function LearningPathsSection({ paths = defaultPaths }: { paths?:
         </div>
 
         <FeaturedResourcesSlider
-          featuredUsers={featuredUsers as any}
+          featuredUsers={featuredUsers as unknown as User[]}
           forceShowTileNumber={isLearningPathFiltered}
         />
       </div>

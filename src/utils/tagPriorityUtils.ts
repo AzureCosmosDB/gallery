@@ -233,9 +233,9 @@ function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
  * @returns Sorted array with CTA-relevant tags first
  */
 export function sortResourceTypeTagsByCTA(
-  resourceTypeTags: Array<{ tag: TagType; [key: string]: any }>,
+  resourceTypeTags: Array<{ tag: TagType; [key: string]: unknown }>,
   buttonText: string
-): Array<{ tag: TagType; [key: string]: any }> {
+): Array<{ tag: TagType; [key: string]: unknown }> {
   const priorityOrder = getResourceTypePriorityByCTA(buttonText);
 
   return resourceTypeTags.sort((firstTag, secondTag) => {

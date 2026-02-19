@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useThemeConfig } from '@docusaurus/theme-common';
 import { SECTIONS, SCROLL_OFFSET } from './constants';
 import { getNavbarHeight } from './utils';
 
 // Return navbar items from theme config
-export const useNavbarItems = (): any[] => {
+export const useNavbarItems = (): unknown[] => {
   // ThemeConfig types can be restrictive; keep this lightweight and safe
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return ((useThemeConfig() as any).navbar?.items as any[]) || [];
+  const cfg = useThemeConfig() as unknown as Record<string, unknown>;
+  return (cfg.navbar?.items as unknown[]) || [];
 };
 
 export function useActiveSection(initial = 'home') {

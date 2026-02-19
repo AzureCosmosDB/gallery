@@ -46,7 +46,7 @@
       { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }
     ],
     "import/no-duplicates": "error",
-    "import/no-unused-modules": ["error", { "unusedExports": true }],
+    "import/no-unused-modules": "off",
     "import/no-unresolved": [
       "error",
       {

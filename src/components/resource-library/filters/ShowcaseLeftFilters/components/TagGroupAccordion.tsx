@@ -1,6 +1,7 @@
 import React from 'react';
 import { AccordionHeader, AccordionItem, AccordionPanel } from '@fluentui/react-components';
 import type { TagType } from '../../../../../data/tags';
+import type { Location } from 'history';
 import { TagList } from './TagList';
 import { adobeTagCategoryData } from '../utils/analytics';
 import styles from '../styles.module.css';
@@ -25,7 +26,7 @@ export function TagGroupAccordion({
   activeTags: TagType[];
   selectedCheckbox: TagType[];
   setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
-  location: any;
+  location: Location;
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
   isLearningPath?: boolean;

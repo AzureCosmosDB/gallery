@@ -5,6 +5,7 @@
 
 import React, { useMemo } from 'react';
 import { useHistory } from '@docusaurus/router';
+import type { History } from 'history';
 import { toggleListItem } from '../../../../utils/jsUtils';
 import { prepareUserState } from '../../../home/HomePage';
 import { Tags, type TagType } from '../../../../data/tags';
@@ -37,12 +38,12 @@ export default function ShowcaseTagSelect({
   activeTags: TagType[];
   selectedCheckbox: TagType[];
   _setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
-  location;
+  location: { pathname: string; search: string; hash?: string; state?: unknown }; // Add type annotation
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
   parentTag?: TagType; // The parent tag if this is a sub-tag
 }): JSX.Element {
-  const history = useHistory();
+  const history = useHistory() as History;
 
   // Get child tags for this tag (if it's a parent)
   const childTags = useMemo(() => getChildTags(tag), [tag]);

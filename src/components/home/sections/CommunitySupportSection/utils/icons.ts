@@ -8,16 +8,20 @@ function normalizeKey(s: string) {
 }
 
 export function getLucideIcon(name?: string, fallback = true): LucideIcon | null {
-  if (!name) return fallback ? (LucideIcons as any).Mail : null;
+  const resolver = LucideIcons as unknown as Record<string, unknown>;
+
+  if (!name) {
+    return fallback ? (resolver['Mail'] as unknown as LucideIcon) : null;
+  }
 
   // direct lookup
-  const direct = (LucideIcons as Record<string, any>)[name as LucideIconName];
+  const direct = resolver[name as LucideIconName];
   if (typeof direct === 'function') return direct as LucideIcon;
 
   // try case-insensitive or punctuation-insensitive match
   const normalized = normalizeKey(name);
-  const match = Object.keys(LucideIcons).find((k) => normalizeKey(k) === normalized);
-  if (match) return (LucideIcons as Record<string, any>)[match] as LucideIcon;
+  const match = Object.keys(resolver).find((k) => normalizeKey(k) === normalized);
+  if (match) return resolver[match] as unknown as LucideIcon;
 
-  return fallback ? (LucideIcons as any).Mail : null;
+  return fallback ? (resolver['Mail'] as unknown as LucideIcon) : null;
 }

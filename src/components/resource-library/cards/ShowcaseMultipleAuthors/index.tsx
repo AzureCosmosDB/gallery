@@ -74,3 +74,5 @@ function ShowcaseMultipleAuthors({ user }: { user: User }) {
     </>
   );
 }
+
+export default ShowcaseMultipleAuthors;

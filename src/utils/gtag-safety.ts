@@ -7,10 +7,10 @@ declare global {
       command: 'set' | 'config' | 'event' | 'consent' | 'js',
       target: string | Date,
       params?: {
-        [key: string]: any;
+        [key: string]: unknown;
         page_location?: string;
-        page_path?: string | any[];
-        user_properties?: { [key: string]: any };
+        page_path?: string | unknown[];
+        user_properties?: { [key: string]: unknown };
       }
     ) => void;
   }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { useHistory, type Location } from '@docusaurus/router';
+import { useHistory } from '@docusaurus/router';
+import type { Location, History } from 'history';
 import type { TagType } from '../../../../../data/tags';
 import CustomCheckbox from '../../../shared/CustomCheckbox';
 import { prepareUserState } from '../../../../home/HomePage';
@@ -46,7 +47,7 @@ export function LearningPathTagRow({
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
-  const history = useHistory();
+  const history = useHistory() as History;
 
   const toggleTag = () => {
     const isCurrentlySelected = selectedCheckbox.includes(tag);

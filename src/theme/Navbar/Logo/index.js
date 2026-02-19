@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
-export default function LogoWrapper(props) {
+export default function LogoWrapper() {
   const { siteConfig } = useDocusaurusContext();
   const logoSrc = useBaseUrl(siteConfig.themeConfig.navbar.logo?.src || '/img/logo.png');
 
