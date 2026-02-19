@@ -76,7 +76,7 @@ export function NestedTagRow({
           </div>
         </AccordionHeader>
         <AccordionPanel>
-          {tagObject.subType!.map((sub, idx) => {
+          {tagObject.subType!.map((sub, _idx) => {
             const subTagKey = toTagKey(sub.label);
             const uniqueKey = `${tag}-${subTagKey}`;
             const uniqueId = `showcase_checkbox_id_${tag}_${subTagKey}`;

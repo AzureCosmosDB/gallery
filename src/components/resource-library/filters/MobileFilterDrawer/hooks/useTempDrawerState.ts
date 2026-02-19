@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { TagType } from '../../../../../data/tags';
 
 const SORT_BY_OPTIONS = ['Newest', 'Recommended'] as const;
-type SortOption = (typeof SORT_BY_OPTIONS)[number];
 
 export function useTempDrawerState({
   isOpen,

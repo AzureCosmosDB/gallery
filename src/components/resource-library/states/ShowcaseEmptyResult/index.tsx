@@ -6,7 +6,7 @@
 import React from 'react';
 import { readSearchName } from '../../filters/SearchFilterBar';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import { Text, Image, Subtitle1, Body2 } from '@fluentui/react-components';
+import { Image, Subtitle1, Body2 } from '@fluentui/react-components';
 import styles from './styles.module.css';
 
 export default function ShowcaseEmptyResult({ id }: { id: string }) {

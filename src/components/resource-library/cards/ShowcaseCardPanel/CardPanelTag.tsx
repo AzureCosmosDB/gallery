@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from '@fluentui/react';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 import { Tag } from '../../../../data/tags';
 
 function CardPanelTag({ tags }: { tags: Tag[] }) {
   return (
     <>
-      {tags.map((item, index) => {
+      {tags.map((item, _index) => {
         const label = item.label;
         const subType = item.subType;
         return !subType && item.type != 'Azure' ? (

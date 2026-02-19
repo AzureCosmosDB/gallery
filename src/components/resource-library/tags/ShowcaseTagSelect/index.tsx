@@ -3,8 +3,8 @@
  * Licensed under the MIT License.
  */
 
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { useHistory, useLocation } from '@docusaurus/router';
+import React, { useMemo } from 'react';
+import { useHistory } from '@docusaurus/router';
 import { toggleListItem } from '../../../../utils/jsUtils';
 import { prepareUserState } from '../../../home/HomePage';
 import { Tags, type TagType } from '../../../../data/tags';
@@ -25,7 +25,7 @@ export default function ShowcaseTagSelect({
   id,
   activeTags,
   selectedCheckbox,
-  setSelectedCheckbox,
+  _setSelectedCheckbox,
   location,
   readSearchTags,
   replaceSearchTags,
@@ -36,7 +36,7 @@ export default function ShowcaseTagSelect({
   id: string;
   activeTags: TagType[];
   selectedCheckbox: TagType[];
-  setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
+  _setSelectedCheckbox: React.Dispatch<React.SetStateAction<TagType[]>>;
   location;
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
@@ -131,7 +131,7 @@ export default function ShowcaseTagSelect({
   };
   // Adobe Analytics
   const checkbox = id.replace('showcase_checkbox_id_', '');
-  const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
+  const contentForAdobeAnalytics = `{"id":"${checkbox}","cN":"Tags"}`;
 
   // Find parent tags that have this tag as a sub-tag
   const parentTags = Object.entries(Tags)

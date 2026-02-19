@@ -24,8 +24,6 @@ export default function ShowcaseLeftFilters({
   activeTags,
   selectedCheckbox,
   setSelectedCheckbox,
-  selectedTags,
-  setSelectedTags,
   readSearchTags,
   replaceSearchTags,
 }: ShowcaseLeftFiltersProps) {

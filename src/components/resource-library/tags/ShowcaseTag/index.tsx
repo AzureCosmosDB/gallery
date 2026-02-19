@@ -123,14 +123,14 @@ export default function ShowcaseCardTag({
   } else {
     return (
       <div className={styles.tagContainer}>
-        {tagsByTypeSorted.map((tagObject, index) => {
-          const id = `showcase_card_tag_${tagObject.tag}`;
+        {tagsByTypeSorted.map((tagObject, _index) => {
+          const _id = `showcase_card_tag_${tagObject.tag}`;
           return (
             <CustomBadge
               appearance="tint"
               size="medium"
               color="subtle"
-              key={index}
+              key={_id}
               className={styles.cardPanelColoredTag}
             >
               {tagObject.label}

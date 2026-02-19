@@ -1,7 +1,6 @@
 import React from 'react';
-import { useHistory } from '@docusaurus/router';
+import { useHistory, type Location } from '@docusaurus/router';
 import type { TagType } from '../../../../../data/tags';
-import type { Location } from '@docusaurus/router';
 import CustomCheckbox from '../../../shared/CustomCheckbox';
 import { prepareUserState } from '../../../../home/HomePage';
 import {
