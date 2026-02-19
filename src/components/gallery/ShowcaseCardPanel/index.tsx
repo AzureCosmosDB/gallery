@@ -151,7 +151,9 @@ export default function ShowcaseCardPanel({
           }}
         >
           <div className={styles.buttonContent}>
-            <span className={styles.buttonText}>{getButtonText(user.website || user.source, user.tags)}</span>
+            <span className={styles.buttonText}>
+              {getButtonText(user.website || user.source, user.tags)}
+            </span>
           </div>
         </PrimaryButton>
       </div>
