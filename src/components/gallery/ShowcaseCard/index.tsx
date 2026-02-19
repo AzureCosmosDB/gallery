@@ -141,7 +141,7 @@ function ShowcaseCard({
               key={displayTitle}
               tags={tags}
               cardPanel={false}
-              buttonText={getButtonText(user.website)}
+              buttonText={getButtonText(user.website, user.tags)}
             />
           </div>
           <div style={{ padding: 16 }}>
@@ -183,7 +183,7 @@ function ShowcaseCard({
                 paddingRight: "16px",
               }}
             >
-              <span>{getButtonText(user.website)}</span>
+              <span>{getButtonText(user.website, user.tags)}</span>
             </Button>
           )}
           {/* </CardFooter> */}
