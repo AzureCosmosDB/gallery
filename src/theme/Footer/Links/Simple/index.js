@@ -13,7 +13,6 @@ function SimpleLinkItem({ item }) {
     <span
       className="footer__link-item"
       // Developer provided the HTML, so assume it's safe.
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: item.html }}
     />
   ) : (
@@ -21,6 +20,7 @@ function SimpleLinkItem({ item }) {
   );
 }
 
+// eslint-disable-next-line import/no-unused-modules
 export default function FooterLinksSimple({ links }) {
   return (
     <div className={`footer__links text--center ${styles.footer__links}`}>

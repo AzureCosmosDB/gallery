@@ -1,5 +1,6 @@
 import React from 'react';
 
+// eslint-disable-next-line import/no-unused-modules
 export const TwitterXIcon: React.FC<{
   size?: number;
   className?: string;
