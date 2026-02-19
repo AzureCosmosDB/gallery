@@ -2,8 +2,8 @@ import React from 'react';
 import { Spinner } from '@fluentui/react-components';
 import ShowcaseCards from '../../../../resource-library/views/ShowcaseCards';
 import ShowcaseList from '../../../../resource-library/views/ShowcaseList';
-import type { User } from '../../../data/tags';
 import type { ViewType } from '../../../../resource-library/filters/ViewToggle';
+import { User } from 'src/data/tags';
 
 type Props = {
   loading: boolean;

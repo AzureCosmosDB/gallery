@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tags, type TagType } from '../../../data/tags';
+import { Tags, type TagType } from '../../../../data/tags';
 import styles from './styles.module.css';
 
 // Documentation Icon

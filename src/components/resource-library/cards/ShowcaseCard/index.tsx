@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from '@docusaurus/router';
 import styleCSS from './styles.module.css';
-import { Card, CardFooter, DialogTrigger, Button } from '@fluentui/react-components';
+import { Card, DialogTrigger, Button } from '@fluentui/react-components';
 import { useBoolean } from '@fluentui/react-hooks';
 import ShowcaseCardTag from '../../tags/ShowcaseTag/index';
 import ShowcaseDialog from '../ShowcaseDialog/index';
 
-import type { User } from '../../../data/tags';
 import { getButtonText } from '../../../../utils/buttonTextUtils';
 import OptimizedImage from '../../../OptimizedImage';
+import { User } from 'src/data/tags';
 
 const LEARNING_PATH_TAGS = [
   'developing-core-applications',
@@ -113,12 +113,7 @@ function ShowcaseCard({
                 src={user.image}
                 alt={displayTitle + ' image'}
                 objectFit="cover"
-                style={{
-                  width: '100%',
-                  height: '200px',
-                  display: 'block',
-                  borderRadius: '8px 8px 0px 0px',
-                }}
+                className={styleCSS.cardImageInner}
               />
             </div>
           )}
@@ -130,7 +125,7 @@ function ShowcaseCard({
               buttonText={getButtonText(user.website)}
             />
           </div>
-          <div style={{ padding: 16 }}>
+          <div className={styleCSS.cardContent}>
             {coverPage ? (
               <>
                 <div className={styleCSS.cardTitleCoverPage}>{displayTitle}</div>
@@ -152,16 +147,7 @@ function ShowcaseCard({
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              style={{
-                width: '100%',
-                fontSize: '16px',
-                backgroundColor: '#0078d4',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingLeft: '16px',
-                paddingRight: '16px',
-              }}
+              className={styleCSS.linkButton}
             >
               <span>{getButtonText(user.website)}</span>
             </Button>

@@ -1,15 +1,18 @@
 import React from 'react';
 import * as LucideIcons from 'lucide-react';
 import styles from '../CommunitySupportSection.module.css';
-import { TwitterXIcon } from '@site/src/theme/Icon/TwitterXIcon';
+// import { TwitterXIcon } from '@site/src/theme/Icon/TwitterXIcon';
 import type { CardAction, CommunityCardType } from '../types';
 import { isExternal } from '../utils/external';
 import { getLucideIcon } from '../utils/icons';
 
 function resolveActionIcon(icon?: string) {
   if (!icon) return null;
-  if (icon === 'X') return <TwitterXIcon size={18} />;
-  if (icon === 'X') return <TwitterXIcon size={18} />;
+  // Use a Lucide icon as a fallback for 'X' (Twitter/X)
+  if (icon === 'X') {
+    const XIcon = LucideIcons['Twitter'] || LucideIcons['X'];
+    return XIcon ? <XIcon size={18} /> : null;
+  }
 
   const Comp = getLucideIcon(icon, false);
   return Comp ? <Comp size={18} style={{ minWidth: 18 }} /> : null;

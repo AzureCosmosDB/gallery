@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import styles from '../styles.module.css';
 
 import ShowcaseCards from '../../../../resource-library/views/ShowcaseCards';
-import type { User } from '../../../data/tags';
+import { User } from 'src/data/tags';
 
 export function FeaturedResourcesSlider({
   featuredUsers,

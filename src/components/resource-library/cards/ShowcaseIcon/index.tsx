@@ -4,11 +4,12 @@
  */
 import React, { useMemo } from 'react';
 import styles from './styles.module.css';
-import { Tags, type TagType } from '../../../data/tags';
-import { TagList } from '../../../data/users';
-import { sortBy } from '../../../utils/jsUtils';
+import { Tags, type TagType } from '../../../../data/tags';
+
 import { Tooltip, Button } from '@fluentui/react-components';
-import { TagImage } from '../TagImage';
+import { TagImage } from '../../../resource-library/tags/TagImage';
+import { TagList } from 'src/data/users';
+import { sortBy } from 'src/utils/jsUtils';
 
 export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   const tagObjectsSorted = useMemo(() => {
@@ -19,7 +20,16 @@ export default function ShowcaseCardIcon({ tags }: { tags: TagType[] }) {
   }, [tags]);
 
   const uniqueModelTags = ['openai', 'meta', 'microsoft', 'mistralai'].flatMap((subType) =>
-    tagObjectsSorted.filter((tag) => tag.type === 'Model' && tag.subType === subType).slice(0, 1)
+    tagObjectsSorted
+      .filter((tag) => {
+        const isModelType =
+          tag.type === 'Model' || (Array.isArray(tag.type) && tag.type.includes('Model'));
+        const hasSubType = Array.isArray(tag.subType)
+          ? tag.subType.some((st) => String(st.label).toLowerCase() === subType)
+          : false;
+        return isModelType && hasSubType;
+      })
+      .slice(0, 1)
   );
 
   const filteredTags = [

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import ShowcaseEmptyResult from '../states/ShowcaseEmptyResult';
-import { type User } from '../../../../data/tags';
 import styles from '../../home/styles.module.css';
 import ShowcaseListTile from '../cards/ShowcaseListTile';
 import Pagination from '../../Pagination';
 import { useLocation } from '@docusaurus/router';
 import { LEARNING_PATH_TAGS } from '../../../constants/constants';
+import { User } from 'src/data/tags';
 
 export default function ShowcaseList({ filteredUsers }: { filteredUsers: User[] }) {
   // debug: removed console.log

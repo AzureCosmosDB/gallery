@@ -1,15 +1,6 @@
-/**
- * Google Analytics safety wrapper
- * Ensures gtag calls don't fail when GA is not loaded
- */
-
-// Initialize gtag queue if it doesn't exist
-if (typeof window !== 'undefined' && !window.gtag) {
-  window.gtag = function () {
-    // If gtag is not available yet, queue the calls
-    window.gtag.q = window.gtag.q || [];
-    window.gtag.q.push(arguments);
-  };
-}
-
-export {};
+// Bridge to the TypeScript implementation. This ensures imports that
+// resolve to `.js` still get the typed runtime initializer from
+// `gtag-safety.ts`.
+// Re-export the TypeScript implementation explicitly to avoid
+// resolving back to this .js file and causing a circular import.
+export { default } from './gtag-safety.ts';

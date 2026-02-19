@@ -3,6 +3,7 @@ import { User } from '../../../../data/tags';
 import { Button, Card, CardFooter, DialogTrigger } from '@fluentui/react-components';
 import { useBoolean } from '@fluentui/react-hooks';
 import styleCSS from '../ShowcaseCard/styles.module.css';
+import localStyles from './styles.module.css';
 import ShowcaseDialog from '../ShowcaseDialog/index';
 import ShowcaseCardTag from '../../tags/ShowcaseTag/index';
 import { getButtonText } from '../../../../utils/buttonTextUtils';
@@ -32,39 +33,15 @@ export default function ShowcaseListTile({
     >
       <DialogTrigger disableButtonEnhancement>
         <Card
-          className={styleCSS.listTile}
+          className={`${styleCSS.listTile} ${localStyles.root}`}
           appearance="filled"
-          style={{ position: 'relative', cursor: 'pointer' }}
           onClick={openDialog}
         >
           {/* Tile Number at top right corner */}
-          {tileNumber !== undefined && (
-            <div
-              style={{
-                position: 'absolute',
-                top: 8,
-                right: 16,
-                fontWeight: 700,
-                fontSize: 18,
-                color: '#0078d4',
-                background: '#eaf3fc',
-                borderRadius: '50%',
-                width: 32,
-                height: 32,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              {tileNumber}
-            </div>
-          )}
+          {tileNumber !== undefined && <div className={localStyles.tileNumber}>{tileNumber}</div>}
           <div className={styleCSS.listTileContent}>
             {user.image && (
-              <div
-                className={styleCSS.imageContainer}
-                style={{ width: '200px', marginRight: '24px', flexShrink: 0 }}
-              >
+              <div className={`${styleCSS.imageContainer} ${localStyles.imageInline}`}>
                 <OptimizedImage
                   src={user.image}
                   alt={displayTitle + ' image'}
@@ -91,15 +68,7 @@ export default function ShowcaseListTile({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  style={{
-                    marginTop: 12,
-                    backgroundColor: '#0078d4',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingLeft: '16px',
-                    paddingRight: '16px',
-                  }}
+                  className={localStyles.buttonInline}
                 >
                   <span>{getButtonText(user.website)}</span>
                 </Button>

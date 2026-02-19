@@ -2,7 +2,7 @@ import React from 'react';
 import { Dialog, DialogSurface, DialogBody, DialogTitle, Button } from '@fluentui/react-components';
 import { X } from 'lucide-react';
 import ShowcaseCardPanel from '../ShowcaseCardPanel/index';
-import type { User } from '../../../data/tags';
+import { User } from 'src/data/tags';
 
 type GitHubRepoInfo = {
   forks: number;

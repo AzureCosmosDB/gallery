@@ -5,11 +5,11 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import ShowcaseEmptyResult from '../states/ShowcaseEmptyResult';
-import { type User } from '../../../../data/tags';
 import styles from '../../home/styles.module.css';
 import ShowcaseCard from '../cards/ShowcaseCard';
 import Pagination from '../../Pagination';
 import { useLocation } from '@docusaurus/router';
+import { User } from 'src/data/tags';
 
 const LEARNING_PATH_TAGS = [
   'developing-core-applications',
