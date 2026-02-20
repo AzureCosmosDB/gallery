@@ -66,7 +66,9 @@ export type TagType =
   | "rag"
   | "concepts"
   | "how-to"
+  | "documentation"
   | "solution-accelerator"
+  | "workshop"
   | "tutorial"
   | "javascript"
   | "python"
@@ -88,7 +90,6 @@ export type TagType =
   | "adf"
   | "go"
   | "php"
-  | "samples"
   | "analytics"
   | "developing-core-applications"
   | "building-genai-apps"
@@ -154,14 +155,14 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Agents",
     description: "Template implements one or more agents",
     type: "GenerativeAI",
-    buttonText: "Go to Github repo",
+    buttonText: "Go to GitHub Repo",
     color: "green",
   },
   rag: {
     label: "RAG Pattern",
     description: "Template implements RAG Pattern",
     type: "GenerativeAI",
-    buttonText: "Go to Github repo",
+    buttonText: "Go to GitHub Repo",
     color: "green",
   },
 
@@ -180,15 +181,15 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "purple",
     subType: [
       { label: "Connect" },
-      { label: "vscode" },
-      { label: "best-practice" },
-      { label: "devops" },
+      { label: "VSCode" },
+      { label: "Best-Practice" },
+      { label: "DevOps" },
     ],
   },
 
   overview: {
     label: "Overview",
-    description: "Template provides an overview of GenAI capabilities",
+    description: "Template provides an overview of capabilities",
     type: ["GenerativeAI", "ContentType"],
     color: "slate",
   },
@@ -211,7 +212,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "green",
   },
   azureai: {
-    label: "Azure AI services integration",
+    label: "Azure AI Services Integration",
     description: "Template integrates with Azure AI services",
     type: ["GenerativeAI", "ContentType"],
     color: "brown",
@@ -235,11 +236,33 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "solution-accelerator": {
-    label: "Solution Accelerator and Workshop",
+    label: "Solution Accelerator",
     description: "Solution Accelerator",
     type: "ResourceType",
     buttonText: "Explore Solution Accelerator",
     color: "indigo",
+  },
+
+  workshop: {
+    label: "Workshop",
+    description: "Interactive workshop or hands-on lab",
+    type: "ResourceType",
+    buttonText: "Start Workshop",
+    color: "purple",
+  },
+
+  documentation: {
+    label: "Documentation",
+    description:
+      "Documentation resources including concepts, how-to guides, and tutorials",
+    type: "ResourceType",
+    buttonText: "Open Documentation",
+    color: "blue",
+    subType: [
+      { label: "Concepts" },
+      { label: "How-To" },
+      { label: "Tutorial" },
+    ],
   },
 
   concepts: {
@@ -251,7 +274,7 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "how-to": {
-    label: "How-To guide",
+    label: "How-To Guide",
     description: "How-To guide",
     type: "ResourceType",
     buttonText: "Read How-To Guide",
@@ -272,14 +295,6 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "Start Training",
     color: "purple",
-  },
-
-  samples: {
-    label: "Samples",
-    description: "Sample",
-    type: "ResourceType",
-    buttonText: "View Sample",
-    color: "teal",
   },
 
   // Content Category for filtering content

@@ -1,0 +1,7 @@
+node_modules/
+build/
+static/
+arch/
+.img-optimized/
+.templates.json
+

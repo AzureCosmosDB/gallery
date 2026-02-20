@@ -32,12 +32,12 @@ export default function ShowcaseCardPanel({
     .filter((tagObject) => tagObject != "featured")
     .map((tag) => ({ tag, ...Tags[tag] }));
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
+    TagList.indexOf(tagObject.tag),
   );
 
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
   const vectorDatabaseTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "VectorDatabase"
+    (tag) => tag.type === "VectorDatabase",
   );
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
 
@@ -49,6 +49,7 @@ export default function ShowcaseCardPanel({
             key={"tag_" + user.title}
             tags={user.tags}
             cardPanel={true}
+            buttonText={getButtonText(user.website || user.source, user.tags)}
           />
         </div>
         {user.image && (
@@ -137,7 +138,7 @@ export default function ShowcaseCardPanel({
       ) : null}
       {azureTags.length > 0 ? (
         <>
-          <div className={styles.subTitle2}>Services</div>
+          <div className={styles.subTitle2}>Products</div>
           <CardPanelTag tags={azureTags} />{" "}
         </>
       ) : null}
@@ -149,13 +150,10 @@ export default function ShowcaseCardPanel({
             window.open(user.website || user.source, "_blank");
           }}
         >
-          <img
-            src={useBaseUrl("/img/redirect.svg")}
-            height={20}
-            alt="Redirect"
-          />
-          <div className={styles.buttonText}>
-            {getButtonText(user.website || user.source)}
+          <div className={styles.buttonContent}>
+            <span className={styles.buttonText}>
+              {getButtonText(user.website || user.source, user.tags)}
+            </span>
           </div>
         </PrimaryButton>
       </div>

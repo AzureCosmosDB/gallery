@@ -1,0 +1,115 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License.
+ */
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #605e5c;
+  border-radius: 2px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  outline: none;
+}
+
+.checkbox:hover {
+  border-color: #323130;
+}
+
+.checkbox:focus {
+  outline: 2px solid #005a9e;
+  outline-offset: 2px;
+}
+
+.checkbox.checked {
+  background-color: #0078d4;
+  border-color: #0078d4;
+}
+
+.checkbox.checked:hover {
+  background-color: #106ebe;
+  border-color: #106ebe;
+}
+
+.checkbox.indeterminate {
+  background-color: #0078d4;
+  border-color: #0078d4;
+}
+
+.checkbox.indeterminate:hover {
+  background-color: #106ebe;
+  border-color: #106ebe;
+}
+
+.checkbox.disabled {
+  background-color: #f3f2f1;
+  border-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.checkbox.disabled.checked,
+.checkbox.disabled.indeterminate {
+  background-color: #bdbdbd;
+  border-color: #bdbdbd;
+}
+
+.container .checkbox.disabled {
+  cursor: not-allowed;
+}
+
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  width: 12px;
+  height: 12px;
+  color: white;
+}
+
+.minusSign {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.label {
+  color: #323130;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox.disabled + .label {
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+/* Ensure proper alignment */
+.container {
+  white-space: nowrap;
+}

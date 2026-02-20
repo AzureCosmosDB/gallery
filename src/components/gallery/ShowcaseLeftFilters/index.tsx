@@ -13,14 +13,17 @@ import {
   AccordionItem,
   AccordionPanel,
   AccordionToggleEventHandler,
-  Checkbox,
 } from "@fluentui/react-components";
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
+import CustomCheckbox from "../CustomCheckbox";
 
-// Custom component for Learning Path tags with special behavior
+// Helper function to map sub-tag labels to actual tag keys
+function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
+  return subLabel.toLowerCase() as TagType;
+}
 function LearningPathTagSelect({
   label,
   tag,
@@ -56,16 +59,72 @@ function LearningPathTagSelect({
     const isCurrentlySelected = selectedCheckbox.includes(tag);
 
     if (isCurrentlySelected) {
-      // If currently selected, remove it (uncheck) - clear the search
-      const newSearch = "";
+      // If currently selected, remove it (uncheck) - only remove this learning path tag
+      const tags = readSearchTags(location.search);
+      const newTags = tags.filter((t) => t !== tag);
+      const newSearch = replaceSearchTags(location.search, newTags);
       history.replace({
         ...location,
         search: newSearch,
         state: prepareUserState(),
       });
     } else {
-      // If not selected, clear all other tags and set only this learning path tag
-      const newSearch = `tags=${tag}`;
+      // Define compatible resource types for each learning path
+      const learningPathCompatibility = {
+        "building-genai-apps": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "workshop",
+          "training",
+        ],
+        "developing-core-applications": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "blog",
+          "workshop",
+          "training",
+        ],
+        "building-ai-agents": [
+          "documentation",
+          "tutorial",
+          "concepts",
+          "how-to",
+          "video",
+          "workshop",
+          "training",
+        ],
+      };
+
+      const compatibleTypes = learningPathCompatibility[tag] || [];
+
+      // If not selected, clear other learning path tags AND incompatible resource types
+      const tags = readSearchTags(location.search);
+
+      // Remove all other learning path tags and incompatible resource type tags
+      const newTags = tags.filter((t) => {
+        // Keep if not a learning path tag (except the one we're adding)
+        if (!learningPathTags.includes(t as any)) {
+          // For non-learning-path tags, check if it's a resource type
+          const tagObject = Tags[t];
+          if (tagObject && tagObject.type === "ResourceType") {
+            // Keep only compatible resource types
+            return compatibleTypes.includes(t);
+          }
+          // Keep all non-resource-type tags (Language, ContentType, etc.)
+          return true;
+        }
+        return false;
+      });
+
+      // Add the selected learning path tag
+      newTags.push(tag);
+      const newSearch = replaceSearchTags(location.search, newTags);
       history.replace({
         ...location,
         search: newSearch,
@@ -76,8 +135,13 @@ function LearningPathTagSelect({
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-          // Dispatch custom event to switch to list view
+          const navbar = document.querySelector(".navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 20;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          // Dispatch custom event to switch to list view for learning paths
           window.dispatchEvent(new Event("switchToListView"));
         }
       });
@@ -99,12 +163,12 @@ function LearningPathTagSelect({
   // Check if this learning path tag should be disabled
   // It should be disabled if another learning path tag is selected and this one isn't
   const otherLearningPathSelected = learningPathTags.some(
-    (lpTag) => lpTag !== tag && selectedCheckbox.includes(lpTag as TagType)
+    (lpTag) => lpTag !== tag && selectedCheckbox.includes(lpTag as TagType),
   );
   const isDisabled = !activeTags?.includes(tag) || otherLearningPathSelected;
 
   return (
-    <Checkbox
+    <CustomCheckbox
       id={id}
       data-m={contentForAdobeAnalytics}
       onKeyDown={(e) => {
@@ -185,18 +249,21 @@ function ShowcaseFilterViewAll({
                 </AccordionHeader>
                 <AccordionPanel>
                   {tagObject.subType.map((sub, idx) => {
-                    const subTagKey = sub.label.toLowerCase();
-                    const subTagObject = Tags[subTagKey as TagType];
+                    const subTagKey = getSubTagKey(tag, sub.label);
+                    const subTagObject = Tags[subTagKey];
+                    // Create unique key combining parent and child to prevent React confusion
+                    const uniqueKey = `${tag}-${subTagKey}`;
+                    const uniqueId = `showcase_checkbox_id_${tag}_${subTagKey}`;
                     return (
                       <div
-                        key={subTagKey}
+                        key={uniqueKey}
                         className={styles.subCheckboxListItem}
                       >
                         {isLearningPath ? (
                           <LearningPathTagSelect
-                            id={`showcase_checkbox_id_${subTagKey}`}
-                            tag={subTagKey as TagType}
-                            label={subTagObject.label}
+                            id={uniqueId}
+                            tag={subTagKey}
+                            label={sub.label}
                             activeTags={activeTags}
                             selectedCheckbox={selectedCheckbox}
                             setSelectedCheckbox={setSelectedCheckbox}
@@ -206,9 +273,9 @@ function ShowcaseFilterViewAll({
                           />
                         ) : (
                           <ShowcaseTagSelect
-                            id={`showcase_checkbox_id_${subTagKey}`}
-                            tag={subTagKey as TagType}
-                            label={subTagObject.label}
+                            id={uniqueId}
+                            tag={subTagKey}
+                            label={sub.label}
                             activeTags={activeTags}
                             selectedCheckbox={selectedCheckbox}
                             setSelectedCheckbox={setSelectedCheckbox}
@@ -287,7 +354,11 @@ export default function ShowcaseLeftFilters({
   });
   const resourceTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
-    return tagObject.type === "ResourceType";
+    // Exclude standalone documentation sub-types (concepts, how-to, tutorial) since they appear under Documentation parent
+    return (
+      tagObject.type === "ResourceType" &&
+      !["concepts", "how-to", "tutorial"].includes(tag)
+    );
   });
   const contentTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
@@ -315,7 +386,7 @@ export default function ShowcaseLeftFilters({
       multiple
       collapsible
     >
-      <AccordionItem value="1">
+      <AccordionItem value="1" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -324,7 +395,7 @@ export default function ShowcaseLeftFilters({
             className={styles.tagCatalog}
             data-m='{\"id\":\"Learning Paths\",\"cN\":\"Tags Category\"}'
           >
-            Learning Paths
+            Learning Pathways
           </div>
         </AccordionHeader>
         <AccordionPanel>
@@ -341,7 +412,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="2">
+      <AccordionItem value="2" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -350,7 +421,7 @@ export default function ShowcaseLeftFilters({
             className={styles.tagCatalog}
             data-m='{\"id\":\"Service\",\"cN\":\"Tags Category\"}'
           >
-            Services
+            Products
           </div>
         </AccordionHeader>
         <AccordionPanel>
@@ -366,32 +437,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="3">
-        <AccordionHeader
-          expandIconPosition="end"
-          className={styles.tagCatalogBackground}
-        >
-          <div
-            className={styles.tagCatalog}
-            data-m='{\"id\":\"ContentType\",\"cN\":\"Tags Category\"}'
-          >
-            Content Type
-          </div>
-        </AccordionHeader>
-        <AccordionPanel>
-          <ShowcaseFilterViewAll
-            tags={contentTypeTag}
-            number={"3"}
-            activeTags={activeTags}
-            selectedCheckbox={selectedCheckbox}
-            setSelectedCheckbox={setSelectedCheckbox}
-            location={location}
-            readSearchTags={readSearchTags}
-            replaceSearchTags={replaceSearchTags}
-          />
-        </AccordionPanel>
-      </AccordionItem>
-      <AccordionItem value="4">
+      <AccordionItem value="3" className={styles.mainCategoryItem}>
         <AccordionHeader
           expandIconPosition="end"
           className={styles.tagCatalogBackground}
@@ -406,6 +452,31 @@ export default function ShowcaseLeftFilters({
         <AccordionPanel>
           <ShowcaseFilterViewAll
             tags={resourceTypeTag}
+            number={"3"}
+            activeTags={activeTags}
+            selectedCheckbox={selectedCheckbox}
+            setSelectedCheckbox={setSelectedCheckbox}
+            location={location}
+            readSearchTags={readSearchTags}
+            replaceSearchTags={replaceSearchTags}
+          />
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="4" className={styles.mainCategoryItem}>
+        <AccordionHeader
+          expandIconPosition="end"
+          className={styles.tagCatalogBackground}
+        >
+          <div
+            className={styles.tagCatalog}
+            data-m='{\"id\":\"ContentType\",\"cN\":\"Tags Category\"}'
+          >
+            Category
+          </div>
+        </AccordionHeader>
+        <AccordionPanel>
+          <ShowcaseFilterViewAll
+            tags={contentTypeTag}
             number={"4"}
             activeTags={activeTags}
             selectedCheckbox={selectedCheckbox}
@@ -416,7 +487,7 @@ export default function ShowcaseLeftFilters({
           />
         </AccordionPanel>
       </AccordionItem>
-      <AccordionItem value="5">
+      <AccordionItem value="5" className={styles.mainCategoryItem}>
         <AccordionHeader expandIconPosition="end">
           <div
             className={styles.tagCatalog}

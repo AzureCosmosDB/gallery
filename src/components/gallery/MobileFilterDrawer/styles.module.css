@@ -1,0 +1,295 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License.
+ */
+
+.filterButton {
+  position: relative;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+.filterBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: #0f6cbd;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.mobileDrawer {
+  z-index: 1000;
+}
+
+/* Override Fluent UI drawer styles for bottom position */
+.mobileDrawer :global(.fui-Drawer) {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  max-height: 85vh;
+}
+
+.mobileDrawer :global(.fui-DrawerBody) {
+  padding: 0;
+  overflow-y: auto;
+  max-height: calc(80vh);
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawerHeader {
+    padding: 16px !important;
+}
+
+.drawerHeader :global(.fui-DrawerHeaderTitle) {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.closeButton {
+  width: 34px !important;
+  height: 34px !important;
+  border: 1px solid #E6E7EB !important;
+  border-radius: 8px !important;
+  min-width: 34px !important;
+  padding: 0 !important;
+}
+
+.drawerBody {
+  padding: 0;
+}
+
+.sortSection {
+  padding: 0 16px;
+}
+
+.filterSection {
+  padding: 8px 0 0;
+}
+
+.sectionTitle {
+  display: flex;
+  height: 38px;
+  padding: 0 10.493px 0 10.494px;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: stretch;
+  color: #323130;
+  font-family: Inter;
+  font-size: 12.25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  border-radius: 8.75px;
+  background: rgba(243, 242, 241, 0.50);
+  margin: 0;
+}
+
+.filterAccordion {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordionItem {
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+/* Add spacing below main category accordion items only */
+.mainCategoryItem {
+  margin-bottom: 12px !important;
+}
+
+.accordionHeader {
+  display: flex !important;
+
+  padding: 0 10.493px 0 10.494px !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  align-self: stretch !important;
+  color: #323130 !important;
+  font-family: Inter !important;
+  font-size: 12.25px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 17.5px !important;
+  border-radius: 8.75px !important;
+  background: rgba(243, 242, 241, 0.5) !important;
+  margin-bottom: 0 !important;
+  border: none !important;
+}
+
+.accordionHeader :global(.fui-AccordionHeader__button) {
+  background: transparent !important;
+  min-height: unset !important;
+}
+
+.mobileDrawer :global(.fui-AccordionPanel) {
+  margin: 0 !important;
+}
+
+.checkboxItem {
+  user-select: none;
+  color: #323130;
+  font-family: Inter;
+  font-size: 12.25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12.25px;
+  letter-spacing: -0.018px;
+}
+
+.nestedCheckboxGroup {
+  margin-bottom: 8px;
+}
+
+.categorySection {
+  padding: 22px 22px 0;
+}
+
+.subCheckboxGroup {
+  padding-left: 24px;
+  margin-top: 8px;
+}
+
+.radioOption {
+  margin-bottom: 0;
+  color: #323130;
+  font-family: Inter;
+  font-size: 12.25px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.divider {
+  display: none;
+}
+
+.drawerFooter {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 34px;
+  border-top: none;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.clearButton {
+  display: flex;
+  height: 27.995px;
+  padding: 0 10.5px;
+  justify-content: center;
+  align-items: center;
+  gap: 5.25px;
+  flex: 1 0 0;
+  border-radius: 6.75px;
+  border: 0.568px solid rgba(0, 120, 212, 0.15);
+  background: #FFF;
+  color: #323130;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+}
+
+.applyButton {
+  display: flex;
+  height: 27.995px;
+  padding: 0 10.5px;
+  justify-content: center;
+  align-items: center;
+  gap: 5.25px;
+  flex: 1 0 0;
+  border-radius: 6.75px;
+  border: 0.568px solid rgba(0, 120, 212, 0.15);
+  background: #0078D4;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+}
+
+/* Radio button and checkbox styles */
+.radioOption :global(.fui-Radio__indicator) {
+  width: 13.997px !important;
+  height: 13.997px !important;
+  border-radius: 20px !important;
+  border: 0.568px solid rgba(0, 120, 212, 0.15) !important;
+  background: #F3F2F1 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.checkboxItem :global(.fui-Checkbox__indicator) {
+  width: 13.997px !important;
+  height: 13.997px !important;
+  flex-shrink: 0 !important;
+  border-radius: 4px !important;
+  border: 0.568px solid rgba(0, 120, 212, 0.15) !important;
+  background: #F3F2F1 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Make the checkbox checkmark (SVG/path) use the primary blue color */
+.checkboxItem :global(.fui-Checkbox__indicator) svg,
+.checkboxItem :global(.fui-Checkbox__indicator) path {
+  fill: #0078D4 !important;
+  stroke: #0078D4 !important;
+}
+
+/* Also set currentColor on the indicator so SVGs using currentColor inherit the blue */
+.checkboxItem :global(.fui-Checkbox__indicator) {
+  color: #0078D4 !important;
+}
+
+/* Checkbox checked tick color */
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) {
+  background: #0078D4 !important;
+  border-color: #0078D4 !important;
+}
+
+.checkboxItem :global(.fui-Checkbox__indicator[aria-checked="true"]) :global(.fui-Checkbox__check) {
+  color: #FFF !important;
+}
+
+.radioOption :global(.fui-Radio__label),
+.checkboxItem :global(.fui-Checkbox__label) {
+  color: #323130 !important;
+  font-family: Inter !important;
+  font-size: 12.25px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 12.25px !important;
+  letter-spacing: -0.018px !important;
+}
+/* Show filter button on mobile */
+@media screen and (max-width: 768px) {
+  .filterButton {
+    display: flex;
+  }
+}

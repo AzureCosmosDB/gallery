@@ -12,13 +12,22 @@ import { useHistory, useLocation } from "@docusaurus/router";
 
 const title = "Application Developer Hub";
 const description =
-  "Discover comprehensive resources, learning paths, and community support to accelerate your PostgreSQL development journey on Azure.";
+  "Discover comprehensive resources, learning pathways, and community support to accelerate your PostgreSQL development journey on Azure.";
 const subDescription = "for PostgreSQL on Azure";
 
 export default function ShowcaseCoverPage() {
   const bgUrl = useBaseUrl("/img-optimized/dotted-background-opacity40.png");
   const history = useHistory();
   const location = useLocation();
+
+  // Resource links for the Resource Library card (ordered & mapped)
+  const heroResourceLinks = [
+    { label: "Tutorials", tags: ["documentation", "how-to", "tutorial"] },
+    { label: "Solution Accelerators", tags: ["solution-accelerator"] },
+    { label: "Training", tags: ["training", "workshop"] },
+    { label: "Videos", tags: ["video"] },
+    { label: "Blogs", tags: ["blog"] },
+  ];
 
   // Scroll to resource library section with filtering
   const scrollToResourceLibrary = (e, tagFilters = []) => {
@@ -46,22 +55,29 @@ export default function ShowcaseCoverPage() {
     requestAnimationFrame(() => {
       const el = document.getElementById("resource-library");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        if (hasFilters) {
-          // Dispatch custom event to switch to list view
-          window.dispatchEvent(new Event("switchToListView"));
-        }
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        // Note: Do not switch to list view for hero section links
       }
     });
   };
 
-  // Scroll to learning paths section
+  // Scroll to pathways section
   const scrollToLearningPaths = (e) => {
     e.preventDefault();
     requestAnimationFrame(() => {
       const el = document.getElementById("learning-paths");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
   };
@@ -72,7 +88,12 @@ export default function ShowcaseCoverPage() {
     requestAnimationFrame(() => {
       const el = document.getElementById("community-support");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
   };
@@ -85,8 +106,11 @@ export default function ShowcaseCoverPage() {
       >
         <div className={styles.coverPageArea}>
           <div className={styles.titleSection}>
-            <Display className={styles.heroTitle}>{title}</Display>
-            <Title3 className={styles.greyText}>{subDescription}</Title3>
+            <span className={styles.heroTextWrapper}>
+              <Display className={styles.heroTitle}>{title}</Display>
+              <Title3 className={styles.greyText}>{subDescription}</Title3>
+            </span>
+
             <Title3 className={styles.centeredDescription}>
               {description}
             </Title3>
@@ -110,7 +134,7 @@ export default function ShowcaseCoverPage() {
                 </div>
                 <span className={styles.cardTitle}>Learning Pathways</span>
                 <span className={styles.cardDesc}>
-                  Structured learning paths from beginner to advanced
+                  Structured learning pathways from beginner to advanced
                 </span>
               </div>
               {/* Card 2 */}
@@ -134,57 +158,20 @@ export default function ShowcaseCoverPage() {
                   className={styles.cardLinks}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["training"])}
-                  >
-                    Trainings
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) =>
-                      scrollToResourceLibrary(e, ["concepts", "how-to"])
-                    }
-                  >
-                    Documentation
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["samples"])}
-                  >
-                    Samples
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["blog"])}
-                  >
-                    Blogs
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) => scrollToResourceLibrary(e, ["video"])}
-                  >
-                    Videos
-                  </a>{" "}
-                  |
-                  <a
-                    href="#resource-library"
-                    className={styles.resourceLink}
-                    onClick={(e) =>
-                      scrollToResourceLibrary(e, ["solution-accelerator"])
-                    }
-                  >
-                    Solution Accelerators
-                  </a>
+                  {heroResourceLinks.map((item, idx) => (
+                    <React.Fragment key={item.label}>
+                      <a
+                        href="#resource-library"
+                        className={styles.resourceLink}
+                        onClick={(e) => scrollToResourceLibrary(e, item.tags)}
+                      >
+                        {item.label}
+                      </a>
+                      {idx < heroResourceLinks.length - 1 && (
+                        <span className={styles.linkSeparator}> | </span>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </span>
               </div>
               {/* Card 3 */}

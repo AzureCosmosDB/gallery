@@ -26,7 +26,7 @@ export default function NavbarMobilePrimaryMenu() {
         const navbar = document.querySelector('.navbar');
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight - 20;
+        const offsetPosition = elementPosition - navbarHeight;
         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
       mobileSidebar.toggle();
@@ -41,8 +41,11 @@ export default function NavbarMobilePrimaryMenu() {
     requestAnimationFrame(() => {
       const el = document.getElementById('resource-library');
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        window.dispatchEvent(new Event('switchToListView'));
+        const navbar = document.querySelector('.navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - 20;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
     });
     mobileSidebar.toggle();
@@ -71,17 +74,18 @@ export default function NavbarMobilePrimaryMenu() {
         <Link className="menu__link" to="#home" onClick={(e)=>handleScroll(e,'#home')}>Home</Link>
       </li>
       <li className="menu__list-item">
-        <Link className="menu__link" to="#learning-paths" onClick={(e)=>handleScroll(e,'#learning-paths')}>Learning Paths</Link>
+        <Link className="menu__link" to="#learning-paths" onClick={(e)=>handleScroll(e,'#learning-paths')}>Learning Pathways</Link>
       </li>
       <li className="menu__list-item">
         <Link className="menu__link" to="#resource-library" onClick={(e)=>handleScroll(e,'#resource-library')}>Resource Library</Link>
         <ul className="menu__list">
           <li className="menu__list-item"><a className="menu__link" href="#documentation" onClick={(e)=>handleFilterNavigate(e,'concepts')}>Documentation</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#solution-accelerators" onClick={(e)=>handleFilterNavigate(e,'solution-accelerator')}>Solution Accelerators</a></li>
+        <li className="menu__list-item"><a className="menu__link" href="#workshops" onClick={(e)=>handleFilterNavigate(e,'workshop')}>Workshops</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#videos" onClick={(e)=>handleFilterNavigate(e,'video')}>Videos</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#blogs" onClick={(e)=>handleFilterNavigate(e,'blog')}>Blogs</a></li>
           <li className="menu__list-item"><a className="menu__link" href="#trainings" onClick={(e)=>handleFilterNavigate(e,'training')}>Trainings</a></li>
-          <li className="menu__list-item"><a className="menu__link" href="#samples" onClick={(e)=>handleFilterNavigate(e,'samples')}>Samples</a></li>
+          
         </ul>
       </li>
       <li className="menu__list-item">
