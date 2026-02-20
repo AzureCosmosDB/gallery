@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import styles from "./styles.module.css";
 import { ArrowRight, Database, Bot, Layers } from "lucide-react";
 import ShowcaseCards from "../../pages/ShowcaseCards";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/pagination";
 import { featuredUsers } from "../../data/users";
 import siteConfig from "@generated/docusaurus.config";
 
@@ -59,6 +60,17 @@ export default function LearningPathsSection({
 }) {
   const history = useHistory();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentTags = searchParams.getAll("tags");
+  const LEARNING_PATH_TAGS = [
+    "developing-core-applications",
+    "building-genai-apps",
+    "building-ai-agents",
+  ];
+  const isLearningPathFiltered = currentTags.some((t) =>
+    LEARNING_PATH_TAGS.includes(t),
+  );
+  const [currentIndex, setCurrentIndex] = useState(0);
   const onTileClick = (idx) => {
     let newSearch = "";
     if (idx === 0) {
@@ -80,7 +92,12 @@ export default function LearningPathsSection({
     const scrollToGallery = () => {
       const el = document.getElementById("resource-library");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        const navbar = document.querySelector(".navbar");
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const elementPosition =
+          el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         // Dispatch custom event after scrolling
         window.dispatchEvent(new Event("switchToListView"));
       }
@@ -94,7 +111,12 @@ export default function LearningPathsSection({
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const navbar = document.querySelector(".navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Dispatch custom event after scrolling
           window.dispatchEvent(new Event("switchToListView"));
         }
@@ -108,7 +130,7 @@ export default function LearningPathsSection({
       <div className={styles.left}>
         <h2 className={styles.heading}>Learning Pathways</h2>
         <div className={styles.sectionDesc}>
-          Choose from structured learning paths designed to guide you through
+          Choose from structured learning pathways designed to guide you through
           PostgreSQL development on Azure, from basic application development to
           advanced AI integration.
         </div>
@@ -147,18 +169,48 @@ export default function LearningPathsSection({
           comprehensive guides, tutorials, and solution accelerators.
         </div>
         <Swiper
-          spaceBetween={24}
+          spaceBetween={12}
           slidesPerView={1}
+          slidesPerGroup={1}
+          centeredSlides={true}
           className={styles.featuredSlider}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          modules={[Autoplay]}
+          // Numeric pagination is rendered separately for mobile only
+          onInit={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
+          onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex || 0)}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 24,
+              centeredSlides: false,
+            },
+            320: {
+              slidesPerView: 1.2,
+              spaceBetween: 12,
+              centeredSlides: true,
+            },
+          }}
+          modules={[Autoplay, Pagination]}
         >
           {featuredUsers.map((user, idx) => (
             <SwiperSlide key={idx}>
-              <ShowcaseCards filteredUsers={[user]} coverPage={true} noGrid />
+              <ShowcaseCards
+                filteredUsers={[user]}
+                coverPage={true}
+                noGrid
+                forceShowTileNumber={isLearningPathFiltered}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
+        {/* Mobile-only numeric pagination (e.g. "1 / 5") placed below the slider */}
+        <div className={styles.numericPagination} aria-hidden={false}>
+          {/* initial value will be updated by Swiper events when mounted */}
+          <span className={styles.numericCurrent}>{currentIndex + 1}</span>
+          <span className={styles.numericSlash}> / </span>
+          <span className={styles.numericTotal}>{featuredUsers.length}</span>
+        </div>
       </div>
     </section>
   );

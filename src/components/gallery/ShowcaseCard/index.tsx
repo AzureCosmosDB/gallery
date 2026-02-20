@@ -31,10 +31,12 @@ function ShowcaseCard({
   user,
   coverPage,
   fixedHeight,
+  tileNumber,
 }: {
   user: User;
-  coverPage: Boolean;
+  coverPage: boolean;
   fixedHeight?: number;
+  tileNumber?: number;
 }): JSX.Element {
   const tags = user.tags;
   const title = user.title;
@@ -45,7 +47,6 @@ function ShowcaseCard({
     !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const shouldUseLearningPathContent =
     isLearningPathFiltered &&
-    user.tileNumber !== undefined &&
     !!user.learningPathTitle &&
     !!user.learningPathDescription;
   const displayTitle = shouldUseLearningPathContent
@@ -63,7 +64,7 @@ function ShowcaseCard({
   const fetchGitHubData = async (owner: string, repo: string) => {
     try {
       const response = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}`
+        `https://api.github.com/repos/${owner}/${repo}`,
       );
 
       if (response.status === 429) {
@@ -116,20 +117,32 @@ function ShowcaseCard({
           onClick={openDialog}
           style={fixedHeight ? { height: fixedHeight } : undefined}
         >
+          {/* Mobile-only tile number badge when a tileNumber is supplied (parent controls when to provide it) */}
+          {tileNumber !== undefined && (
+            <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
+          )}
           {user.image && (
-            <OptimizedImage
-              src={user.image}
-              alt={displayTitle + " image"}
-              height={200}
-              objectFit="cover"
-              style={{
-                width: "100%",
-                borderRadius: "8px 8px 0px 0px",
-              }}
-            />
+            <div className={styleCSS.imageContainer}>
+              <OptimizedImage
+                src={user.image}
+                alt={displayTitle + " image"}
+                objectFit="cover"
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  display: "block",
+                  borderRadius: "8px 8px 0px 0px",
+                }}
+              />
+            </div>
           )}
           <div className={styleCSS.cardTags}>
-            <ShowcaseCardTag key={displayTitle} tags={tags} cardPanel={false} />
+            <ShowcaseCardTag
+              key={displayTitle}
+              tags={tags}
+              cardPanel={false}
+              buttonText={getButtonText(user.website, user.tags)}
+            />
           </div>
           <div style={{ padding: 16 }}>
             {coverPage ? (
@@ -163,9 +176,14 @@ function ShowcaseCard({
                 width: "100%",
                 fontSize: "16px",
                 backgroundColor: "#0078d4",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingLeft: "16px",
+                paddingRight: "16px",
               }}
             >
-              {getButtonText(user.website)}
+              <span>{getButtonText(user.website, user.tags)}</span>
             </Button>
           )}
           {/* </CardFooter> */}

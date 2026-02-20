@@ -13,7 +13,7 @@ function ShowcaseMultipleWebsites(
   authorName: string,
   websiteLink: string,
   length: number,
-  i: number
+  i: number,
 ) {
   if (i != length - 1) {
     return (
@@ -40,14 +40,14 @@ function ShowcaseMultipleWebsites(
   }
 }
 
-export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
+function ShowcaseMultipleAuthors({ user }: { user: User }) {
   const authors = user?.author;
   const websites = user?.website;
   let i = 0;
 
   if (authors?.includes(", ")) {
-    var multiWebsites = websites.split(", ");
-    var multiAuthors = authors?.split(", ");
+    const multiWebsites = websites.split(", ");
+    const multiAuthors = authors?.split(", ");
 
     if (multiWebsites.length != multiAuthors?.length) {
       throw new Error(
@@ -55,7 +55,7 @@ export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
           multiAuthors?.length +
           ") and websites(" +
           multiWebsites.length +
-          ") are not equal."
+          ") are not equal.",
       );
     }
 
@@ -68,7 +68,7 @@ export default function ShowcaseMultipleAuthors({ user }: { user: User }) {
             multiAuthors?.[index],
             multiWebsites[index],
             multiWebsites.length,
-            i++
+            i++,
           );
         })}
       </>

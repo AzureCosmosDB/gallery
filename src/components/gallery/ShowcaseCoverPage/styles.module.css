@@ -1,8 +1,7 @@
 /* Reusable style for resource links */
 .resourceLink {
-  color: #83817f;
-  text-decoration: none;
-  font-weight: 500;
+  color: #555;
+  text-decoration: underline;
 }
 .resourceLink:hover{
   text-decoration: underline;
@@ -23,6 +22,11 @@
   box-sizing: border-box;
   box-shadow: 0 8px 32px 0 rgba(60,60,60,0.18), 0 1.5px 6px 0 rgba(60,60,60,0.10);
   cursor: pointer;
+}
+
+.heroTextWrapper{
+  display: flex;
+  flex-direction: column;
 }
 
 .cardCommon:hover{
@@ -74,18 +78,24 @@
   color: #555;
   text-align: center;
   font-size: 15px;
-  line-height: 1.4;
+  line-height: 1.2;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px;
   justify-content: center;
+}
+
+.linkSeparator {
+  font-size: 12px;
+  /* line-height: 1; */
+  margin-top: 3px;
 }
 
 .cardsRow {
   display: flex;
   justify-content: center;
   gap: 32px;
-  margin: 32px 0;
+  padding-top: 32px;
   flex-wrap: wrap;
 }
 
@@ -103,10 +113,12 @@
 }
 .centeredDescription {
   text-align: center !important;
+  line-height: 1.5 !important;
   width: 100%;
   color: #636364;
   font-size: 24px !important;
   font-weight: 400 !important;
+  max-width: 934px;
 }
 .greyText{
   text-align: center !important;
@@ -135,25 +147,26 @@
 
 .coverPageContainer {
   display: inline-block;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   width: 100%;
 }
 
 .coverPageAreaContainer {
   margin: 0 auto;
-   background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
- 
 }
 
 .coverPageArea {
-  padding: 180px 72px 96px 72px;
-  max-height: fit-content; 
+  /* padding: 180px 72px 96px 72px; */
+  /* max-height: fit-content;  */
   text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  height: 736px;
 }
 
 .titleSection {
@@ -162,7 +175,7 @@
   align-items: center;
   text-align: center;
   gap: 16px;
-  width: 65%;
+  /* width: 65%; */
 }
 
 .subtitleSection {
@@ -197,6 +210,7 @@
 
   .centeredDescription {
     font-size: 20px !important;
+    line-height: 1.5;
   }
 }
 

@@ -10,13 +10,16 @@ import { TagList } from "../../../data/users";
 import { sortBy } from "../../../utils/jsUtils";
 import { Tooltip } from "@fluentui/react-components";
 import CustomBadge from "../../CustomBadge";
+import { sortResourceTypeTagsByCTA } from "../../../utils/tagPriorityUtils";
 
 export default function ShowcaseCardTag({
   tags,
   cardPanel,
+  buttonText,
 }: {
   tags: TagType[];
   cardPanel: boolean;
+  buttonText?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -28,48 +31,54 @@ export default function ShowcaseCardTag({
     .map((tag) => ({ tag, ...Tags[tag] }));
 
   const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag)
+    TagList.indexOf(tagObject.tag),
   );
 
   const languageTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "Language"
+    (tag) => tag.type === "Language",
   );
 
   const modelTags = tagObjectsSorted.filter((tag) => tag.type === "Model");
 
   const intelligentSolutionTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "GenerativeAI"
+    (tag) => tag.type === "GenerativeAI",
   );
 
   const azureTags = tagObjectsSorted.filter((tag) => tag.type === "Azure");
 
   const resourceTypeTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "ResourceType"
+    (tag) => tag.type === "ResourceType",
   );
 
+  // Sort resource type tags by CTA-based priority if buttonText is provided
+  const sortedResourceTypeTags = buttonText
+    ? sortResourceTypeTagsByCTA(resourceTypeTags, buttonText)
+    : resourceTypeTags;
+
   const contentTypeTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "ContentType"
+    (tag) => tag.type === "ContentType",
   );
 
   const serviceTags = tagObjectsSorted.filter((tag) => tag.type === "Service");
 
   const learningPathTags = tagObjectsSorted.filter(
-    (tag) => tag.type === "LearningPath"
+    (tag) => tag.type === "LearningPath",
   );
 
+  // New priority order: Resource type → Category → Product → Language → Learning Path
   const tagsByTypeSorted = [
-    ...languageTags,
+    ...sortedResourceTypeTags, // Resource type (with CTA-based priority)
+    ...contentTypeTags, // Category
+    ...intelligentSolutionTags, // Category (GenerativeAI)
+    ...azureTags, // Products
+    ...serviceTags, // Products
+    ...languageTags, // Language
     ...modelTags,
-    ...intelligentSolutionTags,
-    ...azureTags,
-    ...resourceTypeTags,
-    ...contentTypeTags,
-    ...serviceTags,
-    ...learningPathTags,
+    ...learningPathTags, // Learning Path
   ];
 
   if (!cardPanel) {
-    // Standard: Always show exactly 3 badges, then show "+X more" for the rest
+    // Standard: Show first tags, then show "+X more" for the rest
     const shownTags = tagsByTypeSorted.slice(0, MAX_VISIBLE_TAGS);
     const restCount = tagsByTypeSorted.length - MAX_VISIBLE_TAGS;
     const hiddenTags = tagsByTypeSorted.slice(MAX_VISIBLE_TAGS);
@@ -83,7 +92,7 @@ export default function ShowcaseCardTag({
             <CustomBadge
               appearance="tint"
               size="medium"
-              color="informative"
+              color="subtle"
               key={key}
               className={styles.cardTag}
             >
@@ -132,8 +141,8 @@ export default function ShowcaseCardTag({
             <CustomBadge
               appearance="tint"
               size="medium"
-              color="informative"
-              key={index}
+              color="subtle"
+              key={id}
               className={styles.cardPanelColoredTag}
             >
               {tagObject.label}

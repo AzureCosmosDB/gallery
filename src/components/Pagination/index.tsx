@@ -23,10 +23,12 @@ const Pagination: React.FC<PaginationProps> = ({
       setTimeout(() => {
         const resourceLibrary = document.getElementById("resource-library");
         if (resourceLibrary) {
-          resourceLibrary.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+          const navbar = document.querySelector(".navbar");
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const elementPosition =
+            resourceLibrary.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       }, 50); // Small delay to ensure page content updates first
     }
