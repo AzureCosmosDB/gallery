@@ -6,7 +6,6 @@ import QuickLinks from "./sections/QuickLinks";
 import CommunitySupportSection from "./sections/CommunitySupportSection";
 import LearningPathsSection from "./sections/LearningPathsSection";
 import HeroCover from "./sections/HeroSection";
-import DisclaimerSection from "./sections/DisclaimerSection";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { initializeIcons } from "@fluentui/react/lib/Icons";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
@@ -147,7 +146,6 @@ export default function HomePage(): JSX.Element {
         <meta name="twitter:url" content="https://x.com/AzureDBPostgres" />
       </Helmet>
       <App />
-      <DisclaimerSection />
     </>
   );
 }

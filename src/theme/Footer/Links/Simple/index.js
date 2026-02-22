@@ -27,7 +27,6 @@ export default function FooterLinksSimple({ links }) {
       {links.map((item, i) => (
         <React.Fragment key={i}>
           <SimpleLinkItem item={item} />
-          {links.length !== i + 1 && <Separator id={"footer__links_" + item.label} />}
         </React.Fragment>
       ))}
     </div>
