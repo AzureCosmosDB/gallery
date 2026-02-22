@@ -8,7 +8,11 @@ import { useNavbarLogoSrc } from "../../components/home/sections/DisclaimerSecti
 export default function Footer() {
   const { footer } = useThemeConfig();
   const { siteConfig, title, description } = useDisclaimerSection();
-  const siteCfg: any = siteConfig;
+  type SiteCfgType = {
+    themeConfig?: { navbar?: { logo?: { src?: string } } };
+    title?: string;
+  };
+  const siteCfg = siteConfig as SiteCfgType;
   const logoSrc = useNavbarLogoSrc(siteCfg?.themeConfig?.navbar?.logo?.src);
 
   if (!footer) {

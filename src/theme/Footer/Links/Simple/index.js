@@ -1,13 +1,6 @@
 import React from "react";
 import LinkItem from "@theme/Footer/LinkItem";
 import styles from "./styles.module.css";
-function Separator({ id }) {
-  return (
-    <span className="footer__link-separator" id={id}>
-      ·
-    </span>
-  );
-}
 function SimpleLinkItem({ item }) {
   return item.html ? (
     <span
