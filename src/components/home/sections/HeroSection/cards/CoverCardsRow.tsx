@@ -34,23 +34,64 @@ export function CoverCardsRow({
         onClick={() => onResourceLibrary([])}
       >
         <span className={styles.cardLinks} onClick={(e) => e.stopPropagation()}>
-          {heroResourceLinks.map((item, idx) => (
-            <React.Fragment key={item.label}>
-              <a
-                href="#resource-library"
-                className={styles.resourceLink}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onResourceLibrary(item.tags);
-                }}
-              >
-                {item.label}
-              </a>
-              {idx < heroResourceLinks.length - 1 && (
-                <span className={styles.linkSeparator}> | </span>
-              )}
-            </React.Fragment>
-          ))}
+          <a
+            href="#resource-library"
+            className={styles.resourceLink}
+            onClick={(e) => {
+              e.preventDefault();
+              onResourceLibrary(["documentation", "tutorial", "how-to"]);
+            }}
+          >
+            Tutorials
+          </a>
+          <span className={styles.linkSeparator}> | </span>
+
+          <a
+            href="#resource-library"
+            className={styles.resourceLink}
+            onClick={(e) => {
+              e.preventDefault();
+              onResourceLibrary(["solution-accelerator"]);
+            }}
+          >
+            Solution Accelerator
+          </a>
+          <span className={styles.linkSeparator}> | </span>
+
+          <a
+            href="#resource-library"
+            className={styles.resourceLink}
+            onClick={(e) => {
+              e.preventDefault();
+              onResourceLibrary(["training", "workshop"]);
+            }}
+          >
+            Trainings
+          </a>
+          <span className={styles.linkSeparator}> | </span>
+
+          <a
+            href="#resource-library"
+            className={styles.resourceLink}
+            onClick={(e) => {
+              e.preventDefault();
+              onResourceLibrary(["video"]);
+            }}
+          >
+            Videos
+          </a>
+          <span className={styles.linkSeparator}> | </span>
+
+          <a
+            href="#resource-library"
+            className={styles.resourceLink}
+            onClick={(e) => {
+              e.preventDefault();
+              onResourceLibrary(["blog"]);
+            }}
+          >
+            Blogs
+          </a>
         </span>
       </CoverCard>
 

@@ -123,7 +123,7 @@ function ShowcaseCard({
               key={displayTitle}
               tags={tags}
               cardPanel={false}
-              buttonText={getButtonText(user.website)}
+              buttonText={getButtonText(user.website, user.tags)}
             />
           </div>
           <div className={styleCSS.cardContent}>
@@ -150,7 +150,7 @@ function ShowcaseCard({
               onClick={(e) => e.stopPropagation()}
               className={styleCSS.linkButton}
             >
-              <span>{getButtonText(user.website)}</span>
+              <span>{getButtonText(user.website, user.tags)}</span>
             </Button>
           )}
           {/* </CardFooter> */}

@@ -39,7 +39,7 @@ export default function ShowcaseCardPanel({
             key={"tag_" + user.title}
             tags={user.tags}
             cardPanel={true}
-            buttonText={getButtonText(user.website || user.source)}
+            buttonText={getButtonText(user.website || user.source, user.tags)}
           />
         </div>
         {user.image && (

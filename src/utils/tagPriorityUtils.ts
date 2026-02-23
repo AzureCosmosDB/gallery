@@ -23,7 +23,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "solution-accelerator",
     "video",
     "training",
-    "samples",
     "blog",
   ],
 
@@ -37,7 +36,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "solution-accelerator",
     "video",
     "workshop",
-    "samples",
     "blog",
   ],
 
@@ -51,7 +49,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
 
@@ -65,7 +62,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
   "View Documentation": [
@@ -77,7 +73,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
   "Open Documentation": [
@@ -89,7 +84,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
   "Read Concepts": [
@@ -101,7 +95,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
   "Read How-To Guide": [
@@ -113,7 +106,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "video",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
 
@@ -127,7 +119,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "solution-accelerator",
     "workshop",
     "training",
-    "samples",
     "blog",
   ],
 
@@ -142,7 +133,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "how-to",
     "solution-accelerator",
     "video",
-    "samples",
     "blog",
   ],
 
@@ -152,7 +142,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "tutorial",
     "concepts",
     "how-to",
-    "samples",
     "solution-accelerator",
     "video",
     "workshop",
@@ -165,7 +154,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "concepts",
     "how-to",
     "solution-accelerator",
-    "samples",
     "video",
     "workshop",
     "training",
@@ -180,7 +168,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "how-to",
     "solution-accelerator",
     "video",
-    "samples",
     "workshop",
     "training",
     "blog",
@@ -196,7 +183,6 @@ const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
     "how-to",
     "solution-accelerator",
     "video",
-    "samples",
     "blog",
   ],
 };
@@ -213,7 +199,6 @@ const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
   "video",
   "workshop",
   "training",
-  "samples",
   "blog",
 ];
 

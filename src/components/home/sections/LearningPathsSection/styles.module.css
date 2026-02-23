@@ -16,6 +16,7 @@
   border-radius: 12px;
   padding: 2px 8px;
   font-size: 0.75rem;
+  line-height: 20px;
   font-weight: 600;
 }
 .durationChip {
@@ -25,6 +26,7 @@
   border-radius: 12px;
   padding: 2px 12px;
   font-size: 0.75rem;
+  line-height: 20px;
   font-weight: 500;
 }
 .learningPathsSection {
@@ -95,6 +97,7 @@
   border-radius: 12px;
   padding: 3px 12px;
   font-size: 0.75rem;
+  line-height: 20px;
   margin-right: 2px;
 }
 .arrow {

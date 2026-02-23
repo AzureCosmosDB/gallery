@@ -90,7 +90,6 @@ export type TagType =
   | "adf"
   | "go"
   | "php"
-  | "samples"
   | "analytics"
   | "developing-core-applications"
   | "building-genai-apps"
@@ -291,14 +290,6 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ResourceType",
     buttonText: "Start Training",
     color: "purple",
-  },
-
-  samples: {
-    label: "Samples",
-    description: "Sample",
-    type: "ResourceType",
-    buttonText: "View Sample",
-    color: "teal",
   },
 
   // Content Category for filtering content

@@ -145,15 +145,6 @@ export default function NavbarMobilePrimaryMenu() {
               Trainings
             </a>
           </li>
-          <li className="menu__list-item">
-            <a
-              className="menu__link"
-              href="#samples"
-              onClick={(e) => handleFilterNavigate(e, "samples")}
-            >
-              Samples
-            </a>
-          </li>
         </ul>
       </li>
       <li className="menu__list-item">

@@ -281,7 +281,6 @@ const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
     "workshop",
     "training",
     "video",
-    "samples",
   ],
   "building-genai-apps": [
     "documentation",

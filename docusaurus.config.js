@@ -24,14 +24,14 @@ const config = {
         href: "http://aka.ms/postgres",
       },
       {
-        icon: "BookOpen",
+        icon: "FileText",
         color: "#1960fc",
         label: "Documentation",
         description: "Complete guides and API references",
         href: "https://aka.ms/postgresqldocs",
       },
       {
-        icon: "Rss",
+        icon: "NotepadText",
         color: "#04a841",
         label: "Blog",
         description: "Latest updates and insights",
@@ -52,11 +52,18 @@ const config = {
         href: "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
       },
       {
-        icon: "Play",
-        color: "#e80913",
-        label: "Video Learning",
-        description: "Step-by-step video tutorials",
-        href: "https://youtube.com/playlist?list=PLmsFUfdnGr3ySdB8_FVI71bp8wVsgMQU7",
+        icon: "Database",
+        color: "#6f2c91",
+        label: "Azure HorizonDB Homepage",
+        description: "Explore product specs, architecture, and documentation",
+        href: "https://aka.ms/AzureHorizonDB",
+      },
+      {
+        icon: "BookOpen",
+        color: "#1960fc",
+        label: "eBook - Build AI apps and agents",
+        description: "Guide to building AI apps and agents",
+        href: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/azure/acom/documents/pdfs/en-us/azure-postgresql-no-ai-without-data-ebook-082225-aac.pdf",
       },
     ],
     learningPathsSection: {
@@ -167,9 +174,7 @@ const config = {
           icon: "Lightbulb",
           iconColor: "#9a15fa",
           iconBg: "#f5e6fd",
-          actions: [
-            { label: "Submit Idea", href: "https://aka.ms/pgfeedback" },
-          ],
+          actions: [{ label: "Submit Idea", href: "https://aka.ms/pgfeedback" }],
         },
         {
           title: "Events & Webinars",
@@ -346,13 +351,11 @@ const config = {
           showReadingTime: true,
           routeBasePath: "blog",
           blogTitle: "Application Developer Hub Blog",
-          blogDescription:
-            "Latest updates, community stories, and developer news",
+          blogDescription: "Latest updates, community stories, and developer news",
           feedOptions: {
             type: "all", // 'rss' | 'atom' | 'all'
             title: "Application Developer Hub Blog RSS Feed",
-            description:
-              "Stay updated with new blog posts from Application Developer Hub",
+            description: "Stay updated with new blog posts from Application Developer Hub",
             language: "en",
             copyright: `Copyright © ${new Date().getFullYear()} Microsoft`,
           },
