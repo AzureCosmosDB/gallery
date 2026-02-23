@@ -11,12 +11,7 @@ type Props = {
   onResourceLibrary: (tags?: string[]) => void;
 };
 
-export function CoverCardsRow({
-  heroResourceLinks,
-  onLearningPaths,
-  onCommunitySupport,
-  onResourceLibrary,
-}: Props) {
+export function CoverCardsRow({ onLearningPaths, onCommunitySupport, onResourceLibrary }: Props) {
   return (
     <div className={styles.cardsRow}>
       <CoverCard
