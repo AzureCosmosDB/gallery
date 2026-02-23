@@ -1624,7 +1624,14 @@
     "website": "https://www.youtube.com/watch?v=BJxrSKAvCis",
     "source": "https://www.youtube.com/watch?v=BJxrSKAvCis",
     "image": "./img/meet-azure-horizondb.png",
-    "tags": ["horizondb", "fundamentals", "overview", "concepts", "video"],
+    "tags": [
+      "horizondb",
+      "fundamentals",
+      "overview",
+      "documentation",
+      "concepts",
+      "video"
+    ],
     "date": "2025-11-21",
     "priority": "P0"
   }
