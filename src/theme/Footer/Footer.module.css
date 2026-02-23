@@ -44,19 +44,11 @@
 }
 
 .footerLinksBox :global(.footer__link-separator) {
-  /* hide original separator element (we'll render a stable dot via ::after on link items) */
-  display: none;
-}
-
-/* Use a stable separator rendered after each link item except the last */
-.footerLinksBox :global(.footer__link-item:not(:last-child))::after {
-  content: "·";
   display: inline-block;
   margin: 0 0.5rem;
   color: var(--ifm-color-emphasis-800);
-  font-size: 1rem;
   line-height: 1;
-  opacity: 0.95;
+  font-size: 1rem;
 }
 
 .disclaimerContainer {

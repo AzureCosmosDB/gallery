@@ -1,6 +1,14 @@
 import React from "react";
 import LinkItem from "@theme/Footer/LinkItem";
 import styles from "./styles.module.css";
+function Separator({ id }) {
+  return (
+    <span className="footer__link-separator" id={id}>
+      ·
+    </span>
+  );
+}
+
 function SimpleLinkItem({ item }) {
   return item.html ? (
     <span
@@ -20,6 +28,7 @@ export default function FooterLinksSimple({ links }) {
       {links.map((item, i) => (
         <React.Fragment key={i}>
           <SimpleLinkItem item={item} />
+          {links.length !== i + 1 && <Separator id={"footer__links_" + item.label} />}
         </React.Fragment>
       ))}
     </div>

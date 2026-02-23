@@ -1,5 +1,6 @@
 import React from "react";
 import { getLucideIcon } from "../utils/icons";
+import { TwitterXIcon } from "@site/src/theme/Icon/TwitterXIcon";
 import styles from "../CommunitySupportSection.module.css";
 // import { TwitterXIcon } from '@site/src/theme/Icon/TwitterXIcon';
 import type { CardAction, CommunityCardType } from "../types";
@@ -8,9 +9,8 @@ import { isExternal } from "../utils/external";
 function resolveActionIcon(icon?: string) {
   if (!icon) return null;
   // Use a Lucide icon as a fallback for 'X' (Twitter/X)
-  if (icon === "X") {
-    const Comp = getLucideIcon("Twitter", false) || getLucideIcon("X", false);
-    return Comp ? <Comp size={18} /> : null;
+  if (icon === "X" || icon === "Twitter") {
+    return <TwitterXIcon size={18} />;
   }
 
   const Comp = getLucideIcon(icon, false);
