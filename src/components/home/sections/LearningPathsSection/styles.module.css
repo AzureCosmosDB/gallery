@@ -1,0 +1,332 @@
+.sectionDesc {
+  font-size: 1.08rem;
+  line-height: 1.5rem;
+  color: #817d79;
+  margin-bottom: 28px;
+}
+.tagsRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.levelChip {
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  line-height: 20px;
+  font-weight: 600;
+}
+.durationChip {
+  background: #fff;
+  color: #5a5b6c;
+  border: 1.5px solid #dfeefa;
+  border-radius: 12px;
+  padding: 2px 12px;
+  font-size: 0.75rem;
+  line-height: 20px;
+  font-weight: 500;
+}
+.learningPathsSection {
+  display: flex;
+  gap: 48px;
+  padding: 40px 0;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tile {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #dfeefa;
+  box-shadow: 0 4px 16px rgba(60, 60, 60, 0.08);
+  padding: 16px 20px;
+  gap: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  text-align: left;
+}
+.tile:hover {
+  box-shadow: 0 8px 32px rgba(60, 60, 60, 0.16);
+  transform: translateY(-2px) scale(1.01);
+  border-color: #b8d8ef;
+  background: #f6fafd;
+}
+.icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  background: #f3f2f1;
+  border-radius: 8px;
+  padding: 6px;
+}
+.tileContent {
+  flex: 1;
+}
+.tileTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #4d3f3d;
+}
+.tileDesc {
+  font-size: 0.98rem;
+  color: #817d79;
+  margin-bottom: 10px;
+}
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  background: #f3f2f1;
+  color: #747277;
+  border-radius: 12px;
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  line-height: 20px;
+  margin-right: 2px;
+}
+.arrow {
+  align-self: center;
+  color: #bdbdbd;
+  margin-left: auto;
+  transition: color 0.2s;
+}
+.tile:hover .arrow {
+  color: #2563eb;
+}
+.featuredSlider {
+  width: 100%;
+  max-width: 420px;
+  margin-left: 0px !important;
+  overflow: hidden;
+}
+.right {
+  max-width: 390px;
+}
+
+@media (max-width: 1400px) {
+  .learningPathsSection {
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .learningPathsSection {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 40px 24px;
+    gap: 40px;
+  }
+
+  .left,
+  .right {
+    max-width: none;
+    width: 100%;
+  }
+
+  .right {
+    align-items: center;
+  }
+
+  .tiles {
+    min-width: 0;
+  }
+
+  .featuredSlider {
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .learningPathsSection {
+    padding: 32px 20px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+  }
+
+  .tile {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .arrow {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .learningPathsSection {
+    padding: 28px 0px;
+    gap: 32px;
+  }
+
+  .left {
+    padding: 0 16px;
+  }
+
+  .right {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .heading {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .sectionDesc {
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .tiles {
+    gap: 16px;
+  }
+
+  .tile {
+    padding: 18px;
+  }
+
+  .featuredSlider {
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0 16px 56px 16px;
+    overflow: visible;
+  }
+
+  /* Show 80% of current card and 20% of next card on mobile */
+  .featuredSlider :global(.swiper-slide) {
+    width: 80% !important;
+  }
+
+  /* Pagination dots styling */
+  /* Place below slides and let bullets wrap/resize to fit without horizontal scroll */
+  .featuredSlider :global(.swiper-pagination) {
+    position: relative !important;
+    margin-top: 12px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 6px 8px 0 !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet) {
+    width: 6px;
+    height: 6px;
+    background: #bdbdbd;
+    opacity: 1;
+    margin: 4px;
+    transition: width 200ms ease, transform 200ms ease, background 200ms ease;
+    flex: 0 0 auto !important;
+    border-radius: 50%;
+    display: inline-block !important;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active) {
+    background: #0f6cbd;
+    width: 14px;
+    height: 6px;
+    border-radius: 6px;
+  }
+
+  /* Dynamic bullets for many items */
+  .featuredSlider :global(.swiper-pagination-bullet-active-main) {
+    background: #0f6cbd;
+  }
+
+  .featuredSlider :global(.swiper-pagination-bullet-active-prev),
+  .featuredSlider :global(.swiper-pagination-bullet-active-next) {
+    transform: scale(0.66);
+  }
+
+  /* On mobile we hide the dot pagination (swipe bullets) and show numeric pagination */
+  .featuredSlider :global(.swiper-pagination) {
+    display: none !important;
+  }
+
+  .numericPagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    color: #6b6b6b;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .numericCurrent {
+    color: #0f6cbd;
+  }
+
+  .numericSlash {
+    opacity: 0.6;
+  }
+}
+
+/* Desktop and tablet: ensure dot pagination shows and numeric pagination hides */
+@media (min-width: 769px) {
+  .featuredSlider :global(.swiper-pagination) {
+    /* hide pagination on desktop/tablet as requested */
+    display: none !important;
+  }
+  .numericPagination {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .learningPathsSection {
+    padding: 24px 0px;
+  }
+
+  .left {
+    padding: 0 12px;
+  }
+
+  .tile {
+    padding: 16px;
+  }
+
+  .tileTitle {
+    font-size: 1rem;
+  }
+
+  .sectionDesc {
+    font-size: 1rem;
+  }
+
+  .tagsRow {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .heading {
+    padding: 0 12px;
+  }
+
+  .sectionDesc {
+    padding: 0 12px;
+  }
+}

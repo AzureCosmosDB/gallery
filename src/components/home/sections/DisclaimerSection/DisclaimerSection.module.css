@@ -1,0 +1,40 @@
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.titleRow > img {
+  height: 32px;
+  width: auto;
+}
+
+/* Explicit class for the logo image to ensure styles apply reliably */
+.navbarLogo {
+  height: 32px;
+  width: auto;
+  display: inline-block;
+}
+
+.disclaimerSection {
+  margin: 0;
+  padding: 0px 18px 60px 18px;
+  text-align: center;
+  background: white;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2d3035;
+  margin: 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #6b6f76;
+  max-width: 700px;
+  margin: 0 auto;
+}

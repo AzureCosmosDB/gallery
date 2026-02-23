@@ -1,0 +1,637 @@
+/* Organic Pill-Shaped Gradient Mask Overlay */
+.glassmorphismOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.92) 15%,
+    rgba(255, 255, 255, 0.8) 25%,
+    rgba(255, 255, 255, 0.65) 35%,
+    rgba(255, 255, 255, 0.48) 45%,
+    rgba(255, 255, 255, 0.32) 58%,
+    rgba(255, 255, 255, 0.18) 72%,
+    rgba(255, 255, 255, 0.08) 85%,
+    rgba(255, 255, 255, 0.02) 94%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 9999px 20px 20px 9999px;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  margin-left: 25px;
+}
+
+/* Fully opaque frosted glass pill for buttons with enhanced pill shape */
+.glassmorphismPill {
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.learningPathStyled {
+  background-color: #f4fafd !important;
+}
+.sortAndViewBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.viewButtons {
+  display: flex;
+  width: 83px;
+  min-width: 83px;
+  max-width: 83px;
+  flex: 0 0 83px;
+}
+
+.featuredCarousel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.viewButtons {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+.iconButton {
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  transition: background 0.2s;
+  flex: 1 1 0;
+  justify-content: center;
+}
+.iconButton:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.iconButton:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.iconButton:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+}
+.iconButton:hover {
+  background: #b3d4f7;
+}
+.activeIconButton {
+  background: #2e76bb;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  width: 70%;
+}
+
+.resourceTitle {
+  text-align: center;
+}
+
+.centeredDescription {
+  text-align: center !important;
+  width: 100%;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  color: #605e5c;
+}
+
+/* Center Resource Library heading + description on smaller screens */
+@media screen and (max-width: 960px) {
+  .titleSection {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .resourceTitle {
+    text-align: center;
+  }
+
+  .centeredDescription {
+    text-align: center !important;
+  }
+  .featuredCarousel {
+    align-items: flex-start;
+  }
+}
+
+.checkboxList {
+  flex-wrap: wrap;
+}
+
+.checkboxList,
+.showcaseList {
+  padding: 0;
+  list-style: none;
+}
+
+.checkboxListItem {
+  user-select: none;
+  white-space: nowrap;
+}
+
+.checkboxListItem:last-child {
+  margin-right: 0;
+}
+
+.cover {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.coverPageContainer {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.searchArea {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.8) 0%,
+    rgba(239, 246, 255, 0.6) 35%,
+    rgba(219, 234, 254, 0.4) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.heroBar {
+  width: 740px;
+}
+
+.showcaseCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 32px;
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 32px;
+}
+
+@media (max-width: 1200px) {
+  .showcaseCards {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    max-width: 860px;
+  }
+}
+
+@media (max-width: 768px) {
+  .showcaseCards {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    width: 100%;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .featuredCarousel {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+
+.showcaseList {
+  /* max-width: 1000px; */
+  margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .showcaseList {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+    max-width: 660px;
+  }
+}
+
+.showcaseHelpWanted {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #33d4f4;
+}
+
+.helpText {
+  color: #245e94;
+}
+
+.showcaseFavoriteHeader {
+  display: flex;
+}
+
+.svgIconFavoriteXs,
+.svgIconFavorite {
+  color: var(--site-color-svg-icon-favorite);
+}
+
+.svgIconFavoriteXs {
+  margin-left: 0.625rem;
+  font-size: 1rem;
+}
+
+.svgIconFavorite {
+  margin-left: 1rem;
+}
+
+.filterAndCardContainer {
+  margin: 0 auto;
+  background: #fff;
+}
+
+.filterAndCard {
+  display: flex;
+  gap: 32px;
+  padding: 56px 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.filter {
+  flex: 0 0 320px;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.card {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cardLoad {
+  margin-top: 15rem;
+  width: 100%;
+}
+
+.searchBox {
+  width: 100% !important;
+  max-width: 30% !important;
+  background: rgba(243, 242, 241, 0.7) !important;
+  border: none !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  transition: all 0.3s ease !important;
+}
+
+.sortBar {
+  width: 20% !important;
+  background: rgba(243, 242, 241, 0.7) !important;
+  border: none !important;
+  border-radius: 24px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  transition: all 0.3s ease !important;
+}
+
+.searchAndSortBarSection {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.templateResultsNumberContainer {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.templateResultsNumber {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 5px;
+  color: #605e5c;
+  flex: 1;
+}
+
+.mobileFilterButtonContainer {
+  display: none;
+}
+
+.filterAppliedBarContainer {
+  padding-bottom: 24px;
+  width: 100%;
+}
+
+.filterAppliedBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.filtersLabel {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.scrollableFilterContainer {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.filterScrollContainer {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.filterScrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.filterBadges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: fit-content;
+  padding: 0 4px;
+}
+
+.filterBadge {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.clearAll {
+  color: #0f6cbd;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 20px;
+  background: rgba(15, 108, 189, 0.08);
+  transition: all 0.2s ease;
+}
+
+.clearAll:hover {
+  color: #005a9e;
+  background: rgba(15, 108, 189, 0.15);
+}
+
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollButton:hover {
+  background: #f5f5f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.scrollButtonLeft {
+  left: -6px;
+}
+
+.scrollButtonRight {
+  right: -6px;
+}
+
+/* Fade overlay - simple linear gradient, cross-OS safe */
+.scrollGradientLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Fade overlay - simple linear gradient, cross-OS safe */
+.scrollGradientRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+@media screen and (max-width: 1280px) {
+  .filterAndCard {
+    padding: 48px 32px;
+    gap: 28px;
+    border-radius: 28px;
+  }
+
+  .filter {
+    flex: 0 0 280px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .filterAndCard {
+    padding: 40px 28px;
+    border-radius: 24px;
+  }
+
+  .filter {
+    position: static;
+    flex: 0 0 260px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .filterAndCard {
+    flex-direction: column;
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .filter {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .searchAndSortBarSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .searchBox,
+  .sortBar {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Hide desktop filters on mobile */
+  .filter {
+    display: none !important;
+  }
+
+  /* Hide view toggle on mobile */
+  .viewButtons {
+    display: none !important;
+  }
+
+  /* Show mobile filter button */
+  .mobileFilterButtonContainer {
+    display: block;
+  }
+
+  /* Hide desktop sort dropdown on mobile */
+  .sortBar {
+    display: none !important;
+  }
+
+  /* Adjust results number container for mobile */
+  .templateResultsNumberContainer {
+    padding: 16px 0;
+    align-items: center;
+  }
+
+  .templateResultsNumber {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .filterAndCard {
+    padding: 28px 20px;
+    gap: 24px;
+    border-radius: 18px;
+  }
+
+  .templateResultsNumber {
+    gap: 8px;
+  }
+
+  .filterAppliedBar {
+    gap: 8px;
+  }
+
+  .filterBadges {
+    gap: 8px;
+  }
+
+  .scrollButton {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06), 0 3px 10px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .filterAndCard {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .templateResultsNumber {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .filterAppliedBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .scrollableFilterContainer {
+    width: 100%;
+  }
+
+  .scrollButton {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .scrollButtonLeft {
+    left: -4px;
+  }
+
+  .scrollButtonRight {
+    right: -4px;
+  }
+}

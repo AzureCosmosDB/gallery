@@ -1,0 +1,36 @@
+.root {
+  position: relative;
+  cursor: pointer;
+}
+
+.tileNumber {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0078d4;
+  background: #eaf3fc;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageInline {
+  width: 200px;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.buttonInline {
+  margin-top: 12px;
+  background-color: #0078d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}

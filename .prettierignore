@@ -1,0 +1,9 @@
+node_modules
+.docusaurus
+.cache
+build
+dist
+public
+static/img-optimized
+src/**/*.generated.*
+**/*.min.*

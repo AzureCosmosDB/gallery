@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-import type { TagType } from '../data/tags';
+import type { TagType } from "../data/tags";
 
 /**
  * Configuration interface for button text rules
@@ -55,14 +55,26 @@ export function getButtonText(url?: string, tags?: TagType[]): string {
   if (!url) return "No URL";
 
   const lowerUrl = url.toLowerCase();
-  
+
   // Special case: if URL matches blog pattern AND has solution accelerator tag, prioritize solution accelerator CTA
-  if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('solution-accelerator' as TagType)) {
+  if (
+    lowerUrl.includes("techcommunity.microsoft.com") &&
+    tags?.includes("solution-accelerator" as TagType)
+  ) {
     return "Explore Solution Accelerator";
   }
 
+  // If this is a blog link but the card also has a documentation tag,
+  // prefer showing the documentation CTA instead of the blog CTA.
+  if (
+    lowerUrl.includes("techcommunity.microsoft.com") &&
+    tags?.includes("documentation" as TagType)
+  ) {
+    return "Open Documentation";
+  }
+
   // .find is more idiomatic than a loop or if/else chain
-  const rule = BUTTON_RULES.find(r => r.match(lowerUrl));
+  const rule = BUTTON_RULES.find((r) => r.match(lowerUrl));
 
   return rule?.text ?? "Read More";
 }

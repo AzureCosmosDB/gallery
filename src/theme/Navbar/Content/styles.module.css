@@ -10,7 +10,7 @@
   left: 0;
   min-width: 200px;
   background: #fff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   z-index: 100;
   padding: 0.5rem 0;
@@ -85,8 +85,6 @@
   color: #2567a8;
   text-decoration: none !important;
 }
-.activeMenuItem{
+.activeMenuItem {
   font-weight: 600;
 }
-
-

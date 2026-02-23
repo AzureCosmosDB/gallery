@@ -8,58 +8,198 @@ import { TagType } from "../data/tags";
 /**
  * Maps CTA button text to preferred resource type tag priority
  * This ensures the most relevant tag appears first based on the card's action
- * Content hierarchy: Primary content type (video, workshop, training, etc.) 
+ * Content hierarchy: Primary content type (video, workshop, training, etc.)
  * comes before delivery format (blog)
  * Example: Blog about video → video tag first, then blog tag
  */
-export const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
+const CTA_TO_RESOURCE_TYPE_PRIORITY: Record<string, TagType[]> = {
   // Workshop CTAs - workshop comes first when both workshop and documentation are present
-  "Start Workshop": ["workshop", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "training", "blog"],
-  
+  "Start Workshop": [
+    "workshop",
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "training",
+    "blog",
+  ],
+
   // Training CTAs - training comes first when both training and documentation are present
-  "Start Training": ["training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "blog"],
-  
+  "Start Training": [
+    "training",
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "blog",
+  ],
+
   // Tutorial CTAs - documentation first, then tutorial content (as it's a doc sub-type)
-  "Start Tutorial": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  
+  "Start Tutorial": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+
   // Documentation CTAs - documentation and its sub-types take priority
-  "Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "View Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "Open Documentation": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "Read Concepts": ["documentation", "concepts", "tutorial", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "Read How-To Guide": ["documentation", "how-to", "tutorial", "concepts", "solution-accelerator", "video", "workshop", "training", "blog"],
-  
+  Documentation: [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+  "View Documentation": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+  "Open Documentation": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+  "Read Concepts": [
+    "documentation",
+    "concepts",
+    "tutorial",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+  "Read How-To Guide": [
+    "documentation",
+    "how-to",
+    "tutorial",
+    "concepts",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+
   // Video CTAs - documentation first, then doc sub-types, then video content
-  "Watch Video": ["documentation", "tutorial", "concepts", "how-to", "video", "solution-accelerator", "workshop", "training", "blog"],
-  
+  "Watch Video": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "video",
+    "solution-accelerator",
+    "workshop",
+    "training",
+    "blog",
+  ],
+
   // Blog CTAs - if blog is about workshop/training, those come first before documentation
   // Priority: workshop → training → documentation → tutorial/concepts/how-to → other content → blog
-  "Read Blog": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "blog"],
-  
+  "Read Blog": [
+    "workshop",
+    "training",
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "blog",
+  ],
+
   // Sample CTAs - documentation first, then doc sub-types, then samples
-  "View Sample": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  "Go to GitHub Repo": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  
+  "View Sample": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+  "Go to GitHub Repo": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+
   // Solution Accelerator CTAs - documentation first, then doc sub-types, then solution-accelerator
-  "Explore Solution Accelerator": ["documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "workshop", "training", "blog"],
-  
+  "Explore Solution Accelerator": [
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "workshop",
+    "training",
+    "blog",
+  ],
+
   // Default fallback for "Read More" and other generic CTAs - workshop and training before documentation when present
-  "Read More": ["workshop", "training", "documentation", "tutorial", "concepts", "how-to", "solution-accelerator", "video", "blog"]
+  "Read More": [
+    "workshop",
+    "training",
+    "documentation",
+    "tutorial",
+    "concepts",
+    "how-to",
+    "solution-accelerator",
+    "video",
+    "blog",
+  ],
 };
 
 /**
  * Default resource type priority order when no CTA match is found
  */
-export const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
+const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
   "documentation",
-  "tutorial", 
-  "concepts", 
+  "tutorial",
+  "concepts",
   "how-to",
   "solution-accelerator",
-  "video", 
+  "video",
   "workshop",
   "training",
-  "blog"
+  "blog",
 ];
 
 /**
@@ -67,7 +207,7 @@ export const DEFAULT_RESOURCE_TYPE_PRIORITY: TagType[] = [
  * @param buttonText - The CTA button text from getButtonText()
  * @returns Array of resource type tags in priority order
  */
-export function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
+function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
   return CTA_TO_RESOURCE_TYPE_PRIORITY[buttonText] || DEFAULT_RESOURCE_TYPE_PRIORITY;
 }
 
@@ -78,24 +218,24 @@ export function getResourceTypePriorityByCTA(buttonText: string): TagType[] {
  * @returns Sorted array with CTA-relevant tags first
  */
 export function sortResourceTypeTagsByCTA(
-  resourceTypeTags: Array<{ tag: TagType; [key: string]: any }>,
+  resourceTypeTags: Array<{ tag: TagType; [key: string]: unknown }>,
   buttonText: string
-): Array<{ tag: TagType; [key: string]: any }> {
+): Array<{ tag: TagType; [key: string]: unknown }> {
   const priorityOrder = getResourceTypePriorityByCTA(buttonText);
-  
+
   return resourceTypeTags.sort((firstTag, secondTag) => {
     const firstTagIndex = priorityOrder.indexOf(firstTag.tag);
     const secondTagIndex = priorityOrder.indexOf(secondTag.tag);
-    
+
     // If both tags are in priority list, sort by priority
     if (firstTagIndex !== -1 && secondTagIndex !== -1) {
       return firstTagIndex - secondTagIndex;
     }
-    
+
     // If only one tag is in priority list, prioritize it
     if (firstTagIndex !== -1) return -1;
     if (secondTagIndex !== -1) return 1;
-    
+
     // If neither tag is in priority list, maintain original order
     return 0;
   });

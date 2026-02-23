@@ -1,0 +1,130 @@
+.footer {
+  background: var(--ifm-background-color);
+  color: var(--ifm-footer-color);
+  padding: var(--ifm-footer-padding-vertical) var(--ifm-footer-padding-horizontal);
+  padding-bottom: 60px;
+}
+
+.footerLinksContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto 1rem auto;
+  width: 100%;
+}
+
+/* Box that holds the top links, limited to 1400px with borders */
+.footerLinksBox {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+}
+
+/* Ensure the inner footer links container also respects the same max-width */
+.footerLinksBox :global(.footer__links) {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Ensure link items and separators render inline and are spaced */
+.footerLinksBox :global(.footer__link-item) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.25rem;
+  white-space: nowrap;
+}
+
+.footerLinksBox :global(.footer__link-separator) {
+  /* hide original separator element (we'll render a stable dot via ::after on link items) */
+  display: none;
+}
+
+/* Use a stable separator rendered after each link item except the last */
+.footerLinksBox :global(.footer__link-item:not(:last-child))::after {
+  content: "·";
+  display: inline-block;
+  margin: 0 0.5rem;
+  color: var(--ifm-color-emphasis-800);
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.disclaimerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: none; /* no separator between top box and disclaimer */
+}
+
+.disclaimerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.navbarLogo {
+  height: 2rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  margin: 0;
+}
+
+.description {
+  font-size: 14px; /* user requested fixed font size */
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.5;
+  max-width: 700px; /* user requested max width */
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footerLinksContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .titleRow {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .navbarLogo {
+    height: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}

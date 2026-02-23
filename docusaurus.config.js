@@ -174,9 +174,7 @@ const config = {
           icon: "Lightbulb",
           iconColor: "#9a15fa",
           iconBg: "#f5e6fd",
-          actions: [
-            { label: "Submit Idea", href: "https://aka.ms/pgfeedback" },
-          ],
+          actions: [{ label: "Submit Idea", href: "https://aka.ms/pgfeedback" }],
         },
         {
           title: "Events & Webinars",
@@ -353,13 +351,11 @@ const config = {
           showReadingTime: true,
           routeBasePath: "blog",
           blogTitle: "Application Developer Hub Blog",
-          blogDescription:
-            "Latest updates, community stories, and developer news",
+          blogDescription: "Latest updates, community stories, and developer news",
           feedOptions: {
             type: "all", // 'rss' | 'atom' | 'all'
             title: "Application Developer Hub Blog RSS Feed",
-            description:
-              "Stay updated with new blog posts from Application Developer Hub",
+            description: "Stay updated with new blog posts from Application Developer Hub",
             language: "en",
             copyright: `Copyright © ${new Date().getFullYear()} Microsoft`,
           },

@@ -5,17 +5,15 @@ import isInternalUrl from "@docusaurus/isInternalUrl";
 import IconExternalLink from "@theme/Icon/ExternalLink";
 import { manageCookieLabel, manageCookieId } from "../../../../constants.js";
 import styles from "./styles.module.css";
-import clsx from "clsx";
+import { clsx } from "clsx";
 
+// eslint-disable-next-line import/no-unused-modules
 export default function FooterLinkItem({ item }) {
   const { to, href, label, id, prependBaseUrlToHref, ...props } = item;
   const toUrl = useBaseUrl(to);
   const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
   return label === manageCookieLabel ? (
-    <a
-      className={clsx(styles.manageCookies, "footer__link-item")}
-      id={manageCookieId}
-    >
+    <a className={clsx(styles.manageCookies, "footer__link-item")} id={manageCookieId}>
       {manageCookieLabel}
     </a>
   ) : (

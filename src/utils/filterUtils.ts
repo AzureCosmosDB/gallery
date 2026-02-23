@@ -6,6 +6,7 @@
  * Implements AND logic across categories and OR logic within categories,
  * with special handling for parent-child tag relationships.
  */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Tags, type User, type TagType } from "../data/tags";
 
@@ -74,11 +75,7 @@ function getAccordionCategory(tag: TagType, childToParent: Record<string, string
  * Determines which child tags apply to a specific user for a given parent.
  * Handles cases where children like "overview" belong to multiple parents.
  */
-function getActualChildTagsForUser(
-  user: User,
-  parent: string,
-  allChildTags: string[],
-): string[] {
+function getActualChildTagsForUser(user: User, parent: string, allChildTags: string[]): string[] {
   return allChildTags.filter((child) => {
     if (user.tags.includes(parent as TagType)) {
       return true;
@@ -103,7 +100,7 @@ function getActualChildTagsForUser(
 function matchesParentChildFilters(
   user: User,
   selectedParents: Set<string>,
-  selectedSubTagsByParent: Map<string, TagType[]>,
+  selectedSubTagsByParent: Map<string, TagType[]>
 ): boolean {
   const parentsArray = Array.from(selectedParents);
   for (let i = 0; i < parentsArray.length; i++) {
@@ -115,23 +112,17 @@ function matchesParentChildFilters(
     if (subTags.length === 0 || subTags.length === allChildTags.length) {
       // Only parent selected OR all sub-tags selected: match parent OR any child
       const matchesParent = user.tags.includes(parent as TagType);
-      const matchesAnyChild = actualChildTags.some((child) =>
-        user.tags.includes(child as TagType),
-      );
+      const matchesAnyChild = actualChildTags.some((child) => user.tags.includes(child as TagType));
       if (!matchesParent && !matchesAnyChild) {
         return false;
       }
     } else {
       // Some sub-tags selected: match selected sub-tags relevant to this parent
-      const relevantSubTags = subTags.filter((subTag) =>
-        actualChildTags.includes(subTag),
-      );
+      const relevantSubTags = subTags.filter((subTag) => actualChildTags.includes(subTag));
       if (relevantSubTags.length === 0) {
         return false;
       }
-      const matchesSelectedSub = relevantSubTags.some((subTag) =>
-        user.tags.includes(subTag),
-      );
+      const matchesSelectedSub = relevantSubTags.some((subTag) => user.tags.includes(subTag));
       if (!matchesSelectedSub) {
         return false;
       }
@@ -143,10 +134,7 @@ function matchesParentChildFilters(
 /**
  * Checks if a user matches category-based filters (AND across categories, OR within).
  */
-function matchesCategoryFilters(
-  user: User,
-  tagsByCategory: Map<string, TagType[]>,
-): boolean {
+function matchesCategoryFilters(user: User, tagsByCategory: Map<string, TagType[]>): boolean {
   const categoryEntries = Array.from(tagsByCategory.entries());
   for (let i = 0; i < categoryEntries.length; i++) {
     const [, categoryTags] = categoryEntries[i];
@@ -166,7 +154,7 @@ function matchesCategoryFilters(
  * 2. WITHIN SAME CATEGORY (OR): Cards matching ANY filter in category are shown.
  *    This includes OR between regular filters and parent-child groups.
  * 3. PARENT-CHILD: parent AND (child1 OR child2 OR ...) logic within each group.
- * 
+ *
  * Examples:
  * - ResourceType: blog OR video OR (documentation AND (concepts OR how-to OR tutorial))
  * - ContentType: (fundamentals AND (overview OR getting-started)) OR (genai AND (vector OR rag))
@@ -174,15 +162,13 @@ function matchesCategoryFilters(
 export function filterUsers(
   users: User[],
   selectedTags: TagType[],
-  searchName: string | null,
+  searchName: string | null
 ): User[] {
   // Search filter
   let filteredUsers = users;
   if (searchName) {
     const lowerSearch = searchName.toLowerCase();
-    filteredUsers = filteredUsers.filter((user) =>
-      user.title.toLowerCase().includes(lowerSearch),
-    );
+    filteredUsers = filteredUsers.filter((user) => user.title.toLowerCase().includes(lowerSearch));
   }
 
   if (!selectedTags || selectedTags.length === 0) {
@@ -192,15 +178,18 @@ export function filterUsers(
   const childToParent = buildChildToParentMap(selectedTags);
 
   // Group all filters by category (regular filters and parent-child groups together)
-  const filtersByCategory = new Map<string, {
-    regularTags: TagType[];
-    parentChildGroups: Map<string, TagType[]>;
-  }>();
+  const filtersByCategory = new Map<
+    string,
+    {
+      regularTags: TagType[];
+      parentChildGroups: Map<string, TagType[]>;
+    }
+  >();
 
   // Process all selected tags
   selectedTags.forEach((tag) => {
     let category: string;
-    
+
     if (PARENT_CHILD_MAP[tag]) {
       // This is a parent tag
       category = getTagCategory(tag);
@@ -208,9 +197,8 @@ export function filterUsers(
         filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
       }
       filtersByCategory.get(category)!.parentChildGroups.set(tag, []);
-      
     } else if (childToParent[tag]) {
-      // This is a child tag  
+      // This is a child tag
       const parent = childToParent[tag];
       category = getTagCategory(parent as TagType);
       if (!filtersByCategory.has(category)) {
@@ -220,7 +208,6 @@ export function filterUsers(
         filtersByCategory.get(category)!.parentChildGroups.set(parent, []);
       }
       filtersByCategory.get(category)!.parentChildGroups.get(parent)!.push(tag);
-      
     } else {
       // Regular tag
       category = getTagCategory(tag);
@@ -239,23 +226,24 @@ export function filterUsers(
     // AND logic across categories
     for (const [category, filters] of filtersByCategory.entries()) {
       let categoryMatches = false;
-      
+
       // Check regular tags in this category (OR logic)
       if (filters.regularTags.length > 0) {
         categoryMatches = filters.regularTags.some((tag) => user.tags.includes(tag));
       }
-      
+
       // Check parent-child groups in this category (OR logic with regular tags)
       for (const [parent, children] of filters.parentChildGroups.entries()) {
         const allChildTags = PARENT_CHILD_MAP[parent] || [];
         const actualChildTags = getActualChildTagsForUser(user, parent, allChildTags);
-        
+
         let groupMatches = false;
-        
+
         if (children.length === 0 || children.length === allChildTags.length) {
           // Only parent selected OR all children selected: parent OR any child
-          groupMatches = user.tags.includes(parent as TagType) || 
-                       actualChildTags.some((child) => user.tags.includes(child as TagType));
+          groupMatches =
+            user.tags.includes(parent as TagType) ||
+            actualChildTags.some((child) => user.tags.includes(child as TagType));
         } else {
           // Some children selected: parent AND (selected children)
           const relevantChildren = children.filter((child) => actualChildTags.includes(child));
@@ -263,19 +251,19 @@ export function filterUsers(
             groupMatches = relevantChildren.some((child) => user.tags.includes(child));
           }
         }
-        
+
         if (groupMatches) {
           categoryMatches = true;
           break; // OR logic - one match in category is enough
         }
       }
-      
+
       // If no matches in this category, user fails AND logic
       if (!categoryMatches) {
         return false;
       }
     }
-    
+
     return true;
   });
 }
@@ -286,17 +274,32 @@ export function filterUsers(
  */
 const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
   "developing-core-applications": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "workshop", "training", "video"
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "workshop",
+    "training",
+    "video",
   ],
   "building-genai-apps": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "solution-accelerator", "training", "video"
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
   ],
   "building-ai-agents": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "solution-accelerator", "training", "video"
-  ]
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
+  ],
 };
 
 /**
@@ -304,8 +307,8 @@ const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
  */
 const LEARNING_PATH_TAGS = [
   "developing-core-applications",
-  "building-genai-apps", 
-  "building-ai-agents"
+  "building-genai-apps",
+  "building-ai-agents",
 ] as const;
 
 /**
@@ -314,18 +317,15 @@ const LEARNING_PATH_TAGS = [
  * categories with selections enabled (OR logic).
  * Special handling for learning paths to maintain compatibility restrictions.
  */
-export function computeActiveTags(
-  cards: User[],
-  selectedTags: TagType[],
-): TagType[] {
+export function computeActiveTags(cards: User[], selectedTags: TagType[]): TagType[] {
   const unionTags = new Set<TagType>();
 
   // Add all tags from current cards
   cards.forEach((user) => user.tags.forEach((tag) => unionTags.add(tag)));
 
   // Check if any learning path is selected
-  const selectedLearningPaths = selectedTags.filter((tag) => 
-    LEARNING_PATH_TAGS.includes(tag as any)
+  const selectedLearningPaths = selectedTags.filter((tag) =>
+    LEARNING_PATH_TAGS.includes(tag as string)
   );
 
   // Enable sub-tags when parent is selected
@@ -351,12 +351,13 @@ export function computeActiveTags(
     Object.keys(Tags).forEach((tagKey) => {
       const tag = tagKey as TagType;
       const category = getTagCategory(tag);
-      
+
       if (selectedCategories.has(category)) {
         // Special handling for ResourceType when learning path is selected
         if (selectedLearningPaths.length > 0 && category === "ResourceType") {
           // Only enable resource types that are compatible with the selected learning path
-          const compatibleResources = LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];
+          const compatibleResources =
+            LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];
           if (compatibleResources.includes(tag)) {
             unionTags.add(tag);
           }

@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+
+// eslint-disable-next-line import/no-unused-modules
 export default function IconLightMode(props) {
   return (
     <svg viewBox="0 0 24 24" width={24} height={24} {...props}>
