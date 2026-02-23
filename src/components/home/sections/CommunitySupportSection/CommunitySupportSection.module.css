@@ -147,6 +147,7 @@
 
 .cardActionBtn[data-fullwidth="true"],
 .cardActionBtnOutlined[data-fullwidth="true"] {
+  display: flex; /* ensure width applies */
   width: 100%;
   justify-content: center;
 }
@@ -185,6 +186,17 @@
 .cardActionBtnOutlined:hover {
   border-color: #5e4d5c;
   color: #3a2e38;
+}
+
+/* Force full width for Contact Us card actions (explicit override) */
+.cardActionBtn[data-contact="true"],
+.cardActionBtnOutlined[data-contact="true"] {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: flex-start; /* left align text */
+  padding-left: 16px; /* spacing from left edge */
+  text-align: left;
+  column-gap: 10px;
 }
 
 /* Events styles */

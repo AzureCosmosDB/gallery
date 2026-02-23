@@ -17,12 +17,9 @@ function resolveActionIcon(icon?: string) {
   return Comp ? <Comp size={18} style={{ minWidth: 18 }} /> : null;
 }
 
-export function CommunityCardActions({
-  card,
-}: {
-  card: Pick<CommunityCardType, "actions" | "layout">;
-}) {
+export function CommunityCardActions({ card }: { card: CommunityCardType }) {
   const stacked = card.layout === "stackedActions";
+  const isContactCard = card.title === "Contact Us";
 
   return (
     <div className={`${styles.cardActions} ${stacked ? styles.cardActionsStacked : ""}`}>
@@ -37,6 +34,7 @@ export function CommunityCardActions({
             href={action.href}
             className={outlined ? styles.cardActionBtnOutlined : styles.cardActionBtn}
             data-fullwidth={fullWidth ? "true" : "false"}
+            data-contact={isContactCard ? "true" : "false"}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
           >
