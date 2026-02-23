@@ -31,7 +31,13 @@ export default function SortDropdown({
     if (setLoading) {
       setLoading(true);
     }
-    onSortChange(data.selectedOptions[0] || SORT_BY_OPTIONS[1]);
+    const newOption = data.selectedOptions[0] || SORT_BY_OPTIONS[1];
+    onSortChange(newOption);
+
+    // Sorting is synchronous — clear loading immediately so the spinner stops.
+    if (setLoading) {
+      setLoading(false);
+    }
   };
 
   return (
