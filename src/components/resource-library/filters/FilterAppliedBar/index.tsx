@@ -7,6 +7,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "@docusaurus/router";
+import type { History } from "history";
 import { Badge, Body1 } from "@fluentui/react-components";
 import { Dismiss20Filled, ChevronLeft20Filled, ChevronRight20Filled } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../../data/tags";
@@ -29,12 +30,39 @@ interface FilterAppliedBarProps {
  * Removes a tag and its sub-filters when deselecting a parent tag.
  */
 function removeTagWithSubFilters(tag: TagType, currentTags: TagType[]): TagType[] {
+  const wasSelected = currentTags.includes(tag);
   let newTags = toggleListItem(currentTags, tag);
 
   const tagObject = Tags[tag];
-  if (tagObject?.subType?.length) {
+
+  // If removing a parent tag, also remove its children
+  if (wasSelected && tagObject?.subType?.length) {
     const subKeys = tagObject.subType.map((s) => s.label.toLowerCase() as TagType);
     newTags = newTags.filter((t) => !subKeys.includes(t));
+  }
+
+  // If removing a child tag, and its parent(s) are present but now have no remaining children,
+  // remove those parent tags as well to keep UI consistent.
+  if (wasSelected && !tagObject?.subType?.length) {
+    const removedChild = tag;
+    // iterate over all tags to find parents whose subType includes the removed child
+    Object.keys(Tags).forEach((possibleParentKey) => {
+      const parentKey = possibleParentKey as TagType;
+      const parentObj = Tags[parentKey];
+      if (!parentObj?.subType?.length) return;
+
+      const subKeys = parentObj.subType.map((s) => s.label.toLowerCase() as TagType);
+      if (!subKeys.includes(removedChild)) return;
+
+      // If parent is present in the newTags, check if any of its children remain selected
+      if (newTags.includes(parentKey)) {
+        const anyChildRemaining = subKeys.some((child) => newTags.includes(child));
+        if (!anyChildRemaining) {
+          // remove the parent since none of its children remain
+          newTags = newTags.filter((t) => t !== parentKey);
+        }
+      }
+    });
   }
 
   return newTags;
@@ -49,7 +77,7 @@ export default function FilterAppliedBar({
   readSearchTags,
   replaceSearchTags,
 }: FilterAppliedBarProps): React.JSX.Element | null {
-  const history = useHistory();
+  const history = useHistory() as History;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
