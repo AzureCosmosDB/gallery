@@ -1,6 +1,7 @@
 import React from "react";
 import * as LucideIcons from "lucide-react";
 import styles from "./CommunitySupportSection.module.css";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { TwitterXIcon } from "@site/src/theme/Icon/TwitterXIcon";
 
@@ -91,7 +92,7 @@ const CommunitySupportSection = () => {
                                   weekday: "short",
                                   month: "short",
                                   day: "numeric",
-                                }
+                                },
                               )}
                             </span>
                             <span className={styles.eventTime}>
@@ -134,6 +135,17 @@ const CommunitySupportSection = () => {
                     const isOutlined = action.variant === "outlined";
                     const fullWidth =
                       action.fullWidth || card.title === "Contact Us";
+
+                    // support static image/icon paths (e.g. 'img/brand-linkedin.svg' or '/img/...')
+                    const isImageIcon =
+                      !!action.icon &&
+                      (action.icon.startsWith("img/") ||
+                        action.icon.startsWith("/img/") ||
+                        action.icon.endsWith(".svg"));
+                    const imageSrc = isImageIcon
+                      ? useBaseUrl(action.icon)
+                      : null;
+
                     return (
                       <a
                         key={i}
@@ -164,9 +176,15 @@ const CommunitySupportSection = () => {
                         }
                       >
                         {isTwitterX ? (
-                          <TwitterXIcon size={18} />
+                          <TwitterXIcon size={20} />
                         ) : ActionIcon ? (
-                          <ActionIcon size={18} style={{ minWidth: 18 }} />
+                          <ActionIcon size={24} />
+                        ) : isImageIcon && imageSrc ? (
+                          <img
+                            src={imageSrc}
+                            alt={action.label}
+                            className={styles.actionImg}
+                          />
                         ) : null}
                         {action.label}
                       </a>

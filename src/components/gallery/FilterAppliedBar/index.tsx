@@ -41,7 +41,7 @@ function removeTagWithSubFilters(
   const tagObject = Tags[tag];
   if (tagObject?.subType?.length) {
     const subKeys = tagObject.subType.map(
-      (s) => s.label.toLowerCase() as TagType,
+      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
     );
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }

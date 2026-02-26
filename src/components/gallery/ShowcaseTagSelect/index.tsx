@@ -14,7 +14,9 @@ import CustomCheckbox from "../CustomCheckbox";
 function getChildTags(parentTag: TagType): TagType[] {
   const parentObj = Tags[parentTag];
   if (parentObj?.subType && Array.isArray(parentObj.subType)) {
-    return parentObj.subType.map((s) => s.label.toLowerCase() as TagType);
+    return parentObj.subType.map(
+      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
+    );
   }
   return [];
 }

@@ -22,7 +22,7 @@ import CustomCheckbox from "../CustomCheckbox";
 
 // Helper function to map sub-tag labels to actual tag keys
 function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
-  return subLabel.toLowerCase() as TagType;
+  return subLabel.toLowerCase().replace(/\s+/g, "-") as TagType;
 }
 function LearningPathTagSelect({
   label,
