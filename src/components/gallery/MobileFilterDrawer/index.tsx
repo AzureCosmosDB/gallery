@@ -100,7 +100,7 @@ export default function MobileFilterDrawer({
 
       if (tagObject?.subType && Array.isArray(tagObject.subType)) {
         const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase() as TagType,
+          (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
         );
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
@@ -271,8 +271,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = sub.label
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-") as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div
@@ -343,8 +344,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = sub.label
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-") as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div

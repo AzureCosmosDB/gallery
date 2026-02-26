@@ -113,18 +113,20 @@
 }
 .centeredDescription {
   text-align: center !important;
-  line-height: 1.5 !important;
   width: 100%;
-  color: #636364;
-  font-size: 24px !important;
   font-weight: 400 !important;
-  max-width: 934px;
+  font-size: 18px !important;
+    max-width: 686px;
+    line-height: 1.5;
+    color: #555555
 }
 .greyText{
   text-align: center !important;
   font-weight: 400 !important;
-  font-size: 26px !important;
-  color: #91949a
+  font-size: 24px !important;
+   color: #7b7b7b;
+   margin-bottom: 4px
+
 }
 
 .titleSection :global(.fuib-Title3),

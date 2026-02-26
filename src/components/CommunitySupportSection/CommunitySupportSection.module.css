@@ -144,23 +144,28 @@
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 7px 18px;
+  padding: 4px 16px;
+  height: 32px;
   font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;
   transition: background 0.18s;
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cardActionBtn:hover {
   background: #005fa3;
+  color: white;
 }
 .cardActionBtnOutlined {
   background: #fff;
   color: #5e4d5c;
   border: 1.5px solid #b3b8c2;
   border-radius: 6px;
-  padding: 7px 18px;
+  padding: 4px 12px;
   font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;
@@ -174,6 +179,27 @@
 .cardActionBtnOutlined:hover {
   border-color: #5e4d5c;
   color: #3a2e38;
+}
+
+.actionImg {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Make image icons white when inside filled action buttons */
+.cardActionBtn .actionImg {
+  filter: invert(1) brightness(1.2) saturate(0);
+}
+
+/* Keep original look for outlined buttons */
+.cardActionBtnOutlined .actionImg {
+  filter: none;
+}
+
+.actionImg {
+  vertical-align: middle;
 }
 
 /* Events styles */

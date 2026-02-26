@@ -48,7 +48,7 @@
       "app-dev",
       "learning-path",
       "developing-core-applications",
-      "best-practice",
+      "best-practices",
       "concepts",
       "flexibleserver"
     ],
@@ -202,11 +202,11 @@
       "documentation",
       "learning-path",
       "developing-core-applications",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to",
       "flexibleserver",
-      "vscode"
+      "visual-studio-code-extension"
     ],
     "date": "2025-05-19",
     "priority": "P0",
@@ -219,18 +219,18 @@
     "description": "The PostgreSQL extension for Visual Studio Code now integrates GitHub Copilot to enhance database workflows with AI-assisted development using live connection context. This allows the @pgsql Copilot chat participant to generate schema-aware SQL queries and insights, streamlining development and reducing context-switching.Get started with this quickstart guide.",
     "website": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
-    "image": "./img/github-copilot-in-vscode.png",
+    "image": "./img/github-copilot-in-visual-studio-code-extension.png",
     "tags": [
       "documentation",
       "app-dev",
       "learning-path",
       "developing-core-applications",
-      "best-practice",
+      "best-practices",
       "concepts",
       "flexibleserver",
       "how-to",
-      "vscode",
-      "connect"
+      "visual-studio-code-extension",
+      "connect-&-query"
     ],
     "date": "2025-05-19",
     "priority": "P0",
@@ -250,7 +250,7 @@
       "learning-path",
       "developing-core-applications",
       "python",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to"
     ],
@@ -269,7 +269,7 @@
     "tags": [
       "documentation",
       "java",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to",
       "flexibleserver"
@@ -285,7 +285,7 @@
     "image": "./img/connect-and-query-using-net.png",
     "tags": [
       "documentation",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to",
       "flexibleserver",
@@ -303,7 +303,7 @@
     "tags": [
       "documentation",
       "go",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to",
       "flexibleserver"
@@ -320,7 +320,7 @@
     "tags": [
       "documentation",
       "php",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "how-to",
       "flexibleserver"
@@ -336,7 +336,7 @@
     "image": "./img/list-of-supported-libraries.png",
     "tags": [
       "documentation",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "dotnet",
       "concepts",
@@ -494,7 +494,7 @@
     "image": "./img/az-service-connector.png",
     "tags": [
       "documentation",
-      "connect",
+      "connect-&-query",
       "app-dev",
       "dotnet",
       "how-to",
@@ -514,7 +514,12 @@
     "website": "https://www.youtube.com/watch?v=Li6Td47-Ods",
     "source": "https://www.youtube.com/watch?v=Li6Td47-Ods",
     "image": "./img/boost-data-tasks.png",
-    "tags": ["vscode", "app-dev", "flexibleserver", "video"],
+    "tags": [
+      "visual-studio-code-extension",
+      "app-dev",
+      "flexibleserver",
+      "video"
+    ],
     "date": "2025-7-10"
   },
   {
@@ -532,7 +537,7 @@
       "flexibleserver",
       "tutorial",
       "workshop",
-      "best-practice",
+      "best-practices",
       "php",
       "java",
       "python",
@@ -552,7 +557,7 @@
     "image": "./img/enable-and-use-pgvector-for-search.png",
     "tags": [
       "documentation",
-      "vector",
+      "vector-search",
       "learning-path",
       "building-genai-apps",
       "flexibleserver",
@@ -572,7 +577,7 @@
     "image": "./img/optimization-using-pgvector.png",
     "tags": [
       "documentation",
-      "vector",
+      "vector-search",
       "genai",
       "how-to",
       "flexibleserver",
@@ -589,7 +594,7 @@
     "image": "./img/enable-and-use-diskann.png",
     "tags": [
       "documentation",
-      "vector",
+      "vector-search",
       "learning-path",
       "building-genai-apps",
       "genai",
@@ -616,9 +621,9 @@
       "flexibleserver",
       "genai",
       "how-to",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2024-6-27",
     "priority": "P0",
@@ -632,7 +637,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-azure-machine-learning",
     "image": "./img/integrate-with-az-ai-services.png",
-    "tags": ["documentation", "genai", "how-to", "flexibleserver", "azureai"],
+    "tags": [
+      "documentation",
+      "genai",
+      "how-to",
+      "flexibleserver",
+      "azure-ai-extension"
+    ],
     "date": "2025-10-3",
     "priority": "P1"
   },
@@ -647,9 +658,9 @@
       "genai",
       "how-to",
       "flexibleserver",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-05-19",
     "priority": "P1"
@@ -662,14 +673,14 @@
     "image": "img/use-semantic-operators.png",
     "tags": [
       "documentation",
-      "semantic",
+      "semantic-search",
       "learning-path",
       "building-genai-apps",
       "genai",
       "how-to",
       "flexibleserver",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-8-1",
     "priority": "P0",
@@ -684,12 +695,12 @@
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/introducing-the-semantic-ranking-solution-for-azure-database-for-postgresql/4298781",
     "image": "./img/semantic-ranker.png",
     "tags": [
-      "semantic",
+      "semantic-search",
       "genai",
       "flexibleserver",
       "solution-accelerator",
       "rag",
-      "vector"
+      "vector-search"
     ],
     "date": "2025-01-07",
     "priority": "P0"
@@ -702,13 +713,13 @@
     "image": "./img/build-semantic-search-application.png",
     "tags": [
       "documentation",
-      "semantic",
+      "semantic-search",
       "flexibleserver",
       "genai",
       "tutorial",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-06-27",
     "priority": "P0"
@@ -724,9 +735,9 @@
       "flexibleserver",
       "genai",
       "tutorial",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-06-27",
     "priority": "P0"
@@ -743,9 +754,9 @@
       "flexibleserver",
       "solution-accelerator",
       "rag",
-      "vector",
-      "azureai",
-      "semantic",
+      "vector-search",
+      "azure-ai-extension",
+      "semantic-search",
       "graph"
     ],
     "date": "2025-04-11",
@@ -761,9 +772,9 @@
       "flexibleserver",
       "genai",
       "solution-accelerator",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai",
+      "azure-ai-extension",
       "python"
     ],
     "date": "2025-10-13",
@@ -777,16 +788,16 @@
     "image": "./img/build-ai-apps-with-az-for-pg.png",
     "tags": [
       "training / training-path",
-      "agent",
+      "agents",
       "flexibleserver",
       "learning-path",
       "building-genai-apps",
       "building-ai-agents",
       "genai",
       "training",
-      "vector",
-      "azureai",
-      "semantic",
+      "vector-search",
+      "azure-ai-extension",
+      "semantic-search",
       "rag",
       "graph"
     ],
@@ -801,12 +812,12 @@
     "source": "https://learn.microsoft.com/training/modules/enable-semantic-search-azure-database-postgresql/",
     "image": "./img/enable-semantic-search-module-2.png",
     "tags": [
-      "semantic",
+      "semantic-search",
       "flexibleserver",
       "genai",
       "training",
-      "vector",
-      "azureai",
+      "vector-search",
+      "azure-ai-extension",
       "rag"
     ],
     "priority": "P0"
@@ -841,7 +852,7 @@
     "website": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
     "source": "https://learn.microsoft.com/training/modules/use-azure-machine-learning-inferencing-azure-database-postgresql/",
     "image": "./img/use-az-ml.png",
-    "tags": ["flexibleserver", "genai", "training", "azureai"],
+    "tags": ["flexibleserver", "genai", "training", "azure-ai-extension"],
     "priority": "P1"
   },
   {
@@ -858,8 +869,8 @@
       "building-genai-apps",
       "genai",
       "tutorial",
-      "vector",
-      "azureai",
+      "vector-search",
+      "azure-ai-extension",
       "python"
     ],
     "date": "2025-9-3",
@@ -877,16 +888,16 @@
     "tags": [
       "documentation",
       "overview",
-      "agent",
+      "agents",
       "learning-path",
       "building-ai-agents",
       "flexibleserver",
       "genai",
       "tutorial",
-      "vector",
+      "vector-search",
       "python",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-06-27",
     "priority": "P0",
@@ -903,16 +914,16 @@
     "tags": [
       "documentation",
       "overview",
-      "agent",
+      "agents",
       "learning-path",
       "building-ai-agents",
       "flexibleserver",
       "genai",
       "tutorial",
-      "vector",
+      "vector-search",
       "python",
       "rag",
-      "azureai"
+      "azure-ai-extension"
     ],
     "date": "2025-06-27",
     "priority": "P0",
@@ -927,16 +938,16 @@
     "source": "https://aka.ms/agentic-shop",
     "image": "./img/e-imagined-shopping.png",
     "tags": [
-      "agent",
+      "agents",
       "learning-path",
       "building-ai-agents",
       "flexibleserver",
       "genai",
       "solution-accelerator",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai",
-      "semantic",
+      "azure-ai-extension",
+      "semantic-search",
       "graph",
       "python"
     ],
@@ -954,15 +965,15 @@
     "image": "./img/ai-agents-sementic-kernal-and-pg.png",
     "tags": [
       "documentation",
-      "semantic",
-      "agent",
+      "semantic-search",
+      "agents",
       "genai",
       "dotnet",
       "how-to",
       "flexibleserver",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai",
+      "azure-ai-extension",
       "dotnet",
       "java",
       "python"
@@ -977,11 +988,11 @@
     "image": "./img/enterprise-ai-agents-with-java-and-spring.png",
     "tags": [
       "java",
-      "agent",
+      "agents",
       "genai",
       "training",
       "flexibleserver",
-      "vector",
+      "vector-search",
       "rag"
     ],
     "priority": "P1"
@@ -1038,7 +1049,7 @@
       "flexibleserver",
       "genai",
       "how-to",
-      "agent",
+      "agents",
       "rag"
     ],
     "date": "2025-05-19",
@@ -1053,7 +1064,14 @@
     "website": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "source": "https://www.youtube.com/watch?v=em0PKDGzzlQ",
     "image": "./img/demo-azure-ai-and-pg-vector.png",
-    "tags": ["vector", "flexibleserver", "genai", "azureai", "rag", "video"],
+    "tags": [
+      "vector-search",
+      "flexibleserver",
+      "genai",
+      "azure-ai-extension",
+      "rag",
+      "video"
+    ],
     "date": "2024-2-16",
     "priority": "P1"
   },
@@ -1063,7 +1081,14 @@
     "website": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "source": "https://www.youtube.com/watch?v=c0gESq_Wtf8",
     "image": "./img/integrating-ai-and-vector-search.png",
-    "tags": ["vector", "flexibleserver", "genai", "azureai", "rag", "video"],
+    "tags": [
+      "vector-search",
+      "flexibleserver",
+      "genai",
+      "azure-ai-extension",
+      "rag",
+      "video"
+    ],
     "date": "2024-05-30",
     "priority": "P0"
   },
@@ -1076,11 +1101,11 @@
     "tags": [
       "genai",
       "flexibleserver",
-      "vector",
-      "azureai",
+      "vector-search",
+      "azure-ai-extension",
       "rag",
-      "agent",
-      "semantic",
+      "agents",
+      "semantic-search",
       "graph",
       "video"
     ],
@@ -1096,11 +1121,11 @@
     "tags": [
       "genai",
       "flexibleserver",
-      "vector",
-      "azureai",
-      "agent",
+      "vector-search",
+      "azure-ai-extension",
+      "agents",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph",
       "video"
     ],
@@ -1115,16 +1140,16 @@
     "image": "./img/build-ai-apps-with-az-pg.png",
     "tags": [
       "video",
-      "agent",
+      "agents",
       "flexibleserver",
       "learning-path",
       "building-genai-apps",
       "building-ai-agents",
       "genai",
-      "azureai",
-      "vector",
+      "azure-ai-extension",
+      "vector-search",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph"
     ],
     "date": "2025-07-08",
@@ -1139,13 +1164,13 @@
     "source": "https://github.com/jjfrost/pg-sk-agents-lab",
     "image": "./img/agent-driven-rag.png",
     "tags": [
-      "agent",
+      "agents",
       "rag",
       "genai",
       "flexibleserver",
-      "vector",
-      "azureai",
-      "semantic",
+      "vector-search",
+      "azure-ai-extension",
+      "semantic-search",
       "graph",
       "python",
       "workshop"
@@ -1161,7 +1186,7 @@
     "image": "./img/az-db-for-pg-mirroring.png",
     "tags": [
       "documentation",
-      "fabric",
+      "microsoft-fabric",
       "flexibleserver",
       "analytics",
       "concepts",
@@ -1178,7 +1203,7 @@
     "image": "./img/copy-activity-in-az.png",
     "tags": [
       "documentation",
-      "fabric",
+      "microsoft-fabric",
       "analytics",
       "flexibleserver",
       "how-to"
@@ -1194,7 +1219,7 @@
     "image": "./img/script-activity.png",
     "tags": [
       "documentation",
-      "fabric",
+      "microsoft-fabric",
       "analytics",
       "flexibleserver",
       "how-to"
@@ -1227,7 +1252,7 @@
     "tags": [
       "documentation",
       "concepts",
-      "adf",
+      "azure-data-factory-(adf)",
       "flexibleserver",
       "analytics",
       "how-to"
@@ -1241,7 +1266,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-connect-data-factory-private-endpoint",
     "image": "./img/azure-data-factory-with-managed-endpoints.png",
-    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
+    "tags": [
+      "documentation",
+      "azure-data-factory-(adf)",
+      "flexibleserver",
+      "analytics",
+      "how-to"
+    ],
     "date": "2025-04-15",
     "priority": "P1"
   },
@@ -1251,7 +1282,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-copy-activity-azure",
     "image": "./img/copy-activity-in-az.png",
-    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
+    "tags": [
+      "documentation",
+      "azure-data-factory-(adf)",
+      "flexibleserver",
+      "analytics",
+      "how-to"
+    ],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1261,7 +1298,13 @@
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-data-factory-script-activity-azure",
     "image": "./img/script-activity-in-data-factory.png",
-    "tags": ["documentation", "adf", "flexibleserver", "analytics", "how-to"],
+    "tags": [
+      "documentation",
+      "azure-data-factory-(adf)",
+      "flexibleserver",
+      "analytics",
+      "how-to"
+    ],
     "date": "2025-07-24",
     "priority": "P1"
   },
@@ -1276,8 +1319,8 @@
       "announcement",
       "flexibleserver",
       "app-dev",
-      "vscode",
-      "connect",
+      "visual-studio-code-extension",
+      "connect-&-query",
       "blog"
     ],
     "date": "2025-05-19",
@@ -1299,11 +1342,11 @@
       "announcement",
       "flexibleserver",
       "genai",
-      "vector",
-      "agent",
-      "azureai",
+      "vector-search",
+      "agents",
+      "azure-ai-extension",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph",
       "blog"
     ],
@@ -1326,10 +1369,10 @@
       "announcement",
       "flexibleserver",
       "genai",
-      "vector",
-      "azureai",
+      "vector-search",
+      "azure-ai-extension",
       "rag",
-      "semantic",
+      "semantic-search",
       "blog"
     ],
     "date": "2025-05-19",
@@ -1351,7 +1394,7 @@
       "announcement",
       "flexibleserver",
       "genai",
-      "vector",
+      "vector-search",
       "rag",
       "blog"
     ],
@@ -1374,11 +1417,11 @@
       "announcement",
       "flexibleserver",
       "genai",
-      "vector",
-      "azureai",
-      "agent",
+      "vector-search",
+      "azure-ai-extension",
+      "agents",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph",
       "video",
       "blog"
@@ -1402,11 +1445,11 @@
       "announcement",
       "flexibleserver",
       "genai",
-      "vector",
-      "azureai",
-      "agent",
+      "vector-search",
+      "azure-ai-extension",
+      "agents",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph",
       "solution-accelerator",
       "python",
@@ -1453,13 +1496,13 @@
       "horizondb",
       "blog",
       "genai",
-      "vscode",
-      "azureai",
-      "connect",
+      "visual-studio-code-extension",
+      "azure-ai-extension",
+      "connect-&-query",
       "rag",
-      "semantic",
+      "semantic-search",
       "graph",
-      "agent",
+      "agents",
       "featured"
     ],
     "date": "2025-11-18",
@@ -1480,7 +1523,7 @@
       "documentation",
       "genai",
       "how-to",
-      "agent",
+      "agents",
       "rag",
       "blog",
       "flexibleserver"
@@ -1501,11 +1544,11 @@
     "image": "./img/ubs.png",
     "tags": [
       "genai",
-      "vector",
-      "azureai",
-      "agent",
+      "vector-search",
+      "azure-ai-extension",
+      "agents",
       "rag",
-      "semantic",
+      "semantic-search",
       "blog",
       "flexibleserver"
     ],
@@ -1527,10 +1570,10 @@
       "documentation",
       "flexibleserver",
       "genai",
-      "agent",
+      "agents",
       "rag",
-      "vector",
-      "semantic",
+      "vector-search",
+      "semantic-search",
       "how-to",
       "blog"
     ],
@@ -1548,7 +1591,13 @@
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/real-ai-development-and-real-wins-with-the-new-vs-code-extension-for-postgresql/4431398",
     "image": "./img/real-ai-dev.png",
-    "tags": ["flexibleserver", "app-dev", "vscode", "connect", "blog"],
+    "tags": [
+      "flexibleserver",
+      "app-dev",
+      "visual-studio-code-extension",
+      "connect-&-query",
+      "blog"
+    ],
     "date": "2025-9-11",
     "priority": "P1",
     "meta": {
@@ -1567,10 +1616,10 @@
       "flexibleserver",
       "featured",
       "genai",
-      "vector",
+      "vector-search",
       "rag",
-      "azureai",
-      "agent",
+      "azure-ai-extension",
+      "agents",
       "blog",
       "python"
     ],
@@ -1588,7 +1637,7 @@
     "website": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
     "source": "https://techcommunity.microsoft.com/blog/adforpostgresql/pgbouncer-best-practices-in-azure-database-for-postgresql-%E2%80%93-part-1/4453323",
     "image": "./img/pgbouncer.png",
-    "tags": ["flexibleserver", "app-dev", "best-practice", "blog"],
+    "tags": ["flexibleserver", "app-dev", "best-practices", "blog"],
     "date": "2025-10-3",
     "priority": "P1",
     "meta": {
@@ -1607,12 +1656,12 @@
       "flexibleserver",
       "horizondb",
       "genai",
-      "agent",
-      "vector",
+      "agents",
+      "vector-search",
       "rag",
-      "azureai",
+      "azure-ai-extension",
       "graph",
-      "semantic",
+      "semantic-search",
       "video"
     ],
     "date": "2025-11-20",

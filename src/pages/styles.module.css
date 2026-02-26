@@ -105,7 +105,6 @@
   align-items: center;
   text-align: center;
   gap: 16px;
-  width: 70%;
 }
 
 .resourceTitle {
@@ -114,10 +113,13 @@
 
 .centeredDescription {
   text-align: center !important;
+  max-width: 657px;
   width: 100%;
   font-size: 18px !important;
   font-weight: 400 !important;
-  color: #605e5c;
+  color: #555555;
+  line-height: 1.5 !important;
+  margin-bottom: 12px;
 }
 
 /* Center Resource Library heading + description on smaller screens */
