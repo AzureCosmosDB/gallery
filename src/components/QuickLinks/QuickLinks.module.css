@@ -134,3 +134,8 @@
     font-size: 0.95rem;
   }
 }
+
+/* Ensure Quick Links description is 18px on all screens */
+.quickLinksSection .description {
+  font-size: 18px !important;
+}
