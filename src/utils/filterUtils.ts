@@ -17,9 +17,22 @@ import { normalizeLabel } from "./jsUtils";
 export const PARENT_CHILD_MAP: Record<string, string[]> = {
   documentation: ["concepts", "how-to", "tutorial"],
   fundamentals: ["overview", "getting-started"],
-  genai: ["overview", "vector", "rag", "agent", "semantic", "graph", "azureai"],
-  "app-dev": ["connect", "vscode", "best-practice", "devops"],
-  analytics: ["powerbi", "fabric", "adf"],
+  genai: [
+    "overview",
+    "vector-search",
+    "rag",
+    "agents",
+    "semantic-search",
+    "graph",
+    "azure-ai-extension",
+  ],
+  "app-dev": [
+    "connect-&-query",
+    "visual-studio-code-extension",
+    "best-practices",
+    "devops",
+  ],
+  analytics: ["powerbi", "microsoft-fabric", "azure-data-factory-(adf)"],
 };
 
 /**
