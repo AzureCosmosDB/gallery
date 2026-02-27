@@ -236,8 +236,8 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "solution-accelerator": {
-    label: "Solution Accelerator",
-    description: "Solution Accelerator",
+    label: "Solution Accelerators",
+    description: "Solution Accelerators",
     type: "ResourceType",
     buttonText: "Explore Solution Accelerator",
     color: "indigo",

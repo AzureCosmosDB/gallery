@@ -17,7 +17,8 @@
   background-color: #1b5fa1 !important;
 }
 
-@media (max-width: 996px) {
+/* Show floating feedback button when center nav is hidden (<=1340px) */
+@media (max-width: 1340px) {
   .floatingButton {
     display: flex !important;
     align-items: center;

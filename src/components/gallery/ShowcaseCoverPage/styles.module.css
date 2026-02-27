@@ -255,7 +255,7 @@
 
   .heroTitle {
     font-size: 30px !important;
-    line-height: normal;
+    line-height: 1.2 !important;
   }
 
   .greyText {

@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+/* Add side padding for title and description to match cards */
+.contentWrapper {
+  padding: 0 16px;
+}
+
 .title {
   font-size: 2.2rem;
   font-weight: 700;
@@ -33,7 +38,7 @@
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 0 16px;
 }
 
 /* Large screens - 4 columns */
