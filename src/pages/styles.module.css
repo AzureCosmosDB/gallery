@@ -40,6 +40,7 @@
 
 .learningPathStyled {
   background-color: #f4fafd !important;
+  overflow: hidden;
 }
 .sortAndViewBar {
   display: flex;
