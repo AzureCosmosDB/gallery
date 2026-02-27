@@ -55,10 +55,10 @@ export default function ShowcaseTagSelect({
     if (isLearningPath) {
       // For learning path tags: clear all other filters and set only this tag
       const newSearch = `tags=${tag}`;
-        history.replace({
-          ...location,
-          search: newSearch,
-        });
+      history.replace({
+        ...location,
+        search: newSearch,
+      });
 
       // Switch to list view for learning paths without scrolling the page
       requestAnimationFrame(() => {
@@ -112,10 +112,10 @@ export default function ShowcaseTagSelect({
       }
 
       const newSearch = replaceSearchTags(location.search, newTags);
-        history.replace({
-          ...location,
-          search: newSearch,
-        });
+      history.replace({
+        ...location,
+        search: newSearch,
+      });
     }
   };
   // Adobe Analytics
