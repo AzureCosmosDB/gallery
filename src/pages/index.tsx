@@ -25,8 +25,13 @@ initializeIcons();
 
 export function prepareUserState(): UserState | undefined {
   if (ExecutionEnvironment.canUseDOM) {
+    const resourceEl = document.getElementById("resource-library");
+    const scrollTopPosition = resourceEl
+      ? resourceEl.getBoundingClientRect().top + window.scrollY
+      : window.scrollY;
+
     return {
-      scrollTopPosition: window.scrollY,
+      scrollTopPosition,
       focusedElementId: document.activeElement?.id,
     };
   }
@@ -48,7 +53,7 @@ const readSearchTags = (search: string): TagType[] => {
         ...value
           .split(",")
           .map((tag) => tag.trim())
-          .filter(Boolean)
+          .filter(Boolean),
       );
     } else {
       // Individual tag value

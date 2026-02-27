@@ -219,7 +219,7 @@
     "description": "The PostgreSQL extension for Visual Studio Code now integrates GitHub Copilot to enhance database workflows with AI-assisted development using live connection context. This allows the @pgsql Copilot chat participant to generate schema-aware SQL queries and insights, streamlining development and reducing context-switching.Get started with this quickstart guide.",
     "website": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
     "source": "https://learn.microsoft.com/azure/postgresql/extensions/vs-code-extension/quickstart-github-copilot",
-    "image": "./img/github-copilot-in-visual-studio-code-extension.png",
+    "image": "./img/github-copilot-in-vscode.png",
     "tags": [
       "documentation",
       "app-dev",
@@ -1496,14 +1496,15 @@
       "horizondb",
       "blog",
       "genai",
-      "visual-studio-code-extension",
       "azure-ai-extension",
       "connect-&-query",
       "rag",
       "semantic-search",
       "graph",
       "agents",
-      "featured"
+      "featured",
+      "visual-studio-code-extension",
+      "app-dev"
     ],
     "date": "2025-11-18",
     "priority": "P0",
