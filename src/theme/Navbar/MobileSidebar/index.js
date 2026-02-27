@@ -10,6 +10,10 @@ import NavbarMobileSidebarSecondaryMenu from '@theme/Navbar/MobileSidebar/Second
 export default function NavbarMobileSidebar() {
   const mobileSidebar = useNavbarMobileSidebar();
   useLockBodyScroll(mobileSidebar.shown);
+  // Force render the mobile sidebar up to 1340px so our custom
+  // hamburger breakpoint works even if the theme's default
+  // shouldRender is false. Guard against SSR by checking window.
+  const forceRender =
     typeof window !== "undefined" &&
     window.matchMedia &&
     window.matchMedia("(max-width: 1340px)").matches;
