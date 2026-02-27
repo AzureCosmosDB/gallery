@@ -55,27 +55,14 @@ export default function ShowcaseTagSelect({
     if (isLearningPath) {
       // For learning path tags: clear all other filters and set only this tag
       const newSearch = `tags=${tag}`;
-      history.replace({
-        ...location,
-        search: newSearch,
-        state: prepareUserState(),
-      });
+        history.replace({
+          ...location,
+          search: newSearch,
+        });
 
-      // Scroll to resource library and switch to list view
+      // Switch to list view for learning paths without scrolling the page
       requestAnimationFrame(() => {
-        const el = document.getElementById("resource-library");
-        if (el) {
-          const navbar = document.querySelector(
-            ".navbar",
-          ) as HTMLElement | null;
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const elementPosition =
-            el.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight - 20;
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-          // Dispatch custom event to switch to list view for learning paths
-          window.dispatchEvent(new Event("switchToListView"));
-        }
+        window.dispatchEvent(new Event("switchToListView"));
       });
     } else {
       // Normal behavior for other tags
@@ -125,11 +112,10 @@ export default function ShowcaseTagSelect({
       }
 
       const newSearch = replaceSearchTags(location.search, newTags);
-      history.push({
-        ...location,
-        search: newSearch,
-        state: prepareUserState(),
-      });
+        history.replace({
+          ...location,
+          search: newSearch,
+        });
     }
   };
   // Adobe Analytics

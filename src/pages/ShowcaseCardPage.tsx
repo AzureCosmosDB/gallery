@@ -59,15 +59,17 @@ interface ShowcaseCardPageProps {
  * Restores scroll position and focus from saved user state.
  */
 function restoreUserState(userState: UserState | null): void {
-  const { scrollTopPosition, focusedElementId } = userState ?? {
-    scrollTopPosition: 0,
-    focusedElementId: undefined,
-  };
+  if (!userState) return;
+
+  const { scrollTopPosition, focusedElementId } = userState;
 
   if (focusedElementId) {
     document.getElementById(focusedElementId)?.focus();
   }
-  window.scrollTo({ top: scrollTopPosition });
+
+  if (typeof scrollTopPosition === "number") {
+    window.scrollTo({ top: scrollTopPosition });
+  }
 }
 
 // ============================================================================
@@ -218,10 +220,9 @@ export default function ShowcaseCardPage({
     const searchParams = new URLSearchParams(location.search);
     searchParams.delete("tags");
 
-    history.push({
+    history.replace({
       ...location,
       search: searchParams.toString(),
-      state: prepareUserState(),
     });
   };
 
