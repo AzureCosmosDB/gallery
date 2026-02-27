@@ -109,7 +109,6 @@ function useFilteredUsers(
 // Sub-Components
 // ============================================================================
 
-
 interface SearchAndSortSectionProps {
   sortOption: string;
   onSortChange: (option: string) => void;

@@ -69,8 +69,8 @@ function removeTagWithSubFilters(
     const parentObj = Tags[parentKey as TagType];
     if (!parentObj || !parentObj.subType) return;
 
-    const childKeys = parentObj.subType.map((s) =>
-      (s.label.toLowerCase().replace(/\s+/g, "-") as TagType),
+    const childKeys = parentObj.subType.map(
+      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
     );
 
     const anyChildSelected = childKeys.some((ck) => newTags.includes(ck));
