@@ -365,7 +365,6 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Getting Started",
     description: "Getting Started with Azure Database for PostgreSQL",
     color: "slate",
-    type: "ContentType",
   },
 
   // Services Category for filtering content
