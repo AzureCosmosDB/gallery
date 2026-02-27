@@ -7,7 +7,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { useHistory } from "@docusaurus/router";
-import { Spinner, Title1, Title3 } from "@fluentui/react-components";
+import { Spinner } from "@fluentui/react-components";
 import type { User, TagType } from "../data/tags";
 import { prepareUserState } from "./index";
 
@@ -109,22 +109,6 @@ function useFilteredUsers(
 // Sub-Components
 // ============================================================================
 
-interface HeaderSectionProps {
-  title: string;
-  description: string;
-}
-
-function HeaderSection({
-  title,
-  description,
-}: HeaderSectionProps): React.JSX.Element {
-  return (
-    <div className={styles.titleSection}>
-      <Title1 className={styles.resourceTitle}>{title}</Title1>
-      <Title3 className={styles.centeredDescription}>{description}</Title3>
-    </div>
-  );
-}
 
 interface SearchAndSortSectionProps {
   sortOption: string;
@@ -249,11 +233,6 @@ export default function ShowcaseCardPage({
   return (
     <>
       <div>
-        <HeaderSection
-          title="Resource Library"
-          description="Explore our comprehensive collection of documentation, tutorials, videos, and solution accelerators to help you build amazing applications with PostgreSQL on Azure."
-        />
-
         <SearchAndSortSection
           sortOption={sortOption}
           onSortChange={handleSortChange}

@@ -706,7 +706,7 @@
     "priority": "P0"
   },
   {
-    "title": "Build a Semantic Search Application with Azure Database for PostgreSQL and Azure Openai",
+    "title": "Build a Semantic Search Application with Azure Database for PostgreSQL and Azure OpenAI",
     "description": "Unlike standard lexical search, which matches keywords, semantic search interprets meaning to deliver more relevant results. This tutorial guides you through building a semantic search application using Azure Database for PostgreSQL and Azure OpenAI.",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-semantic-search",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-semantic-search",
@@ -725,7 +725,7 @@
     "priority": "P0"
   },
   {
-    "title": "Build a Recommendation System with Azure Database for PostgreSQL and Azure Openai",
+    "title": "Build a Recommendation System with Azure Database for PostgreSQL and Azure OpenAI",
     "description": "Recommendation applications help service providers deliver personalized product or service suggestions based on user history and contextual data. This tutorial shows you how to build a simple recipe recommender using Azure Database for PostgreSQL and Azure OpenAI, leveraging prior selections for tailored recommendations.",
     "website": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-recommendation-system",
     "source": "https://learn.microsoft.com/azure/postgresql/flexible-server/generative-ai-recommendation-system",

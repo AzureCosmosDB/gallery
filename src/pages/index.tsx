@@ -5,6 +5,7 @@ import LearningPathsSection from "../components/LearningPathsSection";
  */
 
 import React, { useState, useEffect } from "react";
+import { Title1, Title3 } from "@fluentui/react-components";
 import Layout from "@theme/Layout";
 import ShowcaseLeftFilters from "../components/gallery/ShowcaseLeftFilters";
 import ShowcaseCoverPage from "../components/gallery/ShowcaseCoverPage";
@@ -91,6 +92,14 @@ const App = () => {
         <LearningPathsSection />
       </div>
       <div id="resource-library">
+        <div className={styles.titleSection}>
+          <Title1 className={styles.resourceTitle}>Resource Library</Title1>
+          <Title3 className={styles.centeredDescription}>
+            Explore our comprehensive collection of documentation, tutorials,
+            videos, and solution accelerators to help you build amazing
+            applications with PostgreSQL on Azure.
+          </Title3>
+        </div>
         <div className={styles.filterAndCardContainer}>
           <div className={styles.filterAndCard}>
             <div className={styles.filter}>

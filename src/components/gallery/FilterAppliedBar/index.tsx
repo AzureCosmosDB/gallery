@@ -46,6 +46,39 @@ function removeTagWithSubFilters(
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }
 
+  // If we removed a child tag, and its parent remains but none of the parent's
+  // children are selected anymore, also remove the parent from the applied list.
+  // Build reverse mapping (child -> parent) and perform cleanup.
+  const parentMap: Record<string, string[]> = {};
+  Object.keys(Tags).forEach((parentKey) => {
+    const parentObj = Tags[parentKey as TagType];
+    if (parentObj?.subType && Array.isArray(parentObj.subType)) {
+      parentObj.subType.forEach((s) => {
+        const childKey = s.label.toLowerCase().replace(/\s+/g, "-");
+        parentMap[childKey] = parentMap[childKey] || [];
+        parentMap[childKey].push(parentKey);
+      });
+    }
+  });
+
+  // For each parent of the toggled tag, if the parent is still present but
+  // none of its children remain selected, remove the parent as well.
+  const toggledKey = tag as string;
+  const parents = parentMap[toggledKey] || [];
+  parents.forEach((parentKey) => {
+    const parentObj = Tags[parentKey as TagType];
+    if (!parentObj || !parentObj.subType) return;
+
+    const childKeys = parentObj.subType.map((s) =>
+      (s.label.toLowerCase().replace(/\s+/g, "-") as TagType),
+    );
+
+    const anyChildSelected = childKeys.some((ck) => newTags.includes(ck));
+    if (!anyChildSelected && newTags.includes(parentKey as TagType)) {
+      newTags = newTags.filter((t) => t !== (parentKey as TagType));
+    }
+  });
+
   return newTags;
 }
 
