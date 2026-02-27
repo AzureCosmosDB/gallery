@@ -1,7 +1,8 @@
 /* Reusable style for resource links */
 .resourceLink {
-  color: #555;
+  color: #605E5C;
   text-decoration: underline;
+  font-weight: 500;
 }
 .resourceLink:hover{
   text-decoration: underline;
@@ -68,14 +69,14 @@
 }
 
 .cardDesc {
-  color: #555;
+  color: #605E5C;
   text-align: center;
   font-size: 15px;
   line-height: 1.4;
 }
 
 .cardLinks {
-  color: #555;
+  color: #605E5C;
   text-align: center;
   font-size: 15px;
   line-height: 1.2;
@@ -116,9 +117,9 @@
   width: 100%;
   font-weight: 400 !important;
   font-size: 18px !important;
-    max-width: 686px;
-    line-height: 1.5;
-    color: #555555
+  max-width: 686px;
+  line-height: 1.5;
+  color: #605E5C;
 }
 .greyText{
   text-align: center !important;

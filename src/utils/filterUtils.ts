@@ -8,6 +8,7 @@
  */
 
 import { Tags, type User, type TagType } from "../data/tags";
+import { normalizeLabel } from "./jsUtils";
 
 /**
  * Parent-child tag relationships.
@@ -383,9 +384,7 @@ export function computeActiveTags(
     const tagObject = Tags[selectedTag];
     if (tagObject?.subType?.length) {
       tagObject.subType.forEach((sub) => {
-        const subTagKey = sub.label
-          .toLowerCase()
-          .replace(/\s+/g, "-") as TagType;
+        const subTagKey = normalizeLabel(sub.label) as TagType;
         if (Tags[subTagKey]) {
           unionTags.add(subTagKey);
         }

@@ -12,9 +12,9 @@
 }
 
 .description {
-   font-size: 20px !important;
+   font-size: 18px !important;
   font-weight: 400 !important;
-  color: #555555;
+  color: #605E5C;
   margin-bottom: 40px;
 }
 
@@ -36,7 +36,7 @@
     justify-content: space-between !important;
     flex-direction: column !important;
   text-align: center !important;
-  border: 1.5px solid #d1d5db;
+  border: 1px solid #0078d426;
   border-radius: 14px;
   padding: 32px 20px !important;
   transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
@@ -73,7 +73,7 @@
 
 .tileDescription {
   font-size: 14px;
-  color: #6c757d;
+  color: #605E5C;
   min-height: 40px;
 }
 
@@ -97,7 +97,7 @@
   }
 
   .description {
-    font-size: 1.05rem !important;
+    font-size: 18px !important;
   }
 
   .tilesContainer {

@@ -181,7 +181,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "purple",
     subType: [
       { label: "Connect & Query" },
-      { label: "Visual Studio Code extension" },
+      { label: "Visual Studio Code Extension" },
       { label: "Best Practices" },
       { label: "DevOps" },
     ],
@@ -212,7 +212,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "green",
   },
   "azure-ai-extension": {
-    label: "Azure AI extension",
+    label: "Azure AI Extension",
     description: "Template integrates with Azure AI services",
     type: ["GenerativeAI", "ContentType"],
     color: "brown",
@@ -236,7 +236,7 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "solution-accelerator": {
-    label: "Solution Accelerators",
+    label: "Solution Accelerator",
     description: "Solution Accelerators",
     type: "ResourceType",
     buttonText: "Explore Solution Accelerator",
@@ -310,7 +310,7 @@ export const Tags: { [type in TagType]: Tag } = {
       { label: "Agents" },
       { label: "Semantic Search" },
       { label: "Graph" },
-      { label: "Azure AI extension" },
+      { label: "Azure AI Extension" },
     ],
   },
 

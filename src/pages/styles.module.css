@@ -106,6 +106,7 @@
   align-items: center;
   text-align: center;
   gap: 16px;
+  margin-top: 56px;
 }
 
 .resourceTitle {
@@ -114,30 +115,31 @@
 
 .centeredDescription {
   text-align: center !important;
-  max-width: 657px;
+  max-width: 870px;
   width: 100%;
   font-size: 18px !important;
   font-weight: 400 !important;
-  color: #555555;
+  color: #605E5C;
   line-height: 1.5 !important;
-  margin-bottom: 12px;
 }
 
 /* Center Resource Library heading + description on smaller screens */
 @media screen and (max-width: 960px) {
   .titleSection {
     width: 100%;
-    margin: 0 auto;
+    margin: 56px auto 0;
     align-items: center;
     text-align: center;
   }
 
   .resourceTitle {
     text-align: center;
+    padding: 0 16px;
   }
 
   .centeredDescription {
     text-align: center !important;
+    padding: 0 16px;
   }
   .featuredCarousel{
     align-items: center;
@@ -277,7 +279,7 @@
 .filterAndCard {
   display: flex;
   gap: 32px;
-  padding: 56px 48px;
+  padding: 40px 48px 56px;
   max-width: 1440px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -335,7 +337,6 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  margin-top:24px
 }
 
 .templateResultsNumberContainer {

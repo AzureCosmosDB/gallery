@@ -31,10 +31,16 @@ export default function SortDropdown({
     _event: unknown,
     data: { selectedOptions: string[] },
   ) => {
+    const selected = data.selectedOptions[0] || SORT_BY_OPTIONS[1];
+    if (selected === sortOption) {
+      // No change — don't trigger loading or reapply the same sort
+      return;
+    }
+
     if (setLoading) {
       setLoading(true);
     }
-    onSortChange(data.selectedOptions[0] || SORT_BY_OPTIONS[1]);
+    onSortChange(selected);
   };
 
   return (

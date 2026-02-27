@@ -21,6 +21,7 @@ import {
 } from "@fluentui/react-components";
 import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
+import { normalizeLabel } from "../../../utils/jsUtils";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
@@ -271,9 +272,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey = sub.label
-                                  .toLowerCase()
-                                  .replace(/\s+/g, "-") as TagType;
+                                const subTagKey = normalizeLabel(
+                                  sub.label,
+                                ) as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div
@@ -344,9 +345,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey = sub.label
-                                  .toLowerCase()
-                                  .replace(/\s+/g, "-") as TagType;
+                                const subTagKey = normalizeLabel(
+                                  sub.label,
+                                ) as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div
