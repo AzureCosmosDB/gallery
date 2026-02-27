@@ -17,7 +17,7 @@ const config = {
     },
     quickLinks: [
       {
-        icon: "Globe",
+        icon: "img/postgres.svg",
         color: "#9a14fa",
         label: "Azure DB for PostgreSQL Homepage",
         description: "Official Azure PostgreSQL product page and pricing",
@@ -62,7 +62,7 @@ const config = {
         color: "#9a14fa",
         label: "Try PostgreSQL for free",
         description: "Free access for 12 months with an Azure free account.",
-        href: "https://azure.microsoft.com/en-us/products/postgresql",
+        href: "https://aka.ms/try-postgresql-free",
       },
     ],
     learningPathsSection: {

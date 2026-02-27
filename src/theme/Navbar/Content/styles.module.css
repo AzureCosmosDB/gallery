@@ -64,7 +64,8 @@
   gap: 2rem;
 }
 
-@media (max-width: 996px) {
+/* Hide center nav and adjust right area at <=1340px to match hamburger breakpoint */
+@media (max-width: 1340px) {
   .navbarCenter {
     display: none;
   }
