@@ -17,12 +17,13 @@ import {
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
+import { normalizeLabel } from "../../../utils/jsUtils";
 import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
 
 // Helper function to map sub-tag labels to actual tag keys
 function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
-  return subLabel.toLowerCase().replace(/\s+/g, "-") as TagType;
+  return normalizeLabel(subLabel) as TagType;
 }
 function LearningPathTagSelect({
   label,

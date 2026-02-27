@@ -5,7 +5,7 @@
 
 import React, { useCallback, useState, useEffect, useMemo } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
-import { toggleListItem } from "../../../utils/jsUtils";
+import { toggleListItem, normalizeLabel } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
 import { Tags, type TagType } from "../../../data/tags";
 import CustomCheckbox from "../CustomCheckbox";
@@ -14,9 +14,7 @@ import CustomCheckbox from "../CustomCheckbox";
 function getChildTags(parentTag: TagType): TagType[] {
   const parentObj = Tags[parentTag];
   if (parentObj?.subType && Array.isArray(parentObj.subType)) {
-    return parentObj.subType.map(
-      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
-    );
+    return parentObj.subType.map((s) => normalizeLabel(s.label) as TagType);
   }
   return [];
 }

@@ -14,7 +14,7 @@ import {
   ChevronRight20Filled,
 } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
-import { toggleListItem } from "../../../utils/jsUtils";
+import { toggleListItem, normalizeLabel } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
 import styles from "../../../pages/styles.module.css";
 
@@ -41,7 +41,7 @@ function removeTagWithSubFilters(
   const tagObject = Tags[tag];
   if (tagObject?.subType?.length) {
     const subKeys = tagObject.subType.map(
-      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
+      (s) => normalizeLabel(s.label) as TagType,
     );
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }
@@ -54,8 +54,8 @@ function removeTagWithSubFilters(
     const parentObj = Tags[parentKey as TagType];
     if (parentObj?.subType && Array.isArray(parentObj.subType)) {
       parentObj.subType.forEach((s) => {
-        const childKey = s.label.toLowerCase().replace(/\s+/g, "-");
-        parentMap[childKey] = parentMap[childKey] || [];
+        const childKey = normalizeLabel(s.label);
+        parentMap[childKey] ??= [];
         parentMap[childKey].push(parentKey);
       });
     }
