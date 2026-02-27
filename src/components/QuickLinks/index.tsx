@@ -52,7 +52,16 @@ const QuickLinks: React.FC = () => {
                     className={styles.iconImg}
                   />
                 ) : (
-                  <LucideIcon size={32} color={link.color} />
+                  (() => {
+                    const isEbookIcon =
+                      link.icon === "BookOpen" ||
+                      (link.label &&
+                        link.label.toLowerCase().includes("ebook"));
+                    const iconColor = isEbookIcon
+                      ? "#D69E29"
+                      : link.color || undefined;
+                    return <LucideIcon size={32} color={iconColor} />;
+                  })()
                 )}
               </div>
               <div className={styles.label}>{link.label}</div>
