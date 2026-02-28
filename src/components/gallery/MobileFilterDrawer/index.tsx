@@ -76,10 +76,9 @@ export default function MobileFilterDrawer({
     setSortOption(tempSortOption);
 
     const newSearch = replaceSearchTags(location.search, tempSelectedCheckbox);
-    history.push({
+    history.replace({
       ...location,
       search: newSearch,
-      state: prepareUserState(),
     });
 
     setIsOpen(false);

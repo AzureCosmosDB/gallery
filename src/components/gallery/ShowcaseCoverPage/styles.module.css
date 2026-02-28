@@ -2,7 +2,7 @@
 .resourceLink {
   color: #605E5C;
   text-decoration: underline;
-  font-weight: 500;
+  font-weight: 400;
 }
 .resourceLink:hover{
   text-decoration: underline;
@@ -118,7 +118,7 @@
   font-weight: 400 !important;
   font-size: 18px !important;
   max-width: 686px;
-  line-height: 1.5;
+  line-height: 1.5 !important;
   color: #605E5C;
 }
 .greyText{
@@ -213,7 +213,6 @@
 
   .centeredDescription {
     font-size: 20px !important;
-    line-height: 1.5;
   }
 }
 

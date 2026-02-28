@@ -114,10 +114,9 @@ export default function FilterAppliedBar({
       });
     }
 
-    history.push({
+    history.replace({
       ...location,
       search: newSearch,
-      state: prepareUserState(),
     });
   };
 

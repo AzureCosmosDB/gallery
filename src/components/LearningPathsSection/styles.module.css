@@ -1,6 +1,6 @@
 .sectionDesc {
   font-size: 1.08rem;
-  line-height: 1.6;
+  line-height: 1.5 !important;
   color: #605E5C;
   margin-bottom: 28px;
 }
