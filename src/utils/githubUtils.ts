@@ -2,8 +2,7 @@
  * Utility function to open GitHub new issue page with feedback template in a new tab
  * @param issuesUrl - Optional GitHub new issue URL, defaults to the gallery repository new issue page with feedback template
  */
-
-const openGitHubNewIssue = (issuesUrl?: string): void => {
+export const openGitHubNewIssue = (issuesUrl?: string): void => {
   const defaultUrl =
     "https://github.com/EmumbaOrg/postgres-gallery/issues/new?template=feedback.md";
   window.open(issuesUrl || defaultUrl, "_blank");

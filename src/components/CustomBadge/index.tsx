@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default */
 /**
  * Custom Badge Component - Replaces Fluent UI Badge with full height control
  */
@@ -7,11 +6,18 @@ import React from "react";
 import styles from "./styles.module.css";
 import clsx from "clsx";
 
-type BadgeColor = "brand" | "informative" | "success" | "warning" | "danger" | "severe" | "subtle";
+export type BadgeColor =
+  | "brand"
+  | "informative"
+  | "success"
+  | "warning"
+  | "danger"
+  | "severe"
+  | "subtle";
 
-type BadgeSize = "small" | "medium" | "large" | "extra-large";
+export type BadgeSize = "small" | "medium" | "large" | "extra-large";
 
-interface CustomBadgeProps {
+export interface CustomBadgeProps {
   children: React.ReactNode;
   color?: BadgeColor;
   size?: BadgeSize;
@@ -46,9 +52,13 @@ export default function CustomBadge({
 
   const content = (
     <>
-      {icon && iconPosition === "before" && <span className={styles.badgeIcon}>{icon}</span>}
+      {icon && iconPosition === "before" && (
+        <span className={styles.badgeIcon}>{icon}</span>
+      )}
       <span className={styles.badgeText}>{children}</span>
-      {icon && iconPosition === "after" && <span className={styles.badgeIcon}>{icon}</span>}
+      {icon && iconPosition === "after" && (
+        <span className={styles.badgeIcon}>{icon}</span>
+      )}
     </>
   );
 
@@ -65,5 +75,10 @@ export default function CustomBadge({
     );
   }
 
-  return <span className={badgeClasses}>{content}</span>;
+  return (
+    <span className={badgeClasses}>
+      {content}
+    </span>
+  );
 }
+

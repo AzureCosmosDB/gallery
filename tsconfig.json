@@ -1,12 +1,15 @@
 {
-  "extends": "@docusaurus/tsconfig",
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@sections/*": ["src/sections/*"],
-      "@assets/*": ["src/assets/*"]
-    },
-    "types": ["@docusaurus/module-type-aliases", "@docusaurus/theme-classic"]
-  }
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": [
+    "src/**/*",
+    "src/types/**/*"
+  ]
 }

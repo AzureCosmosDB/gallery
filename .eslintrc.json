@@ -1,9 +1,5 @@
 {
   "root": true,
-  "env": {
-    "es2021": true,
-    "node": true
-  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2023,
@@ -19,25 +15,6 @@
     "plugin:import/recommended",
     "plugin:import/typescript"
   ],
-  "overrides": [
-    {
-      "files": ["src/**/*.ts", "src/**/*.tsx"],
-      "env": {
-        "browser": true,
-        "es2021": true
-      },
-      "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
-      "extends": ["plugin:@typescript-eslint/recommended"]
-    },
-    {
-      "files": ["config/**/*.js", "scripts/**/*.js"],
-      "env": {
-        "node": true,
-        "es2021": true
-      }
-    }
-  ],
   "rules": {
     "no-duplicate-imports": "error",
     "no-unused-vars": "off",
@@ -46,20 +23,10 @@
       { "argsIgnorePattern": "^_", "ignoreRestSiblings": true }
     ],
     "import/no-duplicates": "error",
-    "import/no-unused-modules": "off",
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["^@theme", "^@docusaurus", "^@site", "^@generated"]
-      }
-    ]
+    "import/no-unused-modules": ["error", { "unusedExports": true }]
   },
   "settings": {
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-        "project": "./tsconfig.json"
-      },
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

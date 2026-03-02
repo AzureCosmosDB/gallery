@@ -40,7 +40,10 @@ function getImageSources(imagePath: string) {
   }
 
   // Build optimized paths - replace /img/ or img/ with /img-optimized/ or img-optimized/
-  const pathWithoutFilename = imagePath.substring(0, imagePath.lastIndexOf("/"));
+  const pathWithoutFilename = imagePath.substring(
+    0,
+    imagePath.lastIndexOf("/")
+  );
   // Handle both /img and img (with or without leading slash)
   // Match /img at the end, or img at the start/end, preserving the leading slash if present
   let basePath = pathWithoutFilename;
@@ -50,7 +53,10 @@ function getImageSources(imagePath: string) {
     basePath = "img-optimized";
   } else {
     // Fallback: try to replace img anywhere in the path
-    basePath = pathWithoutFilename.replace(/(^|\/)img(\/|$)/, "$1img-optimized$2");
+    basePath = pathWithoutFilename.replace(
+      /(^|\/)img(\/|$)/,
+      "$1img-optimized$2"
+    );
   }
 
   // WebP srcset for responsive images (always try all sizes - browser will fallback gracefully)
@@ -131,7 +137,9 @@ export default function OptimizedImage({
       style={{ width, height }}
     >
       {/* Blur placeholder while loading */}
-      {!isLoaded && <div className={styles.placeholder} style={{ width, height }} />}
+      {!isLoaded && (
+        <div className={styles.placeholder} style={{ width, height }} />
+      )}
 
       {/* Actual image - only render when in view */}
       {isInView && (

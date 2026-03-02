@@ -30,7 +30,6 @@ const submitFeedbackButton = () => {
   );
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export default {
   ...ComponentTypes,
   "custom-NavbarButton": submitFeedbackButton,
