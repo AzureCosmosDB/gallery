@@ -6,8 +6,11 @@ declare module "@docusaurus/useBaseUrl" {
 }
 
 declare module "@docusaurus/router" {
-  export function useHistory(): unknown;
-  export function useLocation<T = unknown>(): Location & {
+  export function useHistory(): any;
+  export function useLocation<T = any>(): {
+    pathname: string;
+    search: string;
+    hash: string;
     state: T;
   };
 }
@@ -29,16 +32,16 @@ declare module "@docusaurus/ExecutionEnvironment" {
 declare module "@generated/docusaurus.config" {
   const config: {
     customFields: {
-      [key: string]: unknown;
+      [key: string]: any;
     };
-    [key: string]: unknown;
+    [key: string]: any;
   };
   export default config;
 }
 
 declare module "@docusaurus/useDocusaurusContext" {
   export default function useDocusaurusContext(): {
-    siteConfig: unknown;
+    siteConfig: any;
   };
 }
 
@@ -69,11 +72,11 @@ declare global {
       command: "config" | "set" | "event" | "consent" | "js",
       target: string | Date,
       params?: {
-        [key: string]: unknown;
+        [key: string]: any;
         page_location?: string;
-        page_path?: string | unknown[];
+        page_path?: string | any[];
         user_properties?: {
-          [key: string]: unknown;
+          [key: string]: any;
         };
       }
     ) => void;

@@ -85,7 +85,9 @@ export default function NewsletterDialog({
                 </span>
               )}
               <div className={style.newsletterBulletsSection}>
-                <div style={{ fontWeight: 500, marginBottom: "0.5rem" }}>What you'll receive:</div>
+                <div style={{ fontWeight: 500, marginBottom: "0.5rem" }}>
+                  What you'll receive:
+                </div>
                 <ul
                   style={{
                     textAlign: "left",
@@ -113,8 +115,8 @@ export default function NewsletterDialog({
             <Button onClick={() => setOpen(false)}>Cancel</Button>
           </div>
           <div className={style.newsletterDisclaimer}>
-            By subscribing, you agree to receive marketing emails from Microsoft. You can
-            unsubscribe at any time.
+            By subscribing, you agree to receive marketing emails from
+            Microsoft. You can unsubscribe at any time.
           </div>
         </DialogBody>
       </DialogSurface>

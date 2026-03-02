@@ -1,11 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-html,
-body,
-#__docusaurus,
-#__docusaurus * {
-  font-family: "Inter", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+html, body, #__docusaurus, #__docusaurus * {
+  font-family: "Inter", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 /**
  * Any CSS included here will be global. The classic template
@@ -29,6 +25,7 @@ body,
   --ifm-color-text-ai-site: #242424;
 }
 
+
 /* For readability - FIXME: is there a better way to handle it? */
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
@@ -49,6 +46,7 @@ body,
   background-color: #ffffff !important;
 }
 
+
 .navbar .navbar__link,
 .navbar .navbar__item,
 .navbar .navbar__title {
@@ -59,7 +57,8 @@ body,
   gap: 16px;
 }
 .footer__link-item {
-  color: #606770 !important;
+        color: #606770 !important;
+
 }
 
 /* Ensure Inter font is applied to Fluent UI components as well */
@@ -69,15 +68,13 @@ body,
 :global(.fui-Card),
 :global([class*="fui-"]),
 :global([class*="fuib-"]) {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
 /* Enhanced Tooltip styling for better appearance */
 :global([class*="fui-Tooltip"]),
 :global([class*="Tooltip"]) {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
-    sans-serif !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
 }
 
 :global([class*="fui-Tooltip"] [class*="content"]),
@@ -116,7 +113,7 @@ body,
 /* Mobile sidebar theming */
 .navbar-sidebar {
   background: #ffffff !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08) !important;
   left: auto !important;
   right: 0 !important;
   transform: translate3d(100%, 0, 0) !important;

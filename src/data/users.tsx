@@ -32,7 +32,12 @@ function sortUsers() {
 }
 
 // Function to get users in original template.json order
+export function getUsersInOriginalOrder(): User[] {
+  return sortBy(unsortedUsers, (user) => user.order || 0);
+}
 
-const sortedUsers = sortUsers();
+export const sortedUsers = sortUsers();
 
-export const featuredUsers = sortedUsers.filter((user) => user.tags.includes("featured"));
+export const featuredUsers = sortedUsers.filter((user) =>
+  user.tags.includes("featured")
+);

@@ -253,11 +253,16 @@ export const Tags: { [type in TagType]: Tag } = {
 
   documentation: {
     label: "Documentation",
-    description: "Documentation resources including concepts, how-to guides, and tutorials",
+    description:
+      "Documentation resources including concepts, how-to guides, and tutorials",
     type: "ResourceType",
     buttonText: "Open Documentation",
     color: "blue",
-    subType: [{ label: "Concepts" }, { label: "How-To" }, { label: "Tutorial" }],
+    subType: [
+      { label: "Concepts" },
+      { label: "How-To" },
+      { label: "Tutorial" },
+    ],
   },
 
   concepts: {
@@ -361,7 +366,8 @@ export const Tags: { [type in TagType]: Tag } = {
   // Services Category for filtering content
   flexibleserver: {
     label: "Azure Database for PostgreSQL",
-    description: "Content related to Azure Database for PostgreSQL - Flexible Server",
+    description:
+      "Content related to Azure Database for PostgreSQL - Flexible Server",
     type: "Service",
     color: "blue",
   },

@@ -1,0 +1,107 @@
+/**
+* Copyright (c) Microsoft Corporation. All rights reserved.
+* Licensed under the MIT License.
+ */
+
+
+
+.checkboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 0 !important;
+  margin-bottom: 22px;
+}
+
+.checkboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.subCheckboxListItem {
+  user-select: none;
+  white-space: nowrap;
+  padding-left: 24px;
+  margin-bottom: 22px;
+}
+
+.subCheckboxListItem > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.checkboxListItem:last-child {
+  margin-right: 0;
+}
+
+.filterBy {
+  padding: 0 0 24px 12px;
+}
+
+.tagCatalog {
+  font-size: 16px;
+  font-weight: 600;
+  color: #242424;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+
+.tagSubCatalog {
+  padding: 0 0 7px 0px;
+}
+
+.tagCatalogBackground {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Override the specific Fluent UI accordion button padding */
+:global(.fui-AccordionHeader__button) {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Ensure consistent alignment for all accordion headers */
+:global(.fui-AccordionHeader) {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Ensure the accordion header content is also centered */
+:global(.fui-AccordionHeader__button) > div {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Add 10px margin-bottom to main category chevron icons (Learning Pathways, Products, etc.) */
+.mainCategoryItem :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 10px !important;
+}
+
+/* Add margin-bottom to chevron expand icon only for filter items with children, not main category headers */
+:global(.fui-AccordionPanel) .mainCategoryItem :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 22px !important;
+}
+
+/* Alternative selector for nested accordion items */
+:global(.fui-AccordionItem):not(.mainCategoryItem) :global(.fui-AccordionHeader__expandIcon) {
+  margin-bottom: 22px !important;
+}
+
+/* Ensure accordion panels don't add extra padding */
+:global(.fui-AccordionPanel) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 12px !important;
+}
+
+/* Add spacing below main category accordion items only */
+.mainCategoryItem {
+  margin-bottom: 0;
+}

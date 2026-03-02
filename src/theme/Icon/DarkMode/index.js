@@ -1,6 +1,4 @@
-import React from "react";
-
-// eslint-disable-next-line import/no-unused-modules
+import React from 'react';
 export default function IconDarkMode(props) {
   return (
     <svg viewBox="0 0 24 24" width={24} height={24} {...props}>

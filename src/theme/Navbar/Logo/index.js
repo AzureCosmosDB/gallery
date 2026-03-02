@@ -4,9 +4,11 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.css";
 
-export default function LogoWrapper() {
+export default function LogoWrapper(props) {
   const { siteConfig } = useDocusaurusContext();
-  const logoSrc = useBaseUrl(siteConfig.themeConfig.navbar.logo?.src || "/img/logo.png");
+  const logoSrc = useBaseUrl(
+    siteConfig.themeConfig.navbar.logo?.src || "/img/logo.png"
+  );
 
   return (
     <Link to="/" className={styles.navbarBrandContainer}>
