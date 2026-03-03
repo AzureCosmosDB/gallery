@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+/* Add side padding for title and description to match cards */
+.contentWrapper {
+  padding: 0 16px;
+}
+
 .title {
   font-size: 2.2rem;
   font-weight: 700;
@@ -16,7 +21,7 @@
 }
 
 .description {
-  font-size: 20px;
+  font-size: 18px !important;
   color: #605E5C;
   max-width: 600px;
   margin: 0 auto;
@@ -33,7 +38,7 @@
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 0 16px;
 }
 
 /* Large screens - 4 columns */
@@ -157,23 +162,28 @@
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 7px 18px;
+  padding: 4px 16px;
+  height: 32px;
   font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;
   transition: background 0.18s;
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cardActionBtn:hover {
   background: #005fa3;
+  color: white;
 }
 .cardActionBtnOutlined {
   background: #fff;
   color: #5e4d5c;
   border: 1.5px solid #b3b8c2;
   border-radius: 6px;
-  padding: 7px 18px;
+  padding: 4px 12px;
   font-size: 0.98rem;
   font-weight: 500;
   text-decoration: none;

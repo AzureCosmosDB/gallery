@@ -49,7 +49,7 @@ function NavbarItems({ items }) {
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              { cause: error }
+              { cause: error },
             )
           }
         >
@@ -81,49 +81,55 @@ export default function NavbarContent() {
   React.useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        'home',
-        'learning-paths', 
-        'resource-library',
-        'quick-links',
-        'community-support'
+        "home",
+        "learning-paths",
+        "resource-library",
+        "quick-links",
+        "community-support",
       ];
-      
-      const navbar = document.querySelector('.navbar');
+
+      const navbar = document.querySelector(".navbar");
       const navbarHeight = navbar ? navbar.offsetHeight : 80;
       const scrollPosition = window.scrollY + navbarHeight + 50; // Add some offset for better detection
-      
+
       // Check if we've reached the bottom of the page (more accurate detection)
-      const isAtBottom = Math.abs((window.innerHeight + window.scrollY) - document.documentElement.scrollHeight) < 5;
-      
-      let currentSection = 'home';
-      
+      const isAtBottom =
+        Math.abs(
+          window.innerHeight +
+            window.scrollY -
+            document.documentElement.scrollHeight,
+        ) < 5;
+
+      let currentSection = "home";
+
       // If at bottom, always set to community-support (last section)
       if (isAtBottom) {
-        currentSection = 'community-support';
+        currentSection = "community-support";
       } else {
         for (const sectionId of sections) {
           const element = document.getElementById(sectionId);
           if (element) {
-            const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+            const elementTop =
+              element.getBoundingClientRect().top + window.pageYOffset;
             if (scrollPosition >= elementTop) {
               currentSection = sectionId;
             }
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
 
     // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
+    window.addEventListener("scroll", handleScroll);
+
     // Call once to set initial state
     handleScroll();
-    
+
     // Cleanup
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -171,11 +177,12 @@ export default function NavbarContent() {
       requestAnimationFrame(() => {
         const el = document.getElementById("resource-library");
         if (el) {
-          const navbar = document.querySelector('.navbar');
+          const navbar = document.querySelector(".navbar");
           const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+          const elementPosition =
+            el.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
-          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           // Note: Do not switch to list view for navbar dropdown links
         }
       });
@@ -244,7 +251,7 @@ export default function NavbarContent() {
                   handleDropdownClick(e, "#solution-accelerators")
                 }
               >
-                Solution accelerators
+                Solution Accelerators
               </Link>
               <Link
                 to="#workshops"
@@ -282,7 +289,6 @@ export default function NavbarContent() {
               >
                 Trainings
               </Link>
-              
             </div>
           </div>
           <Link

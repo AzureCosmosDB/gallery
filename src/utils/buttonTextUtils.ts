@@ -61,6 +61,12 @@ export function getButtonText(url?: string, tags?: TagType[]): string {
     return "Explore Solution Accelerator";
   }
 
+  // If this is a blog link but the card also has a documentation tag,
+  // prefer showing the documentation CTA instead of the blog CTA.
+  if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('documentation' as TagType)) {
+    return "Open Documentation";
+  }
+
   // .find is more idiomatic than a loop or if/else chain
   const rule = BUTTON_RULES.find(r => r.match(lowerUrl));
 

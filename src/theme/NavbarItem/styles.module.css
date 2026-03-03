@@ -57,7 +57,7 @@
   line-height: 20px !important;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1340px) {
   .button {
     display: none !important;
   }

@@ -57,7 +57,7 @@ html, body, #__docusaurus, #__docusaurus * {
   gap: 16px;
 }
 .footer__link-item {
-        color: #606770 !important;
+  color: #605E5C !important;
 
 }
 
@@ -204,5 +204,39 @@ html, body, #__docusaurus, #__docusaurus * {
   }
   .navbar__brand {
     margin-left: 0 !important;
+  }
+}
+
+/* Show hamburger and hide nav links at <= 1340px */
+@media (max-width: 1340px) {
+  .navbar .navbar__items {
+    display: none !important;
+  }
+  .navbar__toggle {
+    display: inline-flex !important;
+  }
+}
+
+/* Ensure nav links are visible and hamburger hidden above 1340px */
+@media (min-width: 1341px) {
+  .navbar .navbar__items {
+    display: flex !important;
+  }
+  .navbar__toggle {
+    display: none !important;
+  }
+}
+
+/* Center footer links and separators on small and medium screens */
+@media (max-width: 1000px) {
+  .footer__links {
+    text-align: center !important;
+  }
+
+  .footer__links .footer__link-item,
+  .footer__links .footer__link-separator {
+    display: inline-block !important;
+    text-align: center !important;
+    margin: 0 6px !important;
   }
 }

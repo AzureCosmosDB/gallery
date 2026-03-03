@@ -8,6 +8,7 @@
  */
 
 import { Tags, type User, type TagType } from "../data/tags";
+import { normalizeLabel } from "./jsUtils";
 
 /**
  * Parent-child tag relationships.
@@ -16,9 +17,22 @@ import { Tags, type User, type TagType } from "../data/tags";
 export const PARENT_CHILD_MAP: Record<string, string[]> = {
   documentation: ["concepts", "how-to", "tutorial"],
   fundamentals: ["overview", "getting-started"],
-  genai: ["overview", "vector", "rag", "agent", "semantic", "graph", "azureai"],
-  "app-dev": ["connect", "vscode", "best-practice", "devops"],
-  analytics: ["powerbi", "fabric", "adf"],
+  genai: [
+    "overview",
+    "vector-search",
+    "rag",
+    "agents",
+    "semantic-search",
+    "graph",
+    "azure-ai-extension",
+  ],
+  "app-dev": [
+    "connect-&-query",
+    "visual-studio-code-extension",
+    "best-practices",
+    "devops",
+  ],
+  analytics: ["powerbi", "microsoft-fabric", "azure-data-factory-(adf)"],
 };
 
 /**
@@ -39,7 +53,9 @@ export function getTagCategory(tag: TagType): string {
  * Builds a child-to-parent map dynamically based on selected tags.
  * Handles children that may belong to multiple parents.
  */
-function buildChildToParentMap(selectedTags: TagType[]): Record<string, string> {
+function buildChildToParentMap(
+  selectedTags: TagType[],
+): Record<string, string> {
   const childToParent: Record<string, string> = {};
 
   selectedTags.forEach((tag) => {
@@ -48,7 +64,10 @@ function buildChildToParentMap(selectedTags: TagType[]): Record<string, string> 
     for (const [parentKey, children] of Object.entries(PARENT_CHILD_MAP)) {
       if (children.includes(tag)) {
         // Prefer parent that is also selected, otherwise use first match
-        if (selectedTags.includes(parentKey as TagType) || !childToParent[tag]) {
+        if (
+          selectedTags.includes(parentKey as TagType) ||
+          !childToParent[tag]
+        ) {
           childToParent[tag] = parentKey;
         }
       }
@@ -62,7 +81,10 @@ function buildChildToParentMap(selectedTags: TagType[]): Record<string, string> 
  * Gets the accordion category for grouping.
  * Sub-tags are grouped with their parent's category.
  */
-function getAccordionCategory(tag: TagType, childToParent: Record<string, string>): string {
+function getAccordionCategory(
+  tag: TagType,
+  childToParent: Record<string, string>,
+): string {
   const parent = childToParent[tag];
   if (parent) {
     return getTagCategory(parent as TagType);
@@ -110,7 +132,11 @@ function matchesParentChildFilters(
     const parent = parentsArray[i];
     const subTags = selectedSubTagsByParent.get(parent) || [];
     const allChildTags = PARENT_CHILD_MAP[parent] || [];
-    const actualChildTags = getActualChildTagsForUser(user, parent, allChildTags);
+    const actualChildTags = getActualChildTagsForUser(
+      user,
+      parent,
+      allChildTags,
+    );
 
     if (subTags.length === 0 || subTags.length === allChildTags.length) {
       // Only parent selected OR all sub-tags selected: match parent OR any child
@@ -166,10 +192,10 @@ function matchesCategoryFilters(
  * 2. WITHIN SAME CATEGORY (OR): Cards matching ANY filter in category are shown.
  *    This includes OR between regular filters and parent-child groups.
  * 3. PARENT-CHILD: parent AND (child1 OR child2 OR ...) logic within each group.
- * 
+ *
  * Examples:
  * - ResourceType: blog OR video OR (documentation AND (concepts OR how-to OR tutorial))
- * - ContentType: (fundamentals AND (overview OR getting-started)) OR (genai AND (vector OR rag))
+ * - ContentType: (fundamentals AND (overview OR Getting Started)) OR (genai AND (vector OR rag))
  */
 export function filterUsers(
   users: User[],
@@ -192,40 +218,50 @@ export function filterUsers(
   const childToParent = buildChildToParentMap(selectedTags);
 
   // Group all filters by category (regular filters and parent-child groups together)
-  const filtersByCategory = new Map<string, {
-    regularTags: TagType[];
-    parentChildGroups: Map<string, TagType[]>;
-  }>();
+  const filtersByCategory = new Map<
+    string,
+    {
+      regularTags: TagType[];
+      parentChildGroups: Map<string, TagType[]>;
+    }
+  >();
 
   // Process all selected tags
   selectedTags.forEach((tag) => {
     let category: string;
-    
+
     if (PARENT_CHILD_MAP[tag]) {
       // This is a parent tag
       category = getTagCategory(tag);
       if (!filtersByCategory.has(category)) {
-        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
+        filtersByCategory.set(category, {
+          regularTags: [],
+          parentChildGroups: new Map(),
+        });
       }
       filtersByCategory.get(category)!.parentChildGroups.set(tag, []);
-      
     } else if (childToParent[tag]) {
-      // This is a child tag  
+      // This is a child tag
       const parent = childToParent[tag];
       category = getTagCategory(parent as TagType);
       if (!filtersByCategory.has(category)) {
-        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
+        filtersByCategory.set(category, {
+          regularTags: [],
+          parentChildGroups: new Map(),
+        });
       }
       if (!filtersByCategory.get(category)!.parentChildGroups.has(parent)) {
         filtersByCategory.get(category)!.parentChildGroups.set(parent, []);
       }
       filtersByCategory.get(category)!.parentChildGroups.get(parent)!.push(tag);
-      
     } else {
       // Regular tag
       category = getTagCategory(tag);
       if (!filtersByCategory.has(category)) {
-        filtersByCategory.set(category, { regularTags: [], parentChildGroups: new Map() });
+        filtersByCategory.set(category, {
+          regularTags: [],
+          parentChildGroups: new Map(),
+        });
       }
       filtersByCategory.get(category)!.regularTags.push(tag);
     }
@@ -239,43 +275,56 @@ export function filterUsers(
     // AND logic across categories
     for (const [category, filters] of filtersByCategory.entries()) {
       let categoryMatches = false;
-      
+
       // Check regular tags in this category (OR logic)
       if (filters.regularTags.length > 0) {
-        categoryMatches = filters.regularTags.some((tag) => user.tags.includes(tag));
+        categoryMatches = filters.regularTags.some((tag) =>
+          user.tags.includes(tag),
+        );
       }
-      
+
       // Check parent-child groups in this category (OR logic with regular tags)
       for (const [parent, children] of filters.parentChildGroups.entries()) {
         const allChildTags = PARENT_CHILD_MAP[parent] || [];
-        const actualChildTags = getActualChildTagsForUser(user, parent, allChildTags);
-        
+        const actualChildTags = getActualChildTagsForUser(
+          user,
+          parent,
+          allChildTags,
+        );
+
         let groupMatches = false;
-        
+
         if (children.length === 0 || children.length === allChildTags.length) {
           // Only parent selected OR all children selected: parent OR any child
-          groupMatches = user.tags.includes(parent as TagType) || 
-                       actualChildTags.some((child) => user.tags.includes(child as TagType));
+          groupMatches =
+            user.tags.includes(parent as TagType) ||
+            actualChildTags.some((child) =>
+              user.tags.includes(child as TagType),
+            );
         } else {
           // Some children selected: parent AND (selected children)
-          const relevantChildren = children.filter((child) => actualChildTags.includes(child));
+          const relevantChildren = children.filter((child) =>
+            actualChildTags.includes(child),
+          );
           if (relevantChildren.length > 0) {
-            groupMatches = relevantChildren.some((child) => user.tags.includes(child));
+            groupMatches = relevantChildren.some((child) =>
+              user.tags.includes(child),
+            );
           }
         }
-        
+
         if (groupMatches) {
           categoryMatches = true;
           break; // OR logic - one match in category is enough
         }
       }
-      
+
       // If no matches in this category, user fails AND logic
       if (!categoryMatches) {
         return false;
       }
     }
-    
+
     return true;
   });
 }
@@ -286,17 +335,32 @@ export function filterUsers(
  */
 const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
   "developing-core-applications": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "workshop", "training", "video"
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "workshop",
+    "training",
+    "video",
   ],
   "building-genai-apps": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "solution-accelerator", "training", "video"
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
   ],
   "building-ai-agents": [
-    "documentation", "concepts", "how-to", "tutorial", 
-    "solution-accelerator", "training", "video"
-  ]
+    "documentation",
+    "concepts",
+    "how-to",
+    "tutorial",
+    "solution-accelerator",
+    "training",
+    "video",
+  ],
 };
 
 /**
@@ -304,8 +368,8 @@ const LEARNING_PATH_COMPATIBLE_RESOURCES: Record<string, TagType[]> = {
  */
 const LEARNING_PATH_TAGS = [
   "developing-core-applications",
-  "building-genai-apps", 
-  "building-ai-agents"
+  "building-genai-apps",
+  "building-ai-agents",
 ] as const;
 
 /**
@@ -324,8 +388,8 @@ export function computeActiveTags(
   cards.forEach((user) => user.tags.forEach((tag) => unionTags.add(tag)));
 
   // Check if any learning path is selected
-  const selectedLearningPaths = selectedTags.filter((tag) => 
-    LEARNING_PATH_TAGS.includes(tag as any)
+  const selectedLearningPaths = selectedTags.filter((tag) =>
+    LEARNING_PATH_TAGS.includes(tag as any),
   );
 
   // Enable sub-tags when parent is selected
@@ -333,7 +397,7 @@ export function computeActiveTags(
     const tagObject = Tags[selectedTag];
     if (tagObject?.subType?.length) {
       tagObject.subType.forEach((sub) => {
-        const subTagKey = sub.label.toLowerCase() as TagType;
+        const subTagKey = normalizeLabel(sub.label) as TagType;
         if (Tags[subTagKey]) {
           unionTags.add(subTagKey);
         }
@@ -351,12 +415,13 @@ export function computeActiveTags(
     Object.keys(Tags).forEach((tagKey) => {
       const tag = tagKey as TagType;
       const category = getTagCategory(tag);
-      
+
       if (selectedCategories.has(category)) {
         // Special handling for ResourceType when learning path is selected
         if (selectedLearningPaths.length > 0 && category === "ResourceType") {
           // Only enable resource types that are compatible with the selected learning path
-          const compatibleResources = LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];
+          const compatibleResources =
+            LEARNING_PATH_COMPATIBLE_RESOURCES[selectedLearningPaths[0]] || [];
           if (compatibleResources.includes(tag)) {
             unionTags.add(tag);
           }

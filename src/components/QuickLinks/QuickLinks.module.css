@@ -1,21 +1,21 @@
 .quickLinksSection {
-  margin: 56px auto;
+  margin: 56px auto ;
   text-align: center;
-  padding: 0 24px;
-  max-width: 1400px;
+  padding:0 24px 16px 24px;
+  max-width: 1500px;
 }
 
 .title {
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .description {
-   font-size: 20px !important;
+   font-size: 18px !important;
   font-weight: 400 !important;
-  color: #91949a;
-  margin-bottom: 32px;
+  color: #605E5C;
+  margin-bottom: 40px;
 }
 
 .tilesContainer {
@@ -23,31 +23,27 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 32px;
+  gap: 22px;
   padding: 0 16px;
+  max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-@media (min-width: 1200px) {
-  .tilesContainer {
-    flex-wrap: nowrap;
-  }
-}
 
 .tile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+    justify-content: space-between !important;
+    flex-direction: column !important;
   text-align: center !important;
-  border: 1.5px solid #d1d5db;
+  border: 1px solid #0078d426;
   border-radius: 14px;
   padding: 32px 20px !important;
   transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), border-color 0.2s, transform 0.25s cubic-bezier(0.4,0,0.2,1);
   will-change: transform, box-shadow;
   text-decoration: none !important;
   width: min(260px, 100%);
-  min-height: 160px !important;
-  background: #fff;
+  min-height: 210px !important;
 }
 
 .tile:hover {
@@ -61,16 +57,24 @@
   margin-bottom: 12px;
 }
 
+.iconImg {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: inline-block;
+}
+
 .label {
-  font-size: 1.1rem;
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 6px;
   color: #2d3035;
 }
 
 .tileDescription {
-  font-size: 0.97rem;
-  color: #959a9d;
+  font-size: 14px;
+  color: #605E5C;
+  min-height: 40px;
 }
 
 @media (max-width: 992px) {
@@ -93,7 +97,7 @@
   }
 
   .description {
-    font-size: 1.05rem !important;
+    font-size: 18px !important;
   }
 
   .tilesContainer {
@@ -129,4 +133,9 @@
   .tileDescription {
     font-size: 0.95rem;
   }
+}
+
+/* Ensure Quick Links description is 18px on all screens */
+.quickLinksSection .description {
+  font-size: 18px !important;
 }

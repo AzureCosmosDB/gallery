@@ -1,7 +1,8 @@
 /* Reusable style for resource links */
 .resourceLink {
-  color: #555;
+  color: #605E5C;
   text-decoration: underline;
+  font-weight: 400;
 }
 .resourceLink:hover{
   text-decoration: underline;
@@ -68,14 +69,14 @@
 }
 
 .cardDesc {
-  color: #555;
+  color: #605E5C;
   text-align: center;
   font-size: 15px;
   line-height: 1.4;
 }
 
 .cardLinks {
-  color: #555;
+  color: #605E5C;
   text-align: center;
   font-size: 15px;
   line-height: 1.2;
@@ -113,18 +114,20 @@
 }
 .centeredDescription {
   text-align: center !important;
-  line-height: 1.5 !important;
   width: 100%;
-  color: #636364;
-  font-size: 24px !important;
   font-weight: 400 !important;
-  max-width: 934px;
+  font-size: 18px !important;
+  max-width: 686px;
+  line-height: 1.5 !important;
+  color: #605E5C;
 }
 .greyText{
   text-align: center !important;
   font-weight: 400 !important;
-  font-size: 26px !important;
-  color: #91949a
+  font-size: 24px !important;
+   color: #7b7b7b;
+   margin-bottom: 4px
+
 }
 
 .titleSection :global(.fuib-Title3),
@@ -210,7 +213,6 @@
 
   .centeredDescription {
     font-size: 20px !important;
-    line-height: 1.5;
   }
 }
 
@@ -253,7 +255,7 @@
 
   .heroTitle {
     font-size: 30px !important;
-    line-height: normal;
+    line-height: 1.2 !important;
   }
 
   .greyText {

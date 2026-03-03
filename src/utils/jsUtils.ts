@@ -25,3 +25,11 @@ export function sortBy<T>(
     newList.splice(itemIndex, 1);
     return newList;
   }
+
+  /**
+   * Normalize a label to a tag key by lowercasing and replacing whitespace with hyphens.
+   * Example: "Visual Studio Code Extension" -> "visual-studio-code-extension"
+   */
+  export function normalizeLabel(label: string): string {
+    return label.toLowerCase().replace(/\s+/g, "-") as string;
+  }

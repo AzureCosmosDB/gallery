@@ -17,15 +17,21 @@ const config = {
     },
     quickLinks: [
       {
-        icon: "Globe",
+        icon: "img/postgres.svg",
         color: "#9a14fa",
-        label: "Azure PostgreSQL Service",
+        label: "Azure DB for PostgreSQL Homepage",
         description: "Official Azure PostgreSQL product page and pricing",
         href: "http://aka.ms/postgres",
       },
       {
+        icon: "img/horizon-db.svg",
+        label: "Azure HorizonDB Homepage",
+        description: "Explore product specs, architecture, and documentation",
+        href: "https://aka.ms/AzureHorizonDB",
+      },
+      {
         icon: "FileText",
-        color: "#1960fc",
+        color: "#6f2c91",
         label: "Documentation",
         description: "Complete guides and API references",
         href: "https://aka.ms/postgresqldocs",
@@ -37,33 +43,26 @@ const config = {
         description: "Latest updates and insights",
         href: "https://aka.ms/azurepostgresblog",
       },
-      // {
-      //   icon: "FileText",
-      //   color: "#9a14fa",
-      //   label: "AI Infographic & ebook",
-      //   description: "AI-powered PostgreSQL resources",
-      //   href: "/ai-infographic-ebook",
-      // },
       {
         icon: "GraduationCap",
         color: "#f54a00",
         label: "Microsoft Learn",
-        description: "Structured learning pathways",
+        description: "Structured trainings and learning modules",
         href: "https://learn.microsoft.com/training/paths/build-ai-apps-azure-database-postgresql/",
-      },
-      {
-        icon: "Database",
-        color: "#6f2c91",
-        label: "Azure HorizonDB Homepage",
-        description: "Explore product specs, architecture, and documentation",
-        href: "https://aka.ms/AzureHorizonDB",
       },
       {
         icon: "BookOpen",
         color: "#1960fc",
-        label: "eBook - Build AI apps and agents",
+        label: "eBook",
         description: "Guide to building AI apps and agents",
         href: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/azure/acom/documents/pdfs/en-us/azure-postgresql-no-ai-without-data-ebook-082225-aac.pdf",
+      },
+      {
+        icon: "Gift",
+        color: "#9a14fa",
+        label: "Try PostgreSQL for free",
+        description: "Free access for 12 months with an Azure free account.",
+        href: "https://aka.ms/try-postgresql-free",
       },
     ],
     learningPathsSection: {
@@ -121,7 +120,7 @@ const config = {
               fullWidth: true,
             },
             {
-              label: "Technical Support Portal",
+              label: "Technical Support",
               href: "https://azure.microsoft.com/support/",
               variant: "outlined",
               icon: "ExternalLink",
@@ -136,7 +135,7 @@ const config = {
           actions: [
             {
               href: "https://www.linkedin.com/company/azure-database-for-postgresql/",
-              icon: "Linkedin",
+              icon: "img/brand-linkedin.svg",
             },
             {
               href: "https://x.com/AzureDBPostgres",
@@ -210,11 +209,11 @@ const config = {
 
   title: "Application Developer Hub",
   tagline: "Discover - Create - Contribute",
-  url: "https://EmumbaOrg.github.io",
-  baseUrl: "/postgres-gallery/",
+  url: "https://automatic-umbrella-o7rj9m1.pages.github.io",
+  baseUrl: "/",
   favicon: "img/logo.png",
-  organizationName: "EmumbaOrg",
-  projectName: "postgres-gallery",
+  organizationName: "Azure-Samples",
+  projectName: "postgres-appdev-hub",
   deploymentBranch: "gh-pages",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

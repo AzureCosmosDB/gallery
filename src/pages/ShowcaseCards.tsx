@@ -36,8 +36,7 @@ export default function ShowcaseCards({
   const searchParams = new URLSearchParams(location.search);
   const currentTags = searchParams.getAll("tags");
   const isLearningPathFiltered =
-    !coverPage &&
-    currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
+    !coverPage && currentTags.some((tag) => LEARNING_PATH_TAGS.includes(tag));
   const orderedUsers = useMemo(() => {
     if (!isLearningPathFiltered) {
       return filteredUsers;
@@ -68,9 +67,10 @@ export default function ShowcaseCards({
           .map((user, index) => {
             // Compute global index for this user within orderedUsers
             const globalIndex = (page - 1) * CARDS_PER_PAGE + index;
-            const tileNumber = (isLearningPathFiltered || forceShowTileNumber)
-              ? user.tileNumber ?? globalIndex + 1
-              : undefined;
+            const tileNumber =
+              isLearningPathFiltered || forceShowTileNumber
+                ? (user.tileNumber ?? globalIndex + 1)
+                : undefined;
             return (
               <React.Fragment key={user.title}>
                 <ShowcaseCard

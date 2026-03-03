@@ -54,10 +54,9 @@ export default function SearchFilterBar(
       newSearch.set(SEARCH_NAME_QUERY_KEY, newValue);
     }
 
-    history.push({
+    history.replace({
       ...location,
       search: newSearch.toString(),
-      state: prepareUserState(),
     });
   };
 
