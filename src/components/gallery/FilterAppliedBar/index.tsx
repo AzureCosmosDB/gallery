@@ -7,7 +7,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "@docusaurus/router";
-import type { History } from "history";
 import { Badge, Body1 } from "@fluentui/react-components";
 import {
   Dismiss20Filled,
@@ -37,46 +36,48 @@ function removeTagWithSubFilters(
   tag: TagType,
   currentTags: TagType[],
 ): TagType[] {
-  const wasSelected = currentTags.includes(tag);
   let newTags = toggleListItem(currentTags, tag);
 
   const tagObject = Tags[tag];
-
-  // If removing a parent tag, also remove its children
-  if (wasSelected && tagObject?.subType?.length) {
+  if (tagObject?.subType?.length) {
     const subKeys = tagObject.subType.map(
       (s) => normalizeLabel(s.label) as TagType,
     );
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }
 
-  // If removing a child tag, and its parent(s) are present but now have no remaining children,
-  // remove those parent tags as well to keep UI consistent.
-  if (wasSelected && !tagObject?.subType?.length) {
-    const removedChild = tag;
-    // iterate over all tags to find parents whose subType includes the removed child
-    Object.keys(Tags).forEach((possibleParentKey) => {
-      const parentKey = possibleParentKey as TagType;
-      const parentObj = Tags[parentKey];
-      if (!parentObj?.subType?.length) return;
+  // If we removed a child tag, and its parent remains but none of the parent's
+  // children are selected anymore, also remove the parent from the applied list.
+  // Build reverse mapping (child -> parent) and perform cleanup.
+  const parentMap: Record<string, string[]> = {};
+  Object.keys(Tags).forEach((parentKey) => {
+    const parentObj = Tags[parentKey as TagType];
+    if (parentObj?.subType && Array.isArray(parentObj.subType)) {
+      parentObj.subType.forEach((s) => {
+        const childKey = normalizeLabel(s.label);
+        parentMap[childKey] ??= [];
+        parentMap[childKey].push(parentKey);
+      });
+    }
+  });
 
-      const subKeys = parentObj.subType.map(
-        (s) => s.label.toLowerCase() as TagType,
-      );
-      if (!subKeys.includes(removedChild)) return;
+  // For each parent of the toggled tag, if the parent is still present but
+  // none of its children remain selected, remove the parent as well.
+  const toggledKey = tag as string;
+  const parents = parentMap[toggledKey] || [];
+  parents.forEach((parentKey) => {
+    const parentObj = Tags[parentKey as TagType];
+    if (!parentObj || !parentObj.subType) return;
 
-      // If parent is present in the newTags, check if any of its children remain selected
-      if (newTags.includes(parentKey)) {
-        const anyChildRemaining = subKeys.some((child) =>
-          newTags.includes(child),
-        );
-        if (!anyChildRemaining) {
-          // remove the parent since none of its children remain
-          newTags = newTags.filter((t) => t !== parentKey);
-        }
-      }
-    });
-  }
+    const childKeys = parentObj.subType.map(
+      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
+    );
+
+    const anyChildSelected = childKeys.some((ck) => newTags.includes(ck));
+    if (!anyChildSelected && newTags.includes(parentKey as TagType)) {
+      newTags = newTags.filter((t) => t !== (parentKey as TagType));
+    }
+  });
 
   return newTags;
 }
@@ -90,7 +91,7 @@ export default function FilterAppliedBar({
   readSearchTags,
   replaceSearchTags,
 }: FilterAppliedBarProps): React.JSX.Element | null {
-  const history = useHistory() as History;
+  const history = useHistory();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
