@@ -15,7 +15,7 @@ import {
   ChevronRight20Filled,
 } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
-import { toggleListItem } from "../../../utils/jsUtils";
+import { toggleListItem, normalizeLabel } from "../../../utils/jsUtils";
 import { prepareUserState } from "../../../pages/index";
 import styles from "../../../pages/styles.module.css";
 
@@ -45,7 +45,7 @@ function removeTagWithSubFilters(
   // If removing a parent tag, also remove its children
   if (wasSelected && tagObject?.subType?.length) {
     const subKeys = tagObject.subType.map(
-      (s) => s.label.toLowerCase() as TagType,
+      (s) => normalizeLabel(s.label) as TagType,
     );
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }
@@ -113,10 +113,9 @@ export default function FilterAppliedBar({
       });
     }
 
-    history.push({
+    history.replace({
       ...location,
       search: newSearch,
-      state: prepareUserState(),
     });
   };
 

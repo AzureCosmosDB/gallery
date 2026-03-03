@@ -21,6 +21,7 @@ import {
 } from "@fluentui/react-components";
 import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
+import { normalizeLabel } from "../../../utils/jsUtils";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
 import styles from "./styles.module.css";
@@ -75,10 +76,9 @@ export default function MobileFilterDrawer({
     setSortOption(tempSortOption);
 
     const newSearch = replaceSearchTags(location.search, tempSelectedCheckbox);
-    history.push({
+    history.replace({
       ...location,
       search: newSearch,
-      state: prepareUserState(),
     });
 
     setIsOpen(false);
@@ -100,7 +100,7 @@ export default function MobileFilterDrawer({
 
       if (tagObject?.subType && Array.isArray(tagObject.subType)) {
         const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase() as TagType,
+          (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
         );
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
@@ -271,8 +271,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = normalizeLabel(
+                                  sub.label,
+                                ) as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div
@@ -343,8 +344,9 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey =
-                                  sub.label.toLowerCase() as TagType;
+                                const subTagKey = normalizeLabel(
+                                  sub.label,
+                                ) as TagType;
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div

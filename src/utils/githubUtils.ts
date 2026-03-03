@@ -4,7 +4,7 @@
  */
 export const openGitHubNewIssue = (issuesUrl?: string): void => {
   const defaultUrl =
-    "https://github.com/EmumbaOrg/postgres-gallery/issues/new?template=feedback.md";
+    "https://github.com/Azure-Samples/postgres-appdev-hub/issues/new?template=feedback.md";
   window.open(issuesUrl || defaultUrl, "_blank");
 };
 

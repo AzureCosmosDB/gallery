@@ -33,6 +33,27 @@ export default function CustomCheckbox({
       onClick(e);
     }
     onChange();
+    // Ensure the element receives focus for accessibility but prevent
+    // the browser from scrolling the element into view on click.
+    try {
+      const target = e.currentTarget as HTMLElement | null;
+      if (target && typeof target.focus === "function") {
+        // use preventScroll option when available
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        target.focus({ preventScroll: true });
+      }
+    } catch (err) {
+      // ignore focus errors
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Prevent default mousedown behaviour which causes the browser
+    // to focus and scroll the element into view. We'll manage focus
+    // programmatically in click handler to preserve accessibility.
+    if (disabled) return;
+    e.preventDefault();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -67,6 +88,7 @@ export default function CustomCheckbox({
         id={id}
         className={getCheckboxClass()}
         data-m={dataM}
+        onMouseDown={handleMouseDown}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
@@ -90,7 +112,14 @@ export default function CustomCheckbox({
           {checked === "mixed" && <div className={styles.minusSign}>−</div>}
         </div>
       </div>
-      <label className={styles.label} htmlFor={id}>
+      <label
+        className={styles.label}
+        htmlFor={id}
+        onMouseDown={(e) => {
+          if (disabled) return;
+          e.preventDefault();
+        }}
+      >
         {label}
       </label>
     </div>

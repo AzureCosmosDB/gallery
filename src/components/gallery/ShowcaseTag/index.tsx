@@ -142,7 +142,7 @@ export default function ShowcaseCardTag({
               appearance="tint"
               size="medium"
               color="subtle"
-              key={index}
+              key={id}
               className={styles.cardPanelColoredTag}
             >
               {tagObject.label}

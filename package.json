@@ -19,6 +19,8 @@
   "devDependencies": {
     "@docusaurus/core": "^3.9.2",
     "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/plugin-google-analytics": "^3.9.2",
+    "@docusaurus/plugin-google-gtag": "^3.9.2",
     "@docusaurus/plugin-ideal-image": "^3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
     "@fluentui/react": "^8.112.9",
@@ -59,8 +61,6 @@
     "node": ">=18.0"
   },
   "dependencies": {
-    "@docusaurus/plugin-google-analytics": "^3.9.2",
-    "@docusaurus/plugin-google-gtag": "^3.9.2",
     "@fluentui/react-search": "^9.0.8",
     "@popperjs/core": "^2.11.8",
     "lucide-react": "^0.544.0",

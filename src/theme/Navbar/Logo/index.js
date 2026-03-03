@@ -15,7 +15,7 @@ export default function LogoWrapper(props) {
       <img src={logoSrc} alt={siteConfig.title} className={styles.navbarLogo} />
       <div className={styles.navbarTextContainer}>
         <div className={styles.navbarTitle}>{siteConfig.title}</div>
-        <div className={styles.navbarSubtitle}>for Azure PostgreSQL</div>
+        <div className={styles.navbarSubtitle}>for PostgreSQL on Azure</div>
       </div>
     </Link>
   );

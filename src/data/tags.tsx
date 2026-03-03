@@ -58,10 +58,10 @@ export type TagType =
   | "flexibleserver"
   | "genai"
   | "overview"
-  | "vector"
-  | "azureai"
-  | "semantic"
-  | "agent"
+  | "vector-search"
+  | "azure-ai-extension"
+  | "semantic-search"
+  | "agents"
   | "graph"
   | "rag"
   | "concepts"
@@ -81,13 +81,13 @@ export type TagType =
   | "app-dev"
   | "blog"
   | "getting-started"
-  | "connect"
-  | "vscode"
-  | "best-practice"
+  | "connect-&-query"
+  | "visual-studio-code-extension"
+  | "best-practices"
   | "devops"
-  | "fabric"
+  | "microsoft-fabric"
   | "powerbi"
-  | "adf"
+  | "azure-data-factory-(adf)"
   | "go"
   | "php"
   | "analytics"
@@ -151,7 +151,7 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   // GenAI Tags for filtering content (subtype)
-  agent: {
+  agents: {
     label: "Agents",
     description: "Template implements one or more agents",
     type: "GenerativeAI",
@@ -159,7 +159,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "green",
   },
   rag: {
-    label: "RAG Pattern",
+    label: "RAG",
     description: "Template implements RAG Pattern",
     type: "GenerativeAI",
     buttonText: "Go to GitHub Repo",
@@ -167,10 +167,10 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   fundamentals: {
-    label: "Azure PostgreSQL Fundamentals",
+    label: "Fundamentals",
     description: "Fundamental concepts and getting started content",
     type: "ContentType",
-    subType: [{ label: "Overview" }, { label: "getting-started" }],
+    subType: [{ label: "Overview" }, { label: "Getting Started" }],
     color: "blue",
   },
 
@@ -180,9 +180,9 @@ export const Tags: { [type in TagType]: Tag } = {
     type: "ContentType",
     color: "purple",
     subType: [
-      { label: "Connect" },
-      { label: "VSCode" },
-      { label: "Best-Practice" },
+      { label: "Connect & Query" },
+      { label: "Visual Studio Code Extension" },
+      { label: "Best Practices" },
       { label: "DevOps" },
     ],
   },
@@ -193,26 +193,26 @@ export const Tags: { [type in TagType]: Tag } = {
     type: ["GenerativeAI", "ContentType"],
     color: "slate",
   },
-  semantic: {
-    label: "Semantic Operators",
+  "semantic-search": {
+    label: "Semantic Search",
     description: "Template uses Semantic Operators",
     type: "GenerativeAI",
     color: "green",
   },
-  vector: {
+  "vector-search": {
     label: "Vector Search",
     description: "Template uses a Vector Search",
     type: "GenerativeAI",
     color: "green",
   },
   graph: {
-    label: "GraphRAG",
+    label: "Graph",
     description: "Template uses GraphRAG",
     type: "GenerativeAI",
     color: "green",
   },
-  azureai: {
-    label: "Azure AI Services Integration",
+  "azure-ai-extension": {
+    label: "Azure AI Extension",
     description: "Template integrates with Azure AI services",
     type: ["GenerativeAI", "ContentType"],
     color: "brown",
@@ -237,7 +237,7 @@ export const Tags: { [type in TagType]: Tag } = {
 
   "solution-accelerator": {
     label: "Solution Accelerator",
-    description: "Solution Accelerator",
+    description: "Solution Accelerators",
     type: "ResourceType",
     buttonText: "Explore Solution Accelerator",
     color: "indigo",
@@ -260,7 +260,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "blue",
     subType: [
       { label: "Concepts" },
-      { label: "How-To" },
+      { label: "How To" },
       { label: "Tutorial" },
     ],
   },
@@ -274,10 +274,10 @@ export const Tags: { [type in TagType]: Tag } = {
   },
 
   "how-to": {
-    label: "How-To Guide",
-    description: "How-To guide",
+    label: "How To",
+    description: "How To guide",
     type: "ResourceType",
-    buttonText: "Read How-To Guide",
+    buttonText: "Read How To Guide",
     color: "blue",
   },
 
@@ -305,12 +305,12 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "green",
     subType: [
       { label: "Overview" },
-      { label: "Vector" },
+      { label: "Vector Search" },
       { label: "RAG" },
-      { label: "Agent" },
-      { label: "Semantic" },
+      { label: "Agents" },
+      { label: "Semantic Search" },
       { label: "Graph" },
-      { label: "AzureAI" },
+      { label: "Azure AI Extension" },
     ],
   },
 
@@ -319,10 +319,14 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Data Analytics and visualization",
     type: "ContentType",
     color: "orange",
-    subType: [{ label: "PowerBI" }, { label: "Fabric" }, { label: "ADF" }],
+    subType: [
+      { label: "PowerBI" },
+      { label: "Microsoft Fabric" },
+      { label: "Azure Data Factory (ADF)" },
+    ],
   },
   devops: {
-    label: "CI/CD",
+    label: "DevOps",
     description: "Data Analytics and visualization",
     color: "red",
   },
@@ -331,28 +335,28 @@ export const Tags: { [type in TagType]: Tag } = {
     description: "Power BI",
     color: "mustard",
   },
-  fabric: {
+  "microsoft-fabric": {
     label: "Microsoft Fabric",
     description: "Microsoft Fabric",
     color: "purple",
   },
-  adf: {
-    label: "Azure Data Factory and Synapse",
+  "azure-data-factory-(adf)": {
+    label: "Azure Data Factory (ADF)",
     description: "Azure Data Factory",
     color: "indigo",
   },
 
-  connect: {
+  "connect-&-query": {
     label: "Connect and Query",
     description: "Connect to Azure Database for PostgreSQL",
     color: "blue",
   },
-  vscode: {
+  "visual-studio-code-extension": {
     label: "Visual Studio Code Extension",
     description: "Integrate with Visual Studio Code",
     color: "teal",
   },
-  "best-practice": {
+  "best-practices": {
     label: "Best Practices",
     description: "Best Practices for Application Development",
     color: "green",

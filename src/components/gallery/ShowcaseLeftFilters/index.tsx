@@ -17,12 +17,13 @@ import {
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
+import { normalizeLabel } from "../../../utils/jsUtils";
 import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
 
 // Helper function to map sub-tag labels to actual tag keys
 function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
-  return subLabel.toLowerCase() as TagType;
+  return normalizeLabel(subLabel) as TagType;
 }
 function LearningPathTagSelect({
   label,
@@ -66,7 +67,6 @@ function LearningPathTagSelect({
       history.replace({
         ...location,
         search: newSearch,
-        state: prepareUserState(),
       });
     } else {
       // Define compatible resource types for each learning path
@@ -128,22 +128,11 @@ function LearningPathTagSelect({
       history.replace({
         ...location,
         search: newSearch,
-        state: prepareUserState(),
       });
 
-      // Scroll to resource library and switch to list view only when checking
+      // Switch to list view for learning paths without scrolling the page
       requestAnimationFrame(() => {
-        const el = document.getElementById("resource-library");
-        if (el) {
-          const navbar = document.querySelector(".navbar");
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const elementPosition =
-            el.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight - 20;
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-          // Dispatch custom event to switch to list view for learning paths
-          window.dispatchEvent(new Event("switchToListView"));
-        }
+        window.dispatchEvent(new Event("switchToListView"));
       });
     }
   };
