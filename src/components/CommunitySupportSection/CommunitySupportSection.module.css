@@ -144,19 +144,6 @@
   align-items: center;
   width: 100%;
 }
-
-.cardActionsStacked {
-  flex-direction: column;
-  width: 100%;
-  gap: 12px;
-}
-
-.cardActionBtn[data-fullwidth="true"],
-.cardActionBtnOutlined[data-fullwidth="true"] {
-  display: flex; /* ensure width applies */
-  width: 100%;
-  justify-content: center;
-}
 .cardActionBtn {
   background: #0078d4;
   color: #fff;
@@ -199,15 +186,25 @@
   color: #3a2e38;
 }
 
-/* Force full width for Contact Us card actions (explicit override) */
-.cardActionBtn[data-contact="true"],
-.cardActionBtnOutlined[data-contact="true"] {
-  display: flex !important;
-  width: 100% !important;
-  justify-content: flex-start; /* left align text */
-  padding-left: 16px; /* spacing from left edge */
-  text-align: left;
-  column-gap: 10px;
+.actionImg {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Make image icons white when inside filled action buttons */
+.cardActionBtn .actionImg {
+  filter: invert(1) brightness(1.2) saturate(0);
+}
+
+/* Keep original look for outlined buttons */
+.cardActionBtnOutlined .actionImg {
+  filter: none;
+}
+
+.actionImg {
+  vertical-align: middle;
 }
 
 /* Events styles */
