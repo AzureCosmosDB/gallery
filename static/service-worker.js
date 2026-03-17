@@ -13,8 +13,8 @@ const MAX_CACHE_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 // Resources to cache immediately on install
 const PRECACHE_URLS = [
-  '/postgres-gallery/',
-  '/postgres-gallery/index.html',
+  '/postgres-appdev-hub/',
+  '/postgres-appdev-hub/index.html',
 ];
 
 // Install event - precache essential resources
@@ -147,7 +147,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch(() => {
         return caches.match(request).then((cachedResponse) => {
-          return cachedResponse || caches.match('/postgres-gallery/index.html');
+          return cachedResponse || caches.match('/postgres-appdev-hub/index.html');
         });
       })
     );

@@ -8,8 +8,8 @@ const IMAGE_CACHE_NAME = 'postgres-gallery-images-v1';
 
 // Cache static assets immediately
 const STATIC_ASSETS = [
-  '/postgres-gallery/',
-  '/postgres-gallery/index.html',
+  '/postgres-appdev-hub/',
+  '/postgres-appdev-hub/index.html',
 ];
 
 // Install event - cache static assets
