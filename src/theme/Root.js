@@ -17,7 +17,7 @@ export default function Root({ children }) {
     ) {
       window.addEventListener('load', () => {
         navigator.serviceWorker
-          .register('/sw.js')
+          .register('/postgres-gallery/sw.js')
           .then((registration) => {
             console.log('SW registered:', registration);
             
