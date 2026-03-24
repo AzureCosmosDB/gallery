@@ -241,6 +241,7 @@ const config = {
         respectPrefersColorScheme: false,
       },
       navbar: {
+        hideOnScroll: true,
         title: "Application Developer Hub",
         logo: {
           alt: "Azure PostgreSQL App logo",
