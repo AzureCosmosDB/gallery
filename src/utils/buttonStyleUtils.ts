@@ -24,9 +24,9 @@ const BUTTON_STYLE_MAP: Record<string, ButtonStyles> = {
     borderRadius: "3px 3px 14px 14px",
   },
   Video: {
-    backgroundColor: "#FEF7EE",
-    border: "1px solid #DDC4A2",
-    color: "#CE811D",
+    backgroundColor: "#FFEFFD",
+    border: "1px solid #E6B9E1",
+    color: "#B140A3",
     borderRadius: "3px 3px 14px 14px",
   },
   Training: {
@@ -42,9 +42,9 @@ const BUTTON_STYLE_MAP: Record<string, ButtonStyles> = {
     borderRadius: "3px 3px 14px 14px",
   },
   Blog: {
-    backgroundColor: "#FFEFFD",
-    border: "1px solid #E6B9E1",
-    color: "#B140A3",
+    backgroundColor: "#FEF7EE",
+    border: "1px solid #DDC4A2",
+    color: "#CE811D",
     borderRadius: "3px 3px 14px 14px",
   },
 };
