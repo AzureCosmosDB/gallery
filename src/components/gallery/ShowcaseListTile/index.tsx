@@ -11,6 +11,7 @@ import styleCSS from "../ShowcaseCard/styles.module.css";
 import ShowcaseDialog from "../ShowcaseDialog/index";
 import ShowcaseCardTag from "../ShowcaseTag/index";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import { getButtonStyles } from "../../../utils/buttonStyleUtils";
 import OptimizedImage from "../../OptimizedImage";
 
 export default function ShowcaseListTile({
@@ -22,6 +23,8 @@ export default function ShowcaseListTile({
 }) {
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
+  const buttonText = getButtonText(user.website, user.tags);
+  const ctaStyles = getButtonStyles(buttonText);
   const shouldUseLearningPathContent =
     !!user.learningPathTitle && !!user.learningPathDescription;
   const displayTitle = shouldUseLearningPathContent
@@ -87,7 +90,7 @@ export default function ShowcaseListTile({
                 <ShowcaseCardTag
                   tags={user.tags}
                   cardPanel={false}
-                  buttonText={getButtonText(user.website, user.tags)}
+                  buttonText={buttonText}
                 />
               </div>
               <div className={styleCSS.listTitle}>{displayTitle}</div>
@@ -96,7 +99,7 @@ export default function ShowcaseListTile({
               </div>
               {user.website && (
                 <Button
-                  appearance="primary"
+                  appearance="outline"
                   as="a"
                   href={user.website}
                   target="_blank"
@@ -104,15 +107,17 @@ export default function ShowcaseListTile({
                   onClick={(e) => e.stopPropagation()}
                   style={{
                     marginTop: 12,
-                    backgroundColor: "#0078d4",
+                    fontSize: "14px",
+                    fontWeight: 600,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     paddingLeft: "16px",
                     paddingRight: "16px",
+                    ...ctaStyles,
                   }}
                 >
-                  <span>{getButtonText(user.website, user.tags)}</span>
+                  <span>{buttonText}</span>
                 </Button>
               )}
             </div>

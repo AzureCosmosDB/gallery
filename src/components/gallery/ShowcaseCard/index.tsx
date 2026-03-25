@@ -13,6 +13,7 @@ import ShowcaseDialog from "../ShowcaseDialog/index";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import { getButtonStyles } from "../../../utils/buttonStyleUtils";
 import OptimizedImage from "../../OptimizedImage";
 
 const LEARNING_PATH_TAGS = [
@@ -58,6 +59,9 @@ function ShowcaseCard({
 
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
+
+  const buttonText = getButtonText(user.website, user.tags);
+  const ctaStyles = getButtonStyles(buttonText);
 
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
 
@@ -141,7 +145,7 @@ function ShowcaseCard({
               key={displayTitle}
               tags={tags}
               cardPanel={false}
-              buttonText={getButtonText(user.website, user.tags)}
+              buttonText={buttonText}
             />
           </div>
           <div style={{ padding: 16 }}>
@@ -166,7 +170,7 @@ function ShowcaseCard({
           {/* <CardFooter> */}
           {user.website && (
             <Button
-              appearance="primary"
+              appearance="outline"
               as="a"
               href={user.website}
               target="_blank"
@@ -174,16 +178,17 @@ function ShowcaseCard({
               onClick={(e) => e.stopPropagation()}
               style={{
                 width: "100%",
-                fontSize: "16px",
-                backgroundColor: "#0078d4",
+                fontSize: "14px",
+                fontWeight: 600,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 paddingLeft: "16px",
                 paddingRight: "16px",
+                ...ctaStyles,
               }}
             >
-              <span>{getButtonText(user.website, user.tags)}</span>
+              <span>{buttonText}</span>
             </Button>
           )}
           {/* </CardFooter> */}
