@@ -125,47 +125,49 @@ function ShowcaseCard({
           {tileNumber !== undefined && (
             <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
           )}
-          {user.image && (
-            <div className={styleCSS.imageContainer}>
-              <OptimizedImage
-                src={user.image}
-                alt={displayTitle + " image"}
-                objectFit="cover"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  display: "block",
-                  borderRadius: "8px 8px 0px 0px",
-                }}
+          <div className={styleCSS.cardContent}>
+            {user.image && (
+              <div className={styleCSS.imageContainer}>
+                <OptimizedImage
+                  src={user.image}
+                  alt={displayTitle + " image"}
+                  objectFit="cover"
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "block",
+                    borderRadius: "8px 8px 0px 0px",
+                  }}
+                />
+              </div>
+            )}
+            <div className={styleCSS.cardTags}>
+              <ShowcaseCardTag
+                key={displayTitle}
+                tags={tags}
+                cardPanel={false}
+                buttonText={buttonText}
               />
             </div>
-          )}
-          <div className={styleCSS.cardTags}>
-            <ShowcaseCardTag
-              key={displayTitle}
-              tags={tags}
-              cardPanel={false}
-              buttonText={buttonText}
-            />
-          </div>
-          <div style={{ padding: 16 }}>
-            {coverPage ? (
-              <>
-                <div className={styleCSS.cardTitleCoverPage}>
-                  {displayTitle}
-                </div>
-                <div className={styleCSS.cardDescriptionCoverPage}>
-                  {displayDescription}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className={styleCSS.cardTitle}>{displayTitle}</div>
-                <div className={styleCSS.cardDescription}>
-                  {displayDescription}
-                </div>
-              </>
-            )}
+            <div style={{ padding: 16 }}>
+              {coverPage ? (
+                <>
+                  <div className={styleCSS.cardTitleCoverPage}>
+                    {displayTitle}
+                  </div>
+                  <div className={styleCSS.cardDescriptionCoverPage}>
+                    {displayDescription}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styleCSS.cardTitle}>{displayTitle}</div>
+                  <div className={styleCSS.cardDescription}>
+                    {displayDescription}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
           {/* <CardFooter> */}
           {user.website && (
@@ -178,6 +180,7 @@ function ShowcaseCard({
               onClick={(e) => e.stopPropagation()}
               style={{
                 width: "100%",
+                marginTop: "-1px",
                 fontSize: "14px",
                 fontWeight: 600,
                 display: "flex",
@@ -186,6 +189,7 @@ function ShowcaseCard({
                 paddingLeft: "16px",
                 paddingRight: "16px",
                 ...ctaStyles,
+                borderRadius: "3px 3px 16px 16px",
               }}
             >
               <span>{buttonText}</span>

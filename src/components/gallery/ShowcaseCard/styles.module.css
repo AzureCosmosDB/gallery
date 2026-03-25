@@ -119,7 +119,7 @@
   overflow: hidden;
   transition: box-shadow 0.3s, transform 0.3s;
   box-shadow: none !important;
-  border: 1px solid #0078d426 !important;
+  border: none !important;
   transform-origin: center;
   position: relative;
 }
@@ -146,6 +146,48 @@
 .cardTags{
   padding: 0px 16px;
   margin-top: 12px;
+}
+
+/* Grid-view card structural sections */
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #0078d426;
+  border-left: 1px solid #0078d426;
+  border-right: 1px solid #0078d426;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+}
+
+.cardFooterAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 16px;
+  min-height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-sizing: border-box;
+  /* only the top divider border is set; left/right/bottom are covered by
+     the inset box-shadow in the same accent color (set inline), so the
+     accent wraps the full section edge-to-edge */
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  /* match card's bottom corners so overflow:hidden clips cleanly */
+  border-radius: 0 0 16px 16px;
+  margin: 0;
+  transition: filter 0.15s ease;
+}
+
+.cardFooterAction:hover {
+  filter: brightness(0.93);
+  text-decoration: none !important;
 }
 
 /* Mobile breakpoint: cap card size to 600px and center */
