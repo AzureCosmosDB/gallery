@@ -14,18 +14,24 @@
   background: #e3f2fd;
   color: #1976d2;
   border-radius: 12px;
-  padding: 2px 8px;
+  padding: 4px 8px;
   font-size: 0.75rem;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .durationChip {
   background: #fff;
   color: #5a5b6c;
   border: 1.5px solid #dfeefa;
   border-radius: 12px;
-  padding: 2px 12px;
+  padding: 4px 8px;
   font-size: 0.75rem;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .learningPathsSection {
   display: flex;
@@ -92,9 +98,12 @@
   background: #f3f2f1;
   color: #747277;
   border-radius: 12px;
-  padding: 3px 12px;
+  padding: 4px 8px;
   font-size: 0.75rem;
   margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .arrow {
   align-self: center;
