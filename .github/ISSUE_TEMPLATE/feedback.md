@@ -6,6 +6,8 @@ labels: feedback
 assignees: ""
 ---
 
+<!-- We welcome your feedback on the App Dev Hub, its assets, or any PostgreSQL on Azure features. -->
+
 ## Type of Feedback
 
 <!-- Please check the type of feedback you're providing -->
@@ -18,5 +20,4 @@ assignees: ""
 
 ## Description
 
-<!-- We welcome your feedback on the App Dev Hub, its assets, or any PostgreSQL on Azure features. -->
 <!-- Please provide a clear and concise description of your feedback -->
