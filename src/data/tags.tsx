@@ -155,14 +155,14 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Agents",
     description: "Template implements one or more agents",
     type: "GenerativeAI",
-    buttonText: "Go to GitHub Repo",
+    buttonText: "GitHub Repo",
     color: "green",
   },
   rag: {
     label: "RAG",
     description: "Template implements RAG Pattern",
     type: "GenerativeAI",
-    buttonText: "Go to GitHub Repo",
+    buttonText: "GitHub Repo",
     color: "green",
   },
 
@@ -225,13 +225,13 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "orange",
     description: "Video on YouTube, Vimeo, etc.",
     type: "ResourceType",
-    buttonText: "Watch Video",
+    buttonText: "Video",
   },
   blog: {
     label: "Blog",
     description: "Blog post",
     type: "ResourceType",
-    buttonText: "Read Blog",
+    buttonText: "Blog",
     color: "brown",
   },
 
@@ -239,7 +239,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Solution Accelerator",
     description: "Solution Accelerators",
     type: "ResourceType",
-    buttonText: "Explore Solution Accelerator",
+    buttonText: "Solution Accelerator",
     color: "indigo",
   },
 
@@ -247,7 +247,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Workshop",
     description: "Interactive workshop or hands-on lab",
     type: "ResourceType",
-    buttonText: "Start Workshop",
+    buttonText: "Workshop",
     color: "purple",
   },
 
@@ -256,7 +256,7 @@ export const Tags: { [type in TagType]: Tag } = {
     description:
       "Documentation resources including concepts, how-to guides, and tutorials",
     type: "ResourceType",
-    buttonText: "Open Documentation",
+    buttonText: "Documentation",
     color: "blue",
     subType: [
       { label: "Concepts" },
@@ -269,7 +269,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Concepts",
     description: "Concepts article",
     type: "ResourceType",
-    buttonText: "Read Concepts",
+    buttonText: "Concepts",
     color: "slate",
   },
 
@@ -277,7 +277,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "How To",
     description: "How To guide",
     type: "ResourceType",
-    buttonText: "Read How To Guide",
+    buttonText: "How-To Guide",
     color: "blue",
   },
 
@@ -285,7 +285,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Tutorial",
     description: "Tutorial",
     type: "ResourceType",
-    buttonText: "Start Tutorial",
+    buttonText: "Tutorial",
     color: "green",
   },
 
@@ -293,7 +293,7 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Training",
     description: "Training",
     type: "ResourceType",
-    buttonText: "Start Training",
+    buttonText: "Training",
     color: "purple",
   },
 

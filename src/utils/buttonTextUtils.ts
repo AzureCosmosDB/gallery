@@ -20,27 +20,27 @@ interface ButtonRule {
 const BUTTON_RULES: ButtonRule[] = [
   {
     match: (url) => url.includes("github.com"),
-    text: "Start Workshop",
+    text: "Workshop",
   },
   {
     match: (url) => url.includes("youtube.com") || url.includes("youtu.be"),
-    text: "Watch Video",
+    text: "Video",
   },
   {
     match: (url) => url.includes("techcommunity.microsoft.com"),
-    text: "Read Blog",
+    text: "Blog",
   },
   {
     match: (url) => url.includes("training") || url.includes("/training/"),
-    text: "Start Training",
+    text: "Training",
   },
   {
     match: (url) => url.includes("learn.microsoft.com"),
-    text: "Open Documentation",
+    text: "Documentation",
   },
   {
     match: (url) => url.includes("aka.ms"),
-    text: "Explore Solution Accelerator",
+    text: "Solution Accelerator",
   },
 ];
 
@@ -58,17 +58,17 @@ export function getButtonText(url?: string, tags?: TagType[]): string {
   
   // Special case: if URL matches blog pattern AND has solution accelerator tag, prioritize solution accelerator CTA
   if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('solution-accelerator' as TagType)) {
-    return "Explore Solution Accelerator";
+    return "Solution Accelerator";
   }
 
   // If this is a blog link but the card also has a documentation tag,
   // prefer showing the documentation CTA instead of the blog CTA.
   if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('documentation' as TagType)) {
-    return "Open Documentation";
+    return "Documentation";
   }
 
   // .find is more idiomatic than a loop or if/else chain
   const rule = BUTTON_RULES.find(r => r.match(lowerUrl));
 
-  return rule?.text ?? "Read More";
+  return rule?.text ?? "More";
 }

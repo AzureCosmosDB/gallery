@@ -13,6 +13,7 @@ import ShowcaseDialog from "../ShowcaseDialog/index";
 
 import type { User } from "../../../data/tags";
 import { getButtonText } from "../../../utils/buttonTextUtils";
+import { getButtonStyles } from "../../../utils/buttonStyleUtils";
 import OptimizedImage from "../../OptimizedImage";
 
 const LEARNING_PATH_TAGS = [
@@ -58,6 +59,9 @@ function ShowcaseCard({
 
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
+
+  const buttonText = getButtonText(user.website, user.tags);
+  const ctaStyles = getButtonStyles(buttonText);
 
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
 
@@ -121,52 +125,54 @@ function ShowcaseCard({
           {tileNumber !== undefined && (
             <div className={styleCSS.mobileTileNumber}>{tileNumber}</div>
           )}
-          {user.image && (
-            <div className={styleCSS.imageContainer}>
-              <OptimizedImage
-                src={user.image}
-                alt={displayTitle + " image"}
-                objectFit="cover"
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  display: "block",
-                  borderRadius: "8px 8px 0px 0px",
-                }}
+          <div className={styleCSS.cardContent}>
+            {user.image && (
+              <div className={styleCSS.imageContainer}>
+                <OptimizedImage
+                  src={user.image}
+                  alt={displayTitle + " image"}
+                  objectFit="cover"
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    display: "block",
+                    borderRadius: "8px 8px 0px 0px",
+                  }}
+                />
+              </div>
+            )}
+            <div className={styleCSS.cardTags}>
+              <ShowcaseCardTag
+                key={displayTitle}
+                tags={tags}
+                cardPanel={false}
+                buttonText={buttonText}
               />
             </div>
-          )}
-          <div className={styleCSS.cardTags}>
-            <ShowcaseCardTag
-              key={displayTitle}
-              tags={tags}
-              cardPanel={false}
-              buttonText={getButtonText(user.website, user.tags)}
-            />
-          </div>
-          <div style={{ padding: 16 }}>
-            {coverPage ? (
-              <>
-                <div className={styleCSS.cardTitleCoverPage}>
-                  {displayTitle}
-                </div>
-                <div className={styleCSS.cardDescriptionCoverPage}>
-                  {displayDescription}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className={styleCSS.cardTitle}>{displayTitle}</div>
-                <div className={styleCSS.cardDescription}>
-                  {displayDescription}
-                </div>
-              </>
-            )}
+            <div style={{ padding: 16 }}>
+              {coverPage ? (
+                <>
+                  <div className={styleCSS.cardTitleCoverPage}>
+                    {displayTitle}
+                  </div>
+                  <div className={styleCSS.cardDescriptionCoverPage}>
+                    {displayDescription}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={styleCSS.cardTitle}>{displayTitle}</div>
+                  <div className={styleCSS.cardDescription}>
+                    {displayDescription}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
           {/* <CardFooter> */}
           {user.website && (
             <Button
-              appearance="primary"
+              appearance="outline"
               as="a"
               href={user.website}
               target="_blank"
@@ -174,16 +180,19 @@ function ShowcaseCard({
               onClick={(e) => e.stopPropagation()}
               style={{
                 width: "100%",
-                fontSize: "16px",
-                backgroundColor: "#0078d4",
+                marginTop: "-1px",
+                fontSize: "14px",
+                fontWeight: 600,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 paddingLeft: "16px",
                 paddingRight: "16px",
+                ...ctaStyles,
+                borderRadius: "3px 3px 16px 16px",
               }}
             >
-              <span>{getButtonText(user.website, user.tags)}</span>
+              <span>{buttonText}</span>
             </Button>
           )}
           {/* </CardFooter> */}
