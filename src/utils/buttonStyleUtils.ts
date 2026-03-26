@@ -24,9 +24,9 @@ const BUTTON_STYLE_MAP: Record<string, ButtonStyles> = {
     borderRadius: "3px 3px 14px 14px",
   },
   Video: {
-    backgroundColor: "#FFEFFD",
-    border: "1px solid #E6B9E1",
-    color: "#B140A3",
+    border: "1px solid #A9B3D8",
+    backgroundColor: "#EDF1FF",
+    color: "#3357E4;",
     borderRadius: "3px 3px 14px 14px",
   },
   Training: {
