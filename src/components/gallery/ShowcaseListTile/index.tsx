@@ -115,7 +115,7 @@ export default function ShowcaseListTile({
                     paddingLeft: "16px",
                     paddingRight: "16px",
                     ...ctaStyles,
-                    borderRadius: "1px",
+                    borderRadius: "4px",
                   }}
                 >
                   <span>{buttonText}</span>
