@@ -14,7 +14,11 @@ import {
   ChevronRight20Filled,
 } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
-import { toggleListItem, normalizeLabel } from "../../../utils/jsUtils";
+import { toggleListItem } from "../../../utils/jsUtils";
+import {
+  getSubTagKey,
+  isContextualSubTag,
+} from "../../../utils/filterTagUtils";
 import { prepareUserState } from "../../../pages/index";
 import styles from "../../../pages/styles.module.css";
 
@@ -40,9 +44,7 @@ function removeTagWithSubFilters(
 
   const tagObject = Tags[tag];
   if (tagObject?.subType?.length) {
-    const subKeys = tagObject.subType.map(
-      (s) => normalizeLabel(s.label) as TagType,
-    );
+    const subKeys = tagObject.subType.map((s) => getSubTagKey(tag, s.label));
     newTags = newTags.filter((t) => !subKeys.includes(t));
   }
 
@@ -54,7 +56,7 @@ function removeTagWithSubFilters(
     const parentObj = Tags[parentKey as TagType];
     if (parentObj?.subType && Array.isArray(parentObj.subType)) {
       parentObj.subType.forEach((s) => {
-        const childKey = normalizeLabel(s.label);
+        const childKey = getSubTagKey(parentKey as TagType, s.label);
         parentMap[childKey] ??= [];
         parentMap[childKey].push(parentKey);
       });
@@ -69,8 +71,8 @@ function removeTagWithSubFilters(
     const parentObj = Tags[parentKey as TagType];
     if (!parentObj || !parentObj.subType) return;
 
-    const childKeys = parentObj.subType.map(
-      (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
+    const childKeys = parentObj.subType.map((s) =>
+      getSubTagKey(parentKey as TagType, s.label),
     );
 
     const anyChildSelected = childKeys.some((ck) => newTags.includes(ck));
@@ -78,6 +80,27 @@ function removeTagWithSubFilters(
       newTags = newTags.filter((t) => t !== (parentKey as TagType));
     }
   });
+
+  // Legacy plain "overview" can still arrive from older URLs. If it is removed,
+  // drop any selected parent that no longer has a child represented in the tag state.
+  if (tag === "overview" && !isContextualSubTag(tag)) {
+    Object.keys(Tags).forEach((parentKey) => {
+      const parentObj = Tags[parentKey as TagType];
+      if (!parentObj?.subType?.length) return;
+
+      const childKeys = parentObj.subType.map((s) =>
+        getSubTagKey(parentKey as TagType, s.label),
+      );
+
+      const anyChildSelected = childKeys.some((childKey) =>
+        newTags.includes(childKey),
+      );
+
+      if (!anyChildSelected && newTags.includes(parentKey as TagType)) {
+        newTags = newTags.filter((selectedTag) => selectedTag !== parentKey);
+      }
+    });
+  }
 
   return newTags;
 }
