@@ -9,16 +9,17 @@
 
 import { Tags, type User, type TagType } from "../data/tags";
 import { normalizeLabel } from "./jsUtils";
+import { getBaseTagKey, getSubTagKey } from "./filterTagUtils";
 
 /**
  * Parent-child tag relationships.
  * Children inherit from their parent category for filtering purposes.
  */
-export const PARENT_CHILD_MAP: Record<string, string[]> = {
+export const PARENT_CHILD_MAP: Record<string, TagType[]> = {
   documentation: ["concepts", "how-to", "tutorial"],
-  fundamentals: ["overview", "getting-started"],
+  fundamentals: ["fundamentals-overview", "getting-started"],
   genai: [
-    "overview",
+    "genai-overview",
     "vector-search",
     "rag",
     "agents",
@@ -99,18 +100,23 @@ function getAccordionCategory(
 function getActualChildTagsForUser(
   user: User,
   parent: string,
-  allChildTags: string[],
-): string[] {
+  allChildTags: TagType[],
+): TagType[] {
   return allChildTags.filter((child) => {
+    const actualChildTag = getBaseTagKey(child);
+
     if (user.tags.includes(parent as TagType)) {
       return true;
     }
+
     // Exclude children claimed by other parents the user has
     for (const otherParent of Object.keys(PARENT_CHILD_MAP)) {
       if (
         otherParent !== parent &&
         user.tags.includes(otherParent as TagType) &&
-        PARENT_CHILD_MAP[otherParent].includes(child)
+        PARENT_CHILD_MAP[otherParent].some(
+          (otherChild) => getBaseTagKey(otherChild) === actualChildTag,
+        )
       ) {
         return false;
       }
@@ -142,7 +148,7 @@ function matchesParentChildFilters(
       // Only parent selected OR all sub-tags selected: match parent OR any child
       const matchesParent = user.tags.includes(parent as TagType);
       const matchesAnyChild = actualChildTags.some((child) =>
-        user.tags.includes(child as TagType),
+        user.tags.includes(getBaseTagKey(child)),
       );
       if (!matchesParent && !matchesAnyChild) {
         return false;
@@ -156,7 +162,7 @@ function matchesParentChildFilters(
         return false;
       }
       const matchesSelectedSub = relevantSubTags.some((subTag) =>
-        user.tags.includes(subTag),
+        user.tags.includes(getBaseTagKey(subTag)),
       );
       if (!matchesSelectedSub) {
         return false;
@@ -279,7 +285,7 @@ export function filterUsers(
       // Check regular tags in this category (OR logic)
       if (filters.regularTags.length > 0) {
         categoryMatches = filters.regularTags.some((tag) =>
-          user.tags.includes(tag),
+          user.tags.includes(getBaseTagKey(tag)),
         );
       }
 
@@ -299,7 +305,7 @@ export function filterUsers(
           groupMatches =
             user.tags.includes(parent as TagType) ||
             actualChildTags.some((child) =>
-              user.tags.includes(child as TagType),
+              user.tags.includes(getBaseTagKey(child)),
             );
         } else {
           // Some children selected: parent AND (selected children)
@@ -308,7 +314,7 @@ export function filterUsers(
           );
           if (relevantChildren.length > 0) {
             groupMatches = relevantChildren.some((child) =>
-              user.tags.includes(child),
+              user.tags.includes(getBaseTagKey(child)),
             );
           }
         }
@@ -397,7 +403,7 @@ export function computeActiveTags(
     const tagObject = Tags[selectedTag];
     if (tagObject?.subType?.length) {
       tagObject.subType.forEach((sub) => {
-        const subTagKey = normalizeLabel(sub.label) as TagType;
+        const subTagKey = getSubTagKey(selectedTag, sub.label);
         if (Tags[subTagKey]) {
           unionTags.add(subTagKey);
         }

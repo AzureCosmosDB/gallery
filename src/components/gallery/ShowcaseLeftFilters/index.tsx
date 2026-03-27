@@ -17,14 +17,12 @@ import {
 import { Tags, type TagType } from "../../../data/tags";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
-import { normalizeLabel } from "../../../utils/jsUtils";
+import {
+  getSubTagKey,
+  isContextualSubTag,
+} from "../../../utils/filterTagUtils";
 import styles from "./styles.module.css";
 import CustomCheckbox from "../CustomCheckbox";
-
-// Helper function to map sub-tag labels to actual tag keys
-function getSubTagKey(parentTag: TagType, subLabel: string): TagType {
-  return normalizeLabel(subLabel) as TagType;
-}
 function LearningPathTagSelect({
   label,
   tag,
@@ -351,7 +349,7 @@ export default function ShowcaseLeftFilters({
   });
   const contentTypeTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];
-    return tagObject.type === "ContentType";
+    return tagObject.type === "ContentType" && !isContextualSubTag(tag);
   });
   const serviceTag = TagList.filter((tag) => {
     const tagObject = Tags[tag];

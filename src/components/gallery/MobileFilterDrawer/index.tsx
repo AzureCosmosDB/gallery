@@ -21,9 +21,12 @@ import {
 } from "@fluentui/react-components";
 import { Dismiss24Regular, Filter24Regular } from "@fluentui/react-icons";
 import { Tags, type TagType } from "../../../data/tags";
-import { normalizeLabel } from "../../../utils/jsUtils";
 import { TagList } from "../../../data/users";
 import { prepareUserState } from "../../../pages/index";
+import {
+  getSubTagKey,
+  isContextualSubTag,
+} from "../../../utils/filterTagUtils";
 import styles from "./styles.module.css";
 
 const SORT_BY_OPTIONS = ["Newest", "Recommended"];
@@ -99,8 +102,8 @@ export default function MobileFilterDrawer({
       let newTags = tempSelectedCheckbox.filter((t) => t !== tag);
 
       if (tagObject?.subType && Array.isArray(tagObject.subType)) {
-        const subKeys = tagObject.subType.map(
-          (s) => s.label.toLowerCase().replace(/\s+/g, "-") as TagType,
+        const subKeys = tagObject.subType.map((s) =>
+          getSubTagKey(tag, s.label),
         );
         newTags = newTags.filter((t) => !subKeys.includes(t));
       }
@@ -118,7 +121,7 @@ export default function MobileFilterDrawer({
   );
   const serviceTags = TagList.filter((tag) => Tags[tag]?.type === "Service");
   const contentTypeTags = TagList.filter(
-    (tag) => Tags[tag]?.type === "ContentType",
+    (tag) => Tags[tag]?.type === "ContentType" && !isContextualSubTag(tag),
   );
   const resourceTypeTags = TagList.filter(
     (tag) =>
@@ -271,9 +274,7 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey = normalizeLabel(
-                                  sub.label,
-                                ) as TagType;
+                                const subTagKey = getSubTagKey(tag, sub.label);
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div
@@ -344,9 +345,7 @@ export default function MobileFilterDrawer({
                           {tempSelectedCheckbox.includes(tag) && (
                             <div className={styles.subCheckboxGroup}>
                               {tagObject.subType.map((sub) => {
-                                const subTagKey = normalizeLabel(
-                                  sub.label,
-                                ) as TagType;
+                                const subTagKey = getSubTagKey(tag, sub.label);
                                 const subTagObject = Tags[subTagKey];
                                 return (
                                   <div

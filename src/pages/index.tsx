@@ -21,6 +21,7 @@ import { type TagType } from "../data/tags";
 import { TagList, featuredUsers } from "../data/users";
 import { useLocation } from "@docusaurus/router";
 import { Helmet } from "react-helmet";
+import { normalizeSelectedTagKeys } from "../utils/filterTagUtils";
 
 initializeIcons();
 
@@ -62,7 +63,7 @@ const readSearchTags = (search: string): TagType[] => {
     }
   });
 
-  return allTags as TagType[];
+  return normalizeSelectedTagKeys(allTags as TagType[]);
 };
 const replaceSearchTags = (search: string, newTags: TagType[]) => {
   const searchParams = new URLSearchParams(search);
