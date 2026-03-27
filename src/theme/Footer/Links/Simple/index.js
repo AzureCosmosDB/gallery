@@ -8,6 +8,7 @@ function Separator({ id }) {
     </span>
   );
 }
+
 function SimpleLinkItem({ item }) {
   return item.html ? (
     <span

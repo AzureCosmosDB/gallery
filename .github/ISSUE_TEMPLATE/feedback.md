@@ -20,4 +20,5 @@ assignees: ""
 
 ## Description
 
+<!-- We welcome your feedback on the App Dev Hub, its assets, or any PostgreSQL on Azure features. -->
 <!-- Please provide a clear and concise description of your feedback -->
