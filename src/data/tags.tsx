@@ -58,6 +58,8 @@ export type TagType =
   | "flexibleserver"
   | "genai"
   | "overview"
+  | "fundamentals-overview"
+  | "genai-overview"
   | "vector-search"
   | "azure-ai-extension"
   | "semantic-search"
@@ -191,6 +193,18 @@ export const Tags: { [type in TagType]: Tag } = {
     label: "Overview",
     description: "Template provides an overview of capabilities",
     type: ["GenerativeAI", "ContentType"],
+    color: "slate",
+  },
+  "fundamentals-overview": {
+    label: "Overview",
+    description: "Fundamentals overview content",
+    type: "ContentType",
+    color: "slate",
+  },
+  "genai-overview": {
+    label: "Overview",
+    description: "Generative AI overview content",
+    type: "ContentType",
     color: "slate",
   },
   "semantic-search": {

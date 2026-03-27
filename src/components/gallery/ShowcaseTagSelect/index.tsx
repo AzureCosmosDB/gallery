@@ -3,18 +3,18 @@
  * Licensed under the MIT License.
  */
 
-import React, { useCallback, useState, useEffect, useMemo } from "react";
-import { useHistory, useLocation } from "@docusaurus/router";
-import { toggleListItem, normalizeLabel } from "../../../utils/jsUtils";
-import { prepareUserState } from "../../../pages/index";
+import React, { useMemo } from "react";
+import { useHistory } from "@docusaurus/router";
+import { toggleListItem } from "../../../utils/jsUtils";
 import { Tags, type TagType } from "../../../data/tags";
 import CustomCheckbox from "../CustomCheckbox";
+import { getSubTagKey } from "../../../utils/filterTagUtils";
 
 // Helper to get all child tag keys for a parent tag
 function getChildTags(parentTag: TagType): TagType[] {
   const parentObj = Tags[parentTag];
   if (parentObj?.subType && Array.isArray(parentObj.subType)) {
-    return parentObj.subType.map((s) => normalizeLabel(s.label) as TagType);
+    return parentObj.subType.map((s) => getSubTagKey(parentTag, s.label));
   }
   return [];
 }
@@ -25,7 +25,7 @@ export default function ShowcaseTagSelect({
   id,
   activeTags,
   selectedCheckbox,
-  setSelectedCheckbox,
+  setSelectedCheckbox: _setSelectedCheckbox,
   location,
   readSearchTags,
   replaceSearchTags,
@@ -120,7 +120,7 @@ export default function ShowcaseTagSelect({
   };
   // Adobe Analytics
   const checkbox = id.replace("showcase_checkbox_id_", "");
-  const contentForAdobeAnalytics = `{\"id\":\"${checkbox}\",\"cN\":\"Tags\"}`;
+  const contentForAdobeAnalytics = `{"id":"${checkbox}","cN":"Tags"}`;
 
   // Find parent tags that have this tag as a sub-tag
   const parentTags = Object.entries(Tags)
