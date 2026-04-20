@@ -23,7 +23,7 @@ export default function ShowcaseListTile({
 }) {
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
-  const buttonText = getButtonText(user.website, user.tags);
+  const buttonText = getButtonText(user.tags, user.website);
   const ctaStyles = getButtonStyles(buttonText);
   const shouldUseLearningPathContent =
     !!user.learningPathTitle && !!user.learningPathDescription;

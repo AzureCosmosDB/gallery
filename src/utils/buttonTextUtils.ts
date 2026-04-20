@@ -3,72 +3,50 @@
  * Licensed under the MIT License.
  */
 
-import type { TagType } from '../data/tags';
+import { Tags, type TagType } from '../data/tags';
 
 /**
- * Configuration interface for button text rules
+ * Resource type tag priority order for CTA determination.
+ * Tags listed first have higher priority. Blog is always last (secondary to all others).
+ * This is the single source of truth for both CTA text and tag display ordering.
  */
-interface ButtonRule {
-  match: (url: string) => boolean;
-  text: string;
-}
-
-/**
- * Button text rules configuration
- * Rules are evaluated in order - first match wins
- */
-const BUTTON_RULES: ButtonRule[] = [
-  {
-    match: (url) => url.includes("github.com"),
-    text: "Workshop",
-  },
-  {
-    match: (url) => url.includes("youtube.com") || url.includes("youtu.be"),
-    text: "Video",
-  },
-  {
-    match: (url) => url.includes("techcommunity.microsoft.com"),
-    text: "Blog",
-  },
-  {
-    match: (url) => url.includes("training") || url.includes("/training/"),
-    text: "Training",
-  },
-  {
-    match: (url) => url.includes("learn.microsoft.com"),
-    text: "Documentation",
-  },
-  {
-    match: (url) => url.includes("aka.ms"),
-    text: "Solution Accelerator",
-  },
+export const RESOURCE_TYPE_PRIORITY: TagType[] = [
+  'solution-accelerator',
+  'workshop',
+  'training',
+  'video',
+  'tutorial',
+  'how-to',
+  'concepts',
+  'documentation',
+  'blog',
 ];
 
 /**
- * Function to get dynamic button text based on URL and tags
- * @param url - The URL to analyze
- * @param tags - Optional array of tags to consider for button text
- * @returns Appropriate button text based on URL patterns and tags
+ * Tags that are sub-types of Documentation and should always display
+ * "Documentation" as the CTA label rather than their own tag label.
  */
-export function getButtonText(url?: string, tags?: TagType[]): string {
-  // Guard clause
-  if (!url) return "No URL";
+const DOCUMENTATION_SUB_TYPES = new Set<TagType>(['tutorial', 'how-to', 'concepts']);
 
-  const lowerUrl = url.toLowerCase();
-  
-  // Special case: if URL matches blog pattern AND has solution accelerator tag, prioritize solution accelerator CTA
-  if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('solution-accelerator' as TagType)) {
-    return "Solution Accelerator";
+/**
+ * Returns the CTA button text for a card, determined purely by its resource type tags
+ * in priority order. Blog is always secondary to every other resource type.
+ * tutorial, how-to, and concepts are documentation sub-types and always show "Documentation".
+ * Cards with no resource type tags return "More".
+ *
+ * @param tags - The card's full tag array
+ * @param url  - Unused, kept for interface compatibility
+ * @returns CTA button text
+ */
+export function getButtonText(tags: TagType[], _url?: string): string {
+  // Walk priority list and return the first tag present on the card
+  for (const priorityTag of RESOURCE_TYPE_PRIORITY) {
+    if (tags.includes(priorityTag)) {
+      // Sub-types of Documentation collapse to the parent CTA label
+      if (DOCUMENTATION_SUB_TYPES.has(priorityTag)) return "Documentation";
+      return Tags[priorityTag].buttonText ?? priorityTag;
+    }
   }
 
-  // If this is a blog link but the card also has a documentation tag,
-  // prefer showing the documentation CTA instead of the blog CTA.
-  if (lowerUrl.includes("techcommunity.microsoft.com") && tags?.includes('documentation' as TagType)) {
-    return "Documentation";
-  }
-
-  // .find is more idiomatic than a loop or if/else chain
-  const rule = BUTTON_RULES.find(r => r.match(lowerUrl));
-
-  return rule?.text ?? "More";
+  return "More";
 }

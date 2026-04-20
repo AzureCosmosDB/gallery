@@ -10,13 +10,25 @@ export interface ButtonStyles {
   borderRadius: string;
 }
 
+/**
+ * Documentation blue — shared by the parent Documentation tag and all its
+ * sub-types (Tutorial, How-To Guide, Concepts) so they feel visually unified.
+ */
+const DOC_STYLE: ButtonStyles = {
+  backgroundColor: "#ECF9FF",
+  border: "1px solid #AED4F2",
+  color: "#0078D4",
+  borderRadius: "3px 3px 14px 14px",
+};
+
 const BUTTON_STYLE_MAP: Record<string, ButtonStyles> = {
-  Documentation: {
-    backgroundColor: "#ECF9FF",
-    border: "1px solid #AED4F2",
-    color: "#0078D4",
-    borderRadius: "3px 3px 14px 14px",
-  },
+  Documentation: DOC_STYLE,
+
+  // Documentation sub-types — same visual language as the parent
+  Tutorial: DOC_STYLE,
+  "How-To Guide": DOC_STYLE,
+  Concepts: DOC_STYLE,
+
   "Solution Accelerator": {
     backgroundColor: "#F1FBF1",
     border: "1px solid #B7D8B7",
@@ -49,12 +61,7 @@ const BUTTON_STYLE_MAP: Record<string, ButtonStyles> = {
   },
 };
 
-const DEFAULT_BUTTON_STYLES: ButtonStyles = {
-  backgroundColor: "#ECF9FF",
-  border: "1px solid #AED4F2",
-  color: "#0078D4",
-  borderRadius: "3px 3px 14px 14px",
-};
+const DEFAULT_BUTTON_STYLES: ButtonStyles = DOC_STYLE;
 
 /**
  * Returns CTA button styles (background, border, text color, border-radius) based on button text.

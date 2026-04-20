@@ -60,7 +60,7 @@ function ShowcaseCard({
   const [isOpen, { setTrue: openDialog, setFalse: dismissDialog }] =
     useBoolean(false);
 
-  const buttonText = getButtonText(user.website, user.tags);
+  const buttonText = getButtonText(user.tags, user.website);
   const ctaStyles = getButtonStyles(buttonText);
 
   const [githubData, setGithubData] = useState<GitHubRepoInfo>(null);
