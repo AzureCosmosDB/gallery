@@ -1,0 +1,172 @@
+name: Audit gallery content
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: gallery-content-audit
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test gallery audit
+        run: npm run test:gallery-audit
+
+      - name: Test configured discovery sources
+        run: npm run gallery:audit:fixtures
+
+      - name: Build static gallery
+        run: npm run build
+
+  audit:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Prepare stable automation branch
+        env:
+          UPDATE_BRANCH: automation/gallery-content-updates
+        run: |
+          git config user.name "gallery-content-automation"
+          git config user.email "gallery-content-automation@users.noreply.github.com"
+          git fetch origin main
+          if git ls-remote --exit-code --heads origin "$UPDATE_BRANCH" > /dev/null; then
+            git fetch origin "$UPDATE_BRANCH"
+          fi
+          git checkout -B "$UPDATE_BRANCH" origin/main
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test gallery audit
+        run: npm run test:gallery-audit
+
+      - name: Run deterministic audit and discovery
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run gallery:audit
+
+      - name: Install GitHub Copilot CLI
+        run: npm install --global @github/copilot@1.0.85
+
+      - name: Install and verify curator skills
+        shell: bash
+        env:
+          AGENT_KIT_SKILL_URL: https://raw.githubusercontent.com/AzureCosmosDB/CosmosDB-Agent-Kit/a7a7c2c23214edd36a06d13b674ed392b1fefae8/skills/cosmosdb-best-practices/SKILL.md
+          AGENT_KIT_SKILL_SHA256: c46a4a6ab5d2f46ba4ae06c5c178a8acf70578c7816815bcca47bcda5d3760d6
+        run: |
+          curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 \
+            "$AGENT_KIT_SKILL_URL" --output "$RUNNER_TEMP/cosmosdb-best-practices.SKILL.md"
+          echo "$AGENT_KIT_SKILL_SHA256  $RUNNER_TEMP/cosmosdb-best-practices.SKILL.md" | sha256sum --check --strict
+          copilot skill add --project "$RUNNER_TEMP/cosmosdb-best-practices.SKILL.md"
+          copilot skill list --json > "$RUNNER_TEMP/copilot-skills.json"
+          node -e "const fs=require('fs');const value=fs.readFileSync(process.env.RUNNER_TEMP + '/copilot-skills.json','utf8');for(const name of ['cosmosdb-best-practices','humanizer'])if(!value.includes(name))throw new Error('Required Copilot skill unavailable: '+name)"
+
+      - name: Classify and promote high-confidence updates
+        run: |
+          if [ "${{ secrets.COPILOT_GITHUB_TOKEN != '' }}" != "true" ]; then
+            echo "Copilot classification skipped: COPILOT_GITHUB_TOKEN is not configured."
+            exit 0
+          fi
+          COPILOT_GITHUB_TOKEN="${{ secrets.COPILOT_GITHUB_TOKEN }}" node scripts/gallery-audit/index.mjs --classify-only --promote
+
+      - name: Validate proposed catalog
+        if: hashFiles('output/gallery-content-review/promotion-result.json') != ''
+        run: |
+          npm run test:gallery-audit
+          npm run build
+
+      - name: Detect catalog changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- static/templates.json static/retired-templates.json; then
+            echo "catalog=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "catalog=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish or refresh draft pull request
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          UPDATE_BRANCH: automation/gallery-content-updates
+          NOTIFY_REVIEWER: jagord_microsoft
+        run: |
+          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required to publish the draft pull request."; exit 1; }
+          gh auth setup-git
+
+          if [ ! -f output/gallery-content-review/promotion-result.json ]; then
+            echo "No complete promotion result; leaving the existing draft pull request unchanged."
+            exit 0
+          fi
+
+          if [ "${{ steps.changes.outputs.catalog }}" != "true" ]; then
+            pr_number=$(gh pr list --head "$UPDATE_BRANCH" --base main --state open --json number --jq '.[0].number')
+            if [ -n "$pr_number" ]; then
+              gh pr close "$pr_number"
+            fi
+            if git ls-remote --exit-code --heads origin "$UPDATE_BRANCH" > /dev/null; then
+              git push --delete origin "$UPDATE_BRANCH"
+            fi
+            exit 0
+          fi
+
+          git add static/templates.json static/retired-templates.json
+          git commit -m "chore: refresh gallery content"
+          git push --force-with-lease origin "HEAD:$UPDATE_BRANCH"
+          pr_number=$(gh pr list --head "$UPDATE_BRANCH" --base main --state open --json number --jq '.[0].number')
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
+          else
+            gh pr create --draft --base main --head "$UPDATE_BRANCH" --reviewer "$NOTIFY_REVIEWER" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
+          fi
+
+      - name: Add summary
+        if: always()
+        run: |
+          test ! -f "output/gallery-content-review/audit-summary.md" || cat "output/gallery-content-review/audit-summary.md" >> "$GITHUB_STEP_SUMMARY"
+          test ! -f "output/gallery-content-review/promotion-summary.md" || cat "output/gallery-content-review/promotion-summary.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload review bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gallery-content-review-${{ github.run_id }}
+          path: output/gallery-content-review/
+          retention-days: 30
+          if-no-files-found: error

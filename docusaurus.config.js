@@ -21,7 +21,6 @@ const config = {
   favicon: "img/favicon.ico",
   organizationName: "azurecosmosdb",
   projectName: "gallery",
-  deploymentBranch: "gh-pages",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

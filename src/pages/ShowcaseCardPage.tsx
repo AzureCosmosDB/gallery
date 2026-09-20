@@ -48,18 +48,18 @@ export type UserState = {
 };
 
 function readSortChoice(rule: string): User[] {
+  const usersByDate = unsortedUsers.slice().sort((left, right) => right.date.localeCompare(left.date));
   if (rule == SORT_BY_OPTIONS[0]) {
-    const copyUnsortedUser = unsortedUsers.slice();
-    return copyUnsortedUser.reverse();
+    return usersByDate;
   } else if (rule == SORT_BY_OPTIONS[1]) {
-    return unsortedUsers;
+    return usersByDate.reverse();
   } else if (rule == SORT_BY_OPTIONS[2]) {
     return sortedUsers;
   } else if (rule == SORT_BY_OPTIONS[3]) {
     const copySortedUser = sortedUsers.slice();
     return copySortedUser.reverse();
   }
-  return sortedUsers;
+  return usersByDate;
 }
 
 const SearchNameQueryKey = "name";
@@ -224,7 +224,7 @@ export default function ShowcaseCardPage({
   readSearchTags: (search: string) => TagType[];
   replaceSearchTags: (search: string, newTags: TagType[]) => string;
 }) {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([SORT_BY_OPTIONS[0]]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState<string | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
