@@ -16,15 +16,24 @@ jobs:
   apply:
     if: >-
       github.event.issue.pull_request &&
-      contains(github.event.comment.body, 'Reject:') &&
-      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+      contains(github.event.comment.body, 'Reject:')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
       PR_NUMBER: ${{ github.event.issue.number }}
       REVIEW_COMMAND: ${{ github.event.comment.body }}
-      UPDATE_BRANCH: automation/gallery-content-updates
     steps:
+      - name: Authorize commenter
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COMMENTER: ${{ github.event.comment.user.login }}
+        run: |
+          permission=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$COMMENTER/permission" --jq .permission)
+          case "$permission" in
+            admin|maintain|write) ;;
+            *) echo "Write, maintain, or admin permission is required."; exit 1 ;;
+          esac
+
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
@@ -39,10 +48,14 @@ jobs:
           base_ref=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json baseRefName --jq .baseRefName)
           head_repo=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .head.repo.full_name)
           state=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json state --jq .state)
-          test "$head_ref" = "$UPDATE_BRANCH" || { echo "Review commands apply only to $UPDATE_BRANCH."; exit 1; }
+          case "$head_ref" in
+            automation/gallery-content-updates-*) ;;
+            *) echo "Review commands apply only to generated gallery maintenance branches."; exit 1 ;;
+          esac
           test "$base_ref" = "main" || { echo "Maintenance pull request must target main."; exit 1; }
           test "$head_repo" = "$GITHUB_REPOSITORY" || { echo "Maintenance pull request must originate in this repository."; exit 1; }
           test "$state" = "OPEN" || { echo "Maintenance pull request is not open."; exit 1; }
+          echo "UPDATE_BRANCH=$head_ref" >> "$GITHUB_ENV"
 
       - name: Prepare command and catalog files
         run: |

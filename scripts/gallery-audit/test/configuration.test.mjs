@@ -36,3 +36,27 @@ test('stages the complete review-command module chain before switching branches'
   }
   assert.match(workflow, /node "\$RUNNER_TEMP\/gallery-review\/review-command\.mjs"/);
 });
+
+test('authorizes review commands by effective repository permission', () => {
+  const workflow = read('.github/workflows/apply-gallery-review.yml');
+  assert.match(workflow, /collaborators\/\$COMMENTER\/permission/);
+  assert.match(workflow, /admin\|maintain\|write/);
+  assert.doesNotMatch(workflow, /author_association/);
+});
+
+test('creates a new maintenance branch and draft pull request for each audit run', () => {
+  const workflow = read('.github/workflows/audit-gallery-content.yml');
+  assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}/);
+  assert.doesNotMatch(workflow, /push --force/);
+  assert.doesNotMatch(workflow, /gh pr edit/);
+  assert.match(workflow, /gh pr create --draft/);
+});
+
+test('fails closed until main has the required human approval ruleset', () => {
+  const workflow = read('.github/workflows/audit-gallery-content.yml');
+  assert.match(workflow, /repos\/\$GITHUB_REPOSITORY\/rulesets\?includes_parents=true/);
+  assert.match(workflow, /required_approving_review_count >= 1/);
+  assert.match(workflow, /dismiss_stale_reviews_on_push == true/);
+  assert.match(workflow, /require_last_push_approval == true/);
+  assert.match(workflow, /required_review_thread_resolution == true/);
+});

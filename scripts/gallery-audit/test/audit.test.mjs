@@ -240,6 +240,24 @@ test('handles GitHub authentication, private repositories, and referenced paths 
   assert.equal(missingPath.reason, 'http-404');
 });
 
+test('reports renamed GitHub repositories as canonical URL redirects', async () => {
+  const requested = [];
+  const result = await checkUrl('https://github.com/example/old-name', policy, {
+    allowPrivate: true,
+    fetchImpl: async (url) => {
+      requested.push(url.toString());
+      if (url.pathname.endsWith('/old-name')) {
+        return new Response('', { status: 301, headers: { location: 'https://api.github.com/repos/example/new-name' } });
+      }
+      return new Response('{"private":false,"disabled":false,"archived":false,"html_url":"https://github.com/example/new-name"}', { status: 200 });
+    },
+  });
+  assert.equal(requested.length, 2);
+  assert.equal(result.outcome, 'redirected');
+  assert.equal(result.reason, 'github-redirect');
+  assert.equal(result.finalUrl, 'https://github.com/example/new-name');
+});
+
 test('sends GitHub authorization only to the API host for referenced paths', async () => {
   const requests = [];
   const result = await checkUrl('https://github.com/example/repository/blob/main/README.md', policy, {

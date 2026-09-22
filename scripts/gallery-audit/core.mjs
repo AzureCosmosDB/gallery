@@ -168,7 +168,11 @@ export async function checkUrl(value, policy, options = {}) {
         const pathResult = await boundedGet(value, policy, { ...pathOptions, allowedHostnames: ['github.com'] });
         return { ...pathResult, ...statusResult(pathResult) };
       }
-      return { ...apiResult, finalUrl: metadata.html_url ?? value, outcome: 'healthy', reason: 'github-active' };
+      const finalUrl = metadata.html_url ?? value;
+      const repositoryChanged = urlFingerprint(finalUrl, policy.trackingParameters) !== urlFingerprint(value, policy.trackingParameters);
+      return apiResult.redirects > 0 || repositoryChanged
+        ? { ...apiResult, finalUrl, outcome: 'redirected', reason: 'github-redirect' }
+        : { ...apiResult, finalUrl, outcome: 'healthy', reason: 'github-active' };
     }
     const result = await boundedGet(value, policy, options);
     return { ...result, ...statusResult(result) };

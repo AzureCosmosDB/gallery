@@ -52,17 +52,41 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Prepare stable automation branch
+      - name: Verify main approval ruleset
         env:
-          UPDATE_BRANCH: automation/gallery-content-updates
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          protected=false
+          for ruleset_id in $(gh api "repos/$GITHUB_REPOSITORY/rulesets?includes_parents=true" --jq '.[].id'); do
+            if gh api "repos/$GITHUB_REPOSITORY/rulesets/$ruleset_id" | jq -e '
+              .target == "branch" and
+              .enforcement == "active" and
+              any(.conditions.ref_name.include[]?; . == "refs/heads/main" or . == "~DEFAULT_BRANCH") and
+              any(.rules[]?;
+                .type == "pull_request" and
+                .parameters.required_approving_review_count >= 1 and
+                .parameters.dismiss_stale_reviews_on_push == true and
+                .parameters.require_last_push_approval == true and
+                .parameters.required_review_thread_resolution == true
+              )
+            ' > /dev/null; then
+              protected=true
+              break
+            fi
+          done
+          test "$protected" = "true" || {
+            echo "main must require an approving review, stale-review dismissal, approval after the latest push, and resolved review threads."
+            exit 1
+          }
+
+      - name: Prepare per-run automation branch
+        env:
+          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}
         run: |
           git config user.name "gallery-content-automation"
           git config user.email "gallery-content-automation@users.noreply.github.com"
           git fetch origin main
-          if git ls-remote --exit-code --heads origin "$UPDATE_BRANCH" > /dev/null; then
-            git fetch origin "$UPDATE_BRANCH"
-          fi
-          git checkout -B "$UPDATE_BRANCH" origin/main
+          git checkout -b "$UPDATE_BRANCH" origin/main
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -120,11 +144,11 @@ jobs:
             echo "catalog=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish or refresh draft pull request
+      - name: Publish draft pull request
         if: success()
         env:
           GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
-          UPDATE_BRANCH: automation/gallery-content-updates
+          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}
           NOTIFY_REVIEWER: jagord_microsoft
         run: |
           test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required to publish the draft pull request."; exit 1; }
@@ -136,25 +160,13 @@ jobs:
           fi
 
           if [ "${{ steps.changes.outputs.catalog }}" != "true" ]; then
-            pr_number=$(gh pr list --head "$UPDATE_BRANCH" --base main --state open --json number --jq '.[0].number')
-            if [ -n "$pr_number" ]; then
-              gh pr close "$pr_number"
-            fi
-            if git ls-remote --exit-code --heads origin "$UPDATE_BRANCH" > /dev/null; then
-              git push --delete origin "$UPDATE_BRANCH"
-            fi
             exit 0
           fi
 
           git add static/templates.json static/retired-templates.json
           git commit -m "chore: refresh gallery content"
-          git push --force-with-lease origin "HEAD:$UPDATE_BRANCH"
-          pr_number=$(gh pr list --head "$UPDATE_BRANCH" --base main --state open --json number --jq '.[0].number')
-          if [ -n "$pr_number" ]; then
-            gh pr edit "$pr_number" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
-          else
-            gh pr create --draft --base main --head "$UPDATE_BRANCH" --reviewer "$NOTIFY_REVIEWER" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
-          fi
+          git push origin "HEAD:$UPDATE_BRANCH"
+          gh pr create --draft --base main --head "$UPDATE_BRANCH" --reviewer "$NOTIFY_REVIEWER" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
 
       - name: Add summary
         if: always()

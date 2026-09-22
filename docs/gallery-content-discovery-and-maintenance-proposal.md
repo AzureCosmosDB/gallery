@@ -10,10 +10,10 @@ Keep the gallery as a static Docusaurus site on GitHub Pages. Add one GitHub Act
 1. audits the existing `static/templates.json` catalog for broken, redirected, duplicate, and potentially stale entries;
 2. discovers recent Azure Cosmos DB examples, videos, documentation, and blogs from an exact allowlist of public endpoints;
 3. uses GitHub Copilot CLI in programmatic mode with the Azure Cosmos DB Agent Kit and humanizer skills to evaluate relevance and semantic staleness against a fixed rubric; and
-4. applies only high-confidence additions and strongly evidenced retirements to a stable automation branch; and
-5. opens or refreshes a draft pull request and uploads validated reports for review.
+4. applies only high-confidence additions and strongly evidenced retirements to a per-run automation branch; and
+5. opens a new draft pull request and uploads validated reports for review.
 
-The workflow can edit catalog files only on `automation/gallery-content-updates`. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
+The workflow can edit catalog files only on `automation/gallery-content-updates-<run-id>` branches. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
 
 ## Constraints
 
@@ -258,7 +258,7 @@ The workflow promotes only `include` candidates with `high` confidence and compl
 
 Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
 
-Each complete run rebuilds `automation/gallery-content-updates` from the current `main` branch and opens or refreshes one draft pull request. A maintainer reviews the actual catalog diff and evidence. Only a manual merge to `main` publishes the update. Incomplete runs preserve the existing draft without replacing it.
+Each complete run creates `automation/gallery-content-updates-<run-id>` from the current `main` branch and opens a new draft pull request. A maintainer reviews the actual catalog diff and evidence. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier drafts.
 
 Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. A repository owner, member, or collaborator can reject proposals by commenting on the maintenance pull request:
 
@@ -322,9 +322,9 @@ The workflow should:
 6. install a pinned GitHub Copilot CLI version on Node.js 22 or later;
 7. run bounded relevance and semantic-staleness analysis with no tools available;
 8. validate Copilot output and combine it with deterministic evidence;
-9. apply eligible changes to the stable automation branch;
+9. apply eligible changes to the per-run automation branch;
 10. run focused tests and the full Docusaurus build;
-11. open or refresh a draft pull request with a separate write token;
+11. open a new draft pull request with a separate write token;
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
@@ -343,7 +343,7 @@ Use timeouts, concurrency with `cancel-in-progress: false`, bounded response siz
 - Validate model output against a strict schema before including it in reports.
 - Apply only `include/high` candidates with complete catalog metadata.
 - Apply only `retire-proposed/high` entries backed by strong deterministic evidence.
-- Write catalog changes only to `automation/gallery-content-updates` and a draft pull request.
+- Write catalog changes only to `automation/gallery-content-updates-<run-id>` and a draft pull request.
 - Never push to `main`, approve, merge, or enable automerge.
 - Do not log tokens or request authorization headers.
 - Do not fail the entire audit because one source is unavailable; mark that source partial.
@@ -376,7 +376,7 @@ Implementation is complete only when automated checks prove:
 - Every current catalog entry appears exactly once in each complete audit.
 - Every finding has a deterministic reason code and observable evidence.
 - Existing URLs are excluded from staged content candidates.
-- A weekly run produces reviewable JSON and Markdown artifacts and updates one draft pull request only when eligible catalog changes exist.
+- A weekly run produces reviewable JSON and Markdown artifacts and opens a new draft pull request only when eligible catalog changes exist.
 - Partial scans are clearly distinguishable from complete scans.
 - The workflow uses no Azure or persistent backend resources.
 - The workflow creates no direct `main` mutation and no automatic merge.
@@ -402,7 +402,7 @@ Enable the weekly schedule after several successful manual runs. Review artifact
 
 ### Phase 5: Draft Pull Request Promotion
 
-Apply conservative promotion gates, validate the resulting static site, and maintain one draft pull request on a stable automation branch. Require human approval and merge for publication.
+Apply conservative promotion gates, validate the resulting static site, and create a draft pull request on a per-run automation branch. Require human approval and merge for publication.
 
 ## Operator-Controlled Decisions
 

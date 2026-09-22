@@ -17,17 +17,18 @@ Pull requests run a read-only validation job that:
 
 Scheduled and manual runs:
 
-1. rebuild `automation/gallery-content-updates` from the current `main` branch;
-2. audit every live catalog entry;
-3. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
-4. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
-5. validate the proposed catalog and static site;
-6. force-update one draft maintenance pull request with lease protection; and
-7. upload the complete review bundle for 30 days.
+1. verify that `main` has the required human-approval ruleset;
+2. create `automation/gallery-content-updates-<run-id>` from the current `main` branch;
+3. audit every live catalog entry;
+4. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
+5. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
+6. validate the proposed catalog and static site;
+7. open a new draft maintenance pull request without rewriting an earlier review branch; and
+8. upload the complete review bundle for 30 days.
 
 Before classification, the workflow installs the Azure Cosmos DB Agent Kit's `cosmosdb-best-practices` skill from a pinned commit and verifies its SHA-256 checksum. The repository includes a focused `humanizer` skill. A preflight check requires Copilot CLI to discover both skills, and classification explicitly enables skill retrieval. The curator uses Agent Kit guidance to enforce current Cosmos DB product boundaries and uses humanizer only to make evidence concise and neutral; humanizer cannot change verdicts, confidence, indexes, URLs, or JSON structure.
 
-Each run rebuilds the proposal from `main`. The draft PR therefore represents one complete current proposal rather than an accumulation of prior maintenance commits.
+Each run creates a proposal from `main` on a new branch. Rejection commits therefore remain in the draft PR where the reviewer made them and cannot be erased by a later scheduled run.
 
 ## Required repository configuration
 
@@ -97,7 +98,7 @@ gh secret list --repo AzureCosmosDB/gallery
 
 ### Configure the new-PR email notification
 
-When the weekly run creates a new maintenance pull request, it requests a review from `jagord_microsoft`. GitHub sends that review-request notification through the account's configured notification channels. Existing draft updates do not request the reviewer again, so routine refreshes do not send duplicate new-PR notifications.
+When the weekly run creates a maintenance pull request, it requests a review from `jagord_microsoft`. GitHub sends that review-request notification through the account's configured notification channels.
 
 To route the email to `jagord@microsoft.com`:
 
@@ -115,7 +116,7 @@ An organization owner or repository administrator must complete these steps afte
 1. Approve GitHub Actions for the repository and allow the pinned actions used by the gallery workflows.
 2. Create and install `COPILOT_GITHUB_TOKEN` and `GALLERY_UPDATE_TOKEN` by following the preceding token procedures. Confirm the organization-owned publisher token is approved before the first run.
 3. Confirm the automation identity can use GitHub Copilot CLI and can create branches and pull requests in `AzureCosmosDB/gallery`.
-4. Keep branch protection on `main`; neither token needs permission to bypass it.
+4. Create and keep an active `Protect main` ruleset enabled with at least one approving review, stale approval dismissal, approval after the latest push, and required resolution of review threads. The audit job verifies these settings and fails before promotion when they are absent. Neither token needs permission to bypass it.
 5. Configure `jagord_microsoft` to route `AzureCosmosDB` review-request notifications to `jagord@microsoft.com`.
 6. Open **Actions > Audit gallery content**, choose **Run workflow**, and review the artifact and draft pull request from the first complete run.
 7. In **Settings > Pages**, change **Build and deployment > Source** from the legacy `gh-pages` branch to **GitHub Actions**. The updated deployment workflow does not use `GH_PAT` and does not push generated files to a branch.
@@ -176,7 +177,7 @@ Each maintenance run uploads `gallery-content-review-<run-id>` containing:
 | One source times out, rate limits, truncates, or returns malformed data | Source and run are marked partial; no promotion | Inspect the artifact, retry later, then fix or disable the source if persistent |
 | Copilot token is missing | Classification is skipped; existing draft is preserved | Restore the secret and rerun manually |
 | Copilot output fails schema validation twice | Classification is incomplete; existing draft is preserved | Inspect captured diagnostics and rerun after correcting the prompt or CLI issue |
-| Promotion produces no catalog diff | Existing stale draft is closed and its branch is removed | Confirm the latest complete artifact contains no eligible changes |
+| Promotion produces no catalog diff | No branch or draft pull request is published | Confirm the latest complete artifact contains no eligible changes |
 | Build or tests fail | No branch or PR mutation | Fix on a normal reviewed PR, then rerun maintenance |
 | Generated metadata is malformed | Do not merge the draft | Fix the ingestion or validation rule, regenerate from `main`, and review again |
 | A `Reject:` comment fails | Catalogs and PR body remain unchanged | Use IDs from the latest PR body and confirm the commenter is an owner, member, or collaborator |
@@ -191,10 +192,10 @@ To pause maintenance without affecting the published gallery, disable `Audit gal
 To discard a generated proposal:
 
 1. close the draft maintenance pull request without merging;
-2. delete `automation/gallery-content-updates` from the repository; and
+2. close unwanted maintenance pull requests and delete their `automation/gallery-content-updates-<run-id>` branches; and
 3. rerun the workflow when the underlying issue is fixed.
 
-Every run rebuilds that branch from current `main`, so no proposal state needs to be recovered. If a catalog PR was merged incorrectly, revert that catalog PR through the normal protected-branch process; do not force-push `main`.
+Every run starts a new branch from current `main`, so earlier proposal and rejection history remains intact. If a catalog PR was merged incorrectly, revert that catalog PR through the normal protected-branch process; do not force-push `main`.
 
 ## Local validation
 

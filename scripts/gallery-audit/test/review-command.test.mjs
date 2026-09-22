@@ -71,3 +71,18 @@ test('regenerates numbered summary from the actual catalog diff with retirement 
   assert.match(summary, /HTTP status: 404/);
   assert.match(summary, /Reason codes: http-404/);
 });
+
+test('distinguishes URL updates when catalog entries have duplicate titles', () => {
+  const baseCatalog = [
+    entry('Shared title', 'https://example.com/unchanged', { description: 'First' }),
+    entry('Shared title', 'https://example.com/old', { description: 'Second' }),
+  ];
+  const catalog = [
+    baseCatalog[0],
+    entry('Shared title', 'https://example.com/new', { description: 'Second' }),
+  ];
+  const summary = summarizeCatalogDiff({ baseCatalog, catalog, baseRetiredCatalog: [], retiredCatalog: [], generatedAt: '2026-09-20T00:00:00.000Z' });
+  assert.match(summary, /URL updates: 1/);
+  assert.match(summary, /https:\/\/example\.com\/new\) from https:\/\/example\.com\/old/);
+  assert.doesNotMatch(summary, /from https:\/\/example\.com\/unchanged/);
+});

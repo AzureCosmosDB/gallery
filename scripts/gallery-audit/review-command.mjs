@@ -33,6 +33,11 @@ function stripRetirementMetadata(entry) {
   return liveEntry;
 }
 
+function catalogIdentity(entry) {
+  const { source, ...metadata } = stripRetirementMetadata(entry);
+  return JSON.stringify(metadata);
+}
+
 export function applyRejections({ baseCatalog, liveCatalog, retiredCatalog, proposal, rejectedIds }) {
   const live = liveCatalog.map((entry) => ({ ...entry }));
   const retired = retiredCatalog.map((entry) => ({ ...entry }));
@@ -42,44 +47,50 @@ export function applyRejections({ baseCatalog, liveCatalog, retiredCatalog, prop
   for (const id of rejectedIds) {
     const item = proposal.get(id);
     if (item.action === 'Add') {
-      const index = live.findIndex((entry) => entry.source === item.url && entry.title === item.title);
+      const index = live.findIndex((entry) => entry.source === item.url);
       if (index < 0) throw new Error(`${id} no longer matches an added catalog entry.`);
       live.splice(index, 1);
     } else if (item.action === 'Update') {
       if (!item.previousUrl) throw new Error(`${id} is missing its previous URL.`);
-      const entry = live.find((candidate) => candidate.source === item.url && candidate.title === item.title);
+      const entry = live.find((candidate) => candidate.source === item.url);
       if (!entry) throw new Error(`${id} no longer matches an updated catalog entry.`);
       entry.source = item.previousUrl;
     } else {
-      const index = retired.findIndex((entry) => entry.source === item.url && entry.title === item.title);
+      const index = retired.findIndex((entry) => entry.source === item.url);
       if (index < 0) throw new Error(`${id} no longer matches a retired catalog entry.`);
       const [entry] = retired.splice(index, 1);
-      if (!live.some((candidate) => candidate.source === entry.source && candidate.title === entry.title)) {
+      if (!live.some((candidate) => candidate.source === entry.source)) {
         live.push(stripRetirementMetadata(entry));
       }
     }
   }
-  const baseOrder = new Map(baseCatalog.map((entry, index) => [entry.title, index]));
-  const additions = live.filter((entry) => !baseOrder.has(entry.title));
+  const baseOrder = new Map(baseCatalog.map((entry, index) => [entry.source, index]));
+  const additions = live.filter((entry) => !baseOrder.has(entry.source));
   const existing = live
-    .filter((entry) => baseOrder.has(entry.title))
-    .sort((left, right) => baseOrder.get(left.title) - baseOrder.get(right.title));
+    .filter((entry) => baseOrder.has(entry.source))
+    .sort((left, right) => baseOrder.get(left.source) - baseOrder.get(right.source));
   return { liveCatalog: sortCatalogForPublishing([...additions, ...existing]), retiredCatalog: retired };
 }
 
 export function summarizeCatalogDiff({ baseCatalog, catalog, baseRetiredCatalog, retiredCatalog, generatedAt }) {
-  const baseByTitle = new Map(baseCatalog.map((entry) => [entry.title, entry]));
-  const catalogByTitle = new Map(catalog.map((entry) => [entry.title, entry]));
+  const baseSources = new Set(baseCatalog.map((entry) => entry.source));
+  const catalogSources = new Set(catalog.map((entry) => entry.source));
   const baseRetiredSources = new Set(baseRetiredCatalog.map((entry) => entry.source));
-  const additions = catalog.filter((entry) => !baseByTitle.has(entry.title));
-  const updates = catalog.flatMap((entry) => {
-    const previous = baseByTitle.get(entry.title);
-    return previous && previous.source !== entry.source
-      ? [{ title: entry.title, previousUrl: previous.source, url: entry.source }]
-      : [];
-  });
+  const unmatchedBase = baseCatalog.filter((entry) => !catalogSources.has(entry.source));
+  const unmatchedCatalog = catalog.filter((entry) => !baseSources.has(entry.source));
+  const updates = [];
+  const additions = [];
+  for (const entry of unmatchedCatalog) {
+    const identity = catalogIdentity(entry);
+    const previousIndex = unmatchedBase.findIndex((candidate) => catalogIdentity(candidate) === identity);
+    if (previousIndex < 0) additions.push(entry);
+    else {
+      const [previous] = unmatchedBase.splice(previousIndex, 1);
+      updates.push({ title: entry.title, previousUrl: previous.source, url: entry.source });
+    }
+  }
   const retirements = retiredCatalog.filter((entry) => !baseRetiredSources.has(entry.source));
-  const removedWithoutRetirement = baseCatalog.filter((entry) => !catalogByTitle.has(entry.title) && !retirements.some((retired) => retired.title === entry.title));
+  const removedWithoutRetirement = unmatchedBase.filter((entry) => !retirements.some((retired) => retired.source === entry.source));
   if (removedWithoutRetirement.length > 0) throw new Error(`Catalog entries were removed without retirement records: ${removedWithoutRetirement.map((entry) => entry.title).join(', ')}`);
   const cardDetails = (entry) => [
     `  - Description: ${entry.description?.trim() || '**MISSING**'}`,
