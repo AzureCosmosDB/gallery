@@ -25,9 +25,10 @@ jobs:
     steps:
       - name: Authorize commenter
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
           COMMENTER: ${{ github.event.comment.user.login }}
         run: |
+          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required."; exit 1; }
           permission=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$COMMENTER/permission" --jq .permission)
           case "$permission" in
             admin|maintain|write) ;;

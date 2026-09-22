@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { urlFingerprint } from './normalize.mjs';
+import { validateCatalog } from './core.mjs';
+import { normalizeUrl, urlFingerprint } from './normalize.mjs';
 
 const STRONG_RETIREMENT_REASONS = new Set([
   'github-archived',
@@ -41,16 +42,44 @@ export function maintenanceText(value, fallback = '**MISSING**') {
   return text || fallback;
 }
 
+export function markdownText(value, fallback) {
+  const text = maintenanceText(value, '');
+  return text ? text.replace(/([\\`*_[\]<>])/g, '\\$1') : (fallback ?? '');
+}
+
+function markdownUrl(value) {
+  return `<${maintenanceText(value).replaceAll('>', '%3E')}>`;
+}
+
+export function proposalItem(id, action, entry, previousUrl = null, suffix = '') {
+  const url = entry.source ?? entry.url;
+  const metadata = Buffer.from(JSON.stringify({ id, action, title: entry.title, url, previousUrl })).toString('base64url');
+  const line = `- **${id}** ${action} [${markdownText(entry.title)}](${markdownUrl(url)})${previousUrl ? ` from ${markdownUrl(previousUrl)}` : ''}${suffix}`;
+  return [`<!-- gallery-item:${metadata} -->`, line];
+}
+
+export function proposalCardDetails(entry) {
+  return [
+    `  - Description: ${markdownText(entry.description, '**MISSING**')}`,
+    `  - Author: ${markdownText(Array.isArray(entry.author) ? entry.author.join(', ') : entry.author, '**MISSING**')}`,
+    `  - Date: ${markdownText(entry.date, '**MISSING**')}`,
+    `  - Tags: ${markdownText(entry.tags?.length ? entry.tags.join(', ') : null, '**MISSING**')}`,
+    `  - Website: ${markdownText(entry.website, '**MISSING**')}`,
+    `  - Preview: ${markdownText(entry.preview, '**MISSING**')}`,
+    `  - Source: ${markdownText(entry.source, '**MISSING**')}`,
+  ];
+}
+
 export function retirementProof(entry) {
   const evidence = entry.retirementEvidence ?? {};
   return [
-    `  - Reason: ${maintenanceText(entry.retirementReason)}`,
-    `  - Audit outcome: ${maintenanceText(evidence.auditOutcome)}`,
-    `  - HTTP status: ${maintenanceText(evidence.httpStatus)}`,
-    `  - Observed destination: ${maintenanceText(evidence.finalUrl)}`,
-    `  - Replacement URL: ${maintenanceText(entry.replacementUrl, '**NONE**')}`,
-    `  - Reason codes: ${maintenanceText(evidence.reasonCodes?.join(', '))}`,
-    `  - Criteria: ${maintenanceText(evidence.criteria?.join(', '))}`,
+    `  - Reason: ${markdownText(entry.retirementReason)}`,
+    `  - Audit outcome: ${markdownText(evidence.auditOutcome)}`,
+    `  - HTTP status: ${markdownText(evidence.httpStatus)}`,
+    `  - Observed destination: ${markdownText(evidence.finalUrl)}`,
+    `  - Replacement URL: ${markdownText(entry.replacementUrl, '**NONE**')}`,
+    `  - Reason codes: ${markdownText(evidence.reasonCodes?.join(', '))}`,
+    `  - Criteria: ${markdownText(evidence.criteria?.join(', '))}`,
   ];
 }
 
@@ -68,17 +97,19 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
     if (!original || original.source !== auditEntry.url) continue;
     let previousFingerprint;
     let finalFingerprint;
+    let finalUrl;
     try {
       previousFingerprint = urlFingerprint(original.source, policy.trackingParameters);
-      finalFingerprint = urlFingerprint(auditEntry.finalUrl, policy.trackingParameters);
+      finalUrl = normalizeUrl(auditEntry.finalUrl, policy.trackingParameters);
+      if (new URL(original.source).hostname.toLowerCase() !== new URL(finalUrl).hostname.toLowerCase()) continue;
+      finalFingerprint = urlFingerprint(finalUrl, policy.trackingParameters);
     } catch {
       continue;
     }
     if (previousFingerprint === finalFingerprint) continue;
-    const conflicts = updatedCatalog.some((entry, index) => index !== auditEntry.catalogIndex && urlFingerprint(entry.source, policy.trackingParameters) === finalFingerprint);
-    if (conflicts) continue;
+    if (knownUrls.has(finalFingerprint)) continue;
     const previousUrl = original.source;
-    original.source = auditEntry.finalUrl;
+    original.source = finalUrl;
     knownUrls.delete(previousFingerprint);
     knownUrls.add(finalFingerprint);
     updates.push({ title: original.title, previousUrl, url: original.source });
@@ -135,35 +166,31 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
 
 export function promotionMarkdown(result, generatedAt) {
   const updates = result.updates ?? [];
-  const cardDetails = (entry) => [
-    `  - Description: ${entry.description?.trim() || '**MISSING**'}`,
-    `  - Author: ${Array.isArray(entry.author) ? entry.author.join(', ') : (entry.author?.trim() || '**MISSING**')}`,
-    `  - Date: ${entry.date?.trim() || '**MISSING**'}`,
-    `  - Tags: ${entry.tags?.length ? entry.tags.join(', ') : '**MISSING**'}`,
-    `  - Website: ${entry.website?.trim() || '**MISSING**'}`,
-    `  - Preview: ${entry.preview?.trim() || '**MISSING**'}`,
-    `  - Source: ${entry.source?.trim() || '**MISSING**'}`,
-  ];
   return [
     '# Automated gallery content update', '',
     `Generated: ${generatedAt}`, '',
     'Comment with item IDs to reject proposed changes, for example: `Reject: A1, U1, R1`.', '',
     `Additions: ${result.additions.length}`, '',
     ...result.additions.flatMap((entry, index) => [
-      `- **A${index + 1}** Add [${entry.title}](${entry.source})`,
-      ...cardDetails(entry),
+      ...proposalItem(`A${index + 1}`, 'Add', entry),
+      ...proposalCardDetails(entry),
     ]),
     '', `URL updates: ${updates.length}`, '',
-    ...updates.map((entry, index) => `- **U${index + 1}** Update [${entry.title}](${entry.url}) from ${entry.previousUrl}`),
+    ...updates.flatMap((entry, index) => proposalItem(`U${index + 1}`, 'Update', { title: entry.title, source: entry.url }, entry.previousUrl)),
     '', `Retirements: ${result.retirements.length}`, '',
     ...result.retirements.flatMap((entry, index) => [
-      `- **R${index + 1}** Retire [${entry.title}](${entry.source}): ${maintenanceText(entry.retirementReason)}`,
+      ...proposalItem(`R${index + 1}`, 'Retire', entry, null, `: ${markdownText(entry.retirementReason)}`),
       ...retirementProof(entry),
     ]),
     '', `Skipped high-confidence additions: ${result.skippedAdditions.length}`, '',
-    ...result.skippedAdditions.map((entry, index) => `- **S${index + 1}** ${entry.url}: ${entry.reason}`),
+    ...result.skippedAdditions.map((entry, index) => `- **S${index + 1}** ${markdownText(entry.url)}: ${markdownText(entry.reason)}`),
     '', 'This pull request is generated as a draft and requires human approval before merge.', '',
   ].join('\n');
+}
+
+export function validatePromotionResult(result) {
+  validateCatalog(result.catalog);
+  validateCatalog(result.retiredCatalog);
 }
 
 export async function applyCatalogPromotion({ root, now = new Date() }) {
@@ -182,6 +209,7 @@ export async function applyCatalogPromotion({ root, now = new Date() }) {
     throw new Error('Promotion requires a complete deterministic scan and Copilot classification');
   }
   const result = planCatalogPromotion({ catalog, retiredCatalog, candidateReport, auditReport, sourcesDocument, policy, now });
+  validatePromotionResult(result);
   await Promise.all([
     fs.writeFile(path.join(root, 'static', 'templates.json'), `${JSON.stringify(result.catalog, null, 2)}\n`),
     fs.writeFile(path.join(root, 'static', 'retired-templates.json'), `${JSON.stringify(result.retiredCatalog, null, 2)}\n`),

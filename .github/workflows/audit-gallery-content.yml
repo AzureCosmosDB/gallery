@@ -81,7 +81,7 @@ jobs:
 
       - name: Prepare per-run automation branch
         env:
-          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}
+          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           git config user.name "gallery-content-automation"
           git config user.email "gallery-content-automation@users.noreply.github.com"
@@ -148,7 +148,7 @@ jobs:
         if: success()
         env:
           GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
-          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}
+          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}-${{ github.run_attempt }}
           NOTIFY_REVIEWER: jagord_microsoft
         run: |
           test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required to publish the draft pull request."; exit 1; }

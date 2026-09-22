@@ -13,7 +13,7 @@ Keep the gallery as a static Docusaurus site on GitHub Pages. Add one GitHub Act
 4. applies only high-confidence additions and strongly evidenced retirements to a per-run automation branch; and
 5. opens a new draft pull request and uploads validated reports for review.
 
-The workflow can edit catalog files only on `automation/gallery-content-updates-<run-id>` branches. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
+The workflow can edit catalog files only on `automation/gallery-content-updates-<run-id>-<attempt>` branches. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
 
 ## Constraints
 
@@ -258,7 +258,7 @@ The workflow promotes only `include` candidates with `high` confidence and compl
 
 Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
 
-Each complete run creates `automation/gallery-content-updates-<run-id>` from the current `main` branch and opens a new draft pull request. A maintainer reviews the actual catalog diff and evidence. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier drafts.
+Each complete run attempt creates `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch and opens a new draft pull request. A maintainer reviews the actual catalog diff and evidence. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier drafts.
 
 Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. A repository owner, member, or collaborator can reject proposals by commenting on the maintenance pull request:
 
@@ -343,7 +343,7 @@ Use timeouts, concurrency with `cancel-in-progress: false`, bounded response siz
 - Validate model output against a strict schema before including it in reports.
 - Apply only `include/high` candidates with complete catalog metadata.
 - Apply only `retire-proposed/high` entries backed by strong deterministic evidence.
-- Write catalog changes only to `automation/gallery-content-updates-<run-id>` and a draft pull request.
+- Write catalog changes only to `automation/gallery-content-updates-<run-id>-<attempt>` and a draft pull request.
 - Never push to `main`, approve, merge, or enable automerge.
 - Do not log tokens or request authorization headers.
 - Do not fail the entire audit because one source is unavailable; mark that source partial.

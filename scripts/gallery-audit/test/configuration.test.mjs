@@ -41,12 +41,13 @@ test('authorizes review commands by effective repository permission', () => {
   const workflow = read('.github/workflows/apply-gallery-review.yml');
   assert.match(workflow, /collaborators\/\$COMMENTER\/permission/);
   assert.match(workflow, /admin\|maintain\|write/);
+  assert.match(workflow, /Authorize commenter[\s\S]*GH_TOKEN: \$\{\{ secrets\.GALLERY_UPDATE_TOKEN \}\}/);
   assert.doesNotMatch(workflow, /author_association/);
 });
 
 test('creates a new maintenance branch and draft pull request for each audit run', () => {
   const workflow = read('.github/workflows/audit-gallery-content.yml');
-  assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}/);
+  assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
   assert.doesNotMatch(workflow, /push --force/);
   assert.doesNotMatch(workflow, /gh pr edit/);
   assert.match(workflow, /gh pr create --draft/);

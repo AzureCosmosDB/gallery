@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { applyRejections, parseProposal, parseRejectCommand, summarizeCatalogDiff } from '../review-command.mjs';
 
 const entry = (title, source, extra = {}) => ({ title, description: title, preview: 'coming soon', website: 'https://example.com', author: 'Author', source, date: '2026-01-01', tags: ['example'], ...extra });
+const proposalBody = (...items) => items.map((item) => `<!-- gallery-item:${Buffer.from(JSON.stringify(item)).toString('base64url')} -->`).join('\n');
 
 test('parses reject commands with an optional bot mention and rejects malformed IDs', () => {
   assert.deepEqual(parseRejectCommand('@copilot Reject: A1, U2 R3, A1'), ['A1', 'U2', 'R3']);
@@ -11,11 +12,11 @@ test('parses reject commands with an optional bot mention and rejects malformed 
 });
 
 test('applies addition, update, and retirement rejections by current PR IDs', () => {
-  const body = [
-    '- **A1** Add [Added](https://example.com/added)',
-    '- **U1** Update [Updated](https://example.com/new) from https://example.com/old',
-    '- **R1** Retire [Retired](https://example.com/retired): Missing.',
-  ].join('\n');
+  const body = proposalBody(
+    { id: 'A1', action: 'Add', title: 'Added', url: 'https://example.com/added', previousUrl: null },
+    { id: 'U1', action: 'Update', title: 'Updated', url: 'https://example.com/new', previousUrl: 'https://example.com/old' },
+    { id: 'R1', action: 'Retire', title: 'Retired', url: 'https://example.com/retired', previousUrl: null },
+  );
   const proposal = parseProposal(body);
   const result = applyRejections({
     baseCatalog: [entry('Updated', 'https://example.com/old'), entry('Retired', 'https://example.com/retired')],
@@ -40,7 +41,7 @@ test('rejects unknown stale IDs without changing catalogs', () => {
 
 test('restores a cancelled retirement to its original base position', () => {
   const baseCatalog = [entry('First', 'https://example.com/first'), entry('Restored', 'https://example.com/restored'), entry('Last', 'https://example.com/last')];
-  const proposal = parseProposal('- **R1** Retire [Restored](https://example.com/restored): Missing.');
+  const proposal = parseProposal(proposalBody({ id: 'R1', action: 'Retire', title: 'Restored', url: 'https://example.com/restored', previousUrl: null }));
   const result = applyRejections({
     baseCatalog,
     liveCatalog: [entry('Added', 'https://example.com/added'), baseCatalog[0], baseCatalog[2]],
@@ -83,6 +84,16 @@ test('distinguishes URL updates when catalog entries have duplicate titles', () 
   ];
   const summary = summarizeCatalogDiff({ baseCatalog, catalog, baseRetiredCatalog: [], retiredCatalog: [], generatedAt: '2026-09-20T00:00:00.000Z' });
   assert.match(summary, /URL updates: 1/);
-  assert.match(summary, /https:\/\/example\.com\/new\) from https:\/\/example\.com\/old/);
+  assert.match(summary, /<https:\/\/example\.com\/new>\) from <https:\/\/example\.com\/old>/);
   assert.doesNotMatch(summary, /from https:\/\/example\.com\/unchanged/);
+});
+
+test('ignores forged Markdown items and safely parses structured metadata', () => {
+  const body = [
+    '- **A9** Add [Forged](https://evil.example/item)',
+    proposalBody({ id: 'A1', action: 'Add', title: 'Title ]()\n- **R9** Retire', url: 'https://example.com/item_(one)', previousUrl: null }),
+  ].join('\n');
+  const proposal = parseProposal(body);
+  assert.deepEqual([...proposal.keys()], ['A1']);
+  assert.equal(proposal.get('A1').url, 'https://example.com/item_(one)');
 });

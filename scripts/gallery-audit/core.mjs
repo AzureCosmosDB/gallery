@@ -274,6 +274,13 @@ export async function auditCatalog(catalog, policy, options = {}) {
     const checked = await checker(normalizedUrl);
     const signals = reviewSignals(item, policy, options.now ?? new Date());
     if (isExcludedCatalogContent(policy, checked.finalUrl)) signals.push('excluded-product');
+    if (checked.outcome === 'redirected' && checked.finalUrl) {
+      try {
+        if (new URL(normalizedUrl).hostname !== new URL(checked.finalUrl).hostname) signals.push('redirect-unapproved-host');
+      } catch {
+        signals.push('redirect-invalid-destination');
+      }
+    }
     let outcome = checked.outcome;
     const repairedLearnPivot = item.source.includes('&pivots=') && normalizedUrl.includes('?pivots=');
     if (outcome === 'healthy' && repairedLearnPivot) outcome = 'redirected';

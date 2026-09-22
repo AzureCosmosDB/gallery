@@ -8,7 +8,7 @@ import path from 'node:path';
 import { auditCatalog, checkUrl, discoverArticles, discoverContent, discoverFromFeed, findDuplicates, validateCatalog } from '../core.mjs';
 import { buildClassificationPrompt, buildCopilotArguments, runCopilotClassification } from '../copilot.mjs';
 import { urlFingerprint } from '../normalize.mjs';
-import { planCatalogPromotion, promotionMarkdown, sortCatalogForPublishing, strongRetirementEvidence } from '../promotion.mjs';
+import { planCatalogPromotion, promotionMarkdown, sortCatalogForPublishing, strongRetirementEvidence, validatePromotionResult } from '../promotion.mjs';
 
 const policy = {
   requestTimeoutMs: 250,
@@ -675,6 +675,45 @@ test('updates redirected catalog URLs instead of retiring live content', () => {
   assert.equal(result.catalog[0].source, 'https://example.com/new');
   assert.deepEqual(result.updates, [{ title: 'Example', previousUrl: 'https://example.com/old', url: 'https://example.com/new' }]);
   assert.equal(result.retirements.length, 0);
+});
+
+test('keeps cross-host redirects review-only and out of promotion', async () => {
+  const catalog = [catalogEntry({ source: 'https://example.com/old' })];
+  const [auditEntry] = await auditCatalog(catalog, policy, {
+    checker: async () => ({ outcome: 'redirected', reason: 'http-redirect', status: 200, finalUrl: 'https://other.example/new' }),
+  });
+  assert.equal(auditEntry.outcome, 'review');
+  assert.ok(auditEntry.reasonCodes.includes('redirect-unapproved-host'));
+  const result = planCatalogPromotion({
+    catalog, retiredCatalog: [], candidateReport: { candidates: [] }, sourcesDocument: { sources: [] }, policy,
+    auditReport: { entries: [{ ...auditEntry, outcome: 'redirected' }] },
+  });
+  assert.equal(result.catalog[0].source, catalog[0].source);
+  assert.deepEqual(result.updates, []);
+});
+
+test('normalizes redirect destinations and rejects retired-ledger conflicts', () => {
+  const catalog = [catalogEntry({ source: 'https://example.com/old' })];
+  const auditEntry = { catalogIndex: 0, url: catalog[0].source, outcome: 'redirected', finalUrl: 'https://example.com/new/?utm_source=a#fragment', reasonCodes: ['http-redirect'] };
+  const normalized = planCatalogPromotion({
+    catalog, retiredCatalog: [], candidateReport: { candidates: [] }, sourcesDocument: { sources: [] }, policy,
+    auditReport: { entries: [auditEntry] },
+  });
+  assert.equal(normalized.catalog[0].source, 'https://example.com/new');
+
+  const conflicted = planCatalogPromotion({
+    catalog, retiredCatalog: [catalogEntry({ source: 'https://example.com/new' })], candidateReport: { candidates: [] }, sourcesDocument: { sources: [] }, policy,
+    auditReport: { entries: [auditEntry] },
+  });
+  assert.equal(conflicted.catalog[0].source, catalog[0].source);
+  assert.deepEqual(conflicted.updates, []);
+});
+
+test('validates live and retired promotion catalogs before publication', () => {
+  assert.throws(() => validatePromotionResult({
+    catalog: [catalogEntry()],
+    retiredCatalog: [catalogEntry({ replacementUrl: 'https://learn.microsoft.com/en-us/azure/cosmos-db/' })],
+  }), /localized Microsoft documentation URL/);
 });
 
 test('does not automatically retire duplicate-source entries', () => {

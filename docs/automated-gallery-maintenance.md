@@ -18,7 +18,7 @@ Pull requests run a read-only validation job that:
 Scheduled and manual runs:
 
 1. verify that `main` has the required human-approval ruleset;
-2. create `automation/gallery-content-updates-<run-id>` from the current `main` branch;
+2. create `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch;
 3. audit every live catalog entry;
 4. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
 5. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
@@ -37,7 +37,7 @@ Create these Actions secrets before enabling scheduled promotion:
 | Secret | Purpose | Minimum access |
 | --- | --- | --- |
 | `COPILOT_GITHUB_TOKEN` | Authenticates the pinned GitHub Copilot CLI used for classification | Active Copilot subscription, Copilot Requests account permission, public repository access only |
-| `GALLERY_UPDATE_TOKEN` | Pushes the automation branch and creates or edits its draft PR | Fine-grained repository token with Contents read/write and Pull requests read/write |
+| `GALLERY_UPDATE_TOKEN` | Authorizes review commenters, pushes the automation branch, and creates or edits its draft PR | Fine-grained repository token with Administration read, Contents read/write, and Pull requests read/write |
 
 Use a maintained automation identity where organizational policy permits. Record the owner and rotation date outside the repository. Rotate either token immediately when its owner changes or access is suspected to be compromised.
 
@@ -70,9 +70,10 @@ Use a maintained automation identity that is a member of `AzureCosmosDB` and has
 4. If prompted, enter a justification describing the weekly gallery-maintenance draft pull request workflow.
 5. For **Repository access**, select **Only select repositories**, then select **gallery**.
 6. Under **Repository permissions**, grant only:
+   - **Administration: Read-only**
    - **Contents: Read and write**
    - **Pull requests: Read and write**
-7. Leave all other repository and organization permissions at their defaults. The token does not need Administration, Actions, Workflows, Pages, or permission to bypass branch protection.
+7. Leave all other repository and organization permissions at their defaults. Administration read is used only to verify that a review-command commenter has write, maintain, or admin access. The token does not need Actions, Workflows, Pages, or permission to bypass branch protection.
 8. Generate the token and copy it immediately.
 9. If organization policy marks it `pending`, an `AzureCosmosDB` owner must approve it before the workflow can publish a branch or draft pull request. Until approval, it can read only public resources.
 
@@ -192,7 +193,7 @@ To pause maintenance without affecting the published gallery, disable `Audit gal
 To discard a generated proposal:
 
 1. close the draft maintenance pull request without merging;
-2. close unwanted maintenance pull requests and delete their `automation/gallery-content-updates-<run-id>` branches; and
+2. close unwanted maintenance pull requests and delete their `automation/gallery-content-updates-<run-id>-<attempt>` branches; and
 3. rerun the workflow when the underlying issue is fixed.
 
 Every run starts a new branch from current `main`, so earlier proposal and rejection history remains intact. If a catalog PR was merged incorrectly, revert that catalog PR through the normal protected-branch process; do not force-push `main`.

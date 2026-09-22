@@ -2,17 +2,20 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { maintenanceText, retirementProof, sortCatalogForPublishing } from './promotion.mjs';
+import { markdownText, proposalCardDetails, proposalItem, retirementProof, sortCatalogForPublishing } from './promotion.mjs';
 
-const ITEM_PATTERN = /^- \*\*([AUR]\d+)\*\* (Add|Update|Retire) \[([^\]]+)\]\((https?:\/\/[^)]+)\)(?: from (https?:\/\/\S+))?(?:: (.*))?$/;
+const ITEM_PATTERN = /<!-- gallery-item:([A-Za-z0-9_-]+) -->/g;
 
 export function parseProposal(body) {
   const items = new Map();
-  for (const line of body.split(/\r?\n/)) {
-    const match = line.match(ITEM_PATTERN);
-    if (!match) continue;
-    const [, id, action, title, url, previousUrl = null] = match;
-    items.set(id, { id, action, title, url, previousUrl });
+  for (const match of body.matchAll(ITEM_PATTERN)) {
+    const item = JSON.parse(Buffer.from(match[1], 'base64url').toString('utf8'));
+    if (!/^[AUR]\d+$/.test(item.id) || !['Add', 'Update', 'Retire'].includes(item.action)
+      || typeof item.title !== 'string' || typeof item.url !== 'string'
+      || (item.previousUrl !== null && typeof item.previousUrl !== 'string') || items.has(item.id)) {
+      throw new Error('Invalid structured proposal item.');
+    }
+    items.set(item.id, item);
   }
   return items;
 }
@@ -92,30 +95,20 @@ export function summarizeCatalogDiff({ baseCatalog, catalog, baseRetiredCatalog,
   const retirements = retiredCatalog.filter((entry) => !baseRetiredSources.has(entry.source));
   const removedWithoutRetirement = unmatchedBase.filter((entry) => !retirements.some((retired) => retired.source === entry.source));
   if (removedWithoutRetirement.length > 0) throw new Error(`Catalog entries were removed without retirement records: ${removedWithoutRetirement.map((entry) => entry.title).join(', ')}`);
-  const cardDetails = (entry) => [
-    `  - Description: ${entry.description?.trim() || '**MISSING**'}`,
-    `  - Author: ${Array.isArray(entry.author) ? entry.author.join(', ') : (entry.author?.trim() || '**MISSING**')}`,
-    `  - Date: ${entry.date?.trim() || '**MISSING**'}`,
-    `  - Tags: ${entry.tags?.length ? entry.tags.join(', ') : '**MISSING**'}`,
-    `  - Website: ${entry.website?.trim() || '**MISSING**'}`,
-    `  - Preview: ${entry.preview?.trim() || '**MISSING**'}`,
-    `  - Source: ${entry.source?.trim() || '**MISSING**'}`,
-  ];
-
   return [
     '# Automated gallery content update', '',
     `Generated: ${generatedAt}`, '',
     'Comment with item IDs to request changes, for example: `Reject: A1, U1, R1`.', '',
     `Additions: ${additions.length}`, '',
     ...additions.flatMap((entry, index) => [
-      `- **A${index + 1}** Add [${entry.title}](${entry.source})`,
-      ...cardDetails(entry),
+      ...proposalItem(`A${index + 1}`, 'Add', entry),
+      ...proposalCardDetails(entry),
     ]),
     '', `URL updates: ${updates.length}`, '',
-    ...updates.map((entry, index) => `- **U${index + 1}** Update [${entry.title}](${entry.url}) from ${entry.previousUrl}`),
+    ...updates.flatMap((entry, index) => proposalItem(`U${index + 1}`, 'Update', { title: entry.title, source: entry.url }, entry.previousUrl)),
     '', `Retirements: ${retirements.length}`, '',
     ...retirements.flatMap((entry, index) => [
-      `- **R${index + 1}** Retire [${entry.title}](${entry.source}): ${maintenanceText(entry.retirementReason)}`,
+      ...proposalItem(`R${index + 1}`, 'Retire', entry, null, `: ${markdownText(entry.retirementReason)}`),
       ...retirementProof(entry),
     ]),
     '', 'This pull request remains a draft and requires human approval before merge.', '',
