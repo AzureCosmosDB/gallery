@@ -48,6 +48,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: write
+      issues: write
       pull-requests: read
       copilot-requests: write
     steps:
@@ -146,7 +147,7 @@ jobs:
             echo "catalog=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish proposal branch
+      - name: Publish proposal branch and issue
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
@@ -155,7 +156,7 @@ jobs:
           gh auth setup-git
 
           if [ ! -f output/gallery-content-review/promotion-result.json ]; then
-            echo "No complete promotion result; leaving the existing draft pull request unchanged."
+            echo "No complete promotion result; no proposal will be published."
             exit 0
           fi
 
@@ -167,7 +168,25 @@ jobs:
           git commit -m "chore: refresh gallery content"
           git push origin "HEAD:$UPDATE_BRANCH"
           compare_url="https://github.com/$GITHUB_REPOSITORY/compare/main...$UPDATE_BRANCH?expand=1"
-          printf 'Proposal branch published. Create a draft pull request: %s\n' "$compare_url" >> "$GITHUB_STEP_SUMMARY"
+          issue_body="$RUNNER_TEMP/gallery-proposal-issue.md"
+          cat > "$issue_body" <<EOF
+          ## Validated gallery proposal
+
+          The automated gallery audit produced a validated catalog proposal on branch:
+
+          \`$UPDATE_BRANCH\`.
+
+          - [Review the exact catalog diff]($compare_url)
+          - [Inspect the workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)
+
+          $(cat output/gallery-content-review/promotion-summary.md)
+
+          ## Copilot task
+
+          Assign this issue to Copilot. Using the proposal branch above as the source of truth, reproduce its exact catalog diff on a Copilot branch, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
+          EOF
+          issue_url=$(gh issue create --title "Gallery content proposal $GITHUB_RUN_ID" --body-file "$issue_body")
+          printf 'Proposal branch published: %s\nProposal issue created: %s\n' "$compare_url" "$issue_url" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Add summary
         if: always()

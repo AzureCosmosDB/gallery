@@ -1,7 +1,7 @@
 # Static Gallery Audit and Content Discovery Plan
 
 **Status:** Production review candidate
-**Phase:** Automated audit, classification, draft pull request, and operator runbook
+**Phase:** Automated audit, classification, proposal issue, and operator runbook
 
 ## Summary
 
@@ -11,7 +11,7 @@ Keep the gallery as a static Docusaurus site on GitHub Pages. Add one GitHub Act
 2. discovers recent Azure Cosmos DB examples, videos, documentation, and blogs from an exact allowlist of public endpoints;
 3. uses GitHub Copilot CLI in programmatic mode with the Azure Cosmos DB Agent Kit and humanizer skills to evaluate relevance and semantic staleness against a fixed rubric; and
 4. applies only high-confidence additions and strongly evidenced retirements to a per-run automation branch; and
-5. opens a new draft pull request and uploads validated reports for review.
+5. publishes a proposal branch, compare link, and unassigned Copilot handoff issue, then uploads validated reports for review.
 
 The workflow can edit catalog files only on `automation/gallery-content-updates-<run-id>-<attempt>` branches. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
 
@@ -23,7 +23,7 @@ The workflow can edit catalog files only on `automation/gallery-content-updates-
 - Automation mutates only the repository in which the workflow runs. External repositories remain read-only discovery sources.
 - Discovery uses public HTTP endpoints and the GitHub API with the workflow's scoped `GITHUB_TOKEN`.
 - Relevance analysis uses GitHub Copilot CLI with the built-in Actions `GITHUB_TOKEN` and the `copilot-requests: write` workflow permission. The organization must enable **Allow use of Copilot CLI billed to the organization**.
-- Proposal branch publication uses the built-in Actions `GITHUB_TOKEN` with job-scoped contents write access. Enterprise policy requires a person to create the draft pull request from the emitted compare link.
+- Proposal publication uses the built-in Actions `GITHUB_TOKEN` with job-scoped contents and issues write access. A maintainer reviews the emitted issue and assigns it to Copilot, which creates the draft pull request.
 - Repository default workflow permissions remain read-only; write access exists only in the publishing jobs after tests and a full static build pass.
 - Pull requests are always drafts and are never approved or merged by automation.
 - No candidate or audit finding changes the published catalog until a person merges the draft pull request.
@@ -64,7 +64,7 @@ flowchart LR
     I -->|Explicit decision| J[Separate catalog change]
 ```
 
-The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion, then uploads one combined artifact bundle. The separate `apply-gallery-review.yml` workflow processes authorized `Reject:` comments on the generated draft pull request and validates every revision before publishing it to the proposal branch.
+The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion, then uploads one combined artifact bundle. The separate `apply-gallery-review.yml` workflow accepts write-gated manual dispatches for rejected proposal IDs and validates every revision before publishing it to the proposal branch.
 
 ## Current Catalog Source Map
 
@@ -258,17 +258,15 @@ The workflow promotes only `include` candidates with `high` confidence and compl
 
 Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
 
-Each complete run attempt creates `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch and opens a new draft pull request. A maintainer reviews the actual catalog diff and evidence. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier drafts.
+Each complete run attempt creates `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch and publishes a compare link plus an unassigned issue. A maintainer assigns an accepted issue to Copilot, which reproduces the validated diff on its own branch and creates the draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
 
-Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. A repository owner, member, or collaborator can reject proposals by commenting on the maintenance pull request:
+Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. A repository user with write access can reject proposals by manually dispatching **Apply gallery review command** with the pull request number and comma-separated IDs:
 
 ```text
-Reject: A1, U1, R1
+A1, U1, R1
 ```
 
-The comment workflow removes the addition, restores the previous URL, or cancels the retirement respectively. It accepts only IDs in the current pull request body, validates that the pull request uses the maintenance branch and targets `main`, then runs the audit tests and static build before pushing the revision. Invalid or stale IDs fail without changing the proposal. After a successful command, the pull request body is regenerated from the actual base-to-head catalog diff, so operators must use the refreshed IDs for later comments. Comment commands never approve or merge the pull request.
-
-When a new maintenance pull request is created, the workflow requests review from `jagord_microsoft`. GitHub sends the corresponding email through that account's notification routing. Updates to the existing draft do not repeat the review request.
+GitHub permits manual workflow dispatch only for users with repository write access. The review-command workflow removes the addition, restores the previous URL, or cancels the retirement respectively. It accepts only IDs in the current pull request body, validates that the pull request uses the maintenance branch and targets `main`, then runs the audit tests and static build before pushing the revision. Invalid or stale IDs fail without changing the proposal. After a successful command, the pull request body is regenerated from the actual base-to-head catalog diff, so operators must use the refreshed IDs for later dispatches. Review commands never approve or merge the pull request.
 
 ## Proposed Repository Structure
 
@@ -324,11 +322,11 @@ The workflow should:
 8. validate Copilot output and combine it with deterministic evidence;
 9. apply eligible changes to the per-run automation branch;
 10. run focused tests and the full Docusaurus build;
-11. publish the proposal branch and a compare link for a person to open as a draft pull request;
+11. publish the proposal branch, compare link, and unassigned Copilot handoff issue;
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents write, pull-request read, and Copilot-request write access; review-command application receives contents and pull-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
+The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents and issues write, pull-request read, and Copilot-request write access; review-command application receives contents and pull-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 
@@ -343,7 +341,7 @@ Use timeouts, concurrency with `cancel-in-progress: false`, bounded response siz
 - Validate model output against a strict schema before including it in reports.
 - Apply only `include/high` candidates with complete catalog metadata.
 - Apply only `retire-proposed/high` entries backed by strong deterministic evidence.
-- Write catalog changes only to `automation/gallery-content-updates-<run-id>-<attempt>` and a draft pull request.
+- Write catalog changes only to `automation/gallery-content-updates-<run-id>-<attempt>` branches; Copilot creates the draft pull request after a maintainer assigns the proposal issue.
 - Never push to `main`, approve, merge, or enable automerge.
 - Do not log tokens or request authorization headers.
 - Do not fail the entire audit because one source is unavailable; mark that source partial.
@@ -376,7 +374,7 @@ Implementation is complete only when automated checks prove:
 - Every current catalog entry appears exactly once in each complete audit.
 - Every finding has a deterministic reason code and observable evidence.
 - Existing URLs are excluded from staged content candidates.
-- A weekly run produces reviewable JSON and Markdown artifacts and opens a new draft pull request only when eligible catalog changes exist.
+- A weekly run produces reviewable JSON and Markdown artifacts, a proposal branch, a compare link, and an unassigned issue only when eligible catalog changes exist.
 - Partial scans are clearly distinguishable from complete scans.
 - The workflow uses no Azure or persistent backend resources.
 - The workflow creates no direct `main` mutation and no automatic merge.
@@ -400,9 +398,9 @@ Add manual dispatch with `contents: read`, artifact upload, job summaries, timeo
 
 Enable the weekly schedule after several successful manual runs. Review artifact quality and tune only source definitions, lookback windows, and deterministic policies.
 
-### Phase 5: Draft Pull Request Promotion
+### Phase 5: Proposal Branch Promotion
 
-Apply conservative promotion gates, validate the resulting static site, and create a draft pull request on a per-run automation branch. Require human approval and merge for publication.
+Apply conservative promotion gates, validate the resulting static site, and publish a per-run automation branch with a compare link and unassigned issue. A maintainer assigns the issue to Copilot, which creates the draft pull request; require human approval and merge for publication.
 
 ## Operator-Controlled Decisions
 

@@ -35,25 +35,40 @@ test('stages the complete review-command module chain before switching branches'
   assert.match(workflow, /node "\$RUNNER_TEMP\/gallery-review\/review-command\.mjs"/);
 });
 
-test('authorizes review commands by effective repository permission', () => {
+test('accepts review commands only through write-gated manual dispatch', () => {
   const workflow = read('.github/workflows/apply-gallery-review.yml');
-  assert.match(workflow, /collaborators\/\$COMMENTER\/permission/);
-  assert.match(workflow, /admin\|maintain\|write/);
-  assert.match(workflow, /Authorize commenter[\s\S]*GH_TOKEN: \$\{\{ github\.token \}\}/);
+  assert.match(workflow, /workflow_dispatch:[\s\S]*pr_number:[\s\S]*reject_ids:/);
+  assert.match(workflow, /PR_NUMBER: \$\{\{ inputs\.pr_number \}\}/);
+  assert.match(workflow, /REVIEW_COMMAND: "Reject: \$\{\{ inputs\.reject_ids \}\}"/);
   assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*pull-requests: write/);
+  assert.doesNotMatch(workflow, /issue_comment|collaborators\/|COMMENTER|author_association/);
+  assert.doesNotMatch(workflow, /automation\/gallery-content-updates-\*/);
   assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
-  assert.doesNotMatch(workflow, /author_association/);
 });
 
-test('creates a new maintenance branch and compare link for each audit run', () => {
+test('does not hardcode a maintenance reviewer identity', () => {
+  const files = [
+    '.github/workflows/audit-gallery-content.yml',
+    '.github/workflows/apply-gallery-review.yml',
+    'docs/automated-gallery-maintenance.md',
+    'docs/gallery-content-discovery-and-maintenance-proposal.md',
+  ];
+  for (const file of files) {
+    assert.doesNotMatch(read(file), /jagord_microsoft|jagord@microsoft\.com/i, file);
+  }
+});
+
+test('creates a proposal branch and unassigned Copilot handoff issue for each audit run', () => {
   const workflow = read('.github/workflows/audit-gallery-content.yml');
   assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
   assert.doesNotMatch(workflow, /push --force/);
   assert.doesNotMatch(workflow, /gh pr edit/);
   assert.doesNotMatch(workflow, /gh pr create/);
   assert.match(workflow, /compare\/main\.\.\.\$UPDATE_BRANCH\?expand=1/);
+  assert.match(workflow, /gh issue create --title "Gallery content proposal \$GITHUB_RUN_ID"/);
+  assert.match(workflow, /Assign this issue to Copilot/);
   assert.match(workflow, /GH_TOKEN: \$\{\{ github\.token \}\}/);
-  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
+  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*issues: write\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
   assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
 });
 
