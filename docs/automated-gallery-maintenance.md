@@ -38,7 +38,6 @@ The maintenance workflows use the built-in Actions `GITHUB_TOKEN`; they require 
 | --- | --- | --- |
 | Scheduled/manual audit | Contents write, Issues write, Pull requests read, Copilot requests write |
 | Pull-request validation | Contents read, Pull requests read |
-| Review-command application | Contents write, Pull requests write |
 
 Keep the repository default workflow permission read-only. Write permissions are granted only to jobs that publish or revise a proposal branch. The workflows never create, approve, or merge pull requests.
 
@@ -81,20 +80,22 @@ The automatic maintenance schedule has one cron entry: Monday at 06:17 UTC. `wor
 
 The draft PR is the publication boundary. Automation never approves or merges it.
 
-The PR body assigns stable review IDs:
+The proposal issue assigns stable review IDs:
 
 - `A1`, `A2`, and so on for additions;
 - `U1`, `U2`, and so on for canonical URL updates;
 - `R1`, `R2`, and so on for retirements; and
 - `S1`, `S2`, and so on for skipped high-confidence additions.
 
-A repository user with write access can reject one or more proposed changes by opening **Actions > Apply gallery review command > Run workflow**, entering the draft pull request number, and supplying comma-separated proposal IDs:
+A maintainer records decisions as issue comments before assigning the issue to Copilot. Use the stable IDs so each decision is unambiguous:
 
 ```text
-A2, U1, R1
+Keep: A1, U1
+Remove: A2, R1
+Change: U2 - use the canonical URL
 ```
 
-GitHub permits manual workflow dispatch only for users with repository write access. The workflow removes `A<n>` additions, restores the previous URL for `U<n>` updates, and restores `R<n>` retirements. It validates the revised catalogs and static build before pushing the new proposal. IDs must come from the current PR body; unknown or stale IDs fail closed.
+Copilot reads the issue body and all comments when assigned. `Keep` retains a proposed change, `Remove` omits it, and `Change` supplies a specific correction. Decisions without a listed item ID are treated as general instructions. Copilot reproduces the resulting catalog diff on its own branch, validates the audit tests and static build, and creates the draft pull request.
 
 Before merging the draft:
 
@@ -132,9 +133,7 @@ Each maintenance run uploads `gallery-content-review-<run-id>` containing:
 | Proposal issue creation returns 403 | The proposal branch remains available without an issue | Verify the audit job has job-scoped Issues write permission |
 | Build or tests fail | No branch or PR mutation | Fix on a normal reviewed PR, then rerun maintenance |
 | Generated metadata is malformed | Do not merge the draft | Fix the ingestion or validation rule, regenerate from `main`, and review again |
-| A review-command dispatch fails | Catalogs and PR body remain unchanged | Use the current PR number and IDs from its latest body; confirm the initiating user has repository write access |
 | Branch push returns 403 | Publication fails without changing `main` | Verify the audit job has job-scoped Contents write permission |
-| Review-command PR update returns 403 | The proposal remains unchanged | Verify the review-command job has job-scoped Contents and Pull requests write permissions |
 | Copilot CLI authentication fails | Classification is incomplete; existing draft is preserved | Verify organization-billed Copilot CLI use is enabled and rerun manually |
 | A localized Microsoft Learn URL is committed manually | Tests fail with `localized Microsoft documentation URL` | Remove the locale path segment, for example change `/en-us/azure/cosmos-db/...` to `/azure/cosmos-db/...` |
 

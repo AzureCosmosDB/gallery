@@ -27,29 +27,19 @@ test('pins and verifies the required curator skills', () => {
   assert.match(humanizer, /Preserve every fact, verdict, confidence value, index, URL, and JSON field\./);
 });
 
-test('stages the complete review-command module chain before switching branches', () => {
-  const workflow = read('.github/workflows/apply-gallery-review.yml');
-  for (const module of ['review-command.mjs', 'promotion.mjs', 'normalize.mjs']) {
-    assert.match(workflow, new RegExp(`cp scripts/gallery-audit/${module.replace('.', '\\.')}`));
-  }
-  assert.match(workflow, /node "\$RUNNER_TEMP\/gallery-review\/review-command\.mjs"/);
-});
-
-test('accepts review commands only through write-gated manual dispatch', () => {
-  const workflow = read('.github/workflows/apply-gallery-review.yml');
-  assert.match(workflow, /workflow_dispatch:[\s\S]*pr_number:[\s\S]*reject_ids:/);
-  assert.match(workflow, /PR_NUMBER: \$\{\{ inputs\.pr_number \}\}/);
-  assert.match(workflow, /REVIEW_COMMAND: "Reject: \$\{\{ inputs\.reject_ids \}\}"/);
-  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*pull-requests: write/);
-  assert.doesNotMatch(workflow, /issue_comment|collaborators\/|COMMENTER|author_association/);
-  assert.doesNotMatch(workflow, /automation\/gallery-content-updates-\*/);
-  assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
+test('uses issue comments for proposal decisions without a privileged review workflow', () => {
+  assert.equal(fs.existsSync(path.join(root, '.github/workflows/apply-gallery-review.yml')), false);
+  assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/review-command.mjs')), false);
+  assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/test/review-command.test.mjs')), false);
+  const promotion = read('scripts/gallery-audit/promotion.mjs');
+  assert.match(promotion, /Keep: A1, U1/);
+  assert.match(promotion, /Remove: A2, R1/);
+  assert.match(promotion, /Change: U2 - use the canonical URL/);
 });
 
 test('does not hardcode a maintenance reviewer identity', () => {
   const files = [
     '.github/workflows/audit-gallery-content.yml',
-    '.github/workflows/apply-gallery-review.yml',
     'docs/automated-gallery-maintenance.md',
     'docs/gallery-content-discovery-and-maintenance-proposal.md',
   ];

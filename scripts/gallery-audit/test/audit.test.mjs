@@ -730,7 +730,7 @@ test('does not automatically retire duplicate-source entries', () => {
   assert.equal(result.retirements.length, 0);
 });
 
-test('numbers every maintenance PR item for unambiguous review comments', () => {
+test('numbers every proposal issue item for unambiguous review comments', () => {
   const markdown = promotionMarkdown({
     additions: [{ title: 'First addition', source: 'https://example.com/add' }],
     retirements: [{ title: 'First retirement', source: 'https://example.com/retire', retirementReason: 'Superseded.' }],
@@ -739,7 +739,9 @@ test('numbers every maintenance PR item for unambiguous review comments', () => 
   assert.match(markdown, /\*\*A1\*\* Add \[First addition\]/);
   assert.match(markdown, /\*\*R1\*\* Retire \[First retirement\]/);
   assert.match(markdown, /\*\*S1\*\* https:\/\/example\.com\/skip/);
-  assert.match(markdown, /Reject: A1, U1, R1/);
+  assert.match(markdown, /Keep: A1, U1/);
+  assert.match(markdown, /Remove: A2, R1/);
+  assert.match(markdown, /Change: U2 - use the canonical URL/);
 });
 
 test('shows complete card metadata and flags missing fields in maintenance PR additions', () => {

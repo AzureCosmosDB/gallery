@@ -169,7 +169,7 @@ export function promotionMarkdown(result, generatedAt) {
   return [
     '# Automated gallery content update', '',
     `Generated: ${generatedAt}`, '',
-    'Comment with item IDs to reject proposed changes, for example: `Reject: A1, U1, R1`.', '',
+    'Before assigning this issue to Copilot, comment with item IDs and decisions, for example: `Keep: A1, U1`, `Remove: A2, R1`, or `Change: U2 - use the canonical URL`.', '',
     `Additions: ${result.additions.length}`, '',
     ...result.additions.flatMap((entry, index) => [
       ...proposalItem(`A${index + 1}`, 'Add', entry),
@@ -184,7 +184,7 @@ export function promotionMarkdown(result, generatedAt) {
     ]),
     '', `Skipped high-confidence additions: ${result.skippedAdditions.length}`, '',
     ...result.skippedAdditions.map((entry, index) => `- **S${index + 1}** ${markdownText(entry.url)}: ${markdownText(entry.reason)}`),
-    '', 'This pull request is generated as a draft and requires human approval before merge.', '',
+    '', 'Assign this issue to Copilot only after maintainers record their decisions. The resulting draft pull request requires human approval before merge.', '',
   ].join('\n');
 }
 

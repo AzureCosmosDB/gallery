@@ -64,7 +64,7 @@ flowchart LR
     I -->|Explicit decision| J[Separate catalog change]
 ```
 
-The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion, then uploads one combined artifact bundle. The separate `apply-gallery-review.yml` workflow accepts write-gated manual dispatches for rejected proposal IDs and validates every revision before publishing it to the proposal branch.
+The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion, then uploads one combined artifact bundle. Maintainers record keep, remove, and change decisions as comments on the unassigned proposal issue before assigning it to Copilot.
 
 ## Current Catalog Source Map
 
@@ -260,13 +260,15 @@ Promoted content retains the source title, excerpt, author, canonical URL, date,
 
 Each complete run attempt creates `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch and publishes a compare link plus an unassigned issue. A maintainer assigns an accepted issue to Copilot, which reproduces the validated diff on its own branch and creates the draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
 
-Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. A repository user with write access can reject proposals by manually dispatching **Apply gallery review command** with the pull request number and comma-separated IDs:
+Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. Maintainers record decisions in issue comments before assigning the issue to Copilot:
 
 ```text
-A1, U1, R1
+Keep: A1, U1
+Remove: A2, R1
+Change: U2 - use the canonical URL
 ```
 
-GitHub permits manual workflow dispatch only for users with repository write access. The review-command workflow removes the addition, restores the previous URL, or cancels the retirement respectively. It accepts only IDs in the current pull request body, validates that the pull request uses the maintenance branch and targets `main`, then runs the audit tests and static build before pushing the revision. Invalid or stale IDs fail without changing the proposal. After a successful command, the pull request body is regenerated from the actual base-to-head catalog diff, so operators must use the refreshed IDs for later dispatches. Review commands never approve or merge the pull request.
+Copilot reads the issue body and all comments when assigned. `Keep` retains a proposed change, `Remove` omits it, and `Change` supplies a specific correction. Copilot reproduces the resulting catalog diff on its own branch, runs the audit tests and static build, and creates a draft pull request. Copilot never approves or merges the pull request.
 
 ## Proposed Repository Structure
 
@@ -275,7 +277,6 @@ GitHub permits manual workflow dispatch only for users with repository write acc
     agents/
         gallery-curator.agent.md
     workflows/
-        apply-gallery-review.yml
         audit-gallery-content.yml
     gallery-audit/
         sources.json
@@ -286,7 +287,6 @@ scripts/
         core.mjs
         normalize-url.mjs
         promotion.mjs
-        review-command.mjs
         write-reports.mjs
         index.mjs
         test/
@@ -326,7 +326,7 @@ The workflow should:
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents and issues write, pull-request read, and Copilot-request write access; review-command application receives contents and pull-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
+The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents and issues write, pull-request read, and Copilot-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 
