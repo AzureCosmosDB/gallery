@@ -631,41 +631,72 @@ test('rejects empty Copilot classification criteria', () => {
   assert.match(result.error, /invalid criteria/);
 });
 
-test('canonicalizes localized Microsoft Learn related URLs before promotion', () => {
-  const candidates = [{ url: 'https://example.com/new' }];
-  const existingEntries = [{ catalogIndex: 40, url: 'https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search' }];
-  const result = runCopilotClassification({
-    candidates,
+test('turns localized Copilot retirement URLs into a valid actionable proposal', () => {
+  const catalog = [
+    catalogEntry({ title: 'Vector search', source: 'https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search' }),
+    catalogEntry({ title: 'RAG applications', source: 'https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/rag' }),
+  ];
+  const existingEntries = catalog.map((entry, catalogIndex) => ({ catalogIndex, url: entry.source }));
+  const classification = runCopilotClassification({
+    candidates: [],
     existingEntries,
-    catalog: [],
+    catalog,
     execute: () => ({
       status: 0,
       stderr: '',
       stdout: JSON.stringify({
-        newContent: [{
-          candidateIndex: 0,
-          url: candidates[0].url,
-          verdict: 'review',
-          confidence: 'high',
-          criteria: ['manual review required'],
-          evidence: 'Candidate requires review.',
-          relatedUrl: null,
-        }],
-        existingContent: [{
-          catalogIndex: 40,
-          url: existingEntries[0].url,
-          verdict: 'retire-proposed',
-          confidence: 'high',
+        newContent: [],
+        existingContent: existingEntries.map((entry, index) => ({
+          catalogIndex: entry.catalogIndex,
+          url: entry.url,
+          verdict: 'retire-proposed', confidence: 'high',
           criteria: ['redirected to excluded product'],
           evidence: 'Content now redirects to Azure DocumentDB.',
-          relatedUrl: 'https://learn.microsoft.com/en-us/azure/documentdb/vector-search',
-        }],
+          relatedUrl: `https://learn.microsoft.com/en-us/azure/documentdb/${index === 0 ? 'vector-search' : 'rag'}`,
+        })),
       }),
     }),
   });
 
-  assert.equal(result.status, 'complete');
-  assert.equal(result.classification.existingContent[0].relatedUrl, 'https://learn.microsoft.com/azure/documentdb/vector-search');
+  assert.equal(classification.status, 'complete');
+  const auditEntries = catalog.map((entry, catalogIndex) => ({
+    catalogIndex,
+    title: entry.title,
+    url: entry.source,
+    outcome: 'review',
+    reasonCodes: ['excluded-product'],
+    httpStatus: 200,
+    finalUrl: entry.source.replace('/azure/cosmos-db/mongodb/vcore/', '/azure/documentdb/'),
+    duplicates: { exact: [], normalized: [] },
+    classification: classification.classification.existingContent[catalogIndex],
+  }));
+  const result = planCatalogPromotion({
+    catalog,
+    retiredCatalog: [],
+    candidateReport: { candidates: [] },
+    auditReport: { entries: auditEntries },
+    sourcesDocument: { sources: [] },
+    policy,
+    now: new Date('2026-09-23T18:58:04Z'),
+  });
+  validatePromotionResult(result);
+
+  const actionableCount = result.additions.length + result.updates.length + result.retirements.length;
+  assert.equal(actionableCount, 2);
+  assert.equal(result.catalog.length, 0);
+  assert.equal(result.retiredCatalog.length, 2);
+  assert.deepEqual(result.retirements.map((entry) => entry.replacementUrl), [
+    'https://learn.microsoft.com/azure/documentdb/vector-search',
+    'https://learn.microsoft.com/azure/documentdb/rag',
+  ]);
+  assert.notDeepEqual(result.catalog, catalog);
+
+  const summary = promotionMarkdown(result, '2026-09-23T18:58:04.000Z');
+  assert.match(summary, /Retirements: 2/);
+  assert.match(summary, /Reason: Content now redirects to Azure DocumentDB\./);
+  assert.match(summary, /Reason codes: excluded-product/);
+  assert.match(summary, /Criteria: redirected to excluded product/);
+  assert.match(summary, /edited issue body is the source of truth/);
 });
 
 test('rejects malformed retirement replacement URLs', () => {
