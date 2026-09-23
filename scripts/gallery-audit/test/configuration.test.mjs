@@ -53,6 +53,8 @@ test('keeps audit read-only and publishes only an issue through trusted workflow
   assert.match(audit, /permissions:\s*\n\s*contents: read\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
   assert.match(audit, /gallery-content-proposal-\$\{\{ github\.run_id \}\}/);
   assert.match(audit, /path: output\/gallery-content-review\/promotion-summary\.md/);
+  assert.match(audit, /r\.additions\?\.length[\s\S]*r\.updates\?\.length[\s\S]*r\.retirements\?\.length/);
+  assert.match(audit, /steps\.actionable\.outputs\.available == 'true'/);
   assert.doesNotMatch(audit, /contents: write|issues: write|git push|gh issue create/);
 
   const publisher = read('.github/workflows/publish-gallery-proposal.yml');

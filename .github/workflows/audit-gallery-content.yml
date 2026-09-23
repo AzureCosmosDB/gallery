@@ -127,18 +127,24 @@ jobs:
           npm run test:gallery-audit
           npm run build
 
-      - name: Detect catalog changes
-        id: changes
+      - name: Detect actionable recommendations
+        id: actionable
         shell: bash
         run: |
-          if git diff --quiet -- static/templates.json static/retired-templates.json; then
-            echo "catalog=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "catalog=true" >> "$GITHUB_OUTPUT"
+          if [ ! -f output/gallery-content-review/promotion-result.json ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+          count=$(node -p "const r=require('./output/gallery-content-review/promotion-result.json'); (r.additions?.length ?? 0) + (r.updates?.length ?? 0) + (r.retirements?.length ?? 0)")
+          test "$count" -gt 0 || { echo "available=false" >> "$GITHUB_OUTPUT"; exit 0; }
+          git diff --quiet -- static/templates.json static/retired-templates.json && {
+            echo "Actionable recommendations did not produce a catalog diff."
+            exit 1
+          }
+          echo "available=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload proposal files
-        if: steps.changes.outputs.catalog == 'true'
+        if: steps.actionable.outputs.available == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: gallery-content-proposal-${{ github.run_id }}

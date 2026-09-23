@@ -654,7 +654,7 @@ test('promotes only high-confidence additions with complete source metadata', ()
   const candidate = {
     sourceId: 'feed', title: 'New Cosmos DB article', url: 'https://example.com/new', publishedAt: '2026-09-10T00:00:00Z',
     author: null, summary: 'A practical Azure Cosmos DB guide.',
-    classification: { verdict: 'include', confidence: 'high' },
+    classification: { verdict: 'include', confidence: 'high', evidence: 'Directly teaches an Azure Cosmos DB scenario.', criteria: ['cosmos-db-specific'] },
   };
   const result = planCatalogPromotion({
     catalog: [catalogEntry()], retiredCatalog: [], candidateReport: { candidates: [candidate] }, auditReport: { entries: [] }, policy,
@@ -664,6 +664,9 @@ test('promotes only high-confidence additions with complete source metadata', ()
   assert.equal(result.catalog[0].source, candidate.url);
   assert.equal(result.catalog[0].author, 'Publisher');
   assert.deepEqual(result.catalog[0].tags, ['blog']);
+  assert.equal(result.additions[0].recommendationReason, 'Directly teaches an Azure Cosmos DB scenario.');
+  assert.deepEqual(result.additions[0].recommendationCriteria, ['cosmos-db-specific']);
+  assert.equal('recommendationReason' in result.catalog[0], false);
 });
 
 test('updates redirected catalog URLs instead of retiring live content', () => {
@@ -673,7 +676,10 @@ test('updates redirected catalog URLs instead of retiring live content', () => {
     auditReport: { entries: [{ catalogIndex: 0, url: catalog[0].source, outcome: 'redirected', finalUrl: 'https://example.com/new', reasonCodes: ['http-redirect'], classification: null, duplicates: { exact: [], normalized: [] } }] },
   });
   assert.equal(result.catalog[0].source, 'https://example.com/new');
-  assert.deepEqual(result.updates, [{ title: 'Example', previousUrl: 'https://example.com/old', url: 'https://example.com/new' }]);
+  assert.deepEqual(result.updates, [{
+    title: 'Example', previousUrl: 'https://example.com/old', url: 'https://example.com/new',
+    recommendationReason: 'The published source redirects to this canonical URL.', recommendationCriteria: ['http-redirect'],
+  }]);
   assert.equal(result.retirements.length, 0);
 });
 
@@ -732,12 +738,18 @@ test('does not automatically retire duplicate-source entries', () => {
 
 test('numbers every proposal issue item for unambiguous issue editing', () => {
   const markdown = promotionMarkdown({
-    additions: [{ title: 'First addition', source: 'https://example.com/add' }],
+    additions: [{ title: 'First addition', source: 'https://example.com/add', recommendationReason: 'Relevant example.', recommendationCriteria: ['specific'] }],
+    updates: [{ title: 'Moved', previousUrl: 'https://example.com/old', url: 'https://example.com/new', recommendationReason: 'Canonical redirect.', recommendationCriteria: ['http-redirect'] }],
     retirements: [{ title: 'First retirement', source: 'https://example.com/retire', retirementReason: 'Superseded.' }],
     skippedAdditions: [{ url: 'https://example.com/skip', reason: 'already-cataloged' }],
   }, '2026-09-18T00:00:00.000Z');
   assert.match(markdown, /\*\*A1\*\* Add \[First addition\]/);
+  assert.match(markdown, /Reason: Relevant example\./);
+  assert.match(markdown, /Criteria: specific/);
+  assert.match(markdown, /\*\*U1\*\* Update \[Moved\]/);
+  assert.match(markdown, /Reason: Canonical redirect\./);
   assert.match(markdown, /\*\*R1\*\* Retire \[First retirement\]/);
+  assert.match(markdown, /Reason: Superseded\./);
   assert.match(markdown, /\*\*S1\*\* https:\/\/example\.com\/skip/);
   assert.match(markdown, /Edit this issue before assigning it to Copilot/);
   assert.match(markdown, /Delete recommendations you do not want/);

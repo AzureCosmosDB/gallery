@@ -256,7 +256,7 @@ Artifacts use a short retention period, such as 30 days. They contain only publi
 
 The workflow promotes only `include` candidates with `high` confidence and complete source-provided catalog metadata. It retires only `retire-proposed` entries with `high` confidence when deterministic evidence also shows a broken URL, an archived or disabled repository, or a known retired term.
 
-Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
+Promoted content retains the source title, excerpt, author, canonical URL, date, source-approved content tags, classification reason, and matched criteria. Canonical URL updates include the redirect reason and reason codes. Retirements retain the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, skipped, duplicate, incomplete, and malformed results remain artifact-only and cannot create an issue by themselves.
 
 Each complete run attempt publishes an unassigned issue containing the validated recommendations. A maintainer deletes unwanted items, revises retained items, adds implementation notes, and assigns the edited issue to Copilot. Copilot then creates its own branch and draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
 
@@ -367,7 +367,7 @@ Implementation is complete only when automated checks prove:
 - Every current catalog entry appears exactly once in each complete audit.
 - Every finding has a deterministic reason code and observable evidence.
 - Existing URLs are excluded from staged content candidates.
-- A weekly run produces reviewable JSON and Markdown artifacts plus an unassigned issue only when eligible catalog changes exist.
+- A weekly run always produces reviewable JSON and Markdown artifacts, but creates an unassigned issue only when at least one validated addition, URL update, or retirement is actionable. Every issue item states why it is recommended.
 - Partial scans are clearly distinguishable from complete scans.
 - The workflow uses no Azure or persistent backend resources.
 - The workflow creates no direct `main` mutation and no automatic merge.

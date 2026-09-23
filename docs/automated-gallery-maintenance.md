@@ -22,7 +22,7 @@ Scheduled and manual runs:
 3. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
 4. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
 5. validate the proposed catalog and static site; and
-6. upload the complete review bundle and, when the catalog changes, a validated proposal artifact for 30 days.
+6. upload the complete review bundle and, only when at least one addition, URL update, or retirement is actionable, a validated proposal artifact for 30 days.
 
 After a successful scheduled or default-branch manual run, the trusted `Publish gallery proposal` workflow:
 
@@ -32,7 +32,7 @@ After a successful scheduled or default-branch manual run, the trusted `Publish 
 
 Before classification, the workflow installs the Azure Cosmos DB Agent Kit's `cosmosdb-best-practices` skill from a pinned commit and verifies its SHA-256 checksum. The repository includes a focused `humanizer` skill. A preflight check requires Copilot CLI to discover both skills, and classification explicitly enables skill retrieval. The curator uses Agent Kit guidance to enforce current Cosmos DB product boundaries and uses humanizer only to make evidence concise and neutral; humanizer cannot change verdicts, confidence, indexes, URLs, or JSON structure.
 
-Each eligible run creates a complete proposal issue. A maintainer edits that issue to the desired result before Copilot creates the draft PR and its branch.
+Each run with at least one actionable addition, URL update, or retirement creates a complete proposal issue. Skipped, duplicate, review-only, low-confidence, incomplete, or malformed findings remain artifact-only. Every issue item includes the reason and supporting criteria or deterministic evidence. A maintainer edits that issue to the desired result before Copilot creates the draft PR and its branch.
 
 ## Required repository configuration
 
@@ -126,7 +126,7 @@ Each maintenance run uploads `gallery-content-review-<run-id>` containing:
 | One source times out, rate limits, truncates, or returns malformed data | Source and run are marked partial; no promotion | Inspect the artifact, retry later, then fix or disable the source if persistent |
 | Copilot organization policy blocks Actions | Classification is incomplete; existing draft is preserved | Enable organization-billed Copilot CLI use and rerun manually |
 | Copilot output fails schema validation twice | Classification is incomplete; existing draft is preserved | Inspect captured diagnostics and rerun after correcting the prompt or CLI issue |
-| Promotion produces no catalog diff | No branch or issue is published | Confirm the latest complete artifact contains no eligible changes |
+| Promotion produces no actionable additions, URL updates, or retirements | No issue is published | Confirm the latest complete artifact contains no eligible changes |
 | Proposal issue creation returns 403 | The validated proposal remains available as an artifact | Verify the publisher job has job-scoped Issues write permission |
 | Build or tests fail | No branch or PR mutation | Fix on a normal reviewed PR, then rerun maintenance |
 | Generated metadata is malformed | Do not merge the draft | Fix the ingestion or validation rule, regenerate from `main`, and review again |
