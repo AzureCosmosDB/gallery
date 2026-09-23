@@ -27,14 +27,13 @@ test('pins and verifies the required curator skills', () => {
   assert.match(humanizer, /Preserve every fact, verdict, confidence value, index, URL, and JSON field\./);
 });
 
-test('uses issue comments for proposal decisions without a privileged review workflow', () => {
+test('uses direct issue editing for proposal decisions without a privileged review workflow', () => {
   assert.equal(fs.existsSync(path.join(root, '.github/workflows/apply-gallery-review.yml')), false);
   assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/review-command.mjs')), false);
   assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/test/review-command.test.mjs')), false);
   const promotion = read('scripts/gallery-audit/promotion.mjs');
-  assert.match(promotion, /Keep: A1, U1/);
-  assert.match(promotion, /Remove: A2, R1/);
-  assert.match(promotion, /Change: U2 - use the canonical URL/);
+  assert.match(promotion, /Edit this issue before assigning it to Copilot/);
+  assert.match(promotion, /edited issue body is the source of truth/);
 });
 
 test('does not hardcode a maintenance reviewer identity', () => {
@@ -63,7 +62,7 @@ test('keeps audit read-only and publishes only an issue through trusted workflow
   assert.match(publisher, /workflow_run\.head_branch == github\.event\.repository\.default_branch/);
   assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*issues: write/);
   assert.match(publisher, /gh issue create --title "Gallery content proposal \$SOURCE_RUN_ID"/);
-  assert.match(publisher, /Read this issue and all maintainer comments before starting/);
+  assert.match(publisher, /Treat the edited issue body as the complete source of truth/);
   assert.doesNotMatch(publisher, /contents: write|actions\/checkout|git push|gh pr create|gh pr edit|automation\/gallery-content-updates|GALLERY_UPDATE_TOKEN/);
 });
 

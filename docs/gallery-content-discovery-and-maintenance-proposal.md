@@ -5,12 +5,12 @@
 
 ## Summary
 
-Keep the gallery as a static Docusaurus site on GitHub Pages. Add one GitHub Actions workflow that:
+Keep the gallery as a static Docusaurus site on GitHub Pages. Add GitHub Actions workflows that:
 
 1. audits the existing `static/templates.json` catalog for broken, redirected, duplicate, and potentially stale entries;
 2. discovers recent Azure Cosmos DB examples, videos, documentation, and blogs from an exact allowlist of public endpoints;
-3. uses GitHub Copilot CLI in programmatic mode with the Azure Cosmos DB Agent Kit and humanizer skills to evaluate relevance and semantic staleness against a fixed rubric; and
-4. applies only high-confidence additions and strongly evidenced retirements to a per-run automation branch; and
+3. use GitHub Copilot CLI in programmatic mode with the Azure Cosmos DB Agent Kit and humanizer skills to evaluate relevance and semantic staleness against a fixed rubric;
+4. build and validate proposed catalog changes only in the runner workspace; and
 5. publishes an unassigned Copilot handoff issue containing the complete proposal, then uploads validated reports for review.
 
 Actions never write repository contents, push branches, merge pull requests, or deploy the site. Copilot creates a branch and draft pull request only after a maintainer reviews and assigns the proposal issue; merging that reviewed PR is the only action that publishes the changes through the existing Pages workflow.
@@ -64,7 +64,7 @@ flowchart LR
     I -->|Explicit decision| J[Separate catalog change]
 ```
 
-The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion with read-only repository access, then uploads validated artifacts. The `publish-gallery-proposal.yml` workflow runs from trusted `main` after successful non-PR audit runs on the default branch and creates the complete proposal issue. Maintainers record keep, remove, and change decisions as issue comments before assigning it to Copilot.
+The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and proposal generation with read-only repository access, then uploads validated artifacts. The `publish-gallery-proposal.yml` workflow runs from trusted `main` after successful non-PR audit runs on the default branch and creates the complete proposal issue. A maintainer edits that issue to the desired result before assigning it to Copilot.
 
 ## Current Catalog Source Map
 
@@ -258,17 +258,9 @@ The workflow promotes only `include` candidates with `high` confidence and compl
 
 Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
 
-Each complete run attempt publishes an unassigned issue containing the validated proposal. A maintainer records decisions and assigns an accepted issue to Copilot, which creates its own branch and draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
+Each complete run attempt publishes an unassigned issue containing the validated recommendations. A maintainer deletes unwanted items, revises retained items, adds implementation notes, and assigns the edited issue to Copilot. Copilot then creates its own branch and draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
 
-Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. Maintainers record decisions in issue comments before assigning the issue to Copilot:
-
-```text
-Keep: A1, U1
-Remove: A2, R1
-Change: U2 - use the canonical URL
-```
-
-Copilot reads the issue body and all comments when assigned. `Keep` retains a proposed change, `Remove` omits it, and `Change` supplies a specific correction. Copilot reproduces the resulting catalog diff on its own branch, runs the audit tests and static build, and creates a draft pull request. Copilot never approves or merges the pull request.
+Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. Before assignment, a maintainer edits the issue body until it contains only the intended changes: delete complete numbered items to omit them, revise fields in place, and add plain-language implementation notes as needed. Copilot treats that edited issue as the complete source of truth, modifies the catalog on its own branch, runs the audit tests and static build, and creates a draft pull request. Copilot never approves or merges the pull request.
 
 ## Proposed Repository Structure
 
@@ -321,7 +313,7 @@ The workflow should:
 6. install a pinned GitHub Copilot CLI version on Node.js 22 or later;
 7. run bounded relevance and semantic-staleness analysis with no tools available;
 8. validate Copilot output and combine it with deterministic evidence;
-9. apply eligible changes to the per-run automation branch;
+9. build eligible proposed changes in the runner workspace;
 10. run focused tests and the full Docusaurus build;
 11. publish the unassigned Copilot handoff issue containing the validated proposal;
 12. write a concise Actions job summary; and
@@ -401,7 +393,7 @@ Enable the weekly schedule after several successful manual runs. Review artifact
 
 ### Phase 5: Proposal Issue Promotion
 
-Apply conservative promotion gates, validate the resulting static site, and publish an unassigned issue containing the complete proposal. A maintainer records decisions and assigns the issue to Copilot, which creates the branch and draft pull request; require human approval and merge for publication.
+Apply conservative promotion gates, validate the resulting static site, and publish an unassigned issue containing the complete recommendations. A maintainer edits the issue and assigns it to Copilot, which creates the branch and draft pull request; require human approval and merge for publication.
 
 ## Operator-Controlled Decisions
 

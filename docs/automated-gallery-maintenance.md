@@ -32,7 +32,7 @@ After a successful scheduled or default-branch manual run, the trusted `Publish 
 
 Before classification, the workflow installs the Azure Cosmos DB Agent Kit's `cosmosdb-best-practices` skill from a pinned commit and verifies its SHA-256 checksum. The repository includes a focused `humanizer` skill. A preflight check requires Copilot CLI to discover both skills, and classification explicitly enables skill retrieval. The curator uses Agent Kit guidance to enforce current Cosmos DB product boundaries and uses humanizer only to make evidence concise and neutral; humanizer cannot change verdicts, confidence, indexes, URLs, or JSON structure.
 
-Each eligible run creates a complete proposal issue. Issue comments preserve maintainer decisions before Copilot creates the draft PR and its branch.
+Each eligible run creates a complete proposal issue. A maintainer edits that issue to the desired result before Copilot creates the draft PR and its branch.
 
 ## Required repository configuration
 
@@ -61,7 +61,7 @@ Validate the configuration by manually running **Audit gallery content**: classi
 
 ### Assign the proposal to Copilot
 
-When a run publishes eligible catalog changes, review the unassigned issue from its job summary. If the proposal is ready, assign the issue to Copilot. The issue instructs Copilot to apply the recorded decisions, run the focused tests and build, and create a draft pull request to `main`.
+When a run publishes eligible catalog recommendations, open the unassigned issue from its job summary. Edit the issue body directly: delete recommendations you do not want, revise item details, and add implementation notes. When the issue describes the desired catalog change, assign it to Copilot. The issue instructs Copilot to treat the edited body as the source of truth, run the focused tests and build, and create a draft pull request to `main`.
 
 Select PR reviewers according to the team's current ownership and rotation; no individual reviewer is hardcoded. GitHub sends review-request notifications through each selected reviewer's configured channels.
 
@@ -92,15 +92,7 @@ The proposal issue assigns stable review IDs:
 - `R1`, `R2`, and so on for retirements; and
 - `S1`, `S2`, and so on for skipped high-confidence additions.
 
-A maintainer records decisions as issue comments before assigning the issue to Copilot. Use the stable IDs so each decision is unambiguous:
-
-```text
-Keep: A1, U1
-Remove: A2, R1
-Change: U2 - use the canonical URL
-```
-
-Copilot reads the issue body and all comments when assigned. `Keep` retains a proposed change, `Remove` omits it, and `Change` supplies a specific correction. Decisions without a listed item ID are treated as general instructions. Copilot reproduces the resulting catalog diff on its own branch, validates the audit tests and static build, and creates the draft pull request.
+Before assignment, edit the issue body until it contains only the intended changes. Delete complete numbered items to omit them, edit an item to correct its metadata or URL, and add plain-language notes for any additional requirement. Copilot treats the edited issue body as the complete source of truth, modifies the catalog on its own branch, validates the audit tests and static build, and creates the draft pull request.
 
 Before merging the draft:
 

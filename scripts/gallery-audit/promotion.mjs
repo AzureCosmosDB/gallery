@@ -169,7 +169,7 @@ export function promotionMarkdown(result, generatedAt) {
   return [
     '# Automated gallery content update', '',
     `Generated: ${generatedAt}`, '',
-    'Before assigning this issue to Copilot, comment with item IDs and decisions, for example: `Keep: A1, U1`, `Remove: A2, R1`, or `Change: U2 - use the canonical URL`.', '',
+    'Edit this issue before assigning it to Copilot. Delete recommendations you do not want, revise any item in place, and add implementation notes where needed. The edited issue body is the source of truth.', '',
     `Additions: ${result.additions.length}`, '',
     ...result.additions.flatMap((entry, index) => [
       ...proposalItem(`A${index + 1}`, 'Add', entry),
@@ -184,7 +184,7 @@ export function promotionMarkdown(result, generatedAt) {
     ]),
     '', `Skipped high-confidence additions: ${result.skippedAdditions.length}`, '',
     ...result.skippedAdditions.map((entry, index) => `- **S${index + 1}** ${markdownText(entry.url)}: ${markdownText(entry.reason)}`),
-    '', 'Assign this issue to Copilot only after maintainers record their decisions. The resulting draft pull request requires human approval before merge.', '',
+    '', 'Assign this issue to Copilot only after the issue body reflects the desired catalog changes. The resulting draft pull request requires human approval before merge.', '',
   ].join('\n');
 }
 

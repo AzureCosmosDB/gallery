@@ -59,7 +59,7 @@ jobs:
 
           ## Copilot task
 
-          Read this issue and all maintainer comments before starting. Apply every \`Keep\`, \`Remove\`, and \`Change\` decision to the catalog files, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
+          Treat the edited issue body as the complete source of truth. Implement exactly the additions, URL updates, retirements, and notes that remain in this issue; ignore deleted recommendations. Modify the catalog files, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
           EOF
           issue_url=$(gh issue create --title "Gallery content proposal $SOURCE_RUN_ID" --body-file "$issue_body")
           printf 'Proposal issue created: %s\n' "$issue_url" >> "$GITHUB_STEP_SUMMARY"
