@@ -22,7 +22,7 @@ The workflow can edit catalog files only on `automation/gallery-content-updates-
 - No Azure resources, hosted APIs, databases, queues, storage accounts, model endpoints, or other backend services are used.
 - Automation mutates only the repository in which the workflow runs. External repositories remain read-only discovery sources.
 - Discovery uses public HTTP endpoints and the GitHub API with the workflow's scoped `GITHUB_TOKEN`.
-- Relevance analysis uses GitHub Copilot CLI with a user-owned fine-grained token stored as the `COPILOT_GITHUB_TOKEN` Actions secret and limited to the **Copilot Requests** account permission and public repository access.
+- Relevance analysis uses GitHub Copilot CLI with the built-in Actions `GITHUB_TOKEN` and the `copilot-requests: write` workflow permission. The organization must enable **Allow use of Copilot CLI billed to the organization**.
 - Branch and pull request publication uses a separate `GALLERY_UPDATE_TOKEN` Actions secret scoped to this repository with contents and pull-request write access.
 - The write token is exposed only to the final publication step, after tests and a full static build pass.
 - Pull requests are always drafts and are never approved or merged by automation.
@@ -180,7 +180,7 @@ These deterministic checks prioritize recall and keep the model input small. Cop
 Run GitHub Copilot CLI programmatically after deterministic collection:
 
 ```shell
-COPILOT_GITHUB_TOKEN="$COPILOT_GITHUB_TOKEN" \
+GITHUB_TOKEN="$GITHUB_TOKEN" \
     node scripts/gallery-audit/index.mjs --classify-only --promote
 ```
 
@@ -328,7 +328,7 @@ The workflow should:
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The normal Actions `GITHUB_TOKEN` remains scoped to read-only repository access. Copilot CLI authentication is separate: `COPILOT_GITHUB_TOKEN` requires an active Copilot subscription and the **Copilot Requests** account permission, with no repository write permission. `GALLERY_UPDATE_TOKEN` is a distinct repository-scoped credential used only by the publish step.
+The built-in Actions `GITHUB_TOKEN` has read-only repository access plus `copilot-requests: write`; it has no repository write permission and requires no stored Copilot authentication secret. `GALLERY_UPDATE_TOKEN` remains a distinct repository-scoped credential used only by the publish step.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 
