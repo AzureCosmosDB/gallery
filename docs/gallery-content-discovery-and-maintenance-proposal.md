@@ -23,7 +23,7 @@ The workflow can edit catalog files only on `automation/gallery-content-updates-
 - Automation mutates only the repository in which the workflow runs. External repositories remain read-only discovery sources.
 - Discovery uses public HTTP endpoints and the GitHub API with the workflow's scoped `GITHUB_TOKEN`.
 - Relevance analysis uses GitHub Copilot CLI with the built-in Actions `GITHUB_TOKEN` and the `copilot-requests: write` workflow permission. The organization must enable **Allow use of Copilot CLI billed to the organization**.
-- Proposal publication uses the built-in Actions `GITHUB_TOKEN` with job-scoped contents and issues write access. A maintainer reviews the emitted issue and assigns it to Copilot, which creates the draft pull request.
+- Audit and classification use the built-in Actions `GITHUB_TOKEN` with read-only repository access plus `copilot-requests: write`. A separate trusted `workflow_run` publisher loaded from `main` receives actions read plus contents and issues write access, publishes validated artifacts, and creates the handoff issue.
 - Repository default workflow permissions remain read-only; write access exists only in the publishing jobs after tests and a full static build pass.
 - Pull requests are always drafts and are never approved or merged by automation.
 - No candidate or audit finding changes the published catalog until a person merges the draft pull request.
@@ -64,7 +64,7 @@ flowchart LR
     I -->|Explicit decision| J[Separate catalog change]
 ```
 
-The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion, then uploads one combined artifact bundle. Maintainers record keep, remove, and change decisions as comments on the unassigned proposal issue before assigning it to Copilot.
+The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion with read-only repository access, then uploads validated artifacts. The `publish-gallery-proposal.yml` workflow runs from trusted `main` after successful non-PR audit runs on the default branch, publishes the proposal branch, and creates the issue. Maintainers record keep, remove, and change decisions as issue comments before assigning it to Copilot.
 
 ## Current Catalog Source Map
 
@@ -278,6 +278,7 @@ Copilot reads the issue body and all comments when assigned. `Keep` retains a pr
         gallery-curator.agent.md
     workflows/
         audit-gallery-content.yml
+        publish-gallery-proposal.yml
     gallery-audit/
         sources.json
         policy.json
@@ -326,7 +327,7 @@ The workflow should:
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents and issues write, pull-request read, and Copilot-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
+The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation and audit remain repository-read-only; audit adds only Copilot-request write access. The trusted publisher receives actions read plus contents and issues write access, rejects PR and non-default-branch source runs, and executes no repository scripts. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 

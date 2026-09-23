@@ -40,6 +40,7 @@ test('uses issue comments for proposal decisions without a privileged review wor
 test('does not hardcode a maintenance reviewer identity', () => {
   const files = [
     '.github/workflows/audit-gallery-content.yml',
+    '.github/workflows/publish-gallery-proposal.yml',
     'docs/automated-gallery-maintenance.md',
     'docs/gallery-content-discovery-and-maintenance-proposal.md',
   ];
@@ -48,18 +49,22 @@ test('does not hardcode a maintenance reviewer identity', () => {
   }
 });
 
-test('creates a proposal branch and unassigned Copilot handoff issue for each audit run', () => {
-  const workflow = read('.github/workflows/audit-gallery-content.yml');
-  assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
-  assert.doesNotMatch(workflow, /push --force/);
-  assert.doesNotMatch(workflow, /gh pr edit/);
-  assert.doesNotMatch(workflow, /gh pr create/);
-  assert.match(workflow, /compare\/main\.\.\.\$UPDATE_BRANCH\?expand=1/);
-  assert.match(workflow, /gh issue create --title "Gallery content proposal \$GITHUB_RUN_ID"/);
-  assert.match(workflow, /Assign this issue to Copilot/);
-  assert.match(workflow, /GH_TOKEN: \$\{\{ github\.token \}\}/);
-  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*issues: write\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
-  assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
+test('keeps audit and classification read-only and publishes only through trusted workflow_run', () => {
+  const audit = read('.github/workflows/audit-gallery-content.yml');
+  assert.match(audit, /permissions:\s*\n\s*contents: read\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
+  assert.match(audit, /gallery-content-proposal-\$\{\{ github\.run_id \}\}/);
+  assert.doesNotMatch(audit, /contents: write|issues: write|git push|gh issue create/);
+
+  const publisher = read('.github/workflows/publish-gallery-proposal.yml');
+  assert.match(publisher, /workflow_run:[\s\S]*workflows: \[Audit gallery content\][\s\S]*types: \[completed\]/);
+  assert.match(publisher, /workflow_run\.conclusion == 'success'/);
+  assert.match(publisher, /workflow_run\.event != 'pull_request'/);
+  assert.match(publisher, /workflow_run\.head_branch == github\.event\.repository\.default_branch/);
+  assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*contents: write\s*\n\s*issues: write/);
+  assert.match(publisher, /automation\/gallery-content-updates-\$\{\{ github\.event\.workflow_run\.id \}\}-\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
+  assert.match(publisher, /gh issue create --title "Gallery content proposal \$SOURCE_RUN_ID"/);
+  assert.match(publisher, /Read this issue and all maintainer comments before starting/);
+  assert.doesNotMatch(publisher, /push --force|gh pr create|gh pr edit|GALLERY_UPDATE_TOKEN/);
 });
 
 test('fails closed until main has the required human approval ruleset', () => {

@@ -1,0 +1,79 @@
+name: Publish gallery proposal
+
+on:
+  workflow_run:
+    workflows: [Audit gallery content]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event != 'pull_request' &&
+      github.event.workflow_run.head_branch == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+      issues: write
+    env:
+      SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+      UPDATE_BRANCH: automation/gallery-content-updates-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Download validated proposal
+        id: proposal
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          artifact_name="gallery-content-proposal-$SOURCE_RUN_ID"
+          artifact_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID/artifacts" \
+            --jq ".artifacts[] | select(.name == \"$artifact_name\") | .id")
+          if [ -z "$artifact_id" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$artifact_name" --dir .
+          echo "available=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish proposal branch and issue
+        if: steps.proposal.outputs.available == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "gallery-content-automation"
+          git config user.email "gallery-content-automation@users.noreply.github.com"
+          git checkout -b "$UPDATE_BRANCH"
+          git add static/templates.json static/retired-templates.json
+          git commit -m "chore: refresh gallery content"
+          gh auth setup-git
+          git push origin "HEAD:$UPDATE_BRANCH"
+
+          compare_url="https://github.com/$GITHUB_REPOSITORY/compare/main...$UPDATE_BRANCH?expand=1"
+          issue_body="$RUNNER_TEMP/gallery-proposal-issue.md"
+          cat > "$issue_body" <<EOF
+          ## Validated gallery proposal
+
+          The automated gallery audit produced a validated catalog proposal on branch:
+
+          \`$UPDATE_BRANCH\`.
+
+          - [Review the exact catalog diff]($compare_url)
+          - [Inspect the source workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID)
+
+          $(cat output/gallery-content-review/promotion-summary.md)
+
+          ## Copilot task
+
+          Read this issue and all maintainer comments before starting. Using the proposal branch above as the source of truth, apply every \`Keep\`, \`Remove\`, and \`Change\` decision, reproduce the resulting catalog diff on a Copilot branch, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
+          EOF
+          issue_url=$(gh issue create --title "Gallery content proposal $SOURCE_RUN_ID" --body-file "$issue_body")
+          printf 'Proposal branch published: %s\nProposal issue created: %s\n' "$compare_url" "$issue_url" >> "$GITHUB_STEP_SUMMARY"

@@ -1,6 +1,6 @@
 # Automated gallery maintenance
 
-This repository uses a scheduled GitHub Actions workflow to audit the published catalog, discover new Azure Cosmos DB resources, classify candidates, and publish a proposal branch plus an unassigned Copilot handoff issue.
+This repository uses separate GitHub Actions workflows to audit and classify gallery content, then publish a proposal branch plus an unassigned Copilot handoff issue from trusted `main`.
 
 The site remains static. The maintenance workflow does not deploy infrastructure, call a private application API, merge pull requests, or push directly to `main`.
 
@@ -18,17 +18,23 @@ Pull requests run a read-only validation job that:
 Scheduled and manual runs:
 
 1. verify that `main` has the required human-approval ruleset;
-2. create `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch;
-3. audit every live catalog entry;
-4. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
-5. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
-6. validate the proposed catalog and static site;
-7. publish a new proposal branch, compare link, and unassigned issue without rewriting an earlier review branch; and
-8. upload the complete review bundle for 30 days.
+2. audit every live catalog entry;
+3. discover bounded candidates from approved feeds, YouTube channels, GitHub organizations, and Microsoft Learn;
+4. classify candidates and evidence-backed retirement proposals with the tool-free `gallery-curator` Copilot agent;
+5. validate the proposed catalog and static site; and
+6. upload the complete review bundle and, when the catalog changes, a validated proposal artifact for 30 days.
+
+After a successful scheduled or default-branch manual run, the trusted `Publish gallery proposal` workflow:
+
+1. ignores pull-request runs and manual runs from non-default branches;
+2. downloads only the validated proposal artifact from the completed audit run;
+3. creates `automation/gallery-content-updates-<run-id>-<attempt>` from current `main`;
+4. publishes the proposal branch and compare link; and
+5. creates the unassigned Copilot handoff issue.
 
 Before classification, the workflow installs the Azure Cosmos DB Agent Kit's `cosmosdb-best-practices` skill from a pinned commit and verifies its SHA-256 checksum. The repository includes a focused `humanizer` skill. A preflight check requires Copilot CLI to discover both skills, and classification explicitly enables skill retrieval. The curator uses Agent Kit guidance to enforce current Cosmos DB product boundaries and uses humanizer only to make evidence concise and neutral; humanizer cannot change verdicts, confidence, indexes, URLs, or JSON structure.
 
-Each run creates a proposal from `main` on a new branch. Rejection commits therefore remain in the draft PR where the reviewer made them and cannot be erased by a later scheduled run.
+Each eligible run creates a proposal from `main` on a new branch. Issue comments preserve maintainer decisions before Copilot creates the draft PR.
 
 ## Required repository configuration
 
@@ -36,10 +42,11 @@ The maintenance workflows use the built-in Actions `GITHUB_TOKEN`; they require 
 
 | Job | Scoped access |
 | --- | --- | --- |
-| Scheduled/manual audit | Contents write, Issues write, Pull requests read, Copilot requests write |
+| Scheduled/manual audit | Contents read, Pull requests read, Copilot requests write |
 | Pull-request validation | Contents read, Pull requests read |
+| Trusted proposal publisher | Actions read, Contents write, Issues write |
 
-Keep the repository default workflow permission read-only. Write permissions are granted only to jobs that publish or revise a proposal branch. The workflows never create, approve, or merge pull requests.
+Keep the repository default workflow permission read-only. Only the trusted `workflow_run` publisher loaded from `main` receives write permissions. The workflows never create, approve, or merge pull requests.
 
 ### Enable the required repository settings
 
@@ -130,10 +137,10 @@ Each maintenance run uploads `gallery-content-review-<run-id>` containing:
 | Copilot organization policy blocks Actions | Classification is incomplete; existing draft is preserved | Enable organization-billed Copilot CLI use and rerun manually |
 | Copilot output fails schema validation twice | Classification is incomplete; existing draft is preserved | Inspect captured diagnostics and rerun after correcting the prompt or CLI issue |
 | Promotion produces no catalog diff | No branch or issue is published | Confirm the latest complete artifact contains no eligible changes |
-| Proposal issue creation returns 403 | The proposal branch remains available without an issue | Verify the audit job has job-scoped Issues write permission |
+| Proposal issue creation returns 403 | The proposal branch remains available without an issue | Verify the publisher job has job-scoped Issues write permission |
 | Build or tests fail | No branch or PR mutation | Fix on a normal reviewed PR, then rerun maintenance |
 | Generated metadata is malformed | Do not merge the draft | Fix the ingestion or validation rule, regenerate from `main`, and review again |
-| Branch push returns 403 | Publication fails without changing `main` | Verify the audit job has job-scoped Contents write permission |
+| Branch push returns 403 | Publication fails without changing `main` | Verify the publisher job has job-scoped Contents write permission |
 | Copilot CLI authentication fails | Classification is incomplete; existing draft is preserved | Verify organization-billed Copilot CLI use is enabled and rerun manually |
 | A localized Microsoft Learn URL is committed manually | Tests fail with `localized Microsoft documentation URL` | Remove the locale path segment, for example change `/en-us/azure/cosmos-db/...` to `/azure/cosmos-db/...` |
 
