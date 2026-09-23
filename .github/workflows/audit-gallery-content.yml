@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
-      contents: read
+      contents: write
       pull-requests: read
       copilot-requests: write
     steps:
@@ -146,14 +146,12 @@ jobs:
             echo "catalog=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish draft pull request
+      - name: Publish proposal branch
         if: success()
         env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}-${{ github.run_attempt }}
-          NOTIFY_REVIEWER: jagord_microsoft
         run: |
-          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required to publish the draft pull request."; exit 1; }
           gh auth setup-git
 
           if [ ! -f output/gallery-content-review/promotion-result.json ]; then
@@ -168,7 +166,8 @@ jobs:
           git add static/templates.json static/retired-templates.json
           git commit -m "chore: refresh gallery content"
           git push origin "HEAD:$UPDATE_BRANCH"
-          gh pr create --draft --base main --head "$UPDATE_BRANCH" --reviewer "$NOTIFY_REVIEWER" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
+          compare_url="https://github.com/$GITHUB_REPOSITORY/compare/main...$UPDATE_BRANCH?expand=1"
+          printf 'Proposal branch published. Create a draft pull request: %s\n' "$compare_url" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Add summary
         if: always()

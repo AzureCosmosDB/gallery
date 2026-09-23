@@ -6,11 +6,9 @@ import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..', '..', '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('schedules one weekly maintenance run and notifies the designated reviewer for new PRs', () => {
+test('schedules one weekly maintenance run', () => {
   const workflow = read('.github/workflows/audit-gallery-content.yml');
   assert.deepEqual([...workflow.matchAll(/^\s*- cron:\s*'([^']+)'\s*$/gm)].map((match) => match[1]), ['17 6 * * 1']);
-  assert.match(workflow, /^\s*NOTIFY_REVIEWER:\s*jagord_microsoft\s*$/m);
-  assert.match(workflow, /gh pr create[^\n]*--reviewer "\$NOTIFY_REVIEWER"/);
 });
 
 test('pins and verifies the required curator skills', () => {
@@ -41,16 +39,22 @@ test('authorizes review commands by effective repository permission', () => {
   const workflow = read('.github/workflows/apply-gallery-review.yml');
   assert.match(workflow, /collaborators\/\$COMMENTER\/permission/);
   assert.match(workflow, /admin\|maintain\|write/);
-  assert.match(workflow, /Authorize commenter[\s\S]*GH_TOKEN: \$\{\{ secrets\.GALLERY_UPDATE_TOKEN \}\}/);
+  assert.match(workflow, /Authorize commenter[\s\S]*GH_TOKEN: \$\{\{ github\.token \}\}/);
+  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*pull-requests: write/);
+  assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
   assert.doesNotMatch(workflow, /author_association/);
 });
 
-test('creates a new maintenance branch and draft pull request for each audit run', () => {
+test('creates a new maintenance branch and compare link for each audit run', () => {
   const workflow = read('.github/workflows/audit-gallery-content.yml');
   assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
   assert.doesNotMatch(workflow, /push --force/);
   assert.doesNotMatch(workflow, /gh pr edit/);
-  assert.match(workflow, /gh pr create --draft/);
+  assert.doesNotMatch(workflow, /gh pr create/);
+  assert.match(workflow, /compare\/main\.\.\.\$UPDATE_BRANCH\?expand=1/);
+  assert.match(workflow, /GH_TOKEN: \$\{\{ github\.token \}\}/);
+  assert.match(workflow, /permissions:\s*\n\s*contents: write\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
+  assert.doesNotMatch(workflow, /GALLERY_UPDATE_TOKEN/);
 });
 
 test('fails closed until main has the required human approval ruleset', () => {

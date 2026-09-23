@@ -23,8 +23,8 @@ The workflow can edit catalog files only on `automation/gallery-content-updates-
 - Automation mutates only the repository in which the workflow runs. External repositories remain read-only discovery sources.
 - Discovery uses public HTTP endpoints and the GitHub API with the workflow's scoped `GITHUB_TOKEN`.
 - Relevance analysis uses GitHub Copilot CLI with the built-in Actions `GITHUB_TOKEN` and the `copilot-requests: write` workflow permission. The organization must enable **Allow use of Copilot CLI billed to the organization**.
-- Branch and pull request publication uses a separate `GALLERY_UPDATE_TOKEN` Actions secret scoped to this repository with contents and pull-request write access.
-- The write token is exposed only to the final publication step, after tests and a full static build pass.
+- Proposal branch publication uses the built-in Actions `GITHUB_TOKEN` with job-scoped contents write access. Enterprise policy requires a person to create the draft pull request from the emitted compare link.
+- Repository default workflow permissions remain read-only; write access exists only in the publishing jobs after tests and a full static build pass.
 - Pull requests are always drafts and are never approved or merged by automation.
 - No candidate or audit finding changes the published catalog until a person merges the draft pull request.
 
@@ -324,11 +324,11 @@ The workflow should:
 8. validate Copilot output and combine it with deterministic evidence;
 9. apply eligible changes to the per-run automation branch;
 10. run focused tests and the full Docusaurus build;
-11. open a new draft pull request with a separate write token;
+11. publish the proposal branch and a compare link for a person to open as a draft pull request;
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The built-in Actions `GITHUB_TOKEN` has read-only repository access plus `copilot-requests: write`; it has no repository write permission and requires no stored Copilot authentication secret. `GALLERY_UPDATE_TOKEN` remains a distinct repository-scoped credential used only by the publish step.
+The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation remains read-only; audit publication receives contents write, pull-request read, and Copilot-request write access; review-command application receives contents and pull-request write access. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 
