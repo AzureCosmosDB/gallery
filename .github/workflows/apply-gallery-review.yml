@@ -19,16 +19,18 @@ jobs:
       contains(github.event.comment.body, 'Reject:')
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.issue.number }}
       REVIEW_COMMAND: ${{ github.event.comment.body }}
     steps:
       - name: Authorize commenter
         env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           COMMENTER: ${{ github.event.comment.user.login }}
         run: |
-          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required."; exit 1; }
           permission=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$COMMENTER/permission" --jq .permission)
           case "$permission" in
             admin|maintain|write) ;;
@@ -42,9 +44,8 @@ jobs:
 
       - name: Validate command target
         env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required."; exit 1; }
           head_ref=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json headRefName --jq .headRefName)
           base_ref=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json baseRefName --jq .baseRefName)
           head_repo=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .head.repo.full_name)
@@ -72,7 +73,7 @@ jobs:
       - name: Apply rejected items
         id: apply
         env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           PR_BODY="$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json body --jq .body)" \
           BASE_CATALOG_PATH="$RUNNER_TEMP/base-templates.json" \
@@ -106,7 +107,7 @@ jobs:
 
       - name: Publish revised proposal
         env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet -- static/templates.json static/retired-templates.json; then
             gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "The requested items were already absent from the proposal."
