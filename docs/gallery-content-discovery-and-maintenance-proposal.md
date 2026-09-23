@@ -11,9 +11,9 @@ Keep the gallery as a static Docusaurus site on GitHub Pages. Add one GitHub Act
 2. discovers recent Azure Cosmos DB examples, videos, documentation, and blogs from an exact allowlist of public endpoints;
 3. uses GitHub Copilot CLI in programmatic mode with the Azure Cosmos DB Agent Kit and humanizer skills to evaluate relevance and semantic staleness against a fixed rubric; and
 4. applies only high-confidence additions and strongly evidenced retirements to a per-run automation branch; and
-5. publishes a proposal branch, compare link, and unassigned Copilot handoff issue, then uploads validated reports for review.
+5. publishes an unassigned Copilot handoff issue containing the complete proposal, then uploads validated reports for review.
 
-The workflow can edit catalog files only on `automation/gallery-content-updates-<run-id>-<attempt>` branches. It never pushes to `main`, merges a pull request, or deploys the site. A person reviews and approves the draft pull request; merging it is the only action that publishes the changes through the existing Pages workflow.
+Actions never write repository contents, push branches, merge pull requests, or deploy the site. Copilot creates a branch and draft pull request only after a maintainer reviews and assigns the proposal issue; merging that reviewed PR is the only action that publishes the changes through the existing Pages workflow.
 
 ## Constraints
 
@@ -23,7 +23,7 @@ The workflow can edit catalog files only on `automation/gallery-content-updates-
 - Automation mutates only the repository in which the workflow runs. External repositories remain read-only discovery sources.
 - Discovery uses public HTTP endpoints and the GitHub API with the workflow's scoped `GITHUB_TOKEN`.
 - Relevance analysis uses GitHub Copilot CLI with the built-in Actions `GITHUB_TOKEN` and the `copilot-requests: write` workflow permission. The organization must enable **Allow use of Copilot CLI billed to the organization**.
-- Audit and classification use the built-in Actions `GITHUB_TOKEN` with read-only repository access plus `copilot-requests: write`. A separate trusted `workflow_run` publisher loaded from `main` receives actions read plus contents and issues write access, publishes validated artifacts, and creates the handoff issue.
+- Audit and classification use the built-in Actions `GITHUB_TOKEN` with read-only repository access plus `copilot-requests: write`. A separate trusted `workflow_run` publisher loaded from `main` receives actions read plus issues write access, reads the validated summary artifact, and creates the handoff issue.
 - Repository default workflow permissions remain read-only; write access exists only in the publishing jobs after tests and a full static build pass.
 - Pull requests are always drafts and are never approved or merged by automation.
 - No candidate or audit finding changes the published catalog until a person merges the draft pull request.
@@ -64,7 +64,7 @@ flowchart LR
     I -->|Explicit decision| J[Separate catalog change]
 ```
 
-The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion with read-only repository access, then uploads validated artifacts. The `publish-gallery-proposal.yml` workflow runs from trusted `main` after successful non-PR audit runs on the default branch, publishes the proposal branch, and creates the issue. Maintainers record keep, remove, and change decisions as issue comments before assigning it to Copilot.
+The `audit-gallery-content.yml` workflow has one automatic schedule, Monday at 06:17 UTC, and supports explicit manual dispatch for setup and recovery. It performs audit, discovery, classification, and promotion with read-only repository access, then uploads validated artifacts. The `publish-gallery-proposal.yml` workflow runs from trusted `main` after successful non-PR audit runs on the default branch and creates the complete proposal issue. Maintainers record keep, remove, and change decisions as issue comments before assigning it to Copilot.
 
 ## Current Catalog Source Map
 
@@ -258,7 +258,7 @@ The workflow promotes only `include` candidates with `high` confidence and compl
 
 Promoted content retains the source title, excerpt, author, canonical URL, date, and source-approved content tags. Retired entries move from `static/templates.json` to `static/retired-templates.json` with the original record, retirement reason, replacement URL, and deterministic evidence. `review`, low-confidence, medium-confidence, incomplete, and malformed results remain artifact-only.
 
-Each complete run attempt creates `automation/gallery-content-updates-<run-id>-<attempt>` from the current `main` branch and publishes a compare link plus an unassigned issue. A maintainer assigns an accepted issue to Copilot, which reproduces the validated diff on its own branch and creates the draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
+Each complete run attempt publishes an unassigned issue containing the validated proposal. A maintainer records decisions and assigns an accepted issue to Copilot, which creates its own branch and draft pull request. Reviewers are selected according to current team ownership. Only a manual merge to protected `main` publishes the update. Incomplete runs do not alter earlier proposals.
 
 Each proposed addition, URL update, and retirement has an `A<n>`, `U<n>`, or `R<n>` identifier. Maintainers record decisions in issue comments before assigning the issue to Copilot:
 
@@ -323,11 +323,11 @@ The workflow should:
 8. validate Copilot output and combine it with deterministic evidence;
 9. apply eligible changes to the per-run automation branch;
 10. run focused tests and the full Docusaurus build;
-11. publish the proposal branch, compare link, and unassigned Copilot handoff issue;
+11. publish the unassigned Copilot handoff issue containing the validated proposal;
 12. write a concise Actions job summary; and
 13. upload the artifact bundle.
 
-The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation and audit remain repository-read-only; audit adds only Copilot-request write access. The trusted publisher receives actions read plus contents and issues write access, rejects PR and non-default-branch source runs, and executes no repository scripts. No stored authentication secret is required, and Actions never create, approve, or merge pull requests.
+The built-in Actions `GITHUB_TOKEN` receives only the permissions declared for each job. Validation and audit remain repository-read-only; audit adds only Copilot-request write access. The trusted publisher receives actions read plus issues write access, rejects PR and non-default-branch source runs, and executes no repository scripts. No stored authentication secret is required, and Actions never write repository contents or create, approve, or merge pull requests.
 
 Use timeouts, concurrency with `cancel-in-progress: false`, bounded response sizes, redirect limits, and per-source request limits. Pin third-party actions to reviewed commit SHAs before enabling the schedule.
 
@@ -342,7 +342,7 @@ Use timeouts, concurrency with `cancel-in-progress: false`, bounded response siz
 - Validate model output against a strict schema before including it in reports.
 - Apply only `include/high` candidates with complete catalog metadata.
 - Apply only `retire-proposed/high` entries backed by strong deterministic evidence.
-- Write catalog changes only to `automation/gallery-content-updates-<run-id>-<attempt>` branches; Copilot creates the draft pull request after a maintainer assigns the proposal issue.
+- Actions never write catalog changes to the repository; Copilot creates the only working branch and draft pull request after a maintainer assigns the proposal issue.
 - Never push to `main`, approve, merge, or enable automerge.
 - Do not log tokens or request authorization headers.
 - Do not fail the entire audit because one source is unavailable; mark that source partial.
@@ -375,7 +375,7 @@ Implementation is complete only when automated checks prove:
 - Every current catalog entry appears exactly once in each complete audit.
 - Every finding has a deterministic reason code and observable evidence.
 - Existing URLs are excluded from staged content candidates.
-- A weekly run produces reviewable JSON and Markdown artifacts, a proposal branch, a compare link, and an unassigned issue only when eligible catalog changes exist.
+- A weekly run produces reviewable JSON and Markdown artifacts plus an unassigned issue only when eligible catalog changes exist.
 - Partial scans are clearly distinguishable from complete scans.
 - The workflow uses no Azure or persistent backend resources.
 - The workflow creates no direct `main` mutation and no automatic merge.
@@ -399,9 +399,9 @@ Add manual dispatch with `contents: read`, artifact upload, job summaries, timeo
 
 Enable the weekly schedule after several successful manual runs. Review artifact quality and tune only source definitions, lookback windows, and deterministic policies.
 
-### Phase 5: Proposal Branch Promotion
+### Phase 5: Proposal Issue Promotion
 
-Apply conservative promotion gates, validate the resulting static site, and publish a per-run automation branch with a compare link and unassigned issue. A maintainer assigns the issue to Copilot, which creates the draft pull request; require human approval and merge for publication.
+Apply conservative promotion gates, validate the resulting static site, and publish an unassigned issue containing the complete proposal. A maintainer records decisions and assigns the issue to Copilot, which creates the branch and draft pull request; require human approval and merge for publication.
 
 ## Operator-Controlled Decisions
 

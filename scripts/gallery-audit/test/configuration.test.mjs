@@ -49,10 +49,11 @@ test('does not hardcode a maintenance reviewer identity', () => {
   }
 });
 
-test('keeps audit and classification read-only and publishes only through trusted workflow_run', () => {
+test('keeps audit read-only and publishes only an issue through trusted workflow_run', () => {
   const audit = read('.github/workflows/audit-gallery-content.yml');
   assert.match(audit, /permissions:\s*\n\s*contents: read\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
   assert.match(audit, /gallery-content-proposal-\$\{\{ github\.run_id \}\}/);
+  assert.match(audit, /path: output\/gallery-content-review\/promotion-summary\.md/);
   assert.doesNotMatch(audit, /contents: write|issues: write|git push|gh issue create/);
 
   const publisher = read('.github/workflows/publish-gallery-proposal.yml');
@@ -60,11 +61,10 @@ test('keeps audit and classification read-only and publishes only through truste
   assert.match(publisher, /workflow_run\.conclusion == 'success'/);
   assert.match(publisher, /workflow_run\.event != 'pull_request'/);
   assert.match(publisher, /workflow_run\.head_branch == github\.event\.repository\.default_branch/);
-  assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*contents: write\s*\n\s*issues: write/);
-  assert.match(publisher, /automation\/gallery-content-updates-\$\{\{ github\.event\.workflow_run\.id \}\}-\$\{\{ github\.event\.workflow_run\.run_attempt \}\}/);
+  assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*issues: write/);
   assert.match(publisher, /gh issue create --title "Gallery content proposal \$SOURCE_RUN_ID"/);
   assert.match(publisher, /Read this issue and all maintainer comments before starting/);
-  assert.doesNotMatch(publisher, /push --force|gh pr create|gh pr edit|GALLERY_UPDATE_TOKEN/);
+  assert.doesNotMatch(publisher, /contents: write|actions\/checkout|git push|gh pr create|gh pr edit|automation\/gallery-content-updates|GALLERY_UPDATE_TOKEN/);
 });
 
 test('fails closed until main has the required human approval ruleset', () => {

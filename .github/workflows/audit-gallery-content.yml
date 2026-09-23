@@ -142,10 +142,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: gallery-content-proposal-${{ github.run_id }}
-          path: |
-            static/templates.json
-            static/retired-templates.json
-            output/gallery-content-review/promotion-summary.md
+          path: output/gallery-content-review/promotion-summary.md
           retention-days: 30
           if-no-files-found: error
 

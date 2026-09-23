@@ -27,7 +27,7 @@ Do not report style preferences, naming opinions, formatting differences, or spe
 
 - The gallery remains a static Docusaurus site deployed through GitHub Pages.
 - Maintenance automation mutates only the repository where its workflow runs. Treat external repositories as read-only.
-- Generated catalog changes remain on per-attempt `automation/gallery-content-updates-<run-id>-<attempt>` branches in draft pull requests. Automation must never approve, merge, or enable automerge.
+- Validated catalog proposals remain in unassigned issues until a maintainer records decisions and assigns the issue to Copilot. Only Copilot creates the draft pull request branch; automation must never create, approve, merge, or enable automerge.
 - Discovery uses exact allowlisted public sources, bounded requests, deterministic validation, canonical URL deduplication, and explicit content types.
 - GitHub discovery accepts only public repositories under approved owners. Authentication must never cross to a different host during redirects.
 - Microsoft Learn discovery stays within the approved Azure Cosmos DB product tree.

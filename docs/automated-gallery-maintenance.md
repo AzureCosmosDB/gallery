@@ -1,6 +1,6 @@
 # Automated gallery maintenance
 
-This repository uses separate GitHub Actions workflows to audit and classify gallery content, then publish a proposal branch plus an unassigned Copilot handoff issue from trusted `main`.
+This repository uses separate GitHub Actions workflows to audit and classify gallery content, then publish an unassigned Copilot handoff issue from trusted `main`.
 
 The site remains static. The maintenance workflow does not deploy infrastructure, call a private application API, merge pull requests, or push directly to `main`.
 
@@ -27,14 +27,12 @@ Scheduled and manual runs:
 After a successful scheduled or default-branch manual run, the trusted `Publish gallery proposal` workflow:
 
 1. ignores pull-request runs and manual runs from non-default branches;
-2. downloads only the validated proposal artifact from the completed audit run;
-3. creates `automation/gallery-content-updates-<run-id>-<attempt>` from current `main`;
-4. publishes the proposal branch and compare link; and
-5. creates the unassigned Copilot handoff issue.
+2. downloads only the validated proposal summary from the completed audit run; and
+3. creates the unassigned Copilot handoff issue.
 
 Before classification, the workflow installs the Azure Cosmos DB Agent Kit's `cosmosdb-best-practices` skill from a pinned commit and verifies its SHA-256 checksum. The repository includes a focused `humanizer` skill. A preflight check requires Copilot CLI to discover both skills, and classification explicitly enables skill retrieval. The curator uses Agent Kit guidance to enforce current Cosmos DB product boundaries and uses humanizer only to make evidence concise and neutral; humanizer cannot change verdicts, confidence, indexes, URLs, or JSON structure.
 
-Each eligible run creates a proposal from `main` on a new branch. Issue comments preserve maintainer decisions before Copilot creates the draft PR.
+Each eligible run creates a complete proposal issue. Issue comments preserve maintainer decisions before Copilot creates the draft PR and its branch.
 
 ## Required repository configuration
 
@@ -44,9 +42,9 @@ The maintenance workflows use the built-in Actions `GITHUB_TOKEN`; they require 
 | --- | --- | --- |
 | Scheduled/manual audit | Contents read, Pull requests read, Copilot requests write |
 | Pull-request validation | Contents read, Pull requests read |
-| Trusted proposal publisher | Actions read, Contents write, Issues write |
+| Trusted proposal publisher | Actions read, Issues write |
 
-Keep the repository default workflow permission read-only. Only the trusted `workflow_run` publisher loaded from `main` receives write permissions. The workflows never create, approve, or merge pull requests.
+Keep the repository default workflow permission read-only. Only the trusted `workflow_run` publisher loaded from `main` receives Issues write permission. The workflows never write repository contents or create, approve, or merge pull requests.
 
 ### Enable the required repository settings
 
@@ -59,11 +57,11 @@ An `AzureCosmosDB` owner or repository administrator must:
 
 The job-scoped `permissions` blocks remain the source of least privilege. Do not add a PAT, GitHub App private key, or publisher secret as a fallback.
 
-Validate the configuration by manually running **Audit gallery content**: classification must report `complete`, and an eligible proposal must publish an automation branch, compare link, and unassigned issue.
+Validate the configuration by manually running **Audit gallery content**: classification must report `complete`, and an eligible proposal must publish an unassigned issue containing the complete validated proposal.
 
 ### Assign the proposal to Copilot
 
-When a run publishes eligible catalog changes, review the unassigned issue and compare link from its job summary. If the proposal is ready, assign the issue to Copilot. The issue instructs Copilot to reproduce the validated catalog diff, run the focused tests and build, and create a draft pull request to `main`.
+When a run publishes eligible catalog changes, review the unassigned issue from its job summary. If the proposal is ready, assign the issue to Copilot. The issue instructs Copilot to apply the recorded decisions, run the focused tests and build, and create a draft pull request to `main`.
 
 Select PR reviewers according to the team's current ownership and rotation; no individual reviewer is hardcoded. GitHub sends review-request notifications through each selected reviewer's configured channels.
 
@@ -75,7 +73,7 @@ An organization owner or repository administrator must complete these steps afte
 2. Keep default workflow permissions read-only and keep Actions-created pull requests disabled.
 3. Confirm **Allow use of Copilot CLI billed to the organization** is enabled.
 4. Create and keep an active `Protect main` ruleset enabled with at least one approving review, stale approval dismissal, approval after the latest push, and required resolution of review threads. The audit job verifies these settings and fails before promotion when they are absent. Neither token needs permission to bypass it.
-5. Open **Actions > Audit gallery content**, choose **Run workflow**, and review the artifact, proposal branch, compare link, and unassigned issue from the first complete run.
+5. Open **Actions > Audit gallery content**, choose **Run workflow**, and review the artifact and unassigned issue from the first complete run.
 6. In **Settings > Pages**, change **Build and deployment > Source** from the legacy `gh-pages` branch to **GitHub Actions**. The updated deployment workflow does not use `GH_PAT` and does not push generated files to a branch.
 7. Merge a normal documentation-only pull request and confirm **Deploy to GitHub Pages** publishes `main` to `https://azurecosmosdb.github.io/gallery/`.
 
@@ -137,10 +135,9 @@ Each maintenance run uploads `gallery-content-review-<run-id>` containing:
 | Copilot organization policy blocks Actions | Classification is incomplete; existing draft is preserved | Enable organization-billed Copilot CLI use and rerun manually |
 | Copilot output fails schema validation twice | Classification is incomplete; existing draft is preserved | Inspect captured diagnostics and rerun after correcting the prompt or CLI issue |
 | Promotion produces no catalog diff | No branch or issue is published | Confirm the latest complete artifact contains no eligible changes |
-| Proposal issue creation returns 403 | The proposal branch remains available without an issue | Verify the publisher job has job-scoped Issues write permission |
+| Proposal issue creation returns 403 | The validated proposal remains available as an artifact | Verify the publisher job has job-scoped Issues write permission |
 | Build or tests fail | No branch or PR mutation | Fix on a normal reviewed PR, then rerun maintenance |
 | Generated metadata is malformed | Do not merge the draft | Fix the ingestion or validation rule, regenerate from `main`, and review again |
-| Branch push returns 403 | Publication fails without changing `main` | Verify the publisher job has job-scoped Contents write permission |
 | Copilot CLI authentication fails | Classification is incomplete; existing draft is preserved | Verify organization-billed Copilot CLI use is enabled and rerun manually |
 | A localized Microsoft Learn URL is committed manually | Tests fail with `localized Microsoft documentation URL` | Remove the locale path segment, for example change `/en-us/azure/cosmos-db/...` to `/azure/cosmos-db/...` |
 
@@ -150,9 +147,8 @@ To pause maintenance without affecting the published gallery, disable `Audit gal
 
 To discard a generated proposal:
 
-1. close the unassigned proposal issue or Copilot-created draft pull request without merging;
-2. delete the associated `automation/gallery-content-updates-<run-id>-<attempt>` branch; and
-3. rerun the workflow when the underlying issue is fixed.
+1. close the unassigned proposal issue or Copilot-created draft pull request without merging; and
+2. rerun the workflow when the underlying issue is fixed.
 
 Every run starts a new branch from current `main`, so earlier proposal and rejection history remains intact. If a catalog PR was merged incorrectly, revert that catalog PR through the normal protected-branch process; do not force-push `main`.
 
