@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { stripVTControlCharacters } from 'node:util';
 import { jsonrepair } from 'jsonrepair';
+import { normalizeUrl } from './normalize.mjs';
 
 const CONFIDENCE = new Set(['high', 'medium', 'low']);
 const NEW_VERDICTS = new Set(['include', 'review', 'exclude']);
@@ -84,6 +85,7 @@ function validateItem(item, expectedIndex, expectedUrl, kind) {
     if (typeof item.relatedUrl !== 'string' || /\s/.test(item.relatedUrl)) throw new Error(`${kind} classification has invalid relatedUrl`);
     const related = new URL(item.relatedUrl);
     if (!['http:', 'https:'].includes(related.protocol) || (related.pathname.includes('&') && !related.search)) throw new Error(`${kind} classification has invalid relatedUrl`);
+    item.relatedUrl = normalizeUrl(item.relatedUrl);
   }
   item.url = expectedUrl;
 }

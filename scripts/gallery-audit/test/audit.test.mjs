@@ -631,6 +631,43 @@ test('rejects empty Copilot classification criteria', () => {
   assert.match(result.error, /invalid criteria/);
 });
 
+test('canonicalizes localized Microsoft Learn related URLs before promotion', () => {
+  const candidates = [{ url: 'https://example.com/new' }];
+  const existingEntries = [{ catalogIndex: 40, url: 'https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search' }];
+  const result = runCopilotClassification({
+    candidates,
+    existingEntries,
+    catalog: [],
+    execute: () => ({
+      status: 0,
+      stderr: '',
+      stdout: JSON.stringify({
+        newContent: [{
+          candidateIndex: 0,
+          url: candidates[0].url,
+          verdict: 'review',
+          confidence: 'high',
+          criteria: ['manual review required'],
+          evidence: 'Candidate requires review.',
+          relatedUrl: null,
+        }],
+        existingContent: [{
+          catalogIndex: 40,
+          url: existingEntries[0].url,
+          verdict: 'retire-proposed',
+          confidence: 'high',
+          criteria: ['redirected to excluded product'],
+          evidence: 'Content now redirects to Azure DocumentDB.',
+          relatedUrl: 'https://learn.microsoft.com/en-us/azure/documentdb/vector-search',
+        }],
+      }),
+    }),
+  });
+
+  assert.equal(result.status, 'complete');
+  assert.equal(result.classification.existingContent[0].relatedUrl, 'https://learn.microsoft.com/azure/documentdb/vector-search');
+});
+
 test('rejects malformed retirement replacement URLs', () => {
   const existingEntries = [{ catalogIndex: 0, url: 'https://example.com/old' }];
   for (const relatedUrl of [
