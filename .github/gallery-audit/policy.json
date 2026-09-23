@@ -1,0 +1,13 @@
+{
+  "requestTimeoutMs": 10000,
+  "auditConcurrency": 8,
+  "discoveryCandidateLimit": 40,
+  "maxResponseBytes": 1048576,
+  "redirectLimit": 5,
+  "trackingParameters": ["utm_*", "fbclid", "gclid", "mc_cid", "mc_eid"],
+  "ageReviewThresholdDays": 730,
+  "inclusionTerms": ["azure cosmos db", "cosmos db", "cosmosdb"],
+  "excludedCatalogTerms": ["azure documentdb", "documentdb"],
+  "excludedCatalogUrlPrefixes": ["https://learn.microsoft.com/azure/documentdb"],
+  "knownRetiredTerms": ["microsoft.azure.documentdb", "documentclient", "azure-documentdb-java", "azure-cosmosdb-java"]
+}

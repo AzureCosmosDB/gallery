@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Gallery audit fixture</title>
+    <item>
+      <title>Build with Azure Cosmos DB using a fixture</title>
+      <link>https://devblogs.microsoft.com/cosmosdb/gallery-audit-fixture/?utm_source=rss</link>
+      <pubDate>{{PUBLISHED_AT}}</pubDate>
+      <author>Azure Cosmos DB Team</author>
+      <description>A technical Azure Cosmos DB walkthrough used only for local validation.</description>
+    </item>
+  </channel>
+</rss>

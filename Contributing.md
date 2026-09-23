@@ -14,3 +14,30 @@ This project has adopted the Microsoft Open Source Code of Conduct. For more inf
 
 We very much welcome issues to help us improve the project. When submitting an issue, select the appropriate template and fill out the information requested. This will help us to understand the issue and resolve it as quickly as possible. Be sure to include as much information as you can, including configuration files, logs, and hosting model.
 
+## Catalog Contributions
+
+Catalog changes may be submitted manually or proposed by the automated maintenance workflow. In both cases:
+
+- use a canonical public source URL;
+- use locale-neutral Microsoft documentation URLs without segments such as `/en-us/`;
+- provide complete title, description, author, date, website, preview, and tag metadata;
+- keep descriptions factual, complete, and free of encoded feed entities;
+- avoid duplicate resources after URL normalization; and
+- include strong evidence for removals or retirements.
+
+Generated maintenance pull requests are always drafts. Their bodies label additions as `A<n>`, URL updates as `U<n>`, retirements as `R<n>`, and skipped items as `S<n>`. An authorized maintainer can comment `Reject: A1, U1, R1` to remove those changes from the current proposal. A maintainer must review the complete catalog diff and merge it through the normal protected-branch process before publication.
+
+See [Automated gallery maintenance](./docs/automated-gallery-maintenance.md) and [Content source policy](./docs/content-source-policy.md) for the operating and source-approval requirements.
+
+## Validation
+
+Use npm and the committed `package-lock.json`:
+
+```shell
+npm ci
+npm run test:gallery-audit
+npm run gallery:audit:fixtures
+npm run build
+```
+
+All four commands must pass before a catalog or maintenance-automation pull request is ready for review.

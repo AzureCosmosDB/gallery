@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "gallery:audit": "node scripts/gallery-audit/index.mjs",
+    "gallery:audit:fixtures": "node scripts/gallery-audit/index.mjs --fixtures",
+    "gallery:promote": "node scripts/gallery-audit/index.mjs --classify-only --promote",
+    "test:gallery-audit": "node --test scripts/gallery-audit/test/*.test.mjs",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
@@ -23,6 +26,8 @@
     "@mdx-js/react": "^3.0.0",
     "@types/react-dom": "^18.2.17",
     "clsx": "^2.0.0",
+    "fast-xml-parser": "5.11.1",
+    "jsonrepair": "3.15.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,7 +57,6 @@
     "@popperjs/core": "^2.11.8",
     "react-helmet": "^6.1.0",
     "scheduler": "^0.20.2",
-    "search-insights": "^2.11.0",
-    "yarn": "^1.22.22"
+    "search-insights": "^2.11.0"
   }
 }
