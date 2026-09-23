@@ -46,6 +46,10 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+      copilot-requests: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -78,15 +82,6 @@ jobs:
             echo "main must require an approving review, stale-review dismissal, approval after the latest push, and resolved review threads."
             exit 1
           }
-
-      - name: Prepare per-run automation branch
-        env:
-          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}-${{ github.run_attempt }}
-        run: |
-          git config user.name "gallery-content-automation"
-          git config user.email "gallery-content-automation@users.noreply.github.com"
-          git fetch origin main
-          git checkout -b "$UPDATE_BRANCH" origin/main
 
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -121,12 +116,10 @@ jobs:
           node -e "const fs=require('fs');const value=fs.readFileSync(process.env.RUNNER_TEMP + '/copilot-skills.json','utf8');for(const name of ['cosmosdb-best-practices','humanizer'])if(!value.includes(name))throw new Error('Required Copilot skill unavailable: '+name)"
 
       - name: Classify and promote high-confidence updates
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          if [ "${{ secrets.COPILOT_GITHUB_TOKEN != '' }}" != "true" ]; then
-            echo "Copilot classification skipped: COPILOT_GITHUB_TOKEN is not configured."
-            exit 0
-          fi
-          COPILOT_GITHUB_TOKEN="${{ secrets.COPILOT_GITHUB_TOKEN }}" node scripts/gallery-audit/index.mjs --classify-only --promote
+          node scripts/gallery-audit/index.mjs --classify-only --promote
 
       - name: Validate proposed catalog
         if: hashFiles('output/gallery-content-review/promotion-result.json') != ''
@@ -134,39 +127,30 @@ jobs:
           npm run test:gallery-audit
           npm run build
 
-      - name: Detect catalog changes
-        id: changes
+      - name: Detect actionable recommendations
+        id: actionable
         shell: bash
         run: |
-          if git diff --quiet -- static/templates.json static/retired-templates.json; then
-            echo "catalog=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "catalog=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Publish draft pull request
-        if: success()
-        env:
-          GH_TOKEN: ${{ secrets.GALLERY_UPDATE_TOKEN }}
-          UPDATE_BRANCH: automation/gallery-content-updates-${{ github.run_id }}-${{ github.run_attempt }}
-          NOTIFY_REVIEWER: jagord_microsoft
-        run: |
-          test -n "$GH_TOKEN" || { echo "GALLERY_UPDATE_TOKEN is required to publish the draft pull request."; exit 1; }
-          gh auth setup-git
-
           if [ ! -f output/gallery-content-review/promotion-result.json ]; then
-            echo "No complete promotion result; leaving the existing draft pull request unchanged."
+            echo "available=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          count=$(node -p "const r=require('./output/gallery-content-review/promotion-result.json'); (r.additions?.length ?? 0) + (r.updates?.length ?? 0) + (r.retirements?.length ?? 0)")
+          test "$count" -gt 0 || { echo "available=false" >> "$GITHUB_OUTPUT"; exit 0; }
+          git diff --quiet -- static/templates.json static/retired-templates.json && {
+            echo "Actionable recommendations did not produce a catalog diff."
+            exit 1
+          }
+          echo "available=true" >> "$GITHUB_OUTPUT"
 
-          if [ "${{ steps.changes.outputs.catalog }}" != "true" ]; then
-            exit 0
-          fi
-
-          git add static/templates.json static/retired-templates.json
-          git commit -m "chore: refresh gallery content"
-          git push origin "HEAD:$UPDATE_BRANCH"
-          gh pr create --draft --base main --head "$UPDATE_BRANCH" --reviewer "$NOTIFY_REVIEWER" --title "chore: refresh gallery content" --body-file output/gallery-content-review/promotion-summary.md
+      - name: Upload proposal files
+        if: steps.actionable.outputs.available == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gallery-content-proposal-${{ github.run_id }}
+          path: output/gallery-content-review/promotion-summary.md
+          retention-days: 30
+          if-no-files-found: error
 
       - name: Add summary
         if: always()

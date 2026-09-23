@@ -112,7 +112,13 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
     original.source = finalUrl;
     knownUrls.delete(previousFingerprint);
     knownUrls.add(finalFingerprint);
-    updates.push({ title: original.title, previousUrl, url: original.source });
+    updates.push({
+      title: original.title,
+      previousUrl,
+      url: original.source,
+      recommendationReason: 'The published source redirects to this canonical URL.',
+      recommendationCriteria: [...auditEntry.reasonCodes],
+    });
   }
 
   for (const candidate of candidateReport.candidates) {
@@ -126,7 +132,11 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
       skippedAdditions.push({ url: candidate.url, reason: 'missing-catalog-metadata' });
     } else {
       knownUrls.add(fingerprint);
-      additions.push(entry);
+      additions.push({
+        ...entry,
+        recommendationReason: classification.evidence,
+        recommendationCriteria: [...classification.criteria],
+      });
     }
   }
 
@@ -154,8 +164,9 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
   }
 
   additions.sort((left, right) => right.date.localeCompare(left.date) || left.title.localeCompare(right.title));
+  const catalogAdditions = additions.map(({ recommendationReason, recommendationCriteria, ...entry }) => entry);
   return {
-    catalog: sortCatalogForPublishing([...additions, ...updatedCatalog.filter((_, index) => !retirementIndexes.has(index))]),
+    catalog: sortCatalogForPublishing([...catalogAdditions, ...updatedCatalog.filter((_, index) => !retirementIndexes.has(index))]),
     retiredCatalog: [...retiredCatalog, ...retirements],
     additions,
     updates,
@@ -169,14 +180,20 @@ export function promotionMarkdown(result, generatedAt) {
   return [
     '# Automated gallery content update', '',
     `Generated: ${generatedAt}`, '',
-    'Comment with item IDs to reject proposed changes, for example: `Reject: A1, U1, R1`.', '',
+    'Edit this issue before assigning it to Copilot. Delete recommendations you do not want, revise any item in place, and add implementation notes where needed. The edited issue body is the source of truth.', '',
     `Additions: ${result.additions.length}`, '',
     ...result.additions.flatMap((entry, index) => [
       ...proposalItem(`A${index + 1}`, 'Add', entry),
       ...proposalCardDetails(entry),
+      `  - Reason: ${markdownText(entry.recommendationReason)}`,
+      `  - Criteria: ${markdownText(entry.recommendationCriteria?.join(', '))}`,
     ]),
     '', `URL updates: ${updates.length}`, '',
-    ...updates.flatMap((entry, index) => proposalItem(`U${index + 1}`, 'Update', { title: entry.title, source: entry.url }, entry.previousUrl)),
+    ...updates.flatMap((entry, index) => [
+      ...proposalItem(`U${index + 1}`, 'Update', { title: entry.title, source: entry.url }, entry.previousUrl),
+      `  - Reason: ${markdownText(entry.recommendationReason)}`,
+      `  - Criteria: ${markdownText(entry.recommendationCriteria?.join(', '))}`,
+    ]),
     '', `Retirements: ${result.retirements.length}`, '',
     ...result.retirements.flatMap((entry, index) => [
       ...proposalItem(`R${index + 1}`, 'Retire', entry, null, `: ${markdownText(entry.retirementReason)}`),
@@ -184,7 +201,7 @@ export function promotionMarkdown(result, generatedAt) {
     ]),
     '', `Skipped high-confidence additions: ${result.skippedAdditions.length}`, '',
     ...result.skippedAdditions.map((entry, index) => `- **S${index + 1}** ${markdownText(entry.url)}: ${markdownText(entry.reason)}`),
-    '', 'This pull request is generated as a draft and requires human approval before merge.', '',
+    '', 'Assign this issue to Copilot only after the issue body reflects the desired catalog changes. The resulting draft pull request requires human approval before merge.', '',
   ].join('\n');
 }
 

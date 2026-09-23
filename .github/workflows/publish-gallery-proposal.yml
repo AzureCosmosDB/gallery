@@ -1,0 +1,65 @@
+name: Publish gallery proposal
+
+on:
+  workflow_run:
+    workflows: [Audit gallery content]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event != 'pull_request' &&
+      github.event.workflow_run.head_branch == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      issues: write
+    env:
+      SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+    steps:
+      - name: Download validated proposal
+        id: proposal
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          artifact_name="gallery-content-proposal-$SOURCE_RUN_ID"
+          artifact_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID/artifacts" \
+            --jq ".artifacts[] | select(.name == \"$artifact_name\") | .id")
+          if [ -z "$artifact_id" ]; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          proposal_dir="$RUNNER_TEMP/gallery-proposal"
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$artifact_name" --dir "$proposal_dir"
+          summary_path=$(find "$proposal_dir" -type f -name promotion-summary.md -print -quit)
+          test -n "$summary_path" || { echo "Validated proposal summary is missing."; exit 1; }
+          echo "summary_path=$summary_path" >> "$GITHUB_OUTPUT"
+          echo "available=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish proposal issue
+        if: steps.proposal.outputs.available == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SUMMARY_PATH: ${{ steps.proposal.outputs.summary_path }}
+        run: |
+          issue_body="$RUNNER_TEMP/gallery-proposal-issue.md"
+          cat > "$issue_body" <<EOF
+          ## Validated gallery proposal
+
+          The automated gallery audit produced the following validated catalog proposal.
+
+          - [Inspect the source workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID)
+
+          $(cat "$SUMMARY_PATH")
+
+          ## Copilot task
+
+          Treat the edited issue body as the complete source of truth. Implement exactly the additions, URL updates, retirements, and notes that remain in this issue; ignore deleted recommendations. Modify the catalog files, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
+          EOF
+          issue_url=$(gh issue create --title "Gallery content proposal $SOURCE_RUN_ID" --body-file "$issue_body")
+          printf 'Proposal issue created: %s\n' "$issue_url" >> "$GITHUB_STEP_SUMMARY"

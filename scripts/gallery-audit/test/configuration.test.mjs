@@ -6,11 +6,9 @@ import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..', '..', '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 
-test('schedules one weekly maintenance run and notifies the designated reviewer for new PRs', () => {
+test('schedules one weekly maintenance run', () => {
   const workflow = read('.github/workflows/audit-gallery-content.yml');
   assert.deepEqual([...workflow.matchAll(/^\s*- cron:\s*'([^']+)'\s*$/gm)].map((match) => match[1]), ['17 6 * * 1']);
-  assert.match(workflow, /^\s*NOTIFY_REVIEWER:\s*jagord_microsoft\s*$/m);
-  assert.match(workflow, /gh pr create[^\n]*--reviewer "\$NOTIFY_REVIEWER"/);
 });
 
 test('pins and verifies the required curator skills', () => {
@@ -29,28 +27,45 @@ test('pins and verifies the required curator skills', () => {
   assert.match(humanizer, /Preserve every fact, verdict, confidence value, index, URL, and JSON field\./);
 });
 
-test('stages the complete review-command module chain before switching branches', () => {
-  const workflow = read('.github/workflows/apply-gallery-review.yml');
-  for (const module of ['review-command.mjs', 'promotion.mjs', 'normalize.mjs']) {
-    assert.match(workflow, new RegExp(`cp scripts/gallery-audit/${module.replace('.', '\\.')}`));
+test('uses direct issue editing for proposal decisions without a privileged review workflow', () => {
+  assert.equal(fs.existsSync(path.join(root, '.github/workflows/apply-gallery-review.yml')), false);
+  assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/review-command.mjs')), false);
+  assert.equal(fs.existsSync(path.join(root, 'scripts/gallery-audit/test/review-command.test.mjs')), false);
+  const promotion = read('scripts/gallery-audit/promotion.mjs');
+  assert.match(promotion, /Edit this issue before assigning it to Copilot/);
+  assert.match(promotion, /edited issue body is the source of truth/);
+});
+
+test('does not hardcode a maintenance reviewer identity', () => {
+  const files = [
+    '.github/workflows/audit-gallery-content.yml',
+    '.github/workflows/publish-gallery-proposal.yml',
+    'docs/automated-gallery-maintenance.md',
+    'docs/gallery-content-discovery-and-maintenance-proposal.md',
+  ];
+  for (const file of files) {
+    assert.doesNotMatch(read(file), /jagord_microsoft|jagord@microsoft\.com/i, file);
   }
-  assert.match(workflow, /node "\$RUNNER_TEMP\/gallery-review\/review-command\.mjs"/);
 });
 
-test('authorizes review commands by effective repository permission', () => {
-  const workflow = read('.github/workflows/apply-gallery-review.yml');
-  assert.match(workflow, /collaborators\/\$COMMENTER\/permission/);
-  assert.match(workflow, /admin\|maintain\|write/);
-  assert.match(workflow, /Authorize commenter[\s\S]*GH_TOKEN: \$\{\{ secrets\.GALLERY_UPDATE_TOKEN \}\}/);
-  assert.doesNotMatch(workflow, /author_association/);
-});
+test('keeps audit read-only and publishes only an issue through trusted workflow_run', () => {
+  const audit = read('.github/workflows/audit-gallery-content.yml');
+  assert.match(audit, /permissions:\s*\n\s*contents: read\s*\n\s*pull-requests: read\s*\n\s*copilot-requests: write/);
+  assert.match(audit, /gallery-content-proposal-\$\{\{ github\.run_id \}\}/);
+  assert.match(audit, /path: output\/gallery-content-review\/promotion-summary\.md/);
+  assert.match(audit, /r\.additions\?\.length[\s\S]*r\.updates\?\.length[\s\S]*r\.retirements\?\.length/);
+  assert.match(audit, /steps\.actionable\.outputs\.available == 'true'/);
+  assert.doesNotMatch(audit, /contents: write|issues: write|git push|gh issue create/);
 
-test('creates a new maintenance branch and draft pull request for each audit run', () => {
-  const workflow = read('.github/workflows/audit-gallery-content.yml');
-  assert.match(workflow, /automation\/gallery-content-updates-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}/);
-  assert.doesNotMatch(workflow, /push --force/);
-  assert.doesNotMatch(workflow, /gh pr edit/);
-  assert.match(workflow, /gh pr create --draft/);
+  const publisher = read('.github/workflows/publish-gallery-proposal.yml');
+  assert.match(publisher, /workflow_run:[\s\S]*workflows: \[Audit gallery content\][\s\S]*types: \[completed\]/);
+  assert.match(publisher, /workflow_run\.conclusion == 'success'/);
+  assert.match(publisher, /workflow_run\.event != 'pull_request'/);
+  assert.match(publisher, /workflow_run\.head_branch == github\.event\.repository\.default_branch/);
+  assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*issues: write/);
+  assert.match(publisher, /gh issue create --title "Gallery content proposal \$SOURCE_RUN_ID"/);
+  assert.match(publisher, /Treat the edited issue body as the complete source of truth/);
+  assert.doesNotMatch(publisher, /contents: write|actions\/checkout|git push|gh pr create|gh pr edit|automation\/gallery-content-updates|GALLERY_UPDATE_TOKEN/);
 });
 
 test('fails closed until main has the required human approval ruleset', () => {
