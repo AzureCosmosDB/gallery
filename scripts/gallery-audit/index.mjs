@@ -62,8 +62,8 @@ async function classifyOnly({ promote = false } = {}) {
     readJson('output/gallery-content-review/article-candidates.json'),
     readJson('output/gallery-content-review/run-metadata.json'),
   ]);
-  if (!process.env.COPILOT_GITHUB_TOKEN) {
-    metadata.copilot = { status: 'skipped', reason: 'COPILOT_GITHUB_TOKEN not configured' };
+  if (!process.env.COPILOT_GITHUB_TOKEN && !process.env.GH_TOKEN && !process.env.GITHUB_TOKEN) {
+    metadata.copilot = { status: 'skipped', reason: 'Copilot authentication token not configured' };
     await writeJson('run-metadata.json', metadata);
     return;
   }
@@ -137,7 +137,7 @@ async function run() {
     enabledSources: sourcesDocument.sources.filter((source) => source.enabled).map((source) => source.id),
     sourceResults: discovery.sourceResults,
     counts: { catalogEntries: catalog.length, auditEntries: auditEntries.length, candidates: discovery.candidates.length, sourceErrors: sourceErrors.length },
-    copilot: { status: 'skipped', reason: 'COPILOT_GITHUB_TOKEN not configured or classification not requested' },
+    copilot: { status: 'skipped', reason: 'Copilot authentication token not configured or classification not requested' },
   };
   await writeReports(auditReport, candidateReport, metadata);
   if (flags.has('--classify')) await classifyOnly({ promote: flags.has('--promote') });

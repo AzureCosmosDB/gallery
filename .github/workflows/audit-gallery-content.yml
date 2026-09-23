@@ -46,6 +46,10 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+      copilot-requests: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -121,12 +125,10 @@ jobs:
           node -e "const fs=require('fs');const value=fs.readFileSync(process.env.RUNNER_TEMP + '/copilot-skills.json','utf8');for(const name of ['cosmosdb-best-practices','humanizer'])if(!value.includes(name))throw new Error('Required Copilot skill unavailable: '+name)"
 
       - name: Classify and promote high-confidence updates
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          if [ "${{ secrets.COPILOT_GITHUB_TOKEN != '' }}" != "true" ]; then
-            echo "Copilot classification skipped: COPILOT_GITHUB_TOKEN is not configured."
-            exit 0
-          fi
-          COPILOT_GITHUB_TOKEN="${{ secrets.COPILOT_GITHUB_TOKEN }}" node scripts/gallery-audit/index.mjs --classify-only --promote
+          node scripts/gallery-audit/index.mjs --classify-only --promote
 
       - name: Validate proposed catalog
         if: hashFiles('output/gallery-content-review/promotion-result.json') != ''
