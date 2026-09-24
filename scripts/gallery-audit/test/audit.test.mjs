@@ -666,7 +666,7 @@ test('turns localized Copilot retirement URLs into a valid actionable proposal',
     outcome: 'review',
     reasonCodes: ['excluded-product'],
     httpStatus: 200,
-    finalUrl: entry.source.replace('/azure/cosmos-db/mongodb/vcore/', '/azure/documentdb/'),
+    finalUrl: entry.source.replace('/azure/cosmos-db/mongodb/vcore/', '/en-us/azure/documentdb/'),
     duplicates: { exact: [], normalized: [] },
     classification: classification.classification.existingContent[catalogIndex],
   }));
@@ -686,6 +686,10 @@ test('turns localized Copilot retirement URLs into a valid actionable proposal',
   assert.equal(result.catalog.length, 0);
   assert.equal(result.retiredCatalog.length, 2);
   assert.deepEqual(result.retirements.map((entry) => entry.replacementUrl), [
+    'https://learn.microsoft.com/azure/documentdb/vector-search',
+    'https://learn.microsoft.com/azure/documentdb/rag',
+  ]);
+  assert.deepEqual(result.retirements.map((entry) => entry.retirementEvidence.finalUrl), [
     'https://learn.microsoft.com/azure/documentdb/vector-search',
     'https://learn.microsoft.com/azure/documentdb/rag',
   ]);
