@@ -156,7 +156,7 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
       retirementEvidence: {
         auditOutcome: auditEntry.outcome,
         httpStatus: auditEntry.httpStatus,
-        finalUrl: auditEntry.finalUrl ? normalizeUrl(auditEntry.finalUrl, policy.trackingParameters) : auditEntry.finalUrl,
+        finalUrl: auditEntry.finalUrl,
         reasonCodes: [...auditEntry.reasonCodes],
         criteria: [...classification.criteria],
       },
