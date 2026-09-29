@@ -51,15 +51,17 @@ jobs:
           cat > "$issue_body" <<EOF
           ## Validated gallery proposal
 
-          The automated gallery audit produced the following validated catalog proposal.
+          The automated gallery audit produced the following validated catalog proposal. This workflow does not create a branch or pull request.
 
           - [Inspect the source workflow run]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID)
 
           $(cat "$SUMMARY_PATH")
 
-          ## Copilot task
+          ## Operator handoff
 
-          Treat the edited issue body as the complete source of truth. Implement exactly the additions, URL updates, retirements, and notes that remain in this issue; ignore deleted recommendations. Modify the catalog files, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
+          Edit the proposals above before assigning this issue to an implementation agent. Delete unwanted proposals, correct retained card fields and destinations, and add any implementation notes.
+
+          Treat the edited issue body as the complete source of truth. The assigned agent must implement exactly the additions, URL updates, retirements, and notes that remain; ignore deleted recommendations. Modify \`static/templates.json\` and \`static/retired-templates.json\` as directed, run \`npm run test:gallery-audit\` and \`npm run build\`, and open a draft pull request to \`main\`. Do not add unrelated changes, approve, merge, or enable automerge.
           EOF
-          issue_url=$(gh issue create --title "Gallery content proposal $SOURCE_RUN_ID" --body-file "$issue_body")
+          issue_url=$(gh issue create --repo "$GITHUB_REPOSITORY" --title "Gallery content proposal $SOURCE_RUN_ID" --body-file "$issue_body")
           printf 'Proposal issue created: %s\n' "$issue_url" >> "$GITHUB_STEP_SUMMARY"

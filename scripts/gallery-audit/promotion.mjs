@@ -60,19 +60,21 @@ export function proposalItem(id, action, entry, previousUrl = null, suffix = '')
 
 export function proposalCardDetails(entry) {
   return [
+    '  - Catalog change: Add this card to `static/templates.json`.',
     `  - Description: ${markdownText(entry.description, '**MISSING**')}`,
+    `  - Preview: ${markdownText(entry.preview, '**MISSING**')}`,
+    `  - Website: ${markdownText(entry.website, '**MISSING**')}`,
     `  - Author: ${markdownText(Array.isArray(entry.author) ? entry.author.join(', ') : entry.author, '**MISSING**')}`,
+    `  - Source: ${markdownText(entry.source, '**MISSING**')}`,
     `  - Date: ${markdownText(entry.date, '**MISSING**')}`,
     `  - Tags: ${markdownText(entry.tags?.length ? entry.tags.join(', ') : null, '**MISSING**')}`,
-    `  - Website: ${markdownText(entry.website, '**MISSING**')}`,
-    `  - Preview: ${markdownText(entry.preview, '**MISSING**')}`,
-    `  - Source: ${markdownText(entry.source, '**MISSING**')}`,
   ];
 }
 
 export function retirementProof(entry) {
   const evidence = entry.retirementEvidence ?? {};
   return [
+    '  - Catalog change: Remove this card from `static/templates.json` and append its retirement record to `static/retired-templates.json`.',
     `  - Reason: ${markdownText(entry.retirementReason)}`,
     `  - Audit outcome: ${markdownText(evidence.auditOutcome)}`,
     `  - HTTP status: ${markdownText(evidence.httpStatus)}`,
@@ -191,6 +193,7 @@ export function promotionMarkdown(result, generatedAt) {
     '', `URL updates: ${updates.length}`, '',
     ...updates.flatMap((entry, index) => [
       ...proposalItem(`U${index + 1}`, 'Update', { title: entry.title, source: entry.url }, entry.previousUrl),
+      '  - Catalog change: Replace this card\'s source URL in `static/templates.json`.',
       `  - Reason: ${markdownText(entry.recommendationReason)}`,
       `  - Criteria: ${markdownText(entry.recommendationCriteria?.join(', '))}`,
     ]),

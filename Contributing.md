@@ -25,7 +25,7 @@ Catalog changes may be submitted manually or proposed by the automated maintenan
 - avoid duplicate resources after URL normalization; and
 - include strong evidence for removals or retirements.
 
-Generated maintenance pull requests are always drafts. Their bodies label additions as `A<n>`, URL updates as `U<n>`, retirements as `R<n>`, and skipped items as `S<n>`. An authorized maintainer can comment `Reject: A1, U1, R1` to remove those changes from the current proposal. A maintainer must review the complete catalog diff and merge it through the normal protected-branch process before publication.
+Automated maintenance creates an unassigned proposal issue, not a pull request. The issue labels additions as `A<n>`, URL updates as `U<n>`, retirements as `R<n>`, and skipped items as `S<n>`. Each addition includes the complete proposed card fields and destination, and each retirement identifies the card and gives the removal reason and evidence. An authorized maintainer edits or deletes proposals in the issue, then assigns the issue to an implementation agent. The agent creates a draft pull request, which a maintainer must review and merge through the normal protected-branch process before publication.
 
 See [Automated gallery maintenance](./docs/automated-gallery-maintenance.md) and [Content source policy](./docs/content-source-policy.md) for the operating and source-approval requirements.
 
