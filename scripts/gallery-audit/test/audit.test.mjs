@@ -6,7 +6,7 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { auditCatalog, checkUrl, discoverArticles, discoverContent, discoverFromFeed, findDuplicates, validateCatalog } from '../core.mjs';
-import { buildClassificationPrompt, buildCopilotArguments, runCopilotClassification } from '../copilot.mjs';
+import { buildClassificationPrompt, buildCopilotArguments, extractJsonObject, runCopilotClassification } from '../copilot.mjs';
 import { urlFingerprint } from '../normalize.mjs';
 import { planCatalogPromotion, promotionMarkdown, sortCatalogForPublishing, strongRetirementEvidence, validatePromotionResult } from '../promotion.mjs';
 
@@ -558,6 +558,22 @@ review.",
   assert.equal(result.status, 'complete');
   assert.equal(result.classification.newContent[0].url, candidate.url);
   assert.equal(result.classification.newContent[0].evidence, 'Needs\nreview.');
+});
+
+test('extracts a JSON object from Copilot response wrappers', () => {
+  const response = '{"newContent":[],"existingContent":[]}';
+  assert.equal(extractJsonObject(`'${response}'`), response);
+  assert.equal(extractJsonObject(`Result:\n${response}\nDone.`), response);
+});
+
+test('accepts a single-quoted Copilot response wrapper', () => {
+  const response = '{"newContent":[],"existingContent":[]}';
+  const result = runCopilotClassification({
+    prompt: 'prompt', candidatePath: 'candidates.json', auditPath: 'audit.json', catalogPath: 'catalog.json',
+    candidates: [], catalog: [], execute: () => ({ status: 0, stdout: `'${response}'` }),
+  });
+  assert.equal(result.status, 'complete');
+  assert.equal(result.attempts, 1);
 });
 
 test('embeds JSON inputs as untrusted prompt data without native attachments', () => {

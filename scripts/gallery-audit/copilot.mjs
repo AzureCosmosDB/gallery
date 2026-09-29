@@ -62,8 +62,16 @@ export function stripJsonFence(value) {
   return match ? match[1].trim() : trimmed;
 }
 
+export function extractJsonObject(value) {
+  const stripped = stripJsonFence(stripVTControlCharacters(value));
+  const start = stripped.indexOf('{');
+  const end = stripped.lastIndexOf('}');
+  if (start === -1 || end < start) return stripped;
+  return stripped.slice(start, end + 1);
+}
+
 function normalizeCopilotJson(value) {
-  return jsonrepair(stripJsonFence(stripVTControlCharacters(value)));
+  return jsonrepair(extractJsonObject(value));
 }
 
 function exactKeys(value, expected) {

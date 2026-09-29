@@ -56,6 +56,7 @@ test('keeps audit read-only and publishes only an issue through trusted workflow
   assert.match(audit, /r\.additions\?\.length[\s\S]*r\.updates\?\.length[\s\S]*r\.retirements\?\.length/);
   assert.match(audit, /steps\.actionable\.outputs\.available == 'true'/);
   assert.doesNotMatch(audit, /contents: write|issues: write|git push|gh issue create/);
+  assert.match(read('scripts/gallery-audit/index.mjs'), /Copilot classification incomplete after/);
 
   const publisher = read('.github/workflows/publish-gallery-proposal.yml');
   assert.match(publisher, /workflow_run:[\s\S]*workflows: \[Audit gallery content\][\s\S]*types: \[completed\]/);

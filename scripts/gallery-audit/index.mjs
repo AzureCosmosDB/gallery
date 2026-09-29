@@ -90,7 +90,8 @@ async function classifyOnly({ promote = false } = {}) {
     metadata.copilot = { status: 'incomplete', attempts: result.attempts, error: result.error };
   }
   await writeReports(auditReport, candidateReport, metadata);
-  if (promote && result.status === 'complete') await applyCatalogPromotion({ root });
+  if (result.status !== 'complete') throw new Error(`Copilot classification incomplete after ${result.attempts} attempts: ${result.error}`);
+  if (promote) await applyCatalogPromotion({ root });
 }
 
 async function run() {
