@@ -610,8 +610,7 @@ test('embeds JSON inputs as untrusted prompt data without native attachments', (
   assert.match(prompt, /Keep this/);
   const retirementSection = prompt.match(/BEGIN RETIREMENT CANDIDATES ---([\s\S]*?)--- END RETIREMENT CANDIDATES/)?.[1] ?? '';
   assert.doesNotMatch(retirementSection, /Keep this/);
-  assert.equal(argumentsList[0], '-p');
-  assert.equal(argumentsList[1], prompt);
+  assert.doesNotMatch(argumentsList.join(' '), /(^| )--prompt( |$)|(^| )-p( |$)/);
   assert.ok(argumentsList.includes('--no-color'));
   assert.deepEqual(argumentsList.slice(argumentsList.indexOf('--dynamic-retrieval'), argumentsList.indexOf('--dynamic-retrieval') + 2), ['--dynamic-retrieval', 'skills=on']);
   assert.equal(argumentsList.some((argument) => argument.startsWith('--attachment')), false);
