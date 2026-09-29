@@ -63,7 +63,9 @@ test('keeps audit read-only and publishes only an issue through trusted workflow
   assert.match(publisher, /workflow_run\.event != 'pull_request'/);
   assert.match(publisher, /workflow_run\.head_branch == github\.event\.repository\.default_branch/);
   assert.match(publisher, /permissions:\s*\n\s*actions: read\s*\n\s*issues: write/);
-  assert.match(publisher, /gh issue create --title "Gallery content proposal \$SOURCE_RUN_ID"/);
+  assert.match(publisher, /gh issue create --repo "\$GITHUB_REPOSITORY" --title "Gallery content proposal \$SOURCE_RUN_ID"/);
+  assert.match(publisher, /This workflow does not create a branch or pull request/);
+  assert.match(publisher, /Edit the proposals above before assigning this issue to an implementation agent/);
   assert.match(publisher, /Treat the edited issue body as the complete source of truth/);
   assert.doesNotMatch(publisher, /contents: write|actions\/checkout|git push|gh pr create|gh pr edit|automation\/gallery-content-updates|GALLERY_UPDATE_TOKEN/);
 });

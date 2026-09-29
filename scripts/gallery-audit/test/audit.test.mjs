@@ -812,11 +812,14 @@ test('numbers every proposal issue item for unambiguous issue editing', () => {
     skippedAdditions: [{ url: 'https://example.com/skip', reason: 'already-cataloged' }],
   }, '2026-09-18T00:00:00.000Z');
   assert.match(markdown, /\*\*A1\*\* Add \[First addition\]/);
+  assert.match(markdown, /Catalog change: Add this card to `static\/templates\.json`/);
   assert.match(markdown, /Reason: Relevant example\./);
   assert.match(markdown, /Criteria: specific/);
   assert.match(markdown, /\*\*U1\*\* Update \[Moved\]/);
+  assert.match(markdown, /Catalog change: Replace this card's source URL in `static\/templates\.json`/);
   assert.match(markdown, /Reason: Canonical redirect\./);
   assert.match(markdown, /\*\*R1\*\* Retire \[First retirement\]/);
+  assert.match(markdown, /Catalog change: Remove this card from `static\/templates\.json` and append its retirement record to `static\/retired-templates\.json`/);
   assert.match(markdown, /Reason: Superseded\./);
   assert.match(markdown, /\*\*S1\*\* https:\/\/example\.com\/skip/);
   assert.match(markdown, /Edit this issue before assigning it to Copilot/);

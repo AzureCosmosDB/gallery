@@ -51,6 +51,6 @@ The repository deploys through `.github/workflows/deploy.yml` after reviewed cha
 
 ## Automated Maintenance
 
-The weekly maintenance workflow audits existing entries, discovers catalog-aligned content from approved sources, and opens one draft pull request for human review. Its Copilot curator uses the Azure Cosmos DB Agent Kit and a repository humanizer skill. A new proposal requests review from `jagord_microsoft`; GitHub notification routing sends that request to `jagord@microsoft.com`. The workflow never merges or publishes catalog changes automatically.
+The weekly maintenance workflow audits existing entries, discovers catalog-aligned content from approved sources, and opens an unassigned proposal issue. An operator edits the proposed additions, URL updates, and retirements, then assigns the issue to an implementation agent. Only that assigned agent creates a draft pull request for human review. The curator uses the Azure Cosmos DB Agent Kit and a repository humanizer skill. The workflow never creates a pull request, merges changes, or publishes catalog changes automatically.
 
 See [Automated gallery maintenance](./docs/automated-gallery-maintenance.md) for setup and operations, and [Content source policy](./docs/content-source-policy.md) for source eligibility.
