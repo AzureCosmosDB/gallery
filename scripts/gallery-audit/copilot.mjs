@@ -62,8 +62,16 @@ export function stripJsonFence(value) {
   return match ? match[1].trim() : trimmed;
 }
 
+export function extractJsonObject(value) {
+  const stripped = stripJsonFence(stripVTControlCharacters(value));
+  const start = stripped.indexOf('{');
+  const end = stripped.lastIndexOf('}');
+  if (start === -1 || end < start) return stripped;
+  return stripped.slice(start, end + 1);
+}
+
 function normalizeCopilotJson(value) {
-  return jsonrepair(stripJsonFence(stripVTControlCharacters(value)));
+  return jsonrepair(extractJsonObject(value));
 }
 
 function exactKeys(value, expected) {
@@ -129,8 +137,8 @@ export function buildClassificationPrompt({ prompt, candidatePath, auditPath, ca
 }
 
 export function buildCopilotArguments({ prompt, candidatePath, auditPath, catalogPath, existingEntries }) {
+  buildClassificationPrompt({ prompt, candidatePath, auditPath, catalogPath, existingEntries });
   return [
-    '-p', buildClassificationPrompt({ prompt, candidatePath, auditPath, catalogPath, existingEntries }),
     '--agent=gallery-curator',
     '--silent',
     '--stream=off',
@@ -147,6 +155,7 @@ function invokeCopilot(options) {
   return spawnSync('copilot', buildCopilotArguments(options), {
     encoding: 'utf8',
     env: process.env,
+    input: buildClassificationPrompt(options),
     maxBuffer: 2 * 1024 * 1024,
     windowsHide: true,
   });
@@ -160,6 +169,8 @@ export function runCopilotClassification(options) {
   for (let attempt = 1; attempt <= 2; attempt += 1) {
     try {
       const result = execute(options);
+      if (result.error) throw result.error;
+      if (result.signal) throw new Error(`Copilot terminated by signal ${result.signal}`);
       if (result.status !== 0) throw new Error(`Copilot exited with status ${result.status}: ${(result.stderr ?? '').trim()}`);
       const parsed = JSON.parse(normalizeCopilotJson(result.stdout ?? ''));
       return { status: 'complete', attempts: attempt, classification: validateClassification(parsed, options.candidates, existingEntries) };
