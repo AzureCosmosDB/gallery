@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
 import { once } from 'node:events';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { auditCatalog, checkUrl, discoverArticles, discoverContent, discoverFromFeed, findDuplicates, validateCatalog } from '../core.mjs';
@@ -45,6 +45,43 @@ test('validates catalogs and detects exact and normalized duplicates without mut
   assert.ok(report.every((entry) => entry.outcome === 'duplicate'));
   assert.ok(report.every((entry) => entry.reasonCodes.includes('duplicate')));
   assert.equal(JSON.stringify(catalog), before);
+});
+
+test('accepts the proposal-driven catalog entries required for the gallery audit', () => {
+  const file = readFileSync(path.join(process.cwd(), 'static/templates.json'), 'utf8');
+  const catalog = JSON.parse(file);
+  const required = [
+    'Migrating Elasticsearch Mappings to Azure Cosmos DB',
+    'Azure Cosmos DB Migration Guide for Elasticsearch Users',
+    'Partitioning and horizontal scaling - Azure Cosmos DB',
+    'How to Choose the Right Partition Key in Azure Cosmos DB',
+    'How to Store AI Chat History with Azure Cosmos DB',
+    'Vector Search in Azure Cosmos DB: When and How to Use It',
+    'Building APIs Faster with Agentic Development and Azure Cosmos DB',
+    'azure-cosmos-agent-starter',
+    'Azure Cosmos DB: Provisioned Throughput vs. Serverless — How to Choose',
+    'Spec-Driven Development comes to Azure Cosmos DB: The First Database Extension for GitHub Spec Kit',
+    'Azure Cosmos DB Indexing Policies Explained',
+    'Why Build AI Apps with Azure Cosmos DB?',
+    'Building AI Apps Faster with Agentic Coding and Azure Cosmos DB',
+    'Emulator (Docker/local) - Azure Cosmos DB',
+    'I Need My CI/CD Pipeline to Access Cosmos DB Without Using a Secret',
+    'Databases, containers, and items - Azure Cosmos DB',
+    'Service Quotas and Default Limits - Azure Cosmos DB',
+    'Powering Memory in Foundry Agent Service, with Azure Cosmos DB',
+    'foundry-cosmos-memory',
+    'Stale Embeddings Hurt Search Quality in RAG: How to Fix It',
+    'Let the Agent Write It—But Can It Scale?',
+    'spec-kit-cosmosdb',
+    'haystack-azure-cosmosdb',
+    'eve-cosmos-memory',
+    'langchainjs-cosmosdb-rag-quickstart',
+  ];
+  const titles = new Set(catalog.map((entry) => entry.title));
+  for (const title of required) {
+    assert.ok(titles.has(title), `Missing catalog entry: ${title}`);
+  }
+  assert.equal(validateCatalog(catalog), catalog.length);
 });
 
 test('rejects localized Microsoft documentation URLs in live and retirement fields', () => {
