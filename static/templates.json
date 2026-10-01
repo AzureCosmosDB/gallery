@@ -2086,7 +2086,7 @@
   },
   {
     "title": "haystack-azure-cosmosdb",
-    "description": "Azure CosmosDB integrations for Haystack.",
+    "description": "Azure Cosmos DB integrations for Haystack.",
     "preview": "coming soon",
     "website": "https://github.com/AzureCosmosDB",
     "author": "Azure Cosmos DB Team",
