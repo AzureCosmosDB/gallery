@@ -8,6 +8,7 @@ import { knownTagSet, normalizeTag } from './tags.mjs';
 const CONFIDENCE = new Set(['high', 'medium', 'low']);
 const NEW_VERDICTS = new Set(['include', 'review', 'exclude']);
 const EXISTING_VERDICTS = new Set(['keep', 'review', 'retire-proposed']);
+const SOURCE_OWNED_TAGS = new Set(['blog', 'video', 'documentation', 'example', 'deck', 'tools', 'microsoft', 'community', 'featured']);
 const MAX_PROMPT_BYTES = 96 * 1024;
 
 function boundedText(value, length) {
@@ -102,7 +103,7 @@ function validateItem(item, expectedIndex, expectedUrl, kind) {
   if ('tags' in item) {
     if (!Array.isArray(item.tags) || item.tags.some((tag) => typeof tag !== 'string')) throw new Error(`${kind} classification has invalid tags`);
     // Tags outside the catalog taxonomy are dropped rather than failing the run.
-    item.tags = [...new Set(item.tags.map(normalizeTag).filter(Boolean))];
+    item.tags = [...new Set(item.tags.map(normalizeTag).filter((tag) => tag && !SOURCE_OWNED_TAGS.has(tag)))];
   }
   item.url = expectedUrl;
 }

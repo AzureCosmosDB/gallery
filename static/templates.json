@@ -16,8 +16,7 @@
       "copilot",
       "python",
       "microsoft",
-      "example",
-      "agent"
+      "example"
     ]
   },
   {
@@ -1866,8 +1865,7 @@
       "video",
       "microsoft",
       "generativeai",
-      "chat",
-      "ragPattern"
+      "chat"
     ]
   },
   {
@@ -2128,6 +2126,8 @@
     "tags": [
       "example",
       "microsoft",
+      "generativeai",
+      "vectorcosmosnosql",
       "python"
     ]
   },

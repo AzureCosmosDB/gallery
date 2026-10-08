@@ -43,11 +43,10 @@ export function normalizeTag(tag) {
 export function inferTags({ title, description, language }) {
   const text = `${title ?? ''} ${description ?? ''}`;
   const tags = RULES.filter(([, pattern]) => pattern.test(text)).map(([tag]) => tag);
-  // Language tags only when the content is language-specific: at most two.
-  const languages = tags.filter((tag) => LANGUAGE_TAGS.includes(tag));
-  const result = tags.filter((tag) => !LANGUAGE_TAGS.includes(tag) || languages.length <= 2);
   const repositoryLanguage = GITHUB_LANGUAGES.get(String(language ?? '').toLowerCase());
-  return repositoryLanguage && !result.includes(repositoryLanguage) ? [...result, repositoryLanguage] : result;
+  const combined = repositoryLanguage && !tags.includes(repositoryLanguage) ? [...tags, repositoryLanguage] : tags;
+  const languages = new Set(combined.filter((tag) => LANGUAGE_TAGS.includes(tag)).slice(0, 2));
+  return combined.filter((tag) => !LANGUAGE_TAGS.includes(tag) || languages.has(tag));
 }
 
 export function mergeTags(existing, inferred) {

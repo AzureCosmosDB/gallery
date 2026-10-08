@@ -38,6 +38,11 @@ test('GitHub repository language becomes a language tag', () => {
   assert.deepEqual(inferTags({ title: 'x', description: '', language: 'Shell' }), []);
 });
 
+test('language tags remain capped at two after adding the GitHub repository language', () => {
+  const tags = inferTags({ title: 'Python JavaScript starter', description: '', language: 'Go' });
+  assert.deepEqual(tags.filter((tag) => ['python', 'csharp', 'java', 'javascript', 'typescript', 'go'].includes(tag)), ['python', 'javascript']);
+});
+
 test('mergeTags normalizes aliases and drops unknown tags', () => {
   assert.deepEqual(mergeTags(['blog', 'Microsoft'], ['generativeai', 'blog', 'not-a-tag']), ['blog', 'microsoft', 'generativeai']);
   assert.equal(normalizeTag('azurevision'), 'azure-vision');
@@ -51,8 +56,9 @@ test('tagWarnings flags cards without language or generativeai tags', () => {
 test('classification tags are optional, normalized, and restricted to the taxonomy', () => {
   const item = (extra) => ({ candidateIndex: 0, url: 'https://example.com/a', verdict: 'include', confidence: 'high', criteria: ['x'], evidence: 'y', relatedUrl: null, ...extra });
   const candidates = [{ url: 'https://example.com/a' }];
-  const withTags = validateClassification({ newContent: [item({ tags: ['generativeai', 'Microsoft', 'made-up'] })], existingContent: [] }, candidates, []);
-  assert.deepEqual(withTags.newContent[0].tags, ['generativeai', 'microsoft']);
+  const sourceOwnedTags = ['blog', 'video', 'documentation', 'example', 'deck', 'tools', 'microsoft', 'community', 'featured'];
+  const withTags = validateClassification({ newContent: [item({ tags: ['generativeai', 'python', ...sourceOwnedTags, 'made-up'] })], existingContent: [] }, candidates, []);
+  assert.deepEqual(withTags.newContent[0].tags, ['generativeai', 'python']);
   const withoutTags = validateClassification({ newContent: [item({})], existingContent: [] }, candidates, []);
   assert.equal('tags' in withoutTags.newContent[0], false);
   assert.throws(() => validateClassification({ newContent: [item({ tags: 'python' })], existingContent: [] }, candidates, []), /invalid tags/);
