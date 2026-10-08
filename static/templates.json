@@ -16,7 +16,8 @@
       "copilot",
       "python",
       "microsoft",
-      "example"
+      "example",
+      "agent"
     ]
   },
   {
@@ -1864,7 +1865,9 @@
     "tags": [
       "video",
       "microsoft",
-      "generativeai"
+      "generativeai",
+      "chat",
+      "ragPattern"
     ]
   },
   {
@@ -1878,7 +1881,9 @@
     "tags": [
       "video",
       "microsoft",
-      "generativeai"
+      "generativeai",
+      "search",
+      "vectorcosmosnosql"
     ]
   },
   {
@@ -1964,7 +1969,9 @@
     "tags": [
       "video",
       "microsoft",
-      "generativeai"
+      "generativeai",
+      "architecturedesign",
+      "vectorcosmosnosql"
     ]
   },
   {
@@ -2076,7 +2083,9 @@
     "tags": [
       "video",
       "microsoft",
-      "generativeai"
+      "generativeai",
+      "ragPattern",
+      "search"
     ]
   },
   {
@@ -2152,7 +2161,10 @@
       "example",
       "microsoft",
       "generativeai",
-      "javascript"
+      "javascript",
+      "ragPattern",
+      "langchain",
+      "vectorcosmosnosql"
     ]
   }
 ]

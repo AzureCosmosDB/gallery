@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { validateClassification } from '../copilot.mjs';
 import { inferTags, mergeTags, normalizeTag, tagWarnings } from '../tags.mjs';
 
 test('inferTags adds generativeai, agent and language tags from content', () => {
@@ -45,4 +46,14 @@ test('mergeTags normalizes aliases and drops unknown tags', () => {
 test('tagWarnings flags cards without language or generativeai tags', () => {
   assert.deepEqual(tagWarnings({ tags: ['blog', 'microsoft'] }), ['no language or generativeai tag']);
   assert.deepEqual(tagWarnings({ tags: ['blog', 'python'] }), []);
+});
+
+test('classification tags are optional, normalized, and restricted to the taxonomy', () => {
+  const item = (extra) => ({ candidateIndex: 0, url: 'https://example.com/a', verdict: 'include', confidence: 'high', criteria: ['x'], evidence: 'y', relatedUrl: null, ...extra });
+  const candidates = [{ url: 'https://example.com/a' }];
+  const withTags = validateClassification({ newContent: [item({ tags: ['generativeai', 'Microsoft', 'made-up'] })], existingContent: [] }, candidates, []);
+  assert.deepEqual(withTags.newContent[0].tags, ['generativeai', 'microsoft']);
+  const withoutTags = validateClassification({ newContent: [item({})], existingContent: [] }, candidates, []);
+  assert.equal('tags' in withoutTags.newContent[0], false);
+  assert.throws(() => validateClassification({ newContent: [item({ tags: 'python' })], existingContent: [] }, candidates, []), /invalid tags/);
 });

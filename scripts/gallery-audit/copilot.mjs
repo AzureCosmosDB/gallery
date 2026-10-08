@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { stripVTControlCharacters } from 'node:util';
 import { jsonrepair } from 'jsonrepair';
 import { normalizeUrl } from './normalize.mjs';
+import { knownTagSet, normalizeTag } from './tags.mjs';
 
 const CONFIDENCE = new Set(['high', 'medium', 'low']);
 const NEW_VERDICTS = new Set(['include', 'review', 'exclude']);
@@ -33,7 +34,9 @@ function projectedDocuments({ candidatePath, auditPath, catalogPath, existingEnt
       publishedAt: candidate.publishedAt,
       author: boundedText(candidate.author, 160),
       summary: boundedText(candidate.summary, 500),
+      language: candidate.language,
     })) }],
+    ['ALLOWED TAGS', { tags: [...knownTagSet()] }],
     ['RETIREMENT CANDIDATES', { entries: reviewEntries.map((entry) => ({
       catalogIndex: entry.catalogIndex,
       title: boundedText(entry.title, 240),
@@ -82,6 +85,7 @@ function exactKeys(value, expected) {
 function validateItem(item, expectedIndex, expectedUrl, kind) {
   const indexKey = kind === 'new' ? 'candidateIndex' : 'catalogIndex';
   const expectedKeys = [indexKey, 'url', 'verdict', 'confidence', 'criteria', 'evidence', 'relatedUrl'];
+  if (kind === 'new' && item && typeof item === 'object' && 'tags' in item) expectedKeys.push('tags');
   if (!exactKeys(item, expectedKeys)) throw new Error(`${kind} classification has unexpected fields`);
   if (item[indexKey] !== expectedIndex) throw new Error(`${kind} classification index mismatch`);
   if (typeof item.url !== 'string' || !['http:', 'https:'].includes(new URL(item.url).protocol)) throw new Error(`${kind} classification has invalid URL`);
@@ -94,6 +98,11 @@ function validateItem(item, expectedIndex, expectedUrl, kind) {
     const related = new URL(item.relatedUrl);
     if (!['http:', 'https:'].includes(related.protocol) || (related.pathname.includes('&') && !related.search)) throw new Error(`${kind} classification has invalid relatedUrl`);
     item.relatedUrl = normalizeUrl(item.relatedUrl);
+  }
+  if ('tags' in item) {
+    if (!Array.isArray(item.tags) || item.tags.some((tag) => typeof tag !== 'string')) throw new Error(`${kind} classification has invalid tags`);
+    // Tags outside the catalog taxonomy are dropped rather than failing the run.
+    item.tags = [...new Set(item.tags.map(normalizeTag).filter(Boolean))];
   }
   item.url = expectedUrl;
 }
