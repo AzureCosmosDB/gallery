@@ -1,5 +1,8 @@
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { inferTags, mergeTags } from './tags.mjs';
 
 // Usage: node update-issue-tags.mjs <repo> <issue...> [--apply]. Rewrites "Tags:" lines in proposal issues.
@@ -22,8 +25,13 @@ for (const number of rest) {
     return block.replace(/^( {2}- Tags: ).*$/m, `$1${tags.join(', ')}`);
   }).join('');
   if (apply) {
-    writeFileSync(`${process.env.TEMP}/issue-${number}.md`, updated);
-    gh('issue', 'edit', number, '-R', repo, '--body-file', `${process.env.TEMP}/issue-${number}.md`);
+    const bodyFile = join(tmpdir(), `issue-${number}-${randomUUID()}.md`);
+    writeFileSync(bodyFile, updated);
+    try {
+      gh('issue', 'edit', number, '-R', repo, '--body-file', bodyFile);
+    } finally {
+      rmSync(bodyFile, { force: true });
+    }
     for (const label of labels) {
       try { gh('label', 'create', label, '-R', repo, '--color', '0E8A16'); } catch { /* exists */ }
       gh('issue', 'edit', number, '-R', repo, '--add-label', label);

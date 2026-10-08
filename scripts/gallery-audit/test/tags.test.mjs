@@ -19,6 +19,18 @@ test('java does not match javascript', () => {
   assert.ok(!tags.includes('java'));
 });
 
+test('LangChain.js and langchainjs identify JavaScript content', () => {
+  for (const title of ['LangChain.js quickstart', 'langchainjs quickstart']) {
+    assert.ok(inferTags({ title, description: '' }).includes('javascript'));
+  }
+});
+
+test('expanded MCP and RAG names identify generative AI content', () => {
+  for (const title of ['Model Context Protocol with Azure Cosmos DB', 'Retrieval-Augmented Generation']) {
+    assert.ok(inferTags({ title, description: '' }).includes('generativeai'));
+  }
+});
+
 test('mergeTags normalizes aliases and drops unknown tags', () => {
   assert.deepEqual(mergeTags(['blog', 'Microsoft'], ['generativeai', 'blog', 'not-a-tag']), ['blog', 'microsoft', 'generativeai']);
   assert.equal(normalizeTag('azurevision'), 'azure-vision');
