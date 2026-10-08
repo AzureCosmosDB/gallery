@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { validateCatalog } from './core.mjs';
 import { normalizeUrl, urlFingerprint } from './normalize.mjs';
+import { LANGUAGE_TAGS, inferTags, mergeTags } from './tags.mjs';
 
 const STRONG_RETIREMENT_REASONS = new Set([
   'github-archived',
@@ -16,7 +17,15 @@ export function strongRetirementEvidence(entry) {
     || entry.reasonCodes.some((reason) => STRONG_RETIREMENT_REASONS.has(reason)));
 }
 
-function buildCatalogEntry(candidate, source) {
+// Classifier tags are authoritative; keywords are the fallback, plus a floor for AI content and the repo language.
+function entryTags(candidate, classification) {
+  const inferred = inferTags({ title: candidate.title, description: candidate.summary, language: candidate.language });
+  if (!Array.isArray(classification?.tags)) return inferred;
+  const floor = inferred.filter((tag) => tag === 'generativeai' || (candidate.language && LANGUAGE_TAGS.includes(tag)));
+  return [...classification.tags, ...floor];
+}
+
+function buildCatalogEntry(candidate, source, classification) {
   const defaults = source.catalogDefaults;
   if (!defaults || !candidate.summary?.trim()) return null;
   const author = candidate.author?.trim() || defaults.author;
@@ -29,7 +38,7 @@ function buildCatalogEntry(candidate, source) {
     author,
     source: candidate.url,
     date: candidate.publishedAt.slice(0, 10),
-    tags: [...defaults.tags],
+    tags: mergeTags(defaults.tags, entryTags(candidate, classification)),
   };
 }
 
@@ -127,7 +136,7 @@ export function planCatalogPromotion({ catalog, retiredCatalog, candidateReport,
     const classification = candidate.classification;
     if (classification?.verdict !== 'include' || classification.confidence !== 'high') continue;
     const fingerprint = urlFingerprint(candidate.url, policy.trackingParameters);
-    const entry = buildCatalogEntry(candidate, sourceById.get(candidate.sourceId) ?? {});
+    const entry = buildCatalogEntry(candidate, sourceById.get(candidate.sourceId) ?? {}, classification);
     if (knownUrls.has(fingerprint)) {
       skippedAdditions.push({ url: candidate.url, reason: 'already-cataloged' });
     } else if (!entry) {

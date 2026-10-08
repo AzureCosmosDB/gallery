@@ -380,6 +380,7 @@ function candidateFromMetadata(source, policy, metadata, now) {
     publishedAt: new Date(publishedTime).toISOString(),
     author: metadata.author?.trim() || null,
     summary: boundedSummary(metadata.summary),
+    ...(metadata.language ? { language: String(metadata.language) } : {}),
     signals: [`trust:${source.trustTier}`, `type:${contentType}`, ...matchedTerms.map((term) => `term:${term.toLowerCase()}`)],
     discoveredAt: now.toISOString(),
     classification: null,
@@ -450,6 +451,7 @@ export function discoverFromGithubSearch(value, source, policy, existingFingerpr
       author: null,
       summary: repository.description ?? '',
       topics: repository.topics,
+      language: repository.language,
     }, now);
     return candidate?.summary ? [candidate] : [];
   });

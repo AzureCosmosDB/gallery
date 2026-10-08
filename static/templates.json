@@ -748,7 +748,8 @@
     "tags": [
       "blog",
       "vectorcosmosnosql",
-      "microsoft"
+      "microsoft",
+      "generativeai"
     ]
   },
   {
@@ -763,7 +764,8 @@
       "blog",
       "vectorcosmosnosql",
       "diskann",
-      "microsoft"
+      "microsoft",
+      "generativeai"
     ]
   },
   {
@@ -778,7 +780,8 @@
       "blog",
       "vectorcosmosnosql",
       "diskann",
-      "microsoft"
+      "microsoft",
+      "generativeai"
     ]
   },
   {
@@ -1860,7 +1863,9 @@
     "date": "2026-09-28",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "chat"
     ]
   },
   {
@@ -1873,7 +1878,9 @@
     "date": "2026-09-28",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "vectorcosmosnosql"
     ]
   },
   {
@@ -1886,7 +1893,9 @@
     "date": "2026-09-25",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -1899,7 +1908,10 @@
     "date": "2026-09-24",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent",
+      "typescript"
     ]
   },
   {
@@ -1925,7 +1937,9 @@
     "date": "2026-09-21",
     "tags": [
       "blog",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -1951,7 +1965,9 @@
     "date": "2026-09-18",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "vectorcosmosnosql"
     ]
   },
   {
@@ -1964,7 +1980,9 @@
     "date": "2026-09-16",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -2029,7 +2047,9 @@
     "date": "2026-08-24",
     "tags": [
       "blog",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -2042,7 +2062,10 @@
     "date": "2026-08-19",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent",
+      "python"
     ]
   },
   {
@@ -2055,7 +2078,10 @@
     "date": "2026-08-18",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "ragPattern",
+      "search"
     ]
   },
   {
@@ -2068,7 +2094,9 @@
     "date": "2026-08-14",
     "tags": [
       "video",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -2081,7 +2109,10 @@
     "date": "2026-08-07",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "agent",
+      "python"
     ]
   },
   {
@@ -2094,7 +2125,10 @@
     "date": "2026-07-20",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "vectorcosmosnosql",
+      "python"
     ]
   },
   {
@@ -2107,7 +2141,10 @@
     "date": "2026-07-07",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "javascript",
+      "generativeai",
+      "agent"
     ]
   },
   {
@@ -2120,7 +2157,12 @@
     "date": "2026-06-16",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "generativeai",
+      "javascript",
+      "ragPattern",
+      "langchain",
+      "vectorcosmosnosql"
     ]
   }
 ]
