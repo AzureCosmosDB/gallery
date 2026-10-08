@@ -1908,7 +1908,8 @@
       "example",
       "microsoft",
       "generativeai",
-      "agent"
+      "agent",
+      "typescript"
     ]
   },
   {
@@ -2060,7 +2061,8 @@
       "example",
       "microsoft",
       "generativeai",
-      "agent"
+      "agent",
+      "python"
     ]
   },
   {
@@ -2104,7 +2106,8 @@
       "example",
       "microsoft",
       "generativeai",
-      "agent"
+      "agent",
+      "python"
     ]
   },
   {
@@ -2117,7 +2120,8 @@
     "date": "2026-07-20",
     "tags": [
       "example",
-      "microsoft"
+      "microsoft",
+      "python"
     ]
   },
   {

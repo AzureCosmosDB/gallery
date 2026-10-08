@@ -30,7 +30,7 @@ function buildCatalogEntry(candidate, source) {
     author,
     source: candidate.url,
     date: candidate.publishedAt.slice(0, 10),
-    tags: mergeTags(defaults.tags, inferTags({ title: candidate.title, description: candidate.summary })),
+    tags: mergeTags(defaults.tags, inferTags({ title: candidate.title, description: candidate.summary, language: candidate.language })),
   };
 }
 

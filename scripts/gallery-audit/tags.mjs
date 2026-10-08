@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 const TAGS_SOURCE = new URL('../../src/data/tags.tsx', import.meta.url);
 export const LANGUAGE_TAGS = ['python', 'csharp', 'java', 'javascript', 'typescript', 'go'];
 const TAG_ALIASES = new Map([['azurevision', 'azure-vision']]);
+const GITHUB_LANGUAGES = new Map([['python', 'python'], ['c#', 'csharp'], ['java', 'java'], ['javascript', 'javascript'], ['typescript', 'typescript'], ['go', 'go']]);
 
 // Keyword rules run against title + description; first match per tag wins.
 const RULES = [
@@ -39,12 +40,14 @@ export function normalizeTag(tag) {
   return TAG_ALIASES.get(lower) ?? (known.has(lower) ? lower : null);
 }
 
-export function inferTags({ title, description }) {
+export function inferTags({ title, description, language }) {
   const text = `${title ?? ''} ${description ?? ''}`;
   const tags = RULES.filter(([, pattern]) => pattern.test(text)).map(([tag]) => tag);
   // Language tags only when the content is language-specific: at most two.
   const languages = tags.filter((tag) => LANGUAGE_TAGS.includes(tag));
-  return tags.filter((tag) => !LANGUAGE_TAGS.includes(tag) || languages.length <= 2);
+  const result = tags.filter((tag) => !LANGUAGE_TAGS.includes(tag) || languages.length <= 2);
+  const repositoryLanguage = GITHUB_LANGUAGES.get(String(language ?? '').toLowerCase());
+  return repositoryLanguage && !result.includes(repositoryLanguage) ? [...result, repositoryLanguage] : result;
 }
 
 export function mergeTags(existing, inferred) {

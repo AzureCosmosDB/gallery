@@ -31,6 +31,12 @@ test('expanded MCP and RAG names identify generative AI content', () => {
   }
 });
 
+test('GitHub repository language becomes a language tag', () => {
+  const tags = inferTags({ title: 'cosmos-starter', description: 'A starter.', language: 'C#' });
+  assert.deepEqual(tags, ['csharp']);
+  assert.deepEqual(inferTags({ title: 'x', description: '', language: 'Shell' }), []);
+});
+
 test('mergeTags normalizes aliases and drops unknown tags', () => {
   assert.deepEqual(mergeTags(['blog', 'Microsoft'], ['generativeai', 'blog', 'not-a-tag']), ['blog', 'microsoft', 'generativeai']);
   assert.equal(normalizeTag('azurevision'), 'azure-vision');
