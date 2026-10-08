@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { inferTags, mergeTags, normalizeTag, tagWarnings } from '../tags.mjs';
+
+test('inferTags adds generativeai, agent and language tags from content', () => {
+  const tags = inferTags({ title: 'Build an AI agent with Python', description: 'Uses vector search.' });
+  assert.ok(tags.includes('generativeai'));
+  assert.ok(tags.includes('agent'));
+  assert.ok(tags.includes('python'));
+});
+
+test('inferTags does not tag language-neutral content', () => {
+  assert.deepEqual(inferTags({ title: 'Choose a partition key', description: 'Throughput and scale.' }), []);
+});
+
+test('java does not match javascript', () => {
+  const tags = inferTags({ title: 'Node.js quickstart', description: '' });
+  assert.ok(tags.includes('javascript'));
+  assert.ok(!tags.includes('java'));
+});
+
+test('mergeTags normalizes aliases and drops unknown tags', () => {
+  assert.deepEqual(mergeTags(['blog', 'Microsoft'], ['generativeai', 'blog', 'not-a-tag']), ['blog', 'microsoft', 'generativeai']);
+  assert.equal(normalizeTag('azurevision'), 'azure-vision');
+});
+
+test('tagWarnings flags cards without language or generativeai tags', () => {
+  assert.deepEqual(tagWarnings({ tags: ['blog', 'microsoft'] }), ['no language or generativeai tag']);
+  assert.deepEqual(tagWarnings({ tags: ['blog', 'python'] }), []);
+});

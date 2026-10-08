@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { validateCatalog } from './core.mjs';
 import { normalizeUrl, urlFingerprint } from './normalize.mjs';
+import { inferTags, mergeTags } from './tags.mjs';
 
 const STRONG_RETIREMENT_REASONS = new Set([
   'github-archived',
@@ -29,7 +30,7 @@ function buildCatalogEntry(candidate, source) {
     author,
     source: candidate.url,
     date: candidate.publishedAt.slice(0, 10),
-    tags: [...defaults.tags],
+    tags: mergeTags(defaults.tags, inferTags({ title: candidate.title, description: candidate.summary })),
   };
 }
 
