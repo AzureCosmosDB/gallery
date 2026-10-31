@@ -1,1 +1,104 @@
-[]
+[
+  {
+    "title": "Azure Cosmos DB NoSQL API & Azure OpenAI Service - Payment & Transaction Processing",
+    "description": "This repository provides a code sample in .NET on how you might use a combination of Azure Functions, Azure Cosmos DB, Azure OpenAI Service and Azure Event Hubs to implement a payment tracking process.",
+    "preview": "coming soon",
+    "website": "https://github.com/fonsecamar",
+    "author": "Marcelo Fonseca",
+    "source": "https://github.com/Azure/Real-time-Payment-Transaction-Processing-at-Scale",
+    "date": "2023-09-25",
+    "tags": [
+      "generativeai",
+      "csharp",
+      "gpt35",
+      "embedding-ada",
+      "ragPattern",
+      "aks",
+      "eventhub",
+      "swa",
+      "openai",
+      "microsoft",
+      "appinsights",
+      "vectorcosmosnosql",
+      "example"
+    ],
+    "retiredAt": "2026-10-31T00:00:00.000Z",
+    "retirementReason": "Repository is archived; content from 2023 is superseded by newer agent and RAG examples with current SDK patterns.",
+    "replacementUrl": null,
+    "retirementEvidence": {
+      "auditOutcome": "review",
+      "httpStatus": 200,
+      "finalUrl": "https://api.github.com/repos/Azure/Real-time-Payment-Transaction-Processing-at-Scale",
+      "reasonCodes": [
+        "github-archived",
+        "age-review"
+      ],
+      "criteria": [
+        "archived repository",
+        "older payment/transaction pattern"
+      ]
+
+    }
+  },
+  {
+    "title": "CosmicWorks command-line tool and libraries for .NET",
+    "description": "This repository is an open source set of tools and libraries to generate data quickly for your proof of concept or sample applications.",
+    "preview": "coming soon",
+    "website": "https://github.com/seesharprun",
+    "author": "Sidney Andrews",
+    "source": "https://github.com/azure-samples/cosmicworks",
+    "date": "2024-03-01",
+    "tags": [
+      "architecturedesign",
+      "tools",
+      "csharp",
+      "microsoft",
+      "example"
+    ],
+    "retiredAt": "2026-10-31T00:00:00.000Z",
+    "retirementReason": "Repository is missing or inaccessible; link is broken.",
+    "replacementUrl": null,
+    "retirementEvidence": {
+      "auditOutcome": "broken",
+      "httpStatus": 404,
+      "finalUrl": "https://api.github.com/repos/azure-samples/cosmicworks",
+      "reasonCodes": [
+        "github-missing",
+        "age-review"
+      ],
+      "criteria": [
+        "repository not found"
+      ]
+    }
+  },
+  {
+    "title": "Samples for using REST calls against CosmosDB",
+    "description": "REST API samples for Azure Cosmos DB for NoSQL. Samples cover most database, container and item examples including example of how to generate a master key authorization signature.",
+    "preview": "coming soon",
+    "website": "https://github.com/alexdrenea",
+    "author": "Alex Drenea",
+    "source": "https://github.com/Azure-Samples/cosmos-db-rest-samples",
+    "date": "2023-09-01",
+    "tags": [
+      "architecturedesign",
+      "csharp",
+      "community",
+      "example"
+    ],
+    "retiredAt": "2026-10-31T00:00:00.000Z",
+    "retirementReason": "Repository is missing or inaccessible; link is broken.",
+    "replacementUrl": null,
+    "retirementEvidence": {
+      "auditOutcome": "broken",
+      "httpStatus": 404,
+      "finalUrl": "https://api.github.com/repos/Azure-Samples/cosmos-db-rest-samples",
+      "reasonCodes": [
+        "github-missing",
+        "age-review"
+      ],
+      "criteria": [
+        "repository not found"
+      ]
+    }
+  }
+]
