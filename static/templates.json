@@ -782,30 +782,6 @@
     ]
   },
   {
-    "title": "Azure Cosmos DB NoSQL API & Azure OpenAI Service - Payment & Transaction Processing",
-    "description": "This repository provides a code sample in .NET on how you might use a combination of Azure Functions, Azure Cosmos DB, Azure OpenAI Service and Azure Event Hubs to implement a payment tracking process.",
-    "preview": "coming soon",
-    "website": "https://github.com/fonsecamar",
-    "author": "Marcelo Fonseca",
-    "source": "https://github.com/Azure/Real-time-Payment-Transaction-Processing-at-Scale",
-    "date": "2023-09-25",
-    "tags": [
-      "generativeai",
-      "csharp",
-      "gpt35",
-      "embedding-ada",
-      "ragPattern",
-      "aks",
-      "eventhub",
-      "swa",
-      "openai",
-      "microsoft",
-      "appinsights",
-      "vectorcosmosnosql",
-      "example"
-    ]
-  },
-  {
     "title": "Azure Cosmos DB & Azure OpenAI Service - Medical Claims Handling",
     "description": "This repository provides a code sample in .NET on how you might use a combination of Azure Functions, Azure Cosmos DB, Azure OpenAI Service and Azure Event Hubs to implement an event-driven medical insurance claims process. With minimal changes this could be modified to work for other insurance processes.",
     "preview": "coming soon",
@@ -893,22 +869,6 @@
     "date": "2023-02-25",
     "tags": [
       "architecturedesign",
-      "csharp",
-      "microsoft",
-      "example"
-    ]
-  },
-  {
-    "title": "CosmicWorks command-line tool and libraries for .NET",
-    "description": "This repository is an open source set of tools and libraries to generate data quickly for your proof of concept or sample applications.",
-    "preview": "coming soon",
-    "website": "https://github.com/seesharprun",
-    "author": "Sidney Andrews",
-    "source": "https://github.com/azure-samples/cosmicworks",
-    "date": "2024-03-01",
-    "tags": [
-      "architecturedesign",
-      "tools",
       "csharp",
       "microsoft",
       "example"
@@ -1039,21 +999,6 @@
       "acr",
       "aks",
       "microsoft",
-      "example"
-    ]
-  },
-  {
-    "title": "Samples for using REST calls against CosmosDB",
-    "description": "REST API samples for Azure Cosmos DB for NoSQL. Samples cover most database, container and item examples including example of how to generate a master key authorization signature.",
-    "preview": "coming soon",
-    "website": "https://github.com/alexdrenea",
-    "author": "Alex Drenea",
-    "source": "https://github.com/Azure-Samples/cosmos-db-rest-samples",
-    "date": "2023-09-01",
-    "tags": [
-      "architecturedesign",
-      "csharp",
-      "community",
       "example"
     ]
   },
